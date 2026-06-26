@@ -1,0 +1,7 @@
+node_modules/
+dist/
+app/node_modules/
+app/dist/
+.DS_Store
+*.bak
+*.bak_olddesign

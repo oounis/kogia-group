@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #6C5CE7;
+  --color-brand-2: #36C5F0;
+  --color-sky: #36C5F0;
+  --color-ink: #1A1B2E;
+  --color-muted: #8A93A6;
+  --color-line: #E8EAF2;
+  --color-canvas: #F6F7FB;
+  --color-coral: #FF6B81;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Georgia", serif;
+}
+
+@layer base {
+  html { font-family: var(--font-sans); }
+  body { background: #fff; color: var(--color-ink); margin:0; -webkit-font-smoothing: antialiased; }
+  h1,h2,h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@layer components {
+  .card { background:#fff; border:1px solid var(--color-line); border-radius:1rem; box-shadow:0 1px 2px rgba(26,27,46,.04),0 8px 24px -16px rgba(26,27,46,.12); }
+  .text-muted { color: var(--color-muted); }
+  .text-ink { color: var(--color-ink); }
+  .text-coral { color: var(--color-coral); }
+  .text-brand { color: var(--color-brand); }
+  .border-line { border-color: var(--color-line); }
+  .bg-canvas { background: var(--color-canvas); }
+  .bg-ink { background: var(--color-ink); }
+  .accent-bg { background: linear-gradient(135deg,#6C5CE7,#36C5F0); }
+  .accent-text { color: var(--color-brand); }
+  .accent-soft { background:#EEEBFF; }
+  .coral-soft { background:#FFE8EC; }
+  .bg-coral-soft { background:#FFE8EC; }
+  .accent-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(108,92,231,.18); border-color:var(--color-brand); }
+  .pop { animation: pop .18s ease-out; }
+  @keyframes pop { from { transform: scale(.96); opacity:0 } to { transform: scale(1); opacity:1 } }
+  .scroll-thin::-webkit-scrollbar { width:8px; height:8px; }
+  .scroll-thin::-webkit-scrollbar-thumb { background:#D5D9E6; border-radius:8px; }
+}
