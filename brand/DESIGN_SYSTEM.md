@@ -1,6 +1,17 @@
-# Kogia Design Language — v1
+# Kogia Design Language — v2 « Le Cachalot »
 
-One company, four products. Each product has its **own identity**, but every surface shares the same **foundations** so the ecosystem reads as one professional group.
+One company, four products, one mascot. *Kogia* is the genus of the **dwarf sperm whale** — the smallest whale on Earth: compact, clever, always in a pod. That's the brand story: small team, big-company standards, products that swim together.
+
+## Identity v2 (2026-07-08)
+- **Mark**: the Kogia whale (`brand/v2/kogia-mark.svg`) — blunt sperm-whale head, raised flukes, spout, smile. App tile: `brand/v2/kogia-tile.svg`. Wordmark: lowercase **kogia** in Sora 800, `GROUP` letterspaced beneath.
+- **Colorways per division** (recolor the mark's gradient): Group indigo→cyan `#6366F1→#22D3EE` · Education indigo→violet `#6366F1→#8B5CF6` · Business/Coffee amber→coral `#D97706→#FB7185` · Games grape→coral `#A78BFA→#FB7185`.
+- **Palette v2 (bright & friendly, premium)**: ink `#0F172A` · muted `#64748B` · line `#E2E8F0` · canvas `#F8FAFC` · indigo `#6366F1` · cyan `#22D3EE` · sun `#FBBF24` · coral `#FB7185` · mint `#34D399` · grape `#A78BFA`.
+- **Type v2**: display **Sora** (600–800) for headings & brand; **Inter** for UI/body.
+- **Mascot rules**: the whale may appear as a friendly character on marketing surfaces (hero scenes, empty states, success moments) — floating animation, bubbles, spout. Never inside dense app tables/forms. Flat vector only.
+- **Motion**: floaty 5–6s ease-in-out for mascot; reveal-on-scroll (translateY 22px, .7s); hover lift −2px.
+- Reference implementation: `site/index.html` (corporate site v2).
+
+Each product keeps its **own identity**, but every surface shares the same **foundations** so the ecosystem reads as one professional group.
 
 ## Shared foundations (all products)
 
