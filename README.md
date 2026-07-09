@@ -1,12 +1,12 @@
 # Kogia Group
 
-Corporate identity of **Kogia Group** — a Tunisian technology group with three divisions and three products online.
+Corporate identity of **Kogia Group** — a Tunisian technology group. One division today, more to come.
 
 | Division | Product | Live |
 |---|---|---|
 | Kogia Education | Coreon Edu (school management SaaS) | https://oounis.github.io/Kogia_Education/ |
-| Kogia Business | Kogia Coffee (e-commerce, Djerba) | https://oounis.github.io/Kogia_Coffee/ |
-| Kogia Games | Kharbga: Origins (heritage board game) | https://oounis.github.io/Kogia_Game_KRBG/ |
+
+> Kharbga and Kogia Coffee are independent personal projects by the same author; they are **not** part of Kogia Group.
 
 ## Repository layout
 
