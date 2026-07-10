@@ -41,7 +41,11 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--ink);background:var(--canvas);line-height:1.65;-webkit-font-smoothing:antialiased}
+/* Un cran plus gras que le 400 par défaut : le texte se lit mieux, sans crier.
+   Même réglage dans Coreon Edu et dans la console — une seule voix typographique. */
+body{font-family:var(--sans);color:var(--ink);background:var(--canvas);line-height:1.65;font-weight:500;-webkit-font-smoothing:antialiased;letter-spacing:-.004em}
+b,strong{font-weight:700}
+.tabular-nums{font-variant-numeric:tabular-nums}
 a{color:inherit;text-decoration:none}
 .wrap{width:min(1140px,92vw);margin-inline:auto}
 h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
