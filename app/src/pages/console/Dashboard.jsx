@@ -9,7 +9,7 @@ export default function Dashboard() {
   const k = useMemo(() => kpis(d), [d])
   const revProd = useMemo(() => revenueByProduct(d), [d])
   const cliProd = useMemo(() => clientsByProduct(d), [d])
-  const revSeries = d.revenue.map(r => ({ month: r.month, total: r.coreon + r.kharbga + r.coffee, ...r }))
+  const revSeries = d.revenue.map(r => ({ month: r.month, total: r.coreon, ...r }))
 
   const recent = [...d.invoices]
     .sort((a, b) => b.issued.localeCompare(a.issued)).slice(0, 6)
@@ -37,10 +37,7 @@ export default function Dashboard() {
               <XAxis dataKey="month" tick={{ fontSize: 12, fill: '#8A93A6' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: '#8A93A6' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #E8EAF2', fontSize: 13 }} />
-              <Legend wrapperStyle={{ fontSize: 12 }} />
-              <Bar dataKey="coreon" name="Coreon Edu" stackId="a" fill="#6C5CE7" radius={[0, 0, 0, 0]} />
-              <Bar dataKey="kharbga" name="Kharbga" stackId="a" fill="#E59A12" />
-              <Bar dataKey="coffee" name="Kogia Coffee" stackId="a" fill="#10B981" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="coreon" name="Coreon Edu" fill="#6C5CE7" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </Card>

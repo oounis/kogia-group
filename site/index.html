@@ -13,9 +13,21 @@
 <meta property="og:url" content="https://kogiagroup.com/">
 <meta property="og:title" content="Kogia Group — la technologie au service de l'école">
 <meta property="og:description" content="Groupe technologique tunisien. Notre division Kogia Education édite Coreon Edu, la plateforme de gestion scolaire conçue et opérée en Tunisie.">
+<meta property="og:image" content="https://kogiagroup.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Coreon Edu — la gestion scolaire, enfin simple.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kogia Group — la technologie au service de l'école">
 <meta name="twitter:description" content="Coreon Edu : la gestion scolaire, enfin simple. Conçu et opéré en Tunisie.">
+<meta name="twitter:image" content="https://kogiagroup.com/assets/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Kogia Group","url":"https://kogiagroup.com/",
+ "logo":"https://kogiagroup.com/assets/og.png","email":"contact@kogiagroup.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Tunis","addressCountry":"TN"},
+ "makesOffer":{"@type":"Offer","itemOffered":{"@type":"SoftwareApplication","name":"Coreon Edu",
+   "applicationCategory":"EducationalApplication","operatingSystem":"Web"}}}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Cdefs%3E%3ClinearGradient id='kt' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%2322D3EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='96' height='96' rx='24' fill='url(%23kt)'/%3E%3Cg transform='translate(6,14) scale(.64)'%3E%3Cpath fill='%23fff' d='M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z'/%3E%3Ccircle cx='34' cy='45' r='4.4' fill='%23312E81'/%3E%3Cpath d='M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' opacity='.85'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,8 +50,11 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
 .btn.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
 .eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo);background:#EEF2FF;padding:.42rem 1rem;border-radius:999px}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
+/* Les animations d'apparition ne s'activent QUE si le JS tourne : sans ce garde,
+   .reveal{opacity:0} rendait la page presque vide pour un visiteur sans JS
+   (et pour certains robots d'indexation). */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
 
 /* nav */
@@ -142,12 +157,13 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 .plan .price{display:flex;align-items:baseline;gap:.35rem;font-family:var(--disp);margin-top:.3rem}
 .plan .price b{font-size:2.5rem;font-weight:800;letter-spacing:-.03em}
 .plan .price span{color:var(--muted);font-size:.9rem;font-weight:600;font-family:var(--sans)}
-.plan .peryear{font-size:.78rem;color:var(--mint);font-weight:700;min-height:1.2em}
+/* #34D399 sur blanc = 1.92:1 → illisible. Vert profond : 4.6:1. */
+.plan .peryear{font-size:.78rem;color:#047857;font-weight:700;min-height:1.2em}
 .plan ul{list-style:none;display:grid;gap:.55rem;font-size:.88rem;margin-top:.4rem;flex:1}
 .plan li{display:flex;gap:.55rem;align-items:flex-start;line-height:1.5}
 .plan li svg{width:15px;height:15px;color:var(--mint);flex-shrink:0;margin-top:.28rem}
-.plan li.off{color:#94A3B8}
-.plan li.off svg{color:#CBD5E1}
+.plan li.off{color:#64748B}          /* 2.8:1 → 4.8:1 */
+.plan li.off svg{color:#94A3B8}
 .plan .btn{justify-content:center;margin-top:.4rem}
 .pnote{text-align:center;color:var(--muted);font-size:.82rem;margin-top:1.6rem}
 .pnote b{color:var(--ink)}
@@ -194,6 +210,10 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 .footer a:hover{color:var(--indigo)}
 .foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.4rem;font-size:.82rem}
 
+/* Menu mobile : les liens étaient simplement masqués sous 960px, sans remplacement —
+   un visiteur sur téléphone n'avait aucune navigation. */
+.burger{display:none;background:none;border:0;padding:.5rem;cursor:pointer;color:var(--ink)}
+.burger svg{display:block}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
   .scene{min-height:320px;order:-1}
@@ -202,16 +222,33 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
   .plan.best{order:-1}
   .vals{grid-template-columns:1fr 1fr}
   .stats-in{grid-template-columns:1fr 1fr;gap:1.4rem}
-  .band{grid-template-columns:1fr;text-align:center}
+  .band{grid-template-columns:1fr;text-align:center;padding:2.2rem 1.4rem}
   .band .actions{justify-content:center}
-  .nav-links{display:none}
+  .burger{display:inline-flex}
+  .nav-in>.btn{display:none}
+  .nav-links{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);
+    flex-direction:column;gap:0;padding:.4rem 0;box-shadow:var(--sh);display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.85rem 6vw;font-size:1rem;color:var(--ink)}
+  .nav-links a:hover{background:var(--canvas)}
   .foot-grid{grid-template-columns:1fr}
 }
+@media(max-width:640px){
+  .feats,.vals{grid-template-columns:1fr}
+  .stats-in{grid-template-columns:1fr 1fr}
+}
+/* Respecte le réglage système « réduire les animations » (troubles vestibulaires). */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+/* Anneau de focus visible au clavier, partout. */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--indigo);outline-offset:3px;border-radius:8px}
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
     <g id="whale">
@@ -226,13 +263,16 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 
 <header class="nav"><div class="wrap nav-in">
   <a href="#" class="lockup" aria-label="Kogia Group">
-    <svg viewBox="0 0 132 96"><use href="#whale"/></svg>
+    <svg viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
     <span><span class="w">kogia</span><small>GROUP</small></span>
   </a>
-  <nav class="nav-links">
+  <nav class="nav-links" id="navlinks">
     <a href="#produits">Produit</a><a href="#fonctions">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="#methode">Méthode</a><a href="#contact">Contact</a>
   </nav>
   <a class="btn" href="#tarifs">Voir les tarifs</a>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks" type="button">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
 </div></header>
 
 <section class="hero"><div class="wrap hero-grid">
@@ -246,17 +286,17 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
       <a class="btn ghost" href="https://github.com/oounis" target="_blank" rel="noopener">Notre GitHub</a>
     </div>
     <div class="hero-note">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="15" height="15"><path d="M20 6 9 17l-5-5"/></svg> Coreon Edu en ligne</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="15" height="15"><path d="M20 6 9 17l-5-5"/></svg> 100 % conçu &amp; opéré en Tunisie</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="15" height="15" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Coreon Edu en ligne</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="15" height="15" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 100 % conçu &amp; opéré en Tunisie</span>
     </div>
   </div>
   <div class="scene" aria-hidden="true">
     <div class="sea"></div>
     <span class="bubble s1"></span><span class="bubble s2"></span><span class="bubble s3"></span>
-    <svg class="whale-big" viewBox="0 0 132 96"><use href="#whale"/></svg>
-    <span class="orbit o1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Coreon Edu</span>
-    <span class="orbit o2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Évaluer en 30 s</span>
-    <span class="orbit o3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> 6 portails</span>
+    <svg class="whale-big" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
+    <span class="orbit o1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Coreon Edu</span>
+    <span class="orbit o2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Évaluer en 30 s</span>
+    <span class="orbit o3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> 6 portails</span>
   </div>
 </div></section>
 
@@ -273,26 +313,26 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
     <p>Kogia Education porte Coreon Edu — en ligne aujourd'hui. Le pod grandira, division après division.</p></div>
   <div class="prods">
     <a class="prod reveal" style="--pc:linear-gradient(90deg,#6366F1,#8B5CF6);--pt:#EEF2FF" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">
-      <span class="mini" style="color:#4F46E5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+      <span class="mini" style="color:#4F46E5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
       <span class="tag">Kogia Education</span>
       <h3>Coreon Edu</h3>
       <p>La gestion scolaire, enfin simple : évaluer toute une classe en 30 secondes, suivre présence, frais et vie de l'école — six portails, du directeur au parent.</p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Évaluation par glisser-déposer</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Tableaux de bord Direction</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Évaluation par glisser-déposer</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Tableaux de bord Direction</li>
       </ul>
-      <span class="go" style="color:#4F46E5">Essayer la démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="go" style="color:#4F46E5">Essayer la démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </a>
     <div class="prod reveal d1" style="--pc:linear-gradient(90deg,#CBD5E1,#E2E8F0);border-style:dashed;background:transparent">
-      <span class="mini" style="color:#64748B;background:#F1F5F9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></span>
+      <span class="mini" style="color:#64748B;background:#F1F5F9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></span>
       <span class="tag">Prochaines divisions</span>
       <h3 style="color:#64748B">Le pod grandit</h3>
       <p>Kogia est un groupe : d'autres divisions rejoindront Kogia Education, chacune avec son métier et son produit — construites avec la même exigence, annoncées seulement quand elles seront réelles.</p>
       <ul style="color:#64748B">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Un métier réel par division</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Le même design system Kogia</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Pas de promesses creuses</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Un métier réel par division</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Le même design system Kogia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Pas de promesses creuses</li>
       </ul>
       <span class="go" style="color:#94A3B8">À suivre…</span>
     </div>
@@ -305,47 +345,47 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
     <p>Conçu avec des enseignants et des directeurs : chaque écran répond à une tâche réelle de la journée.</p></div>
   <div class="feats">
     <div class="feat reveal">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg></span>
       <h3>Évaluation en 30 secondes</h3>
       <p>La classe en cours s'affiche seule. L'enseignant fait glisser chaque élève vers une réponse — cinq questions, aucun formulaire à remplir.</p>
     </div>
     <div class="feat reveal d1">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
       <h3>Suivi en direct pour les parents</h3>
       <p>Le parent voit la journée de son enfant se dérouler : cours, évaluations, badges — une vue positive et simple, pas des données brutes.</p>
     </div>
     <div class="feat reveal d2">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
       <h3>Appel &amp; présence</h3>
       <p>Appel des élèves en un geste, absences remontées instantanément à la direction et aux parents concernés.</p>
     </div>
     <div class="feat reveal">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
       <h3>Frais &amp; paiements</h3>
       <p>Mois payés, retards, reçus. La direction voit la trésorerie de l'école ; le parent voit ce qu'il doit, sans ambiguïté.</p>
     </div>
     <div class="feat reveal d1">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
       <h3>Emploi du temps &amp; devoirs</h3>
       <p>La journée type, les cours, les devoirs publiés par matière — l'emploi du temps pilote automatiquement le reste de la plateforme.</p>
     </div>
     <div class="feat reveal d2">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
       <h3>Examens &amp; bulletins</h3>
       <p>Notes, moyennes par matière et bulletin consultable par le parent — chaque chiffre remonte à l'évaluation qui l'a produit.</p>
     </div>
     <div class="feat reveal">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/><path d="M4 17h16l-1.4-2.1a2 2 0 0 1-.6-1.4V10a6 6 0 1 0-12 0v3.5c0 .5-.2 1-.6 1.4z"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/><path d="M4 17h16l-1.4-2.1a2 2 0 0 1-.6-1.4V10a6 6 0 1 0-12 0v3.5c0 .5-.2 1-.6 1.4z"/></svg></span>
       <h3>Incidents &amp; demandes</h3>
       <p>Le surveillant signale un incident, le parent dépose une demande, la direction tranche. Tout est tracé, rien ne se perd.</p>
     </div>
     <div class="feat reveal d1">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg></span>
       <h3>Badgeuse du personnel</h3>
       <p>Pointage des enseignants et du staff, historique, demandes de congé — l'administration au même endroit que la pédagogie.</p>
     </div>
     <div class="feat reveal d2">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></span>
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></span>
       <h3>Application mobile <span class="soon">Bientôt</span></h3>
       <p>Les portails enseignant et parent dans une application dédiée, pensée pour le téléphone — en cours de développement.</p>
     </div>
@@ -377,12 +417,12 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
       <div class="price"><b class="amt" data-m="120" data-a="1200">120</b><span class="per">TND / mois</span></div>
       <p class="peryear"></p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>150 élèves</b></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Les 6 portails inclus</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Évaluation, présence, devoirs</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Frais &amp; paiements</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Support par e-mail</li>
-        <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Badgeuse du personnel</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>150 élèves</b></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Les 6 portails inclus</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Évaluation, présence, devoirs</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Frais &amp; paiements</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Support par e-mail</li>
+        <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg> Badgeuse du personnel</li>
       </ul>
       <a class="btn ghost" href="mailto:contact@kogiagroup.com?subject=Coreon%20Edu%20—%20formule%20Starter">Demander un devis</a>
     </div>
@@ -394,12 +434,12 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
       <div class="price"><b class="amt" data-m="280" data-a="2800">280</b><span class="per">TND / mois</span></div>
       <p class="peryear"></p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>400 élèves</b></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Tout Starter</b>, plus :</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Examens, bulletins &amp; badgeuse</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Incidents &amp; demandes</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Formation de l'équipe incluse</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>400 élèves</b></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <b>Tout Starter</b>, plus :</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Examens, bulletins &amp; badgeuse</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Incidents &amp; demandes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Formation de l'équipe incluse</li>
       </ul>
       <a class="btn" href="mailto:contact@kogiagroup.com?subject=Coreon%20Edu%20—%20formule%20Pro">Demander un devis</a>
     </div>
@@ -410,12 +450,12 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
       <div class="price"><b class="amt" data-m="520" data-a="5200">520</b><span class="per">TND / mois</span></div>
       <p class="peryear"></p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Élèves <b>illimités</b></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Tout Pro</b>, plus :</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Multi-cycles &amp; multi-établissements</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Tableaux de bord Direction consolidés</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Reprise de vos données existantes</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Interlocuteur dédié</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Élèves <b>illimités</b></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <b>Tout Pro</b>, plus :</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Multi-cycles &amp; multi-établissements</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Tableaux de bord Direction consolidés</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Reprise de vos données existantes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Interlocuteur dédié</li>
       </ul>
       <a class="btn ghost" href="mailto:contact@kogiagroup.com?subject=Coreon%20Edu%20—%20formule%20École%2B">Parler à Kogia</a>
     </div>
@@ -450,10 +490,10 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 <section class="sec" id="valeurs" style="background:#fff;border-block:1px solid var(--line)"><div class="wrap">
   <div class="shead reveal"><span class="eyebrow">Valeurs</span><h2>Ce qui ne change jamais</h2></div>
   <div class="vals">
-    <div class="val reveal"><span class="ic" style="background:#EEF2FF;color:#4F46E5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.5-4 8-8.5 8-12a8 8 0 1 0-16 0c0 3.5 2.5 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Fait en Tunisie</h3><p>Conçu, développé et opéré ici — pour les écoles d'ici et leurs usages réels.</p></div>
-    <div class="val reveal d1"><span class="ic" style="background:#ECFDF5;color:#059669"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a2 2 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span><h3>Honnêteté</h3><p>Pas de faux chiffres, pas de faux clients. Ce que le site promet, le produit le fait.</p></div>
-    <div class="val reveal d2"><span class="ic" style="background:#FFF7ED;color:#C2410C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span><h3>Plaisir d'usage</h3><p>Des interfaces vivantes qu'on aime ouvrir — parce qu'un bon outil est d'abord agréable.</p></div>
-    <div class="val reveal d3"><span class="ic" style="background:#F5F3FF;color:#7C3AED"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span><h3>École &amp; futur</h3><p>L'école d'ici propulsée par la technologie d'aujourd'hui — sans jamais perdre l'humain.</p></div>
+    <div class="val reveal"><span class="ic" style="background:#EEF2FF;color:#4F46E5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c5.5-4 8-8.5 8-12a8 8 0 1 0-16 0c0 3.5 2.5 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Fait en Tunisie</h3><p>Conçu, développé et opéré ici — pour les écoles d'ici et leurs usages réels.</p></div>
+    <div class="val reveal d1"><span class="ic" style="background:#ECFDF5;color:#059669"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a2 2 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span><h3>Honnêteté</h3><p>Pas de faux chiffres, pas de faux clients. Ce que le site promet, le produit le fait.</p></div>
+    <div class="val reveal d2"><span class="ic" style="background:#FFF7ED;color:#C2410C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span><h3>Plaisir d'usage</h3><p>Des interfaces vivantes qu'on aime ouvrir — parce qu'un bon outil est d'abord agréable.</p></div>
+    <div class="val reveal d3"><span class="ic" style="background:#F5F3FF;color:#7C3AED"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span><h3>École &amp; futur</h3><p>L'école d'ici propulsée par la technologie d'aujourd'hui — sans jamais perdre l'humain.</p></div>
   </div>
 </div></section>
 
@@ -467,14 +507,14 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
         <a class="btn ghost" href="https://github.com/oounis" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
-    <svg class="whale-cta" viewBox="0 0 132 96"><use href="#whale"/></svg>
+    <svg class="whale-cta" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
   </div>
 </div></section>
 
 <footer class="footer"><div class="wrap">
   <div class="foot-grid">
     <div>
-      <a href="#" class="lockup"><svg viewBox="0 0 132 96"><use href="#whale"/></svg><span><span class="w">kogia</span><small>GROUP</small></span></a>
+      <a href="#" class="lockup"><svg viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg><span><span class="w">kogia</span><small>GROUP</small></span></a>
       <p style="font-size:.88rem;margin-top:.8rem;max-width:34ch">Le plus petit cachalot du monde. La plus grande exigence possible.</p>
     </div>
     <div><h5>Produits</h5>
@@ -490,6 +530,23 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 </div></footer>
 
 <script>
+/* Marque la page comme « JS actif » : sans JS, .reveal reste visible (cf. CSS). */
+document.documentElement.classList.add('js');
+
+/* Menu mobile */
+(function(){
+  var b=document.getElementById('burger'), n=document.getElementById('navlinks');
+  if(!b||!n) return;
+  b.addEventListener('click',function(){
+    var open=n.classList.toggle('open');
+    b.setAttribute('aria-expanded',String(open));
+    b.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu');
+  });
+  n.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){ n.classList.remove('open'); b.setAttribute('aria-expanded','false') }
+  });
+})();
+
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 var co=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting)return; co.unobserve(e.target);
@@ -505,6 +562,7 @@ document.querySelectorAll('.stats b').forEach(function(el){co.observe(el)});
   if(!bm||!ba) return;
   function render(yearly){
     bm.classList.toggle('on',!yearly); ba.classList.toggle('on',yearly);
+    bm.setAttribute('aria-pressed',String(!yearly)); ba.setAttribute('aria-pressed',String(yearly));
     document.querySelectorAll('.plan').forEach(function(p){
       var amt=p.querySelector('.amt'), per=p.querySelector('.per'), py=p.querySelector('.peryear');
       if(!amt) return;

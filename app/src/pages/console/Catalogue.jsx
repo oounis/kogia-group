@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { GraduationCap, Gamepad2, Coffee, Check, KeyRound } from 'lucide-react'
+import { GraduationCap, Check, KeyRound } from 'lucide-react'
 import { PRODUCTS, db, clientsByProduct } from '../../db.js'
 import { Card, PageHead, Btn } from '../../ui.jsx'
 
-const ICONS = { coreon: GraduationCap, kharbga: Gamepad2, coffee: Coffee }
+const ICONS = { coreon: GraduationCap }
 
 export default function Catalogue() {
   const d = db()

@@ -1,12 +1,25 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, GraduationCap, Gamepad2, Coffee, ShieldCheck } from 'lucide-react'
+import { ArrowRight, GraduationCap, ShieldCheck } from 'lucide-react'
 import { Mark } from '../ui.jsx'
-import { PRODUCTS } from '../db.js'
+import { PRODUCTS, db, kpis } from '../db.js'
 
-const ICONS = { coreon: GraduationCap, kharbga: Gamepad2, coffee: Coffee }
+const ICONS = { coreon: GraduationCap }
+
+// Chiffres lus dans la base, jamais écrits en dur : le site du groupe promet
+// « pas de faux chiffres », la console doit tenir la même promesse.
+function stats() {
+  const d = db(); const k = kpis(d)
+  return [
+    ['Clients', String(d.clients.length)],
+    ['Produits', String(PRODUCTS.length)],
+    ['MRR', `${k.mrr} TND`],
+    ['Factures', String(d.invoices.length)],
+  ]
+}
 
 export default function Landing() {
+  const STATS = stats()
   return (
     <div className="min-h-screen bg-white">
       {/* nav */}
@@ -36,10 +49,10 @@ export default function Landing() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5 }}>
             <span className="inline-block text-xs font-bold tracking-widest uppercase accent-text">Groupe technologique</span>
             <h1 className="text-4xl md:text-5xl font-extrabold mt-3 leading-[1.05]">
-              Un groupe.<br />Plusieurs <span className="accent-text">marques</span> qui comptent.
+              Un groupe.<br />Une <span className="accent-text">marque</span> qui compte.
             </h1>
             <p className="text-muted mt-5 text-lg max-w-md">
-              Kogia Group réunit des produits commerciaux en éducation, jeu et café. Une holding, une vision, un pilotage centralisé par le propriétaire.
+              Kogia Group édite Coreon Edu, sa plateforme de gestion scolaire. Une holding, une vision, un pilotage centralisé par le propriétaire.
             </p>
             <div className="flex gap-3 mt-8">
               <Link to="/console" className="inline-flex items-center gap-2 rounded-xl font-semibold px-5 py-3 text-white accent-bg hover:opacity-90">
@@ -70,8 +83,8 @@ export default function Landing() {
       {/* marques */}
       <section id="marques" className="max-w-6xl mx-auto px-5 py-16">
         <div className="text-center mb-10">
-          <span className="text-xs font-bold tracking-widest uppercase accent-text">Nos marques commerciales</span>
-          <h2 className="text-3xl font-extrabold mt-2">Trois produits, un même groupe</h2>
+          <span className="text-xs font-bold tracking-widest uppercase accent-text">Notre marque commerciale</span>
+          <h2 className="text-3xl font-extrabold mt-2">Un produit, porté par une division</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {PRODUCTS.map((p, i) => {
@@ -115,7 +128,7 @@ export default function Landing() {
               <Mark size={30} /><div><div className="font-bold">Console propriétaire</div><div className="text-xs text-muted">Othman Ounis · Propriétaire</div></div>
             </div>
             <div className="grid grid-cols-2 gap-3 mt-4">
-              {[['Clients', '5'], ['Produits', '3'], ['MRR', '730 TND'], ['Factures', '9']].map(([l, v]) => (
+              {STATS.map(([l, v]) => (
                 <div key={l} className="rounded-xl bg-canvas px-3 py-3"><div className="text-xl font-extrabold">{v}</div><div className="text-xs text-muted">{l}</div></div>
               ))}
             </div>
