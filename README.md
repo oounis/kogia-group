@@ -1,10 +1,11 @@
 # Kogia Group
 
-Corporate identity of **Kogia Group** — a Tunisian technology group. One division today, more to come.
+Corporate identity of **Kogia Group** — a Tunisian product studio. Two products today, more to come.
 
-| Division | Product | Live |
+| Division | Product | Status |
 |---|---|---|
-| Kogia Education | Coreon Edu (school management SaaS) | https://oounis.github.io/Kogia_Education/ |
+| Kogia Education | Coreon Edu — the joyful daily life of the school (web live, Android app in progress) | Live: https://oounis.github.io/Kogia_Education/ |
+| Yeddi | Yeddi — mobile-only Tunisian task marketplace (post a task in photos, offers, cash at the end, human-verified identity) | In development — Android first |
 
 > Kharbga and Kogia Coffee are independent personal projects by the same author; they are **not** part of Kogia Group.
 
