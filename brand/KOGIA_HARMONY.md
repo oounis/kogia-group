@@ -20,8 +20,9 @@ What the animal actually is:
 |---|---|
 | The **smallest** whale, yet unmistakably a sperm whale — a full-size brain in a compact body | Small team, big-company standards. Compact products that are complete, not "lite". |
 | **Steely grey with a pink tinge — reads violet-blue underwater** | Our signature is not "tech blue". It is a **deep marine violet-indigo**: the colour of a body seen through water. |
-| A pale crescent behind the eye — the **"false gill"**, a mark that mimics a shark | **The Kogia Crescent.** Our one geometric signature. See §4. |
+| A pale crescent behind the eye — the **"false gill"**, a mark that mimics a shark | **The Kogia Crescent** — our interface motif (loaders, empty states). Deliberately *not* the logo: on a Tunisian company a crescent reads as the national flag. See §4.2. |
 | A **deep, quiet diver**; hunts far below, in the dark, alone | Depth over noise. Calm surfaces. Nothing shouts. |
+| Its **fluke** — the one shape that says "whale" without drawing one | **The mark**: a K whose arm is a fluke. The initial and the animal in one form. See §4.1. |
 | Rests **completely motionless** at the surface | Stillness is the default state. Motion is an *event*, never decoration. |
 | Defends itself by releasing a **reddish-brown cloud**, then vanishing | The warm **terracotta** in our palette is not arbitrary — it is the ink cloud. It is the one hot colour the family owns. |
 | **Elusive, rarely seen, hard to study** | We do not fake presence. No invented metrics, no fake logos, no stock-photo customers. |
@@ -42,7 +43,7 @@ product we have not built yet.
 
 **1 — One ocean, many creatures.**
 Every product shares the same water: the same neutrals, the same type scale, the same
-radii, the same motion curve, the same crescent. A product expresses its personality
+radii, the same motion curve, the same house mark. A product expresses its personality
 through **colour, illustration and rhythm** — never by inventing a new type system, a
 new shadow, or a new corner radius. If two products differ in a way a user would not
 notice, that difference is a bug.
