@@ -1,0 +1,146 @@
+/* ============================================================================
+   Kogia Harmony — design tokens (web)
+   Source of truth: brand/KOGIA_HARMONY.md. Do not add a hex to a product file.
+   Every value here is measured, not eyeballed. Contrast ratios in comments.
+   ========================================================================= */
+
+:root {
+  /* --- The water: neutrals. Identical in every product. ------------------ */
+  --k-abyss:    #071726;  /* dark-mode ground */
+  --k-ink:      #0E2135;  /* primary text — 16.3:1 on white */
+  --k-slate:    #5B6B7D;  /* secondary text — 5.46:1 on white, 5.08:1 on canvas */
+  --k-line:     #DCE3EB;
+  --k-canvas:   #F4F7FA;  /* cool marine, never neutral grey */
+  --k-surface:  #FFFFFF;
+  --k-pearl:    #FDF6F0;  /* the crescent's light — the one warm surface */
+
+  /* --- The body seen through water: brand ------------------------------- */
+  --k-indigo:   #4F57DE;  /* THE primary. 5.60:1 as text AND 5.60:1 white-on-it */
+  --k-violet:   #8B5CF6;  /* 4.23:1 — large text / fills */
+  --k-cyan:     #22D3EE;  /* 1.81:1 — DECORATIVE ONLY. Never text. */
+  --k-grad:     linear-gradient(120deg, #4F57DE, #22D3EE);
+
+  /* --- The ink cloud: terracotta (Kogia Job's lane) ---------------------- */
+  --k-terra:      #E85D2F;  /* 3.48:1 — fills, marks, display type */
+  --k-terra-deep: #C2410C;  /* 5.18:1 — terracotta AS TEXT */
+  --k-terra-ink:  #7C2D12;  /* 8.47:1 on terra-tint */
+  --k-terra-tint: #FFF1E7;
+  --k-terra-line: #FED7AA;
+  --k-grad-terra: linear-gradient(120deg, #E85D2F, #FBBF24);
+
+  /* --- Status: reserved. Never a brand colour, never a chart series. ----- */
+  --k-ok:        #12946F;  --k-ok-soft:      #E7F5F0;
+  --k-warn:      #C97C1E;  --k-warn-soft:    #FBF1E3;
+  --k-danger:    #DC4B54;  --k-danger-soft:  #FBEBEC;
+  --k-info:      #0E7FB8;  --k-info-soft:    #E6F1F8;
+  --k-neutral:   #7C879B;  --k-neutral-soft: #F1F4F8;
+
+  /* --- Data viz: validated, fixed order, NEVER cycled. 7th = "Autre". ----
+     All four checks PASS (lightness band, chroma floor, CVD, contrast).
+     Re-run scripts/validate_palette.js before changing any of these.       */
+  --k-series-1: #4361D0;
+  --k-series-2: #0FA396;
+  --k-series-3: #D2603A;
+  --k-series-4: #9061F0;
+  --k-series-5: #B07414;
+  --k-series-6: #2F8050;
+  --k-grid:     #EEF1F6;
+
+  /* --- Type ------------------------------------------------------------- */
+  --k-display: "Sora", system-ui, sans-serif;          /* every product */
+  --k-text:    "Inter", system-ui, sans-serif;         /* Group + Kogia Job */
+  --k-round:   "Baloo 2", var(--k-display);            /* Kogia Job WORDMARK ONLY */
+  --k-body-weight: 500;                                /* deliberate: one notch up */
+
+  /* --- Form: four radii. There is no fifth. ------------------------------ */
+  --k-r-control: 12px;
+  --k-r-card:    16px;
+  --k-r-tile:    24px;
+  --k-r-pill:    999px;
+
+  /* --- Elevation: one light, above the water ----------------------------- */
+  --k-sh-1: 0 1px 2px rgb(14 33 53 / .05);
+  --k-sh-2: 0 10px 30px -12px rgb(14 33 53 / .12);
+  --k-sh-3: 0 24px 50px -20px rgb(14 33 53 / .20);
+
+  /* --- Motion: stillness is the resting state ---------------------------- */
+  --k-ease:       cubic-bezier(.2, .8, .2, 1);
+  --k-t-micro:    160ms;
+  --k-t-standard: 220ms;
+  --k-t-deliberate: 320ms;
+  --k-t-welcome:  600ms;
+}
+
+/* --- Dark mode: SELECTED steps, not an automatic flip. ---------------------
+   Each value re-validated against the abyss surface (#071726).            */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --k-canvas:  #071726;
+    --k-surface: #0E2135;
+    --k-ink:     #E8EEF4;  /* 15.5:1 on abyss */
+    --k-slate:   #93A4B5;  /* 7.09:1 on abyss */
+    --k-line:    #1E3348;
+    --k-pearl:   #17293A;
+
+    --k-indigo:  #8B92F0;  /* 6.44:1 on abyss */
+    --k-terra:   #F0805A;  /* 6.85:1 on abyss */
+
+    --k-series-1: #6B83E6;
+    --k-series-2: #14A595;
+    --k-series-3: #E36D46;
+    --k-series-4: #A176F0;
+    --k-series-5: #B58415;
+    --k-series-6: #3C9060;
+    --k-grid:     #1E3348;
+  }
+}
+
+/* The viewer's theme toggle must win in both directions. */
+:root[data-theme="dark"] {
+  --k-canvas: #071726; --k-surface: #0E2135;
+  --k-ink: #E8EEF4;    --k-slate: #93A4B5;
+  --k-line: #1E3348;   --k-pearl: #17293A;
+  --k-indigo: #8B92F0; --k-terra: #F0805A;
+  --k-series-1: #6B83E6; --k-series-2: #14A595; --k-series-3: #E36D46;
+  --k-series-4: #A176F0; --k-series-5: #B58415; --k-series-6: #3C9060;
+  --k-grid: #1E3348;
+}
+
+/* ============================================================================
+   Motion primitives — every one of them yields to prefers-reduced-motion.
+   ========================================================================= */
+
+/* The only perpetual animation permitted anywhere in the ecosystem. */
+@keyframes k-float {
+  0%, 100% { transform: translateY(0) }
+  50%      { transform: translateY(-4px) }
+}
+.k-float { animation: k-float 6s ease-in-out infinite }
+
+/* Loading: the CRESCENT rotates — not a generic spinner ring. */
+@keyframes k-crescent { to { transform: rotate(360deg) } }
+.k-crescent { animation: k-crescent 900ms linear infinite; transform-origin: 50% 50% }
+
+@keyframes k-reveal {
+  from { opacity: 0; transform: translateY(22px) }
+  to   { opacity: 1; transform: none }
+}
+.k-reveal { animation: k-reveal 700ms var(--k-ease) both }
+.k-reveal.d1 { animation-delay: 80ms }
+.k-reveal.d2 { animation-delay: 160ms }
+.k-reveal.d3 { animation-delay: 240ms }
+
+.k-lift { transition: transform var(--k-t-micro) var(--k-ease), box-shadow var(--k-t-micro) var(--k-ease) }
+.k-lift:hover { transform: translateY(-2px); box-shadow: var(--k-sh-3) }
+.k-press:active { transform: scale(.98) }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-float, .k-crescent, .k-reveal { animation: none !important }
+  .k-lift:hover { transform: none }
+  .k-press:active { transform: none }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
