@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://kogiagroup.com/assets/og.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
- {"@type":"Organization","@id":"https://kogiagroup.com/#org","name":"Kogia Group","url":"https://kogiagroup.com/",
+ {"@type":"Organization","@id":"https://kogiagroup.com/#org","name":"Kogia Group","url":"https://kogiagroup.com/","foundingDate":"2026",
   "logo":"https://kogiagroup.com/assets/og.png","email":"contact@kogiagroup.com",
   "description":"Studio de produits tunisien : Coreon Edu (plateforme scolaire, en ligne) et Yeddi (marketplace de services du quotidien, en développement).",
   "address":{"@type":"PostalAddress","addressLocality":"Tunis","addressCountry":"TN"},
@@ -40,7 +40,7 @@
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Cdefs%3E%3ClinearGradient id='kt' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%2322D3EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='96' height='96' rx='24' fill='url(%23kt)'/%3E%3Cg transform='translate(6,14) scale(.64)'%3E%3Cpath fill='%23fff' d='M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z'/%3E%3Ccircle cx='34' cy='45' r='4.4' fill='%23312E81'/%3E%3Cpath d='M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' opacity='.85'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@500;600;700;800&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0F172A; --muted:#64748B; --line:#E2E8F0; --canvas:#F8FAFC; --card:#fff;
@@ -161,6 +161,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 .feat p{color:var(--muted);font-size:.87rem}
 .feat .soon{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B45309;background:#FEF3C7;padding:.16rem .5rem;border-radius:999px;margin-left:.4rem;vertical-align:middle}
 .portals{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-top:2.4rem}
+.sec-cta{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-top:2.2rem}
 .portal{display:inline-flex;align-items:center;gap:.45rem;font-size:.83rem;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
 .portal i{width:9px;height:9px;border-radius:50%;display:inline-block}
 
@@ -174,7 +175,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 
 /* pricing */
 .bill{display:flex;justify-content:center;gap:.35rem;margin:-1rem auto 2.4rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.32rem;width:max-content}
-.bill button{border:0;background:transparent;font:inherit;font-weight:700;font-size:.86rem;color:var(--muted);padding:.52rem 1.15rem;border-radius:999px;cursor:pointer;transition:.2s}
+.bill button{border:0;background:transparent;font:inherit;font-weight:700;font-size:.86rem;color:var(--muted);padding:.72rem 1.15rem;border-radius:999px;cursor:pointer;transition:.2s}
 .bill button.on{background:var(--grad);color:#fff}
 .bill .save{font-size:.66rem;font-weight:800;background:#ECFDF5;color:#059669;padding:.12rem .45rem;border-radius:999px;margin-left:.35rem}
 .bill button.on .save{background:rgb(255 255 255/.25);color:#fff}
@@ -281,13 +282,13 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 .footer{padding:3rem 0 2rem;color:var(--muted)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;padding-bottom:2rem;border-bottom:1px solid var(--line)}
 .footer h5{font-family:var(--disp);color:var(--ink);font-size:.85rem;margin-bottom:.7rem}
-.footer a{display:block;font-size:.88rem;padding:.18rem 0}
+.footer a{display:block;font-size:.88rem;padding:.3rem 0}
 .footer a:hover{color:var(--indigo)}
 .foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.4rem;font-size:.82rem}
 
 /* Menu mobile : les liens étaient simplement masqués sous 960px, sans remplacement —
    un visiteur sur téléphone n'avait aucune navigation. */
-.burger{display:none;background:none;border:0;padding:.5rem;cursor:pointer;color:var(--ink)}
+.burger{display:none;background:none;border:0;padding:.6rem;cursor:pointer;color:var(--ink)}
 .burger svg{display:block}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
@@ -312,6 +313,9 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.15}
 @media(max-width:640px){
   .feats,.vals{grid-template-columns:1fr}
   .stats-in{grid-template-columns:1fr 1fr}
+  /* Les pastilles de statut ne doivent jamais forcer la largeur d'un écran étroit. */
+  .status{white-space:normal;text-align:left}
+  .ygrid>*,.prod{min-width:0}
 }
 /* Respecte le réglage système « réduire les animations » (troubles vestibulaires). */
 @media (prefers-reduced-motion: reduce){
@@ -345,7 +349,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   <nav class="nav-links" id="navlinks">
     <a href="#produits">Produits</a><a href="#fonctions">Coreon Edu</a><a href="#yeddi">Yeddi</a><a href="#tarifs">Tarifs</a><a href="#feuille-de-route">Feuille de route</a><a href="#contact">Contact</a>
   </nav>
-  <a class="btn" href="#tarifs">Voir les tarifs</a>
+  <a class="btn" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer la démo</a>
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks" type="button">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
@@ -356,7 +360,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   <div>
     <span class="eyebrow">Studio de produits · Tunisie</span>
     <h1>Des logiciels qu'on ouvre <span class="grad">avec plaisir</span>.</h1>
-    <p>Kogia — du nom du plus petit des cachalots : compact, intelligent, toujours en groupe. Nous construisons des produits pour le quotidien réel : <b>Coreon Edu</b> fait vivre l'école — en ligne aujourd'hui — et <b>Yeddi</b> prépare le coup de main du quartier — en développement. Conçus, développés et opérés en Tunisie.</p>
+    <p>Kogia construit et opère ses propres produits — jamais sur commande. <b>Coreon Edu</b> fait vivre l'école, en ligne aujourd'hui. <b>Yeddi</b> prépare le coup de main du quartier, en développement. Conçus, développés et opérés en Tunisie.</p>
     <div class="hero-cta">
       <a class="btn" href="#produits">Découvrir nos produits</a>
       <a class="btn ghost" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer Coreon Edu</a>
@@ -393,7 +397,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <span class="status live"><i></i>Disponible · web</span></span>
       <span class="tag">Kogia Education</span>
       <h3>Coreon Edu</h3>
-      <p>La vie joyeuse de l'école, pas un ERP : évaluer toute une classe en 30 secondes, suivre la journée de son enfant en direct, laisser parents et enseignants organiser la vie commune — six portails, du directeur au parent. L'application Android est en cours, avec le même cœur que le web.</p>
+      <p>La vie joyeuse de l'école, pas un ERP : évaluer toute une classe en 30 secondes, suivre la journée de son enfant en direct, laisser parents et enseignants organiser la vie commune — sept portails, du directeur à l'agent de sécurité. L'application Android est en cours, avec le même cœur que le web.</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Évaluation par glisser-déposer</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
@@ -489,16 +493,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
     <span class="portal"><i style="background:#475569"></i> Sécurité</span>
     <span class="portal"><i style="background:#14B8A6"></i> Établissement</span>
   </div>
+  <div class="sec-cta reveal">
+    <a class="btn" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer la démo — sans inscription</a>
+    <a class="btn ghost" href="mailto:contact@kogiagroup.com?subject=Coreon%20Edu%20—%20demande%20de%20démonstration">Demander une démonstration</a>
+  </div>
 </div></section>
 
 <section class="sec" id="tarifs"><div class="wrap">
   <div class="shead reveal"><span class="eyebrow">Tarifs · Coreon Edu</span>
     <h2>Un prix par école, pas par enseignant</h2>
-    <p>Tout est inclus dans chaque formule : les six portails, les mises à jour et le support. Seul le nombre d'élèves change.</p></div>
+    <p>Tout est inclus dans chaque formule : les sept portails, les mises à jour et le support. Seul le nombre d'élèves change.</p></div>
 
   <div class="bill reveal">
-    <button id="bm" class="on" type="button">Mensuel</button>
-    <button id="ba" type="button">Annuel<span class="save">2 mois offerts</span></button>
+    <button id="bm" class="on" type="button" aria-pressed="true">Mensuel</button>
+    <button id="ba" type="button" aria-pressed="false">Annuel<span class="save">2 mois offerts</span></button>
   </div>
 
   <div class="plans">
@@ -509,8 +517,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <p class="peryear"></p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>150 élèves</b></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Les 6 portails inclus</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Évaluation, présence, devoirs</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Les 7 portails inclus</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Évaluation 30 s, présence, annonces</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Frais &amp; paiements</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Support par e-mail</li>
         <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg> Badgeuse du personnel</li>
@@ -528,7 +536,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Jusqu'à <b>400 élèves</b></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <b>Tout Starter</b>, plus :</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Suivi en direct pour les parents</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Examens, bulletins &amp; badgeuse</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Bulletins, événements &amp; badgeuse</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Incidents &amp; demandes</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Formation de l'équipe incluse</li>
       </ul>
@@ -562,7 +570,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <h2>Le coup de main du quartier, <span class="tgrad">sans clavier</span>.</h2>
       <p class="lead">Un robinet qui fuit, un meuble à monter, un jardin à tailler : vous prenez des photos, vous choisissez la catégorie, c'est publié. Des travailleurs vérifiés, proches de chez vous, postulent ou proposent leur prix. Vous choisissez, le travail se fait — et vous réglez en espèces, de la main à la main. Simple comme un service entre voisins, avec la confiance en plus.</p>
       <div class="ybadges">
-        <span class="status dev-terra"><i></i>En développement — Android d'abord, iOS ensuite</span>
+        <span class="status dev-terra"><i></i>En développement · Android d'abord</span>
         <span class="ychip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Prototype fonctionnel</span>
         <span class="ychip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c5.5-4 8-8.5 8-12a8 8 0 1 0-16 0c0 3.5 2.5 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg> 24 gouvernorats · 261 délégations cartographiés</span>
       </div>
@@ -633,13 +641,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
       <span class="when">Aujourd'hui · en ligne</span>
       <h3>Coreon Edu — application web</h3>
-      <p>La plateforme scolaire est en ligne : évaluation en 30 secondes, suivi en direct, six portails. <a href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayez-la librement</a>.</p>
+      <p>La plateforme scolaire est en ligne : évaluation en 30 secondes, suivi en direct, sept portails. <a href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayez-la librement</a>.</p>
     </div>
     <div class="tl now reveal d1">
       <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></span>
       <span class="when">En cours</span>
       <h3>Coreon Edu — application Android</h3>
-      <p>Plus de 22 écrans natifs fonctionnent déjà : évaluer une classe en tap-tap, suivre la journée de son enfant, événements, paiements, messages. Le téléphone et le web partagent le même cœur logiciel.</p>
+      <p>22 écrans natifs fonctionnent déjà : évaluer une classe en tap-tap, suivre la journée de son enfant, événements, paiements, messages. Le téléphone et le web partagent le même cœur logiciel.</p>
     </div>
     <div class="tl now terra reveal d2">
       <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12.5V10a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1.4"/><path d="M14 11V9a2 2 0 1 0-4 0v2"/><path d="M10 10.5V5a2 2 0 1 0-4 0v9"/><path d="m7 15-1.8-1.8a2 2 0 0 0-2.8 2.8L6 19.6A7 7 0 0 0 11 22h2a7 7 0 0 0 7-7v-2.5"/></svg></span>
@@ -684,7 +692,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <p>Démonstration de Coreon Edu, lancement de Yeddi, questions, idées — l'équipe Kogia répond vite.</p>
       <div class="actions">
         <a class="btn" href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
-        <a class="btn ghost" href="https://github.com/oounis" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer Coreon Edu</a>
       </div>
     </div>
     <svg class="whale-cta" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
@@ -706,6 +714,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <a href="#feuille-de-route">Feuille de route</a>
       <a href="#valeurs">Nos valeurs</a>
       <a href="mailto:contact@kogiagroup.com">Contact</a>
+      <a href="https://github.com/oounis" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
   <div class="foot-base"><span>© 2026 Kogia Group · Tunis, Tunisie</span><span>Coreon Edu · Yeddi</span></div>
