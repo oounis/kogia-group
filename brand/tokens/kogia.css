@@ -1,146 +1,150 @@
 /* ============================================================================
-   Kogia Harmony — design tokens (web)
-   Source of truth: brand/KOGIA_HARMONY.md. Do not add a hex to a product file.
-   Every value here is measured, not eyeballed. Contrast ratios in comments.
+   Kogia Harmony — design tokens (web). Mirror of kogia.js.
+   Source of truth: brand/KOGIA_HARMONY.md. Never write a hex in a product file.
+
+   THE ONE IDEA: each product owns ONE colour family (--k-p-*). Everything else
+   — type, spacing, radius, motion, icons, components — is IDENTICAL. A Kogia
+   product is recognised by its HUE, not by a different design.
+
+   USAGE: a product sets `data-product="group|edu|job"` on <html>. Components
+   then only ever reference --k-p-50 … --k-p-900. No component names a family.
    ========================================================================= */
 
 :root {
-  /* --- The water: neutrals. Identical in every product. ------------------ */
-  --k-abyss:    #071726;  /* dark-mode ground */
-  --k-ink:      #0E2135;  /* primary text — 16.3:1 on white */
-  --k-slate:    #5B6B7D;  /* secondary text — 5.46:1 on white, 5.08:1 on canvas */
-  --k-line:     #DCE3EB;
-  --k-canvas:   #F4F7FA;  /* cool marine, never neutral grey */
-  --k-surface:  #FFFFFF;
-  --k-pearl:    #FDF6F0;  /* the crescent's light — the one warm surface */
+  /* ── Neutrals: "the water". Identical in every product, forever. ──────── */
+  --k-abyss:   #071726;
+  --k-ink:     #0E2135;  /* 16.3:1 on white */
+  --k-slate:   #5B6B7D;  /* 5.46:1 on white — AA as real text, not just "large" */
+  --k-line:    #DCE3EB;
+  --k-canvas:  #F4F7FA;  /* cool, marine — never a neutral grey */
+  --k-surface: #FFFFFF;
 
-  /* --- The body seen through water: brand ------------------------------- */
-  --k-indigo:   #4F57DE;  /* THE primary. 5.60:1 as text AND 5.60:1 white-on-it */
-  --k-violet:   #8B5CF6;  /* 4.23:1 — large text / fills */
-  --k-cyan:     #22D3EE;  /* 1.81:1 — DECORATIVE ONLY. Never text. */
-  --k-grad:     linear-gradient(120deg, #4F57DE, #22D3EE);
+  /* ── The families. Every step measured. See §3 of the brand book. ─────── */
+  --k-ocean-50:#EFF4FF; --k-ocean-100:#DBE6FE; --k-ocean-200:#BFD2FE; --k-ocean-300:#93B4FD;
+  --k-ocean-400:#608DFA; --k-ocean-500:#3B66F5; --k-ocean-600:#2547E8; --k-ocean-700:#1D35D0;
+  --k-ocean-800:#1E2FA8; --k-ocean-900:#1E2F85;
 
-  /* --- The ink cloud: terracotta (Kogia Job's lane) ---------------------- */
-  --k-terra:      #E85D2F;  /* 3.48:1 — fills, marks, display type */
-  --k-terra-deep: #C2410C;  /* 5.18:1 — terracotta AS TEXT */
-  --k-terra-ink:  #7C2D12;  /* 8.47:1 on terra-tint */
-  --k-terra-tint: #FFF1E7;
-  --k-terra-line: #FED7AA;
-  --k-grad-terra: linear-gradient(120deg, #E85D2F, #FBBF24);
+  --k-purple-50:#F6F3FF; --k-purple-100:#EDE7FE; --k-purple-200:#DDD2FD; --k-purple-300:#C4B0FB;
+  --k-purple-400:#A886F7; --k-purple-500:#8B5CF6; --k-purple-600:#7539E4; --k-purple-700:#6329C4;
+  --k-purple-800:#5324A0; --k-purple-900:#452083;
 
-  /* --- Status: reserved. Never a brand colour, never a chart series. ----- */
-  --k-ok:        #12946F;  --k-ok-soft:      #E7F5F0;
-  --k-warn:      #C97C1E;  --k-warn-soft:    #FBF1E3;
-  --k-danger:    #DC4B54;  --k-danger-soft:  #FBEBEC;
-  --k-info:      #0E7FB8;  --k-info-soft:    #E6F1F8;
-  --k-neutral:   #7C879B;  --k-neutral-soft: #F1F4F8;
+  --k-terra-50:#FFF5ED; --k-terra-100:#FFE7D4; --k-terra-200:#FECDAA; --k-terra-300:#FCA974;
+  --k-terra-400:#F97C43; --k-terra-500:#E85D2F; --k-terra-600:#C2410C; --k-terra-700:#9A3412;
+  --k-terra-800:#7C2D12; --k-terra-900:#652411;
 
-  /* --- Data viz: validated, fixed order, NEVER cycled. 7th = "Autre". ----
-     All four checks PASS (lightness band, chroma floor, CVD, contrast).
-     Re-run scripts/validate_palette.js before changing any of these.       */
-  --k-series-1: #4361D0;
-  --k-series-2: #0FA396;
-  --k-series-3: #D2603A;
-  --k-series-4: #9061F0;
-  --k-series-5: #B07414;
-  --k-series-6: #2F8050;
-  --k-grid:     #EEF1F6;
+  /* ── Status: RESERVED. Never a brand hue, never a chart series.
+        Always with an icon or a word — never colour alone. ──────────────── */
+  --k-ok:#12946F;      --k-ok-soft:#E7F5F0;
+  --k-warn:#C97C1E;    --k-warn-soft:#FBF1E3;
+  --k-danger:#DC4B54;  --k-danger-soft:#FBEBEC;
+  --k-info:#0E7FB8;    --k-info-soft:#E6F1F8;
+  --k-neutral:#7C879B; --k-neutral-soft:#F1F4F8;
 
-  /* --- Type ------------------------------------------------------------- */
-  --k-display: "Sora", system-ui, sans-serif;          /* every product */
-  --k-text:    "Inter", system-ui, sans-serif;         /* Group + Kogia Job */
-  --k-round:   "Baloo 2", var(--k-display);            /* Kogia Job WORDMARK ONLY */
-  --k-body-weight: 500;                                /* deliberate: one notch up */
+  /* ── Charts: validated, FIXED ORDER, never cycled. 7th = "Autre". ─────── */
+  --k-series-1:#4361D0; --k-series-2:#0FA396; --k-series-3:#D2603A;
+  --k-series-4:#9061F0; --k-series-5:#B07414; --k-series-6:#2F8050;
+  --k-grid:#EEF1F6;
 
-  /* --- Form: four radii. There is no fifth. ------------------------------ */
-  --k-r-control: 12px;
-  --k-r-card:    16px;
-  --k-r-tile:    24px;
-  --k-r-pill:    999px;
+  /* ── Type. ONE display face everywhere — it is the thread. ────────────── */
+  --k-display: "Sora", system-ui, sans-serif;
+  --k-text:    "Inter", system-ui, sans-serif;   /* Group + Kogia Job */
+  --k-warm:    "Nunito", system-ui, sans-serif;  /* Coreon Edu only */
+  --k-body-weight: 500;
 
-  /* --- Elevation: one light, above the water ----------------------------- */
+  /* Type scale — stay on it. */
+  --k-fs-xs:12px; --k-fs-sm:13px; --k-fs-base:15px; --k-fs-md:17px;
+  --k-fs-lg:20px; --k-fs-xl:24px; --k-fs-xxl:32px; --k-fs-hero:44px;
+
+  /* ── Form: four radii. There is no fifth. 4px grid. ───────────────────── */
+  --k-r-control:12px; --k-r-card:16px; --k-r-tile:24px; --k-r-pill:999px;
+  --k-sp-1:4px; --k-sp-2:8px; --k-sp-3:12px; --k-sp-4:16px;
+  --k-sp-5:20px; --k-sp-6:24px; --k-sp-8:32px; --k-sp-10:40px;
+
+  /* ── Elevation: ONE light, above the water. ───────────────────────────── */
   --k-sh-1: 0 1px 2px rgb(14 33 53 / .05);
   --k-sh-2: 0 10px 30px -12px rgb(14 33 53 / .12);
   --k-sh-3: 0 24px 50px -20px rgb(14 33 53 / .20);
 
-  /* --- Motion: stillness is the resting state ---------------------------- */
-  --k-ease:       cubic-bezier(.2, .8, .2, 1);
-  --k-t-micro:    160ms;
-  --k-t-standard: 220ms;
-  --k-t-deliberate: 320ms;
-  --k-t-welcome:  600ms;
+  /* ── Motion: stillness is the resting state. ──────────────────────────── */
+  --k-ease: cubic-bezier(.2, .8, .2, 1);
+  --k-t-micro:160ms; --k-t-standard:220ms; --k-t-deliberate:320ms; --k-t-welcome:600ms;
 }
 
-/* --- Dark mode: SELECTED steps, not an automatic flip. ---------------------
-   Each value re-validated against the abyss surface (#071726).            */
+/* ══════════════════════════════════════════════════════════════════════════
+   THE PRODUCT LANE. A product declares its family ONCE, here. Every component
+   then speaks only --k-p-* and never names a hue. Adding a 4th product = add
+   a 4th block. Nothing else in the system changes. THAT is the whole point.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root, [data-product="group"] {
+  --k-p-50:var(--k-ocean-50);   --k-p-100:var(--k-ocean-100); --k-p-200:var(--k-ocean-200);
+  --k-p-300:var(--k-ocean-300); --k-p-400:var(--k-ocean-400); --k-p-500:var(--k-ocean-500);
+  --k-p-600:var(--k-ocean-600); --k-p-700:var(--k-ocean-700); --k-p-800:var(--k-ocean-800);
+  --k-p-900:var(--k-ocean-900);
+}
+[data-product="edu"] {
+  --k-p-50:var(--k-purple-50);   --k-p-100:var(--k-purple-100); --k-p-200:var(--k-purple-200);
+  --k-p-300:var(--k-purple-300); --k-p-400:var(--k-purple-400); --k-p-500:var(--k-purple-500);
+  --k-p-600:var(--k-purple-600); --k-p-700:var(--k-purple-700); --k-p-800:var(--k-purple-800);
+  --k-p-900:var(--k-purple-900);
+}
+[data-product="job"] {
+  --k-p-50:var(--k-terra-50);   --k-p-100:var(--k-terra-100); --k-p-200:var(--k-terra-200);
+  --k-p-300:var(--k-terra-300); --k-p-400:var(--k-terra-400); --k-p-500:var(--k-terra-500);
+  --k-p-600:var(--k-terra-600); --k-p-700:var(--k-terra-700); --k-p-800:var(--k-terra-800);
+  --k-p-900:var(--k-terra-900);
+}
+
+/* THE STEP CONTRACT — identical in all three families:
+     500 = THE BRAND STEP. The mark, big display type. DECORATIVE (≥3:1).
+           NOT an action colour: white on purple-500 is only 4.2:1.
+     600 = THE ACTION STEP. Buttons, links, focus. Text on white ≥4.5:1 AND
+           white on it ≥4.5:1. The one step that does both jobs.  */
+.k-action      { background: var(--k-p-600); color: #fff }
+.k-action:hover{ background: var(--k-p-700) }
+.k-link        { color: var(--k-p-600) }
+.k-tint        { background: var(--k-p-50); color: var(--k-ink) }
+.k-mark        { color: var(--k-p-500) }
+:where(a,button,summary,input,select,textarea):focus-visible {
+  outline: 3px solid var(--k-p-600); outline-offset: 3px; border-radius: 8px;
+}
+
+/* ── Dark mode: SELECTED steps, never an automatic flip. ─────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --k-canvas:  #071726;
-    --k-surface: #0E2135;
-    --k-ink:     #E8EEF4;  /* 15.5:1 on abyss */
-    --k-slate:   #93A4B5;  /* 7.09:1 on abyss */
-    --k-line:    #1E3348;
-    --k-pearl:   #17293A;
-
-    --k-indigo:  #8B92F0;  /* 6.44:1 on abyss */
-    --k-terra:   #F0805A;  /* 6.85:1 on abyss */
-
-    --k-series-1: #6B83E6;
-    --k-series-2: #14A595;
-    --k-series-3: #E36D46;
-    --k-series-4: #A176F0;
-    --k-series-5: #B58415;
-    --k-series-6: #3C9060;
-    --k-grid:     #1E3348;
+    --k-canvas:#071726; --k-surface:#0E2135; --k-ink:#E8EEF4;
+    --k-slate:#93A4B5;  --k-line:#1E3348;
+    --k-series-1:#6B83E6; --k-series-2:#14A595; --k-series-3:#E36D46;
+    --k-series-4:#A176F0; --k-series-5:#B58415; --k-series-6:#3C9060;
+    --k-grid:#1E3348;
   }
 }
-
-/* The viewer's theme toggle must win in both directions. */
 :root[data-theme="dark"] {
-  --k-canvas: #071726; --k-surface: #0E2135;
-  --k-ink: #E8EEF4;    --k-slate: #93A4B5;
-  --k-line: #1E3348;   --k-pearl: #17293A;
-  --k-indigo: #8B92F0; --k-terra: #F0805A;
-  --k-series-1: #6B83E6; --k-series-2: #14A595; --k-series-3: #E36D46;
-  --k-series-4: #A176F0; --k-series-5: #B58415; --k-series-6: #3C9060;
-  --k-grid: #1E3348;
+  --k-canvas:#071726; --k-surface:#0E2135; --k-ink:#E8EEF4;
+  --k-slate:#93A4B5;  --k-line:#1E3348;
+  --k-series-1:#6B83E6; --k-series-2:#14A595; --k-series-3:#E36D46;
+  --k-series-4:#A176F0; --k-series-5:#B58415; --k-series-6:#3C9060;
+  --k-grid:#1E3348;
 }
 
-/* ============================================================================
-   Motion primitives — every one of them yields to prefers-reduced-motion.
-   ========================================================================= */
-
-/* The only perpetual animation permitted anywhere in the ecosystem. */
-@keyframes k-float {
-  0%, 100% { transform: translateY(0) }
-  50%      { transform: translateY(-4px) }
-}
-.k-float { animation: k-float 6s ease-in-out infinite }
-
-/* Loading: the CRESCENT rotates — not a generic spinner ring. */
-@keyframes k-crescent { to { transform: rotate(360deg) } }
-.k-crescent { animation: k-crescent 900ms linear infinite; transform-origin: 50% 50% }
-
-@keyframes k-reveal {
-  from { opacity: 0; transform: translateY(22px) }
-  to   { opacity: 1; transform: none }
-}
+/* ── Motion primitives. Every one yields to prefers-reduced-motion. ──────── */
+@keyframes k-reveal { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
 .k-reveal { animation: k-reveal 700ms var(--k-ease) both }
-.k-reveal.d1 { animation-delay: 80ms }
-.k-reveal.d2 { animation-delay: 160ms }
-.k-reveal.d3 { animation-delay: 240ms }
-
-.k-lift { transition: transform var(--k-t-micro) var(--k-ease), box-shadow var(--k-t-micro) var(--k-ease) }
-.k-lift:hover { transform: translateY(-2px); box-shadow: var(--k-sh-3) }
-.k-press:active { transform: scale(.98) }
+.k-lift   { transition: transform var(--k-t-micro) var(--k-ease), box-shadow var(--k-t-micro) var(--k-ease) }
+.k-lift:hover  { transform: translateY(-2px); box-shadow: var(--k-sh-3) }
+.k-press:active{ transform: scale(.98) }
 
 @media (prefers-reduced-motion: reduce) {
-  .k-float, .k-crescent, .k-reveal { animation: none !important }
-  .k-lift:hover { transform: none }
-  .k-press:active { transform: none }
+  .k-reveal { animation: none !important }
+  .k-lift:hover, .k-press:active { transform: none }
   *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
   }
+}
+
+/* ── Print: the mark is flat, so it prints. Ink on white, no decoration. ── */
+@media print {
+  :root { --k-canvas:#fff; --k-surface:#fff; --k-ink:#000; --k-slate:#333; --k-line:#999 }
+  .k-no-print { display:none !important }
+  * { box-shadow:none !important; text-shadow:none !important }
 }

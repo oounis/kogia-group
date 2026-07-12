@@ -1,123 +1,174 @@
-# Kogia Harmony
+# Kogia Harmony — the Brand Book
 
-**The design philosophy of Kogia Group.**
-One creative vision. Two products. Every surface recognisably ours.
+**The living design bible of Kogia Group.**
+One creative vision. One design language. One hue per product.
 
-Version 3.0 — 2026-07-12. This file replaces `DESIGN_SYSTEM.md` and is the **single
-source of truth**. Where any code disagrees with this document, the code is wrong.
+> **This file is the single source of truth.** Where the code disagrees with this
+> document, **the code is wrong**. Every design change ships *with* its update to this
+> book — the implementation is never allowed to evolve ahead of the documentation.
+
+**Version 4.0 — 2026-07-12.** Changelog: §16.
+
+---
+
+## 0. The one idea
+
+**Kogia is recognised by consistency, not by complexity.**
+
+Every product shares *exactly* the same typography, spacing, radii, motion, elevation,
+icons and components. **Only the colour family changes.** A Coreon Edu screen and a
+Kogia Job screen are the same design, in a different hue.
+
+That is the whole strategy, and it is why a user can recognise a Kogia product **without
+seeing the logo**. It is also why a fourth product costs almost nothing: pick a family,
+ship. Nothing else in the system moves.
+
+Simplicity over decoration. Consistency over novelty. Accessibility over aesthetics.
+Maintainability over short-term visual effect.
 
 ---
 
 ## 1. Where the name comes from
 
 *Kogia* is the genus of the **dwarf and pygmy sperm whale** — the smallest whales on
-Earth. We did not choose it because whales are cute. We chose it because of how this
-particular animal behaves, and every rule in this document descends from that.
+Earth. Not chosen because whales are cute. Chosen because of how this animal behaves.
 
-What the animal actually is:
-
-| Trait of *Kogia* | What we take from it |
+| Trait of the animal | What the design takes from it |
 |---|---|
-| The **smallest** whale, yet unmistakably a sperm whale — a full-size brain in a compact body | Small team, big-company standards. Compact products that are complete, not "lite". |
-| **Steely grey with a pink tinge — reads violet-blue underwater** | Our signature is not "tech blue". It is a **deep marine violet-indigo**: the colour of a body seen through water. |
-| A pale crescent behind the eye — the **"false gill"**, a mark that mimics a shark | **The Kogia Crescent** — our interface motif (loaders, empty states). Deliberately *not* the logo: on a Tunisian company a crescent reads as the national flag. See §4.2. |
-| A **deep, quiet diver**; hunts far below, in the dark, alone | Depth over noise. Calm surfaces. Nothing shouts. |
-| Its **fluke** — the one shape that says "whale" without drawing one | **The mark**: a K whose arm is a fluke. The initial and the animal in one form. See §4.1. |
-| Rests **completely motionless** at the surface | Stillness is the default state. Motion is an *event*, never decoration. |
-| Defends itself by releasing a **reddish-brown cloud**, then vanishing | The warm **terracotta** in our palette is not arbitrary — it is the ink cloud. It is the one hot colour the family owns. |
-| **Elusive, rarely seen, hard to study** | We do not fake presence. No invented metrics, no fake logos, no stock-photo customers. |
-
-The objective is never to draw the fish. The objective is to build a technology brand
-that *feels* the way this animal moves: quiet, deep, intelligent, warm underneath.
+| The **smallest** sperm whale — yet a whole one, not a reduced one | Small team, big-company standards. Products that are complete, never "lite". |
+| A **deep, quiet diver**; hunts in the dark, rarely seen | Depth over noise. Calm surfaces. Nothing shouts. |
+| Rests **completely motionless** at the surface | **Stillness is the resting state.** Motion is an event, never decoration. |
+| A **near-vertical forehead** — the blunt profile of a sperm whale | It is why the head can *become* the stem of a **K**. The logo exists because of this fact. |
+| Releases a **reddish-brown ink cloud**, then vanishes | Terracotta is not arbitrary. It is the ink cloud — Kogia Job's family. |
+| **Elusive; hard to study** | We never fake presence. No invented metrics, no fake customers. |
 
 **Sources:** [WDC — pygmy sperm whale](https://us.whales.org/whales-dolphins/species-guide/pygmy-sperm-whale/) ·
 [WDC — dwarf sperm whale](https://us.whales.org/whales-dolphins/species-guide/dwarf-sperm-whale/) ·
-[Animal Diversity Web — *Kogia breviceps*](https://animaldiversity.org/accounts/Kogia_breviceps/)
+[Animal Diversity Web](https://animaldiversity.org/accounts/Kogia_breviceps/)
 
 ---
 
-## 2. The philosophy: Kogia Harmony
+## 2. Brand personality & tone of voice
 
-Five laws. They apply to the corporate site, to Coreon Edu, to Kogia Job, and to every
-product we have not built yet.
+**Personality:** quiet, precise, warm underneath. Confident without volume.
+Not playful. Not corporate-cold. **Trustworthy because it is specific.**
 
-**1 — One ocean, many creatures.**
-Every product shares the same water: the same neutrals, the same type scale, the same
-radii, the same motion curve, the same house mark. A product expresses its personality
-through **colour, illustration and rhythm** — never by inventing a new type system, a
-new shadow, or a new corner radius. If two products differ in a way a user would not
-notice, that difference is a bug.
-
-**2 — Stillness is the resting state.**
-The whale floats motionless. Interfaces open calm and stay calm. Animation exists to
-explain a change (something arrived, something moved, something is loading) — never to
-prove we know how to animate. Everything obeys `prefers-reduced-motion`.
-
-**3 — Depth, not decoration.**
-Elevation, colour and contrast are used to say *what matters most*, in that order. A
-screen has one primary action. A card has one focal point. If everything is emphasised,
-nothing is.
-
-**4 — Warmth underneath.**
-A cold marine palette alone would read as another enterprise SaaS. The terracotta ink
-cloud and the pearl crescent keep the ecosystem human. Every product must carry at least
-one warm surface. Cold is the structure; warm is the welcome.
-
-**5 — Earn the pixel.**
-Every element justifies itself or it is deleted. No decorative gradients on data. No
-emoji as icons. No raster or AI imagery in product UI — flat vector only. No fake
-numbers, ever.
+**Voice — the rules:**
+- **Sober French. Facts over adjectives.** "Évaluer une classe en 30 secondes", never
+  "une expérience révolutionnaire".
+- **Say what is not finished.** "En développement" means code that runs. "Disponible"
+  means online today. We never blur the two.
+- **Never invent** a number, a customer, or a testimonial. Ever.
+- **Name things as the user knows them.** A parent manages *notifications*, not
+  "webhook config".
+- **A control says what happens.** Button `Publier` → toast `Publié`.
+- **Errors explain the fix**, never apologise, never say "Oops". Never show a code.
+- Every product footer carries **« par Kogia Group »**.
 
 ---
 
 ## 3. Colour
 
-Colour is the strongest carrier of the Kogia identity, so it is the most tightly ruled.
-**Every value below has been checked, not eyeballed.** Chart palettes are validated with
-the six-check validator (lightness band, chroma floor, CVD separation, contrast); UI
-colours are checked for WCAG contrast. Numbers quoted are measured.
+> **Principle:** colour is the strongest carrier of identity, so it is the most tightly
+> ruled. **Every value here is measured, never eyeballed.** UI colours are checked for
+> WCAG contrast; chart palettes are run through the six-check validator. The numbers
+> below are measurements, not estimates.
 
-### 3.1 The neutrals — the water (identical in every product)
+### 3.1 Colour psychology — why these three families
 
-| Token | Hex | Use |
-|---|---|---|
-| `abyss` | `#071726` | Dark-mode ground. The deep. |
-| `ink` | `#0E2135` | Primary text. **16.3:1** on white. |
-| `slate` | `#5B6B7D` | Secondary text. **5.46:1** on white, **5.08:1** on canvas — passes AA as real text, not just "large". |
-| `line` | `#DCE3EB` | Borders, dividers, grid. |
-| `canvas` | `#F4F7FA` | Page background. Cool, marine — never pure grey. |
-| `surface` | `#FFFFFF` | Cards, sheets. |
-| `pearl` | `#FDF6F0` | The crescent's light. The one **warm** surface. Use it to make a section feel human (law 4). |
+Colour is doing real work here, not decoration:
 
-This replaces the three competing inks (`#0F172A`, `#1A1B2E`, `#10162B`) and two canvases
-that were in the codebase. There is now one.
+- **Ocean blue (Kogia Group).** Blue is the most universally trusted hue in
+  institutional contexts — competence, calm, permanence. A corporate parent must feel
+  *safe*. It is also literally the sea the animal lives in.
+- **Purple (Coreon Edu).** Purple sits between blue's trust and red's warmth — which is
+  exactly what a school is: an institution you must trust, holding children you love.
+  Care *and* authority. Schools are not banks; purple keeps it human.
+- **Terracotta (Kogia Job).** Warm, earthen, physical — the colour of work, of clay, of
+  the Tunisian street. It signals energy and immediacy, and carries no institutional
+  coldness, which matters for a worker holding a cheap phone in sunlight. It is the
+  animal's ink cloud.
 
-### 3.2 The brand — the body seen through water
+### 3.2 The neutrals — "the water". Identical in every product, forever.
 
-| Token | Hex | Contrast | Rule |
+| Token | Hex | Measured | Use |
 |---|---|---|---|
-| `indigo` | **`#4F57DE`** | **5.60:1 as text on white — and 5.60:1 as white text on it** | **The Kogia primary.** |
-| `violet` | `#8B5CF6` | 4.23:1 | Gradient partner, large text, fills. |
-| `cyan` | `#22D3EE` | **1.81:1** | **DECORATIVE ONLY. Never text. Never an icon that carries meaning alone.** It is the spout catching light. |
-| `terracotta` | `#E85D2F` | 3.48:1 | The ink cloud. Fills, marks, large display type. |
-| `terra-deep` | `#C2410C` | 5.18:1 | Terracotta **as text**. |
-| `terra-ink` | `#7C2D12` | 8.47:1 on `terra-tint` | Terracotta text on a warm tint. |
+| `abyss` | `#071726` | — | Dark-mode ground |
+| `ink` | `#0E2135` | **16.31:1** on white | Primary text |
+| `slate` | `#5B6B7D` | **5.46:1** on white | Secondary text — AA as *real* text, not just "large" |
+| `line` | `#DCE3EB` | — | Borders, dividers, grid |
+| `canvas` | `#F4F7FA` | — | Page background. Cool and marine — **never** a neutral grey |
+| `surface` | `#FFFFFF` | — | Cards, sheets |
 
-> **Why `#4F57DE` and not the old `#6366F1`.** `#6366F1` measures ≈3.7:1 on white: it
-> cannot legally be body text, so the old code had to keep a *second* darker indigo
-> around for text and a lighter one for fills — which is exactly how a palette rots into
-> six near-identical purples. `#4F57DE` is **reversible**: it is legible as text on white
-> *and* white is legible on it. One colour does both jobs. That is the whole reason the
-> system can stay small.
+> **Neutrals are chosen, not inherited.** A pure grey reads as unconsidered. Ours are
+> biased toward the sea.
 
-**The group gradient** — `linear-gradient(120deg, #4F57DE, #22D3EE)`.
-Indigo is the animal; cyan is the light above it. Never invert it, never re-angle it,
-never put text directly on the cyan end.
+### 3.3 The three families (50 → 900)
 
-### 3.3 Status — reserved, shared, never a brand colour
+**Kogia Group — Ocean**
+`50 #EFF4FF` · `100 #DBE6FE` · `200 #BFD2FE` · `300 #93B4FD` · `400 #608DFA`
+`500 #3B66F5` · `600 #2547E8` · `700 #1D35D0` · `800 #1E2FA8` · `900 #1E2F85`
 
-Same five in every product. **A status colour is never reused as a "series 4" or an
-accent**, and always ships with an icon or a word — never colour alone.
+**Coreon Edu — Purple**
+`50 #F6F3FF` · `100 #EDE7FE` · `200 #DDD2FD` · `300 #C4B0FB` · `400 #A886F7`
+`500 #8B5CF6` · `600 #7539E4` · `700 #6329C4` · `800 #5324A0` · `900 #452083`
+
+**Kogia Job — Terracotta**
+`50 #FFF5ED` · `100 #FFE7D4` · `200 #FECDAA` · `300 #FCA974` · `400 #F97C43`
+`500 #E85D2F` · `600 #C2410C` · `700 #9A3412` · `800 #7C2D12` · `900 #652411`
+
+### 3.4 The step contract — identical in all three families
+
+This is the most important rule in the colour system.
+
+| Step | Job | Guarantee |
+|---|---|---|
+| `50` `100` | Tint surfaces | ink on them ≥ **13:1** |
+| `200` `300` | Borders, dividers, disabled | — |
+| `400` | Decorative fills | — |
+| **`500`** | **THE BRAND STEP** — the mark, big display type | **Decorative, ≥3:1. NOT an action colour.** |
+| **`600`** | **THE ACTION STEP** — buttons, links, focus | text on white ≥ **4.5:1** *and* white on it ≥ **4.5:1** |
+| `700` | Text on tints, hover / pressed | ≥ 4.5:1 on white |
+| `800` `900` | Headings on tint, the family's deep ink | — |
+
+> **Why 500 cannot be the action step — and this is not a detail.** White on
+> purple-500 measures **4.23:1**; on terracotta-500, **3.48:1**. Both fail AA for button
+> text. Only `600` is *reversible* — legible as text on white **and** legible under
+> white. One step doing both jobs is what keeps the system small. The moment a second
+> "nearly right" step is allowed, the palette rots into six near-identical purples —
+> which is **exactly what had happened** to this codebase before v3.
+
+### 3.5 The no-mixing law
+
+**A product page uses its own family and the neutrals. Nothing else.**
+
+Kogia Group is blue. Coreon Edu is purple. Kogia Job is terracotta. Never sprinkle
+another product's hue into a page — that is precisely what destroys recognisability.
+The *only* colours allowed outside the family:
+
+1. **The neutrals** (always).
+2. **Status colours** (§3.7) — reserved, never decorative.
+3. **Chart series** (§3.8) — inside a chart, and nowhere else.
+
+**How this is enforced, not merely requested:** the page sets `data-product="group|edu|job"`
+once. Every component references only `--k-p-50 … --k-p-900`. **No component can name a
+hue.** A fourth product is one new block in `tokens/kogia.css` — nothing else moves.
+
+### 3.6 Gradients are decoration, never identity
+
+**The old identity was a gradient.** That was the mistake. A gradient cannot be a brand,
+because it fails everywhere a brand must survive: a rubber stamp, an invoice, a
+monochrome app icon, an embroidered shirt.
+
+Gradients may appear **only** as secondary decorative surfaces (a hero wash, an ambient
+glow). **Never on the mark. Never on data. Never on text.** The **hue** makes a product
+recognisable — not a gradient.
+
+> A gradient painting *text* must never end below 3:1. This rule exists because it caught
+> a real bug: the site's headline faded into cyan (**1.81:1**) and "plaisir" was
+> unreadable.
+
+### 3.7 Status — reserved, shared, never a brand hue
 
 | | Hex | Soft |
 |---|---|---|
@@ -127,212 +178,290 @@ accent**, and always ships with an icon or a word — never colour alone.
 | info | `#0E7FB8` | `#E6F1F8` |
 | neutral | `#7C879B` | `#F1F4F8` |
 
-### 3.4 Data visualisation — validated, fixed order, never cycled
+The same five in every product. **A status colour is never reused as an accent or a chart
+series**, and always ships **with an icon or a word** — never colour alone, because ~8% of
+men cannot rely on hue.
 
-Assign in this order. A 7th series folds into "Autre" — it is **never** a generated hue.
+### 3.8 Data visualisation
 
-**Light** (surface `#FFFFFF`) — *all four checks PASS*:
-`#4361D0` `#0FA396` `#D2603A` `#9061F0` `#B07414` `#2F8050`
+Assign in **fixed order, never cycled**. A 7th series folds into "Autre" — never a
+generated hue. **Colour follows the entity, never its rank:** a filter that changes the
+series count must not repaint the survivors.
 
-**Dark** (surface `#071726`) — *selected steps, not a flip; all four checks PASS*:
-`#6B83E6` `#14A595` `#E36D46` `#A176F0` `#B58415` `#3C9060`
+**Light** — `#4361D0` `#0FA396` `#D2603A` `#9061F0` `#B07414` `#2F8050`
+**Dark** — `#6B83E6` `#14A595` `#E36D46` `#A176F0` `#B58415` `#3C9060`
 
+Dark steps are **selected and re-validated** against the abyss, never an automatic flip —
+a naive inversion produces muddy, vibrating colour. Both sets pass all four checks.
 Sequential = one hue, light→dark. Diverging = two poles + a **neutral grey** midpoint.
-Never a rainbow. **Never a dual-axis chart.** Re-run the validator before changing any
-value here.
-
-### 3.5 Product accents
-
-Each product owns **one** accent lane out of the shared palette. It does not invent one.
-
-- **Coreon Edu — trust, care, family.** Indigo → violet (`#4F57DE → #8B5CF6`).
-  Cool, calm, parental. Per-role accents stay, but they are drawn *from the shared
-  palette* and are used only to tint a portal's chrome — never to recolour data.
-- **Kogia Job — energy, opportunity, speed.** Terracotta (`#E85D2F`), text in
-  `#C2410C` / `#7C2D12`, tint `#FFF1E7`. The ink cloud: the warm, fast, human end of the
-  family.
-
-Both sit on the *same* neutrals. That is what makes them siblings.
+**Never a rainbow. Never a dual-axis chart** — two y-scales is the single most misleading
+chart form in existence.
 
 ---
 
-## 4. The mark
+## 4. The logo
 
-### 4.1 One form, two readings — the K *and* the whale
+### 4.1 Construction — one path, two readings
 
-The mark is **both at once**, on purpose:
+**The K and the whale are the same silhouette.** Not a whale beside a letter: a single
+continuous form. Head → eye → body → peduncle → fluke, where **the fluke *is* the K's
+arm**, and the crook between the two lobes *is* the crook of the K.
 
-- **The whale.** Blunt forehead (the bar), the eye, the peduncle, the fluke. A sperm
-  whale's forehead is famously *near-vertical* — which is exactly why its head can
-  serve as the spine of a letter.
-- **The K.** The company's initial: the spine (the body) and two arms (the fluke).
+Like the FedEx arrow — you see the letter, then you see the animal, and then you cannot
+un-see it.
 
-Neither a drawn fish nor a bare letter. Both.
+It is only possible because of a fact about the animal: **a sperm whale's forehead is
+near-vertical**, so its head can literally serve as a stem.
 
 ```
-body   M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z   (eye knocked out, evenodd)
-eye    M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z
-waist  M26 29.5 h10 v5 h-10 Z
-fluke  M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z
+viewBox 0 0 64 64 · fill-rule: evenodd
+M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5
+L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z
+M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z
 ```
 
-**The eye is a real hole** (`fill-rule="evenodd"`), never a white dot. A white dot
-betrays the logo the moment it sits on a colour. The hole shows whatever is behind it.
+**The eye is a true hole** (`evenodd`), never a white dot — a white dot betrays the logo
+the instant it sits on a colour.
 
-**Flat — never a gradient.** A logo must survive a rubber stamp, an invoice, a
-monochrome app icon. The mark takes its colour from context (`currentColor`): indigo
-for the group and Coreon Edu, terracotta for Kogia Job. **One house mark, recoloured
-per product.** That is how a group signs its applications, and it scales to any
-product we have not built yet.
+**Flat, and it takes `currentColor`.** Ocean for the group, purple for Coreon Edu,
+terracotta for Kogia Job. **One house mark, recoloured.** Verified in light, dark,
+monochrome, pure black (print), the app tile, and **16px**.
 
-### 4.2 What was tried and rejected — and why
+### 4.2 What was rejected, and why
 
-Every candidate was rendered at **16px and in one colour** before judging. That test,
-not taste, killed them:
+Every candidate was rendered **at 16px and in one colour before being judged**. That
+test, not taste, killed them:
 
-- **The old cartoon whale** — died at 16px (eye, smile, spout, crescent collapsed into
-  a blob) and became a black lump in monochrome. It was an illustration, not an identity.
-- **Tapered flukes** — elegant large, invisible small. **Mass is what makes a mark
-  survive.** The fluke tips are squared: a real fluke's trailing edge, and what stops
-  the mark reading as a generic arrow.
-- **A body detached from the tail** — read as a battery beside a chevron. The waist is
-  what makes it a creature.
-- **The crescent as the logo** — see §4.3.
+- **The cartoon whale (v2).** Died at 16px — eye, smile, spout and crescent collapsed
+  into a blob; a black lump in monochrome. It was an *illustration*, not an identity.
+- **Tapered fluke tips.** Elegant large, invisible small. **Mass is what makes a mark
+  survive.**
+- **A body detached from the tail.** Read as a battery beside a chevron. The peduncle is
+  what makes it a creature instead of two objects.
+- **A crescent-led mark.** On a **Tunisian** company, a crescent reads as the **national
+  flag**, not a whale's false gill. Ruled out on those grounds alone.
+- **An echo/sonar mark.** Indistinguishable from a wifi icon.
 
-### 4.3 Why the crescent is not the logo
+### 4.3 Rules
 
-On a **Tunisian** company, a crescent does not read as a whale's false gill. It reads
-as **the national flag**. The crescent stays an interface motif (loaders, empty states);
-it is never the mark.
+- **Never** re-draw, stretch, rotate, outline, gradient, or drop-shadow the mark.
+- **Never** place it on a busy photo — it needs a flat ground.
+- Clear space around it = the width of the whale's head.
+- Minimum size 16px; below that, use the tile.
+- **One official logo. One mascot style. One identity.** Every legacy whale illustration
+  and blue-fish asset has been deleted (§16).
 
-### 4.4 Mascots
-
-Kogia Job keeps **the hand** as a mascot — welcome screens, empty states. It means
-"le coup de main du quartier" and keeps that meaning as illustration.
-
-**The mark identifies; a mascot welcomes.** Never swapped. The old cartoon whale is
-retired entirely: the mark *is* the whale now, so a second, different whale would
-only fracture the identity.
+---
 
 ## 5. Typography
 
-**Display — `Sora` (600/700/800), everywhere, no exceptions.**
-Headings, brand wordmarks, big numbers. `letter-spacing: -0.02em`, `line-height: 1.15`.
-Sora is the single thread that ties a Coreon dashboard to the corporate hero. The Owner
-Console's `Fraunces` (a serif that exists nowhere else in the brand) is **retired**.
+**Display — `Sora` (600/700/800). Every product, no exceptions.** It is the single thread
+tying a Coreon dashboard to the corporate hero.
+`letter-spacing: -0.02em`, `line-height: 1.15`, `text-wrap: balance` on headings.
 
-**Text — one face per product, chosen from a sanctioned pair.** This is where personality
-is allowed, because body text is where a product's *tone of voice* actually lives:
+**Text — one face per product, from a sanctioned pair.** Body text is where a product's
+*voice* lives, so this is the one place personality is allowed:
 
 | Product | Text face | Why |
 |---|---|---|
-| Kogia Group (site + Owner Console) | **Inter** 500–800 | Precise, neutral, corporate. |
-| Coreon Edu | **Nunito** 500–800 | Rounded, warm, human — a school is not a bank. |
-| Kogia Job | **Inter** 500–800 | Fast, plain, legible on a cheap phone in sunlight. |
+| Kogia Group | **Inter** | Precise, neutral, institutional |
+| Coreon Edu | **Nunito** | Rounded, warm — a school is not a bank |
+| Kogia Job | **Inter** | Plain, legible on a cheap phone in sunlight |
 
-Body text is set at **weight 500**, not 400 — one notch heavier, the same in every
-product. It is a small thing that makes everything feel deliberately made.
+**Body weight is 500, not 400** — one notch up, in every product. A small thing that makes
+everything read as deliberately made.
 
-**`Baloo 2` is demoted to wordmark-only** for Kogia Job. It is a personality face, not a
-reading face; it never sets a paragraph.
+**Scale:** 12 / 13 / 15 (body) / 17 / 20 / 24 / 32 / 44. **Stay on it.**
+Running text stays near **65 characters** wide. Numbers in columns use `tabular-nums`.
 
-**Scale** — 12 / 13 / 15 (body) / 17 / 20 / 24 / 32 / 44.
+**Hierarchy** is built with *size + weight + colour*, in that order — never with
+decoration. One H1 per screen. If everything is emphasised, nothing is.
 
 ---
 
-## 6. Form
+## 6. Grid, spacing & layout
 
-- **Radius** — `12` controls · `16` cards · `24` tiles & hero surfaces · `999` pills.
-  Four values. There is no fifth.
-- **Spacing** — 4px grid. Card padding 20. Section gap 16–20.
-- **Elevation** — three steps, soft and single-source (a light from above the water):
-  - `sh-1` `0 1px 2px rgb(14 33 53 / .05)`
-  - `sh-2` `0 10px 30px -12px rgb(14 33 53 / .12)`
-  - `sh-3` `0 24px 50px -20px rgb(14 33 53 / .20)`
-  Never a hard border *and* a heavy shadow on the same element.
-- **Icons — lucide, stroke 2, `currentColor`. ONE library, every product, every platform**
-  (`lucide-react` on web, `lucide-react-native` on native — the same names, via `<Ic n="…"/>`).
-  Shared `core/` data names its icons by **lucide name**, never by glyph.
+- **4px base grid.** Scale: 4 / 8 / 12 / 16 / 20 / 24 / 32 / 40. Nothing in between.
+- **Card padding 20.** Section gap 16–20.
+- **Layout does the spacing.** Sibling groups use flex/grid + `gap` — never per-element
+  margins that silently collapse or double.
+- **White space is structure, not leftover.** It is what makes a calm surface calm. When a
+  screen feels cluttered, the fix is almost always *remove*, not *shrink*.
+- Wide content (tables, code, charts) scrolls inside its **own** `overflow-x:auto`
+  container. **The page body never scrolls sideways.**
+- **Mobile-first.** Design the narrow column first; desktop is the *adaptation*, not the
+  origin. Touch targets ≥ 44px.
+
+---
+
+## 7. Form: radius, elevation, icons, illustration
+
+- **Radius — four values. There is no fifth.**
+  `12` controls · `16` cards · `24` tiles & hero surfaces · `999` pills.
+  *Why:* radius is a strong identity signal and the easiest thing to let drift. Four
+  values express every surface and are few enough to hold in your head.
+- **Elevation — three steps, one light source, from above the water.**
+  `sh-1` hairline · `sh-2` raised (cards) · `sh-3` floating (modals, hover).
+  **Never a hard border *and* a heavy shadow on one element** — two competing metaphors
+  for the same depth.
+- **Icons — lucide, stroke 2, `currentColor`. ONE library, every product, every platform.**
+  `lucide-react` on web, `lucide-react-native` on native — identical names, through the
+  `<Ic n="…"/>` contract. Shared `core/` data names icons by **lucide name**, never glyph.
 - **NEVER an emoji.** An emoji is drawn by the *operating system*: the same character is a
-  different picture on Android, iOS, Windows and the web. That is literally why Kogia had a
-  different iconography on every screen. 152 emoji were removed from the codebase; the count
-  is now **zero**, and it stays zero. Never raster, never AI imagery in product UI.
-- **Avatars** — initials on a deterministic soft tint. No faces, real or generated.
+  different picture on Android, iOS, Windows and the web. **That is literally why Kogia had
+  a different iconography on every screen.** 152 were removed; the count is **zero** and
+  stays zero.
+- **Illustration:** flat vector, drawn from the mark's geometry. **No raster, no
+  photography, no AI imagery in product UI.**
+- **Avatars:** initials on a deterministic soft tint. No faces, real or generated.
 
 ---
 
-## 7. Motion — "stillness is the resting state"
+## 8. Motion
 
-One easing curve for the whole ecosystem: `cubic-bezier(.2,.8,.2,1)`.
+**Stillness is the resting state.** The whale floats motionless; so do our interfaces.
+Motion exists to *explain a change* — never to prove we can animate.
 
-| | Duration |
-|---|---|
-| micro (hover, press, tint) | `160ms` |
-| standard (enter, expand, tab) | `220ms` |
-| deliberate (screen, modal, route) | `320ms` |
-| welcome / narrative | `600ms+` |
+**One curve for the whole ecosystem:** `cubic-bezier(.2, .8, .2, 1)`.
 
-- **Float** — the mascot drifts ±4px over 6s, `ease-in-out`. It is the only perpetual
-  animation permitted anywhere.
-- **Reveal on scroll** — `translateY(22px)` → 0, 700ms, staggered ≤3 items.
-- **Hover lift** — `-2px` + one elevation step. Never scale up.
-- **Press** — `scale(.98)`. Never a colour flash.
-- **Loading** — the **crescent** rotates. Not a generic spinner ring.
-- Every one of the above is disabled under `prefers-reduced-motion: reduce`. This is not
-  optional and it is not a nice-to-have.
+| | Duration | Used for |
+|---|---|---|
+| micro | `160ms` | hover, press, tint |
+| standard | `220ms` | enter, expand, tab |
+| deliberate | `320ms` | screen, modal, route |
+| welcome | `600ms+` | narrative moments only |
 
----
+**Micro-interactions:** hover = lift `-2px` + one elevation step (never scale up).
+Press = `scale(.98)` (never a colour flash). Focus = a visible ring, always.
 
-## 8. The states everyone forgets
-
-A screen is not designed until all five exist. This is a release gate, not advice.
-
-1. **Empty** — the whale, floating, one sentence in plain French, one action. Never a
-   dead-end. Never the word "Aucune donnée".
-2. **Loading** — skeletons that match the real layout's shape (never a centred spinner
-   on a full page). The crescent for inline waits.
-3. **Error** — say what happened and what to do next. Never a code, never "Oops".
-4. **Success** — brief, warm, and it gets out of the way on its own.
-5. **First run** — the welcome screen. The user meets the animal before they meet a form.
+**Every animation yields to `prefers-reduced-motion: reduce`.** Not optional — vestibular
+disorders are real, and no decorative animation is worth a headache.
 
 ---
 
-## 9. Voice
+## 9. Components
 
-Sober French. Facts over adjectives. Self-deprecating before it is boastful.
-We say what is not finished. We never invent a metric, a customer, or a testimonial.
+One library. Same anatomy in every product; only the hue changes.
 
-Every product footer carries **« par Kogia Group »**.
+- **Button.** Primary = `--k-p-600` filled, white text. Secondary = surface + `line`
+  border. Ghost = text only. **One primary action per screen.** The label says what
+  happens.
+- **Input.** `line` border → `--k-p-600` on focus, with a visible ring. **A label is
+  always present** — a placeholder is not a label; it disappears exactly when the user
+  needs it. Errors sit under the field and say how to fix it.
+- **Card.** Surface, `line` border, radius 16, `sh-1`. Hover = `k-lift`. One focal point.
+- **Table.** Text left, **numbers right with `tabular-nums`**. Sticky header. Row hover.
+  Scrolls in its own container.
+- **Modal.** `sh-3`, ink scrim 30% + blur. Focus trapped, `Esc` closes, focus returns to
+  the trigger.
+- **Toast.** Status colour + **icon + word**. Auto-dismiss on success; **never** on error.
 
 ---
 
-## 10. The quality gate
+## 10. The five states — a release gate, not advice
+
+**A screen is not designed until all five exist.**
+
+1. **Empty** — the mascot, one plain sentence, one action. Never a dead end, and never the
+   words "Aucune donnée".
+2. **Loading** — skeletons matching the real layout's *shape*. Never a centred spinner on
+   a full page: it tells the user nothing about what is coming.
+3. **Error** — what happened and what to do next. No codes. No "Oops".
+4. **Success** — brief, warm, and it removes itself.
+5. **First run** — the user meets the brand before they meet a form.
+
+---
+
+## 11. Accessibility (WCAG 2.1 AA — the floor, not the goal)
+
+- **Contrast:** body text ≥ 4.5:1; large text and UI marks ≥ 3:1. Every value in §3 is
+  measured. `slate` passes as *real* text, not merely "large" — a deliberate fix.
+- **Never colour alone.** Status always carries an icon or a word.
+- **Focus is always visible** — a 3px ring in `--k-p-600`, offset 3px. Never
+  `outline:none` without a replacement.
+- **Keyboard:** everything reachable and operable, logical tab order, modals trap focus
+  and return it. Drag-and-drop has a keyboard path (Coreon Edu's evaluation grid does).
+- **Motion:** `prefers-reduced-motion` honoured everywhere.
+- **Semantics:** headings in order, real buttons, labelled inputs, `aria-label` on
+  icon-only controls, alt text that says what the image *means*.
+- **Charts:** never colour-only — legend plus direct labels, and a table view exists.
+
+---
+
+## 12. Dark mode, light mode, print
+
+- **Dark mode is designed, not inverted.** Its steps are selected and re-validated against
+  the abyss.
+- **Light mode** is the primary surface.
+- **Print:** the mark is flat, so it prints. Print styles drop shadows and decoration and
+  set ink on white. This is one of the reasons the logo may never be a gradient.
+
+---
+
+## 13. Design tokens, CSS architecture & naming
+
+- **The token layer** (`brand/tokens/kogia.css` + `.js`) is the **only** place a hex is
+  written. Products mirror it; they never invent.
+- **Naming:** `--k-<role>-<step>`. Roles are semantic (`--k-p-600`, `--k-ink`), never
+  literal (`--k-blue`). **A component must not be able to name a hue** — that mechanism is
+  what makes the no-mixing law (§3.5) enforceable rather than aspirational.
+- **Cascade:** tokens → primitives → components → pages. Never the reverse.
+- **If you are about to type a hex into a product file: don't.** Add it here, and document
+  *why* in this book.
+
+---
+
+## 14. Information architecture & navigation
+
+- Navigation is **flat, and named after the user's job** — not the system's structure.
+- The current location is always obvious. Nothing navigates without feedback.
+- A destructive action always confirms, and says what will be lost.
+
+---
+
+## 15. The quality gate
 
 Before anything ships, on every product:
 
-1. Zero mixed styles — one design language per surface.
-2. It looks like a commercial product team built it. Not a template. Not an AI demo.
-3. Colour, type, radius, spacing and motion come **from this file** — no local hexes.
-4. The five states of §8 all exist.
+1. One design language per surface — zero mixed styles.
+2. **One family per product** (§3.5). No stray hues.
+3. Colour, type, radius, spacing and motion come **from the token layer** — no local hexes.
+4. All five states exist (§10).
 5. French is complete. No language mixing.
 6. AA contrast holds. Chart palettes re-validated if touched.
 7. `prefers-reduced-motion` honoured.
-8. Verified on a real screenshot, not in the imagination.
+8. **Zero emoji.**
+9. **This book is updated in the same commit.**
+10. Verified on a real screenshot — at 16px for anything brand-bearing.
 
 ---
 
-## Appendix — what this file retired
+## 16. Changelog
 
-| Retired | Replaced by |
-|---|---|
-| The leaf/spark mark (`#6C5CE7 → #36C5F0`) | The Kogia whale + crescent |
-| Indigo `#6366F1` **and** `#6C5CE7` | `#4F57DE` |
-| Cyan `#36C5F0` | `#22D3EE` (decorative only) |
-| Inks `#0F172A`, `#1A1B2E`, `#10162B` | `#0E2135` |
-| `Fraunces` (Owner Console display) | `Sora` |
-| The "four products" premise; Kogia Coffee & Kharbga identities | **Two** products: Coreon Edu, Kogia Job. Coffee and Kharbga are independent personal projects and are **not** part of Kogia Group. |
-| Kogia Job having no documented identity at all | §3.5 + its own lockup |
+### v4.0 — 2026-07-12 — *Consistency over complexity*
+- **The logo became ONE path.** The K and the whale are now the same silhouette (§4.1).
+  Before, they were a body *beside* a fluke — two objects, not one symbol.
+- **Colour re-founded on three families (50–900), one per product** (§3.3). Before, a
+  single indigo was shared by everything, so **products were not distinguishable without
+  the logo**. Now a product is recognisable by hue alone.
+- **The step contract** (§3.4): `500` = brand/mark (decorative), `600` = action. Found by
+  measurement — white on purple-500 is only 4.23:1 and fails AA.
+- **Gradients demoted from identity to decoration** (§3.6).
+- **Every legacy whale / blue-fish asset deleted.** One logo, one mascot style.
+- **All 152 emoji removed; one icon library (lucide) everywhere** (§7).
+- This book restructured as the living bible: each section now records *why*, the UX
+  principle, the accessibility rule, and what changed.
 
-**Kogia Food and Kogia Games are not part of this system and must not appear on any
-public Kogia Group surface.** They are future projects and stay private until they are
-real.
+### v3.0 — 2026-07-12
+- Retired the leaf/spark mark; introduced the whale; unified three inks and two canvases
+  into one neutral scale; adopted a reversible indigo `#4F57DE`; validated the chart
+  palettes; retired `Fraunces`.
+
+### v2 — "Le Cachalot"
+- A whale mascot introduced alongside a leaf logo that was never replaced. Four competing
+  product identities documented — for products that did not exist.
+
+---
+
+**Kogia Food and Kogia Games are not part of this system** and must not appear on any
+public Kogia Group surface until they are real.

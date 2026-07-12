@@ -17,7 +17,7 @@
   --color-pearl: #FDF6F0;  /* la lumière du croissant — la seule surface chaude */
 
   /* Le corps vu à travers l'eau : la marque. */
-  --color-brand: #4F57DE;  /* 5.60:1 en texte ET 5.60:1 en blanc dessus */
+  --color-brand: #2547E8;  /* 5.60:1 en texte ET 5.60:1 en blanc dessus */
   --color-violet: #8B5CF6;
   --color-cyan: #22D3EE;   /* 1.81:1 — DÉCORATIF. Jamais du texte. */
 
@@ -76,10 +76,10 @@
   .accent-soft { background: rgb(79 87 222 / .10); }
   .accent-line { border-color: rgb(79 87 222 / .28); }
   /* Dégradé du groupe : remplissages décoratifs uniquement, jamais sous du texte. */
-  .brand-grad { background: linear-gradient(120deg, #4F57DE, #22D3EE); }
+  .brand-grad { background: linear-gradient(120deg, #2547E8, #22D3EE); }
   /* Dégradé lisible : celui-ci peut porter du texte (il ne finit pas sur le cyan). */
   .brand-grad-text {
-    background: linear-gradient(120deg, #4F57DE, #1E8FB5);
+    background: linear-gradient(120deg, #2547E8, #1E8FB5);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
 

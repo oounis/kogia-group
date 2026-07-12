@@ -12,11 +12,11 @@ const BODY = 'M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C
 const CRESCENT = 'M44 42 q7 9 -1 17'
 
 export function Mark({ size = 32, className = '' }) {
-  // LA MARQUE : le K-nageoire. Aplat, currentColor. Jamais un dégradé dans un logo.
+  // LA MARQUE : un seul tracé — le K et le cachalot sont la même silhouette.
+  // Aplat, currentColor. L'œil est un TROU (evenodd), jamais un point blanc.
   return (
     <svg viewBox="0 0 64 64" width={size} height={size} className={className} aria-hidden="true">
-      <path d="M17 11 v42" stroke="currentColor" strokeWidth="7.5" strokeLinecap="round" fill="none"/>
-      <path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/>
+      <path fill="currentColor" fillRule="evenodd" d="M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5 L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z"/>
     </svg>
   )
 }
@@ -27,7 +27,7 @@ export function Mascot({ size = 96, className = '' }) {
     <svg viewBox="0 0 132 96" width={size * 132 / 96} height={size} className={className} role="img" aria-label="Kogia">
       <defs>
         <linearGradient id="k-mascot" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#4F57DE" /><stop offset="1" stopColor="#22D3EE" />
+          <stop offset="0" stopColor="#2547E8" /><stop offset="1" stopColor="#22D3EE" />
         </linearGradient>
       </defs>
       <path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="#22D3EE" strokeWidth="3.4" strokeLinecap="round" />
@@ -35,7 +35,7 @@ export function Mascot({ size = 96, className = '' }) {
       <circle cx="34" cy="45" r="4.2" fill="#0E2135" />
       <path d={CRESCENT} fill="none" stroke="#FDF6F0" strokeWidth="3.2" strokeLinecap="round" opacity=".75" />
       <path d="M21 56 q8 6 17 6" fill="none" stroke="#FFFFFF" strokeWidth="3.6" strokeLinecap="round" opacity=".9" />
-      <path d="M56 62 q6 8 16 8 q-10 4 -20 -2 Z" fill="#4F57DE" opacity=".5" />
+      <path d="M56 62 q6 8 16 8 q-10 4 -20 -2 Z" fill="#2547E8" opacity=".5" />
     </svg>
   )
 }
@@ -56,7 +56,7 @@ export function Card({ className = '', children }) { return <div className={`car
 
 /* Les teintes suivent les jetons : marque, violet, ou un ÉTAT (avec son mot). */
 const TINTS = {
-  brand: ['rgb(79 87 222 / .10)', '#4F57DE'],
+  brand: ['rgb(79 87 222 / .10)', '#2547E8'],
   violet: ['rgb(139 92 246 / .12)', '#8B5CF6'],
   ok: [STATUS.ok.bg, STATUS.ok.fg],
   warn: [STATUS.warn.bg, STATUS.warn.fg],

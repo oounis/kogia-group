@@ -1,8 +1,9 @@
-<!-- Kogia Job — même marque de maison, voie terracotta (le nuage d'encre).
-     Le texte descend sur #7C2D12 / #C2410C : le vif #E85D2F reste décoratif. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72"
-     font-family="Sora, system-ui, sans-serif" role="img" aria-label="Kogia Job">
-  <g transform="translate(4,4) scale(.98)" color="#E85D2F"><path d="M17 11 v42" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" fill="none"/><path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/></g>
-  <text x="82" y="40" font-size="30" font-weight="800" fill="#7C2D12" letter-spacing="-0.4">kogia job</text>
-  <text x="84" y="58" font-size="10" font-weight="700" fill="#C2410C" letter-spacing="4">PAR KOGIA GROUP</text>
+<!-- Lockup Kogia. La marque (un seul tracé) + le mot. Aplat, jamais de dégradé.
+     La marque prend la couleur de la FAMILLE du produit — c'est la seule chose
+     qui change d'un produit à l'autre. Source : brand/KOGIA_HARMONY.md §3.5 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 72" width="340" height="72"
+     font-family="Sora, system-ui, sans-serif" role="img" aria-label="kogia job">
+  <g transform="translate(2,4)"><path fill="#C2410C" fill-rule="evenodd" d="M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5 L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z"/></g>
+  <text x="76" y="40" font-size="30" font-weight="800" fill="#7C2D12" letter-spacing="-0.6">kogia job</text>
+  <text x="78" y="58" font-size="10" font-weight="700" fill="#9A3412" letter-spacing="4.5">PAR KOGIA GROUP</text>
 </svg>

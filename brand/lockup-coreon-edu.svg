@@ -1,7 +1,9 @@
-<!-- Kogia — lockup. La marque (le K-cachalot) + le mot. Aplat, jamais de dégradé. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 72" width="330" height="72"
+<!-- Lockup Kogia. La marque (un seul tracé) + le mot. Aplat, jamais de dégradé.
+     La marque prend la couleur de la FAMILLE du produit — c'est la seule chose
+     qui change d'un produit à l'autre. Source : brand/KOGIA_HARMONY.md §3.5 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 72" width="340" height="72"
      font-family="Sora, system-ui, sans-serif" role="img" aria-label="coreon">
-  <g transform="translate(2,4)" color="#4F57DE"><path fill="currentColor" fill-rule="evenodd" d="M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z"/><path fill="currentColor" d="M26 29.5 h10 v5 h-10 Z"/><path fill="currentColor" d="M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z"/></g>
+  <g transform="translate(2,4)"><path fill="#7539E4" fill-rule="evenodd" d="M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5 L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z"/></g>
   <text x="76" y="40" font-size="30" font-weight="800" fill="#0E2135" letter-spacing="-0.6">coreon</text>
-  <text x="78" y="58" font-size="10" font-weight="700" fill="#4F57DE" letter-spacing="4.5">EDU · PAR KOGIA GROUP</text>
+  <text x="78" y="58" font-size="10" font-weight="700" fill="#6329C4" letter-spacing="4.5">EDU · PAR KOGIA GROUP</text>
 </svg>
