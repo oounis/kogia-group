@@ -395,26 +395,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F57DE"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
     <!-- La mascotte Kogia. Le trait pâle derrière l'œil est LE CROISSANT — la « fausse
          branchie » que porte l'animal, et la signature géométrique de tout l'écosystème.
          Le sourire s'arrête avant lui : les deux traits ne doivent jamais se croiser. -->
-    <g id="whale">
-      <path fill="url(#kg)" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
-      <circle cx="34" cy="45" r="4.2" fill="#0E2135"/>
-      <path d="M44 42 q7 9 -1 17" stroke="#FDF6F0" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".75"/>
-      <path d="M21 56 q8 6 17 6" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round" opacity=".9"/>
-      <path d="M56 62 q6 8 16 8 q-10 4 -20 -2 Z" fill="#4F57DE" opacity=".5"/>
-      <path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" stroke="#22D3EE" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-    </g>
-    <!-- LA MARQUE : un K dont le bras est une nageoire caudale. Aplat, jamais de
+        <!-- LA MARQUE : un K dont le bras est une nageoire caudale. Aplat, jamais de
          dégradé — un logo doit tenir sur un tampon et en icône monochrome.
          La baleine ci-dessus n'est PLUS le logo : c'est la MASCOTTE (héros, états
          vides, moments de réussite). Deux systèmes, deux rôles. -->
-    <g id="kmark">
-      <path d="M17 11 v42" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" fill="none"/>
-      <path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/>
-    </g>
+    <g id="kmark"><path fill="currentColor" fill-rule="evenodd" d="M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z"/><path fill="currentColor" d="M26 29.5 h10 v5 h-10 Z"/><path fill="currentColor" d="M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z"/></g>
     <!-- Le croissant seul : chargement, puces, décor. -->
     <path id="crescent" d="M44 42 q7 9 -1 17" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
   </defs>
@@ -452,7 +440,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   <div class="scene" aria-hidden="true">
     <div class="sea"></div>
     <span class="bubble s1"></span><span class="bubble s2"></span><span class="bubble s3"></span>
-    <svg class="whale-big" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
+    <svg class="whale-big" viewBox="0 0 64 64" aria-hidden="true" style="color:var(--indigo)"><use href="#kmark"/></svg>
     <span class="orbit o1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Coreon Edu</span>
     <span class="orbit o2" style="color:#C2410C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12.5V10a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1.4"/><path d="M14 11V9a2 2 0 1 0-4 0v2"/><path d="M10 10.5V5a2 2 0 1 0-4 0v9"/><path d="m7 15-1.8-1.8a2 2 0 0 0-2.8 2.8L6 19.6A7 7 0 0 0 11 22h2a7 7 0 0 0 7-7v-2.5"/></svg> Kogia Job · en développement</span>
     <span class="orbit o3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c5.5-4 8-8.5 8-12a8 8 0 1 0-16 0c0 3.5 2.5 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg> Fait en Tunisie</span>
@@ -540,7 +528,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
         <span class="from">Notre signature, sur chaque produit</span>
       </div>
     </div>
-    <svg class="deep-whale" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
+    <svg class="deep-whale" viewBox="0 0 64 64" aria-hidden="true" style="color:#FFFFFF"><use href="#kmark"/></svg>
     <p class="deep-sign reveal">Le plus petit cachalot du monde. La plus grande exigence possible.</p>
   </div>
 </section>
@@ -819,7 +807,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
         <a class="btn ghost" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer Coreon Edu</a>
       </div>
     </div>
-    <svg class="whale-cta" viewBox="0 0 132 96" aria-hidden="true"><use href="#whale"/></svg>
+    <svg class="whale-cta" viewBox="0 0 64 64" aria-hidden="true" style="color:#FFFFFF"><use href="#kmark"/></svg>
   </div>
 </div></section>
 

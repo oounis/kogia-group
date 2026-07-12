@@ -1,25 +1,24 @@
 <!-- ════════════════════════════════════════════════════════════════════════
-     LA MARQUE KOGIA — un K dont le bras est une NAGEOIRE CAUDALE.
+     LA MARQUE KOGIA — le K ET le cachalot, dans une seule forme.
 
-     L'initiale de l'entreprise et l'animal, dans une seule forme géométrique.
-     Ce n'est PAS un dessin de poisson : c'est un symbole de marque.
+     Double lecture, voulue :
+       • Le CACHALOT : le front busqué (la barre), l'œil, le pédoncule, la
+         nageoire caudale. Le cachalot a un front presque VERTICAL — c'est
+         exactement pourquoi sa tête peut servir de hampe à un K.
+       • Le K : la hampe (le corps) + les deux bras (la caudale).
+     Ni un poisson dessiné, ni une lettre nue : les deux à la fois.
 
-     Pourquoi cette forme, et pas l'ancienne baleine :
-       • L'ancienne mourait à 16 px (œil, sourire, croissant → une bouillie) et
-         ne survivait pas en une seule couleur. Celle-ci tient les deux.
-       • Elle est PLEINE. La masse est ce qui fait survivre une marque en petit :
-         les versions aux pointes effilées disparaissaient à la taille d'un favicon.
-       • Les pointes sont CARRÉES — le bord de fuite d'une vraie nageoire. C'est ce
-         qui la distingue d'une flèche ou d'un chevron.
+     L'ŒIL EST UN VRAI TROU (fill-rule evenodd), pas un point blanc : la marque
+     doit tenir sur N'IMPORTE QUEL fond. Un point blanc trahirait le logo dès
+     qu'on le pose sur une couleur.
 
-     Le croissant (la fausse branchie) N'EST PAS dans le logo, délibérément : sur une
-     entreprise TUNISIENNE, un croissant se lit comme le drapeau national, pas comme
-     une branchie de cachalot. Il reste un motif d'interface (chargement, états vides).
-
-     Grille 64. Aplat — jamais de dégradé dans la marque : un logo doit tenir sur un
-     tampon, une facture, une icône monochrome. Le dégradé est réservé au décor.
+     Aplat, jamais de dégradé — un logo doit tenir sur un tampon, une facture,
+     une icône monochrome. Grille 64. Source : brand/KOGIA_HARMONY.md §4
      ════════════════════════════════════════════════════════════════════════ -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kogia">
-  <path d="M17 11 v42" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" fill="none"/>
-  <path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/>
+  <path fill="currentColor" fill-rule="evenodd"
+        d="M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z
+           M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z"/>
+  <path fill="currentColor" d="M26 29.5 h10 v5 h-10 Z"/>
+  <path fill="currentColor" d="M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z"/>
 </svg>

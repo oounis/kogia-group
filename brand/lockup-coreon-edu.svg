@@ -1,7 +1,7 @@
-<!-- Coreon Edu — même marque de maison, accent du produit. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72"
-     font-family="Sora, system-ui, sans-serif" role="img" aria-label="Coreon Edu">
-  <g transform="translate(4,4) scale(.98)" color="#4F57DE"><path d="M17 11 v42" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" fill="none"/><path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/></g>
-  <text x="82" y="40" font-size="30" font-weight="800" fill="#0E2135" letter-spacing="-0.6">coreon</text>
-  <text x="84" y="58" font-size="10" font-weight="700" fill="#4F57DE" letter-spacing="4.5">EDU · PAR KOGIA GROUP</text>
+<!-- Kogia — lockup. La marque (le K-cachalot) + le mot. Aplat, jamais de dégradé. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 72" width="330" height="72"
+     font-family="Sora, system-ui, sans-serif" role="img" aria-label="coreon">
+  <g transform="translate(2,4)" color="#4F57DE"><path fill="currentColor" fill-rule="evenodd" d="M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z"/><path fill="currentColor" d="M26 29.5 h10 v5 h-10 Z"/><path fill="currentColor" d="M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z"/></g>
+  <text x="76" y="40" font-size="30" font-weight="800" fill="#0E2135" letter-spacing="-0.6">coreon</text>
+  <text x="78" y="58" font-size="10" font-weight="700" fill="#4F57DE" letter-spacing="4.5">EDU · PAR KOGIA GROUP</text>
 </svg>

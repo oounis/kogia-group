@@ -156,48 +156,63 @@ Both sit on the *same* neutrals. That is what makes them siblings.
 
 ---
 
-## 4. The mark, and the mascots
+## 4. The mark
 
-### 4.1 The mark — a K whose arm is a fluke
+### 4.1 One form, two readings — the K *and* the whale
 
-**The logo is not a whale.** It is a **K**, the company's initial, whose arm is a
-**fluke** — a whale's tail. The initial and the animal, in one geometric form.
+The mark is **both at once**, on purpose:
+
+- **The whale.** Blunt forehead (the bar), the eye, the peduncle, the fluke. A sperm
+  whale's forehead is famously *near-vertical* — which is exactly why its head can
+  serve as the spine of a letter.
+- **The K.** The company's initial: the spine (the body) and two arms (the fluke).
+
+Neither a drawn fish nor a bare letter. Both.
 
 ```
-stem   M17 11 v42                                        stroke 7.5, round cap
-fluke  M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z
+body   M10 20.5 a8.5 8.5 0 0 1 17 0 v23 a8.5 8.5 0 0 1 -17 0 Z   (eye knocked out, evenodd)
+eye    M21.9 23 a3.4 3.4 0 1 1 -6.8 0 a3.4 3.4 0 1 1 6.8 0 Z
+waist  M26 29.5 h10 v5 h-10 Z
+fluke  M35 32 L54 11 L57.5 15 Q46 26 43 32 Q46 38 57.5 49 L54 53 Z
 ```
-> Grid 64. **Flat — never a gradient.** A logo must survive a rubber stamp, an
-> invoice, a monochrome app icon. The gradient belongs to decoration, not identity.
-> It takes its colour from context (`currentColor`): indigo for the group and
-> Coreon Edu, terracotta for Kogia Job. **One house mark, recoloured per product.**
 
-**Why the whale was retired as the logo.** It was tested and it failed:
-- **It died at 16px.** The eye, smile, spout and crescent collapsed into a blue
-  blob at favicon and app-icon size — the sizes that matter most.
-- **It could not survive one colour.** In monochrome it was a black lump.
-- **It was an illustration, not an identity** — no geometric system underneath.
+**The eye is a real hole** (`fill-rule="evenodd"`), never a white dot. A white dot
+betrays the logo the moment it sits on a colour. The hole shows whatever is behind it.
 
-The fluke tips are **squared**, not pointed: that is a real fluke's trailing edge,
-and it is what stops the mark reading as a generic arrow or chevron. Tapered
-versions were drawn and rejected — they vanish at small size. **Mass is what makes
-a mark survive.**
+**Flat — never a gradient.** A logo must survive a rubber stamp, an invoice, a
+monochrome app icon. The mark takes its colour from context (`currentColor`): indigo
+for the group and Coreon Edu, terracotta for Kogia Job. **One house mark, recoloured
+per product.** That is how a group signs its applications, and it scales to any
+product we have not built yet.
 
-### 4.2 Why the crescent is NOT in the logo
+### 4.2 What was tried and rejected — and why
 
-The false gill is still our motif — but it stays in the **interface** (loaders,
-empty states, decoration), never in the mark. On a **Tunisian** company, a crescent
-does not read as a whale's gill. It reads as **the national flag**. That collision
-is not worth the concept.
+Every candidate was rendered at **16px and in one colour** before judging. That test,
+not taste, killed them:
 
-### 4.3 The mascots — they welcome, they do not identify
+- **The old cartoon whale** — died at 16px (eye, smile, spout, crescent collapsed into
+  a blob) and became a black lump in monochrome. It was an illustration, not an identity.
+- **Tapered flukes** — elegant large, invisible small. **Mass is what makes a mark
+  survive.** The fluke tips are squared: a real fluke's trailing edge, and what stops
+  the mark reading as a generic arrow.
+- **A body detached from the tail** — read as a battery beside a chevron. The waist is
+  what makes it a creature.
+- **The crescent as the logo** — see §4.3.
 
-The whale (Coreon Edu, the group) and the hand (Kogia Job) are **mascots**. They
-belong on welcome screens, empty states and success moments. They carry warmth.
+### 4.3 Why the crescent is not the logo
 
-**They are never a logo.** The mark identifies; the mascot welcomes. Two systems,
-two jobs — and never swapped. The hand in particular means something real
-("le coup de main du quartier") and keeps that meaning as an illustration.
+On a **Tunisian** company, a crescent does not read as a whale's false gill. It reads
+as **the national flag**. The crescent stays an interface motif (loaders, empty states);
+it is never the mark.
+
+### 4.4 Mascots
+
+Kogia Job keeps **the hand** as a mascot — welcome screens, empty states. It means
+"le coup de main du quartier" and keeps that meaning as illustration.
+
+**The mark identifies; a mascot welcomes.** Never swapped. The old cartoon whale is
+retired entirely: the mark *is* the whale now, so a second, different whale would
+only fracture the identity.
 
 ## 5. Typography
 
@@ -235,8 +250,13 @@ reading face; it never sets a paragraph.
   - `sh-2` `0 10px 30px -12px rgb(14 33 53 / .12)`
   - `sh-3` `0 24px 50px -20px rgb(14 33 53 / .20)`
   Never a hard border *and* a heavy shadow on the same element.
-- **Icons** — lucide, stroke 2, `currentColor`. **Never emoji. Never raster. Never AI
-  imagery in product UI.**
+- **Icons — lucide, stroke 2, `currentColor`. ONE library, every product, every platform**
+  (`lucide-react` on web, `lucide-react-native` on native — the same names, via `<Ic n="…"/>`).
+  Shared `core/` data names its icons by **lucide name**, never by glyph.
+- **NEVER an emoji.** An emoji is drawn by the *operating system*: the same character is a
+  different picture on Android, iOS, Windows and the web. That is literally why Kogia had a
+  different iconography on every screen. 152 emoji were removed from the codebase; the count
+  is now **zero**, and it stays zero. Never raster, never AI imagery in product UI.
 - **Avatars** — initials on a deterministic soft tint. No faces, real or generated.
 
 ---
