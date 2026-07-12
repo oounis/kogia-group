@@ -1,16 +1,25 @@
-<!-- Kogia Harmony — THE MARK. Logo, favicon, app tile.
-     Clean, premium: body + eye + the Kogia Crescent (the false gill).
-     No smile, no fin, no spout — that is the MASCOT (kogia-mascot.svg). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 96" role="img" aria-label="Kogia">
-  <defs>
-    <linearGradient id="k-mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4F57DE"/>
-      <stop offset="1" stop-color="#22D3EE"/>
-    </linearGradient>
-  </defs>
-  <path fill="url(#k-mark)" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
-  <!-- The eye. Ink, never black. -->
-  <circle cx="34" cy="45" r="4.2" fill="#0E2135"/>
-  <!-- THE KOGIA CRESCENT — the false gill. The one thing that makes this mark ours. -->
-  <path d="M44 42 q7 9 -1 17" fill="none" stroke="#FDF6F0" stroke-width="3.2" stroke-linecap="round" opacity=".75"/>
+<!-- ════════════════════════════════════════════════════════════════════════
+     LA MARQUE KOGIA — un K dont le bras est une NAGEOIRE CAUDALE.
+
+     L'initiale de l'entreprise et l'animal, dans une seule forme géométrique.
+     Ce n'est PAS un dessin de poisson : c'est un symbole de marque.
+
+     Pourquoi cette forme, et pas l'ancienne baleine :
+       • L'ancienne mourait à 16 px (œil, sourire, croissant → une bouillie) et
+         ne survivait pas en une seule couleur. Celle-ci tient les deux.
+       • Elle est PLEINE. La masse est ce qui fait survivre une marque en petit :
+         les versions aux pointes effilées disparaissaient à la taille d'un favicon.
+       • Les pointes sont CARRÉES — le bord de fuite d'une vraie nageoire. C'est ce
+         qui la distingue d'une flèche ou d'un chevron.
+
+     Le croissant (la fausse branchie) N'EST PAS dans le logo, délibérément : sur une
+     entreprise TUNISIENNE, un croissant se lit comme le drapeau national, pas comme
+     une branchie de cachalot. Il reste un motif d'interface (chargement, états vides).
+
+     Grille 64. Aplat — jamais de dégradé dans la marque : un logo doit tenir sur un
+     tampon, une facture, une icône monochrome. Le dégradé est réservé au décor.
+     ════════════════════════════════════════════════════════════════════════ -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kogia">
+  <path d="M17 11 v42" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+  <path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/>
 </svg>

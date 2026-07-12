@@ -11,17 +11,12 @@ import { SERIES, STATUS, seriesColor } from './charts.js'
 const BODY = 'M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z'
 const CRESCENT = 'M44 42 q7 9 -1 17'
 
-export function Mark({ size = 34, className = '' }) {
+export function Mark({ size = 32, className = '' }) {
+  // LA MARQUE : le K-nageoire. Aplat, currentColor. Jamais un dégradé dans un logo.
   return (
-    <svg viewBox="0 0 132 96" width={size * 132 / 96} height={size} className={className} role="img" aria-label="Kogia">
-      <defs>
-        <linearGradient id="k-mark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#4F57DE" /><stop offset="1" stopColor="#22D3EE" />
-        </linearGradient>
-      </defs>
-      <path fill="url(#k-mark)" d={BODY} />
-      <circle cx="34" cy="45" r="4.2" fill="#0E2135" />
-      <path d={CRESCENT} fill="none" stroke="#FDF6F0" strokeWidth="3.2" strokeLinecap="round" opacity=".75" />
+    <svg viewBox="0 0 64 64" width={size} height={size} className={className} aria-hidden="true">
+      <path d="M17 11 v42" stroke="currentColor" strokeWidth="7.5" strokeLinecap="round" fill="none"/>
+      <path d="M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z" fill="currentColor"/>
     </svg>
   )
 }

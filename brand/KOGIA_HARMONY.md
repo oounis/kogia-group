@@ -155,27 +155,48 @@ Both sit on the *same* neutrals. That is what makes them siblings.
 
 ---
 
-## 4. The Kogia Crescent — our one geometric signature
+## 4. The mark, and the mascots
 
-The animal has a pale crescent behind the eye: the **false gill**. It is the single most
-distinctive thing about *Kogia*, and — until now — it was missing from our logo.
+### 4.1 The mark — a K whose arm is a fluke
 
-**The crescent is the connective tissue of the whole ecosystem.** It appears in every
-mark, in the same weight, at the same optical angle:
+**The logo is not a whale.** It is a **K**, the company's initial, whose arm is a
+**fluke** — a whale's tail. The initial and the animal, in one geometric form.
 
 ```
-M44 42 q7 9 -1 17
+stem   M17 11 v42                                        stroke 7.5, round cap
+fluke  M26 32 L48 9 L53 12 Q41 25 36 32 Q41 39 53 52 L48 55 Z
 ```
-> stroke `pearl` / white · width `3.2` · `stroke-linecap: round` · opacity `.75`
+> Grid 64. **Flat — never a gradient.** A logo must survive a rubber stamp, an
+> invoice, a monochrome app icon. The gradient belongs to decoration, not identity.
+> It takes its colour from context (`currentColor`): indigo for the group and
+> Coreon Edu, terracotta for Kogia Job. **One house mark, recoloured per product.**
 
-- In the **whale**, it sits behind the eye, where the animal wears it.
-- In **Kogia Job's** mark, the same arc is cut into the palm.
-- In **loaders**, it is the arc that rotates.
-- In **empty states**, it is the curve the illustration is built on.
+**Why the whale was retired as the logo.** It was tested and it failed:
+- **It died at 16px.** The eye, smile, spout and crescent collapsed into a blue
+  blob at favicon and app-icon size — the sizes that matter most.
+- **It could not survive one colour.** In monochrome it was a black lump.
+- **It was an illustration, not an identity** — no geometric system underneath.
 
-A new product does not need a new mascot. It needs the crescent.
+The fluke tips are **squared**, not pointed: that is a real fluke's trailing edge,
+and it is what stops the mark reading as a generic arrow or chevron. Tapered
+versions were drawn and rejected — they vanish at small size. **Mass is what makes
+a mark survive.**
 
----
+### 4.2 Why the crescent is NOT in the logo
+
+The false gill is still our motif — but it stays in the **interface** (loaders,
+empty states, decoration), never in the mark. On a **Tunisian** company, a crescent
+does not read as a whale's gill. It reads as **the national flag**. That collision
+is not worth the concept.
+
+### 4.3 The mascots — they welcome, they do not identify
+
+The whale (Coreon Edu, the group) and the hand (Kogia Job) are **mascots**. They
+belong on welcome screens, empty states and success moments. They carry warmth.
+
+**They are never a logo.** The mark identifies; the mascot welcomes. Two systems,
+two jobs — and never swapped. The hand in particular means something real
+("le coup de main du quartier") and keeps that meaning as an illustration.
 
 ## 5. Typography
 
