@@ -44,7 +44,7 @@ export default function Landing() {
 
       {/* hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10" style={{ background: 'radial-gradient(70% 60% at 80% -10%, rgba(54,197,240,.18), transparent), radial-gradient(60% 60% at 0% 0%, rgba(108,92,231,.16), transparent)' }} />
+        <div className="absolute inset-0 -z-10" style={{ background: 'radial-gradient(70% 60% at 80% -10%, rgb(34 211 238 / .16), transparent), radial-gradient(60% 60% at 0% 0%, rgb(79 87 222 / .14), transparent)' }} />
         <div className="max-w-6xl mx-auto px-5 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5 }}>
             <span className="inline-block text-xs font-bold tracking-widest uppercase accent-text">Groupe technologique</span>
@@ -65,13 +65,13 @@ export default function Landing() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: .94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .5, delay: .1 }} className="relative">
-            <div className="card p-8 grid place-items-center" style={{ background: 'linear-gradient(160deg,#fff, #F6F7FB)' }}>
-              <Mark size={130} />
+            <div className="card p-8 grid place-items-center" style={{ background: 'linear-gradient(160deg, #FFFFFF, #F4F7FA)' }}>
+              <Mark size={112} className="k-float" />
               <div className="font-display font-extrabold text-2xl mt-4">Kogia Group</div>
               <div className="grid grid-cols-3 gap-2 mt-6 w-full">
                 {PRODUCTS.map(p => (
                   <div key={p.id} className="rounded-xl border border-line px-2 py-3 text-center">
-                    <div className="text-[11px] font-bold" style={{ color: p.color }}>{p.name.split(':')[0].split(' ')[0]}</div>
+                    <div className="text-[11px] font-bold accent-text">{p.name.split(':')[0].split(' ')[0]}</div>
                   </div>
                 ))}
               </div>
@@ -92,9 +92,9 @@ export default function Landing() {
             return (
               <motion.div key={p.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .08 }}
                 className="card p-6">
-                <span className="w-12 h-12 rounded-2xl grid place-items-center" style={{ background: p.color + '22', color: p.color }}><Icon size={24} /></span>
+                <span className="w-12 h-12 rounded-2xl grid place-items-center accent-soft accent-text"><Icon size={24} /></span>
                 <h3 className="text-xl font-bold mt-4">{p.name}</h3>
-                <div className="text-xs font-semibold" style={{ color: p.color }}>{p.tagline}</div>
+                <div className="text-xs font-semibold accent-text">{p.tagline}</div>
                 <p className="text-muted text-sm mt-2">{p.desc}</p>
                 <div className="mt-4 pt-4 border-t border-line flex items-baseline gap-1">
                   <span className="text-2xl font-extrabold">{p.plans[0].price}</span>
@@ -116,7 +116,7 @@ export default function Landing() {
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               {['Provisioning d\'accès en un clic à l\'achat', 'Facturation & paiements centralisés', 'Abonnements et revenu récurrent (MRR)', 'Tableau de bord consolidé du groupe'].map(t => (
-                <li key={t} className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full accent-bg" />{t}</li>
+                <li key={t} className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full brand-grad shrink-0" />{t}</li>
               ))}
             </ul>
             <Link to="/console" className="inline-flex items-center gap-2 mt-8 rounded-xl font-semibold px-5 py-3 text-white accent-bg hover:opacity-90">

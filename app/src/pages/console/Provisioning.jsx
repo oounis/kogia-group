@@ -2,7 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { KeyRound, Plus, Copy, ShieldCheck, Pause, Ban, Play, Link as LinkIcon, Search } from 'lucide-react'
 import { db, mutate, uid, PRODUCTS, planById, clientById, genKey, genPassword } from '../../db.js'
-import { Card, PageHead, Btn, Badge, Modal, Field, Select, Table, Empty, Avatar } from '../../ui.jsx'
+import { Card, PageHead, Btn, Badge, Modal, Field, Select, Table, EmptyState, Avatar } from '../../ui.jsx'
 
 export default function Provisioning() {
   const [, force] = useState(0)
@@ -60,25 +60,36 @@ export default function Provisioning() {
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="Rechercher par client ou produit…" className="bg-transparent text-sm outline-none w-full" />
       </Card>
 
+      {!list.length ? (
+        <EmptyState
+          title={q ? 'Aucun accès ne correspond à cette recherche' : 'Aucun accès n\'a encore été provisionné'}
+          hint={q
+            ? 'Essayez un autre nom de client ou de produit.'
+            : 'Dès qu\'un client achète un produit, provisionnez son accès : la console génère le compte admin, la clé de licence et l\'URL.'}
+          action={q
+            ? <Btn variant="ghost" onClick={() => setQ('')}>Voir tous les accès</Btn>
+            : <Btn onClick={() => setOpen(true)}><Plus size={16} /> Provisionner un accès</Btn>}
+        />
+      ) : (
       <Table head={['Client', 'Produit · Plan', 'Compte', 'Clé de licence', 'Statut', 'Actions']}>
         {list.map(a => (
           <tr key={a.id} className="hover:bg-canvas">
-            <td className="px-4 py-3"><div className="flex items-center gap-2.5"><Avatar name={a.client?.name} color={a.client?.color} size={30} /><span className="font-semibold">{a.client?.name}</span></div></td>
+            <td className="px-4 py-3"><div className="flex items-center gap-2.5"><Avatar name={a.client?.name} slot={a.client?.slot} size={30} /><span className="font-semibold">{a.client?.name}</span></div></td>
             <td className="px-4 py-3"><div className="font-semibold text-sm">{a.plan?.product.name}</div><div className="text-xs text-muted">{a.plan?.name}</div></td>
             <td className="px-4 py-3 text-xs font-mono text-muted">{a.username}</td>
             <td className="px-4 py-3"><code className="text-xs bg-canvas px-2 py-1 rounded">{a.key}</code></td>
             <td className="px-4 py-3"><Badge status={a.status} /></td>
             <td className="px-4 py-3">
               <div className="flex gap-1">
-                {a.status !== 'active' && <button title="Réactiver" onClick={() => setStatus(a.id, 'active')} className="p-1.5 rounded-lg hover:bg-canvas text-emerald-600"><Play size={15} /></button>}
-                {a.status === 'active' && <button title="Suspendre" onClick={() => setStatus(a.id, 'suspended')} className="p-1.5 rounded-lg hover:bg-canvas text-amber-600"><Pause size={15} /></button>}
-                {a.status !== 'revoked' && <button title="Révoquer" onClick={() => setStatus(a.id, 'revoked')} className="p-1.5 rounded-lg hover:bg-canvas text-coral"><Ban size={15} /></button>}
+                {a.status !== 'active' && <button title="Réactiver" onClick={() => setStatus(a.id, 'active')} className="p-1.5 rounded-lg hover:bg-canvas text-ok cursor-pointer"><Play size={15} /></button>}
+                {a.status === 'active' && <button title="Suspendre" onClick={() => setStatus(a.id, 'suspended')} className="p-1.5 rounded-lg hover:bg-canvas text-warn cursor-pointer"><Pause size={15} /></button>}
+                {a.status !== 'revoked' && <button title="Révoquer" onClick={() => setStatus(a.id, 'revoked')} className="p-1.5 rounded-lg hover:bg-canvas text-danger cursor-pointer"><Ban size={15} /></button>}
               </div>
             </td>
           </tr>
         ))}
-        {!list.length && <tr><td colSpan={6}><Empty>Aucun accès provisionné</Empty></td></tr>}
       </Table>
+      )}
 
       {/* provision modal */}
       <Modal open={open} onClose={() => setOpen(false)} title="Provisionner un accès"
@@ -113,8 +124,8 @@ export default function Provisioning() {
         footer={<Btn onClick={() => setCredentials(null)}>Terminé</Btn>}>
         {credentials && (
           <div>
-            <div className="card p-4 mb-4" style={{ background: '#F2FBF6' }}>
-              <div className="flex items-center gap-2 text-emerald-700 font-bold text-sm"><ShieldCheck size={16} /> Accès actif</div>
+            <div className="card p-4 mb-4 bg-ok-soft">
+              <div className="flex items-center gap-2 text-ok font-bold text-sm"><ShieldCheck size={16} /> Accès actif</div>
               <p className="text-sm text-muted mt-1">{credentials.client.name} · {credentials.pl.product.name} {credentials.pl.name}</p>
             </div>
             <div className="space-y-2">

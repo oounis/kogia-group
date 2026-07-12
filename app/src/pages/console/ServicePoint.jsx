@@ -4,9 +4,7 @@ import { Plus, Check } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { db, mutate, uid, clientById } from '../../db.js'
-import { Card, PageHead, Btn, Badge, Modal, Field, Select, Input, Empty, Avatar } from '../../ui.jsx'
-
-const PRIO = { high: ['#FFE8EC', '#EF4444', 'Haute'], medium: ['#FFF4DD', '#E59A12', 'Moyenne'], low: ['#EEF1F6', '#8A93A6', 'Basse'] }
+import { Card, PageHead, Btn, Badge, Modal, Field, Select, Input, EmptyState, Avatar } from '../../ui.jsx'
 
 export default function ServicePoint() {
   const [, force] = useState(0)
@@ -34,21 +32,26 @@ export default function ServicePoint() {
 
       <div className="space-y-3">
         {list.map(t => {
-          const [bg, fg, lbl] = PRIO[t.priority] || PRIO.medium
           return (
             <Card key={t.id} className="p-4 flex items-center gap-4">
-              <Avatar name={t.client?.name} color={t.client?.color} />
+              <Avatar name={t.client?.name} slot={t.client?.slot} />
               <div className="flex-1 min-w-0">
                 <div className="font-semibold">{t.subject}</div>
                 <div className="text-xs text-muted">{t.client?.name} · {formatDistanceToNow(t.at, { addSuffix: true, locale: fr })}</div>
               </div>
-              <span className="text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ background: bg, color: fg }}>{lbl}</span>
+              <Badge status={t.priority} />
               <Badge status={t.status} />
               {t.status === 'open' && <Btn variant="soft" className="!px-3 !py-1.5" onClick={() => resolve(t.id)}><Check size={14} /> Résoudre</Btn>}
             </Card>
           )
         })}
-        {!list.length && <Card className="p-6"><Empty>Aucun ticket</Empty></Card>}
+        {!list.length && (
+          <EmptyState
+            title="Aucune demande de support ouverte"
+            hint="Les demandes des clients du groupe arrivent ici. Vous pouvez aussi en consigner une vous-même."
+            action={<Btn onClick={() => setOpen(true)}><Plus size={16} /> Nouveau ticket</Btn>}
+          />
+        )}
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)} title="Nouveau ticket"

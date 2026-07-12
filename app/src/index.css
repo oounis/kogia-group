@@ -1,47 +1,135 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   Kogia Harmony — jetons de la Console propriétaire.
+   Source de vérité : brand/KOGIA_HARMONY.md + brand/tokens/kogia.css.
+   La console partageait autrefois zéro valeur avec le site du groupe : plus
+   maintenant. Aucun hex ne s'écrit hors de ce fichier et de src/charts.js.
+   ========================================================================= */
 @theme {
-  --color-brand: #6C5CE7;
-  --color-brand-2: #36C5F0;
-  --color-sky: #36C5F0;
-  --color-ink: #1A1B2E;
-  /* #8A93A6 tombait sous 3:1 : le texte secondaire était illisible. */
-  --color-muted: #66707F;
-  --color-line: #E8EAF2;
-  --color-canvas: #F6F7FB;
-  --color-coral: #FF6B81;
+  /* L'eau : neutres, identiques dans tous les produits du groupe. */
+  --color-abyss: #071726;
+  --color-ink: #0E2135;    /* texte principal — 16.3:1 sur blanc */
+  --color-muted: #5B6B7D;  /* texte secondaire — 5.46:1 sur blanc, 5.08:1 sur canvas */
+  --color-line: #DCE3EB;
+  --color-canvas: #F4F7FA;
+  --color-surface: #FFFFFF;
+  --color-pearl: #FDF6F0;  /* la lumière du croissant — la seule surface chaude */
+
+  /* Le corps vu à travers l'eau : la marque. */
+  --color-brand: #4F57DE;  /* 5.60:1 en texte ET 5.60:1 en blanc dessus */
+  --color-violet: #8B5CF6;
+  --color-cyan: #22D3EE;   /* 1.81:1 — DÉCORATIF. Jamais du texte. */
+
+  /* États : réservés. Jamais une couleur de marque, jamais une série. */
+  --color-ok: #12946F;      --color-ok-soft: #E7F5F0;
+  --color-warn: #C97C1E;    --color-warn-soft: #FBF1E3;
+  --color-danger: #DC4B54;  --color-danger-soft: #FBEBEC;
+  --color-info: #0E7FB8;    --color-info-soft: #E6F1F8;
+  --color-neutral: #7C879B; --color-neutral-soft: #F1F4F8;
+
+  /* Typographie : Sora partout en display, Inter en texte (la voie du groupe).
+     Le serif d'affichage de la v1, qui n'existait nulle part ailleurs, est retiré. */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fraunces", "Georgia", serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  /* Forme : quatre rayons. Il n'y en a pas de cinquième. */
+  --radius-control: 12px;
+  --radius-card: 16px;
+  --radius-tile: 24px;
+
+  /* Élévation : une seule lumière, au-dessus de l'eau. */
+  --shadow-k1: 0 1px 2px rgb(14 33 53 / .05);
+  --shadow-k2: 0 10px 30px -12px rgb(14 33 53 / .12);
+  --shadow-k3: 0 24px 50px -20px rgb(14 33 53 / .20);
+
+  /* Mouvement : une seule courbe pour tout l'écosystème. */
+  --ease-kogia: cubic-bezier(.2, .8, .2, 1);
 }
 
 @layer base {
-  /* Même voix typographique que Coreon Edu et que le site du groupe :
-     un peu plus grand, un peu plus gras, nettement plus lisible. */
   html { font-family: var(--font-sans); font-size: 15px; }
-  body { background: #fff; color: var(--color-ink); margin:0; -webkit-font-smoothing: antialiased;
-         font-weight: 500; line-height: 1.55; letter-spacing: -0.004em; }
-  h1,h2,h3 { font-family: var(--font-display); letter-spacing: -0.01em; font-weight: 700; }
-  b,strong { font-weight: 700; }
+  body {
+    background: var(--color-surface); color: var(--color-ink); margin: 0;
+    -webkit-font-smoothing: antialiased;
+    /* Corps en 500, pas 400 : la même graisse dans tous les produits. */
+    font-weight: 500; line-height: 1.55; letter-spacing: -0.004em;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.15; font-weight: 700; }
+  b, strong { font-weight: 700; }
   .tabular-nums { font-variant-numeric: tabular-nums; }
+  ::selection { background: rgb(79 87 222 / .16); }
 }
 
 @layer components {
-  .card { background:#fff; border:1px solid var(--color-line); border-radius:1rem; box-shadow:0 1px 2px rgba(26,27,46,.04),0 8px 24px -16px rgba(26,27,46,.12); }
-  .text-muted { color: var(--color-muted); }
-  .text-ink { color: var(--color-ink); }
-  .text-coral { color: var(--color-coral); }
-  .text-brand { color: var(--color-brand); }
-  .border-line { border-color: var(--color-line); }
-  .bg-canvas { background: var(--color-canvas); }
-  .bg-ink { background: var(--color-ink); }
-  .accent-bg { background: linear-gradient(135deg,#6C5CE7,#36C5F0); }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-k1);
+  }
+
+  /* Un aplat indigo derrière du texte blanc : 5.60:1. Le dégradé du groupe
+     finit sur le cyan (1.81:1) — il ne porte donc jamais de texte. */
+  .accent-bg { background: var(--color-brand); }
   .accent-text { color: var(--color-brand); }
-  .accent-soft { background:#EEEBFF; }
-  .coral-soft { background:#FFE8EC; }
-  .bg-coral-soft { background:#FFE8EC; }
-  .accent-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(108,92,231,.18); border-color:var(--color-brand); }
-  .pop { animation: pop .18s ease-out; }
-  @keyframes pop { from { transform: scale(.96); opacity:0 } to { transform: scale(1); opacity:1 } }
-  .scroll-thin::-webkit-scrollbar { width:8px; height:8px; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:#D5D9E6; border-radius:8px; }
+  .accent-soft { background: rgb(79 87 222 / .10); }
+  .accent-line { border-color: rgb(79 87 222 / .28); }
+  /* Dégradé du groupe : remplissages décoratifs uniquement, jamais sous du texte. */
+  .brand-grad { background: linear-gradient(120deg, #4F57DE, #22D3EE); }
+  /* Dégradé lisible : celui-ci peut porter du texte (il ne finit pas sur le cyan). */
+  .brand-grad-text {
+    background: linear-gradient(120deg, #4F57DE, #1E8FB5);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .accent-ring:focus { outline: none; box-shadow: 0 0 0 3px rgb(79 87 222 / .18); border-color: var(--color-brand); }
+  .accent-ring:focus-visible { outline: none; box-shadow: 0 0 0 3px rgb(79 87 222 / .18); border-color: var(--color-brand); }
+
+  .scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scroll-thin::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; }
+}
+
+/* ============================================================================
+   Mouvement — « l'immobilité est l'état de repos ». Tout cède à
+   prefers-reduced-motion : ce n'est pas une option.
+   ========================================================================= */
+@layer utilities {
+  /* La dérive du mascotte : la seule animation perpétuelle autorisée. */
+  @keyframes k-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-4px) } }
+  .k-float { animation: k-float 6s ease-in-out infinite; }
+
+  /* Attente en ligne : c'est le CROISSANT qui tourne, pas un spinner générique. */
+  @keyframes k-crescent { to { transform: rotate(360deg) } }
+  .k-crescent { animation: k-crescent 900ms linear infinite; transform-origin: 50% 50%; }
+
+  @keyframes k-pop { from { transform: scale(.98); opacity: 0 } to { transform: none; opacity: 1 } }
+  .pop { animation: k-pop 220ms var(--ease-kogia) both; }
+
+  @keyframes k-reveal { from { opacity: 0; transform: translateY(22px) } to { opacity: 1; transform: none } }
+  .k-reveal { animation: k-reveal 700ms var(--ease-kogia) both; }
+
+  /* Squelettes de chargement : la forme de la vraie mise en page, jamais un
+     spinner centré sur une page entière. */
+  @keyframes k-skeleton { 0%, 100% { opacity: 1 } 50% { opacity: .55 } }
+  .k-skeleton {
+    background: var(--color-canvas);
+    border-radius: var(--radius-control);
+    animation: k-skeleton 1.4s var(--ease-kogia) infinite;
+  }
+
+  .k-lift { transition: transform 160ms var(--ease-kogia), box-shadow 160ms var(--ease-kogia); }
+  .k-lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-k3); }
+  .k-press:active { transform: scale(.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .k-float, .k-crescent, .k-reveal, .k-skeleton, .pop { animation: none !important; }
+  .k-lift:hover { transform: none; }
+  .k-press:active { transform: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

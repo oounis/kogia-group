@@ -19,14 +19,14 @@ export default function Catalogue() {
           return (
             <Card key={p.id} className="p-6">
               <div className="flex items-start gap-4 flex-wrap">
-                <span className="w-14 h-14 rounded-2xl grid place-items-center shrink-0" style={{ background: p.color + '22', color: p.color }}><Icon size={28} /></span>
+                <span className="w-14 h-14 rounded-2xl grid place-items-center shrink-0 accent-soft accent-text"><Icon size={28} /></span>
                 <div className="flex-1 min-w-[180px]">
                   <h3 className="text-xl font-bold">{p.name}</h3>
-                  <div className="text-xs font-semibold" style={{ color: p.color }}>{p.tagline}</div>
+                  <div className="text-xs font-semibold accent-text">{p.tagline}</div>
                   <p className="text-muted text-sm mt-1">{p.desc}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-extrabold">{countFor(p.name)}</div>
+                  <div className="font-display text-2xl font-extrabold tabular-nums">{countFor(p.name)}</div>
                   <div className="text-xs text-muted">clients équipés</div>
                 </div>
               </div>
@@ -39,9 +39,9 @@ export default function Catalogue() {
                       <span className="text-xs text-muted">{pl.period === 'unique' ? 'paiement unique' : pl.period === 'an' ? '/ an' : '/ mois'}</span>
                     </div>
                     <div className="mt-2 flex items-baseline gap-1">
-                      <span className="text-2xl font-extrabold" style={{ color: p.color }}>{pl.price}</span><span className="text-sm text-muted">TND</span>
+                      <span className="font-display text-2xl font-extrabold accent-text">{pl.price}</span><span className="text-sm text-muted">TND</span>
                     </div>
-                    <div className="text-sm text-muted mt-2 flex items-center gap-1.5"><Check size={14} style={{ color: p.color }} /> {pl.blurb}</div>
+                    <div className="text-sm text-muted mt-2 flex items-center gap-1.5"><Check size={14} className="accent-text shrink-0" /> {pl.blurb}</div>
                   </div>
                 ))}
               </div>

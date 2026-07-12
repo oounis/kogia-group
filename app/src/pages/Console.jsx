@@ -46,7 +46,7 @@ export default function Console() {
             <ChevronLeft size={16} /> Retour au site
           </Link>
           <div className="flex items-center gap-3 px-3 py-2 mt-1">
-            <Avatar name="Othman Ounis" size={36} />
+            <Avatar name="Othman Ounis" size={36} slot={0} />
             <div className="min-w-0">
               <div className="text-sm font-bold truncate">Othman Ounis</div>
               <div className="text-[11px] text-muted">Propriétaire</div>
@@ -63,8 +63,8 @@ export default function Console() {
             <span className="font-bold">{current.label}</span>
           </div>
           <div className="flex items-center gap-4">
-            <button className="text-muted hover:text-ink relative"><Bell size={18} /><span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-coral" /></button>
-            <div className="flex items-center gap-2"><Avatar name="Othman Ounis" size={30} /><span className="text-sm font-semibold hidden sm:block">Othman</span></div>
+            <button className="text-muted hover:text-ink relative"><Bell size={18} /><span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-danger" /><span className="sr-only">Notifications</span></button>
+            <div className="flex items-center gap-2"><Avatar name="Othman Ounis" size={30} slot={0} /><span className="text-sm font-semibold hidden sm:block">Othman</span></div>
           </div>
         </header>
         <main className="p-5 md:p-8 max-w-7xl mx-auto">

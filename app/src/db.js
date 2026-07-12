@@ -1,12 +1,16 @@
-// v2 : Kharbga et Kogia Coffee ne font plus partie du groupe. Le catalogue, les
-// clients, les abonnements et les factures qui s'y rapportaient ont été retirés.
-// La clé change pour que les anciennes données locales ne les ressuscitent pas.
-const KEY = "kogia_group_db_v2"
+import { useCallback, useEffect, useState } from 'react'
+import { SERIES } from './charts.js'
+
+// v3 : la couleur ne vit plus dans les données. Une entité porte un EMPLACEMENT
+// de série (`slot`) ; la palette, elle, vit dans charts.js. La couleur suit donc
+// l'entité et jamais son rang : filtrer une liste ne repeint pas les survivants.
+// (v2 avait déjà retiré Kharbga et Kogia Coffee, qui ne font pas partie du groupe.)
+const KEY = "kogia_group_db_v3"
 
 // ---- Catalogue: les marques commerciales du groupe ----
 export const PRODUCTS = [
   {
-    id: "coreon", name: "Coreon Edu", tagline: "SaaS de gestion scolaire", color: "#6C5CE7",
+    id: "coreon", name: "Coreon Edu", tagline: "SaaS de gestion scolaire", slot: 0,
     desc: "Plateforme de gestion d'établissement : élèves, notes, paiements, parents.", unit: "/mois",
     plans: [
       { id: "coreon_starter", name: "Starter", price: 120, period: "mois", seats: 150, blurb: "Jusqu'à 150 élèves" },
@@ -24,10 +28,10 @@ export const REV_MONTHS = MONTHS
 
 function seed() {
   const clients = [
-    { id: "cl_alnour", name: "École Al-Nour", type: "École", country: "Tunisie", city: "Tunis", contact: "Lina Aderra", email: "direction@alnour.tn", phone: "+216 71 800 100", status: "active", since: "2025-09-01", color: "#6C5CE7" },
-    { id: "cl_carthage", name: "École Carthage", type: "École", country: "Tunisie", city: "Carthage", contact: "Mehdi Bel Haj", email: "contact@carthage-edu.tn", phone: "+216 71 730 220", status: "trial", since: "2026-06-10", color: "#0BA5D8" },
-    { id: "cl_khaldoun", name: "Lycée Khaldoun", type: "École", country: "Tunisie", city: "Sousse", contact: "Faouzi Trabelsi", email: "admin@khaldoun.tn", phone: "+216 73 220 440", status: "active", since: "2025-10-15", color: "#8B5CF6" },
-    { id: "cl_lumiere", name: "Institut Lumière", type: "École", country: "France", city: "Lyon", contact: "Claire Dubois", email: "contact@institut-lumiere.fr", phone: "+33 4 72 00 11 22", status: "late", since: "2025-11-05", color: "#FF6B81" },
+    { id: "cl_alnour", name: "École Al-Nour", type: "École", country: "Tunisie", city: "Tunis", contact: "Lina Aderra", email: "direction@alnour.tn", phone: "+216 71 800 100", status: "active", since: "2025-09-01", slot: 0 },
+    { id: "cl_carthage", name: "École Carthage", type: "École", country: "Tunisie", city: "Carthage", contact: "Mehdi Bel Haj", email: "contact@carthage-edu.tn", phone: "+216 71 730 220", status: "trial", since: "2026-06-10", slot: 1 },
+    { id: "cl_khaldoun", name: "Lycée Khaldoun", type: "École", country: "Tunisie", city: "Sousse", contact: "Faouzi Trabelsi", email: "admin@khaldoun.tn", phone: "+216 73 220 440", status: "active", since: "2025-10-15", slot: 2 },
+    { id: "cl_lumiere", name: "Institut Lumière", type: "École", country: "France", city: "Lyon", contact: "Claire Dubois", email: "contact@institut-lumiere.fr", phone: "+33 4 72 00 11 22", status: "late", since: "2025-11-05", slot: 3 },
   ]
 
   // accès provisionnés (provisioning)
@@ -81,6 +85,9 @@ function rnd(n) { return Math.random().toString(36).toUpperCase().replace(/[^A-Z
 export function genKey() { return ["KGA", rnd(4), rnd(4), rnd(4)].join("-") }
 export function genPassword() { return "Kg" + Math.random().toString(36).slice(2, 8) + "!" + Math.floor(Math.random() * 90 + 10) }
 
+/** Emplacement de série d'une nouvelle entité : stable, jamais recalculé ensuite. */
+export const nextSlot = n => n % SERIES.length
+
 function mkAccess(id, clientId, planId, status, at) {
   const pl = planById(planId)
   const slug = (clientId.replace("cl_", "")).slice(0, 8)
@@ -98,10 +105,18 @@ function inv(id, clientId, planId, amount, issued, due, status) {
 }
 
 // ---- store ----
+/** La base a-t-elle déjà été préparée dans ce navigateur ? (état « premier lancement ») */
+export function hasDb() {
+  try { return !!localStorage.getItem(KEY) } catch { return false }
+}
+/** Prépare la base de démonstration. Appelé une seule fois, par l'écran d'accueil. */
+export function seedDb() {
+  const d = seed(); localStorage.setItem(KEY, JSON.stringify(d)); return d
+}
 export function db() {
   let d = null
-  try { d = JSON.parse(localStorage.getItem(KEY)) } catch { /* ignore */ }
-  if (!d) { d = seed(); localStorage.setItem(KEY, JSON.stringify(d)) }
+  try { d = JSON.parse(localStorage.getItem(KEY)) } catch { /* données abîmées : on resème */ }
+  if (!d || !Array.isArray(d.clients)) { d = seedDb() }
   return d
 }
 export function save(d) { localStorage.setItem(KEY, JSON.stringify(d)) }
@@ -110,6 +125,22 @@ export function resetDb() { localStorage.removeItem(KEY) }
 export const uid = (p = "id") => p + "_" + Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3)
 
 export const clientById = id => db().clients.find(c => c.id === id)
+
+/**
+ * Lecture de la base côté écran. La donnée n'existe pas au premier rendu : le
+ * chargement est réel, pas simulé — les squelettes sont donc honnêtes, et une
+ * base illisible tombe dans un vrai état d'erreur au lieu d'un écran blanc.
+ */
+export function useDb() {
+  const [state, setState] = useState({ loading: true, error: null, data: null })
+  const reload = useCallback(() => {
+    setState({ loading: true, error: null, data: null })
+    try { setState({ loading: false, error: null, data: db() }) }
+    catch (e) { setState({ loading: false, error: e, data: null }) }
+  }, [])
+  useEffect(() => { reload() }, [reload])
+  return { ...state, reload }
+}
 
 // ---- dérivés (KPI) ----
 export function mrrOfClient(d, clientId) {
@@ -134,20 +165,21 @@ export function kpis(d) {
   return { mrr, arr: mrr * 12, revenueTotal, activeClients, productsSold, pendingInvoices, pendingAmount }
 }
 
+// Les séries renvoient un `slot` (emplacement de palette), jamais une couleur.
 export function revenueByProduct(d) {
   const m = {}
   PRODUCTS.forEach(p => { m[p.id] = 0 })
   d.invoices.filter(i => i.status === "paid").forEach(i => {
     const pl = planById(i.planId); if (pl) m[pl.product.id] += i.amount
   })
-  return PRODUCTS.map(p => ({ name: p.name, value: m[p.id], color: p.color }))
+  return PRODUCTS.map(p => ({ name: p.name, value: m[p.id], slot: p.slot }))
 }
 
 export function clientsByProduct(d) {
   const m = {}
   PRODUCTS.forEach(p => { m[p.id] = new Set() })
   d.accesses.forEach(a => { const pl = planById(a.planId); if (pl) m[pl.product.id].add(a.clientId) })
-  return PRODUCTS.map(p => ({ name: p.name, value: m[p.id].size, color: p.color }))
+  return PRODUCTS.map(p => ({ name: p.name, value: m[p.id].size, slot: p.slot }))
 }
 
 export function productsOfClient(d, clientId) {

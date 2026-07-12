@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Plus, Search, Building2, KeyRound, Receipt } from 'lucide-react'
-import { db, mutate, uid, mrrOfClient, productsOfClient, planById } from '../../db.js'
-import { Card, PageHead, Btn, Badge, Avatar, Modal, Field, Input, Select, Table, Empty } from '../../ui.jsx'
-
-const COLORS = ['#6C5CE7', '#0BA5D8', '#8B5CF6', '#10B981', '#FF6B81', '#E59A12']
+import { db, mutate, uid, nextSlot, mrrOfClient, productsOfClient, planById } from '../../db.js'
+import { Card, PageHead, Btn, Badge, Avatar, Modal, Field, Input, Select, Table, EmptyState } from '../../ui.jsx'
 
 export default function Clients() {
   const [, force] = useState(0)
@@ -26,7 +24,7 @@ export default function Clients() {
     mutate(d => d.clients.unshift({
       id: uid('cl'), ...form, status: 'trial',
       since: new Date().toISOString().slice(0, 10),
-      color: COLORS[d.clients.length % COLORS.length],
+      slot: nextSlot(d.clients.length),
     }))
     toast.success('Client ajouté (en essai)')
     setAdd(false); setForm({ name: '', type: 'École', country: 'Tunisie', city: '', contact: '', email: '', phone: '' }); refresh()
@@ -49,23 +47,34 @@ export default function Clients() {
         </div>
       </Card>
 
+      {!list.length ? (
+        <EmptyState
+          title={q || filter !== 'all' ? 'Aucun client ne correspond à ce filtre' : 'La liste des clients est encore vide'}
+          hint={q || filter !== 'all'
+            ? 'Essayez un autre nom, une autre ville, ou revenez à la liste complète.'
+            : 'Chaque organisation qui achète un produit du groupe apparaît ici, avec ses accès, ses factures et son MRR.'}
+          action={q || filter !== 'all'
+            ? <Btn variant="ghost" onClick={() => { setQ(''); setFilter('all') }}>Voir tous les clients</Btn>
+            : <Btn onClick={() => setAdd(true)}><Plus size={16} /> Ajouter un client</Btn>}
+        />
+      ) : (
       <Table head={['Client', 'Type', 'Localisation', 'Produits', 'MRR', 'Statut', '']}>
         {list.map(c => {
           const prods = productsOfClient(d, c.id)
           return (
             <tr key={c.id} className="hover:bg-canvas cursor-pointer" onClick={() => setDetail(c)}>
-              <td className="px-4 py-3"><div className="flex items-center gap-3"><Avatar name={c.name} color={c.color} /><div><div className="font-semibold">{c.name}</div><div className="text-xs text-muted">{c.contact}</div></div></div></td>
+              <td className="px-4 py-3"><div className="flex items-center gap-3"><Avatar name={c.name} slot={c.slot} /><div><div className="font-semibold">{c.name}</div><div className="text-xs text-muted">{c.contact}</div></div></div></td>
               <td className="px-4 py-3 text-muted">{c.type}</td>
               <td className="px-4 py-3 text-muted">{c.city}, {c.country}</td>
-              <td className="px-4 py-3"><div className="flex gap-1 flex-wrap">{prods.length ? prods.map(p => <span key={p.id} className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: p.color + '22', color: p.color }}>{p.name.split(' ')[0]}</span>) : <span className="text-xs text-muted">—</span>}</div></td>
+              <td className="px-4 py-3"><div className="flex gap-1 flex-wrap">{prods.length ? prods.map(p => <span key={p.id} className="text-[10px] font-bold px-2 py-0.5 rounded-full accent-soft accent-text">{p.name.split(' ')[0]}</span>) : <span className="text-xs text-muted">—</span>}</div></td>
               <td className="px-4 py-3 font-bold">{mrrOfClient(d, c.id)} TND</td>
               <td className="px-4 py-3"><Badge status={c.status} /></td>
               <td className="px-4 py-3 text-right"><span className="text-brand text-sm font-semibold">Détails →</span></td>
             </tr>
           )
         })}
-        {!list.length && <tr><td colSpan={7}><Empty>Aucun client</Empty></td></tr>}
       </Table>
+      )}
 
       {/* add client */}
       <Modal open={add} onClose={() => setAdd(false)} title="Ajouter un client"
@@ -93,7 +102,7 @@ function ClientDetail({ client, onClose }) {
   return (
     <Modal open onClose={onClose} size="2xl" title={client.name}>
       <div className="flex items-center gap-3 mb-4">
-        <Avatar name={client.name} color={client.color} size={48} />
+        <Avatar name={client.name} slot={client.slot} size={48} />
         <div className="flex-1">
           <div className="font-bold text-lg">{client.name}</div>
           <div className="text-sm text-muted">{client.type} · {client.city}, {client.country}</div>
@@ -115,7 +124,7 @@ function ClientDetail({ client, onClose }) {
           <div key={a.id} className="px-4 py-3 flex items-center justify-between gap-3">
             <div className="min-w-0"><div className="font-semibold text-sm">{pl?.product.name} · {pl?.name}</div><div className="text-xs text-muted font-mono truncate">{a.username}</div></div>
             <Badge status={a.status} />
-          </div>) }) : <Empty>Aucun accès</Empty>}
+          </div>) }) : <div className="px-4 py-5 text-sm text-muted text-center">Ce client n'a encore aucun accès provisionné.</div>}
       </div>
 
       <div className="text-xs font-bold uppercase tracking-wide accent-text mb-2 flex items-center gap-1.5"><Receipt size={13} /> Factures</div>
@@ -125,7 +134,7 @@ function ClientDetail({ client, onClose }) {
             <div><div className="font-semibold text-sm">{i.id}</div><div className="text-xs text-muted">Émise {i.issued} · échéance {i.due}</div></div>
             <div className="flex items-center gap-3"><span className="font-bold text-sm">{i.amount} TND</span><Badge status={i.status} /></div>
           </div>
-        )) : <Empty>Aucune facture</Empty>}
+        )) : <div className="px-4 py-5 text-sm text-muted text-center">Ce client n'a encore reçu aucune facture.</div>}
       </div>
     </Modal>
   )

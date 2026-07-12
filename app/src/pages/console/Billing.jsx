@@ -2,7 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Plus, Check, Search, Wallet, Clock, AlertTriangle } from 'lucide-react'
 import { db, mutate, clientById, planById, PRODUCTS } from '../../db.js'
-import { Card, PageHead, Btn, Badge, Modal, Field, Select, Input, Table, Empty, StatCard, Avatar } from '../../ui.jsx'
+import { Card, PageHead, Btn, Badge, Modal, Field, Select, Input, Table, EmptyState, StatCard, Avatar } from '../../ui.jsx'
 
 function nextInvNo(d) {
   const nums = d.invoices.map(i => parseInt(i.id.split('-')[2], 10)).filter(n => !isNaN(n))
@@ -51,9 +51,9 @@ export default function Billing() {
         action={<Btn onClick={() => setOpen(true)}><Plus size={16} /> Créer une facture</Btn>} />
 
       <div className="grid sm:grid-cols-3 gap-3 mb-5">
-        <StatCard label="Encaissé" tint="mint" icon={<Wallet size={22} />} value={`${paid} TND`} />
-        <StatCard label="En attente" tint="butter" icon={<Clock size={22} />} value={`${pending} TND`} />
-        <StatCard label="En retard" tint="coral" icon={<AlertTriangle size={22} />} value={`${overdue} TND`} />
+        <StatCard label="Encaissé" tint="ok" icon={<Wallet size={22} />} value={`${paid} TND`} />
+        <StatCard label="En attente" tint="warn" icon={<Clock size={22} />} value={`${pending} TND`} />
+        <StatCard label="En retard" tint="danger" icon={<AlertTriangle size={22} />} value={`${overdue} TND`} />
       </div>
 
       <Card className="p-3 mb-4 flex flex-wrap items-center gap-3">
@@ -68,11 +68,22 @@ export default function Billing() {
         </div>
       </Card>
 
+      {!list.length ? (
+        <EmptyState
+          title={q || filter !== 'all' ? 'Aucune facture ne correspond à ce filtre' : 'Aucune facture n\'a encore été émise'}
+          hint={q || filter !== 'all'
+            ? 'Essayez un autre client, un autre numéro, ou revenez à la liste complète.'
+            : 'Les factures du groupe s\'affichent ici : émission, échéance, encaissement.'}
+          action={q || filter !== 'all'
+            ? <Btn variant="ghost" onClick={() => { setQ(''); setFilter('all') }}>Voir toutes les factures</Btn>
+            : <Btn onClick={() => setOpen(true)}><Plus size={16} /> Créer une facture</Btn>}
+        />
+      ) : (
       <Table head={['N° Facture', 'Client', 'Produit', 'Montant', 'Émission', 'Échéance', 'Statut', '']}>
         {list.map(i => (
           <tr key={i.id} className="hover:bg-canvas">
             <td className="px-4 py-3 font-semibold">{i.id}</td>
-            <td className="px-4 py-3"><div className="flex items-center gap-2"><Avatar name={i.client?.name} color={i.client?.color} size={26} /><span>{i.client?.name}</span></div></td>
+            <td className="px-4 py-3"><div className="flex items-center gap-2"><Avatar name={i.client?.name} slot={i.client?.slot} size={26} /><span>{i.client?.name}</span></div></td>
             <td className="px-4 py-3 text-muted">{i.product?.name}</td>
             <td className="px-4 py-3 font-bold">{i.amount} TND</td>
             <td className="px-4 py-3 text-muted">{i.issued}</td>
@@ -81,8 +92,8 @@ export default function Billing() {
             <td className="px-4 py-3 text-right">{i.status !== 'paid' && <Btn variant="soft" className="!px-3 !py-1.5" onClick={() => markPaid(i.id)}><Check size={14} /> Encaisser</Btn>}</td>
           </tr>
         ))}
-        {!list.length && <tr><td colSpan={8}><Empty>Aucune facture</Empty></td></tr>}
       </Table>
+      )}
 
       <Modal open={open} onClose={() => setOpen(false)} title="Créer une facture"
         footer={<><Btn variant="ghost" onClick={() => setOpen(false)}>Annuler</Btn><Btn onClick={create}>Créer</Btn></>}>
