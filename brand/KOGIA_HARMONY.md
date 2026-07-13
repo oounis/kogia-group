@@ -7,7 +7,7 @@ One creative vision. One design language. One hue per product.
 > document, **the code is wrong**. Every design change ships *with* its update to this
 > book — the implementation is never allowed to evolve ahead of the documentation.
 
-**Version 4.1 — 2026-07-13.** Changelog: §16.
+**Version 4.2 — 2026-07-13.** Changelog: §16.
 
 ---
 
@@ -342,6 +342,24 @@ Never:
 - Use it **below 16px** bare, or in a colour outside §4.4.
 - Recolour it to match a page. The mark carries the *product's* family, not the page's.
 - Use the wordmark without the mark, or the mark stretched to fill a non-square box.
+- **Put the mark in the BODY of a page.** See §4.10 — this is now a hard rule.
+
+### 4.10 Placement — the mark lives in the header, and nowhere else
+
+**The logo appears once per surface: at the top.** In the header, in the login lockup — and
+that is all.
+
+It is **never** a decoration in the body of a page: never a giant hero graphic, never a
+floating illustration, never the picture in an empty state.
+
+**Why.** A mark repeated as ornament stops being a mark. Its job is to *identify* the
+surface, once — a second, bigger copy lower down adds no information and cheapens the
+first. Every serious technology brand does this: you see the logo in the chrome, and then
+you see the *product*.
+
+**What replaces it in the body:** a **contextual lucide icon** — one that says what the
+thing actually is. An empty inbox gets an inbox; an empty timetable gets a calendar; a
+frozen summer screen gets a sun. That is *information*; a logo there was only noise.
 
 ### 4.9 Why this is better than everything before it
 
@@ -462,8 +480,8 @@ One library. Same anatomy in every product; only the hue changes.
 
 **A screen is not designed until all five exist.**
 
-1. **Empty** — the mascot, one plain sentence, one action. Never a dead end, and never the
-   words "Aucune donnée".
+1. **Empty** — a **contextual icon** (never the logo — §4.10), one plain sentence, one
+   action. Never a dead end, and never the words "Aucune donnée".
 2. **Loading** — skeletons matching the real layout's *shape*. Never a centred spinner on
    a full page: it tells the user nothing about what is coming.
 3. **Error** — what happened and what to do next. No codes. No "Oops".
@@ -537,6 +555,20 @@ Before anything ships, on every product:
 ---
 
 ## 16. Changelog
+
+### v4.2 — 2026-07-13 — *The mark leaves the page body; the site loses 20 hues*
+- **§4.10 — the mark lives in the header, and nowhere else.** It was being used as a giant
+  hero graphic and as the picture in empty states. A mark repeated as ornament stops being
+  a mark. Body illustration is now a **contextual lucide icon** that says what the thing
+  *is* — information, where a logo was only noise.
+- **The corporate site was rebuilt on ONE colour family.** It carried **20+ hues** on a
+  single page (purple, terracotta, amber, yellow, green…) — a direct violation of the
+  no-mixing law it is supposed to demonstrate (§3.5). It now uses ocean + the neutrals +
+  two status colours, and products are distinguished by their **name**, not by stealing a
+  hue.
+- **Copy cut from 2,281 words to ~450, and from 10 sections to 5.** The detailed Coreon Edu
+  content (nine feature cards, pricing, a nine-question FAQ) belonged on the *product's*
+  site, not the group's. A group site says who we are, what we make, and where it stands.
 
 ### v4.1 — 2026-07-13 — *The mark stops being an animal*
 - **The eye is gone, and with it the mascot.** v4.0 drew a whale whose head was the K's
