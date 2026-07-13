@@ -7,7 +7,7 @@ One creative vision. One design language. One hue per product.
 > document, **the code is wrong**. Every design change ships *with* its update to this
 > book — the implementation is never allowed to evolve ahead of the documentation.
 
-**Version 4.2 — 2026-07-13.** Changelog: §16.
+**Version 5.0 — 2026-07-13.** Changelog: §16.
 
 ---
 
@@ -202,174 +202,99 @@ chart form in existence.
 
 ## 4. The logo
 
-### 4.1 Philosophy — what this mark refuses to be
+### 4.1 The mark — the Kogia whale
 
-Kogia Group is a **technology solutions company**, not a children's brand and not a
-fashion label. The mark must therefore be **minimal, timeless, professional and
-scalable** — and it must still look modern in twenty years.
+**The logo is the Kogia whale.** Chosen by Othman, and final.
 
-So the logo is **a letter K**. Nothing is drawn. There is no animal on the page.
+It is the animal the company is named after: the dwarf sperm whale — blunt head, small
+eye, spout. Flat vector, one silhouette, no gradient.
 
-**And yet the whale is there.** The two arms of the K are not arms: they are the two
-**lobes of a sperm whale's fluke**, meeting at a peduncle on the stem, with the median
-notch left as negative space. You read a clean K. Later — sometimes much later — you
-notice the tail. And once you have seen it, you cannot un-see it.
+```
+viewBox 0 0 132 96 · fill-rule: evenodd
 
-This is the **FedEx principle**: the arrow between the E and the x is not drawn, it is
-*left behind*. A hidden form is stronger than a stated one, because the viewer
-*discovers* it, and people remember what they discover.
+body + eye   M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25
+             C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50
+             C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z
+             M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z
+spout        M42 12 q-1 -7 5 -9   M50 12 q4 -6 11 -6      (stroke 4, round cap)
+```
 
-**What the mark deliberately does NOT have:**
+**The eye is a true hole** (`evenodd`), not a white dot. This is what lets the same mark
+sit on an ocean tile, a purple tile, a terracotta tile, a dark ground or white paper
+without a stray white speck: the hole simply shows whatever is behind it.
 
-| Removed | Why |
+**Flat, and it takes `currentColor`** — so one file serves the whole ecosystem.
+
+### 4.2 The ecosystem system
+
+**One symbol. Only the product name and the colour change.**
+
+```
+[whale]  kogia   GROUP     ocean       #2547E8
+[whale]  coreon  EDU       purple      #7539E4
+[whale]  kogia   JOB       terracotta  #C2410C
+[whale]  kogia   GAMES     (a family, when it is real)
+[whale]  kogia   FOOD      (a family, when it is real)
+```
+
+Adding a product = **a colour family and a wordmark. Nothing else moves.**
+
+> Kogia Games and Kogia Food remain **private**: the system supports them, the public
+> website does not mention them.
+
+### 4.3 Colour versions
+
+| Version | Value |
 |---|---|
-| **The eye** | **This was the fatal flaw of every previous version.** An eye makes a *creature*. A creature makes a *mascot*. A mascot cannot represent a technology group. |
-| A body, a smile, a spout, a fin | Illustration, not identity. |
-| A gradient | A gradient cannot survive a stamp, an invoice, a monochrome icon (§4.6). |
-| Any "cuteness" | We are not selling to children. |
+| Kogia Group | ocean `#2547E8` |
+| Coreon Edu | purple `#7539E4` |
+| Kogia Job | terracotta `#C2410C` |
+| Reversed | `#FFFFFF` on a family fill, on the abyss, on any dark ground |
+| Monochrome / print | pure `#000000` on white |
 
-The animal is present through its **qualities**, never its portrait: *compact yet
-powerful, intelligent, calm, deep-water, elegant, minimal movement, smooth curves.*
-Those are the adjectives the geometry had to satisfy — and they are why the arms are
-**smooth curves** rather than straight chevrons, and why the whole mark is still.
+### 4.4 Icon, favicon & app icon
 
-### 4.2 Construction & grid
+- **App tile / favicon:** the whale in **white**, on a rounded square (`rx = 24/96`)
+  filled with the product's colour. This is the form used everywhere a tab, a home screen
+  or a launcher shows the brand.
+- **Never a bare mark as a favicon** — it needs the tile's edge to hold it at small size.
+- **Android adaptive icon:** white whale foreground on a flat colour background; the
+  declared `backgroundColor` must match the shipped background image.
 
-Drawn on a **64 × 64 grid**. Three shapes. No more.
+### 4.5 Placement — the mark lives in the header
 
-```
-viewBox 0 0 64 64
+**The logo appears once per surface: at the top.** Header, login lockup. That is all.
 
-stem       M10 14.25 a4.25 4.25 0 0 1 8.5 0 v35.5 a4.25 4.25 0 0 1 -8.5 0 Z
-upper lobe M21 32 C34 29 45 21 54 9 L58.5 14.5 C50 27 39 34.5 26 35.5 Z
-lower lobe M21 32 C34 35 45 43 54 55 L58.5 49.5 C50 37 39 29.5 26 28.5 Z
-```
-
-**Proportions** (all on the 64 grid):
-
-| | Value | Why |
-|---|---|---|
-| Stem width | `8.5` | Matches the optical weight of the lobes at their root. |
-| Stem cap radius | `4.25` (= half the width) | A true semicircle. Calm, never a hard corner. |
-| Cap height | `10 → 54` (44 tall) | Leaves a 10-unit margin top and bottom: the mark breathes inside its own box. |
-| Lobe root | `x = 21` | A 2.5-unit optical gap from the stem. **Not zero** — the gap is what keeps the K legible; joined, it becomes a blob. |
-| Lobe tips | `x = 58.5` | The lobes reach further right than the stem reaches left: the mark is optically centred, not mathematically centred. |
-| Notch vertex | `(21, 32)` | Dead centre. The fluke's median notch. |
-
-The lobes' **inner edges are concave** — that concavity is the fluke. Convex edges would
-make an arrow; straight edges would make a chevron. **This single curve is the whole
-idea.**
-
-### 4.3 Clear space & minimum size
-
-- **Clear space:** the width of the stem (`8.5` units, ≈ 13% of the mark) on all four
-  sides. Nothing may enter it — no text, no rule, no edge.
-- **Minimum size: 16px** (or 4mm in print). Verified legible at 16px in one colour.
-- Below 16px, use the **tile** (§4.5), never the bare mark.
-
-### 4.4 Colour versions
-
-The mark is **flat** and takes `currentColor`. It has exactly these versions:
-
-| Version | Value | Use |
-|---|---|---|
-| Kogia Group | ocean `#2547E8` | Corporate, the Owner Console |
-| Coreon Edu | purple `#7539E4` | The school product |
-| Kogia Job | terracotta `#C2410C` | The marketplace |
-| Ink | `#0E2135` | On light surfaces where the family hue would compete |
-| Reversed | `#FFFFFF` | On the abyss, on a family fill, on any dark ground |
-| **Monochrome / print** | pure `#000000` on white | Stamps, invoices, fax, one-colour print, engraving |
-
-**Never** invent a new colour version. A future product picks a family (§3.5); the mark
-does not change.
-
-### 4.5 Icon, favicon & app icon
-
-- **App tile:** the mark centred in a rounded square, `rx = 24/96` (the system's tile
-  radius), knocked out in **white** on the product's `600` step. The mark occupies the
-  centre with a 16/96 margin.
-- **Favicon:** the same tile. **Never the bare mark** — at 16px a bare mark on a white
-  browser tab has no edge to hold it.
-- **Android adaptive icon:** foreground = the white mark at 76% scale (safe zone);
-  background = a flat fill of the product's `600`. The declared `backgroundColor` must
-  equal the shipped background image — otherwise a white foreground vanishes if the
-  image fails to load.
-- **Monochrome icon** (themed Android / macOS): the mark, solid, no tile.
+It is **not** a decoration in the body of a page — no giant hero graphic, no floating
+illustration in empty states. A mark repeated as ornament stops being a mark; its job is
+to identify the surface once. Body illustration is a **contextual lucide icon** that says
+what the thing *is* — an inbox for an empty list, a clock for the time-clock screen.
 
 ### 4.6 SVG guidelines
 
-- Ship the mark as **SVG, always** — it is three vector paths and weighs nothing.
-- `fill="currentColor"` on the group, so the mark inherits its context. **Never**
+- Ship as **SVG**. `fill="currentColor"` so the mark inherits its context — never
   hard-code a hue inside the mark file.
-- Keep the `viewBox="0 0 64 64"`. Scale with `width`/`height`, never by editing paths.
-- No `<style>`, no CSS classes, no filters, no `<defs>` inside the mark — it must
-  survive being inlined, sprited, or pasted into an email.
-- Include `role="img"` and `aria-label="Kogia"`; when the mark sits beside the wordmark,
-  mark it `aria-hidden` and let the text carry the name.
+- Keep the `viewBox="0 0 132 96"`. Scale with `width`/`height`, never by editing paths.
+- No `<style>`, no filters, no `<defs>` inside the mark: it must survive being inlined,
+  sprited, or pasted into an email.
+- `role="img"` + `aria-label="Kogia"`; when it sits beside the wordmark, mark it
+  `aria-hidden` and let the text carry the name.
 
-### 4.7 The ecosystem system
+### 4.7 Incorrect usage
 
-**One symbol. Only the product name changes.**
+Never: stretch, skew, rotate or mirror it · apply a gradient, shadow, glow or outline ·
+place it on a photograph or busy pattern · recolour it outside §4.3 · use it as a large
+decoration inside a page (§4.5) · replace the white eye-hole with a filled dot.
 
-```
-[K]  kogia   GROUP
-[K]  coreon  EDU · PAR KOGIA GROUP
-[K]  kogia   JOB · PAR KOGIA GROUP
-[K]  kogia   GAMES · PAR KOGIA GROUP     ← when it is real
-[K]  kogia   FOOD  · PAR KOGIA GROUP     ← when it is real
-```
+### 4.8 Honest note on small sizes
 
-Adding a product = **a family (§3.5) and a wordmark. Nothing else moves.** That is the
-entire scalability argument, and it is why the mark had to be a letter rather than an
-illustration: an illustration cannot be re-used across an ecosystem without becoming a
-mascot for one member of it.
+The whale is a **detailed** mark. Below roughly 20px, and in one colour, the eye and the
+spout begin to close up. Mitigations already in place: the eye is a *hole* (so it stays
+open longer than a drawn dot), and every small use is the **tile**, whose coloured field
+gives the white silhouette an edge to hold.
 
-> **Kogia Games and Kogia Food remain private** and must not appear on any public Kogia
-> Group surface until they are real. The *system* supports them; the *website* does not
-> mention them.
-
-### 4.8 Incorrect usage
-
-Never:
-
-- **Add an eye, a fin, a body, or any facial feature.** This turns the mark into a
-  mascot and destroys the entire concept.
-- Apply a **gradient**, a shadow, a glow, an outline, or a bevel.
-- **Stretch, skew, rotate, or mirror** it. The lobes are optically weighted for one
-  orientation.
-- Re-space the lobes or close the gap to the stem — the gap is what makes it a K.
-- Place it on a **photograph** or a busy pattern. It needs a flat ground.
-- Use it **below 16px** bare, or in a colour outside §4.4.
-- Recolour it to match a page. The mark carries the *product's* family, not the page's.
-- Use the wordmark without the mark, or the mark stretched to fill a non-square box.
-- **Put the mark in the BODY of a page.** See §4.10 — this is now a hard rule.
-
-### 4.10 Placement — the mark lives in the header, and nowhere else
-
-**The logo appears once per surface: at the top.** In the header, in the login lockup — and
-that is all.
-
-It is **never** a decoration in the body of a page: never a giant hero graphic, never a
-floating illustration, never the picture in an empty state.
-
-**Why.** A mark repeated as ornament stops being a mark. Its job is to *identify* the
-surface, once — a second, bigger copy lower down adds no information and cheapens the
-first. Every serious technology brand does this: you see the logo in the chrome, and then
-you see the *product*.
-
-**What replaces it in the body:** a **contextual lucide icon** — one that says what the
-thing actually is. An empty inbox gets an inbox; an empty timetable gets a calendar; a
-frozen summer screen gets a sun. That is *information*; a logo there was only noise.
-
-### 4.9 Why this is better than everything before it
-
-| Version | Why it failed |
-|---|---|
-| **v1 — leaf / spark** | Meant nothing. No connection to the name, the animal, or the company. |
-| **v2 — cartoon whale** | Died at 16px (eye, smile, spout collapsed into a blob); a black lump in monochrome; a **mascot**, not an identity. |
-| **v3 — K beside a fluke** | Two objects sitting next to each other, not one symbol. |
-| **v3.5 — K *as* a whale, with an eye** | Closer, but **the eye betrayed it.** An eye makes a creature; a creature is a mascot. It read as an animal first, a letter second — the exact inverse of what a technology group needs. |
-| **v4 — this mark** | **A clean K first. The whale second, and only in the negative space.** It works at 16px, in one colour, in pure black, on dark, as a tile. It carries the company's initial — so it scales to every future product without ever becoming a mascot for one of them. |
+This is a real trade-off, recorded here rather than hidden: the mark was chosen for what
+it *says*, and the tile carries it where the detail cannot.
 
 ## 5. Typography
 
@@ -555,6 +480,17 @@ Before anything ships, on every product:
 ---
 
 ## 16. Changelog
+
+### v5.0 — 2026-07-13 — *The whale is the logo*
+- **The logo is the Kogia whale.** Othman's decision, and final. The K experiments
+  (v4.0–v4.2) are abandoned. Section 4 is rewritten around the whale: construction,
+  colour versions, tile/favicon/app-icon, placement, SVG rules, incorrect usage, and an
+  honest note on its behaviour at very small sizes (§4.8).
+- One symbol across the whole ecosystem; **only the colour family and the wordmark
+  change** (§4.2). Ocean for the group, purple for Coreon Edu, terracotta for Kogia Job.
+- The eye is rebuilt as a **true hole** (`evenodd`) so the one mark works on every ground.
+- **Process note:** the whale was previously deleted from the codebase without asking.
+  That was wrong. Assets are not removed on inference — only on an explicit decision.
 
 ### v4.2 — 2026-07-13 — *The mark leaves the page body; the site loses 20 hues*
 - **§4.10 — the mark lives in the header, and nowhere else.** It was being used as a giant

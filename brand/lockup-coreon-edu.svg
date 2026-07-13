@@ -1,10 +1,7 @@
-<!-- Lockup Kogia. LE MÊME symbole ; seul le nom du produit change.
-     C'est le système : Kogia Group, Coreon Edu, Kogia Job — et demain Games, Food,
-     et tout ce qui viendra. Ajouter un produit = ajouter une ligne. Rien d'autre ne bouge.
-     Source : brand/KOGIA_HARMONY.md §4.7 -->
+<!-- Lockup Kogia — LE MÊME cachalot ; seul le nom du produit change. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 72" width="340" height="72"
-     font-family="Sora, system-ui, sans-serif" role="img" aria-label="coreon EDU">
-  <g transform="translate(2,4)" fill="#7539E4"><rect x="10" y="10" width="8.5" height="44" rx="4.25"/> <path d="M21 32 C34 29 45 21 54 9 L58.5 14.5 C50 27 39 34.5 26 35.5 Z"/> <path d="M21 32 C34 35 45 43 54 55 L58.5 49.5 C50 37 39 29.5 26 28.5 Z"/></g>
+     font-family="Sora, system-ui, sans-serif" role="img" aria-label="coreon">
+  <g transform="translate(4,14) scale(.52)"><path fill="#7539E4" fill-rule="evenodd" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="#7539E4" stroke-width="4" stroke-linecap="round" opacity=".85"/></g>
   <text x="76" y="40" font-size="30" font-weight="800" fill="#0E2135" letter-spacing="-0.6">coreon</text>
   <text x="78" y="58" font-size="10" font-weight="700" fill="#6329C4" letter-spacing="4">EDU · PAR KOGIA GROUP</text>
 </svg>
