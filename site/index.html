@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kogia Group — studio de produits, Tunisie</title>
-<meta name="description" content="Kogia Group construit et opère ses propres produits. Coreon Edu fait vivre l'école — en ligne. Kogia Job, les services du quotidien — en développement. Conçus et opérés en Tunisie.">
+<meta name="description" content="KogiaGroup — Coreon Edu, un ERP scolaire complet : évaluation quotidienne, suivi parental, gestion de la crèche au primaire. Conçu et opéré par KogiaGroup.">
 <meta name="theme-color" content="#2547E8">
 <link rel="canonical" href="https://kogiagroup.com/">
 <meta property="og:type" content="website">
@@ -12,7 +12,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:url" content="https://kogiagroup.com/">
 <meta property="og:title" content="Kogia Group — studio de produits, Tunisie">
-<meta property="og:description" content="Coreon Edu (école, en ligne) et Kogia Job (services du quotidien, en développement). Conçus et opérés en Tunisie.">
+<meta property="og:description" content="Coreon Edu — un ERP scolaire complet : évaluation quotidienne, suivi parental, de la crèche au primaire. Par KogiaGroup.">
 <meta property="og:image" content="https://kogiagroup.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,14 +22,11 @@
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://kogiagroup.com/#org","name":"Kogia Group","url":"https://kogiagroup.com/","foundingDate":"2026",
   "logo":"https://kogiagroup.com/assets/og.png","email":"contact@kogiagroup.com",
-  "description":"Studio de produits tunisien : Coreon Edu (plateforme scolaire, en ligne) et Kogia Job (services du quotidien, en développement).",
+  "description":"KogiaGroup — éditeur de Coreon Edu, ERP scolaire complet.",
   "address":{"@type":"PostalAddress","addressLocality":"Tunis","addressCountry":"TN"}},
  {"@type":"SoftwareApplication","@id":"https://kogiagroup.com/#coreon","name":"Coreon Edu",
   "applicationCategory":"EducationalApplication","operatingSystem":"Web, Android",
-  "url":"https://oounis.github.io/Kogia_Education/","publisher":{"@id":"https://kogiagroup.com/#org"}},
- {"@type":"SoftwareApplication","@id":"https://kogiagroup.com/#kogia-job","name":"Kogia Job",
-  "applicationCategory":"LifestyleApplication","operatingSystem":"Android",
-  "publisher":{"@id":"https://kogiagroup.com/#org"}}]}
+  "url":"https://oounis.github.io/coreon-edu/","publisher":{"@id":"https://kogiagroup.com/#org"}}]}
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='24' fill='%232547E8'/%3E%3Cg transform='translate(6,14) scale(.64)'%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M12%2054%20C12%2034%2028%2022%2052%2022%20C74%2022%2088%2032%2091%2046%20C94%2038%2099%2030%20107%2025%20C105%2032%20104%2038%20105%2043%20C110%2041%20117%2041%20124%2044%20C117%2048%20111%2050%20106%2050%20C102%2062%2092%2070%2076%2073%20C58%2076%2034%2074%2022%2068%20C14%2064%2012%2060%2012%2054%20Z%20M38.4%2045%20a4.4%204.4%200%201%201%20-8.8%200%20a4.4%204.4%200%201%201%208.8%200%20Z'/%3E%3Cpath d='M42%2012%20q-1%20-7%205%20-9%20M50%2012%20q4%20-6%2011%20-6' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' opacity='.85'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +109,9 @@ b,strong{font-weight:700}
 
 /* Produits : la MÊME carte deux fois. Aucun produit ne vole sa propre teinte ici. */
 .prods{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
+/* Un seul produit public : Coreon Edu. Les autres restent « en cuisine »
+   jusqu'à maturité commerciale — un site ne montre que ce qui est prêt. */
+.prods.one{grid-template-columns:1fr;max-width:640px}
 .prod{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.7rem;
   display:flex;flex-direction:column;gap:.8rem;box-shadow:var(--sh1);
   transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
@@ -174,12 +174,12 @@ a.prod:hover .go{gap:.7rem}
     <span><b>kogia</b><small>GROUP</small></span>
   </a>
   <nav class="nav-links" id="nav">
-    <a href="#produits">Produits</a>
+    <a href="#produits">Coreon Edu</a>
     <a href="#kogia">Pourquoi Kogia</a>
     <a href="#route">Feuille de route</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="btn" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">Essayer Coreon Edu</a>
+  <a class="btn" href="https://oounis.github.io/coreon-edu/" target="_blank" rel="noopener">Essayer Coreon Edu</a>
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav" type="button">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
@@ -187,20 +187,20 @@ a.prod:hover .go{gap:.7rem}
 
 <section class="hero"><div class="wrap">
   <span class="eyebrow">Studio de produits · Tunisie</span>
-  <h1>Nous construisons nos propres produits.</h1>
-  <p class="lead">Jamais sur commande. Nous les concevons, les développons, les opérons — et nous
-    les faisons grandir. Deux aujourd'hui, d'autres ensuite.</p>
+  <h1>Le logiciel qui fait vivre l'école.</h1>
+  <p class="lead">KogiaGroup construit et opère ses propres produits. Notre produit phare,
+    <b>Coreon Edu</b>, est un ERP scolaire complet — de la crèche à l'école primaire.</p>
   <div class="hero-cta">
-    <a class="btn" href="#produits">Voir nos produits</a>
+    <a class="btn" href="#produits">Découvrir Coreon Edu</a>
     <a class="btn ghost" href="mailto:contact@kogiagroup.com">Nous écrire</a>
   </div>
 </div></section>
 
 <section class="sec" id="produits"><div class="wrap">
-  <span class="eyebrow">Les produits</span>
-  <h2>Deux produits, une même exigence</h2>
-  <div class="prods">
-    <a class="prod" href="https://oounis.github.io/Kogia_Education/" target="_blank" rel="noopener">
+  <span class="eyebrow">Kogia Education · Produit phare</span>
+  <h2>Coreon Edu</h2>
+  <div class="prods one">
+    <a class="prod" href="https://oounis.github.io/coreon-edu/" target="_blank" rel="noopener">
       <span class="top">
         <h3>Coreon Edu</h3>
         <span class="status live"><i></i>En ligne</span>
@@ -210,16 +210,6 @@ a.prod:hover .go{gap:.7rem}
         sécurité. Application Android en cours.</p>
       <span class="go">Essayer la démo →</span>
     </a>
-    <div class="prod">
-      <span class="top">
-        <h3>Kogia Job</h3>
-        <span class="status dev"><i></i>En développement</span>
-      </span>
-      <p>Le coup de main du quartier, sans clavier : publiez une tâche en photos en moins d'une
-        minute, des travailleurs vérifiés proches de chez vous proposent leur prix, vous payez en
-        espèces à la fin. Android d'abord.</p>
-      <span class="go" style="color:var(--slate)">Bientôt</span>
-    </div>
   </div>
 </div></section>
 
@@ -245,10 +235,6 @@ a.prod:hover .go{gap:.7rem}
     <div class="row"><span class="when">En cours</span>
       <div><h3>Coreon Edu — Android</h3>
         <p>22 écrans natifs fonctionnent déjà. Le téléphone et le web partagent le même cœur.</p></div></div>
-    <div class="row"><span class="when">En cours</span>
-      <div><h3>Kogia Job — Android</h3>
-        <p>Le prototype fonctionne de bout en bout : publication d'une tâche, offres, missions,
-          profils vérifiés.</p></div></div>
     <div class="row"><span class="when">Ensuite</span>
       <div><h3>iPhone, puis d'autres produits</h3>
         <p>Annoncés seulement quand ils seront réels — comme toujours.</p></div></div>
@@ -258,7 +244,7 @@ a.prod:hover .go{gap:.7rem}
 <section class="sec" id="contact"><div class="wrap">
   <div class="band">
     <h2>Vous dirigez une école ?</h2>
-    <p>Démonstration de Coreon Edu, lancement de Kogia Job, questions — nous répondons vite.</p>
+    <p>Démonstration de Coreon Edu, question, partenariat — nous répondons vite.</p>
     <a class="btn" href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
   </div>
 </div></section>
