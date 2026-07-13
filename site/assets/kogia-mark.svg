@@ -1,25 +1,28 @@
 <!-- ════════════════════════════════════════════════════════════════════════
-     LA MARQUE KOGIA — UN SEUL tracé. Le K et le cachalot sont la même forme.
+     LA MARQUE KOGIA — un K. Et, dans son négatif, une nageoire caudale.
 
-     Ce n'est pas une baleine posée à côté d'une lettre : c'est une silhouette
-     continue. Tête busquée → œil → corps → pédoncule → nageoire caudale. Et la
-     caudale EST le bras du K ; le creux entre les deux lobes EST le creux du K.
-     Comme la flèche de FedEx : on voit la lettre, puis on voit l'animal, et on
-     ne peut plus le « dé-voir ».
+     ON VOIT D'ABORD UN K. Puis, plus tard, on remarque que les deux bras ne
+     sont pas des bras : ce sont les deux LOBES d'une queue de cachalot, réunis
+     sur un pédoncule, avec l'encoche médiane en espace négatif. Comme la flèche
+     de FedEx : rien n'est dessiné, tout est suggéré. Et une fois vue, on ne peut
+     plus la « dé-voir ».
 
-     Le cachalot a un front presque VERTICAL — c'est ce qui rend l'intégration
-     possible : sa tête peut littéralement servir de hampe.
+     CE QU'IL N'Y A PAS, ET C'EST VOULU :
+       • PAS D'ŒIL. Un œil fait une créature — donc une mascotte. C'était le
+         défaut de toutes les versions précédentes.
+       • Pas de corps, pas de sourire, pas de jet, pas de dégradé.
+       • Rien de mignon. Kogia Group est une entreprise de technologie.
 
-     L'ŒIL EST UN TROU (fill-rule evenodd), jamais un point blanc : un point
-     blanc trahit le logo dès qu'on le pose sur une couleur.
+     L'animal est présent par ses QUALITÉS, pas par son portrait : compact,
+     calme, intelligent, courbes lisses, mouvement minimal, eaux profondes.
 
-     APLAT. Jamais de dégradé dans la marque — un logo doit tenir sur un tampon,
-     une facture, une icône monochrome, en impression, en sombre et en clair.
-     Il prend la couleur du contexte (currentColor).
-
-     Grille 64. Testé à 16 px et en une seule couleur AVANT d'être retenu.
-     Source : brand/KOGIA_HARMONY.md §4
+     Aplat, currentColor. Grille 64. Testé à 16 px, en monochrome et en NOIR PUR
+     avant d'être retenu. Source : brand/KOGIA_HARMONY.md §4
      ════════════════════════════════════════════════════════════════════════ -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kogia">
-  <path fill="currentColor" fill-rule="evenodd" d="M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5 L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z"/>
+  <g fill="currentColor">
+    <rect x="10" y="10" width="8.5" height="44" rx="4.25"/>
+    <path d="M21 32 C34 29 45 21 54 9 L58.5 14.5 C50 27 39 34.5 26 35.5 Z"/>
+    <path d="M21 32 C34 35 45 43 54 55 L58.5 49.5 C50 37 39 29.5 26 28.5 Z"/>
+  </g>
 </svg>

@@ -7,7 +7,7 @@ One creative vision. One design language. One hue per product.
 > document, **the code is wrong**. Every design change ships *with* its update to this
 > book — the implementation is never allowed to evolve ahead of the documentation.
 
-**Version 4.0 — 2026-07-12.** Changelog: §16.
+**Version 4.1 — 2026-07-13.** Changelog: §16.
 
 ---
 
@@ -38,7 +38,8 @@ Earth. Not chosen because whales are cute. Chosen because of how this animal beh
 | The **smallest** sperm whale — yet a whole one, not a reduced one | Small team, big-company standards. Products that are complete, never "lite". |
 | A **deep, quiet diver**; hunts in the dark, rarely seen | Depth over noise. Calm surfaces. Nothing shouts. |
 | Rests **completely motionless** at the surface | **Stillness is the resting state.** Motion is an event, never decoration. |
-| A **near-vertical forehead** — the blunt profile of a sperm whale | It is why the head can *become* the stem of a **K**. The logo exists because of this fact. |
+| Its **fluke** — the one shape that says "whale" without drawing one | The two arms of the **K** *are* the two lobes of that fluke. Nothing is drawn; the tail is left in the negative space (§4.1). |
+| **Smooth curves; minimal movement; calm** | The lobes are curves, not chevrons. The mark is still. These qualities *are* the geometry — the animal is never portrayed. |
 | Releases a **reddish-brown ink cloud**, then vanishes | Terracotta is not arbitrary. It is the ink cloud — Kogia Job's family. |
 | **Elusive; hard to study** | We never fake presence. No invented metrics, no fake customers. |
 
@@ -201,57 +202,156 @@ chart form in existence.
 
 ## 4. The logo
 
-### 4.1 Construction — one path, two readings
+### 4.1 Philosophy — what this mark refuses to be
 
-**The K and the whale are the same silhouette.** Not a whale beside a letter: a single
-continuous form. Head → eye → body → peduncle → fluke, where **the fluke *is* the K's
-arm**, and the crook between the two lobes *is* the crook of the K.
+Kogia Group is a **technology solutions company**, not a children's brand and not a
+fashion label. The mark must therefore be **minimal, timeless, professional and
+scalable** — and it must still look modern in twenty years.
 
-Like the FedEx arrow — you see the letter, then you see the animal, and then you cannot
-un-see it.
+So the logo is **a letter K**. Nothing is drawn. There is no animal on the page.
 
-It is only possible because of a fact about the animal: **a sperm whale's forehead is
-near-vertical**, so its head can literally serve as a stem.
+**And yet the whale is there.** The two arms of the K are not arms: they are the two
+**lobes of a sperm whale's fluke**, meeting at a peduncle on the stem, with the median
+notch left as negative space. You read a clean K. Later — sometimes much later — you
+notice the tail. And once you have seen it, you cannot un-see it.
+
+This is the **FedEx principle**: the arrow between the E and the x is not drawn, it is
+*left behind*. A hidden form is stronger than a stated one, because the viewer
+*discovers* it, and people remember what they discover.
+
+**What the mark deliberately does NOT have:**
+
+| Removed | Why |
+|---|---|
+| **The eye** | **This was the fatal flaw of every previous version.** An eye makes a *creature*. A creature makes a *mascot*. A mascot cannot represent a technology group. |
+| A body, a smile, a spout, a fin | Illustration, not identity. |
+| A gradient | A gradient cannot survive a stamp, an invoice, a monochrome icon (§4.6). |
+| Any "cuteness" | We are not selling to children. |
+
+The animal is present through its **qualities**, never its portrait: *compact yet
+powerful, intelligent, calm, deep-water, elegant, minimal movement, smooth curves.*
+Those are the adjectives the geometry had to satisfy — and they are why the arms are
+**smooth curves** rather than straight chevrons, and why the whole mark is still.
+
+### 4.2 Construction & grid
+
+Drawn on a **64 × 64 grid**. Three shapes. No more.
 
 ```
-viewBox 0 0 64 64 · fill-rule: evenodd
-M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5
-L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z
-M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z
+viewBox 0 0 64 64
+
+stem       M10 14.25 a4.25 4.25 0 0 1 8.5 0 v35.5 a4.25 4.25 0 0 1 -8.5 0 Z
+upper lobe M21 32 C34 29 45 21 54 9 L58.5 14.5 C50 27 39 34.5 26 35.5 Z
+lower lobe M21 32 C34 35 45 43 54 55 L58.5 49.5 C50 37 39 29.5 26 28.5 Z
 ```
 
-**The eye is a true hole** (`evenodd`), never a white dot — a white dot betrays the logo
-the instant it sits on a colour.
+**Proportions** (all on the 64 grid):
 
-**Flat, and it takes `currentColor`.** Ocean for the group, purple for Coreon Edu,
-terracotta for Kogia Job. **One house mark, recoloured.** Verified in light, dark,
-monochrome, pure black (print), the app tile, and **16px**.
+| | Value | Why |
+|---|---|---|
+| Stem width | `8.5` | Matches the optical weight of the lobes at their root. |
+| Stem cap radius | `4.25` (= half the width) | A true semicircle. Calm, never a hard corner. |
+| Cap height | `10 → 54` (44 tall) | Leaves a 10-unit margin top and bottom: the mark breathes inside its own box. |
+| Lobe root | `x = 21` | A 2.5-unit optical gap from the stem. **Not zero** — the gap is what keeps the K legible; joined, it becomes a blob. |
+| Lobe tips | `x = 58.5` | The lobes reach further right than the stem reaches left: the mark is optically centred, not mathematically centred. |
+| Notch vertex | `(21, 32)` | Dead centre. The fluke's median notch. |
 
-### 4.2 What was rejected, and why
+The lobes' **inner edges are concave** — that concavity is the fluke. Convex edges would
+make an arrow; straight edges would make a chevron. **This single curve is the whole
+idea.**
 
-Every candidate was rendered **at 16px and in one colour before being judged**. That
-test, not taste, killed them:
+### 4.3 Clear space & minimum size
 
-- **The cartoon whale (v2).** Died at 16px — eye, smile, spout and crescent collapsed
-  into a blob; a black lump in monochrome. It was an *illustration*, not an identity.
-- **Tapered fluke tips.** Elegant large, invisible small. **Mass is what makes a mark
-  survive.**
-- **A body detached from the tail.** Read as a battery beside a chevron. The peduncle is
-  what makes it a creature instead of two objects.
-- **A crescent-led mark.** On a **Tunisian** company, a crescent reads as the **national
-  flag**, not a whale's false gill. Ruled out on those grounds alone.
-- **An echo/sonar mark.** Indistinguishable from a wifi icon.
+- **Clear space:** the width of the stem (`8.5` units, ≈ 13% of the mark) on all four
+  sides. Nothing may enter it — no text, no rule, no edge.
+- **Minimum size: 16px** (or 4mm in print). Verified legible at 16px in one colour.
+- Below 16px, use the **tile** (§4.5), never the bare mark.
 
-### 4.3 Rules
+### 4.4 Colour versions
 
-- **Never** re-draw, stretch, rotate, outline, gradient, or drop-shadow the mark.
-- **Never** place it on a busy photo — it needs a flat ground.
-- Clear space around it = the width of the whale's head.
-- Minimum size 16px; below that, use the tile.
-- **One official logo. One mascot style. One identity.** Every legacy whale illustration
-  and blue-fish asset has been deleted (§16).
+The mark is **flat** and takes `currentColor`. It has exactly these versions:
 
----
+| Version | Value | Use |
+|---|---|---|
+| Kogia Group | ocean `#2547E8` | Corporate, the Owner Console |
+| Coreon Edu | purple `#7539E4` | The school product |
+| Kogia Job | terracotta `#C2410C` | The marketplace |
+| Ink | `#0E2135` | On light surfaces where the family hue would compete |
+| Reversed | `#FFFFFF` | On the abyss, on a family fill, on any dark ground |
+| **Monochrome / print** | pure `#000000` on white | Stamps, invoices, fax, one-colour print, engraving |
+
+**Never** invent a new colour version. A future product picks a family (§3.5); the mark
+does not change.
+
+### 4.5 Icon, favicon & app icon
+
+- **App tile:** the mark centred in a rounded square, `rx = 24/96` (the system's tile
+  radius), knocked out in **white** on the product's `600` step. The mark occupies the
+  centre with a 16/96 margin.
+- **Favicon:** the same tile. **Never the bare mark** — at 16px a bare mark on a white
+  browser tab has no edge to hold it.
+- **Android adaptive icon:** foreground = the white mark at 76% scale (safe zone);
+  background = a flat fill of the product's `600`. The declared `backgroundColor` must
+  equal the shipped background image — otherwise a white foreground vanishes if the
+  image fails to load.
+- **Monochrome icon** (themed Android / macOS): the mark, solid, no tile.
+
+### 4.6 SVG guidelines
+
+- Ship the mark as **SVG, always** — it is three vector paths and weighs nothing.
+- `fill="currentColor"` on the group, so the mark inherits its context. **Never**
+  hard-code a hue inside the mark file.
+- Keep the `viewBox="0 0 64 64"`. Scale with `width`/`height`, never by editing paths.
+- No `<style>`, no CSS classes, no filters, no `<defs>` inside the mark — it must
+  survive being inlined, sprited, or pasted into an email.
+- Include `role="img"` and `aria-label="Kogia"`; when the mark sits beside the wordmark,
+  mark it `aria-hidden` and let the text carry the name.
+
+### 4.7 The ecosystem system
+
+**One symbol. Only the product name changes.**
+
+```
+[K]  kogia   GROUP
+[K]  coreon  EDU · PAR KOGIA GROUP
+[K]  kogia   JOB · PAR KOGIA GROUP
+[K]  kogia   GAMES · PAR KOGIA GROUP     ← when it is real
+[K]  kogia   FOOD  · PAR KOGIA GROUP     ← when it is real
+```
+
+Adding a product = **a family (§3.5) and a wordmark. Nothing else moves.** That is the
+entire scalability argument, and it is why the mark had to be a letter rather than an
+illustration: an illustration cannot be re-used across an ecosystem without becoming a
+mascot for one member of it.
+
+> **Kogia Games and Kogia Food remain private** and must not appear on any public Kogia
+> Group surface until they are real. The *system* supports them; the *website* does not
+> mention them.
+
+### 4.8 Incorrect usage
+
+Never:
+
+- **Add an eye, a fin, a body, or any facial feature.** This turns the mark into a
+  mascot and destroys the entire concept.
+- Apply a **gradient**, a shadow, a glow, an outline, or a bevel.
+- **Stretch, skew, rotate, or mirror** it. The lobes are optically weighted for one
+  orientation.
+- Re-space the lobes or close the gap to the stem — the gap is what makes it a K.
+- Place it on a **photograph** or a busy pattern. It needs a flat ground.
+- Use it **below 16px** bare, or in a colour outside §4.4.
+- Recolour it to match a page. The mark carries the *product's* family, not the page's.
+- Use the wordmark without the mark, or the mark stretched to fill a non-square box.
+
+### 4.9 Why this is better than everything before it
+
+| Version | Why it failed |
+|---|---|
+| **v1 — leaf / spark** | Meant nothing. No connection to the name, the animal, or the company. |
+| **v2 — cartoon whale** | Died at 16px (eye, smile, spout collapsed into a blob); a black lump in monochrome; a **mascot**, not an identity. |
+| **v3 — K beside a fluke** | Two objects sitting next to each other, not one symbol. |
+| **v3.5 — K *as* a whale, with an eye** | Closer, but **the eye betrayed it.** An eye makes a creature; a creature is a mascot. It read as an animal first, a letter second — the exact inverse of what a technology group needs. |
+| **v4 — this mark** | **A clean K first. The whale second, and only in the negative space.** It works at 16px, in one colour, in pure black, on dark, as a tile. It carries the company's initial — so it scales to every future product without ever becoming a mascot for one of them. |
 
 ## 5. Typography
 
@@ -437,6 +537,22 @@ Before anything ships, on every product:
 ---
 
 ## 16. Changelog
+
+### v4.1 — 2026-07-13 — *The mark stops being an animal*
+- **The eye is gone, and with it the mascot.** v4.0 drew a whale whose head was the K's
+  stem, with an eye. **The eye was the fatal flaw:** an eye makes a creature, a creature
+  makes a mascot, and a mascot cannot represent a technology group. It read as an animal
+  first and a letter second — the exact inverse of what is needed.
+- **The mark is now a clean K.** The whale survives *only in the negative space*: the two
+  arms are the two lobes of a fluke, joined at a peduncle, median notch left empty. The
+  FedEx principle — nothing drawn, everything suggested (§4.1).
+- Full logo documentation added: construction grid, proportions and *why* each one
+  (§4.2), clear space and minimum size (§4.3), colour versions (§4.4), icon/favicon/app
+  icon (§4.5), SVG guidelines (§4.6), the ecosystem system (§4.7), **incorrect usage**
+  (§4.8), and a version-by-version account of why each earlier mark failed (§4.9).
+- The mark now scales to **every future product** — Games, Food, whatever comes — because
+  it is the company's *initial*, not a portrait. An illustration cannot be shared across
+  an ecosystem without becoming the mascot of one member of it.
 
 ### v4.0 — 2026-07-12 — *Consistency over complexity*
 - **The logo became ONE path.** The K and the whale are now the same silhouette (§4.1).

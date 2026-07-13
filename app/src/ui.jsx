@@ -12,11 +12,14 @@ const BODY = 'M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C
 const CRESCENT = 'M44 42 q7 9 -1 17'
 
 export function Mark({ size = 32, className = '' }) {
-  // LA MARQUE : un seul tracé — le K et le cachalot sont la même silhouette.
-  // Aplat, currentColor. L'œil est un TROU (evenodd), jamais un point blanc.
+  // Un K ; dans son négatif, une nageoire caudale. Aplat, currentColor.
   return (
     <svg viewBox="0 0 64 64" width={size} height={size} className={className} aria-hidden="true">
-      <path fill="currentColor" fillRule="evenodd" d="M18 10 a10 10 0 0 1 10 10 v8.5 L51 9 L55.5 13.5 Q43.5 25 40.5 32 Q43.5 39 55.5 50.5 L51 55 L28 35.5 V44 a10 10 0 0 1 -20 0 V20 A10 10 0 0 1 18 10 Z M18 17.5 a3.6 3.6 0 1 0 0 7.2 a3.6 3.6 0 0 0 0 -7.2 Z"/>
+      <g fill="currentColor">
+        <path d="M10 14.25 a4.25 4.25 0 0 1 8.5 0 v35.5 a4.25 4.25 0 0 1 -8.5 0 Z"/>
+        <path d="M21 32 C34 29 45 21 54 9 L58.5 14.5 C50 27 39 34.5 26 35.5 Z"/>
+        <path d="M21 32 C34 35 45 43 54 55 L58.5 49.5 C50 37 39 29.5 26 28.5 Z"/>
+      </g>
     </svg>
   )
 }
