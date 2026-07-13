@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import Landing from './pages/Landing.jsx'
 import Console from './pages/Console.jsx'
 import { hasDb, seedDb, resetDb } from './db.js'
-import { Btn, Card, ErrorState, Mascot } from './ui.jsx'
+import { Btn, Card, ErrorState, Mark } from './ui.jsx'
 
 /* Erreur (§8.3) : on dit ce qui s'est passé et quoi faire ensuite. Jamais un
    code, jamais « Oups », jamais un écran blanc. */
@@ -43,7 +43,11 @@ function FirstRun({ onReady }) {
   return (
     <div className="min-h-screen bg-canvas grid place-items-center p-6">
       <Card className="w-full max-w-md p-8 text-center k-reveal">
-        <div className="grid place-items-center"><Mascot size={104} className="k-float" /></div>
+        {/* Le lockup, en petit — pas un logo géant en décor (charte §4.10). */}
+        <div className="flex items-center justify-center gap-2.5">
+          <span className="w-9 h-9 rounded-xl grid place-items-center accent-bg text-white"><Mark size={22} /></span>
+          <span className="font-display font-extrabold tracking-tight">kogia</span>
+        </div>
         <h1 className="text-2xl font-extrabold mt-5">Bienvenue dans la Console propriétaire</h1>
         <p className="text-muted text-sm mt-2">
           C'est l'outil interne de Kogia Group : clients, catalogue, accès, factures et abonnements,

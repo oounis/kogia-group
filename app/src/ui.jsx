@@ -1,4 +1,5 @@
 import { X } from 'lucide-react'
+import * as LucideIcons from 'lucide-react'
 import { useEffect } from 'react'
 import { SERIES, STATUS, seriesColor } from './charts.js'
 
@@ -8,7 +9,6 @@ import { SERIES, STATUS, seriesColor } from './charts.js'
    elle ne voulait rien dire et n'existait nulle part ailleurs dans le groupe.
    Géométrie : brand/kogia-mark.svg. Ratio 132×96.
    ========================================================================= */
-const BODY = 'M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z'
 const CRESCENT = 'M44 42 q7 9 -1 17'
 
 export function Mark({ size = 32, className = '' }) {
@@ -25,23 +25,6 @@ export function Mark({ size = 32, className = '' }) {
 }
 
 /* Le mascotte : états vides, accueil, succès. Jamais dans un tableau dense. */
-export function Mascot({ size = 96, className = '' }) {
-  return (
-    <svg viewBox="0 0 132 96" width={size * 132 / 96} height={size} className={className} role="img" aria-label="Kogia">
-      <defs>
-        <linearGradient id="k-mascot" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2547E8" /><stop offset="1" stopColor="#22D3EE" />
-        </linearGradient>
-      </defs>
-      <path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="#22D3EE" strokeWidth="3.4" strokeLinecap="round" />
-      <path fill="url(#k-mascot)" d={BODY} />
-      <circle cx="34" cy="45" r="4.2" fill="#0E2135" />
-      <path d={CRESCENT} fill="none" stroke="#FDF6F0" strokeWidth="3.2" strokeLinecap="round" opacity=".75" />
-      <path d="M21 56 q8 6 17 6" fill="none" stroke="#FFFFFF" strokeWidth="3.6" strokeLinecap="round" opacity=".9" />
-      <path d="M56 62 q6 8 16 8 q-10 4 -20 -2 Z" fill="#2547E8" opacity=".5" />
-    </svg>
-  )
-}
 
 /* Attente en ligne : le croissant tourne. Pas un anneau générique. */
 export function Crescent({ size = 18, className = '' }) {
@@ -166,11 +149,17 @@ export function PageHead({ title, sub, action }) {
    Les cinq états (§8) — un écran n'est pas conçu tant qu'ils n'existent pas.
    ========================================================================= */
 
-/* 1 — Vide : le mascotte, une phrase en français clair, une action. */
-export function EmptyState({ title, hint, action, compact = false }) {
+/* 1 — Vide : une ICÔNE CONTEXTUELLE, une phrase en français clair, une action.
+      JAMAIS le logo : il ne vit que dans l'en-tête (charte §4.10). Une marque
+      répétée en ornement cesse d'être une marque. L'icône, elle, dit ce que la
+      chose EST — c'est de l'information. */
+export function EmptyState({ icon = 'Inbox', title, hint, action, compact = false }) {
+  const I = LucideIcons[icon] || LucideIcons.Inbox
   return (
     <Card className={`grid place-items-center text-center ${compact ? 'p-7' : 'p-10'}`}>
-      <Mascot size={compact ? 56 : 80} className="k-float" />
+      <span className="w-14 h-14 rounded-2xl grid place-items-center accent-soft accent-text" aria-hidden="true">
+        <I size={26} />
+      </span>
       <div className="font-display font-bold text-ink mt-4">{title}</div>
       {hint && <p className="text-sm text-muted mt-1 max-w-sm">{hint}</p>}
       {action && <div className="mt-4">{action}</div>}
