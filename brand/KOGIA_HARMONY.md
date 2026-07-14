@@ -96,7 +96,7 @@ Colour is doing real work here, not decoration:
 |---|---|---|---|
 | `abyss` | `#071726` | — | Dark-mode ground |
 | `ink` | `#0E2135` | **16.31:1** on white | Primary text |
-| `slate` | `#5B6B7D` | **5.46:1** on white | Secondary text — AA as *real* text, not just "large" |
+| `slate` | `#485868` | **7.31:1** on white | Secondary text — AAA; darkened 2026-07-14 (old `#5B6B7D` at 5.46:1 read too light on real screens) |
 | `line` | `#DCE3EB` | — | Borders, dividers, grid |
 | `canvas` | `#F4F7FA` | — | Page background. Cool and marine — **never** a neutral grey |
 | `surface` | `#FFFFFF` | — | Cards, sheets |

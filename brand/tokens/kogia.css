@@ -14,7 +14,7 @@
   /* ── Neutrals: "the water". Identical in every product, forever. ──────── */
   --k-abyss:   #071726;
   --k-ink:     #0E2135;  /* 16.3:1 on white */
-  --k-slate:   #5B6B7D;  /* 5.46:1 on white — AA as real text, not just "large" */
+  --k-slate:   #485868;  /* 7.31:1 on white — AAA; darkened 2026-07-14, the old #5B6B7D read too light */
   --k-line:    #DCE3EB;
   --k-canvas:  #F4F7FA;  /* cool, marine — never a neutral grey */
   --k-surface: #FFFFFF;

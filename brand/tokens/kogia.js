@@ -12,7 +12,7 @@
 export const N = {
   abyss:   '#071726', // dark-mode ground
   ink:     '#0E2135', // primary text — 16.3:1 on white
-  slate:   '#5B6B7D', // secondary text — 5.46:1 on white (AA as real text)
+  slate:   '#485868', // secondary text — 7.31:1 on white (AAA; darkened 2026-07-14)
   line:    '#DCE3EB',
   canvas:  '#F4F7FA', // cool, marine — never a neutral grey
   surface: '#FFFFFF',

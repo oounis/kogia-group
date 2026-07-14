@@ -38,7 +38,7 @@ export const GRID = '#EEF1F6'
 // muted/slate — 5.46:1. Les axes utilisaient un gris démis depuis longtemps
 // dans index.css pour cause d'illisibilité : le correctif n'était jamais arrivé
 // jusqu'aux graphiques. Il y est.
-export const AXIS = '#5B6B7D'
+export const AXIS = '#485868'
 export const LINE = '#DCE3EB'
 export const INK = '#0E2135'
 

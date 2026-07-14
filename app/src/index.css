@@ -10,7 +10,7 @@
   /* L'eau : neutres, identiques dans tous les produits du groupe. */
   --color-abyss: #071726;
   --color-ink: #0E2135;    /* texte principal — 16.3:1 sur blanc */
-  --color-muted: #5B6B7D;  /* texte secondaire — 5.46:1 sur blanc, 5.08:1 sur canvas */
+  --color-muted: #485868;  /* texte secondaire — 7.31:1 sur blanc, 6.80:1 sur canvas (AAA, 2026-07-14) */
   --color-line: #DCE3EB;
   --color-canvas: #F4F7FA;
   --color-surface: #FFFFFF;
