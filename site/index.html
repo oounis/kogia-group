@@ -137,6 +137,25 @@ a.prod:hover .go{gap:.7rem}
 .row h3{font-size:.98rem}
 .row p{color:var(--slate);font-size:.9rem;margin-top:.15rem}
 
+/* International : des VAGUES, pas des promesses — chaque pays est un chantier
+   nommé, avec sa langue, sa réglementation, son barème. Pas de drapeaux-emoji
+   (charte : jamais d'emoji comme icône) : les pays sont des mots. */
+.regions{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.2rem}
+.region{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:1.6rem;box-shadow:var(--sh1);display:flex;flex-direction:column;gap:.15rem}
+.region .wave{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--o700)}
+.region h3{font-size:1.05rem;margin:.35rem 0 .1rem}
+.region .lang{color:var(--slate);font-size:.86rem}
+.countries{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+.countries span{font-size:.8rem;font-weight:600;padding:.28rem .7rem;border-radius:999px;
+  background:var(--o50);color:var(--o700);border:1px solid var(--o100)}
+.region .status{margin-top:1.1rem;align-self:flex-start}
+.status.plan{background:var(--o50);color:var(--o700)}
+.loc{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-top:2.2rem}
+.loc>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:.9rem 1rem;font-size:.84rem;color:var(--slate)}
+.loc b{display:block;color:var(--ink);font-size:.88rem;margin-bottom:.15rem}
+
 .band{background:var(--o600);color:#fff;border-radius:16px;padding:2.8rem;text-align:center}
 .band h2{color:#fff;font-size:clamp(1.5rem,3vw,2rem)}
 .band p{color:var(--o100);margin-top:.6rem}
@@ -150,6 +169,8 @@ a.prod:hover .go{gap:.7rem}
 .burger{display:none;background:none;border:0;padding:.5rem;cursor:pointer;color:var(--ink)}
 @media(max-width:860px){
   .prods{grid-template-columns:1fr}
+  .regions{grid-template-columns:1fr}
+  .loc{grid-template-columns:1fr 1fr}
   .burger{display:inline-flex}
   .nav-in>.btn{display:none}
   .nav-links{position:absolute;left:0;right:0;top:100%;background:var(--surface);
@@ -175,6 +196,7 @@ a.prod:hover .go{gap:.7rem}
   </a>
   <nav class="nav-links" id="nav">
     <a href="#produits">Coreon Edu</a>
+    <a href="#monde">International</a>
     <a href="#kogia">Pourquoi Kogia</a>
     <a href="#route">Feuille de route</a>
     <a href="#contact">Contact</a>
@@ -215,6 +237,59 @@ a.prod:hover .go{gap:.7rem}
         pour ça qu'elle reste.</p>
       <span class="go">Essayer la démo →</span>
     </a>
+  </div>
+</div></section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     INTERNATIONAL — le produit est conçu pour voyager, par VAGUES de régions.
+     Règle de la maison : rien d'enjolivé. Chaque vague porte son état réel
+     (en cours / en préparation / à l'étude), et « localisé » est défini —
+     ce n'est pas un drapeau sur une page, c'est cinq chantiers par pays.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="monde"><div class="wrap">
+  <span class="eyebrow">Conçu pour voyager</span>
+  <h2>Un produit international, par vagues</h2>
+  <p class="lead">Coreon Edu parle déjà le standard du monde — l'export OneRoster v1.2, les
+    niveaux en modèle de capacités, les modules par cycle. La conquête se fait par
+    <b>régions</b>, dans l'ordre, avec des <b>partenaires intégrateurs</b> locaux :
+    nous construisons le produit, ils connaissent leurs écoles.</p>
+
+  <div class="regions">
+    <article class="region">
+      <span class="wave">Vague 1 · Francophone</span>
+      <h3>Le Maghreb &amp; la France</h3>
+      <span class="lang">Interface française — la langue du produit aujourd'hui</span>
+      <div class="countries">
+        <span>Tunisie</span><span>Algérie</span><span>Maroc</span><span>Mauritanie</span><span>France</span>
+      </div>
+      <span class="status dev"><i></i>En cours — depuis la Tunisie</span>
+    </article>
+    <article class="region">
+      <span class="wave">Vague 2 · Golfe &amp; Libye</span>
+      <h3>La péninsule arabique</h3>
+      <span class="lang">Arabe + anglais — ouverte par le chantier arabe / droite-à-gauche</span>
+      <div class="countries">
+        <span>Bahreïn</span><span>Arabie saoudite</span><span>Qatar</span><span>Koweït</span><span>Oman</span><span>Émirats</span><span>Libye</span>
+      </div>
+      <span class="status plan"><i></i>En préparation</span>
+    </article>
+    <article class="region">
+      <span class="wave">Vague 3 · Langues locales</span>
+      <h3>Asie du Sud &amp; Kurdistan</h3>
+      <span class="lang">Ourdou, kurde — avec des partenaires d'implémentation locaux</span>
+      <div class="countries">
+        <span>Pakistan</span><span>Kurdistan (Irak)</span>
+      </div>
+      <span class="status plan"><i></i>À l'étude</span>
+    </article>
+  </div>
+
+  <div class="loc">
+    <div><b>La langue</b>Interface, documents et sens de lecture — l'arabe se lit de droite à gauche, le produit aussi.</div>
+    <div><b>La réglementation</b>Les exigences du ministère de chaque pays, tenues par le produit, pas par une note de bas de page.</div>
+    <div><b>Le barème</b>Notation sur 20, lettres, acquis observés — chaque système de notation est un réglage, pas une réécriture.</div>
+    <div><b>Les documents</b>Certificats, attestations et bulletins conformes aux modèles officiels locaux.</div>
+    <div><b>Le partenaire</b>Un intégrateur local formé, avec un plan d'implémentation par pays — nous ne vendons jamais seuls.</div>
   </div>
 </div></section>
 
