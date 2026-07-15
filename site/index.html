@@ -60,6 +60,11 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* Densité : même décision que dans Coreon Edu (2026-07-15) — sur grand écran,
+   la page rend comme un zoom navigateur à 75 % : plus d'air, tout se voit.
+   Mobile intact (cibles tactiles), impression intacte. */
+@media (min-width:1024px){html{zoom:.75}}
+@media print{html{zoom:1}}
 body{font-family:var(--sans);font-weight:500;color:var(--ink);background:var(--canvas);
   line-height:1.65;letter-spacing:-.004em;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--disp);letter-spacing:-.022em;line-height:1.15;text-wrap:balance}
@@ -156,6 +161,34 @@ a.prod:hover .go{gap:.7rem}
   padding:.9rem 1rem;font-size:.84rem;color:var(--slate)}
 .loc b{display:block;color:var(--ink);font-size:.88rem;margin-bottom:.15rem}
 
+/* Tarifs : PUBLICS — aucun concurrent tunisien ne publie les siens (tous en
+   « demandez un devis »). La transparence est notre argument commercial. */
+.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.2rem}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:1.6rem;box-shadow:var(--sh1);display:flex;flex-direction:column;gap:.3rem}
+.price.hot{border-color:var(--o600);box-shadow:var(--sh3)}
+.price .pop{align-self:flex-start;font-size:.62rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;background:var(--o600);color:#fff;padding:.25rem .6rem;
+  border-radius:999px;margin-bottom:.5rem}
+.price h3{font-size:.98rem}
+.price .who{color:var(--slate);font-size:.82rem;min-height:2.4em}
+.price .amount{font-family:var(--disp);font-size:1.9rem;font-weight:800;margin-top:.6rem}
+.price .amount small{font-size:.8rem;font-weight:600;color:var(--slate)}
+.price ul{list-style:none;margin-top:.9rem;display:grid;gap:.4rem}
+.price li{font-size:.84rem;color:var(--slate);padding-left:1.1rem;position:relative}
+.price li::before{content:"—";position:absolute;left:0;color:var(--o600);font-weight:700}
+.price-notes{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.6rem;color:var(--slate);font-size:.86rem}
+.price-notes b{color:var(--ink)}
+@media(max-width:860px){.prices{grid-template-columns:1fr}}
+
+/* Fonctionnalités : des mots, pas des icônes — la charte interdit l'emoji-icône. */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.2rem}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:1.5rem;box-shadow:var(--sh1)}
+.feat h3{font-size:1rem;margin-bottom:.4rem}
+.feat p{color:var(--slate);font-size:.88rem}
+@media(max-width:860px){.feats{grid-template-columns:1fr}}
+
 .band{background:var(--o600);color:#fff;border-radius:16px;padding:2.8rem;text-align:center}
 .band h2{color:#fff;font-size:clamp(1.5rem,3vw,2rem)}
 .band p{color:var(--o100);margin-top:.6rem}
@@ -196,6 +229,7 @@ a.prod:hover .go{gap:.7rem}
   </a>
   <nav class="nav-links" id="nav">
     <a href="#produits">Coreon Edu</a>
+    <a href="#tarifs">Tarifs</a>
     <a href="#monde">International</a>
     <a href="#kogia">Pourquoi Kogia</a>
     <a href="#route">Feuille de route</a>
@@ -238,6 +272,81 @@ a.prod:hover .go{gap:.7rem}
       <span class="go">Essayer la démo →</span>
     </a>
   </div>
+
+  <!-- Ce que le produit FAIT — mis à jour au rythme des livraisons réelles.
+       Chaque carte correspond à un module en ligne aujourd'hui, pas à une promesse. -->
+  <div class="feats">
+    <div class="feat"><h3>Deux cycles, un seul toit</h3>
+      <p>La crèche et le primaire dans la même plateforme — un parent, deux enfants
+      d'âges différents, <b>un seul compte</b>. Personne d'autre ne sait le faire.</p></div>
+    <div class="feat"><h3>La sécurité de l'enfant d'abord</h3>
+      <p>Personnes autorisées à récupérer l'enfant, chaîne d'accident à deux regards,
+      et une cantine qui <b>croise le menu avec les allergies</b> de chaque enfant
+      inscrit — l'école voit l'alerte avant le service.</p></div>
+    <div class="feat"><h3>Les Moments de la journée</h3>
+      <p>Photos et vidéos de la journée, partagées avec les parents concernés et
+      eux seuls — la vie privée des enfants est tenue par le produit.</p></div>
+    <div class="feat"><h3>Encourager d'abord</h3>
+      <p>Le suivi du comportement observe et encourage — il <b>ne classe jamais</b>
+      les enfants entre eux. C'est une règle du produit, pas une option.</p></div>
+    <div class="feat"><h3>Un tableau de bord qui répond</h3>
+      <p>Chaque chiffre s'ouvre d'un clic : derrière « 3 absents », les trois enfants
+      et le bouton pour prévenir leurs parents. La direction décide, elle ne cherche pas.</p></div>
+    <div class="feat"><h3>L'arabe, de droite à gauche</h3>
+      <p>Le produit change de direction, pas seulement de langue : les premiers
+      parcours sont déjà en arabe — une candidature peut être déposée en عربية
+      aujourd'hui. Le chantier avance tranche par tranche.</p></div>
+  </div>
+</div></section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TARIFS — publics, ce qu'aucun concurrent tunisien ne fait (tous exigent
+     une demande de devis). Un prix par taille d'école, TOUT INCLUS : le
+     produit ne cache aucun module derrière une gamme supérieure aujourd'hui,
+     le site ne le prétend donc pas. Tarif de lancement, ajustable.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="tarifs"><div class="wrap">
+  <span class="eyebrow">Tarifs · publics, tout inclus</span>
+  <h2>Un prix par taille d'école. Pas de devis à demander.</h2>
+  <p class="lead">Tous les modules, tous les portails, pour chaque école — le prix ne dépend
+    que du nombre d'enfants. <b>Essai gratuit de 30 jours</b>, aucun frais d'installation,
+    et vos données restent exportables en un clic, du premier au dernier jour.</p>
+
+  <div class="prices">
+    <div class="price">
+      <h3>Crèche</h3>
+      <span class="who">Jusqu'à 40 enfants — crèche, garderie, jardin d'enfants</span>
+      <span class="amount">120 <small>DT&nbsp;HT / mois</small></span>
+      <ul><li>Tous les modules inclus</li><li>Parents illimités</li><li>Journal, Moments, cantine</li></ul>
+    </div>
+    <div class="price">
+      <h3>École</h3>
+      <span class="who">Jusqu'à 120 élèves — maternelle et primaire</span>
+      <span class="amount">200 <small>DT&nbsp;HT / mois</small></span>
+      <ul><li>Tous les modules inclus</li><li>Crèche + primaire, un seul toit</li><li>Bulletins &amp; passage</li></ul>
+    </div>
+    <div class="price hot">
+      <span class="pop">Le plus choisi</span>
+      <h3>Grande école</h3>
+      <span class="who">Jusqu'à 300 élèves — les deux cycles réunis</span>
+      <span class="amount">320 <small>DT&nbsp;HT / mois</small></span>
+      <ul><li>Tous les modules inclus</li><li>Location d'installations</li><li>Export OneRoster v1.2</li></ul>
+    </div>
+    <div class="price">
+      <h3>Groupe</h3>
+      <span class="who">Plus de 300 élèves, ou plusieurs établissements</span>
+      <span class="amount">Sur mesure</span>
+      <ul><li>Tous les modules inclus</li><li>Accompagnement dédié</li><li>Partenaire intégrateur local</li></ul>
+    </div>
+  </div>
+
+  <div class="price-notes">
+    <span><b>Annuel : 2 mois offerts</b> — payez 10 mois, utilisez 12.</span>
+    <span><b>Essai 30 jours</b>, sans carte, sans engagement.</span>
+    <span><b>Zéro frais d'installation.</b> La reprise de vos données est incluse.</span>
+    <span>Tarif de lancement · Tunisie. Golfe : tarification dédiée à l'ouverture de la Vague&nbsp;2.</span>
+  </div>
+  <p class="lead" style="margin-top:1.4rem">Une question de prix ? <a href="mailto:commercial@kogiagroup.com" style="color:var(--o700);font-weight:700">commercial@kogiagroup.com</a></p>
 </div></section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
