@@ -173,11 +173,18 @@ recognisable — not a gradient.
 
 | | Hex | Soft |
 |---|---|---|
-| ok | `#12946F` | `#E7F5F0` |
-| warn | `#C97C1E` | `#FBF1E3` |
-| danger | `#DC4B54` | `#FBEBEC` |
-| info | `#0E7FB8` | `#E6F1F8` |
-| neutral | `#7C879B` | `#F1F4F8` |
+| ok | `#0E7A5C` | `#E7F5F0` |
+| warn | `#975D16` | `#FBF1E3` |
+| danger | `#B93E46` | `#FBEBEC` |
+| info | `#0B70A3` | `#E6F1F8` |
+| neutral | `#6D7688` | `#F1F4F8` |
+
+> **Darkened 2026-07-17 — measured, not eyeballed.** An axe-core sweep (5 pages ×
+> roles, wcag2aa) caught the old status text failing AA on **small pills (12–13 px)**:
+> the pairs held at ≥18 px but the pill text sat at 3.3–4.5:1. The five foregrounds
+> were darkened until each clears **≥4.5:1 on white AND on its soft tint** (worst case
+> 4.6), which also *raises* white-on-status contrast for solid badges. Old values:
+> ok `#12946F` · warn `#C97C1E` · danger `#DC4B54` · info `#0E7FB8` · neutral `#7C879B`.
 
 The same five in every product. **A status colour is never reused as an accent or a chart
 series**, and always ships **with an icon or a word** — never colour alone, because ~8% of
