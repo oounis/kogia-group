@@ -189,6 +189,18 @@ a.prod:hover .go{gap:.7rem}
 .feat p{color:var(--slate);font-size:.88rem}
 @media(max-width:860px){.feats{grid-template-columns:1fr}}
 
+/* Le produit EN ENTIER : une trentaine de modules réels, rangés comme dans
+   l'application. Des puces, pas des paragraphes — la complétude se MONTRE, elle
+   ne se raconte pas (charte §3.5 : famille océan seule, aucune icône-emoji). */
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.2rem}
+.mod{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:1.4rem 1.5rem;box-shadow:var(--sh1)}
+.mod h3{font-size:.98rem;margin-bottom:.75rem}
+.mod .chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.mod .chips span{font-size:.8rem;font-weight:600;padding:.28rem .7rem;border-radius:999px;
+  background:var(--o50);color:var(--o700);border:1px solid var(--o100)}
+@media(max-width:860px){.modules{grid-template-columns:1fr}}
+
 .band{background:var(--o600);color:#fff;border-radius:16px;padding:2.8rem;text-align:center}
 .band h2{color:#fff;font-size:clamp(1.5rem,3vw,2rem)}
 .band p{color:var(--o100);margin-top:.6rem}
@@ -229,6 +241,7 @@ a.prod:hover .go{gap:.7rem}
   </a>
   <nav class="nav-links" id="nav">
     <a href="#produits">Coreon Edu</a>
+    <a href="#modules">Modules</a>
     <a href="#tarifs">Tarifs</a>
     <a href="#monde">International</a>
     <a href="#kogia">Pourquoi Kogia</a>
@@ -305,6 +318,59 @@ a.prod:hover .go{gap:.7rem}
       parcours sont déjà en arabe — une candidature peut être déposée en عربية
       aujourd'hui. Le chantier avance tranche par tranche.</p></div>
   </div>
+</div></section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     LE PRODUIT EN ENTIER — la preuve de COMPLÉTUDE. Un directeur qui évalue un
+     ERP veut voir toute la liste, pas six belles phrases. Rangée comme dans
+     l'application, en puces. Ne figurent QUE les modules réellement en ligne
+     aujourd'hui (features.js : devoirs/examens/bibliothèque/transport sont
+     désactivés par défaut, ils n'apparaissent donc pas ici).
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="modules"><div class="wrap">
+  <span class="eyebrow">Le produit, en entier</span>
+  <h2>Tout ce que Coreon Edu fait aujourd'hui</h2>
+  <p class="lead">Une trentaine de modules déjà en ligne, rangés comme dans l'application —
+    et <b>activés par cycle et par école</b> : une crèche ne voit jamais les écrans du
+    primaire. <b>Sept portails</b>, du directeur au parent, chacun ne voit que ce qui le concerne.</p>
+
+  <div class="modules">
+    <div class="mod"><h3>Le quotidien</h3>
+      <div class="chips">
+        <span>Tableau de bord</span><span>Journal du jour</span><span>Présence</span>
+        <span>Évaluation</span><span>Suivi en direct</span><span>Moments</span>
+        <span>Pointage</span><span>Messages</span><span>Annonces</span>
+      </div></div>
+    <div class="mod"><h3>Élèves &amp; familles</h3>
+      <div class="chips">
+        <span>Inscriptions</span><span>Répertoire &amp; fiche 360°</span><span>Dossier de l'enfant</span>
+        <span>Documents officiels</span><span>Incidents</span><span>Accidents</span>
+      </div></div>
+    <div class="mod"><h3>L'équipe</h3>
+      <div class="chips">
+        <span>Enseignants</span><span>Personnel</span><span>RH &amp; paie</span>
+        <span>Recrutement</span><span>Demandes</span>
+      </div></div>
+    <div class="mod"><h3>L'argent</h3>
+      <div class="chips">
+        <span>Comptabilité</span><span>Frais &amp; finances</span>
+        <span>Budget &amp; rapports</span><span>Paiements parents</span>
+      </div></div>
+    <div class="mod"><h3>La pédagogie</h3>
+      <div class="chips">
+        <span>Bulletins &amp; passage</span><span>Suivi élèves</span>
+        <span>Emploi du temps</span><span>Comportement</span>
+      </div></div>
+    <div class="mod"><h3>La vie de l'école</h3>
+      <div class="chips">
+        <span>Cantine &amp; allergies</span><span>Installations</span>
+        <span>Événements</span><span>Espaces</span><span>Inventaire</span>
+      </div></div>
+  </div>
+
+  <p class="lead" style="margin-top:1.4rem">Et vos données restent les vôtres :
+    <b>export OneRoster&nbsp;v1.2</b> en un clic, interface <b>française et arabe (droite-à-gauche)</b>,
+    plusieurs écoles réunies sous une même console.</p>
 </div></section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
