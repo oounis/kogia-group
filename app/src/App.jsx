@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Landing from './pages/Landing.jsx'
 import Console from './pages/Console.jsx'
+import ScrollToTop from './ScrollToTop.jsx'
 import { hasDb, seedDb, resetDb } from './db.js'
 import { Btn, Card, ErrorState, Mark } from './ui.jsx'
 
@@ -66,6 +67,7 @@ export default function App() {
   return (
     <Boundary>
       <HashRouter>
+        <ScrollToTop />
         {/* Succès (§8.4) : bref, chaleureux, et il s'efface tout seul. */}
         <Toaster position="top-right" toastOptions={{
           duration: 2600,
