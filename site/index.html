@@ -198,7 +198,19 @@ h2.big{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:800}
 .cs span{font-size:.8rem;font-weight:600;padding:.28rem .7rem;border-radius:999px;background:var(--canvas);color:var(--ink);border:1px solid var(--line)}
 .st{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.32rem .7rem;border-radius:999px;align-self:flex-start;margin-top:auto}
 .st i{width:7px;height:7px;border-radius:50%;background:currentColor}
-.st.dev{background:#FBF1E3;color:var(--warn)}.st.plan{background:var(--i50);color:var(--i600)}
+.st.dev{background:#FBF1E3;color:var(--warn)}.st.plan{background:var(--i50);color:var(--i600)}.st.live{background:#E7F6F0;color:var(--ok)}
+/* Suite ERP — grille de produits */
+.suite{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.6rem}
+.prod{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:var(--sh1);display:flex;flex-direction:column;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s}
+.prod:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:var(--i200)}
+.prod.flag{background:var(--grad-b);border-color:transparent;box-shadow:var(--sh3)}
+.prod .cat{font-size:.66rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--i600)}
+.prod.flag .cat{color:var(--cyan)}
+.prod h3{font-size:1.16rem;margin:.35rem 0 .15rem}.prod.flag h3{color:#fff}
+.prod .d1{color:var(--slate);font-size:.9rem;line-height:1.45;flex:1}.prod.flag .d1{color:#C9D6FB}
+.prod .st{margin-top:1.1rem}
+@media(max-width:860px){.suite{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.suite{grid-template-columns:1fr}}
 
 /* Tarifs — clairs, la vedette pop */
 .prices{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.8rem}
@@ -264,6 +276,7 @@ h2.big{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:800}
   <nav class="nav-links" id="nav">
     <a href="#produit">Le produit</a>
     <a href="#modules">Modules</a>
+    <a href="#suite">La suite</a>
     <a href="#tarifs">Tarifs</a>
     <a href="#monde">International</a>
     <a href="#contact">Contact</a>
@@ -375,6 +388,27 @@ h2.big{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:800}
     <div class="mod reveal"><h3>La vie de l'école</h3><div class="chips"><span>Cantine &amp; allergies</span><span>Installations</span><span>Événements</span><span>Espaces</span><span>Inventaire</span></div></div>
   </div>
   <p class="mod-note reveal">Interface <b>française et arabe (droite-à-gauche)</b>, plusieurs écoles sous une même console, <b>export OneRoster v1.2</b>.</p>
+</div></section>
+
+<!-- LA SUITE ERP -->
+<section class="sec" id="suite" style="background:var(--canvas)"><div class="wrap">
+  <span class="kick reveal"><span class="d"></span> L'écosystème Kogia</span>
+  <h2 class="big reveal">Un moteur, toute une suite ERP</h2>
+  <p class="lead reveal">Coreon Edu tourne sur un socle unique — cœur métier partagé, web, mobile, serveur. Ce même socle donne naissance à une <b>suite ERP complète</b> : chaque métier son produit, la même exigence. <b>Coreon Edu est en ligne aujourd'hui</b> ; les autres avancent dans la cuisine.</p>
+  <div class="suite">
+    <article class="prod flag reveal"><span class="cat">Éducation</span><h3>Coreon Edu</h3><p class="d1">Toute l'école, de la crèche à la 6ᵉ — évaluations, présence, paiements, cantine, parents.</p><span class="st live"><i></i>En ligne</span></article>
+    <article class="prod reveal"><span class="cat">Finance</span><h3>Soldéo</h3><p class="d1">Le cœur : comptabilité, achats, ventes, stock, tiers, immobilisations, clôtures.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">RH &amp; Paie</span><h3>Cadréo</h3><p class="d1">Employés, contrats, congés, paie multi-pays, recrutement, pointage, self-service.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Ventes</span><h3>Relio</h3><p class="d1">Prospects, pipeline, contacts, devis, SAV — la relation client de bout en bout.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Entrepôt</span><h3>Cargon</h3><p class="d1">Stock multi-entrepôts, emplacements, réception, préparation, expédition, traçabilité.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Production</span><h3>Fabreon</h3><p class="d1">Nomenclatures, ordres de fabrication, ordonnancement, besoins, coûts de revient.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Commerce</span><h3>Caissa</h3><p class="d1">Encaissement offline-first, caisses, catalogue &amp; promotions, stock magasin, fidélité.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Restauration</span><h3>Servéo</h3><p class="d1">Commandes, écran cuisine, plan de tables, menus &amp; allergènes, stock F&amp;B.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Immobilier</span><h3>Immeon</h3><p class="d1">Biens, baux, locataires, quittances &amp; loyers, charges, états des lieux, maintenance.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Automobile</span><h3>Motora</h3><p class="d1">Concession &amp; atelier : véhicules, ordres de réparation, pièces, garantie.</p><span class="st plan"><i></i>En préparation</span></article>
+    <article class="prod reveal"><span class="cat">Installations</span><h3>Areneo</h3><p class="d1">Réservation de lieux (piscines, terrains, salles), créneaux, adhésions, paiement en ligne.</p><span class="st plan"><i></i>En préparation</span></article>
+  </div>
+  <p class="mod-note reveal">Même socle, même charte, même promesse : <b>vos données restent les vôtres</b>, export standard en un clic. Vendu par des <b>partenaires intégrateurs</b> locaux.</p>
 </div></section>
 
 <!-- PRINCIPES -->
