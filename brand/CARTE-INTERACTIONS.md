@@ -16,8 +16,9 @@ n'agit pas, il n'existe pas.
 | Cliquer un sujet | `filtre-sujet` | onglet actif souligné, `aria-selected` | aucun réseau |
 | Flèches ← → sur les onglets | `focus` | l'onglet suivant prend le focus et s'active | aucun réseau |
 | Cliquer un tri | `tri` | puce pleine ; les cartes se réordonnent | aucun réseau ; masqué tant que les compteurs manquent |
-| Survoler une carte | `survol` | filet à la couleur du sujet, vignette inclinée en 3D | aucun réseau |
-| Cliquer une carte | `navigation` | transition de vue, seule la colonne centrale change | article chargé ; échec → navigation classique |
+| Survoler un poste | `survol` | titre teinté ; le marqueur de sujet reste le seul élément coloré | aucun réseau |
+| Cliquer un poste | `navigation` | transition de vue, seule la colonne centrale change | article chargé ; échec → navigation classique |
+| Puce « avis / commentaires » | `navigation` | mène à la section précise de l'article (#votes, #discussion) | — |
 
 ## Article
 

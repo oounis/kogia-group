@@ -21,13 +21,15 @@
 <link rel="stylesheet" href="assets/kogia.css">
 </head>
 <body>
+<!-- La baleine est la signature de la marque : elle vit ici, dans la barre du
+     haut, et nulle part ailleurs. Pas d'avatar répété, pas de décor. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F57DE"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
-  <linearGradient id="trait" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#A5AAF7"/></linearGradient>
   <g id="whale"><path fill="url(#wg)" fill-rule="evenodd" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="url(#wg)" stroke-width="4" stroke-linecap="round" opacity=".9"/></g>
 </defs></svg>
 
-<div class="top"><div class="top-in">
+<!-- ═══ BARRE DU HAUT — une seule ligne, à toute taille ═══ -->
+<header class="top"><div class="top-in">
   <a class="marque" href="/" aria-label="Kogia — accueil">
     <svg viewBox="0 0 132 96"><use href="#whale"/></svg><b>Kogia</b>
   </a>
@@ -35,40 +37,21 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input type="search" id="q" placeholder="Rechercher une idée" aria-label="Rechercher une idée">
   </div>
-  <div class="top-actions">
-    <a class="lien-discret" href="#solutions">Solutions</a>
-    <a class="bouton clair" href="#contact">Nous écrire</a>
-  </div>
-</div></div>
+  <a class="bouton clair top-cta" href="#contact" aria-label="Nous écrire">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+    <span>Nous écrire</span>
+  </a>
+</div></header>
 
-<div class="page">
+<!-- ═══ LE FLUX — la page EST le flux ═══
+     Pas de héros, pas de rail : le premier titre d'idée est visible dans le
+     premier écran, même sur téléphone. C'est la règle numéro un. -->
+<main class="page" id="centre">
+  <h1 class="titre-page">Bibliothèque d'idées</h1>
 
-  <!-- ═══ RAIL GAUCHE ═══ -->
-  <nav class="rail-g" aria-label="Navigation">
-    <a class="rail-lien" href="/">
-      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21H3z"/></svg>Accueil</a>
-    <a class="rail-lien" href="/">
-      <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>Idées</a>
-    <a class="rail-lien" href="#solutions">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Solutions</a>
-    <a class="rail-lien" href="#apropos">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>À propos</a>
-    <div class="rail-sep"></div>
-    <p class="rail-note">Une idée par semaine, explorée jusqu'au bout.</p>
-  </nav>
-
-  <!-- ═══ COLONNE CENTRALE ═══ -->
-  <main class="flux" id="centre">
-    <h1 class="titre-page">Bibliothèque d'idées</h1>
-    <!-- À la une : la dernière idée, en grand. Une publication ouvre sur du
-         contenu, pas sur un manifeste — le lecteur vient pour lire, pas pour
-         qu'on lui explique la maison. Construite depuis idees.json. -->
-    <div id="lead"></div>
-
-    <!-- Des boutons-filtres, pas des onglets ARIA : il n'y a pas de tabpanel
-         derrière, et « Pour vous » sans personnalisation était un mensonge —
-         le tri est chronologique, il s'appelle donc « Toutes ». Les sujets
-         sans idée publiée sont masqués au chargement : pas d'étagère vide. -->
+  <div class="controles">
+    <!-- Des boutons-filtres, pas des onglets ARIA : il n'y a pas de tabpanel.
+         Les sujets sans idée publiée sont masqués au chargement. -->
     <div class="onglets" aria-label="Filtrer par sujet">
       <button class="onglet actif" aria-pressed="true" data-f="tous">Toutes</button>
       <button class="onglet" aria-pressed="false" data-f="Technologie">Technologie</button>
@@ -77,64 +60,21 @@
       <button class="onglet" aria-pressed="false" data-f="Fintech">Fintech</button>
       <button class="onglet" aria-pressed="false" data-f="Quotidien">Quotidien</button>
     </div>
-    <!-- Classer par conversation, jamais par approbation : « populaires »
-         serait le classement de popularité que la charte refuse. Masqué tant
-         que les compteurs n'ont pas répondu — trier sur rien n'a pas de sens. -->
-    <!-- Visible dès le départ : son apparition tardive déplaçait la mise en
-         page, et ce déplacement ANNULAIT le défilement doux vers #contact —
-         le trajet « Nous écrire » mourait dans un détail de layout. -->
+    <!-- Classer par conversation, jamais par approbation. Visible dès le
+         départ : son apparition tardive déplaçait la mise en page. -->
     <div class="tris">
       <button class="tri actif" data-tri="recentes">Récentes</button>
       <button class="tri" data-tri="discutees">Plus discutées</button>
     </div>
-    <div id="flux" aria-live="polite"></div>
-  </main>
+  </div>
 
-  <!-- ═══ RAIL DROIT ═══ -->
-  <aside class="rail-d">
-    <div class="bloc">
-      <p class="bloc-t">Kogia</p>
-      <p>Une aventure technologique indépendante, menée par Othman Ounis depuis la Tunisie et Bahreïn. On explore des idées, et on construit celles qui méritent d'exister.</p>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Sujets</p>
-      <div class="sujets">
-        <button class="sujet" data-f="Technologie">Technologie</button>
-        <button class="sujet" data-f="Business">Business</button>
-        <button class="sujet" data-f="Éducation">Éducation</button>
-        <button class="sujet" data-f="Fintech">Fintech</button>
-        <button class="sujet" data-f="Quotidien">Quotidien</button>
-      </div>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Ce qu'on a construit</p>
-      <div class="prod"><div class="prod-p">C</div><div><div class="prod-n">Coreon EDU</div><div class="prod-d">Gestion scolaire · en production</div></div></div>
-      <div class="prod"><div class="prod-p f">F</div><div><div class="prod-n">Faz3a</div><div class="prod-d">Action citoyenne · en construction</div></div></div>
-      <div class="prod"><div class="prod-p s">K</div><div><div class="prod-n">Suite Kogia</div><div class="prod-d">Finance, CRM, RH · en préparation</div></div></div>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Un projet en tête ?</p>
-      <p style="margin-bottom:.9rem">Application, site, plateforme — ou une idée lue ici. Je réponds personnellement.</p>
-      <a class="bouton" href="mailto:contact@kogiagroup.com">Écrire à Kogia</a>
-    </div>
-
-    <div class="rail-pied">
-      <a href="#apropos">À propos</a><a href="mailto:contact@kogiagroup.com">Contact</a>
-      <a href="https://edu.kogiagroup.com" rel="nofollow">Coreon</a>
-      <span>© 2026 KogiaGroup</span>
-    </div>
-  </aside>
-</div>
-
+  <div id="flux" aria-live="polite"></div>
+</main>
 
 <!-- ═══ PIED DE PAGE ═══
-     Les liens « Solutions » et « Nous écrire » du haut visaient des blocs du
-     rail droit — un rail masqué sur les articles et sous 1180 px : le lecteur
-     tapait une commande visible et atterrissait sur un élément caché. Les
-     cibles vivent désormais ici, rendues sur chaque page, à chaque taille. -->
+     Les cibles réelles de « Solutions » et « Nous écrire », rendues sur
+     chaque page à chaque taille. Le produit se présente ici, après les
+     idées — jamais à côté d'elles. -->
 <footer class="pied">
   <div class="pied-in">
     <div class="pied-bloc" id="apropos">

@@ -9,7 +9,8 @@
       "pays": "Tunisie",
       "date": "2026-08-12",
       "lecture": 7,
-      "couleur": "cyan"
+      "couleur": "cyan",
+      "signal": "Verdict Kogia : tout dépend d'une seule question — l'école paie-t-elle au réel, ou au forfait ?"
     },
     {
       "slug": "caisse-sans-caissier",
@@ -19,7 +20,8 @@
       "pays": "Tunisie",
       "date": "2026-08-10",
       "lecture": 12,
-      "couleur": "indigo"
+      "couleur": "indigo",
+      "signal": "Verdict Kogia : non pour la grande distribution — oui pour un site fermé de 200 à 500 personnes"
     },
     {
       "slug": "tontine-numerique",
@@ -29,7 +31,8 @@
       "pays": "Tunisie",
       "date": "2026-08-08",
       "lecture": 11,
-      "couleur": "violet"
+      "couleur": "violet",
+      "signal": "Risque principal : sans la garantie sociale, l'application devient un organisme de crédit non déclaré"
     }
   ]
 }

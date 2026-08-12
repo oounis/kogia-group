@@ -26,7 +26,7 @@
   <g id="whale"><path fill="url(#wg)" fill-rule="evenodd" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="url(#wg)" stroke-width="4" stroke-linecap="round" opacity=".9"/></g>
 </defs></svg>
 
-<div class="top"><div class="top-in">
+<header class="top"><div class="top-in">
   <a class="marque" href="/" aria-label="Kogia — accueil">
     <svg viewBox="0 0 132 96"><use href="#whale"/></svg><b>Kogia</b>
   </a>
@@ -34,36 +34,22 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input type="search" id="q" placeholder="Rechercher une idée" aria-label="Rechercher une idée">
   </div>
-  <div class="top-actions">
-    <a class="lien-discret" href="#solutions">Solutions</a>
-    <a class="bouton clair" href="#contact">Nous écrire</a>
-  </div>
-</div></div>
+  <a class="bouton clair top-cta" href="#contact" aria-label="Nous écrire">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+    <span>Nous écrire</span>
+  </a>
+</div></header>
 
-<div class="page page--article">
-<div class="progres" aria-hidden="true"></div>
-
-  <!-- ═══ RAIL GAUCHE ═══ -->
-  <nav class="rail-g" aria-label="Navigation">
-    <a class="rail-lien" href="/">
-      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21H3z"/></svg>Accueil</a>
-    <a class="rail-lien" href="/">
-      <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>Idées</a>
-    <a class="rail-lien" href="#solutions">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Solutions</a>
-    <a class="rail-lien" href="#apropos">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>À propos</a>
-    <div class="rail-sep"></div>
-    <p class="rail-note">Une idée par semaine, explorée jusqu'au bout.</p>
-  </nav>
+<div class="page page--article" data-cat="Fintech">
 
   <!-- ═══ COLONNE CENTRALE ═══ -->
-  <main class="flux" id="centre">
+  <main id="centre">
+<div class="progres" aria-hidden="true"></div>
 <article>
   <div class="art-wrap art-tete">
     <a class="retour" href="../index.html#idees">← Toutes les idées</a>
     <div class="art-meta">
-      <span class="idee-cat"><span aria-hidden="true">💳</span>Fintech</span>
+      <span class="idee-cat">Fintech</span>
       <span class="idee-pays">Tunisie</span>
       <span class="par">Othman Ounis</span><span class="comm-date">8 août 2026 · 11 min de lecture</span>
     </div>
@@ -171,14 +157,22 @@
 
   <div class="art-wrap">
     <!-- ═══ Votes ═══ -->
-    <section class="votes" data-slug="tontine-numerique">
+    <section class="votes" id="votes" data-slug="tontine-numerique">
       <h3>Qu'en pensez-vous ?</h3>
       <p class="votes-intro">Un clic suffit. Les résultats sont visibles par tout le monde.</p>
       <div class="votes-grille">
-        <button class="vote" data-choix="marcherait" aria-pressed="false"><span class="vote-emo" aria-hidden="true">🚀</span><span class="vote-txt">Ça marcherait</span><span class="vote-n" data-n="marcherait" data-affiche="0">0</span></button>
-        <button class="vote" data-choix="marcherait_pas" aria-pressed="false"><span class="vote-emo" aria-hidden="true">🤔</span><span class="vote-txt">Ça ne marcherait pas</span><span class="vote-n" data-n="marcherait_pas" data-affiche="0">0</span></button>
-        <button class="vote" data-choix="utiliserais" aria-pressed="false"><span class="vote-emo" aria-hidden="true">🙋</span><span class="vote-txt">Je l'utiliserais</span><span class="vote-n" data-n="utiliserais" data-affiche="0">0</span></button>
-        <button class="vote" data-choix="investirais" aria-pressed="false"><span class="vote-emo" aria-hidden="true">💸</span><span class="vote-txt">J'y investirais</span><span class="vote-n" data-n="investirais" data-affiche="0">0</span></button>
+        <button class="vote" data-choix="marcherait" aria-pressed="false">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.3 2.3L15.5 10"/></svg>
+          <span class="vote-txt">Ça marcherait</span><b class="vote-n" data-n="marcherait" data-affiche="0">0</b></button>
+        <button class="vote" data-choix="marcherait_pas" aria-pressed="false">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9.2 9.2 5.6 5.6M14.8 9.2l-5.6 5.6"/></svg>
+          <span class="vote-txt">Ça ne marcherait pas</span><b class="vote-n" data-n="marcherait_pas" data-affiche="0">0</b></button>
+        <button class="vote" data-choix="utiliserais" aria-pressed="false">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          <span class="vote-txt">Je l'utiliserais</span><b class="vote-n" data-n="utiliserais" data-affiche="0">0</b></button>
+        <button class="vote" data-choix="investirais" aria-pressed="false">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="11" rx="2"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6.5 7V5.5h11V7"/></svg>
+          <span class="vote-txt">J'y investirais</span><b class="vote-n" data-n="investirais" data-affiche="0">0</b></button>
       </div>
       <p class="votes-etat" role="status"></p>
     </section>
@@ -186,7 +180,7 @@
 <section id="connexes" class="connexes"></section>
 
         <!-- ═══ Commentaires ═══ -->
-    <section class="comm" data-slug="tontine-numerique">
+    <section class="comm" id="discussion" data-slug="tontine-numerique">
       <h3>Discussion <span class="comm-n" data-comm-n>—</span></h3>
       <p class="comm-intro">Dites ce qui cloche, ce qui manque, ce que vous avez déjà essayé. Pas de compte à créer.</p>
       <form class="comm-form" novalidate>
@@ -205,43 +199,6 @@
 </article>
 </main>
 
-  <!-- ═══ RAIL DROIT ═══ -->
-  <aside class="rail-d">
-    <div class="bloc">
-      <p class="bloc-t">Kogia</p>
-      <p>Une aventure technologique indépendante, menée par Othman Ounis depuis la Tunisie et Bahreïn. On explore des idées, et on construit celles qui méritent d'exister.</p>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Sujets</p>
-      <div class="sujets">
-        <button class="sujet" data-f="Technologie">Technologie</button>
-        <button class="sujet" data-f="Business">Business</button>
-        <button class="sujet" data-f="Éducation">Éducation</button>
-        <button class="sujet" data-f="Fintech">Fintech</button>
-        <button class="sujet" data-f="Quotidien">Quotidien</button>
-      </div>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Ce qu'on a construit</p>
-      <div class="prod"><div class="prod-p">C</div><div><div class="prod-n">Coreon EDU</div><div class="prod-d">Gestion scolaire · en production</div></div></div>
-      <div class="prod"><div class="prod-p f">F</div><div><div class="prod-n">Faz3a</div><div class="prod-d">Action citoyenne · en construction</div></div></div>
-      <div class="prod"><div class="prod-p s">K</div><div><div class="prod-n">Suite Kogia</div><div class="prod-d">Finance, CRM, RH · en préparation</div></div></div>
-    </div>
-
-    <div class="bloc">
-      <p class="bloc-t">Un projet en tête ?</p>
-      <p style="margin-bottom:.9rem">Application, site, plateforme — ou une idée lue ici. Je réponds personnellement.</p>
-      <a class="bouton" href="mailto:contact@kogiagroup.com">Écrire à Kogia</a>
-    </div>
-
-    <div class="rail-pied">
-      <a href="#apropos">À propos</a><a href="mailto:contact@kogiagroup.com">Contact</a>
-      <a href="https://edu.kogiagroup.com" rel="nofollow">Coreon</a>
-      <span>© 2026 KogiaGroup</span>
-    </div>
-  </aside>
 </div>
 
 

@@ -4,12 +4,13 @@
    divergé (le fondu des compteurs n'existait que dans les articles).
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Emoji de catégorie — purement décoratif : il double une information déjà
-   écrite en toutes lettres à côté. Toujours aria-hidden, jamais seul porteur
-   de sens, jamais plus d'un à la suite. */
-const EMO = { 'Technologie':'\u2699\uFE0F', 'Business':'\uD83D\uDCC8', '\u00C9ducation':'\uD83C\uDF93',
-              'Fintech':'\uD83D\uDCB3', 'Quotidien':'\uD83E\uDDED' };
-const emo = c => EMO[c] || '\uD83D\uDCA1';
+/* Un seul langage d'icônes : SVG en ligne, grille 24, trait 1.8. L'emoji
+   n'est plus une structure d'interface — il peut vivre DANS un article, en
+   contenu, jamais comme icône de catégorie ou de vote. */
+const IC = {
+  avis: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>',
+  comm: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>',
+};
 
 
 const API = 'https://kogia-site-api.onrender.com';
@@ -57,120 +58,8 @@ function poserCompteur(el, v){
   el.dataset.raf = requestAnimationFrame(image);
 }
 
-/* Teintes de l'à-la-une, par catégorie : la même famille que les vignettes,
-   pour que la page entière parle d'une seule voix. */
-const TEINTES = {
-  'Technologie': ['rgba(79,87,222,.62)',  'rgba(109,111,240,.45)'],
-  'Business':    ['rgba(20,50,80,.70)',   'rgba(44,74,102,.45)'],
-  'Éducation':   ['rgba(14,116,144,.62)', 'rgba(34,211,238,.42)'],
-  'Fintech':     ['rgba(109,40,217,.62)', 'rgba(167,139,250,.42)'],
-  'Quotidien':   ['rgba(194,65,12,.58)',  'rgba(249,115,22,.40)'],
-};
 
-/* Le plancton : le fond vivant de l'abysse. L'audit du 2026-08-13 l'avait
-   fait retirer parce qu'il fuyait — un écouteur resize et un observer
-   empilés à chaque navigation interne. Il revient en singleton : une seule
-   instance, nettoyée avant chaque reconstruction. La vie, sans la fuite. */
-let oceanNettoie = null;
-function demarrerOcean(lead){
-  if (oceanNettoie) oceanNettoie();
-  if (moinsDeMouvement()) return;
-  const cv = document.createElement('canvas');
-  cv.className = 'lead-fond'; cv.setAttribute('aria-hidden', 'true');
-  lead.prepend(cv);
-  const ctx = cv.getContext('2d');
-  let parts = [], larg = 0, haut = 0, boucle = 0;
-  const dim = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    const r = lead.getBoundingClientRect(); if (!r.width) return;
-    larg = r.width; haut = r.height;
-    cv.width = Math.round(larg * dpr); cv.height = Math.round(haut * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    parts = Array.from({ length: Math.round(Math.min(70, larg * haut / 9000)) }, () => ({
-      x: Math.random() * larg, y: Math.random() * haut,
-      r: .7 + Math.random() * 2.1,
-      vx: (Math.random() - .5) * .12, vy: -.08 - Math.random() * .22,
-      a: .12 + Math.random() * .4,
-    }));
-  };
-  const image = () => {
-    ctx.clearRect(0, 0, larg, haut);
-    for (const p of parts) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.y < -6) { p.y = haut + 6; p.x = Math.random() * larg; }
-      if (p.x < -6) p.x = larg + 6; else if (p.x > larg + 6) p.x = -6;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(160,220,255,${p.a})`; ctx.fill();
-    }
-    boucle = requestAnimationFrame(image);
-  };
-  dim(); image();
-  addEventListener('resize', dim, { passive: true });
-  const obs = new IntersectionObserver(([e]) => {
-    cancelAnimationFrame(boucle);
-    if (e.isIntersecting) boucle = requestAnimationFrame(image);
-  }, { threshold: 0 });
-  obs.observe(lead);
-  oceanNettoie = () => {
-    cancelAnimationFrame(boucle); obs.disconnect();
-    removeEventListener('resize', dim); cv.remove(); oceanNettoie = null;
-  };
-}
 
-/* Le relief sous le curseur : la carte suit la souris sur deux axes.
-   interaction → état (--rx/--ry) → interpolation CSS → retour visuel.
-   Pointeur fin seulement — un pouce n'a pas de position de survol. */
-function demarrerRelief(zone){
-  if (moinsDeMouvement() || !matchMedia('(pointer:fine)').matches) return;
-  zone.querySelectorAll('.carte, .connexe').forEach(c => {
-    c.addEventListener('mousemove', e => {
-      const r = c.getBoundingClientRect();
-      c.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -3.2 + 'deg');
-      c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 3.6 + 'deg');
-    }, { passive: true });
-    c.addEventListener('mouseleave', () => {
-      c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg');
-    });
-  });
-}
-
-/* ═══ À la une ═══════════════════════════════════════════════════════════
-   La baleine se trace (`stroke-dasharray` = getTotalLength, même principe
-   que le périmètre 2 × π × r) sur l'aurore de sa catégorie. */
-function poserLead(idee){
-  const hote = document.getElementById('lead');
-  if (!hote || !idee) return;
-  const [a, b] = TEINTES[idee.categorie] || TEINTES['Technologie'];
-
-  hote.innerHTML = `<a class="lead" href="idees/${esc(idee.slug)}.html"
-      data-slug="${esc(idee.slug)}" style="--teinte-a:${a};--teinte-b:${b}">
-    <svg class="lead-baleine" viewBox="0 0 132 96" aria-hidden="true">
-      <path class="trace" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
-      <path class="trace jet" d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6"/>
-    </svg>
-    <span class="lead-emo" aria-hidden="true">${emo(idee.categorie)}</span>
-    <div class="lead-texte">
-      <p class="lead-oeil">À la une</p>
-      <h2 class="lead-titre">${esc(idee.titre)}</h2>
-      <p class="lead-sous">${esc(idee.resume)}</p>
-      <div class="lead-bas">
-        <span class="etiq">${esc(idee.categorie)}</span>
-        ${idee.pays ? `<span class="etiq">${esc(idee.pays)}</span>` : ''}
-        <span>${idee.lecture || 6} min de lecture</span>
-        <span class="signal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
-          <b data-votes data-affiche="0">—</b><span class="hors-ecran"> avis</span></span>
-        <span class="signal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
-          <b data-comms data-affiche="0">—</b><span class="hors-ecran"> commentaires</span></span>
-      </div>
-    </div>
-  </a>`;
-
-  const lead = hote.firstElementChild;
-  lead.querySelectorAll('.trace').forEach(chemin => {
-    chemin.style.setProperty('--long', chemin.getTotalLength().toFixed(1));
-  });
-  demarrerOcean(lead);
-}
 
 async function demarrerFlux(){
   const flux = document.getElementById('flux');
@@ -210,31 +99,27 @@ async function demarrerFlux(){
     return;
   }
 
-  const carte = i => `<a class="carte" href="idees/${esc(i.slug)}.html" data-cat="${esc(i.categorie)}"
-      data-slug="${esc(i.slug)}" data-date="${esc(i.date)}"
+  // Le poste : marqueur de catégorie · méta groupée · titre · prémisse ·
+  // signal éditorial · barre d'actions. Chaque unité visuelle a un travail ;
+  // ce qui n'aide pas à choisir n'existe pas (pays, badge, tuile, emoji).
+  const carte = i => `<article class="poste" data-cat="${esc(i.categorie)}" data-slug="${esc(i.slug)}"
+      data-date="${esc(i.date)}"
       data-q="${esc((i.titre + ' ' + (i.resume||'') + ' ' + (i.categorie||'') + ' ' + (i.pays||'')).toLowerCase())}">
-    <div>
-      <div class="carte-meta">
-        <span class="pastille"><svg viewBox="0 0 132 96"><use href="#whale"/></svg></span>
-        <span>Kogia</span><span aria-hidden="true">·</span><span>${moisFr(i.date)}</span>
-        <span aria-hidden="true">·</span><span>${i.lecture || 6} min de lecture</span>
-      </div>
-      <h2 class="carte-titre">${esc(i.titre)}</h2>
-      <p class="carte-sous">${esc(i.resume)}</p>
-      <div class="carte-bas">
-        <span class="etiq"><span aria-hidden="true">${emo(i.categorie)}</span>${esc(i.categorie || 'Idée')}</span>
-        ${(Date.now() - new Date(i.date + 'T00:00:00')) < 7 * 864e5 ? '<span class="etiq neuf">Nouvelle</span>' : ''}
-        ${i.pays ? `<span class="etiq">${esc(i.pays)}</span>` : ''}
-        <span class="signal" title="Avis donnés sur cette idée">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
-          <b data-votes data-affiche="0">—</b><span class="hors-ecran"> avis</span></span>
-        <span class="signal" title="Commentaires">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
-          <b data-comms data-affiche="0">—</b><span class="hors-ecran"> commentaires</span></span>
-      </div>
+    <a class="poste-lien" href="idees/${esc(i.slug)}.html">
+      <p class="poste-meta"><span class="poste-cat">${esc(i.categorie || 'Idée')}</span>
+        <span aria-hidden="true">·</span><span>${moisFr(i.date)}</span>
+        <span aria-hidden="true">·</span><span>${i.lecture || 6} min</span></p>
+      <h2 class="poste-titre">${esc(i.titre)}</h2>
+      <p class="poste-resume">${esc(i.resume)}</p>
+    </a>
+    ${i.signal ? `<p class="poste-signal">${esc(i.signal)}</p>` : ''}
+    <div class="poste-actions">
+      <a class="chip" href="idees/${esc(i.slug)}.html#votes" title="Donner un avis">
+        ${IC.avis}<b data-votes data-affiche="0">—</b><span>avis</span></a>
+      <a class="chip" href="idees/${esc(i.slug)}.html#discussion" title="Lire la discussion">
+        ${IC.comm}<b data-comms data-affiche="0">—</b><span>commentaires</span></a>
     </div>
-    <div class="vignette"><span class="emo" aria-hidden="true">${emo(i.categorie)}</span></div>
-  </a>`;
+  </article>`;
 
   const VIDE = `<div class="vide">
       <p class="vide-t">La première idée arrive bientôt.</p>
@@ -248,7 +133,7 @@ async function demarrerFlux(){
     // jamais par score d'approbation. Un classement par popularité est
     // exactement le mécanisme que la charte refuse.
     const n = el => Number(el.querySelector('[data-comms]')?.dataset.n || 0);
-    const cartes = [...flux.querySelectorAll('.carte')];
+    const cartes = [...flux.querySelectorAll('.poste')];
     cartes.sort((a, b) => tri === 'discutees'
       ? n(b) - n(a) || b.dataset.date.localeCompare(a.dataset.date)
       : b.dataset.date.localeCompare(a.dataset.date));
@@ -263,10 +148,7 @@ async function demarrerFlux(){
   });
 
   const parDate = idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
-  poserLead(parDate[0]);
-  // La première idée est déjà en grand au-dessus : la répéter dans la liste
-  // ferait doublon dès la première ligne.
-  flux.innerHTML = parDate.length ? parDate.slice(1).map(carte).join('') : VIDE;
+  flux.innerHTML = parDate.length ? parDate.map(carte).join('') : VIDE;
   const onglets = document.querySelector('.onglets');
   if (!idees.length && onglets) onglets.style.display = 'none';
 
@@ -276,7 +158,7 @@ async function demarrerFlux(){
   if (idees.length) {
     fetch(`${API}/idees/compteurs`).then(r => r.ok ? r.json() : null).then(d => {
       if (!d) throw new Error('vide');
-      document.querySelectorAll('.carte, .lead').forEach(c => {
+      document.querySelectorAll('.poste').forEach(c => {
         const s = d.compteurs?.[c.dataset.slug] || { votes: 0, commentaires: 0 };
         const v = c.querySelector('[data-votes]'), m = c.querySelector('[data-comms]');
         v.dataset.n = s.votes; m.dataset.n = s.commentaires;
@@ -291,12 +173,10 @@ async function demarrerFlux(){
     });
   }
 
-  demarrerRelief(document);
-
   let filtre = 'tous', recherche = '';
   function appliquer() {
     let n = 0;
-    flux.querySelectorAll('.carte').forEach(el => {
+    flux.querySelectorAll('.poste').forEach(el => {
       const ok = (filtre === 'tous' || el.dataset.cat === filtre)
               && (!recherche || el.dataset.q.includes(recherche));
       el.hidden = !ok;
@@ -327,26 +207,6 @@ async function demarrerFlux(){
   }));
   const q = document.getElementById('q');
   if (q) q.addEventListener('input', e => { recherche = e.target.value.trim().toLowerCase(); appliquer(); });
-}
-
-/* Étincelles : six copies du glyphe qui montent et s'effacent, chacune avec
-   son décalage et son retard. Créées, animées, puis retirées du document —
-   rien ne s'accumule. Le mouvement ample (380 ms) est réservé à ça : une
-   réponse donnée, c'est un résultat, pas une action ordinaire. */
-function etincelles(bouton){
-  if (moinsDeMouvement()) return;
-  const glyphe = bouton.querySelector('.vote-emo')?.textContent || '\u2728';
-  for (let i = 0; i < 6; i++) {
-    const s = document.createElement('span');
-    s.className = 'etincelle';
-    s.textContent = glyphe;
-    s.setAttribute('aria-hidden', 'true');
-    s.style.setProperty('--dx', (Math.random() * 72 - 36).toFixed(0) + 'px');
-    s.style.animationDelay = (i * 45) + 'ms';
-    s.style.fontSize = (0.7 + Math.random() * 0.7).toFixed(2) + 'rem';
-    bouton.appendChild(s);
-    s.addEventListener('animationend', () => s.remove());
-  }
 }
 
 /* Copier le lien : le retour doit être dans le bouton lui-même, sinon on ne
@@ -389,23 +249,21 @@ async function demarrerConnexes(){
     idees = ((await r.json()).idees || []).filter(i => !i.brouillon && i.slug !== ici);
   } catch { return; }
   if (!idees.length) return;                 // rien à proposer : pas de section vide
-  const moi = document.querySelector('.idee-cat')?.textContent.replace(/[^\p{L} ]/gu,'').trim();
+  const moi = document.querySelector('.idee-cat')?.textContent.trim();
   idees.sort((a, b) => (b.categorie === moi) - (a.categorie === moi)
                     || (b.date || '').localeCompare(a.date || ''));
   hote.innerHTML = `<h3>À lire ensuite</h3>
-    <div class="connexes-grille">${idees.slice(0, 3).map(i => `
+    ${idees.slice(0, 3).map(i => `
       <a class="connexe" href="${esc(i.slug)}.html" data-cat="${esc(i.categorie)}">
-        <span class="connexe-emo" aria-hidden="true">${emo(i.categorie)}</span>
         <span class="connexe-cat">${esc(i.categorie)}</span>
         <span class="connexe-titre">${esc(i.titre)}</span>
-        <span class="connexe-bas">${i.lecture || 6} min de lecture</span>
-      </a>`).join('')}</div>`;
+        <span class="connexe-bas">${i.lecture || 6} min de lecture${i.signal ? ' · ' + esc(i.signal) : ''}</span>
+      </a>`).join('')}`;
 }
 
 async function demarrerArticle(){
   demarrerPartage();
   await demarrerConnexes();
-  demarrerRelief(document);
   const dateFr = s => { const d = new Date(s); return isNaN(d) ? '' :
     d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) + ' à ' +
     d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); };
@@ -439,7 +297,7 @@ async function demarrerArticle(){
       if (b.classList.contains('choisi')) return;          // déjà répondu : rien à refaire
       // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
       b.classList.add('choisi'); b.setAttribute('aria-pressed', 'true');
-      etincelles(b); b.disabled = true;
+      b.disabled = true;
       if (etat) { etat.textContent = ''; etat.className = 'votes-etat'; }
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',
@@ -540,6 +398,10 @@ async function demarrerArticle(){
       const echanger = () => {
         centre.innerHTML = neuf.innerHTML;
         gabarit(doc.querySelector('.page')?.classList.contains('page--article'));
+        // La couleur de sujet suit la page : sans elle, l'étiquette de
+        // catégorie retomberait sur l'indigo par défaut après navigation.
+        const cat = doc.querySelector('.page')?.dataset.cat || '';
+        document.querySelector('.page')?.setAttribute('data-cat', cat);
       };
       if (document.startViewTransition && !reduit()) await document.startViewTransition(echanger).updateCallbackDone;
       else echanger();
@@ -599,15 +461,6 @@ async function demarrerArticle(){
 function demarrer(){
   if (document.getElementById('flux')) demarrerFlux();
   if (document.querySelector('.votes')) demarrerArticle();
-  // Une seule entrée active : « Accueil » et « Idées » pointent tous deux vers
-  // la même vue, et les deux s'allumaient en même temps.
-  const surAccueil = location.pathname === '/' || location.pathname.endsWith('index.html');
-  let deja = false;
-  document.querySelectorAll('.rail-lien').forEach(l => {
-    const actif = !deja && surAccueil && l.getAttribute('href') === '/';
-    l.classList.toggle('actif', actif);
-    if (actif) deja = true;
-  });
 }
 document.addEventListener('DOMContentLoaded', demarrer);
 
