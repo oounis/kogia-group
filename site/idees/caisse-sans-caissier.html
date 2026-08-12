@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>La cantine scolaire qui ne jette plus rien — Kogia</title>
-<meta name="description" content="Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.">
-<link rel="canonical" href="https://kogiagroup.com/idees/cantine-scolaire-zero-gaspillage.html">
+<title>Sortir du supermarché sans passer en caisse — Kogia</title>
+<meta name="description" content="Le client scanne avec son téléphone et s'en va. Ce que ça demande vraiment, et le taux de vol qui décide de tout.">
+<link rel="canonical" href="https://kogiagroup.com/idees/caisse-sans-caissier.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kogiagroup.com/">
-<meta property="og:title" content="La cantine scolaire qui ne jette plus rien — Kogia">
-<meta property="og:description" content="Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.">
+<meta property="og:title" content="Sortir du supermarché sans passer en caisse — Kogia">
+<meta property="og:description" content="Le client scanne avec son téléphone et s'en va. Ce que ça demande vraiment, et le taux de vol qui décide de tout.">
 <meta property="og:image" content="https://kogiagroup.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%230E2135'/%3E%3C/svg%3E">
@@ -147,12 +147,12 @@ button{font-family:inherit}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 /* ═══ Page d'article ═══ */
-.art-wrap{max-width:760px;margin:0 auto;padding:0 1.2rem}
-.art-tete{padding:3.5rem 0 2rem}
+.art-wrap{max-width:100%}   /* la colonne centrale gère déjà la largeur */
+.art-tete{padding:.5rem 0 1.8rem}
 .art-meta{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1rem}
-.art-h1{font:800 clamp(1.9rem,4.5vw,2.9rem)/1.15 var(--disp);color:var(--ink);letter-spacing:-.02em}
-.art-resume{font-size:1.12rem;line-height:1.65;color:var(--slate);margin-top:1rem}
-.art-corps{font-size:1.04rem;line-height:1.8;color:var(--ink);padding-bottom:2rem}
+.art-h1{font:800 clamp(1.75rem,3.2vw,2.35rem)/1.2 var(--disp);color:var(--ink);letter-spacing:-.02em}
+.art-resume{font-size:1.06rem;line-height:1.6;color:var(--slate);margin-top:.85rem}
+.art-corps{font-size:1.05rem;line-height:1.75;color:var(--ink);padding-bottom:1rem}
 .art-corps h2{font:700 1.6rem/1.25 var(--disp);color:var(--ink);margin:2.4rem 0 .8rem}
 .art-corps h3{font:700 1.2rem/1.3 var(--disp);color:var(--ink);margin:1.8rem 0 .6rem}
 .art-corps p{margin-bottom:1.1rem}
@@ -164,8 +164,8 @@ button{font-family:inherit}
 .art-corps blockquote{border-left:4px solid var(--indigo);background:var(--canvas);padding:1rem 1.3rem;
   border-radius:0 14px 14px 0;margin:1.4rem 0;color:var(--ink)}
 /* Étiquettes d'honnêteté : la règle éditoriale rendue visible */
-.tag{display:inline-block;font:800 .66rem/1 var(--text);letter-spacing:.1em;text-transform:uppercase;
-  padding:.32rem .6rem;border-radius:6px;margin-right:.4rem;vertical-align:middle}
+.tag{display:inline-block;font:800 .64rem/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
+  padding:.3rem .55rem;border-radius:5px;margin-right:.5rem;vertical-align:.08em;white-space:nowrap}
 .tag.fait{background:#DCFCE7;color:#027A48} .tag.estim{background:#FEF3C7;color:#B54A0A}
 .tag.hypo{background:#EDE9FE;color:#6D28D9} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
 /* Votes */
@@ -208,6 +208,24 @@ button{font-family:inherit}
 .etape b{display:block;font:700 .96rem/1.4 var(--text);color:var(--ink)}
 .etape p{font-size:.9rem;line-height:1.55;color:var(--slate);margin:.2rem 0 0}
 .fleche{color:var(--indigo);font-size:1.1rem;margin:.45rem 0 .45rem 13px;line-height:1}
+
+/* ═══ Micro-interactions (étude 2026-08-12) ═══
+   Jetons de durée : instant 80-120ms (appui) · quick 160-200ms (confirmation,
+   compteur) · standard 220-280ms · emphasis 320-450ms (réservé à l'arrivée
+   Faz3a). Le retour visuel arrive AVANT la réponse réseau : un clic ne doit
+   jamais sembler ignoré. */
+.vote{transition:transform .12s var(--ease),background .16s var(--ease),border-color .16s var(--ease)}
+.vote:active{transform:scale(.98)}
+.vote-n{transition:opacity .18s var(--ease)}
+.vote-n.maj{opacity:0}                 /* fondu du compteur, pas de roulette */
+.vote.choisi .vote-n{color:var(--indigo-ink)}
+.comm-form button:active,.bouton:active{transform:scale(.98)}
+.comm-item{animation:entree .2s var(--ease)}   /* nouvel élément : fondu court */
+@keyframes entree{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .vote,.vote-n,.comm-item{transition:none;animation:none}
+  .vote:active,.bouton:active{transform:none}
+}
 </style>
 </head>
 <body>
@@ -252,50 +270,43 @@ button{font-family:inherit}
   <div class="art-wrap art-tete">
     <a class="retour" href="../index.html#idees">← Toutes les idées</a>
     <div class="art-meta">
-      <span class="idee-cat">Éducation</span>
+      <span class="idee-cat">Technologie</span>
       <span class="idee-pays">Tunisie</span>
-      <span class="comm-date">12 août 2026 · 7 min de lecture</span>
+      <span class="comm-date">10 août 2026 · 12 min de lecture</span>
     </div>
-    <h1 class="art-h1">La cantine scolaire qui ne jette plus rien</h1>
-    <p class="art-resume">Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.</p>
+    <h1 class="art-h1">Sortir du supermarché sans passer en caisse</h1>
+    <p class="art-resume">Le client scanne avec son téléphone et s'en va. Ce que ça demande vraiment, et le taux de vol qui décide de tout.</p>
   </div>
 
   <div class="art-wrap art-corps">
-<!-- ═══════════ CORPS DE L'ARTICLE — écrire ici ═══════════
-     Étiquettes d'honnêteté disponibles :
-       <span class="tag fait">Fait</span>       — vérifiable, avec source
-       <span class="tag estim">Estimation</span> — calculé, méthode expliquée
-       <span class="tag hypo">Hypothèse</span>   — supposé, non vérifié
-       <span class="tag avis">Avis Kogia</span>  — notre opinion assumée
-     Blocs utiles : <h2>, <h3>, <p>, <ul>, <table>, <blockquote>, <img>, <svg> (diagrammes)
--->
-
-<p><strong>Chaque matin, dans une école de 300 élèves, quelqu'un décide combien de repas préparer.</strong> Cette personne se base sur l'effectif inscrit. Pas sur les enfants réellement présents. L'écart part à la poubelle.</p>
+<p><strong>Vous entrez, vous prenez ce dont vous avez besoin, vous sortez.</strong> Aucune file, aucun tapis roulant, aucune caissière. La technologie existe depuis dix ans. Presque personne ne l'utilise. Cet article explique pourquoi — et dans quel cas ça devient rentable en Tunisie.</p>
 
 <h2>Le problème</h2>
 
-<p>Une cantine scolaire commande ses repas la veille, à partir du nombre d'élèves inscrits. Mais le jour venu, il en manque toujours : absences, sorties scolaires, enfants récupérés à midi. La cuisine a préparé pour 300, elle sert 260, et jette 40 repas.</p>
+<p>La caisse est le seul endroit du magasin où le client attend sans rien recevoir. C'est aussi le poste le plus coûteux du commerce de détail : des personnes payées à scanner des articles que le client vient déjà de mettre dans son panier, une deuxième fois.</p>
 
-<p><span class="tag estim">Estimation</span> À 2,5 DT le repas et 180 jours d'école, 40 repas perdus par jour représentent environ <strong>18 000 DT par an</strong> pour une seule école. Ce chiffre est un calcul, pas une mesure : il dépend entièrement du taux d'absence réel, que nous n'avons pas pu vérifier sur un échantillon d'écoles tunisiennes.</p>
+<p><span class="tag estim">Estimation</span> Dans une supérette tunisienne ouverte 12 heures par jour, deux postes de caisse tenus en rotation représentent environ <strong>3 à 4 salaires à temps plein</strong>. Ce chiffre vient du fonctionnement observé du secteur, pas d'un relevé comptable : il varie fortement selon l'horaire et le format du magasin.</p>
 
-<blockquote>Le gaspillage n'est pas un problème de cuisine. C'est un problème d'information : la cantine ne sait pas qui est là.</blockquote>
+<blockquote>Le client ne paie pas pour attendre. Le commerçant, lui, paie pour le faire attendre.</blockquote>
 
 <h2>L'idée</h2>
 
-<p>L'appel des présences est déjà fait chaque matin, en classe, souvent sur papier. L'information existe donc — elle n'arrive simplement jamais jusqu'à la cuisine, ou elle arrive trop tard.</p>
+<p>Le client scanne lui-même chaque article avec son téléphone au moment où il le prend. Le total se construit pendant les courses. À la sortie, il paie dans l'application et franchit un portique qui vérifie que le paiement est passé.</p>
 
-<p>L'idée tient en une phrase : <strong>connecter l'appel du matin à la commande de la cantine</strong>, avec une heure de décalage suffisante pour cuisiner.</p>
+<p>Ce n'est pas de la science-fiction, et ce n'est pas nouveau. <span class="tag fait">Fait</span> Sam's Club (groupe Walmart) exploite ce modèle sous le nom <em>Scan &amp; Go</em> depuis 2016. Decathlon fait mieux encore : ses articles portent une puce RFID, le portique lit tout le panier d'un coup, sans scanner un seul code-barres.</p>
+
+<p><span class="tag fait">Fait</span> Et le contre-exemple compte autant : Amazon a retiré en 2024 sa technologie <em>Just Walk Out</em> — caméras au plafond, aucun scan — de ses supermarchés Amazon Fresh, au profit de chariots équipés d'un scanner. La version la plus avancée techniquement est celle qui a reculé la première.</p>
 
 <h3>Comment ça marcherait</h3>
 
 <div class="schema">
-  <div class="etape"><span class="n">1</span><div><b>08h15 — L'appel</b><p>L'enseignant marque les présents sur son téléphone. Trente secondes.</p></div></div>
+  <div class="etape"><span class="n">1</span><div><b>À l'entrée</b><p>Le client ouvre l'application et scanne un code affiché à la porte. Le magasin sait qui est à l'intérieur.</p></div></div>
   <div class="fleche">↓</div>
-  <div class="etape"><span class="n">2</span><div><b>08h30 — Le total</b><p>Le système additionne toutes les classes et retire les enfants non inscrits à la cantine.</p></div></div>
+  <div class="etape"><span class="n">2</span><div><b>Dans les rayons</b><p>Chaque article scanné s'ajoute au panier. Le total est visible en permanence — c'est le seul vrai bénéfice ressenti par le client.</p></div></div>
   <div class="fleche">↓</div>
-  <div class="etape"><span class="n">3</span><div><b>08h35 — La cuisine</b><p>Le chef reçoit un nombre : « 264 repas aujourd'hui ». Il ajuste les quantités.</p></div></div>
+  <div class="etape"><span class="n">3</span><div><b>Le paiement</b><p>Un bouton. Carte enregistrée ou portefeuille mobile. Un code de sortie s'affiche.</p></div></div>
   <div class="fleche">↓</div>
-  <div class="etape"><span class="n">4</span><div><b>Fin de mois</b><p>La direction voit le gaspillage évité, en repas et en dinars.</p></div></div>
+  <div class="etape"><span class="n">4</span><div><b>La sortie</b><p>Le portique lit le code. Un agent contrôle un panier sur dix, au hasard.</p></div></div>
 </div>
 
 <h2>Pour qui</h2>
@@ -303,65 +314,68 @@ button{font-family:inherit}
 <table>
   <thead><tr><th>Qui</th><th>Ce que ça change</th></tr></thead>
   <tbody>
-    <tr><td>Le chef de cuisine</td><td>Cuisine la bonne quantité, arrête de deviner</td></tr>
-    <tr><td>La direction</td><td>Voit une économie chiffrée, pas une impression</td></tr>
-    <tr><td>L'enseignant</td><td>Rien de plus : il fait déjà l'appel</td></tr>
-    <tr><td>Le parent</td><td>Sait que son enfant a mangé</td></tr>
+    <tr><td>Le client pressé</td><td>Gagne 5 à 10 minutes, et connaît son total avant la caisse</td></tr>
+    <tr><td>Le commerçant</td><td>Écoule plus de clients aux heures de pointe sans ouvrir de caisse</td></tr>
+    <tr><td>La caissière</td><td>Ne disparaît pas : elle passe au réassort et au contrôle de sortie</td></tr>
+    <tr><td>Le client qui paie en espèces</td><td><strong>Rien. Il est exclu du système.</strong></td></tr>
   </tbody>
 </table>
 
-<p><span class="tag avis">Avis Kogia</span> Le point fort de cette idée est qu'elle <strong>n'ajoute de travail à personne</strong>. L'appel existe déjà. C'est presque toujours la condition pour qu'un outil scolaire survive plus d'un trimestre.</p>
+<p><span class="tag avis">Avis Kogia</span> La dernière ligne est la plus importante de tout l'article. Un système de paiement sans caisse ne fonctionne que pour ceux qui paient sans espèces. En Tunisie, cela réduit d'emblée la cible à une minorité de clients — la partie urbaine, bancarisée, équipée d'un smartphone récent.</p>
 
 <h2>Le modèle économique</h2>
 
-<p>Trois façons de gagner de l'argent avec ça, par ordre de difficulté :</p>
+<p>Trois façons de gagner de l'argent, par ordre de difficulté :</p>
 
 <ul>
-  <li><strong>Abonnement par école</strong> — un prix mensuel fixe, quelle que soit la taille. Simple à vendre, simple à comprendre.</li>
-  <li><strong>Part de l'économie réalisée</strong> — séduisant sur le papier, difficile en pratique : il faut prouver l'économie, donc mesurer avant. Peu d'écoles acceptent d'attendre.</li>
-  <li><strong>Vendu au fournisseur de repas</strong> — c'est lui qui livre trop. Mais c'est aussi lui qui facture les repas non consommés : il n'a aucun intérêt à réduire.</li>
+  <li><strong>Abonnement par magasin</strong> — un prix mensuel par point de vente. Lisible, prévisible, facile à vendre à une enseigne qui compte ses postes de caisse.</li>
+  <li><strong>Commission sur les transactions</strong> — quelques millimes par panier. Séduisant, mais la marge du détail alimentaire est déjà mince : chaque point pris se voit immédiatement.</li>
+  <li><strong>Vente des données de parcours</strong> — savoir dans quel ordre les clients prennent les produits. Techniquement réel, commercialement lointain : il faut un volume que personne n'aura la première année.</li>
 </ul>
 
-<p><span class="tag hypo">Hypothèse</span> Nous supposons qu'une école privée tunisienne accepterait un abonnement autour de 80 DT/mois si l'économie annoncée dépasse largement ce montant. Cette hypothèse n'a été testée auprès d'aucune école — c'est la première chose à vérifier avant d'écrire une ligne de code.</p>
+<p><span class="tag hypo">Hypothèse</span> Nous supposons qu'une enseigne tunisienne de 10 magasins accepterait 400 DT par mois et par magasin si le système absorbe les pointes du samedi sans ouvrir de caisse supplémentaire. Cette hypothèse n'a été testée auprès d'aucune enseigne. C'est un chiffre de départ pour une conversation, pas un prix.</p>
 
 <h2>Ce qui pourrait tuer le projet</h2>
 
 <table>
   <thead><tr><th>Risque</th><th>Gravité</th></tr></thead>
   <tbody>
-    <tr><td>L'appel n'est pas fait à l'heure — la cuisine a déjà commencé</td><td>Élevée</td></tr>
-    <tr><td>Le contrat avec le traiteur impose un nombre fixe de repas</td><td>Fatale</td></tr>
-    <tr><td>Pas de téléphone ni de réseau dans les classes</td><td>Moyenne</td></tr>
-    <tr><td>L'économie réelle est bien plus faible qu'estimée</td><td>Élevée</td></tr>
+    <tr><td>Le taux de vol dépasse l'économie de salaires</td><td>Fatale</td></tr>
+    <tr><td>Trop peu de clients paient autrement qu'en espèces</td><td>Fatale</td></tr>
+    <tr><td>Les produits vendus au poids n'ont pas de code-barres</td><td>Élevée</td></tr>
+    <tr><td>Le contrôle de sortie recrée la file qu'on voulait supprimer</td><td>Élevée</td></tr>
+    <tr><td>Le client abandonne au premier article qui ne scanne pas</td><td>Moyenne</td></tr>
   </tbody>
 </table>
 
-<p><span class="tag fait">Fait</span> Le deuxième risque est celui qui compte. Beaucoup de cantines fonctionnent avec un contrat au forfait : l'école paie un nombre de repas convenu, présent ou pas. Dans ce cas, réduire le gaspillage ne fait économiser <em>strictement rien</em> à l'école — et l'idée s'effondre. C'est la première question à poser, avant même de parler du produit.</p>
+<p><span class="tag avis">Avis Kogia</span> Le premier risque décide de tout, et il se calcule. Le commerce alimentaire vit sur une marge nette de quelques pour cent. Si le système économise trois salaires mais laisse partir 2 % de la marchandise, l'opération est perdante — et elle l'est en silence, car le vol ne se voit qu'à l'inventaire, trois mois plus tard.</p>
+
+<p><span class="tag hypo">Hypothèse</span> Un article oublié n'est pas toujours un vol : dans un panier de trente produits, en poussant un chariot avec un enfant à côté, l'oubli est le comportement normal. Nous supposons que l'essentiel de l'écart viendrait de l'inattention, pas de la fraude — ce qui change complètement la réponse à y apporter (rappel à l'écran plutôt que portique).</p>
 
 <h2>Ce qu'il faudrait pour le construire</h2>
 
 <ul>
-  <li>Une application très simple pour l'appel — ou une connexion à un logiciel scolaire existant</li>
-  <li>Un écran ou un message pour la cuisine</li>
-  <li>Un rapport mensuel pour la direction</li>
-  <li><strong>Zéro matériel</strong> : les téléphones des enseignants suffisent</li>
+  <li>Une application mobile qui scanne vite et fonctionne <strong>hors ligne</strong> — le réseau est mauvais au fond des rayons</li>
+  <li>Une connexion au logiciel de caisse existant pour les prix et les promotions</li>
+  <li>Un moyen de paiement réellement utilisé localement, pas seulement une carte internationale</li>
+  <li>Un portique ou, plus simplement, un agent avec une tablette</li>
+  <li>Un tableau de bord du taux d'écart, consulté chaque semaine</li>
 </ul>
 
-<p><span class="tag estim">Estimation</span> Une première version utilisable représente environ <strong>3 à 4 semaines de développement</strong> pour une personne seule. Ce n'est pas un projet techniquement difficile — et c'est justement ce qui doit rendre méfiant : si c'était si simple et si rentable, pourquoi personne ne l'a fait ?</p>
+<p><span class="tag estim">Estimation</span> Une première version utilisable dans un seul magasin représente environ <strong>3 mois de développement</strong> pour une personne seule, dont la moitié sur le paiement et l'intégration à la caisse existante — jamais sur le scan, qui est la partie facile.</p>
 
 <h2>Le verdict Kogia</h2>
 
-<p>Une idée honnête, à faible coût technique, dont <strong>tout le sort dépend d'une seule réponse</strong> : l'école paie-t-elle les repas au réel, ou au forfait ?</p>
+<p>Pour un supermarché tunisien ouvert à tous, c'est <strong>non</strong>, et ce n'est pas une question de technologie : la clientèle paie majoritairement en espèces, et le taux d'écart est impossible à tenir dans un lieu où personne ne connaît personne.</p>
 
-<p>Si c'est au réel, l'économie est immédiate et le produit se vend tout seul. Si c'est au forfait, il n'y a pas de projet — seulement une bonne intention.</p>
+<p>Pour un <strong>espace fermé</strong>, la réponse s'inverse. Une supérette d'entreprise, une boutique de campus, un économat : les clients sont identifiés, le paiement peut être prélevé sur un compte interne, et le vol devient traçable — donc rare. Le même produit, dans ce cadre, tient debout.</p>
 
-<p><span class="tag avis">Avis Kogia</span> Nous ne construirions pas ça avant d'avoir appelé cinq écoles et posé cette unique question. Une demi-journée de téléphone décide de trois semaines de travail.</p>
-
+<p><span class="tag avis">Avis Kogia</span> Nous ne construirions pas ça pour la grande distribution. Nous le construirions pour un site fermé de 200 à 500 personnes, où la question du vol se règle par l'identité et non par un portique. C'est le même code, mais ce n'est pas le même projet.</p>
   </div>
 
   <div class="art-wrap">
     <!-- ═══ Votes ═══ -->
-    <section class="votes" data-slug="cantine-scolaire-zero-gaspillage">
+    <section class="votes" data-slug="caisse-sans-caissier">
       <h3>Qu'en pensez-vous ?</h3>
       <p class="votes-intro">Un clic suffit. Les résultats sont visibles par tout le monde.</p>
       <div class="votes-grille">
@@ -373,7 +387,7 @@ button{font-family:inherit}
     </section>
 
     <!-- ═══ Commentaires ═══ -->
-    <section class="comm" data-slug="cantine-scolaire-zero-gaspillage">
+    <section class="comm" data-slug="caisse-sans-caissier">
       <h3>Discussion</h3>
       <p class="comm-intro">Dites ce qui cloche, ce qui manque, ce que vous avez déjà essayé. Pas de compte à créer.</p>
       <form class="comm-form" novalidate>
@@ -510,9 +524,16 @@ async function demarrerArticle(){
   if (secV && !secV.dataset.pret) {
     secV.dataset.pret = '1';
     const slug = secV.dataset.slug;
-    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => el.textContent = t[el.dataset.n] ?? 0);
+    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => {
+      const v = String(t[el.dataset.n] ?? 0);
+      if (el.textContent === v) return;
+      el.classList.add('maj');                     // fondu sortant…
+      setTimeout(() => { el.textContent = v; el.classList.remove('maj'); }, 180);
+    });
     fetch(`${API}/idees/${slug}/reactions`).then(r=>r.json()).then(d=>peint(d.reactions||{})).catch(()=>{});
     secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
+      // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
+      secV.querySelectorAll('.vote').forEach(x => x.classList.remove('choisi'));
       b.classList.add('choisi'); b.disabled = true;
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',

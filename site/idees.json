@@ -19,7 +19,7 @@
       "pays": "Tunisie",
       "date": "2026-08-10",
       "lecture": 12,
-      "brouillon": true
+      "couleur": "indigo"
     },
     {
       "slug": "tontine-numerique",
@@ -29,7 +29,7 @@
       "pays": "Tunisie",
       "date": "2026-08-08",
       "lecture": 11,
-      "brouillon": true
+      "couleur": "violet"
     }
   ]
 }

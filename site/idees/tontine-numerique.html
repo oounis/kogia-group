@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kogia — des idées avant qu'elles ne deviennent des entreprises</title>
-<meta name="description" content="Une idée par semaine, explorée sérieusement : problème, marché, modèle économique, coûts, risques. Et un atelier pour la construire.">
-<link rel="canonical" href="https://kogiagroup.com/">
+<title>La tontine, mais sur téléphone — Kogia</title>
+<meta name="description" content="Un système d'épargne collective que des millions de gens utilisent déjà hors ligne. Le risque n'est pas technique.">
+<link rel="canonical" href="https://kogiagroup.com/idees/tontine-numerique.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kogiagroup.com/">
-<meta property="og:title" content="Kogia — une idée par semaine, explorée sérieusement">
-<meta property="og:description" content="Problème, marché, modèle, coûts, risques. Des idées qu'on peut vraiment construire.">
+<meta property="og:title" content="La tontine, mais sur téléphone — Kogia">
+<meta property="og:description" content="Un système d'épargne collective que des millions de gens utilisent déjà hors ligne. Le risque n'est pas technique.">
 <meta property="og:image" content="https://kogiagroup.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='22' fill='%230E2135'/%3E%3C/svg%3E">
@@ -146,6 +146,86 @@ button{font-family:inherit}
   .top-in{padding:0 1.1rem;gap:.8rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ═══ Page d'article ═══ */
+.art-wrap{max-width:100%}   /* la colonne centrale gère déjà la largeur */
+.art-tete{padding:.5rem 0 1.8rem}
+.art-meta{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1rem}
+.art-h1{font:800 clamp(1.75rem,3.2vw,2.35rem)/1.2 var(--disp);color:var(--ink);letter-spacing:-.02em}
+.art-resume{font-size:1.06rem;line-height:1.6;color:var(--slate);margin-top:.85rem}
+.art-corps{font-size:1.05rem;line-height:1.75;color:var(--ink);padding-bottom:1rem}
+.art-corps h2{font:700 1.6rem/1.25 var(--disp);color:var(--ink);margin:2.4rem 0 .8rem}
+.art-corps h3{font:700 1.2rem/1.3 var(--disp);color:var(--ink);margin:1.8rem 0 .6rem}
+.art-corps p{margin-bottom:1.1rem}
+.art-corps ul,.art-corps ol{margin:0 0 1.1rem 1.3rem} .art-corps li{margin-bottom:.45rem}
+.art-corps img,.art-corps svg{max-width:100%;height:auto;border-radius:16px;margin:1.4rem 0}
+.art-corps table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.94rem}
+.art-corps th{background:var(--indigo-soft);color:var(--ink);font-weight:700;text-align:left;padding:.7rem .9rem}
+.art-corps td{border-top:1px solid var(--line);padding:.7rem .9rem;color:var(--slate)}
+.art-corps blockquote{border-left:4px solid var(--indigo);background:var(--canvas);padding:1rem 1.3rem;
+  border-radius:0 14px 14px 0;margin:1.4rem 0;color:var(--ink)}
+/* Étiquettes d'honnêteté : la règle éditoriale rendue visible */
+.tag{display:inline-block;font:800 .64rem/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
+  padding:.3rem .55rem;border-radius:5px;margin-right:.5rem;vertical-align:.08em;white-space:nowrap}
+.tag.fait{background:#DCFCE7;color:#027A48} .tag.estim{background:#FEF3C7;color:#B54A0A}
+.tag.hypo{background:#EDE9FE;color:#6D28D9} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
+/* Votes */
+.votes{margin:2.5rem 0;padding:1.8rem;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.votes h3{font:700 1.25rem/1.3 var(--disp);color:var(--ink);margin-bottom:.4rem}
+.votes-intro{color:var(--slate);font-size:.92rem;margin-bottom:1.1rem}
+.votes-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+.vote{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:1rem .8rem;border-radius:16px;
+  border:1px solid var(--line);background:var(--canvas);cursor:pointer;transition:all .18s var(--ease);font:600 .88rem/1.3 var(--text);color:var(--ink)}
+.vote:hover{border-color:var(--indigo);transform:translateY(-2px)}
+.vote.choisi{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo-ink)}
+.vote-n{font:800 1.5rem/1 var(--disp);color:var(--indigo)}
+/* Commentaires */
+.comm{margin:2.5rem 0 3rem}
+.comm h3{font:700 1.35rem/1.3 var(--disp);color:var(--ink);margin-bottom:.4rem}
+.comm-intro{color:var(--slate);font-size:.92rem;margin-bottom:1.2rem}
+.comm-form{display:flex;flex-direction:column;gap:.7rem;padding:1.4rem;border-radius:18px;
+  background:var(--surface);border:1px solid var(--line);margin-bottom:1.6rem}
+.comm-form input,.comm-form textarea{font:400 .95rem/1.5 var(--text);color:var(--ink);padding:.7rem .9rem;
+  border:1px solid var(--line);border-radius:12px;background:var(--canvas);width:100%}
+.comm-form input:focus,.comm-form textarea:focus{outline:none;border-color:var(--indigo);background:var(--surface)}
+.comm-form textarea{resize:vertical;min-height:90px}
+.comm-form button{align-self:flex-start;border:0;cursor:pointer}
+.comm-form .piege{position:absolute;left:-9999px;width:1px;height:1px}
+.comm-liste{display:flex;flex-direction:column;gap:.9rem}
+.comm-item{padding:1.1rem 1.3rem;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.comm-tete{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.4rem}
+.comm-nom{font:700 .92rem/1 var(--text);color:var(--ink)}
+.comm-date{font-size:.76rem;color:var(--slate)}
+.comm-msg{font-size:.95rem;line-height:1.65;color:var(--slate);white-space:pre-wrap}
+.comm-vide{color:var(--slate);font-size:.92rem;font-style:italic}
+.comm-etat{font-size:.86rem;min-height:1.2em}
+.comm-etat.ok{color:#027A48;font-weight:600} .comm-etat.ko{color:#B42318;font-weight:600}
+.retour{display:inline-flex;align-items:center;gap:.4rem;font:600 .88rem/1 var(--text);color:var(--indigo-ink);text-decoration:none;margin-bottom:1.4rem}
+/* Schéma d'étapes : expliquer un flux sans image, donc sans poids ni licence */
+.schema{margin:1.8rem 0;padding:1.6rem;border-radius:18px;background:var(--canvas);border:1px solid var(--line)}
+.etape{display:flex;gap:1rem;align-items:flex-start}
+.etape .n{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--indigo);color:#fff;
+  display:grid;place-items:center;font:700 .82rem/1 var(--disp)}
+.etape b{display:block;font:700 .96rem/1.4 var(--text);color:var(--ink)}
+.etape p{font-size:.9rem;line-height:1.55;color:var(--slate);margin:.2rem 0 0}
+.fleche{color:var(--indigo);font-size:1.1rem;margin:.45rem 0 .45rem 13px;line-height:1}
+
+/* ═══ Micro-interactions (étude 2026-08-12) ═══
+   Jetons de durée : instant 80-120ms (appui) · quick 160-200ms (confirmation,
+   compteur) · standard 220-280ms · emphasis 320-450ms (réservé à l'arrivée
+   Faz3a). Le retour visuel arrive AVANT la réponse réseau : un clic ne doit
+   jamais sembler ignoré. */
+.vote{transition:transform .12s var(--ease),background .16s var(--ease),border-color .16s var(--ease)}
+.vote:active{transform:scale(.98)}
+.vote-n{transition:opacity .18s var(--ease)}
+.vote-n.maj{opacity:0}                 /* fondu du compteur, pas de roulette */
+.vote.choisi .vote-n{color:var(--indigo-ink)}
+.comm-form button:active,.bouton:active{transform:scale(.98)}
+.comm-item{animation:entree .2s var(--ease)}   /* nouvel élément : fondu court */
+@keyframes entree{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .vote,.vote-n,.comm-item{transition:none;animation:none}
+  .vote:active,.bouton:active{transform:none}
+}
 </style>
 </head>
 <body>
@@ -186,16 +266,139 @@ button{font-family:inherit}
 
   <!-- ═══ COLONNE CENTRALE ═══ -->
   <main class="flux" id="centre">
-    <div class="onglets" role="tablist">
-      <button class="onglet actif" data-f="tous">Pour vous</button>
-      <button class="onglet" data-f="Technologie">Technologie</button>
-      <button class="onglet" data-f="Business">Business</button>
-      <button class="onglet" data-f="Éducation">Éducation</button>
-      <button class="onglet" data-f="Fintech">Fintech</button>
-      <button class="onglet" data-f="Quotidien">Quotidien</button>
+<article>
+  <div class="art-wrap art-tete">
+    <a class="retour" href="../index.html#idees">← Toutes les idées</a>
+    <div class="art-meta">
+      <span class="idee-cat">Fintech</span>
+      <span class="idee-pays">Tunisie</span>
+      <span class="comm-date">8 août 2026 · 11 min de lecture</span>
     </div>
-    <div id="flux" aria-live="polite"></div>
-  </main>
+    <h1 class="art-h1">La tontine, mais sur téléphone</h1>
+    <p class="art-resume">Un système d'épargne collective que des millions de gens utilisent déjà hors ligne. Le risque n'est pas technique.</p>
+  </div>
+
+  <div class="art-wrap art-corps">
+<p><strong>Dix collègues mettent 100 dinars chacun, chaque mois. Chaque mois, l'un d'eux repart avec les 1 000.</strong> Au dixième mois, tout le monde a reçu une fois. Personne n'a payé d'intérêt, personne n'a rempli de dossier. Ce système fonctionne en Tunisie sans aucune application. La vraie question est de savoir ce qu'un téléphone y ajouterait.</p>
+
+<h2>Le problème</h2>
+
+<p>Acheter une machine à laver, payer une rentrée scolaire, avancer une caution : il s'agit de sommes que le salaire ne couvre pas d'un coup, mais qui ne justifient pas un crédit bancaire — trop petites, trop lentes à obtenir, trop chères en intérêts.</p>
+
+<p>La réponse existe depuis des générations : la <em>jamaiya</em>. Un groupe de personnes qui se connaissent, une cotisation fixe, un tour de rôle. C'est de l'épargne forcée et du crédit sans intérêt, dans le même geste.</p>
+
+<p><span class="tag fait">Fait</span> Ce mécanisme n'a rien de local. Les économistes le désignent sous le nom de <em>ROSCA</em> (association rotative d'épargne et de crédit) et le documentent sur tous les continents : <em>gam'eya</em> en Égypte, <em>tanda</em> au Mexique, <em>chit fund</em> en Inde, <em>susu</em> au Ghana.</p>
+
+<blockquote>Ce n'est pas un produit à inventer. C'est un produit qui existe et qui tourne — sans nous.</blockquote>
+
+<h2>L'idée</h2>
+
+<p>Porter la jamaiya sur téléphone : constituer le groupe, fixer la cotisation et l'ordre de passage, rappeler les échéances, garder la trace de qui a payé et qui a reçu.</p>
+
+<p><span class="tag fait">Fait</span> Ça a déjà été fait à grande échelle dans la région : Money Fellows, en Égypte, numérise exactement la <em>gam'eya</em> et a levé plusieurs dizaines de millions de dollars auprès d'investisseurs internationaux. Le marché n'est donc pas hypothétique — il est prouvé chez un voisin de 100 millions d'habitants.</p>
+
+<h3>Comment ça marcherait</h3>
+
+<div class="schema">
+  <div class="etape"><span class="n">1</span><div><b>Créer le tour</b><p>Un organisateur fixe le montant, le nombre de participants et la durée. Il invite par lien.</p></div></div>
+  <div class="fleche">↓</div>
+  <div class="etape"><span class="n">2</span><div><b>L'ordre de passage</b><p>Tiré au sort devant tout le monde, ou négocié. C'est le point le plus sensible du groupe : il doit être visible et figé.</p></div></div>
+  <div class="fleche">↓</div>
+  <div class="etape"><span class="n">3</span><div><b>Chaque mois</b><p>Rappel automatique. Chacun marque son versement ; l'application affiche l'état du tour à tous.</p></div></div>
+  <div class="fleche">↓</div>
+  <div class="etape"><span class="n">4</span><div><b>Le bénéficiaire</b><p>Reçoit la somme, et l'historique enregistre qu'il l'a reçue. Son tour est clos, ses obligations non.</p></div></div>
+</div>
+
+<h2>Pour qui</h2>
+
+<table>
+  <thead><tr><th>Qui</th><th>Ce que ça change</th></tr></thead>
+  <tbody>
+    <tr><td>L'organisateur</td><td>Arrête de relancer dix personnes par téléphone chaque mois</td></tr>
+    <tr><td>Le participant</td><td>Voit où en est le tour sans avoir à demander</td></tr>
+    <tr><td>Celui qui a été échaudé</td><td>Dispose enfin d'une trace écrite de ce qui a été versé</td></tr>
+    <tr><td>Le groupe qui fonctionne bien</td><td><strong>Rien du tout. Il n'a aucune raison de changer.</strong></td></tr>
+  </tbody>
+</table>
+
+<p><span class="tag avis">Avis Kogia</span> La dernière ligne est le vrai adversaire du projet. Une jamaiya qui tourne entre voisins depuis quatre ans ne cherche pas d'application : elle cherche à ne rien changer. Le produit ne s'adresse donc pas aux groupes existants, mais aux groupes qui <strong>n'osent pas se former</strong> faute de confiance suffisante.</p>
+
+<h2>Le modèle économique</h2>
+
+<ul>
+  <li><strong>Frais fixes par tour</strong> — quelques dinars par participant, prélevés à la constitution. Honnête, lisible, et modeste.</li>
+  <li><strong>Payer pour passer plus tôt</strong> — celui qui veut le premier rang verse un supplément partagé entre les autres. Économiquement logique : c'est la valeur du temps. À manier avec précaution, car cela ressemble à un intérêt déguisé et heurte la raison même pour laquelle beaucoup choisissent la jamaiya.</li>
+  <li><strong>Commission d'un partenaire financier</strong> — la banque ou l'opérateur qui héberge les flux paie pour l'accès à des épargnants réguliers et documentés.</li>
+</ul>
+
+<p><span class="tag hypo">Hypothèse</span> Nous supposons qu'un participant accepterait 5 DT par tour de 10 mois — le prix d'un café pour une année de tranquillité. Aucun test n'a été fait. Le risque n'est pas que ce soit trop cher : c'est que payer pour un service gratuit depuis toujours paraisse absurde.</p>
+
+<h2>Ce qui pourrait tuer le projet</h2>
+
+<table>
+  <thead><tr><th>Risque</th><th>Gravité</th></tr></thead>
+  <tbody>
+    <tr><td>Un participant cesse de payer après avoir touché sa part</td><td>Fatale</td></tr>
+    <tr><td>Détenir les fonds sans agrément relève d'une activité réglementée</td><td>Fatale</td></tr>
+    <tr><td>La confiance vient du lien social, pas de l'application</td><td>Élevée</td></tr>
+    <tr><td>Les versements se font en espèces, de la main à la main</td><td>Élevée</td></tr>
+    <tr><td>Un tour dure un an : le produit met un an à faire ses preuves</td><td>Moyenne</td></tr>
+  </tbody>
+</table>
+
+<p><span class="tag fait">Fait</span> Le premier risque est la raison d'être de tout ce mécanisme, et il est ancien : celui qui a reçu au premier mois a mathématiquement contracté un prêt à taux zéro, et il ne lui reste que des obligations. Dans la version traditionnelle, ce qui le retient n'est pas un contrat — c'est le regard de sa famille, de ses collègues, de son quartier.</p>
+
+<p><span class="tag avis">Avis Kogia</span> Une application qui rassemble des inconnus retire exactement la pièce qui fait tenir l'édifice. Elle ne numérise plus une jamaiya : elle crée un organisme de crédit non déclaré, avec un taux de défaut qu'elle ne sait ni mesurer ni absorber. C'est le piège central de cette idée, et il est très facile de tomber dedans en croyant faire mieux.</p>
+
+<h2>Ce qu'il faudrait pour le construire</h2>
+
+<ul>
+  <li>Une application simple : créer un tour, inviter, rappeler, marquer les versements</li>
+  <li>Un historique <strong>que personne ne peut modifier après coup</strong> — c'est le cœur de la valeur</li>
+  <li>Aucune détention de fonds dans la première version : l'argent continue de circuler comme avant</li>
+  <li>Une consultation juridique <em>avant</em> la première ligne de code, si l'on envisage un jour de toucher aux flux</li>
+</ul>
+
+<p><span class="tag estim">Estimation</span> La version qui ne touche pas à l'argent représente environ <strong>6 semaines de développement</strong> pour une personne seule. La version qui héberge les fonds ne se compte plus en semaines de code, mais en mois de démarches réglementaires et en capital immobilisé. Ce sont deux entreprises différentes, pas deux étapes d'un même produit.</p>
+
+<h2>Le verdict Kogia</h2>
+
+<p>L'usage est massif, ancien et prouvé. Le besoin est réel. Et pourtant, la version évidente du produit — l'application qui garde l'argent et met en relation des inconnus — est celle qui échoue, parce qu'elle supprime la garantie sociale sans rien mettre à la place.</p>
+
+<p>Reste une version étroite et défendable : <strong>l'outil de coordination d'un groupe qui existe déjà</strong>. Il ne touche pas un dinar, il ne promet rien, il tient les comptes et rappelle les échéances. Petit produit, petit revenu, risque quasi nul.</p>
+
+<p><span class="tag avis">Avis Kogia</span> Nous construirions la version qui ne touche pas à l'argent, et seulement après avoir demandé à dix groupes existants s'ils accepteraient de tenir leurs comptes ailleurs que sur le carnet de l'organisateur. Si la réponse est non — et c'est l'hypothèse la plus probable — il n'y a pas de produit, et il vaut mieux le savoir en une semaine qu'en six mois.</p>
+  </div>
+
+  <div class="art-wrap">
+    <!-- ═══ Votes ═══ -->
+    <section class="votes" data-slug="tontine-numerique">
+      <h3>Qu'en pensez-vous ?</h3>
+      <p class="votes-intro">Un clic suffit. Les résultats sont visibles par tout le monde.</p>
+      <div class="votes-grille">
+        <button class="vote" data-choix="marcherait"><span class="vote-n" data-n="marcherait">·</span>Ça marcherait</button>
+        <button class="vote" data-choix="marcherait_pas"><span class="vote-n" data-n="marcherait_pas">·</span>Ça ne marcherait pas</button>
+        <button class="vote" data-choix="utiliserais"><span class="vote-n" data-n="utiliserais">·</span>Je l'utiliserais</button>
+        <button class="vote" data-choix="investirais"><span class="vote-n" data-n="investirais">·</span>J'y investirais</button>
+      </div>
+    </section>
+
+    <!-- ═══ Commentaires ═══ -->
+    <section class="comm" data-slug="tontine-numerique">
+      <h3>Discussion</h3>
+      <p class="comm-intro">Dites ce qui cloche, ce qui manque, ce que vous avez déjà essayé. Pas de compte à créer.</p>
+      <form class="comm-form" novalidate>
+        <input name="nom" placeholder="Votre nom" required maxlength="60">
+        <textarea name="message" placeholder="Votre commentaire…" required maxlength="2000"></textarea>
+        <input type="text" name="site" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn accent" type="submit">Publier</button>
+        <p class="comm-etat" role="status" aria-live="polite"></p>
+      </form>
+      <div class="comm-liste"><p class="comm-vide">Chargement…</p></div>
+    </section>
+  </div>
+</article>
+</main>
 
   <!-- ═══ RAIL DROIT ═══ -->
   <aside class="rail-d">
@@ -242,7 +445,7 @@ async function demarrerFlux(){
   const flux = document.getElementById('flux');
   let idees = [];
   try {
-    const r = await fetch('idees.json', { cache: 'no-cache' });
+    const r = await fetch(new URL('idees.json', location.origin + '/'), { cache: 'no-cache' });
     if (r.ok) idees = ((await r.json()).idees || []).filter(i => !i.brouillon)
       .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   } catch (e) {}
@@ -318,9 +521,16 @@ async function demarrerArticle(){
   if (secV && !secV.dataset.pret) {
     secV.dataset.pret = '1';
     const slug = secV.dataset.slug;
-    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => el.textContent = t[el.dataset.n] ?? 0);
+    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => {
+      const v = String(t[el.dataset.n] ?? 0);
+      if (el.textContent === v) return;
+      el.classList.add('maj');                     // fondu sortant…
+      setTimeout(() => { el.textContent = v; el.classList.remove('maj'); }, 180);
+    });
     fetch(`${API}/idees/${slug}/reactions`).then(r=>r.json()).then(d=>peint(d.reactions||{})).catch(()=>{});
     secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
+      // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
+      secV.querySelectorAll('.vote').forEach(x => x.classList.remove('choisi'));
       b.classList.add('choisi'); b.disabled = true;
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',
