@@ -1,0 +1,7 @@
+{
+  "name": "kogia-site-api",
+  "private": true,
+  "type": "module",
+  "description": "Réactions, commentaires et messages de contact pour kogiagroup.com. Une seule dépendance : le client Turso.",
+  "dependencies": { "@libsql/client": "^0.15.0" }
+}
