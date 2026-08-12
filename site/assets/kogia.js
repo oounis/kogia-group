@@ -294,6 +294,26 @@ async function demarrerFlux(){
   if (q) q.addEventListener('input', e => { recherche = e.target.value.trim().toLowerCase(); appliquer(); });
 }
 
+/* Étincelles : six copies du glyphe qui montent et s'effacent, chacune avec
+   son décalage et son retard. Créées, animées, puis retirées du document —
+   rien ne s'accumule. Le mouvement ample (380 ms) est réservé à ça : une
+   réponse donnée, c'est un résultat, pas une action ordinaire. */
+function etincelles(bouton){
+  if (moinsDeMouvement()) return;
+  const glyphe = bouton.querySelector('.vote-emo')?.textContent || '\u2728';
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement('span');
+    s.className = 'etincelle';
+    s.textContent = glyphe;
+    s.setAttribute('aria-hidden', 'true');
+    s.style.setProperty('--dx', (Math.random() * 72 - 36).toFixed(0) + 'px');
+    s.style.animationDelay = (i * 45) + 'ms';
+    s.style.fontSize = (0.7 + Math.random() * 0.7).toFixed(2) + 'rem';
+    bouton.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  }
+}
+
 async function demarrerArticle(){
   const dateFr = s => { const d = new Date(s); return isNaN(d) ? '' :
     d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) + ' à ' +
@@ -303,17 +323,16 @@ async function demarrerArticle(){
   if (secV && !secV.dataset.pret) {
     secV.dataset.pret = '1';
     const slug = secV.dataset.slug;
-    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => {
-      const v = String(t[el.dataset.n] ?? 0);
-      if (el.textContent === v) return;
-      el.classList.add('maj');                     // fondu sortant…
-      setTimeout(() => { el.textContent = v; el.classList.remove('maj'); }, 180);
-    });
+    const peint = t => secV.querySelectorAll('[data-n]')
+      .forEach(el => poserCompteur(el, t[el.dataset.n] ?? 0));
     fetch(`${API}/idees/${slug}/reactions`).then(r=>r.json()).then(d=>peint(d.reactions||{})).catch(()=>{});
     secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
       // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
-      secV.querySelectorAll('.vote').forEach(x => x.classList.remove('choisi'));
-      b.classList.add('choisi'); b.disabled = true;
+      secV.querySelectorAll('.vote').forEach(x => {
+        x.classList.remove('choisi'); x.setAttribute('aria-pressed', 'false');
+      });
+      b.classList.add('choisi'); b.setAttribute('aria-pressed', 'true');
+      etincelles(b); b.disabled = true;
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',
           headers:{'Content-Type':'application/json'}, body: JSON.stringify({ choix: b.dataset.choix }) });
