@@ -1,0 +1,35 @@
+{
+  "_lisezmoi": "La bibliothèque d'idées Kogia. Une entrée = un article dans site/idees/. \"brouillon\": true masque l'idée sans la supprimer.",
+  "idees": [
+    {
+      "slug": "cantine-scolaire-zero-gaspillage",
+      "titre": "La cantine scolaire qui ne jette plus rien",
+      "resume": "Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.",
+      "categorie": "Éducation",
+      "pays": "Tunisie",
+      "date": "2026-08-12",
+      "lecture": 7,
+      "couleur": "cyan"
+    },
+    {
+      "slug": "caisse-sans-caissier",
+      "titre": "Sortir du supermarché sans passer en caisse",
+      "resume": "Le client scanne avec son téléphone et s'en va. Ce que ça demande vraiment, et le taux de vol qui décide de tout.",
+      "categorie": "Technologie",
+      "pays": "Tunisie",
+      "date": "2026-08-10",
+      "lecture": 12,
+      "brouillon": true
+    },
+    {
+      "slug": "tontine-numerique",
+      "titre": "La tontine, mais sur téléphone",
+      "resume": "Un système d'épargne collective que des millions de gens utilisent déjà hors ligne. Le risque n'est pas technique.",
+      "categorie": "Fintech",
+      "pays": "Tunisie",
+      "date": "2026-08-08",
+      "lecture": 11,
+      "brouillon": true
+    }
+  ]
+}
