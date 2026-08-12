@@ -63,25 +63,11 @@
          égale la longueur du chemin, stroke-dashoffset la fait apparaître.
          Le champ de plancton derrière est un canvas de particules, arrêté
          net si le visiteur demande moins de mouvement. -->
-    <header class="une">
-      <canvas class="une-fond" aria-hidden="true"></canvas>
-      <div class="une-texte">
-        <p class="une-oeil">Bibliothèque d'idées</p>
-        <h1 class="une-titre">On explore les idées<br><em>jusqu'au bout.</em></h1>
-        <p class="une-sous">Chaque idée est creusée sérieusement : le problème, le modèle
-          économique, ce qui pourrait la tuer, et un verdict assumé. Ce qui est vérifié est
-          marqué comme tel — le reste aussi.</p>
-        <div class="une-tags">
-          <span class="tag fait">Fait</span><span class="tag estim">Estimation</span>
-          <span class="tag hypo">Hypothèse</span><span class="tag avis">Avis Kogia</span>
-        </div>
-      </div>
-      <svg class="une-baleine" viewBox="0 0 132 96" aria-hidden="true">
-        <path class="trace" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
-        <path class="trace jet" d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6"/>
-        <circle class="oeil" cx="34" cy="45" r="4.4"/>
-      </svg>
-    </header>
+    <h1 class="titre-page">Bibliothèque d'idées</h1>
+    <!-- À la une : la dernière idée, en grand. Une publication ouvre sur du
+         contenu, pas sur un manifeste — le lecteur vient pour lire, pas pour
+         qu'on lui explique la maison. Construite depuis idees.json. -->
+    <div id="lead"></div>
 
     <div class="onglets" role="tablist" aria-label="Filtrer par sujet">
       <button class="onglet actif" role="tab" aria-selected="true" data-f="tous">Pour vous</button>

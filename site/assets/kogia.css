@@ -40,7 +40,7 @@
   --t-h1:    clamp(1.95rem, 1.35rem + 2.6vw, 2.75rem);     /* 31 → 44 */
   --t-h2:    clamp(1.45rem, 1.2rem  + 1.1vw, 1.9rem);      /* 23 → 30 */
   --t-h3:    clamp(1.22rem, 1.13rem + .38vw, 1.45rem);     /* 19,5 → 23 */
-  --t-une:   clamp(2.1rem, 1.4rem + 3.1vw, 3.4rem);        /* 34 → 54, le masthead */
+  --t-une:   clamp(1.85rem, 1.25rem + 2.2vw, 2.7rem);      /* 30 → 43, l'à-la-une */
   --mesure:  68ch;   /* longueur de ligne visée — 45 à 80 est la zone sûre */
   --colonne: 56rem;  /* la même largeur en valeur absolue : `ch` se calcule
                         sur la police de chaque élément, donc l'en-tête et le
@@ -148,56 +148,80 @@ button{font-family:inherit;color:inherit}
 .onglet:hover{color:var(--ink)}
 .onglet.actif{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
 
-/* ═══════════ 3 bis. MASTHEAD ═══════════
-   Le seul endroit du site où le mouvement est permis d'être visible. La page
-   de lecture reste calme : ici on est encore en train de choisir, pas de lire. */
-.une{position:relative;overflow:hidden;border-radius:var(--r-xl);margin:.5rem 0 1.6rem;
-  padding:2.6rem 2.2rem 2.4rem;isolation:isolate;
-  background:linear-gradient(135deg,#0B1B2E 0%,#132C4A 45%,#1B2E63 100%)}
-/* Aurore : deux voiles de couleur qui dérivent lentement. Uniquement
-   `transform` et `opacity` — donc composité, donc sans coût de mise en page. */
-.une::before,.une::after{content:"";position:absolute;inset:-40%;z-index:-1;
-  background:radial-gradient(closest-side,rgba(79,87,222,.55),transparent 70%);
+/* ═══════════ 3 bis. À LA UNE ═══════════
+   La page s'ouvre sur la dernière idée, en grand — pas sur un texte de
+   présentation. C'est le seul endroit du site où le mouvement est visible :
+   ici on choisit encore, on ne lit pas encore. */
+.titre-page{font:700 .78rem/1 var(--text);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--slate);padding:.4rem 0 1rem}
+
+.lead{position:relative;display:block;overflow:hidden;border-radius:var(--r-xl);
+  margin-bottom:1.8rem;padding:2.4rem 2.2rem;min-height:300px;isolation:isolate;
+  background:linear-gradient(135deg,#0B1B2E 0%,#132C4A 48%,#1B2E63 100%);
+  transition:transform var(--normal) var(--ease-sortie),box-shadow var(--normal) var(--ease)}
+.lead:hover{transform:translateY(-3px);box-shadow:var(--ombre-g)}
+/* Deux voiles de couleur qui dérivent. `transform` et `opacity` seulement,
+   donc composité : aucun recalcul de mise en page. */
+.lead::before,.lead::after{content:"";position:absolute;inset:-40%;z-index:-2;
+  background:radial-gradient(closest-side,var(--teinte-a,rgba(79,87,222,.6)),transparent 70%);
   animation:deriver 22s var(--ease) infinite alternate}
-.une::after{background:radial-gradient(closest-side,rgba(34,211,238,.38),transparent 70%);
+.lead::after{background:radial-gradient(closest-side,var(--teinte-b,rgba(34,211,238,.42)),transparent 70%);
   animation-duration:31s;animation-direction:alternate-reverse}
 @keyframes deriver{
   from{transform:translate3d(-14%,-10%,0) scale(1)}
-  to  {transform:translate3d(16%,12%,0) scale(1.25)}
+  to  {transform:translate3d(16%,12%,0) scale(1.28)}
 }
-.une-fond{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
-.une-texte{position:relative;max-width:34rem}
-.une-oeil{font:700 .76rem/1 var(--text);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--cyan);margin-bottom:1rem}
-.une-titre{font:800 var(--t-une)/1.08 var(--disp);color:#fff;letter-spacing:-.03em}
-.une-titre em{font-style:normal;background:linear-gradient(90deg,var(--cyan),#A5AAF7);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.une-sous{margin-top:1.1rem;font-size:1.02rem;line-height:1.6;color:#B7C7DA;max-width:46ch}
-.une-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.lead-fond{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.lead-texte{position:relative;max-width:34rem}
+.lead-oeil{display:inline-flex;align-items:center;gap:.45rem;font:700 .72rem/1 var(--text);
+  letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
+.lead-oeil::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 0 rgba(34,211,238,.7);animation:battre 2.4s var(--ease) infinite}
+@keyframes battre{
+  0%{box-shadow:0 0 0 0 rgba(34,211,238,.65)}
+  70%{box-shadow:0 0 0 9px rgba(34,211,238,0)}
+  100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
+}
+/* Deux lignes au maximum : un titre qui en prend trois écrase le résumé
+   et déséquilibre le bloc. */
+.lead-titre{font:800 var(--t-une)/1.12 var(--disp);color:#fff;letter-spacing:-.03em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lead-sous{margin-top:.9rem;font-size:1.02rem;line-height:1.55;color:#B7C7DA;max-width:42ch;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lead-bas{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:1.5rem;
+  font-size:.84rem;color:#8FA6BF}
+.lead-bas .etiq{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#DCE7F2}
+.lead-bas .signal{color:#8FA6BF}
 
-/* La baleine se dessine. `stroke-dasharray` vaut la longueur du chemin :
-   le trait est un seul tiret, et `stroke-dashoffset` le fait entrer. */
-.une-baleine{position:absolute;right:-2%;bottom:-14%;width:min(46%,340px);height:auto;
-  opacity:.9;pointer-events:none}
-.une-baleine .trace{fill:none;stroke:url(#trait);stroke-width:2.2;
+/* Le glyphe de catégorie, en grand, en relief. */
+.lead-emo{position:absolute;right:2.2rem;top:50%;transform:translateY(-50%);font-size:6.5rem;
+  line-height:1;filter:drop-shadow(0 10px 26px rgba(0,0,0,.45));pointer-events:none;
+  transition:transform var(--normal) var(--ease-sortie)}
+.lead:hover .lead-emo{transform:translateY(-50%) scale(1.06) rotate(-5deg)}
+
+/* La baleine se dessine : `stroke-dasharray` vaut la longueur exacte du
+   chemin, `stroke-dashoffset` la fait entrer. */
+.lead-baleine{position:absolute;right:-4%;bottom:-16%;width:min(42%,300px);height:auto;
+  opacity:.42;pointer-events:none;z-index:-1}
+.lead-baleine .trace{fill:none;stroke:#8FD9F0;stroke-width:2.2;
   stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:var(--long,600);stroke-dashoffset:var(--long,600);
   animation:tracer 2.6s var(--ease-sortie) forwards}
-.une-baleine .jet{animation-delay:.5s}
-.une-baleine .oeil{fill:var(--cyan);opacity:0;animation:paraitre .5s var(--ease) 2.2s forwards}
+.lead-baleine .jet{animation-delay:.5s}
 @keyframes tracer{to{stroke-dashoffset:0}}
-@keyframes paraitre{to{opacity:1}}
 
 @media (max-width:760px){
-  .une{padding:2rem 1.3rem;border-radius:var(--r-l)}
-  .une-baleine{width:58%;right:-8%;bottom:-20%;opacity:.5}
-  .une-sous{font-size:.96rem}
+  .lead{padding:1.9rem 1.3rem;min-height:0;border-radius:var(--r-l)}
+  .lead-emo{font-size:3.4rem;right:1.1rem;top:1.4rem;transform:none}
+  .lead:hover .lead-emo{transform:none}
+  .lead-sous{font-size:.95rem}
+  .lead-baleine{width:62%;right:-10%;bottom:-18%;opacity:.3}
 }
 @media (prefers-reduced-motion:reduce){
-  .une::before,.une::after{animation:none}
-  .une-baleine .trace{animation:none;stroke-dashoffset:0}
-  .une-baleine .oeil{animation:none;opacity:1}
-  .une-fond{display:none}
+  .lead::before,.lead::after,.lead-oeil::before{animation:none}
+  .lead-baleine .trace{animation:none;stroke-dashoffset:0}
+  .lead-fond{display:none}
+  .lead:hover{transform:none}
 }
 
 /* ═══════════ 4. CARTES DU FLUX ═══════════ */
@@ -207,7 +231,10 @@ button{font-family:inherit;color:inherit}
 .carte:hover{background:var(--canvas)}
 .carte:hover .carte-titre{color:var(--indigo-ink)}
 .carte:hover .vignette{transform:scale(1.03) rotate(.6deg)}
-.carte-meta{display:flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--slate);margin-bottom:.6rem}
+.carte-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem;font-size:.82rem;
+  color:var(--slate);margin-bottom:.6rem}
+/* Sans cela « 10 août » se coupait entre le jour et le mois sur téléphone. */
+.carte-meta > span{white-space:nowrap}
 .pastille{width:20px;height:20px;border-radius:6px;background:var(--indigo);display:grid;place-items:center;flex-shrink:0}
 .pastille svg{width:13px;height:10px}
 .pastille svg path{fill:#fff;stroke:none}

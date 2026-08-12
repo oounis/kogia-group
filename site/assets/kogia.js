@@ -57,41 +57,76 @@ function poserCompteur(el, v){
   el.dataset.raf = requestAnimationFrame(image);
 }
 
-/* ═══ Masthead ═══════════════════════════════════════════════════════════
+/* Teintes de l'à-la-une, par catégorie : la même famille que les vignettes,
+   pour que la page entière parle d'une seule voix. */
+const TEINTES = {
+  'Technologie': ['rgba(79,87,222,.62)',  'rgba(109,111,240,.45)'],
+  'Business':    ['rgba(20,50,80,.70)',   'rgba(44,74,102,.45)'],
+  'Éducation':   ['rgba(14,116,144,.62)', 'rgba(34,211,238,.42)'],
+  'Fintech':     ['rgba(109,40,217,.62)', 'rgba(167,139,250,.42)'],
+  'Quotidien':   ['rgba(194,65,12,.58)',  'rgba(249,115,22,.40)'],
+};
+
+/* ═══ À la une ═══════════════════════════════════════════════════════════
    1. Le tracé de la baleine : `stroke-dasharray` doit valoir exactement la
       longueur du chemin. On la demande au navigateur plutôt que de la
       deviner — même principe que le périmètre 2 × π × r d'un cercle.
    2. Le plancton : un champ de particules sur canvas. État (position,
       vitesse) → mise à jour → rendu → image suivante. Rien d'autre. */
-function demarrerUne(){
-  const une = document.querySelector('.une');
-  if (!une || une.dataset.pret) return;
-  une.dataset.pret = '1';
+function poserLead(idee){
+  const hote = document.getElementById('lead');
+  if (!hote || !idee) return;
+  const [a, b] = TEINTES[idee.categorie] || TEINTES['Technologie'];
 
-  une.querySelectorAll('.trace').forEach(chemin => {
-    const L = chemin.getTotalLength();
-    chemin.style.setProperty('--long', L.toFixed(1));
+  hote.innerHTML = `<a class="lead" href="idees/${esc(idee.slug)}.html"
+      data-slug="${esc(idee.slug)}" style="--teinte-a:${a};--teinte-b:${b}">
+    <canvas class="lead-fond" aria-hidden="true"></canvas>
+    <svg class="lead-baleine" viewBox="0 0 132 96" aria-hidden="true">
+      <path class="trace" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
+      <path class="trace jet" d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6"/>
+    </svg>
+    <span class="lead-emo" aria-hidden="true">${emo(idee.categorie)}</span>
+    <div class="lead-texte">
+      <p class="lead-oeil">À la une</p>
+      <h2 class="lead-titre">${esc(idee.titre)}</h2>
+      <p class="lead-sous">${esc(idee.resume)}</p>
+      <div class="lead-bas">
+        <span class="etiq">${esc(idee.categorie)}</span>
+        ${idee.pays ? `<span class="etiq">${esc(idee.pays)}</span>` : ''}
+        <span>${idee.lecture || 6} min de lecture</span>
+        <span class="signal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
+          <b data-votes data-affiche="0">—</b><span class="hors-ecran"> avis</span></span>
+        <span class="signal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+          <b data-comms data-affiche="0">—</b><span class="hors-ecran"> commentaires</span></span>
+      </div>
+    </div>
+  </a>`;
+
+  const lead = hote.firstElementChild;
+  lead.querySelectorAll('.trace').forEach(chemin => {
+    chemin.style.setProperty('--long', chemin.getTotalLength().toFixed(1));
   });
 
-  const cv = une.querySelector('.une-fond');
+  const cv = lead.querySelector('.lead-fond');
   if (!cv || moinsDeMouvement()) return;
   const ctx = cv.getContext('2d');
   let particules = [], larg = 0, haut = 0, boucle = 0;
 
   const dimensionner = () => {
     const dpr = Math.min(devicePixelRatio || 1, 2);
-    const r = une.getBoundingClientRect();
+    const r = lead.getBoundingClientRect();
+    if (!r.width) return;
     larg = r.width; haut = r.height;
     cv.width = Math.round(larg * dpr); cv.height = Math.round(haut * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    // Une densité par surface : autant de plancton sur un téléphone que sur
-    // un écran large, jamais un nuage opaque.
+    // Densité par surface : autant de plancton sur un téléphone que sur un
+    // écran large, jamais un nuage opaque.
     const n = Math.round(Math.min(70, (larg * haut) / 9000));
     particules = Array.from({ length: n }, () => ({
       x: Math.random() * larg, y: Math.random() * haut,
       r: 0.7 + Math.random() * 2.1,
       vx: (Math.random() - .5) * .12, vy: -0.08 - Math.random() * .22,
-      a: .12 + Math.random() * .38,
+      a: .12 + Math.random() * .40,
     }));
   };
 
@@ -111,16 +146,15 @@ function demarrerUne(){
 
   dimensionner(); image();
   addEventListener('resize', dimensionner, { passive: true });
-  // Le canvas s'arrête dès que le masthead sort de l'écran : aucune image
-  // calculée pendant qu'on lit une carte plus bas.
+  // La boucle s'arrête dès que l'à-la-une sort de l'écran : aucune image
+  // calculée pendant qu'on lit plus bas.
   new IntersectionObserver(([e]) => {
     cancelAnimationFrame(boucle);
     if (e.isIntersecting) boucle = requestAnimationFrame(image);
-  }, { threshold: 0 }).observe(une);
+  }, { threshold: 0 }).observe(lead);
 }
 
 async function demarrerFlux(){
-  demarrerUne();
   const flux = document.getElementById('flux');
   if (flux.dataset.pret) return;
   flux.dataset.pret = '1';
@@ -198,9 +232,11 @@ async function demarrerFlux(){
     cartes.forEach(c => flux.appendChild(c));
   };
 
-  flux.innerHTML = idees.length
-    ? idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||'')).map(carte).join('')
-    : VIDE;
+  const parDate = idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  poserLead(parDate[0]);
+  // La première idée est déjà en grand au-dessus : la répéter dans la liste
+  // ferait doublon dès la première ligne.
+  flux.innerHTML = parDate.length ? parDate.slice(1).map(carte).join('') : VIDE;
   const onglets = document.querySelector('.onglets');
   if (!idees.length && onglets) onglets.style.display = 'none';
 
@@ -210,7 +246,7 @@ async function demarrerFlux(){
   if (idees.length) {
     fetch(`${API}/idees/compteurs`).then(r => r.ok ? r.json() : null).then(d => {
       if (!d) throw new Error('vide');
-      flux.querySelectorAll('.carte').forEach(c => {
+      document.querySelectorAll('.carte, .lead').forEach(c => {
         const s = d.compteurs?.[c.dataset.slug] || { votes: 0, commentaires: 0 };
         const v = c.querySelector('[data-votes]'), m = c.querySelector('[data-comms]');
         v.dataset.n = s.votes; m.dataset.n = s.commentaires;
@@ -220,7 +256,7 @@ async function demarrerFlux(){
     }).catch(() => {
       // L'API dort ou refuse : on retire les compteurs plutôt que d'afficher
       // un tiret pour toujours. Le flux reste entièrement lisible.
-      flux.querySelectorAll('.signal').forEach(s => s.remove());
+      document.querySelectorAll('.signal').forEach(s => s.remove());
     });
   }
 
