@@ -7,7 +7,7 @@
 <meta name="description" content="Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.">
 <link rel="canonical" href="https://kogiagroup.com/idees/cantine-scolaire-zero-gaspillage.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kogiagroup.com/">
+<meta property="og:url" content="https://kogiagroup.com/idees/cantine-scolaire-zero-gaspillage.html">
 <meta property="og:title" content="La cantine scolaire qui ne jette plus rien — Kogia">
 <meta property="og:description" content="Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.">
 <meta property="og:image" content="https://kogiagroup.com/assets/og.png">
@@ -77,14 +77,6 @@
   </div>
 
   <div class="art-wrap art-corps">
-<!-- ═══════════ CORPS DE L'ARTICLE — écrire ici ═══════════
-     Étiquettes d'honnêteté disponibles :
-       <span class="tag fait">Fait</span>       — vérifiable, avec source
-       <span class="tag estim">Estimation</span> — calculé, méthode expliquée
-       <span class="tag hypo">Hypothèse</span>   — supposé, non vérifié
-       <span class="tag avis">Avis Kogia</span>  — notre opinion assumée
-     Blocs utiles : <h2>, <h3>, <p>, <ul>, <table>, <blockquote>, <img>, <svg> (diagrammes)
--->
 
 <p><strong>Chaque matin, dans une école de 300 élèves, quelqu'un décide combien de repas préparer.</strong> Cette personne se base sur l'effectif inscrit. Pas sur les enfants réellement présents. L'écart part à la poubelle.</p>
 
@@ -201,6 +193,9 @@
         <input type="text" name="site" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn accent" type="submit">Publier</button>
         <p class="comm-etat" role="status" aria-live="polite"></p>
+      <p class="comm-note">Les commentaires sont publics, signés du nom que vous choisissez.
+        Pour limiter les abus, une empreinte technique est conservée — jamais votre adresse IP
+        en clair. Retrait sur demande : <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>.</p>
       </form>
       <div class="comm-liste"><p class="comm-vide">Chargement…</p></div>
     </section>
@@ -210,7 +205,7 @@
 
   <!-- ═══ RAIL DROIT ═══ -->
   <aside class="rail-d">
-    <div class="bloc" id="apropos">
+    <div class="bloc">
       <p class="bloc-t">Kogia</p>
       <p>Une aventure technologique indépendante, menée par Othman Ounis depuis la Tunisie et Bahreïn. On explore des idées, et on construit celles qui méritent d'exister.</p>
     </div>
@@ -226,14 +221,14 @@
       </div>
     </div>
 
-    <div class="bloc" id="solutions">
+    <div class="bloc">
       <p class="bloc-t">Ce qu'on a construit</p>
       <div class="prod"><div class="prod-p">C</div><div><div class="prod-n">Coreon EDU</div><div class="prod-d">Gestion scolaire · en production</div></div></div>
       <div class="prod"><div class="prod-p f">F</div><div><div class="prod-n">Faz3a</div><div class="prod-d">Action citoyenne · en construction</div></div></div>
       <div class="prod"><div class="prod-p s">K</div><div><div class="prod-n">Suite Kogia</div><div class="prod-d">Finance, CRM, RH · en préparation</div></div></div>
     </div>
 
-    <div class="bloc" id="contact">
+    <div class="bloc">
       <p class="bloc-t">Un projet en tête ?</p>
       <p style="margin-bottom:.9rem">Application, site, plateforme — ou une idée lue ici. Je réponds personnellement.</p>
       <a class="bouton" href="mailto:contact@kogiagroup.com">Écrire à Kogia</a>
@@ -246,6 +241,36 @@
     </div>
   </aside>
 </div>
+
+
+<!-- ═══ PIED DE PAGE ═══
+     Les liens « Solutions » et « Nous écrire » du haut visaient des blocs du
+     rail droit — un rail masqué sur les articles et sous 1180 px : le lecteur
+     tapait une commande visible et atterrissait sur un élément caché. Les
+     cibles vivent désormais ici, rendues sur chaque page, à chaque taille. -->
+<footer class="pied">
+  <div class="pied-in">
+    <div class="pied-bloc" id="apropos">
+      <p class="pied-t">Kogia</p>
+      <p>Une aventure technologique indépendante, menée par Othman Ounis depuis la Tunisie
+         et Bahreïn. On explore des idées, et on construit celles qui méritent d'exister.</p>
+    </div>
+    <div class="pied-bloc" id="solutions">
+      <p class="pied-t">Ce qu'on a construit</p>
+      <div class="prod"><div class="prod-p">C</div><div><div class="prod-n">Coreon EDU</div><div class="prod-d">Gestion scolaire · en production</div></div></div>
+      <div class="prod"><div class="prod-p f">F</div><div><div class="prod-n">Faz3a</div><div class="prod-d">Action citoyenne · en construction</div></div></div>
+      <div class="prod"><div class="prod-p s">K</div><div><div class="prod-n">Suite Kogia</div><div class="prod-d">Finance, CRM, RH · en préparation</div></div></div>
+    </div>
+    <div class="pied-bloc" id="contact">
+      <p class="pied-t">Un projet en tête ?</p>
+      <p>Application, site, plateforme — ou une idée lue ici. Je réponds personnellement.</p>
+      <a class="bouton clair" href="mailto:contact@kogiagroup.com">Écrire à Kogia</a>
+    </div>
+  </div>
+  <p class="pied-mentions">Les commentaires publiés sur ce site sont publics.
+    Retrait ou question : <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
+    · © 2026 KogiaGroup</p>
+</footer>
 
 <script src="../assets/kogia.js" defer></script>
 </body>

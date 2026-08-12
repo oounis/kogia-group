@@ -29,6 +29,9 @@ await db.batch([
      message TEXT NOT NULL, cree_le TEXT NOT NULL)`,
 ], 'write')
 
+// Migration douce : la colonne des signalements n'existait pas au départ.
+try { await db.execute('ALTER TABLE commentaires ADD COLUMN signalements INTEGER NOT NULL DEFAULT 0') } catch {}
+
 // Empreinte = IP + navigateur, hachée. On ne stocke JAMAIS l'IP en clair : elle
 // ne sert qu'à empêcher qu'une même personne vote cent fois, pas à l'identifier.
 const empreinte = req => createHash('sha256')
@@ -44,6 +47,27 @@ function tropRapide(emp) {
 }
 
 const propre = (s, max) => String(s ?? '').replace(/\s+/g, ' ').trim().slice(0, max)
+
+// ── Liste blanche des idées publiées ─────────────────────────────────────
+// L'API acceptait des votes et commentaires pour n'importe quel slug bien
+// formé : des lignes fantômes, une base qui gonfle, des chiffres faux. La
+// liste vit dans site/idees.json, servie par le site lui-même ; on la met en
+// cache 10 minutes. Si elle n'a JAMAIS pu être chargée on laisse passer
+// (mieux vaut un vote de trop qu'un site muet) ; dès qu'on l'a, on refuse.
+let slugsPublies = null, slugsMajA = 0
+async function slugPublie(slug) {
+  if (!slugsPublies || Date.now() - slugsMajA > 600000) {
+    try {
+      const r = await fetch('https://kogiagroup.com/idees.json', { signal: AbortSignal.timeout(5000) })
+      if (r.ok) {
+        const d = await r.json()
+        slugsPublies = new Set((d.idees || []).filter(i => !i.brouillon).map(i => i.slug))
+        slugsMajA = Date.now()
+      }
+    } catch { /* on garde la liste précédente */ }
+  }
+  return slugsPublies ? slugsPublies.has(slug) : true
+}
 
 function envoi(res, code, data, origin) {
   res.writeHead(code, {
@@ -96,12 +120,13 @@ const serveur = http.createServer(async (req, res) => {
     const mC = url.pathname.match(/^\/idees\/([a-z0-9-]{1,80})\/commentaires$/)
     if (mC && req.method === 'GET') {
       const r = await db.execute({
-        sql: 'SELECT nom, message, cree_le FROM commentaires WHERE slug = ? AND masque = 0 ORDER BY cree_le ASC LIMIT 200',
+        sql: 'SELECT id, nom, message, cree_le FROM commentaires WHERE slug = ? AND masque = 0 ORDER BY cree_le ASC LIMIT 200',
         args: [mC[1]],
       })
       return envoi(res, 200, { commentaires: r.rows }, origin)
     }
     if (mC && req.method === 'POST') {
+      if (!await slugPublie(mC[1])) return envoi(res, 404, { erreur: 'Idée inconnue.' }, origin)
       if (tropRapide(emp)) return envoi(res, 429, { erreur: 'Trop de messages d’un coup. Réessayez dans quelques minutes.' }, origin)
       const b = await corps(req)
       // Piège à robots : un champ caché qu'un humain ne remplit jamais.
@@ -131,6 +156,7 @@ const serveur = http.createServer(async (req, res) => {
       return envoi(res, 200, { reactions: total, miens: miens.rows.map(r => r.choix) }, origin)
     }
     if (mR && req.method === 'POST') {
+      if (!await slugPublie(mR[1])) return envoi(res, 404, { erreur: 'Idée inconnue.' }, origin)
       const b = await corps(req)
       const choix = propre(b.choix, 20)
       if (!['marcherait', 'marcherait_pas', 'utiliserais', 'investirais'].includes(choix)) {
@@ -152,6 +178,45 @@ const serveur = http.createServer(async (req, res) => {
     }
 
     // ── Contact ──
+    // ── Signalement : trois signalements masquent le commentaire en attendant
+    //    la revue. Le seuil est bas parce que le site est petit ; il montera
+    //    avec le trafic. Un commentaire masqué n'est jamais supprimé.
+    const mS = url.pathname.match(/^\/idees\/([a-z0-9-]{1,80})\/commentaires\/([0-9a-f-]{36})\/signaler$/)
+    if (mS && req.method === 'POST') {
+      if (tropRapide(emp)) return envoi(res, 429, { erreur: 'Trop de signalements d’un coup.' }, origin)
+      await db.execute({
+        sql: 'UPDATE commentaires SET signalements = signalements + 1 WHERE id = ? AND slug = ?',
+        args: [mS[2], mS[1]],
+      })
+      await db.execute({
+        sql: 'UPDATE commentaires SET masque = 1 WHERE id = ? AND signalements >= 3',
+        args: [mS[2]],
+      })
+      return envoi(res, 200, { ok: true }, origin)
+    }
+
+    // ── Modération : lecture de la file et masquage/rétablissement, protégés
+    //    par un jeton (variable d'environnement ADMIN_JETON sur Render).
+    //    Sans jeton configuré, ces routes n'existent pas.
+    const JETON = process.env.ADMIN_JETON
+    if (JETON && url.pathname === '/admin/commentaires') {
+      const fourni = req.headers['x-jeton'] || url.searchParams.get('jeton') || ''
+      if (fourni !== JETON) return envoi(res, 401, { erreur: 'Jeton invalide.' }, origin)
+      if (req.method === 'GET') {
+        const r = await db.execute(
+          'SELECT id, slug, nom, message, cree_le, masque, signalements FROM commentaires ORDER BY cree_le DESC LIMIT 100')
+        return envoi(res, 200, { commentaires: r.rows }, origin)
+      }
+      if (req.method === 'POST') {
+        const b = await corps(req)
+        if (typeof b.id !== 'string' || ![0, 1].includes(b.masque)) {
+          return envoi(res, 400, { erreur: 'id et masque (0 ou 1) requis.' }, origin)
+        }
+        await db.execute({ sql: 'UPDATE commentaires SET masque = ? WHERE id = ?', args: [b.masque, b.id] })
+        return envoi(res, 200, { ok: true }, origin)
+      }
+    }
+
     if (url.pathname === '/contact' && req.method === 'POST') {
       if (tropRapide(emp)) return envoi(res, 429, { erreur: 'Trop d’envois. Réessayez dans quelques minutes.' }, origin)
       const b = await corps(req)

@@ -71,8 +71,9 @@ const TEINTES = {
    1. Le tracé de la baleine : `stroke-dasharray` doit valoir exactement la
       longueur du chemin. On la demande au navigateur plutôt que de la
       deviner — même principe que le périmètre 2 × π × r d'un cercle.
-   2. Le plancton : un champ de particules sur canvas. État (position,
-      vitesse) → mise à jour → rendu → image suivante. Rien d'autre. */
+   2. Le plancton a été retiré (audit 2026-08-13) : il empilait un écouteur
+      resize et un observer à chaque navigation interne, et une page de
+      trois idées n'a pas besoin de trois couches de décor. */
 function poserLead(idee){
   const hote = document.getElementById('lead');
   if (!hote || !idee) return;
@@ -80,7 +81,6 @@ function poserLead(idee){
 
   hote.innerHTML = `<a class="lead" href="idees/${esc(idee.slug)}.html"
       data-slug="${esc(idee.slug)}" style="--teinte-a:${a};--teinte-b:${b}">
-    <canvas class="lead-fond" aria-hidden="true"></canvas>
     <svg class="lead-baleine" viewBox="0 0 132 96" aria-hidden="true">
       <path class="trace" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
       <path class="trace jet" d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6"/>
@@ -106,52 +106,6 @@ function poserLead(idee){
   lead.querySelectorAll('.trace').forEach(chemin => {
     chemin.style.setProperty('--long', chemin.getTotalLength().toFixed(1));
   });
-
-  const cv = lead.querySelector('.lead-fond');
-  if (!cv || moinsDeMouvement()) return;
-  const ctx = cv.getContext('2d');
-  let particules = [], larg = 0, haut = 0, boucle = 0;
-
-  const dimensionner = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    const r = lead.getBoundingClientRect();
-    if (!r.width) return;
-    larg = r.width; haut = r.height;
-    cv.width = Math.round(larg * dpr); cv.height = Math.round(haut * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    // Densité par surface : autant de plancton sur un téléphone que sur un
-    // écran large, jamais un nuage opaque.
-    const n = Math.round(Math.min(70, (larg * haut) / 9000));
-    particules = Array.from({ length: n }, () => ({
-      x: Math.random() * larg, y: Math.random() * haut,
-      r: 0.7 + Math.random() * 2.1,
-      vx: (Math.random() - .5) * .12, vy: -0.08 - Math.random() * .22,
-      a: .12 + Math.random() * .40,
-    }));
-  };
-
-  const image = () => {
-    ctx.clearRect(0, 0, larg, haut);
-    for (const p of particules) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.y < -6) { p.y = haut + 6; p.x = Math.random() * larg; }
-      if (p.x < -6) p.x = larg + 6; else if (p.x > larg + 6) p.x = -6;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(180,225,255,${p.a})`;
-      ctx.fill();
-    }
-    boucle = requestAnimationFrame(image);
-  };
-
-  dimensionner(); image();
-  addEventListener('resize', dimensionner, { passive: true });
-  // La boucle s'arrête dès que l'à-la-une sort de l'écran : aucune image
-  // calculée pendant qu'on lit plus bas.
-  new IntersectionObserver(([e]) => {
-    cancelAnimationFrame(boucle);
-    if (e.isIntersecting) boucle = requestAnimationFrame(image);
-  }, { threshold: 0 }).observe(lead);
 }
 
 async function demarrerFlux(){
@@ -164,9 +118,13 @@ async function demarrerFlux(){
   // ── État de chargement : trois silhouettes de carte. Une page blanche
   //    laisse croire que le site est cassé ; une silhouette annonce la forme
   //    de ce qui arrive.
-  flux.innerHTML = '<div class="squelettes" aria-hidden="true">' +
-    '<div class="sq-carte"></div>'.repeat(3) + '</div>' +
-    '<p class="hors-ecran" role="status">Chargement des idées…</p>';
+  // Le déploiement écrit une liste de liens statiques dans #flux pour les
+  // moteurs et les navigateurs sans JavaScript : on ne l'écrase par des
+  // silhouettes que si elle n'existe pas.
+  if (!flux.children.length)
+    flux.innerHTML = '<div class="squelettes" aria-hidden="true">' +
+      '<div class="sq-carte"></div>'.repeat(3) + '</div>' +
+      '<p class="hors-ecran" role="status">Chargement des idées…</p>';
 
   let idees = null;
   try {
@@ -201,6 +159,7 @@ async function demarrerFlux(){
       <p class="carte-sous">${esc(i.resume)}</p>
       <div class="carte-bas">
         <span class="etiq"><span aria-hidden="true">${emo(i.categorie)}</span>${esc(i.categorie || 'Idée')}</span>
+        ${(Date.now() - new Date(i.date + 'T00:00:00')) < 7 * 864e5 ? '<span class="etiq neuf">Nouvelle</span>' : ''}
         ${i.pays ? `<span class="etiq">${esc(i.pays)}</span>` : ''}
         <span class="signal" title="Avis donnés sur cette idée">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
@@ -232,6 +191,13 @@ async function demarrerFlux(){
     cartes.forEach(c => flux.appendChild(c));
   };
 
+  // Pas d'étagère vide : un sujet sans idée publiée n'est pas une navigation,
+  // c'est une promesse non tenue. Il reviendra avec sa première idée.
+  const sujetsOccupes = new Set(idees.map(i => i.categorie));
+  document.querySelectorAll('.onglet, .sujet').forEach(b => {
+    if (b.dataset.f !== 'tous' && !sujetsOccupes.has(b.dataset.f)) b.hidden = true;
+  });
+
   const parDate = idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
   poserLead(parDate[0]);
   // La première idée est déjà en grand au-dessus : la répéter dans la liste
@@ -252,11 +218,12 @@ async function demarrerFlux(){
         v.dataset.n = s.votes; m.dataset.n = s.commentaires;
         poserCompteur(v, s.votes); poserCompteur(m, s.commentaires);
       });
-      document.querySelector('.tris')?.removeAttribute('hidden');
     }).catch(() => {
       // L'API dort ou refuse : on retire les compteurs plutôt que d'afficher
       // un tiret pour toujours. Le flux reste entièrement lisible.
       document.querySelectorAll('.signal').forEach(s => s.remove());
+      // Sans compteurs, « Plus discutées » n'a pas de sens : le contrôle part.
+      document.querySelector('.tris')?.setAttribute('hidden', '');
     });
   }
 
@@ -276,27 +243,12 @@ async function demarrerFlux(){
     } else if (msg) msg.remove();
   }
 
-  // Clavier : dans une barre d'onglets, les flèches déplacent la sélection et
-  // un seul onglet reste dans l'ordre de tabulation. C'est la convention que
-  // les lecteurs d'écran attendent.
-  const lstOnglets = [...document.querySelectorAll('.onglet')];
-  lstOnglets.forEach((b, i) => {
-    b.tabIndex = b.classList.contains('actif') ? 0 : -1;
-    b.addEventListener('keydown', e => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1
-              : e.key === 'Home' ? -i : e.key === 'End' ? lstOnglets.length - 1 - i : 0;
-      if (!d && e.key !== 'Home' && e.key !== 'End') return;
-      e.preventDefault();
-      const cible = lstOnglets[(i + d + lstOnglets.length) % lstOnglets.length];
-      cible.focus(); cible.click();
-    });
-  });
-  const majTab = () => lstOnglets.forEach(x => { x.tabIndex = x.classList.contains('actif') ? 0 : -1; });
-
+  // Des boutons-filtres ordinaires : tous tabulables, état en aria-pressed.
+  // Les rôles d'onglets ARIA promettaient des tabpanels que la page n'a pas.
   document.querySelectorAll('.onglet').forEach(b => b.addEventListener('click', () => {
-    document.querySelectorAll('.onglet').forEach(x => { x.classList.remove('actif'); x.setAttribute('aria-selected','false'); });
-    b.classList.add('actif'); b.setAttribute('aria-selected','true');
-    majTab(); filtre = b.dataset.f; appliquer();
+    document.querySelectorAll('.onglet').forEach(x => { x.classList.remove('actif'); x.setAttribute('aria-pressed','false'); });
+    b.classList.add('actif'); b.setAttribute('aria-pressed','true');
+    filtre = b.dataset.f; appliquer();
   }));
   document.querySelectorAll('.tri').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.tri').forEach(x => x.classList.remove('actif'));
@@ -460,8 +412,18 @@ async function demarrerArticle(){
                   <time class="comm-date" datetime="${esc(c.cree_le)}" title="${esc(dateFr(c.cree_le))}">${esc(depuis(c.cree_le))}</time>
                 </div>
                 <p class="comm-msg">${esc(c.message)}</p>
+                ${c.id ? `<button class="comm-signaler" type="button" data-signaler="${esc(c.id)}">Signaler</button>` : ''}
               </article>`).join('')
           : '<p class="comm-vide">Personne n\'a encore réagi. Soyez le premier — même un désaccord est utile.</p>';
+        // Signaler : trois signalements masquent le commentaire en attendant la
+        // revue. Le retour est dans le bouton lui-même.
+        liste.querySelectorAll('[data-signaler]').forEach(b => b.addEventListener('click', async () => {
+          b.disabled = true;
+          try {
+            const r = await fetch(`${API}/idees/${slug}/commentaires/${b.dataset.signaler}/signaler`, { method: 'POST' });
+            b.textContent = r.ok ? 'Signalé — merci' : 'Signalement impossible';
+          } catch { b.textContent = 'Signalement impossible'; b.disabled = false; }
+        }));
       } catch {
         if (compteur) compteur.textContent = '—';
         liste.innerHTML = `<p class="comm-vide">La discussion n'a pas pu être chargée.
@@ -540,6 +502,23 @@ async function demarrerArticle(){
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
     if (!/\/(index\.html)?$|\/idees\/[^/]+\.html$/.test(url.pathname)) return;
+    // Une ancre dans la même page (#contact, #solutions…) : on conduit le
+    // défilement nous-mêmes. Le défilement doux natif est annulé par le
+    // moindre décalage de mise en page — un compteur qui arrive suffisait à
+    // tuer le trajet « Nous écrire ». Un filet vérifie l'arrivée : si le
+    // défilement a été interrompu, on saute directement au bloc.
+    if (url.hash && url.pathname === location.pathname) {
+      const cible = document.getElementById(url.hash.slice(1));
+      if (!cible) return;
+      e.preventDefault();
+      history.pushState(null, '', url.hash);
+      cible.scrollIntoView({ behavior: reduit() ? 'auto' : 'smooth', block: 'start' });
+      setTimeout(() => {
+        const r = cible.getBoundingClientRect();
+        if (r.top < -40 || r.top > innerHeight * 0.8) cible.scrollIntoView();
+      }, 700);
+      return;
+    }
     e.preventDefault();
     if (url.pathname === location.pathname) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
     aller(url.pathname + url.search);

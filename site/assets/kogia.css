@@ -176,7 +176,6 @@ button{font-family:inherit;color:inherit}
   from{transform:translate3d(-14%,-10%,0) scale(1)}
   to  {transform:translate3d(16%,12%,0) scale(1.28)}
 }
-.lead-fond{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
 .lead-texte{position:relative;max-width:34rem}
 .lead-oeil{display:inline-flex;align-items:center;gap:.45rem;font:700 .72rem/1 var(--text);
   letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
@@ -225,7 +224,6 @@ button{font-family:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){
   .lead::before,.lead::after,.lead-oeil::before{animation:none}
   .lead-baleine .trace{animation:none;stroke-dashoffset:0}
-  .lead-fond{display:none}
   .lead:hover{transform:none}
 }
 
@@ -295,7 +293,11 @@ button{font-family:inherit;color:inherit}
 .signal{display:inline-flex;align-items:center;gap:.32rem;font-size:.82rem;color:var(--slate)}
 .signal svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round}
-.signal b{font-weight:600;font-variant-numeric:tabular-nums;transition:opacity var(--rapide) var(--ease)}
+/* Largeur réservée : le passage de « — » aux chiffres ne déplace plus rien.
+   Un décalage de mise en page, même d'un pixel, ANNULE un défilement doux en
+   cours — c'est ce qui cassait le trajet « Nous écrire » depuis l'accueil. */
+.signal b{font-weight:600;font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch;
+  transition:opacity var(--rapide) var(--ease)}
 .signal b.maj{opacity:0}   /* la valeur change par un fondu, jamais par une roulette */
 
 /* ── Tri ── */
@@ -610,3 +612,36 @@ button{font-family:inherit;color:inherit}
    la page d'accueil n'avait aucun <h1>. */
 .hors-ecran{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ═══════════ PIED DE PAGE ═══════════
+   Les cibles réelles de « Solutions » et « Nous écrire » : rendues sur chaque
+   page, à chaque taille — un lien d'en-tête ne vise jamais un bloc masqué. */
+.pied{border-top:1px solid var(--line);background:var(--canvas);margin-top:3rem}
+.pied-in{max-width:1560px;margin:0 auto;padding:2.6rem 1.5rem 1.4rem;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.2rem}
+.pied-t{font:700 .95rem/1 var(--text);color:var(--ink);margin-bottom:.8rem}
+.pied-bloc p{font-size:.9rem;line-height:1.6;color:var(--slate);margin-bottom:.9rem}
+.pied-mentions{max-width:1560px;margin:0 auto;padding:1.1rem 1.5rem 1.6rem;font-size:.78rem;
+  color:var(--slate);border-top:1px solid var(--line)}
+.pied-mentions a{color:var(--indigo-ink);text-decoration:underline}
+
+/* Badge honnête : posé uniquement quand la date réelle a moins de 7 jours. */
+.etiq.neuf{background:color-mix(in srgb,var(--cyan) 16%,transparent);
+  border-color:color-mix(in srgb,var(--cyan) 40%,transparent);color:#0E7490;font-weight:700}
+@media (prefers-color-scheme:dark){ .etiq.neuf{color:var(--cyan)} }
+
+/* Confidentialité des commentaires : dite à l'endroit où on écrit. */
+.comm-note{font-size:.8rem;line-height:1.55;color:var(--slate);margin-top:.8rem}
+.comm-note a{color:var(--indigo-ink);text-decoration:underline}
+
+/* Signaler : discret — présent sans inviter. */
+.comm-signaler{margin-top:.6rem;background:none;border:0;padding:.2rem 0;cursor:pointer;
+  font:500 .76rem/1 var(--text);color:var(--slate);text-decoration:underline;min-height:auto}
+.comm-signaler:hover{color:#B42318}
+.comm-signaler:disabled{text-decoration:none;cursor:default;color:var(--slate)}
+
+/* Liens statiques écrits au déploiement pour les moteurs et le sans-JS ;
+   remplacés par les cartes complètes dès que le script démarre. */
+.carte-statique{display:block;padding:1rem 0;border-bottom:1px solid var(--line)}
+.carte-statique b{font:700 1.15rem/1.3 var(--disp);color:var(--ink)}
+.carte-statique span{display:block;font-size:.92rem;color:var(--slate);margin-top:.25rem}
