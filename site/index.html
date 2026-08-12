@@ -58,13 +58,20 @@
   <!-- ═══ COLONNE CENTRALE ═══ -->
   <main class="flux" id="centre">
     <h1 class="hors-ecran">Les idées de Kogia</h1>
-    <div class="onglets" role="tablist">
-      <button class="onglet actif" data-f="tous">Pour vous</button>
-      <button class="onglet" data-f="Technologie">Technologie</button>
-      <button class="onglet" data-f="Business">Business</button>
-      <button class="onglet" data-f="Éducation">Éducation</button>
-      <button class="onglet" data-f="Fintech">Fintech</button>
-      <button class="onglet" data-f="Quotidien">Quotidien</button>
+    <div class="onglets" role="tablist" aria-label="Filtrer par sujet">
+      <button class="onglet actif" role="tab" aria-selected="true" data-f="tous">Pour vous</button>
+      <button class="onglet" role="tab" aria-selected="false" data-f="Technologie">Technologie</button>
+      <button class="onglet" role="tab" aria-selected="false" data-f="Business">Business</button>
+      <button class="onglet" role="tab" aria-selected="false" data-f="Éducation">Éducation</button>
+      <button class="onglet" role="tab" aria-selected="false" data-f="Fintech">Fintech</button>
+      <button class="onglet" role="tab" aria-selected="false" data-f="Quotidien">Quotidien</button>
+    </div>
+    <!-- Classer par conversation, jamais par approbation : « populaires »
+         serait le classement de popularité que la charte refuse. Masqué tant
+         que les compteurs n'ont pas répondu — trier sur rien n'a pas de sens. -->
+    <div class="tris" hidden>
+      <button class="tri actif" data-tri="recentes">Récentes</button>
+      <button class="tri" data-tri="discutees">Plus discutées</button>
     </div>
     <div id="flux" aria-live="polite"></div>
   </main>

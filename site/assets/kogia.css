@@ -183,6 +183,34 @@ button{font-family:inherit;color:inherit}
 .carte[data-cat="Fintech"]     .vignette{background:linear-gradient(135deg,#6D28D9,#A78BFA)}
 .carte[data-cat="Quotidien"]   .vignette{background:linear-gradient(135deg,#C2410C,#F97316)}
 
+/* ── Signal de communauté ──
+   Mesure Reddit : chaque carte porte ses compteurs en 12 px, discrets mais
+   toujours présents. C'est ce qui sépare une liste d'articles d'une place
+   publique — et c'est ce qui manquait entièrement à notre flux. */
+.signal{display:inline-flex;align-items:center;gap:.32rem;font-size:.82rem;color:var(--slate)}
+.signal svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.signal b{font-weight:600;font-variant-numeric:tabular-nums;transition:opacity var(--rapide) var(--ease)}
+.signal b.maj{opacity:0}   /* la valeur change par un fondu, jamais par une roulette */
+
+/* ── Tri ── */
+.tris{display:flex;gap:.4rem;padding:.9rem 0 .2rem}
+.tri{display:inline-flex;align-items:center;min-height:36px;padding:0 .9rem;border:1px solid var(--line);
+  background:none;border-radius:var(--r-max);font:500 .84rem/1 var(--text);color:var(--slate);cursor:pointer;
+  transition:background var(--rapide) var(--ease),color var(--rapide) var(--ease),border-color var(--rapide) var(--ease)}
+.tri:hover{color:var(--ink);border-color:var(--slate)}
+.tri.actif{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+
+/* ── Silhouettes de chargement ──
+   Une page blanche laisse croire que le site est cassé. Une silhouette
+   annonce la forme de ce qui arrive, et la place ne bouge plus ensuite. */
+.squelettes{padding-top:.6rem}
+.sq-carte{height:132px;border-radius:var(--r-m);margin-bottom:1.1rem;
+  background:linear-gradient(100deg,var(--canvas) 30%,var(--line) 50%,var(--canvas) 70%);
+  background-size:220% 100%;animation:scintille 1.3s linear infinite}
+@keyframes scintille{from{background-position:180% 0}to{background-position:-40% 0}}
+@media (prefers-reduced-motion:reduce){ .sq-carte{animation:none;background:var(--canvas)} }
+
 .vide{padding:4rem 0;text-align:center}
 .vide-t{font:700 1.5rem/1.3 var(--disp);color:var(--ink);margin-bottom:.6rem}
 .vide-p{color:var(--slate);max-width:44ch;margin:0 auto 1.6rem;font-size:1rem}
@@ -292,9 +320,25 @@ button{font-family:inherit;color:inherit}
 .comm-liste{display:flex;flex-direction:column;gap:.9rem}
 .comm-item{padding:1.15rem 1.35rem;border-radius:var(--r-l);background:var(--surface);border:1px solid var(--line);
   animation:entree var(--normal) var(--ease)}
-.comm-tete{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.4rem}
+.comm-tete{display:flex;gap:.55rem;align-items:center;margin-bottom:.5rem}
+/* Initiale plutôt qu'un avatar : pas de compte, donc pas de photo — et
+   l'œil retrouve quand même qui parle. */
+.comm-pastille{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  font:700 .78rem/1 var(--disp);color:#fff;background:var(--indigo)}
 .comm-nom{font:700 .94rem/1 var(--text);color:var(--ink)}
+/* `.comm-date` sert aussi à la date dans l'en-tête d'article : la pousser à
+   droite ne doit valoir que dans un commentaire. */
 .comm-date{font-size:.78rem;color:var(--slate)}
+.comm-tete .comm-date{margin-left:auto}
+.comm-n{font:700 .92rem/1 var(--text);color:var(--slate);font-variant-numeric:tabular-nums;
+  transition:opacity var(--rapide) var(--ease)}
+.comm-n.maj{opacity:0}
+.lien-texte{background:none;border:0;padding:0;font:inherit;color:var(--indigo-ink);
+  text-decoration:underline;cursor:pointer}
+.sq-comm{height:76px;border-radius:var(--r-l);margin-bottom:.9rem;
+  background:linear-gradient(100deg,var(--canvas) 30%,var(--line) 50%,var(--canvas) 70%);
+  background-size:220% 100%;animation:scintille 1.3s linear infinite}
+@media (prefers-reduced-motion:reduce){ .sq-comm{animation:none;background:var(--canvas)} }
 .comm-msg{font-size:.97rem;line-height:1.65;color:var(--slate);white-space:pre-wrap}
 .comm-vide{color:var(--slate);font-size:.94rem;font-style:italic}
 .comm-etat{font-size:.88rem;min-height:1.2em}

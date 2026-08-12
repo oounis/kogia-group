@@ -12,34 +12,88 @@ const EMO = { 'Technologie':'\u2699\uFE0F', 'Business':'\uD83D\uDCC8', '\u00C9du
 const emo = c => EMO[c] || '\uD83D\uDCA1';
 
 
+const API = 'https://kogia-site-api.onrender.com';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* Temps relatif — « il y a 3 h » se lit plus vite qu'une date complète, et
+   c'est ce qui donne à un fil l'impression d'être vivant. La date exacte
+   reste dans l'attribut title, pour qui veut la précision. */
+function depuis(iso){
+  const d = new Date(iso); if (isNaN(d)) return '';
+  const s = (Date.now() - d.getTime()) / 1000;
+  if (s < 60) return "à l'instant";
+  if (s < 3600) return `il y a ${Math.floor(s/60)} min`;
+  if (s < 86400) return `il y a ${Math.floor(s/3600)} h`;
+  if (s < 2592000) return `il y a ${Math.floor(s/86400)} j`;
+  return d.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+}
+
+/* Compteur : la valeur change par un fondu court, jamais par une roulette.
+   `tabular-nums` en CSS empêche la ligne de sauter quand un chiffre grandit. */
+function poserCompteur(el, v){
+  const s = String(v);
+  if (el.textContent === s) return;
+  el.classList.add('maj');
+  setTimeout(() => { el.textContent = s; el.classList.remove('maj'); }, 180);
+}
+
 async function demarrerFlux(){
   const flux = document.getElementById('flux');
-  let idees = [];
-  try {
-    const r = await fetch(new URL('idees.json', location.origin + '/'), { cache: 'no-cache' });
-    if (r.ok) idees = ((await r.json()).idees || []).filter(i => !i.brouillon)
-      .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  } catch (e) {}
+  if (flux.dataset.pret) return;
+  flux.dataset.pret = '1';
 
   const moisFr = d => new Date(d + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // ── État de chargement : trois silhouettes de carte. Une page blanche
+  //    laisse croire que le site est cassé ; une silhouette annonce la forme
+  //    de ce qui arrive.
+  flux.innerHTML = '<div class="squelettes" aria-hidden="true">' +
+    '<div class="sq-carte"></div>'.repeat(3) + '</div>' +
+    '<p class="hors-ecran" role="status">Chargement des idées…</p>';
+
+  let idees = null;
+  try {
+    const r = await fetch(new URL('idees.json', location.origin + '/'), { cache: 'no-cache' });
+    if (!r.ok) throw new Error(r.status);
+    idees = ((await r.json()).idees || []).filter(i => !i.brouillon);
+  } catch { idees = null; }
+
+  // ── État d'erreur : dire ce qui s'est passé, et proposer l'action.
+  if (idees === null) {
+    flux.innerHTML = `<div class="vide" role="alert">
+        <p class="vide-t">La bibliothèque n'a pas pu être chargée.</p>
+        <p class="vide-p">La connexion a échoué. Les idées sont bien là — c'est l'accès qui a manqué.</p>
+        <button class="bouton clair" id="reessayer">Réessayer</button>
+      </div>`;
+    flux.querySelector('#reessayer').addEventListener('click', () => {
+      flux.dataset.pret = ''; demarrerFlux();
+    });
+    return;
+  }
 
   const carte = i => `<a class="carte" href="idees/${esc(i.slug)}.html" data-cat="${esc(i.categorie)}"
+      data-slug="${esc(i.slug)}" data-date="${esc(i.date)}"
       data-q="${esc((i.titre + ' ' + (i.resume||'') + ' ' + (i.categorie||'') + ' ' + (i.pays||'')).toLowerCase())}">
     <div>
       <div class="carte-meta">
         <span class="pastille"><svg viewBox="0 0 132 96"><use href="#whale"/></svg></span>
-        <span>Kogia</span><span>·</span><span>${moisFr(i.date)}</span>
+        <span>Kogia</span><span aria-hidden="true">·</span><span>${moisFr(i.date)}</span>
+        <span aria-hidden="true">·</span><span>${i.lecture || 6} min de lecture</span>
       </div>
       <h2 class="carte-titre">${esc(i.titre)}</h2>
       <p class="carte-sous">${esc(i.resume)}</p>
       <div class="carte-bas">
         <span class="etiq"><span aria-hidden="true">${emo(i.categorie)}</span>${esc(i.categorie || 'Idée')}</span>
         ${i.pays ? `<span class="etiq">${esc(i.pays)}</span>` : ''}
-        <span>${i.lecture || 6} min</span>
+        <span class="signal" title="Avis donnés sur cette idée">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
+          <b data-votes>—</b><span class="hors-ecran"> avis</span></span>
+        <span class="signal" title="Commentaires">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+          <b data-comms>—</b><span class="hors-ecran"> commentaires</span></span>
       </div>
     </div>
-    <div class="vignette"><svg viewBox="0 0 132 96" aria-hidden="true"><use href="#whale" fill="#fff"/></svg><span class="emo" aria-hidden="true">${emo(i.categorie)}</span></div>
+    <div class="vignette"><span class="emo" aria-hidden="true">${emo(i.categorie)}</span></div>
   </a>`;
 
   const VIDE = `<div class="vide">
@@ -48,17 +102,52 @@ async function demarrerFlux(){
       <a class="bouton clair" href="mailto:contact@kogiagroup.com?subject=Une idée à explorer">Proposer un sujet</a>
     </div>`;
 
-  flux.innerHTML = idees.length ? idees.map(carte).join('') : VIDE;
-  if (!idees.length) document.querySelector('.onglets').style.display = 'none';
+  let tri = 'recentes';
+  const ordonner = () => {
+    // « Plus discutées » et non « populaires » : on classe par conversation,
+    // jamais par score d'approbation. Un classement par popularité est
+    // exactement le mécanisme que la charte refuse.
+    const n = el => Number(el.querySelector('[data-comms]')?.dataset.n || 0);
+    const cartes = [...flux.querySelectorAll('.carte')];
+    cartes.sort((a, b) => tri === 'discutees'
+      ? n(b) - n(a) || b.dataset.date.localeCompare(a.dataset.date)
+      : b.dataset.date.localeCompare(a.dataset.date));
+    cartes.forEach(c => flux.appendChild(c));
+  };
+
+  flux.innerHTML = idees.length
+    ? idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||'')).map(carte).join('')
+    : VIDE;
+  const onglets = document.querySelector('.onglets');
+  if (!idees.length && onglets) onglets.style.display = 'none';
+
+  // ── Compteurs : une seule requête pour tout le flux. Tant qu'elle n'a pas
+  //    répondu, les cartes affichent « — » et non « 0 » : zéro serait un
+  //    mensonge, le tiret dit honnêtement « pas encore su ».
+  if (idees.length) {
+    fetch(`${API}/idees/compteurs`).then(r => r.ok ? r.json() : null).then(d => {
+      if (!d) throw new Error('vide');
+      flux.querySelectorAll('.carte').forEach(c => {
+        const s = d.compteurs?.[c.dataset.slug] || { votes: 0, commentaires: 0 };
+        const v = c.querySelector('[data-votes]'), m = c.querySelector('[data-comms]');
+        v.dataset.n = s.votes; m.dataset.n = s.commentaires;
+        poserCompteur(v, s.votes); poserCompteur(m, s.commentaires);
+      });
+      document.querySelector('.tris')?.removeAttribute('hidden');
+    }).catch(() => {
+      // L'API dort ou refuse : on retire les compteurs plutôt que d'afficher
+      // un tiret pour toujours. Le flux reste entièrement lisible.
+      flux.querySelectorAll('.signal').forEach(s => s.remove());
+    });
+  }
 
   let filtre = 'tous', recherche = '';
   function appliquer() {
     let n = 0;
-    document.querySelectorAll('.carte').forEach(el => {
-      const okCat = filtre === 'tous' || el.dataset.cat === filtre;
-      const okQ = !recherche || el.dataset.q.includes(recherche);
-      const ok = okCat && okQ;
-      el.style.display = ok ? '' : 'none';
+    flux.querySelectorAll('.carte').forEach(el => {
+      const ok = (filtre === 'tous' || el.dataset.cat === filtre)
+              && (!recherche || el.dataset.q.includes(recherche));
+      el.hidden = !ok;
       if (ok) n++;
     });
     let msg = document.getElementById('rien');
@@ -69,8 +158,13 @@ async function demarrerFlux(){
   }
 
   document.querySelectorAll('.onglet').forEach(b => b.addEventListener('click', () => {
-    document.querySelectorAll('.onglet').forEach(x => x.classList.remove('actif'));
-    b.classList.add('actif'); filtre = b.dataset.f; appliquer();
+    document.querySelectorAll('.onglet').forEach(x => { x.classList.remove('actif'); x.setAttribute('aria-selected','false'); });
+    b.classList.add('actif'); b.setAttribute('aria-selected','true');
+    filtre = b.dataset.f; appliquer();
+  }));
+  document.querySelectorAll('.tri').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.tri').forEach(x => x.classList.remove('actif'));
+    b.classList.add('actif'); tri = b.dataset.tri; ordonner();
   }));
   document.querySelectorAll('.sujet').forEach(b => b.addEventListener('click', () => {
     const t = [...document.querySelectorAll('.onglet')].find(x => x.dataset.f === b.dataset.f);
@@ -82,11 +176,9 @@ async function demarrerFlux(){
 }
 
 async function demarrerArticle(){
-  const API = 'https://kogia-site-api.onrender.com';
   const dateFr = s => { const d = new Date(s); return isNaN(d) ? '' :
     d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) + ' à ' +
     d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); };
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
   const secV = document.querySelector('.votes');
   if (secV && !secV.dataset.pret) {
@@ -116,14 +208,32 @@ async function demarrerArticle(){
     secC.dataset.pret = '1';
     const slug = secC.dataset.slug, liste = secC.querySelector('.comm-liste'),
           f = secC.querySelector('.comm-form'), etat = secC.querySelector('.comm-etat');
+    const compteur = secC.querySelector('[data-comm-n]');
     async function charger(){
+      // Silhouettes pendant l'attente : l'instance gratuite peut mettre
+      // ~30 s à se réveiller, et un vide sans explication ressemble à une panne.
+      liste.innerHTML = '<div class="sq-comm"></div><div class="sq-comm"></div>';
       try {
-        const d = await (await fetch(`${API}/idees/${slug}/commentaires`)).json();
-        const cs = d.commentaires || [];
+        const r = await fetch(`${API}/idees/${slug}/commentaires`);
+        if (!r.ok) throw new Error(r.status);
+        const cs = (await r.json()).commentaires || [];
+        if (compteur) poserCompteur(compteur, cs.length);
         liste.innerHTML = cs.length
-          ? cs.map(c => `<div class="comm-item"><div class="comm-tete"><span class="comm-nom">${esc(c.nom)}</span><span class="comm-date">${dateFr(c.cree_le)}</span></div><p class="comm-msg">${esc(c.message)}</p></div>`).join('')
+          ? cs.map(c => `<article class="comm-item">
+                <div class="comm-tete">
+                  <span class="comm-pastille" aria-hidden="true">${esc((c.nom||'?').trim()[0].toUpperCase())}</span>
+                  <span class="comm-nom">${esc(c.nom)}</span>
+                  <time class="comm-date" datetime="${esc(c.cree_le)}" title="${esc(dateFr(c.cree_le))}">${esc(depuis(c.cree_le))}</time>
+                </div>
+                <p class="comm-msg">${esc(c.message)}</p>
+              </article>`).join('')
           : '<p class="comm-vide">Personne n\'a encore réagi. Soyez le premier — même un désaccord est utile.</p>';
-      } catch { liste.innerHTML = '<p class="comm-vide">Commentaires indisponibles pour le moment.</p>'; }
+      } catch {
+        if (compteur) compteur.textContent = '—';
+        liste.innerHTML = `<p class="comm-vide">La discussion n'a pas pu être chargée.
+          <button class="lien-texte" type="button" data-recharger>Réessayer</button></p>`;
+        liste.querySelector('[data-recharger]')?.addEventListener('click', charger);
+      }
     }
     charger();
     f.addEventListener('submit', async e => {

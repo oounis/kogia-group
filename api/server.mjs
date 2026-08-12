@@ -72,6 +72,26 @@ const serveur = http.createServer(async (req, res) => {
       return envoi(res, 200, { ok: true }, origin)
     }
 
+    // ── Compteurs de toutes les idées, en une seule requête ──
+    // Le flux affiche les votes et les commentaires sur chaque carte : c'est ce
+    // qui distingue une liste d'articles d'une vraie place publique. Une requête
+    // par idée réveillerait l'instance gratuite autant de fois qu'il y a de
+    // cartes — d'où ce point d'entrée unique, agrégé côté base.
+    if (url.pathname === '/idees/compteurs' && req.method === 'GET') {
+      const [votes, comms] = await db.batch([
+        'SELECT slug, COUNT(*) n FROM reactions GROUP BY slug',
+        'SELECT slug, COUNT(*) n FROM commentaires WHERE masque = 0 GROUP BY slug',
+      ], 'read')
+      const compteurs = {}
+      const poser = (rows, cle) => { for (const r of rows) {
+        compteurs[r.slug] ??= { votes: 0, commentaires: 0 }
+        compteurs[r.slug][cle] = Number(r.n)
+      } }
+      poser(votes.rows, 'votes')
+      poser(comms.rows, 'commentaires')
+      return envoi(res, 200, { compteurs }, origin)
+    }
+
     // ── Commentaires d'un article ──
     const mC = url.pathname.match(/^\/idees\/([a-z0-9-]{1,80})\/commentaires$/)
     if (mC && req.method === 'GET') {
