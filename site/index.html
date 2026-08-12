@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KogiaGroup — le système d'exploitation de votre entreprise</title>
-<meta name="description" content="KogiaGroup construit l'écosystème d'entreprise nouvelle génération : une plateforme unique portée comme dix applications — finance, ventes, RH, stock, commerce, projets, support — reliées par une même donnée et une intelligence qui apprend de tout. Coreon EDU en ligne aujourd'hui.">
+<title>Kogia — des idées avant qu'elles ne deviennent des entreprises</title>
+<meta name="description" content="Kogia explore une idée par semaine — problème, marché, modèle économique, coûts, risques — et construit des applications pour ceux qui veulent la réaliser.">
 <meta name="theme-color" content="#0E2135">
 <link rel="canonical" href="https://kogiagroup.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KogiaGroup">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:url" content="https://kogiagroup.com/">
-<meta property="og:title" content="KogiaGroup — le système d'exploitation de votre entreprise">
-<meta property="og:description" content="Une plateforme, dix applications, une intelligence. L'écosystème d'entreprise nouvelle génération — francophone et Golfe.">
+<meta property="og:title" content="Kogia — une idée par semaine, explorée sérieusement">
+<meta property="og:description" content="Problème, marché, modèle économique, coûts, risques. Des idées qu\'on peut vraiment construire — et un atelier pour les bâtir.">
 <meta property="og:image" content="https://kogiagroup.com/assets/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -158,6 +158,55 @@
   @media(max-width:900px){.three,.eco,.feat{grid-template-columns:repeat(2,1fr)}.plat{grid-template-columns:1fr}.laws{grid-template-columns:1fr}.phases{grid-template-columns:1fr 1fr}}
   @media(max-width:520px){.eco,.feat{grid-template-columns:1fr}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ═══ Nouvelle phase Kogia : bibliothèque d'idées ═══ */
+.filtres{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.8rem 0 1.4rem}
+.chip{font:600 .82rem/1 var(--text);padding:.6rem 1rem;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);color:var(--slate);cursor:pointer;transition:all .18s var(--ease)}
+.chip:hover{border-color:var(--indigo);color:var(--indigo-ink)}
+.chip.actif{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.grille-idees{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.1rem;margin-top:1.2rem}
+.idee{display:flex;flex-direction:column;gap:.55rem;padding:1.4rem;border-radius:20px;background:var(--surface);
+  border:1px solid var(--line);text-decoration:none;color:inherit;position:relative;overflow:hidden;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+.idee::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--indigo);opacity:.9}
+.idee.violet::before{background:var(--violet)} .idee.cyan::before{background:var(--cyan)} .idee.terra::before{background:var(--terra)}
+.idee:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(14,33,53,.10);border-color:transparent}
+.idee-haut{display:flex;gap:.5rem;align-items:center}
+.idee-cat{font:800 .66rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-ink)}
+.idee-pays{font:600 .68rem/1 var(--text);color:var(--slate);padding:.28rem .55rem;border-radius:999px;background:var(--canvas)}
+.idee h3{font:700 1.14rem/1.3 var(--disp);color:var(--ink);margin:.1rem 0 0}
+.idee p{font-size:.9rem;line-height:1.55;color:var(--slate);flex:1}
+.idee-bas{display:flex;justify-content:space-between;font-size:.76rem;color:var(--slate);
+  border-top:1px solid var(--line);padding-top:.7rem;margin-top:.3rem}
+.vide{color:var(--slate);font-size:.92rem}
+.vide-bloc{grid-column:1/-1;text-align:center;padding:3rem 1.5rem;border:2px dashed var(--line);border-radius:22px;background:var(--canvas)}
+.vide-titre{font:700 1.25rem/1.3 var(--disp);color:var(--ink);margin-bottom:.5rem}
+.vide-txt{color:var(--slate);max-width:46ch;margin:0 auto 1.3rem;font-size:.94rem;line-height:1.6}
+/* Solutions : une seule place, description brève */
+.solutions{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.1rem;margin-top:1.6rem}
+.sol{padding:1.5rem;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:.5rem}
+.sol .cat{font:800 .66rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--indigo-ink)}
+.sol h3{font:700 1.2rem/1.3 var(--disp);color:var(--ink)}
+.sol p{font-size:.9rem;line-height:1.55;color:var(--slate);flex:1}
+.sol .st{align-self:flex-start;font:700 .72rem/1 var(--text);padding:.4rem .7rem;border-radius:999px}
+.st.live{background:#DCFCE7;color:#027A48} .st.build{background:#FEF3C7;color:#B54A0A} .st.prep{background:var(--canvas);color:var(--slate)}
+.contact-bloc{margin-top:2.2rem;padding:2rem;border-radius:24px;background:var(--ink);color:#fff;
+  display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between}
+.contact-bloc h3{font:700 1.4rem/1.25 var(--disp);color:#fff;margin-bottom:.5rem}
+.contact-bloc p{color:#C7D2E0;font-size:.94rem;line-height:1.6;max-width:52ch}
+.contact-actions{display:flex;flex-wrap:wrap;gap:.7rem}
+.contact-bloc .btn.ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.apropos{margin-top:1.4rem;max-width:70ch;display:flex;flex-direction:column;gap:.9rem}
+.apropos p{font-size:1rem;line-height:1.7;color:var(--slate)}
+.apropos .regle{padding:1.1rem 1.3rem;border-radius:16px;background:var(--indigo-soft);color:var(--ink);border-left:4px solid var(--indigo)}
+.foot-bas{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.12);margin-top:1.4rem;padding-top:1.2rem;font-size:.82rem;opacity:.75}
+@media (max-width:860px){
+  .three{grid-template-columns:1fr!important}
+  .contact-bloc{flex-direction:column;align-items:flex-start}
+}
+
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -166,152 +215,194 @@
 </defs></svg>
 
 <header class="nav"><div class="wrap nav-in">
-  <a class="lock" href="#top" aria-label="KogiaGroup"><svg viewBox="0 0 132 96"><use href="#whale"/></svg><b>KogiaGroup</b></a>
+  <a class="lock" href="#top" aria-label="Kogia"><svg viewBox="0 0 132 96"><use href="#whale"/></svg><b>Kogia</b></a>
   <nav class="nav-links">
-    <a href="#eco">Écosystème</a><a href="#intelligence">Intelligence</a><a href="#platform">Plateforme</a><a href="#tech">Technologie</a><a href="#route">Feuille de route</a>
+    <a href="#idees">Idées</a><a href="#solutions">Solutions</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a>
   </nav>
-  <a class="btn accent" href="https://edu.kogiagroup.com/" target="_blank" rel="noopener">Voir Coreon <span class="ar">→</span></a>
+  <a class="btn accent" href="#idees">Lire les idées <span class="ar">→</span></a>
 </div></header>
 
+<!-- ══════════ HERO ══════════ -->
 <section class="hero" id="top"><div class="wrap">
-  <span class="eyebrow reveal">L'écosystème d'entreprise, nouvelle génération</span>
-  <h1 class="reveal" style="margin-top:1.1rem">Le système d'exploitation de <span class="grad-t">votre entreprise</span>.</h1>
-  <p class="lede reveal">Une plateforme unique, portée comme dix applications — finance, ventes, RH, stock, commerce, projets, support. Reliées par une même donnée, et une intelligence qui apprend de tout.</p>
-  <div class="hcta reveal">
-    <a class="btn accent" href="https://kogiagroup.com/suite/">Essayer la démo <span class="ar">→</span></a>
-    <a class="btn ghost" href="#eco">Découvrir l'écosystème</a>
+  <span class="eyebrow reveal">Des idées avant qu'elles ne deviennent des entreprises</span>
+  <h1 class="reveal" style="margin-top:1.1rem">Une idée par semaine.<br><span class="grad-t">Explorée sérieusement.</span></h1>
+  <p class="lede reveal">Kogia cherche des problèmes réels, imagine des solutions, et les explore jusqu'au bout : le marché, le modèle économique, les coûts, les risques, ce qui pourrait échouer. Vous repartez avec un projet compris — pas une liste d'idées vagues.</p>
+  <div class="row reveal" style="margin-top:1.6rem">
+    <a class="btn accent" href="#idees">Découvrir les idées <span class="ar">→</span></a>
+    <a class="btn ghost" href="#solutions">Faire construire la vôtre</a>
   </div>
-  <div class="kbar reveal">
-    <div class="k"><b>1 / 10</b><span>produits — Coreon en ligne</span></div>
-    <div class="k"><b>1</b><span>plateforme, une seule donnée</span></div>
-    <div class="k"><b>∞</b><span>l'intelligence dans chaque app</span></div>
-    <div class="k"><b>FR · ع</b><span>francophone &amp; Golfe</span></div>
+  <p class="reveal" style="margin-top:1.4rem;font-size:.86rem;color:var(--slate)">Gratuit · sans compte · nouvelle idée chaque semaine</p>
+</div></section>
+
+<!-- ══════════ CE QUE VOUS Y GAGNEZ ══════════ -->
+<section id="valeur"><div class="wrap">
+  <span class="eyebrow reveal">Pourquoi lire Kogia</span>
+  <h2 class="big reveal" style="margin-top:.8rem">Une idée n'a de valeur que si on peut la construire.</h2>
+  <div class="three" style="grid-template-columns:repeat(3,1fr);margin-top:1.6rem">
+    <div class="col reveal"><h3><i></i>Trouvez un projet à lancer</h3><p>Chaque idée est traitée comme un vrai dossier : à qui elle s'adresse, comment elle gagne de l'argent, ce qu'elle coûte, et ce qui pourrait la tuer. De quoi décider si elle vaut vos mois de travail.</p></div>
+    <div class="col reveal"><h3><i></i>Comprenez avant d'investir</h3><p>Nous séparons toujours ce qui est <strong>fait</strong>, <strong>estimé</strong>, <strong>supposé</strong> et <strong>notre avis</strong>. Aucun chiffre inventé. Vous savez sur quoi vous appuyez votre décision.</p></div>
+    <div class="col reveal"><h3><i></i>Faites-la construire</h3><p>Une idée vous parle ? Kogia construit des applications et des interfaces web. Nous avons déjà mis un ERP scolaire en production. Vous pouvez repartir avec le produit, pas seulement le concept.</p></div>
   </div>
 </div></section>
 
-<section id="thesis"><div class="wrap">
-  <span class="eyebrow reveal">La conviction</span>
-  <h2 class="big reveal" style="margin-top:.8rem;max-width:20ch">On ne construit pas dix logiciels. On construit une plateforme qui en porte dix.</h2>
-  <div class="three">
-    <div class="col reveal"><h3><i></i>Apprendre des meilleurs</h3><p>Le cœur que tous les grands partagent — finance, CRM, RH, stock, projets, support, commerce, analytique. Rien d'inutile, rien qui manque.</p></div>
-    <div class="col reveal"><h3><i></i>En plus clair, plus moderne</h3><p>Un cœur resserré et profond, pas quarante applications superficielles. Une seule charte, une prise en main guidée, une vitesse qui se sent.</p></div>
-    <div class="col reveal"><h3><i></i>Notre intelligence, partout</h3><p>Une couche qui raisonne sur toutes vos données. Plus vous adoptez de produits, plus elle devient précieuse. C'est ce que personne ne copie.</p></div>
+<!-- ══════════ LES IDÉES — LE CŒUR ══════════ -->
+<section id="idees" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+  <span class="eyebrow reveal">La bibliothèque</span>
+  <h2 class="big reveal" style="margin-top:.8rem">Les idées Kogia</h2>
+  <p class="lede reveal" style="margin-top:.8rem">Chaque idée est explorée en profondeur, expliquée visuellement, et ouverte à la discussion. Dites-nous ce qui marcherait — et surtout ce qui ne marcherait pas.</p>
+
+  <div class="filtres reveal" role="group" aria-label="Filtrer les idées">
+    <button class="chip actif" data-filtre="tous">Toutes</button>
+    <button class="chip" data-filtre="Technologie">Technologie</button>
+    <button class="chip" data-filtre="Business">Business</button>
+    <button class="chip" data-filtre="Éducation">Éducation</button>
+    <button class="chip" data-filtre="Fintech">Fintech</button>
+    <button class="chip" data-filtre="Quotidien">Quotidien</button>
+  </div>
+
+  <div id="grille-idees" class="grille-idees" aria-live="polite">
+    <p class="vide">Chargement des idées…</p>
   </div>
 </div></section>
 
-<section id="eco" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
-  <span class="eyebrow reveal">L'écosystème</span>
-  <h2 class="big reveal" style="margin-top:.8rem">Dix produits. Un seul organisme.</h2>
-  <p class="lede reveal" style="margin-top:.8rem">Coreon est en ligne et prouve le modèle ; Soldéo et Relio tournent déjà en démo sur le socle partagé. Chaque produit a un but clair, un revenu propre, et une intégration native aux autres.</p>
-  <div class="eco">
-    <a class="app flag reveal" href="https://edu.kogiagroup.com/" target="_blank" rel="noopener"><span class="cat">Éducation</span><span class="nm">Coreon</span><span class="d">Toute l'école, de la crèche à la 6ᵉ — évaluations, présence, paiements, cantine, parents.</span><span class="st live">En ligne · essayer →</span></a>
-    <a class="app reveal" href="https://kogiagroup.com/suite/"><span class="cat">Finance</span><span class="nm">Soldéo</span><span class="d">Comptabilité, ventes, trésorerie — sur le socle partagé, avec les signaux Lumeon.</span><span class="st live">Démo live · essayer →</span></a>
-    <a class="app reveal" href="https://kogiagroup.com/suite/"><span class="cat">Ventes</span><span class="nm">Relio</span><span class="d">Prospects, pipeline, devis, relation client — sur le même socle que Soldéo.</span><span class="st live">Démo live · essayer →</span></a>
-    <div class="app reveal"><span class="cat">RH &amp; Paie</span><span class="nm">Cadréo</span><span class="d">Employés, contrats, paie, recrutement.</span><span class="st prep">En préparation</span></div>
-    <div class="app reveal"><span class="cat">Opérations</span><span class="nm">Cargon</span><span class="d">Stock, entrepôts, réception, expédition.</span><span class="st prep">En préparation</span></div>
-    <div class="app reveal"><span class="cat">Commerce</span><span class="nm">Caissa</span><span class="d">Caisse &amp; boutique en ligne, unifiées.</span><span class="st prep">En préparation</span></div>
-    <div class="app reveal"><span class="cat">Projets</span><span class="nm">Planéo</span><span class="d">Projets, temps, facturation à l'affaire.</span><span class="st plan">Planifié</span></div>
-    <div class="app reveal"><span class="cat">Support</span><span class="nm">Servéo</span><span class="d">Helpdesk, SLA, base de connaissances.</span><span class="st plan">Planifié</span></div>
-    <div class="app sauce reveal"><span class="cat">Intelligence</span><span class="nm">Lumeon</span><span class="d">L'analytique &amp; le copilote de toute la suite.</span><span class="st plan" style="background:rgba(196,181,253,.2);color:#C4B5FD">Le moat</span></div>
-    <div class="app reveal"><span class="cat">Réservations</span><span class="nm">Areneo</span><span class="d">Lieux, créneaux, adhésions, paiement.</span><span class="st plan">Planifié</span></div>
-    <a class="app reveal" href="https://tally.so/r/XxA0lz" target="_blank" rel="noopener"><span class="cat">Action citoyenne</span><span class="nm">Faz3a</span><span class="d">Signaler un lieu à nettoyer, faire converger des bénévoles proches, attester l'impact. Tunisie d'abord.</span><span class="st prep">En construction · devenir testeur →</span></a>
-    <div class="app reveal" style="background:transparent;box-shadow:none;border-style:dashed;justify-content:center"><span class="cat">Plus tard</span><span class="nm" style="font-size:1rem">Verticales</span><span class="d">Production, immobilier, auto — bâties sur le socle.</span></div>
-  </div>
-</div></section>
+<!-- ══════════ SOLUTIONS — UN SEUL ENDROIT ══════════ -->
+<section id="solutions"><div class="wrap">
+  <span class="eyebrow reveal">Ce que Kogia construit</span>
+  <h2 class="big reveal" style="margin-top:.8rem">Nos solutions</h2>
+  <p class="lede reveal" style="margin-top:.8rem">Kogia n'écrit pas seulement des idées : nous construisons des logiciels d'entreprise en production. Voici ce qui existe aujourd'hui.</p>
 
-<section class="cine" id="intelligence"><div class="wrap">
-  <span class="eyebrow reveal">Lumeon — la différence qui compte</span>
-  <h2 class="reveal">De l'intelligence dans chaque produit, pas un chatbot collé sur le côté.</h2>
-  <p class="lede reveal">Une couche qui lit la donnée de <b style="color:#fff">toutes</b> vos applications et agit dans le flux de travail. Plus vous en adoptez, plus elle voit clair. C'est le fossé que les concurrents ne franchissent pas par morceaux.</p>
-  <div class="feat">
-    <div class="f reveal"><h3>Une mémoire commune</h3><p>Un copilote qui raisonne sur la finance, les ventes et les RH à la fois.</p></div>
-    <div class="f reveal"><h3>L'insight au point d'action</h3><p>Une anomalie signalée à l'écriture, pas enterrée dans un rapport.</p></div>
-    <div class="f reveal"><h3>Interrogez vos données</h3><p>Une question en français, une réponse en direct — vérifiable, sourcée.</p></div>
-    <div class="f reveal"><h3>Qui apprend de tout</h3><p>Déjà éprouvé sur Coreon : le climat de classe, l'assiduité, le recouvrement.</p></div>
+  <div class="solutions">
+    <div class="sol reveal">
+      <span class="cat">Éducation</span>
+      <h3>Coreon EDU</h3>
+      <p>Plateforme de gestion scolaire : évaluation quotidienne des élèves, présence, paiements, cantine, communication avec les parents. De la crèche à la 6ᵉ.</p>
+      <span class="st live">En production</span>
+    </div>
+    <div class="sol reveal">
+      <span class="cat">Action citoyenne</span>
+      <h3>Faz3a</h3>
+      <p>Signaler un lieu à nettoyer, faire converger des bénévoles proches, attester le résultat en photos. Conçu pour la Tunisie.</p>
+      <span class="st build">En construction</span>
+    </div>
+    <div class="sol reveal">
+      <span class="cat">Entreprise</span>
+      <h3>La suite Kogia</h3>
+      <p>Finance, relation client, RH, stock, caisse, projets, support — construits sur un socle unique et une donnée partagée, plutôt que dix logiciels qui ne se parlent pas.</p>
+      <span class="st prep">En préparation</span>
+    </div>
   </div>
-</div></section>
 
-<section id="platform"><div class="wrap">
-  <div class="plat">
+  <div class="contact-bloc reveal" id="contact">
     <div>
-      <span class="eyebrow reveal">La plateforme</span>
-      <h2 class="big reveal" style="margin-top:.8rem">Un seul socle. Une seule donnée.</h2>
-      <p class="lede reveal" style="margin-top:1rem">Un même client, un même employé, un même produit — lus et écrits par toutes les apps, sans connecteur. C'est ce que les géants font payer une fortune ; chez nous, c'est le point de départ.</p>
-      <p class="lede reveal" style="margin-top:1rem;font-size:1rem">Vos données restent les vôtres : export standard, en un clic. On reste parce qu'on est bon, pas parce qu'on vous enferme.</p>
+      <h3>Un projet en tête ?</h3>
+      <p>Application mobile, interface web, plateforme métier, ou une idée lue ici que vous voulez voir exister. Écrivez-nous ce que vous cherchez — nous répondons personnellement.</p>
     </div>
-    <div class="layers reveal">
-      <div class="layer core"><span class="ic">λ</span> Couche Intelligence — Lumeon</div>
-      <div class="layer"><span class="ic">◈</span> Identité unique · SSO · rôles</div>
-      <div class="layer"><span class="ic">▤</span> Donnée canonique · multi-entité · multi-devise</div>
-      <div class="layer"><span class="ic">✦</span> Facturation · abonnements · signature</div>
-      <div class="layer"><span class="ic">⛓</span> Piste d'audit immuable · conformité</div>
+    <div class="contact-actions">
+      <a class="btn accent" href="https://tally.so/r/kdjEaZ" target="_blank" rel="noopener">Parler d'un projet <span class="ar">→</span></a>
+      <a class="btn ghost" href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
     </div>
   </div>
 </div></section>
 
-<section id="tech" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
-  <span class="eyebrow reveal">La technologie</span>
-  <h2 class="big reveal" style="margin-top:.8rem">Bâti pour durer, pensé pour l'entreprise</h2>
-  <p class="lede reveal" style="margin-top:.8rem">Le socle sur lequel Coreon est bâti, décliné pour chaque produit — moderne, sûr, ouvert.</p>
-  <div class="three" style="grid-template-columns:repeat(3,1fr)">
-    <div class="col reveal"><h3><i></i>Un cœur partagé, zéro dépendance</h3><p>La logique métier vit dans un cœur JavaScript agnostique, sans dépendance externe — les mêmes règles partout, testées à chaque commit. Une chaîne de qualité automatisée bloque tout test rouge avant le déploiement.</p></div>
-    <div class="col reveal"><h3><i></i>Une seule donnée canonique</h3><p>Un client, un employé, un produit : un seul enregistrement, lu et écrit par toutes les apps, sans connecteur. Le fossé technique que les suites historiques n'ont jamais comblé — et notre point de départ.</p></div>
-    <div class="col reveal"><h3><i></i>Sécurité par défaut</h3><p>Refus par défaut sur chaque accès (permissions par rôle), mots de passe hachés (scrypt), écritures verrouillées par révision, piste d'audit immuable — dans le serveur Coreon, activé pour un déploiement école. <strong>La démo publique en ligne, elle, tourne entièrement dans votre navigateur avec des comptes d'exemple : ne l'utilisez pas avec de vraies données.</strong></p></div>
-    <div class="col reveal"><h3><i></i>Vos données sont à vous</h3><p>Export standard en un clic, aucun verrou propriétaire. Vous pouvez partir quand vous voulez — c'est précisément pour ça qu'on reste bon.</p></div>
-    <div class="col reveal"><h3><i></i>Français, arabe, Golfe</h3><p>Internationalisation intégrée, écriture droite-à-gauche, documents bilingues, multi-devise et multi-entité. Prêt pour le Maghreb et la péninsule arabique.</p></div>
-    <div class="col reveal"><h3><i></i>Cloud, sans installation</h3><p>Mises à jour continues et non-disruptives, zéro serveur à gérer, déploiement en une chaîne automatisée. La puissance d'un grand ERP, sans sa lourdeur.</p></div>
+<!-- ══════════ COMMUNAUTÉ ══════════ -->
+<section id="communaute" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+  <span class="eyebrow reveal">La communauté</span>
+  <h2 class="big reveal" style="margin-top:.8rem">Une idée se juge à plusieurs.</h2>
+  <p class="lede reveal" style="margin-top:.8rem">Nous publions nos idées pour qu'on les attaque. Les meilleures critiques que nous recevons valent plus que les compliments : elles évitent des mois perdus.</p>
+  <div class="three" style="grid-template-columns:repeat(3,1fr);margin-top:1.6rem">
+    <div class="col reveal"><h3><i></i>Votez</h3><p>Sur chaque idée : est-ce que ça marcherait ? L'utiliseriez-vous ? Y investiriez-vous ? Les réponses restent visibles pour tout le monde.</p></div>
+    <div class="col reveal"><h3><i></i>Commentez</h3><p>Dites ce qui cloche, ce qui manque, ce que vous avez déjà essayé. Un praticien qui connaît le terrain vaut dix analyses.</p></div>
+    <div class="col reveal"><h3><i></i>Proposez</h3><p>Un problème que vous vivez et que personne ne résout ? Envoyez-le. Il peut devenir la prochaine idée Kogia.</p></div>
   </div>
 </div></section>
 
-<section class="mani" id="vision"><div class="wrap">
-  <span class="eyebrow reveal">Notre philosophie</span>
-  <h2 class="big reveal" style="margin-top:.8rem;max-width:22ch">Le plus petit cachalot du monde. La plus grande exigence possible.</h2>
-  <p class="lede reveal" style="margin-top:1rem">KogiaGroup tire son nom du <i>Kogia</i> — un cerveau de grand dans un corps compact, un plongeur profond et silencieux. Chaque produit en descend : petit mais entier, calme, profond plutôt que bruyant.</p>
-  <div class="laws">
-    <div class="law reveal"><span class="n">I</span><b>Un océan, plusieurs créatures</b><p>Même charte, même donnée, même exigence. Un produit s'exprime par son usage, jamais en réinventant les règles.</p></div>
-    <div class="law reveal"><span class="n">II</span><b>De la profondeur, pas du bruit</b><p>Un écran a une action principale. Si tout est mis en avant, rien ne l'est. Le calme est un choix.</p></div>
-    <div class="law reveal"><span class="n">III</span><b>Mériter le pixel</b><p>Aucun faux chiffre, jamais. Aucune IA qui ne touche pas la vraie donnée. La confiance se gagne à l'écran.</p></div>
-  </div>
-</div></section>
-
-<section id="route"><div class="wrap">
-  <span class="eyebrow reveal">La séquence</span>
-  <h2 class="big reveal" style="margin-top:.8rem">La plateforme d'abord. Puis on élargit.</h2>
-  <div class="phases">
-    <div class="ph now reveal"><div class="k">Phase 0 · en cours</div><h3>Le socle + Coreon</h3><p>La plateforme et l'intelligence, prouvées sur le produit déjà en ligne.</p></div>
-    <div class="ph now reveal"><div class="k">Phase 1 · démos en ligne</div><h3>Soldéo + Relio</h3><p>Finance &amp; CRM — la colonne qui génère du revenu. <a href="/suite/">Essayer la démo →</a></p></div>
-    <div class="ph reveal"><div class="k">Phase 2</div><h3>Cadréo · Cargon · Caissa</h3><p>RH, stock, commerce — l'entreprise complète.</p></div>
-    <div class="ph reveal"><div class="k">Phase 3</div><h3>Planéo · Servéo · Areneo</h3><p>Projets, support, réservations.</p></div>
-    <div class="ph reveal"><div class="k">Phase 4</div><h3>Les verticales</h3><p>Production, immobilier, auto — sur le socle éprouvé.</p></div>
-  </div>
-</div></section>
-
-<section><div class="wrap">
-  <div class="cta reveal">
-    <h2>Construisons le futur du logiciel d'entreprise.</h2>
-    <p>Coreon est en ligne aujourd'hui. Le pilote est gratuit et accompagné : votre école reçoit sa propre instance, isolée des autres. Parlons-en.</p>
-    <div class="row">
-      <a class="btn light" href="https://tally.so/r/kdjEaZ" target="_blank" rel="noopener">Inscrire mon école au pilote</a>
-      <a class="btn" style="background:rgba(255,255,255,.14);color:#fff" href="https://edu.kogiagroup.com/" target="_blank" rel="noopener">Essayer Coreon</a>
-      <a class="btn" style="background:rgba(255,255,255,.14);color:#fff" href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
-    </div>
+<!-- ══════════ À PROPOS ══════════ -->
+<section id="apropos"><div class="wrap">
+  <span class="eyebrow reveal">À propos</span>
+  <h2 class="big reveal" style="margin-top:.8rem">Kogia, honnêtement.</h2>
+  <div class="apropos reveal">
+    <p>Kogia est une aventure technologique indépendante, fondée et menée par <strong>Othman Ounis</strong> depuis la Tunisie et Bahreïn. Pas d'équipe d'experts, pas de bureaux, pas d'investisseurs : une personne qui construit des logiciels et explore des idées, en public.</p>
+    <p>Nous le disons parce que ça compte : quand vous lisez une analyse ici, vous savez qui l'a écrite et ce qu'il a réellement construit. Coreon EDU tourne en production. Faz3a est en cours. Le reste est annoncé comme tel.</p>
+    <p class="regle"><strong>Notre règle éditoriale :</strong> aucun chiffre inventé, aucune statistique sans source, aucun concurrent imaginaire. Ce qui est un fait est marqué comme un fait ; ce qui est une estimation ou une opinion aussi.</p>
   </div>
 </div></section>
 
 <footer><div class="wrap"><div class="foot-in">
-  <span class="lock"><svg viewBox="0 0 132 96" style="width:32px;height:24px"><use href="#whale"/></svg> © 2026 KogiaGroup</span>
-  <span>Le futur de l'entreprise, une plateforme à la fois. · contact@kogiagroup.com</span>
+  <div class="foot-brand"><svg viewBox="0 0 132 96" class="foot-mark"><use href="#whale"/></svg><b>Kogia</b></div>
+  <div class="foot-links">
+    <a href="#idees">Idées</a><a href="#solutions">Solutions</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a><a href="mailto:contact@kogiagroup.com">Contact</a>
+  </div>
+</div>
+<div class="foot-bas">
+  <span>Des idées avant qu'elles ne deviennent des entreprises. · contact@kogiagroup.com</span>
+  <span>© 2026 KogiaGroup · Tunisie</span>
 </div></div></footer>
 
 <script>
+// La bibliothèque vit dans idees.json : ajouter une idée = ajouter un objet,
+// pas toucher au HTML. Le site reste statique, sans build ni base de données.
+(async function(){
+  const grille = document.getElementById('grille-idees');
+  let data = { idees: [] };
+  try {
+    const r = await fetch('idees.json', { cache: 'no-cache' });
+    if (r.ok) data = await r.json();
+  } catch (e) { /* hors-ligne : on affichera l'état vide */ }
+
+  const idees = (data.idees || []).filter(i => !i.brouillon)
+    .sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+  function carte(i){
+    const d = new Date(i.date + 'T00:00:00');
+    const quand = isNaN(d) ? '' : d.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+    return `<a class="idee ${i.couleur||'indigo'}" href="idees/${i.slug}.html" data-cat="${i.categorie||''}">
+      <div class="idee-haut"><span class="idee-cat">${i.categorie||'Idée'}</span>${i.pays?`<span class="idee-pays">${i.pays}</span>`:''}</div>
+      <h3>${i.titre}</h3>
+      <p>${i.resume||''}</p>
+      <div class="idee-bas"><span>${quand}</span><span>${i.lecture?i.lecture+' min de lecture':''}</span></div>
+    </a>`;
+  }
+
+  if (!idees.length) {
+    grille.innerHTML = `<div class="vide-bloc">
+      <p class="vide-titre">La première idée arrive bientôt.</p>
+      <p class="vide-txt">Nous préférons publier une idée sérieusement explorée plutôt que dix résumés. Revenez très vite — ou écrivez-nous le problème que vous aimeriez nous voir creuser.</p>
+      <a class="btn accent" href="mailto:contact@kogiagroup.com?subject=Une idée à explorer">Proposer un sujet</a>
+    </div>`;
+    document.querySelector('.filtres').style.display = 'none';
+    return;
+  }
+
+  grille.innerHTML = idees.map(carte).join('');
+
+  document.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(b => b.classList.remove('actif'));
+    btn.classList.add('actif');
+    const f = btn.dataset.filtre;
+    let visibles = 0;
+    document.querySelectorAll('.idee').forEach(el => {
+      const ok = f === 'tous' || el.dataset.cat === f;
+      el.style.display = ok ? '' : 'none';
+      if (ok) visibles++;
+    });
+    let msg = document.getElementById('aucun-filtre');
+    if (!visibles) {
+      if (!msg) { msg = document.createElement('p'); msg.id='aucun-filtre'; msg.className='vide'; grille.appendChild(msg); }
+      msg.textContent = 'Aucune idée dans cette catégorie pour l’instant.';
+    } else if (msg) msg.remove();
+  }));
+})();
+
+// Révélation à l'apparition — respecte « réduire les animations ».
 (function(){
-  var r=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els=[].slice.call(document.querySelectorAll('.reveal'));
-  if(r||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
-  els.forEach(function(e){io.observe(e)});
+  const els = document.querySelectorAll('.reveal');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(e => e.classList.add('vu')); return;
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -60px 0px' });
+  els.forEach(e => io.observe(e));
 })();
 </script>
-
-</body>
-</html>
+</body></html>

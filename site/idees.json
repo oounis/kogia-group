@@ -1,0 +1,16 @@
+{
+  "_lisezmoi": "La bibliothèque d'idées Kogia. Une entrée = un article. Le site lit ce fichier : pas de base de données, pas de build. Ajouter une idée = ajouter un objet ici + une page dans site/idees/.",
+  "idees": [
+    {
+      "slug": "exemple-a-remplacer",
+      "titre": "Première idée Kogia — à remplacer",
+      "resume": "Cet emplacement montre comment une idée s'affiche. Remplacez-le par la première vraie idée.",
+      "categorie": "Technologie",
+      "pays": "Tunisie",
+      "date": "2026-08-12",
+      "lecture": 8,
+      "brouillon": true,
+      "couleur": "indigo"
+    }
+  ]
+}
