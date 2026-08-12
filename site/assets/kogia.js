@@ -67,13 +67,76 @@ const TEINTES = {
   'Quotidien':   ['rgba(194,65,12,.58)',  'rgba(249,115,22,.40)'],
 };
 
+/* Le plancton : le fond vivant de l'abysse. L'audit du 2026-08-13 l'avait
+   fait retirer parce qu'il fuyait — un écouteur resize et un observer
+   empilés à chaque navigation interne. Il revient en singleton : une seule
+   instance, nettoyée avant chaque reconstruction. La vie, sans la fuite. */
+let oceanNettoie = null;
+function demarrerOcean(lead){
+  if (oceanNettoie) oceanNettoie();
+  if (moinsDeMouvement()) return;
+  const cv = document.createElement('canvas');
+  cv.className = 'lead-fond'; cv.setAttribute('aria-hidden', 'true');
+  lead.prepend(cv);
+  const ctx = cv.getContext('2d');
+  let parts = [], larg = 0, haut = 0, boucle = 0;
+  const dim = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const r = lead.getBoundingClientRect(); if (!r.width) return;
+    larg = r.width; haut = r.height;
+    cv.width = Math.round(larg * dpr); cv.height = Math.round(haut * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    parts = Array.from({ length: Math.round(Math.min(70, larg * haut / 9000)) }, () => ({
+      x: Math.random() * larg, y: Math.random() * haut,
+      r: .7 + Math.random() * 2.1,
+      vx: (Math.random() - .5) * .12, vy: -.08 - Math.random() * .22,
+      a: .12 + Math.random() * .4,
+    }));
+  };
+  const image = () => {
+    ctx.clearRect(0, 0, larg, haut);
+    for (const p of parts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -6) { p.y = haut + 6; p.x = Math.random() * larg; }
+      if (p.x < -6) p.x = larg + 6; else if (p.x > larg + 6) p.x = -6;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(160,220,255,${p.a})`; ctx.fill();
+    }
+    boucle = requestAnimationFrame(image);
+  };
+  dim(); image();
+  addEventListener('resize', dim, { passive: true });
+  const obs = new IntersectionObserver(([e]) => {
+    cancelAnimationFrame(boucle);
+    if (e.isIntersecting) boucle = requestAnimationFrame(image);
+  }, { threshold: 0 });
+  obs.observe(lead);
+  oceanNettoie = () => {
+    cancelAnimationFrame(boucle); obs.disconnect();
+    removeEventListener('resize', dim); cv.remove(); oceanNettoie = null;
+  };
+}
+
+/* Le relief sous le curseur : la carte suit la souris sur deux axes.
+   interaction → état (--rx/--ry) → interpolation CSS → retour visuel.
+   Pointeur fin seulement — un pouce n'a pas de position de survol. */
+function demarrerRelief(zone){
+  if (moinsDeMouvement() || !matchMedia('(pointer:fine)').matches) return;
+  zone.querySelectorAll('.carte, .connexe').forEach(c => {
+    c.addEventListener('mousemove', e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -3.2 + 'deg');
+      c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 3.6 + 'deg');
+    }, { passive: true });
+    c.addEventListener('mouseleave', () => {
+      c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg');
+    });
+  });
+}
+
 /* ═══ À la une ═══════════════════════════════════════════════════════════
-   1. Le tracé de la baleine : `stroke-dasharray` doit valoir exactement la
-      longueur du chemin. On la demande au navigateur plutôt que de la
-      deviner — même principe que le périmètre 2 × π × r d'un cercle.
-   2. Le plancton a été retiré (audit 2026-08-13) : il empilait un écouteur
-      resize et un observer à chaque navigation interne, et une page de
-      trois idées n'a pas besoin de trois couches de décor. */
+   La baleine se trace (`stroke-dasharray` = getTotalLength, même principe
+   que le périmètre 2 × π × r) sur l'aurore de sa catégorie. */
 function poserLead(idee){
   const hote = document.getElementById('lead');
   if (!hote || !idee) return;
@@ -106,6 +169,7 @@ function poserLead(idee){
   lead.querySelectorAll('.trace').forEach(chemin => {
     chemin.style.setProperty('--long', chemin.getTotalLength().toFixed(1));
   });
+  demarrerOcean(lead);
 }
 
 async function demarrerFlux(){
@@ -227,6 +291,8 @@ async function demarrerFlux(){
     });
   }
 
+  demarrerRelief(document);
+
   let filtre = 'tous', recherche = '';
   function appliquer() {
     let n = 0;
@@ -338,7 +404,8 @@ async function demarrerConnexes(){
 
 async function demarrerArticle(){
   demarrerPartage();
-  demarrerConnexes();
+  await demarrerConnexes();
+  demarrerRelief(document);
   const dateFr = s => { const d = new Date(s); return isNaN(d) ? '' :
     d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) + ' à ' +
     d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); };

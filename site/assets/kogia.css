@@ -9,75 +9,65 @@
    Rien n'est copié : ni feuille, ni image, ni texte, ni code.
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ═══════════ 1. JETONS ═══════════ */
+/* ═══════════ 1. JETONS ═══════════
+   UN SEUL THÈME : l'abysse. Kogia est une baleine ; le site est la
+   profondeur où vivent les idées. Le design vivait coupé en deux — une face
+   blanche prudente pour les systèmes en clair, la face océan pour les
+   systèmes en sombre — et personne en mode clair n'a jamais vu le vrai
+   visage du site. Fini : une identité, la même pour tous. */
 :root{
-  color-scheme:light dark;
+  color-scheme:dark;
 
-  /* Teintes de marque — fixes, elles ne changent pas avec le thème */
-  --indigo:#4F57DE; --indigo-ink:#3A41C4; --violet:#8B5CF6; --cyan:#22D3EE; --terra:#E85D2F;
+  /* Teintes de marque */
+  --indigo:#7C83F0; --indigo-ink:#A5AAF7; --violet:#A78BFA; --cyan:#22D3EE; --terra:#F97316;
 
-  /* Rôles — redéfinis en sombre plus bas */
-  --ink:#0E2135;          /* texte principal */
-  --slate:#5B6B7D;        /* texte secondaire */
-  --line:#E2E8F0;         /* filets */
-  --canvas:#F4F7FA;       /* fond en creux */
-  --surface:#FFFFFF;      /* fond de page */
-  --indigo-soft:#ECEEFC;  /* aplat indigo */
-  --voile:rgba(255,255,255,.86);
-  --ombre-l:0 1px 2px rgba(14,33,53,.05);
-  --ombre-m:0 14px 34px -20px rgba(14,33,53,.30);
-  --ombre-g:0 30px 70px -30px rgba(7,23,38,.35);
+  /* Rôles — la profondeur */
+  --ink:#EAF1F8;          /* texte principal */
+  --slate:#9DB0C4;        /* texte secondaire */
+  --line:#1E3149;         /* filets */
+  --canvas:#0C1E30;       /* fond en creux */
+  --surface:#081420;      /* fond de page */
+  --indigo-soft:#1D2653;  /* aplat indigo */
+  --voile:rgba(6,15,26,.78);
+  --ombre-l:0 1px 2px rgba(0,0,0,.45);
+  --ombre-m:0 14px 34px -18px rgba(0,0,0,.75);
+  --ombre-g:0 34px 80px -28px rgba(0,0,0,.9);
+  /* Lueur : l'équivalent abyssal de l'ombre portée */
+  --lueur:0 0 24px -6px;
 
   --disp:"Sora","Avenir Next",system-ui,sans-serif;
   --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  /* ── Échelle de lecture ──
-     Fluide de 390 à 1440, sans palier : la hiérarchie ne s'écrase jamais
-     entre téléphone et bureau. Rapports au corps : h1 ×2,1 · h2 ×1,45.  */
-  --lire:    clamp(1.125rem, 1.02rem + .45vw, 1.3125rem);  /* 18 → 21 */
+  /* ── Échelle de lecture ── (mesurée, voir NOTE-MOTIF-LECTURE) */
+  --lire:    clamp(1.125rem, 1.02rem + .45vw, 1.3125rem);
   --lire-lh: 1.64;
-  --deck:    clamp(1.15rem, 1.02rem + .55vw, 1.4rem);      /* 18,5 → 22 */
-  --t-h1:    clamp(1.95rem, 1.35rem + 2.6vw, 2.75rem);     /* 31 → 44 */
-  --t-h2:    clamp(1.45rem, 1.2rem  + 1.1vw, 1.9rem);      /* 23 → 30 */
-  --t-h3:    clamp(1.22rem, 1.13rem + .38vw, 1.45rem);     /* 19,5 → 23 */
-  --t-une:   clamp(1.85rem, 1.25rem + 2.2vw, 2.7rem);      /* 30 → 43, l'à-la-une */
-  --mesure:  68ch;   /* longueur de ligne visée — 45 à 80 est la zone sûre */
-  --colonne: 56rem;  /* la même largeur en valeur absolue : `ch` se calcule
-                        sur la police de chaque élément, donc l'en-tête et le
-                        corps ne s'alignaient pas. */
+  --deck:    clamp(1.15rem, 1.02rem + .55vw, 1.4rem);
+  --t-h1:    clamp(1.95rem, 1.35rem + 2.6vw, 2.75rem);
+  --t-h2:    clamp(1.45rem, 1.2rem  + 1.1vw, 1.9rem);
+  --t-h3:    clamp(1.22rem, 1.13rem + .38vw, 1.45rem);
+  --t-une:   clamp(1.85rem, 1.25rem + 2.2vw, 2.7rem);
+  --mesure:  68ch;
+  --colonne: 56rem;
 
-  /* ── Mouvement ── (étude micro-interactions du 2026-08-12) */
-  --instant:110ms;   /* appui, teinte d'icône */
-  --rapide:180ms;    /* confirmation, fondu d'un compteur */
-  --normal:260ms;    /* feuille, expansion, toast */
-  --ample:380ms;     /* réservé : arrivée Faz3a, réussite vérifiée */
+  /* ── Mouvement ── */
+  --instant:110ms; --rapide:180ms; --normal:260ms; --ample:380ms;
   --ease:cubic-bezier(.2,.75,.2,1);
   --ease-sortie:cubic-bezier(.32,.72,0,1);
 
-  /* ── Couleur par sujet ──
-     Une seule source pour la vignette, la puce et la lueur au survol : le flux
-     cesse d'être une liste grise. La couleur ne porte jamais seule
-     l'information — le nom du sujet est toujours écrit à côté. */
-  --cat:#4F57DE;
-  --touche:44px;     /* plancher tactile : rien de cliquable en dessous */
+  /* ── Couleur par sujet — calibrée pour briller sur la profondeur ── */
+  --cat:#7C83F0;
+  --touche:44px;
   --r-s:8px; --r-m:14px; --r-l:20px; --r-xl:28px; --r-max:999px;
-}
-
-@media (prefers-color-scheme:dark){
-  :root{
-    --ink:#E9EEF5; --slate:#94A6BA; --line:#1E3149;
-    --canvas:#0C1A29; --surface:#081420; --indigo-soft:#1B2350;
-    --indigo:#7C83F0; --indigo-ink:#A5AAF7;
-    --voile:rgba(8,20,32,.86);
-    --ombre-l:0 1px 2px rgba(0,0,0,.4);
-    --ombre-m:0 14px 34px -20px rgba(0,0,0,.7);
-    --ombre-g:0 30px 70px -30px rgba(0,0,0,.85);
-  }
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{font-family:var(--text);color:var(--ink);background:var(--surface);line-height:1.6;
+body{font-family:var(--text);color:var(--ink);line-height:1.6;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgba(79,87,222,.14), transparent 60%),
+    radial-gradient(50rem 36rem at -15% 30%, rgba(34,211,238,.07), transparent 55%),
+    linear-gradient(180deg,#0A1929 0%,var(--surface) 34rem);
+  background-attachment:fixed;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;color:inherit}
@@ -113,7 +103,7 @@ button{font-family:inherit;color:inherit}
   transition:transform var(--instant) var(--ease),box-shadow var(--rapide) var(--ease),opacity var(--rapide) var(--ease)}
 .bouton:hover,.btn:hover{transform:translateY(-1px);box-shadow:var(--ombre-m)}
 .bouton:active,.btn:active{transform:translateY(0) scale(.98)}
-.bouton.clair,.btn.accent{background:var(--indigo);color:#fff}
+.bouton.clair,.btn.accent{background:#4F57DE;color:#fff}
 .btn:disabled{opacity:.55;cursor:default;transform:none;box-shadow:none}
 
 /* ═══════════ 3. GRILLE ═══════════ */
@@ -144,7 +134,8 @@ button{font-family:inherit;color:inherit}
 /* ── Colonne centrale ── */
 .flux{padding:2rem 0 5rem;min-width:0}
 .onglets{display:flex;gap:1.6rem;border-bottom:1px solid var(--line);margin-bottom:.5rem;
-  overflow-x:auto;scrollbar-width:none;position:sticky;top:64px;z-index:20;background:var(--surface)}
+  overflow-x:auto;scrollbar-width:none;position:sticky;top:64px;z-index:20;
+  background:var(--voile);backdrop-filter:blur(10px)}
 .onglets::-webkit-scrollbar{display:none}
 .page--article .onglets{position:static}
 .onglet{background:none;border:0;min-height:var(--touche);padding:.9rem 0;font:500 .9rem/1 var(--text);
@@ -160,8 +151,16 @@ button{font-family:inherit;color:inherit}
 .titre-page{font:700 .78rem/1 var(--text);letter-spacing:.16em;text-transform:uppercase;
   color:var(--slate);padding:.4rem 0 1rem}
 
+/* La place de l'à-la-une est réservée avant que le script ne la remplisse :
+   son arrivée déplaçait toute la page (CLS 0,39 mesuré) — et un bond de
+   mise en page est exactement ce qui casse un début de lecture. */
+#lead:empty{display:block;min-height:360px;border-radius:var(--r-xl);margin-bottom:1.8rem;
+  background:linear-gradient(100deg,var(--canvas) 30%,var(--line) 50%,var(--canvas) 70%);
+  background-size:220% 100%;animation:scintille 1.3s linear infinite}
+@media (max-width:760px){ #lead:empty{min-height:308px;border-radius:var(--r-l)} }
+@media (prefers-reduced-motion:reduce){ #lead:empty{animation:none;background:var(--canvas)} }
 .lead{position:relative;display:block;overflow:hidden;border-radius:var(--r-xl);
-  margin-bottom:1.8rem;padding:2.4rem 2.2rem;min-height:300px;isolation:isolate;
+  margin-bottom:1.8rem;padding:2.4rem 2.2rem;min-height:360px;isolation:isolate;
   background:linear-gradient(135deg,#0B1B2E 0%,#132C4A 48%,#1B2E63 100%);
   transition:transform var(--normal) var(--ease-sortie),box-shadow var(--normal) var(--ease)}
 .lead:hover{transform:translateY(-3px);box-shadow:var(--ombre-g)}
@@ -176,6 +175,7 @@ button{font-family:inherit;color:inherit}
   from{transform:translate3d(-14%,-10%,0) scale(1)}
   to  {transform:translate3d(16%,12%,0) scale(1.28)}
 }
+.lead-fond{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
 .lead-texte{position:relative;max-width:34rem}
 .lead-oeil{display:inline-flex;align-items:center;gap:.45rem;font:700 .72rem/1 var(--text);
   letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
@@ -215,7 +215,7 @@ button{font-family:inherit;color:inherit}
 @keyframes tracer{to{stroke-dashoffset:0}}
 
 @media (max-width:760px){
-  .lead{padding:1.9rem 1.3rem;min-height:0;border-radius:var(--r-l)}
+  .lead{padding:1.9rem 1.3rem;min-height:308px;border-radius:var(--r-l)}
   .lead-emo{font-size:3.4rem;right:1.1rem;top:1.4rem;transform:none}
   .lead:hover .lead-emo{transform:none}
   .lead-sous{font-size:.95rem}
@@ -230,8 +230,10 @@ button{font-family:inherit;color:inherit}
 /* ═══════════ 4. CARTES DU FLUX ═══════════ */
 .carte{position:relative;display:grid;grid-template-columns:1fr 128px;gap:1.8rem;padding:1.9rem 1rem;margin:0 -1rem;
   border-bottom:1px solid var(--line);align-items:start;border-radius:var(--r-m);
-  transition:background var(--rapide) var(--ease)}
-.carte:hover{background:var(--canvas)}
+  /* Le relief : --rx/--ry sont posés par le script en suivant le curseur. */
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:background var(--rapide) var(--ease),transform var(--rapide) var(--ease)}
+.carte:hover{background:color-mix(in srgb,var(--cat) 7%,var(--canvas))}
 .carte:hover .carte-titre{color:var(--indigo-ink)}
 .carte:hover .vignette{transform:scale(1.03) rotate(.6deg)}
 .carte-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem;font-size:.82rem;
@@ -266,11 +268,11 @@ button{font-family:inherit;color:inherit}
 .vignette .emo{transform:translateZ(26px)}
 .vignette svg{display:none}
 .vignette .emo{font-size:2.6rem;line-height:1;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28))}
-[data-cat="Technologie"]{--cat:#4F57DE}
-[data-cat="Business"]   {--cat:#2C4A66}
-[data-cat="Éducation"]  {--cat:#0E7490}
-[data-cat="Fintech"]    {--cat:#7C3AED}
-[data-cat="Quotidien"]  {--cat:#DC5A18}
+[data-cat="Technologie"]{--cat:#7C83F0}
+[data-cat="Business"]   {--cat:#6FA8DC}
+[data-cat="Éducation"]  {--cat:#22D3EE}
+[data-cat="Fintech"]    {--cat:#A78BFA}
+[data-cat="Quotidien"]  {--cat:#F97316}
 .carte .etiq:first-child{background:color-mix(in srgb,var(--cat) 12%,transparent);
   border-color:color-mix(in srgb,var(--cat) 32%,transparent);color:var(--cat);font-weight:600}
 /* La carte s'allume à la couleur de son sujet : un filet à gauche, pas un
@@ -279,7 +281,7 @@ button{font-family:inherit;color:inherit}
   background:var(--cat);opacity:0;transform:scaleY(.3);
   transition:opacity var(--rapide) var(--ease),transform var(--normal) var(--ease-sortie)}
 .carte:hover::before{opacity:1;transform:scaleY(1)}
-.carte:hover .vignette{box-shadow:0 14px 34px -16px var(--cat)}
+.carte:hover .vignette{box-shadow:var(--lueur) var(--cat)}
 .carte[data-cat="Technologie"] .vignette{background:linear-gradient(135deg,#3A41C4,#6D6FF0)}
 .carte[data-cat="Business"]    .vignette{background:linear-gradient(135deg,#0E2135,#2C4A66)}
 .carte[data-cat="Éducation"]   .vignette{background:linear-gradient(135deg,#0E7490,#22D3EE)}
@@ -391,12 +393,9 @@ button{font-family:inherit;color:inherit}
    Taille en em pour rester juste quand le corps de texte grandit. */
 .tag{display:inline-block;font:800 .6em/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
   padding:.35em .6em;border-radius:var(--r-s);margin-right:.5em;vertical-align:.12em;white-space:nowrap}
-.tag.fait{background:#DCFCE7;color:#027A48} .tag.estim{background:#FEF3C7;color:#B54A0A}
-.tag.hypo{background:#EDE9FE;color:#6D28D9} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
-@media (prefers-color-scheme:dark){
-  .tag.fait{background:#052E1C;color:#5AD79A} .tag.estim{background:#3A2408;color:#F5B266}
-  .tag.hypo{background:#2A1B4D;color:#C4B0FA}
-}
+.tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
+.tag.fait{background:#052E1C;color:#5AD79A} .tag.estim{background:#3A2408;color:#F5B266}
+.tag.hypo{background:#2A1B4D;color:#C4B0FA}
 
 .retour{display:inline-flex;align-items:center;gap:.4rem;min-height:var(--touche);font:600 .9rem/1 var(--text);
   color:var(--indigo-ink);margin-bottom:.8rem;transition:gap var(--rapide) var(--ease)}
@@ -462,15 +461,12 @@ button{font-family:inherit;color:inherit}
 .partage:hover{color:var(--ink);border-color:var(--slate)}
 .partage:active{transform:scale(.97)}
 /* Le retour est dans le bouton lui-même : sinon on ne sait pas si ça a marché. */
-.partage.ok{background:#DCFCE7;border-color:#86EFAC;color:#027A48}
-.partage.ko{background:#FEF2F2;border-color:#FECACA;color:#B42318}
-@media (prefers-color-scheme:dark){
-  .partage.ok{background:#052E1C;border-color:#12603E;color:#5AD79A}
-  .partage.ko{background:#3A1210;border-color:#7A2620;color:#F98A80}
-}
+.partage.ok{background:#052E1C;border-color:#12603E;color:#5AD79A}
+.partage.ko{background:#3A1210;border-color:#7A2620;color:#F98A80}
+
 .votes-etat{margin-top:.9rem;font-size:.88rem;min-height:1.2em}
-.votes-etat.ko{color:#B42318;font-weight:600}
-@media (prefers-color-scheme:dark){ .votes-etat.ko{color:#F98A80} }
+.votes-etat.ko{color:#F98A80;font-weight:600}
+
 
 /* ── À lire ensuite ── */
 .connexes{margin:3rem 0 0}
@@ -478,19 +474,20 @@ button{font-family:inherit;color:inherit}
 .connexes h3{font:700 1.25rem/1.3 var(--disp);color:var(--ink);margin-bottom:1rem}
 .connexes-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem}
 .connexe{display:flex;flex-direction:column;gap:.4rem;padding:1.1rem 1.2rem;border-radius:var(--r-l);
-  border:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden;
-  transition:transform var(--normal) var(--ease-sortie),box-shadow var(--normal) var(--ease),
+  border:1px solid var(--line);background:var(--canvas);position:relative;overflow:hidden;
+  transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(0);
+  transition:transform var(--rapide) var(--ease),box-shadow var(--normal) var(--ease),
              border-color var(--rapide) var(--ease)}
 .connexe::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cat);
   opacity:0;transition:opacity var(--rapide) var(--ease)}
-.connexe:hover{transform:translateY(-3px);box-shadow:var(--ombre-m);border-color:color-mix(in srgb,var(--cat) 40%,transparent)}
+.connexe:hover{box-shadow:var(--lueur) color-mix(in srgb,var(--cat) 55%,transparent);border-color:color-mix(in srgb,var(--cat) 40%,transparent)}
 .connexe:hover::before{opacity:1}
 .connexe-emo{font-size:1.5rem;line-height:1}
 .connexe-cat{font:700 .7rem/1 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--cat)}
 .connexe-titre{font:700 1rem/1.32 var(--disp);color:var(--ink);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .connexe-bas{font-size:.78rem;color:var(--slate);margin-top:auto}
-@media (prefers-reduced-motion:reduce){ .connexe:hover{transform:none} .partage:active{transform:none} }
+@media (prefers-reduced-motion:reduce){ .connexe,.carte{transform:none!important} .partage:active{transform:none} }
 
 .comm{margin:3rem 0}
 .comm h3{font:700 1.4rem/1.3 var(--disp);color:var(--ink);margin-bottom:.4rem}
@@ -530,8 +527,8 @@ button{font-family:inherit;color:inherit}
 .comm-msg{font-size:.97rem;line-height:1.65;color:var(--slate);white-space:pre-wrap}
 .comm-vide{color:var(--slate);font-size:.94rem;font-style:italic}
 .comm-etat{font-size:.88rem;min-height:1.2em}
-.comm-etat.ok{color:#027A48;font-weight:600} .comm-etat.ko{color:#B42318;font-weight:600}
-@media (prefers-color-scheme:dark){ .comm-etat.ok{color:#5AD79A} .comm-etat.ko{color:#F98A80} }
+.comm-etat.ok{color:#5AD79A;font-weight:600} .comm-etat.ko{color:#F98A80;font-weight:600}
+
 @keyframes entree{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 /* ═══════════ 8. BARRE DE PROGRESSION DE LECTURE ═══════════
@@ -627,8 +624,8 @@ button{font-family:inherit;color:inherit}
 
 /* Badge honnête : posé uniquement quand la date réelle a moins de 7 jours. */
 .etiq.neuf{background:color-mix(in srgb,var(--cyan) 16%,transparent);
-  border-color:color-mix(in srgb,var(--cyan) 40%,transparent);color:#0E7490;font-weight:700}
-@media (prefers-color-scheme:dark){ .etiq.neuf{color:var(--cyan)} }
+  border-color:color-mix(in srgb,var(--cyan) 40%,transparent);color:var(--cyan);font-weight:700}
+
 
 /* Confidentialité des commentaires : dite à l'endroit où on écrit. */
 .comm-note{font-size:.8rem;line-height:1.55;color:var(--slate);margin-top:.8rem}
@@ -637,7 +634,7 @@ button{font-family:inherit;color:inherit}
 /* Signaler : discret — présent sans inviter. */
 .comm-signaler{margin-top:.6rem;background:none;border:0;padding:.2rem 0;cursor:pointer;
   font:500 .76rem/1 var(--text);color:var(--slate);text-decoration:underline;min-height:auto}
-.comm-signaler:hover{color:#B42318}
+.comm-signaler:hover{color:#F98A80}
 .comm-signaler:disabled{text-decoration:none;cursor:default;color:var(--slate)}
 
 /* Liens statiques écrits au déploiement pour les moteurs et le sans-JS ;
