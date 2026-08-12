@@ -12,6 +12,7 @@ chiffrées**, on les réécrit avec les jetons Kogia.
 | Reddit `r/programming` | **mesuré** | géométrie calculée + règles de transition lues dans le CSSOM |
 | Medium, page d'accueil | **mesuré** | idem — mais c'est leur page vitrine, pas l'application de lecture |
 | Medium, page d'article | **non mesuré** | Cloudflare refuse le navigateur pilote (403) |
+| Smashing Magazine, article | **mesuré** | vraie page de lecture longue : 20 px, interligne 1,65, **73 caractères** |
 | kogiagroup.com | **mesuré** | le même script, pour que la comparaison soit honnête |
 
 Aucune valeur Medium de page d'article n'est citée dans cette note. Les
@@ -48,9 +49,15 @@ encore casse le calme de la page.
 Interligne 1,62. Les marges entre paragraphes sont exprimées en `em`, donc
 elles grandissent avec le texte au lieu de rester figées.
 
-**Largeur de lecture : 54 caractères** en colonne centrale à 21 px. C'est
-la contrainte de la grille à trois rails, et elle est acceptable. Sous
-45 ou au-dessus de 80, il faudrait revoir la grille.
+**Largeur de lecture : 68 caractères.** C'était 54, parce que la grille à
+trois rails imposait une colonne de 720 px. Corrigé en supprimant le rail
+droit sur les pages d'article — c'est aussi ce que font les plateformes de
+lecture : on ne met rien à côté d'un texte long. La colonne est plafonnée
+en `rem`, pas en `ch` : `ch` se calcule sur la police de chaque élément, si
+bien que l'en-tête (16 px) et le corps (21 px) ne tombaient pas sur la même
+largeur.
+
+La zone sûre est 45–80 caractères. Smashing Magazine, mesuré, est à 73.
 
 ## 3. État
 
@@ -87,7 +94,46 @@ Règle non négociable : **le retour visuel arrive avant la réponse réseau.**
   à l'image.
 - `prefers-reduced-motion` remplace le mouvement par couleur et bordure.
 
-## 6. Ce qui n'est pas repris
+## 6. Emoji
+
+Un emoji de catégorie sur chaque idée : ⚙️ Technologie · 📈 Business ·
+🎓 Éducation · 💳 Fintech · 🧭 Quotidien. Il est **décoratif** — il double
+un mot déjà écrit juste à côté. Trois règles, tirées des recommandations
+d'accessibilité publiques :
+
+- toujours `aria-hidden="true"` — sinon un lecteur d'écran annonce le nom
+  Unicode de l'emoji, qui correspond rarement à l'usage qu'on en fait ;
+- jamais seul porteur de sens : retirer l'emoji ne doit rien enlever ;
+- **un seul** à la fois, jamais deux à la suite.
+
+Sur la vignette, l'emoji remplace la baleine : le glyphe de marque héritait
+d'un dégradé indigo/cyan et disparaissait sur un fond indigo.
+
+## 7. Mouvement piloté par le défilement
+
+Deux effets, tous deux natifs, tous deux à zéro kilo-octet de JavaScript et
+exécutés sur le fil du compositeur — donc incapables de saccader :
+
+- **barre de progression de lecture** (`animation-timeline: scroll()`) ;
+- **apparition des cartes et des titres de section** (`animation-timeline:
+  view()`), sur une plage courte, uniquement à l'entrée dans l'écran.
+
+Les deux sont enveloppés dans `@supports` : un navigateur qui ne connaît pas
+encore ces propriétés affiche simplement la page sans elles. Le texte en
+cours de lecture n'est jamais animé — un paragraphe qui apparaît sous les
+yeux du lecteur est une gêne, pas un effet.
+
+La navigation interne passe par `document.startViewTransition()` : le
+navigateur photographie l'ancienne colonne, l'échange, puis fond vers la
+nouvelle. Les rails ne bougent toujours pas.
+
+## 8. Thème sombre
+
+Le site suit `prefers-color-scheme`. Les teintes de marque ne changent pas ;
+seuls les rôles (encre, ardoise, filet, fond) sont redéfinis, et l'indigo est
+éclairci en sombre pour tenir le contraste sur fond profond.
+
+## 9. Ce qui n'est pas repris
 
 Flux infini · karma · votes publics de popularité · classement par
 indignation · confettis sur une action ordinaire. Voir la charte de design.

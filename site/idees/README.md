@@ -18,6 +18,7 @@ Choisir un nom lisible (`lavage-auto-mobile-tunisie`), jamais un identifiant.
 | `{{TITRE}}` | le titre de l'idée |
 | `{{RESUME}}` | 1–2 phrases — sert aussi à l'aperçu sur les réseaux |
 | `{{CATEGORIE}}` | Technologie · Business · Éducation · Fintech · Quotidien |
+| `{{EMOJI}}` | ⚙️ Technologie · 📈 Business · 🎓 Éducation · 💳 Fintech · 🧭 Quotidien |
 | `{{PAYS}}` | Tunisie, Bahreïn, Qatar… ou retirer la balise |
 | `{{DATE}}` | ex. `14 août 2026` |
 | `{{LECTURE}}` | durée estimée, en minutes |
@@ -48,6 +49,15 @@ Ajouter un objet dans `../idees.json` :
 `"brouillon": true` cache l'idée de la page d'accueil sans supprimer le fichier.
 
 Puis `git push` — le site se met à jour tout seul.
+
+## L'emoji de catégorie
+
+Il est **décoratif** : il double une information déjà écrite en toutes lettres
+juste à côté. D'où la règle, appliquée partout sur le site :
+
+- toujours `aria-hidden="true"`, pour qu'un lecteur d'écran ne l'annonce pas ;
+- jamais seul porteur de sens — retirer l'emoji ne doit rien enlever ;
+- **un seul** à la fois, jamais deux à la suite.
 
 ## Les étiquettes d'honnêteté
 
