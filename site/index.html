@@ -22,6 +22,7 @@
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F57DE"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+  <linearGradient id="trait" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#A5AAF7"/></linearGradient>
   <g id="whale"><path fill="url(#wg)" fill-rule="evenodd" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="url(#wg)" stroke-width="4" stroke-linecap="round" opacity=".9"/></g>
 </defs></svg>
 
@@ -57,7 +58,31 @@
 
   <!-- ═══ COLONNE CENTRALE ═══ -->
   <main class="flux" id="centre">
-    <h1 class="hors-ecran">Les idées de Kogia</h1>
+    <!-- ═══ MASTHEAD ═══
+         La baleine est tracée sous les yeux du lecteur : stroke-dasharray
+         égale la longueur du chemin, stroke-dashoffset la fait apparaître.
+         Le champ de plancton derrière est un canvas de particules, arrêté
+         net si le visiteur demande moins de mouvement. -->
+    <header class="une">
+      <canvas class="une-fond" aria-hidden="true"></canvas>
+      <div class="une-texte">
+        <p class="une-oeil">Bibliothèque d'idées</p>
+        <h1 class="une-titre">On explore les idées<br><em>jusqu'au bout.</em></h1>
+        <p class="une-sous">Chaque idée est creusée sérieusement : le problème, le modèle
+          économique, ce qui pourrait la tuer, et un verdict assumé. Ce qui est vérifié est
+          marqué comme tel — le reste aussi.</p>
+        <div class="une-tags">
+          <span class="tag fait">Fait</span><span class="tag estim">Estimation</span>
+          <span class="tag hypo">Hypothèse</span><span class="tag avis">Avis Kogia</span>
+        </div>
+      </div>
+      <svg class="une-baleine" viewBox="0 0 132 96" aria-hidden="true">
+        <path class="trace" d="M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z"/>
+        <path class="trace jet" d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6"/>
+        <circle class="oeil" cx="34" cy="45" r="4.4"/>
+      </svg>
+    </header>
+
     <div class="onglets" role="tablist" aria-label="Filtrer par sujet">
       <button class="onglet actif" role="tab" aria-selected="true" data-f="tous">Pour vous</button>
       <button class="onglet" role="tab" aria-selected="false" data-f="Technologie">Technologie</button>

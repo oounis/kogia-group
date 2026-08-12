@@ -28,16 +28,99 @@ function depuis(iso){
   return d.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
 }
 
-/* Compteur : la valeur change par un fondu court, jamais par une roulette.
-   `tabular-nums` en CSS empêche la ligne de sauter quand un chiffre grandit. */
+const moinsDeMouvement = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Interpolation linéaire — la formule derrière presque toute animation :
+   valeur = départ + (arrivée - départ) × progression.                        */
+const lerp = (a, b, t) => a + (b - a) * t;
+/* Amortissement : rapide au début, posé à la fin. Sans lui, un compteur qui
+   monte a l'air mécanique. */
+const adoucir = t => 1 - Math.pow(1 - t, 3);
+
+/* Compteur : la valeur monte par interpolation, image par image.
+   État → interpolation → rendu, à ~60 images par seconde, puis un résultat
+   stable et exact. `tabular-nums` en CSS empêche la ligne de sauter. */
 function poserCompteur(el, v){
-  const s = String(v);
-  if (el.textContent === s) return;
-  el.classList.add('maj');
-  setTimeout(() => { el.textContent = s; el.classList.remove('maj'); }, 180);
+  const fin = Number(v) || 0;
+  const debut = Number(el.dataset.affiche || 0);
+  if (debut === fin) { el.textContent = String(fin); return; }
+  el.dataset.affiche = fin;
+  if (moinsDeMouvement()) { el.textContent = String(fin); return; }
+
+  const duree = 750, t0 = performance.now();
+  cancelAnimationFrame(Number(el.dataset.raf || 0));
+  const image = maintenant => {
+    const p = Math.min(1, (maintenant - t0) / duree);
+    el.textContent = String(Math.round(lerp(debut, fin, adoucir(p))));
+    if (p < 1) el.dataset.raf = requestAnimationFrame(image);
+  };
+  el.dataset.raf = requestAnimationFrame(image);
+}
+
+/* ═══ Masthead ═══════════════════════════════════════════════════════════
+   1. Le tracé de la baleine : `stroke-dasharray` doit valoir exactement la
+      longueur du chemin. On la demande au navigateur plutôt que de la
+      deviner — même principe que le périmètre 2 × π × r d'un cercle.
+   2. Le plancton : un champ de particules sur canvas. État (position,
+      vitesse) → mise à jour → rendu → image suivante. Rien d'autre. */
+function demarrerUne(){
+  const une = document.querySelector('.une');
+  if (!une || une.dataset.pret) return;
+  une.dataset.pret = '1';
+
+  une.querySelectorAll('.trace').forEach(chemin => {
+    const L = chemin.getTotalLength();
+    chemin.style.setProperty('--long', L.toFixed(1));
+  });
+
+  const cv = une.querySelector('.une-fond');
+  if (!cv || moinsDeMouvement()) return;
+  const ctx = cv.getContext('2d');
+  let particules = [], larg = 0, haut = 0, boucle = 0;
+
+  const dimensionner = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const r = une.getBoundingClientRect();
+    larg = r.width; haut = r.height;
+    cv.width = Math.round(larg * dpr); cv.height = Math.round(haut * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Une densité par surface : autant de plancton sur un téléphone que sur
+    // un écran large, jamais un nuage opaque.
+    const n = Math.round(Math.min(70, (larg * haut) / 9000));
+    particules = Array.from({ length: n }, () => ({
+      x: Math.random() * larg, y: Math.random() * haut,
+      r: 0.7 + Math.random() * 2.1,
+      vx: (Math.random() - .5) * .12, vy: -0.08 - Math.random() * .22,
+      a: .12 + Math.random() * .38,
+    }));
+  };
+
+  const image = () => {
+    ctx.clearRect(0, 0, larg, haut);
+    for (const p of particules) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -6) { p.y = haut + 6; p.x = Math.random() * larg; }
+      if (p.x < -6) p.x = larg + 6; else if (p.x > larg + 6) p.x = -6;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(180,225,255,${p.a})`;
+      ctx.fill();
+    }
+    boucle = requestAnimationFrame(image);
+  };
+
+  dimensionner(); image();
+  addEventListener('resize', dimensionner, { passive: true });
+  // Le canvas s'arrête dès que le masthead sort de l'écran : aucune image
+  // calculée pendant qu'on lit une carte plus bas.
+  new IntersectionObserver(([e]) => {
+    cancelAnimationFrame(boucle);
+    if (e.isIntersecting) boucle = requestAnimationFrame(image);
+  }, { threshold: 0 }).observe(une);
 }
 
 async function demarrerFlux(){
+  demarrerUne();
   const flux = document.getElementById('flux');
   if (flux.dataset.pret) return;
   flux.dataset.pret = '1';
@@ -87,10 +170,10 @@ async function demarrerFlux(){
         ${i.pays ? `<span class="etiq">${esc(i.pays)}</span>` : ''}
         <span class="signal" title="Avis donnés sur cette idée">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>
-          <b data-votes>—</b><span class="hors-ecran"> avis</span></span>
+          <b data-votes data-affiche="0">—</b><span class="hors-ecran"> avis</span></span>
         <span class="signal" title="Commentaires">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
-          <b data-comms>—</b><span class="hors-ecran"> commentaires</span></span>
+          <b data-comms data-affiche="0">—</b><span class="hors-ecran"> commentaires</span></span>
       </div>
     </div>
     <div class="vignette"><span class="emo" aria-hidden="true">${emo(i.categorie)}</span></div>
@@ -242,7 +325,8 @@ async function demarrerArticle(){
       if (!(d.nom||'').trim() || !(d.message||'').trim()) {
         etat.className='comm-etat ko'; etat.textContent='Un nom et un message, s\'il vous plaît.'; return; }
       btn.disabled = true; etat.className='comm-etat';
-      etat.textContent = 'Envoi… (le serveur gratuit peut mettre quelques secondes à se réveiller)';
+      etat.innerHTML = '<span class="attente"><svg class="chargeur" viewBox="0 0 24 24" aria-hidden="true">'
+        + '<circle cx="12" cy="12" r="9"/></svg>Envoi… le serveur gratuit met parfois quelques secondes à se réveiller.</span>';
       try {
         const r = await fetch(`${API}/idees/${slug}/commentaires`, { method:'POST',
           headers:{'Content-Type':'application/json'}, body: JSON.stringify(d) });

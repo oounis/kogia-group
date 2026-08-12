@@ -40,6 +40,7 @@
   --t-h1:    clamp(1.95rem, 1.35rem + 2.6vw, 2.75rem);     /* 31 → 44 */
   --t-h2:    clamp(1.45rem, 1.2rem  + 1.1vw, 1.9rem);      /* 23 → 30 */
   --t-h3:    clamp(1.22rem, 1.13rem + .38vw, 1.45rem);     /* 19,5 → 23 */
+  --t-une:   clamp(2.1rem, 1.4rem + 3.1vw, 3.4rem);        /* 34 → 54, le masthead */
   --mesure:  68ch;   /* longueur de ligne visée — 45 à 80 est la zone sûre */
   --colonne: 56rem;  /* la même largeur en valeur absolue : `ch` se calcule
                         sur la police de chaque élément, donc l'en-tête et le
@@ -147,6 +148,58 @@ button{font-family:inherit;color:inherit}
 .onglet:hover{color:var(--ink)}
 .onglet.actif{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
 
+/* ═══════════ 3 bis. MASTHEAD ═══════════
+   Le seul endroit du site où le mouvement est permis d'être visible. La page
+   de lecture reste calme : ici on est encore en train de choisir, pas de lire. */
+.une{position:relative;overflow:hidden;border-radius:var(--r-xl);margin:.5rem 0 1.6rem;
+  padding:2.6rem 2.2rem 2.4rem;isolation:isolate;
+  background:linear-gradient(135deg,#0B1B2E 0%,#132C4A 45%,#1B2E63 100%)}
+/* Aurore : deux voiles de couleur qui dérivent lentement. Uniquement
+   `transform` et `opacity` — donc composité, donc sans coût de mise en page. */
+.une::before,.une::after{content:"";position:absolute;inset:-40%;z-index:-1;
+  background:radial-gradient(closest-side,rgba(79,87,222,.55),transparent 70%);
+  animation:deriver 22s var(--ease) infinite alternate}
+.une::after{background:radial-gradient(closest-side,rgba(34,211,238,.38),transparent 70%);
+  animation-duration:31s;animation-direction:alternate-reverse}
+@keyframes deriver{
+  from{transform:translate3d(-14%,-10%,0) scale(1)}
+  to  {transform:translate3d(16%,12%,0) scale(1.25)}
+}
+.une-fond{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.une-texte{position:relative;max-width:34rem}
+.une-oeil{font:700 .76rem/1 var(--text);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1rem}
+.une-titre{font:800 var(--t-une)/1.08 var(--disp);color:#fff;letter-spacing:-.03em}
+.une-titre em{font-style:normal;background:linear-gradient(90deg,var(--cyan),#A5AAF7);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.une-sous{margin-top:1.1rem;font-size:1.02rem;line-height:1.6;color:#B7C7DA;max-width:46ch}
+.une-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+
+/* La baleine se dessine. `stroke-dasharray` vaut la longueur du chemin :
+   le trait est un seul tiret, et `stroke-dashoffset` le fait entrer. */
+.une-baleine{position:absolute;right:-2%;bottom:-14%;width:min(46%,340px);height:auto;
+  opacity:.9;pointer-events:none}
+.une-baleine .trace{fill:none;stroke:url(#trait);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--long,600);stroke-dashoffset:var(--long,600);
+  animation:tracer 2.6s var(--ease-sortie) forwards}
+.une-baleine .jet{animation-delay:.5s}
+.une-baleine .oeil{fill:var(--cyan);opacity:0;animation:paraitre .5s var(--ease) 2.2s forwards}
+@keyframes tracer{to{stroke-dashoffset:0}}
+@keyframes paraitre{to{opacity:1}}
+
+@media (max-width:760px){
+  .une{padding:2rem 1.3rem;border-radius:var(--r-l)}
+  .une-baleine{width:58%;right:-8%;bottom:-20%;opacity:.5}
+  .une-sous{font-size:.96rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .une::before,.une::after{animation:none}
+  .une-baleine .trace{animation:none;stroke-dashoffset:0}
+  .une-baleine .oeil{animation:none;opacity:1}
+  .une-fond{display:none}
+}
+
 /* ═══════════ 4. CARTES DU FLUX ═══════════ */
 .carte{display:grid;grid-template-columns:1fr 128px;gap:1.8rem;padding:1.9rem 1rem;margin:0 -1rem;
   border-bottom:1px solid var(--line);align-items:start;border-radius:var(--r-m);
@@ -170,13 +223,19 @@ button{font-family:inherit;color:inherit}
 
 /* Vignette : dégradé par catégorie. Pas d'image = choix assumé, pas un
    défaut de chargement. Le glyphe est décoratif, donc aria-hidden. */
+/* Vignette en relief : `preserve-3d` sur le parent, puis une rotation sur
+   deux axes au survol. Le glyphe est poussé en avant sur l'axe Z, ce qui
+   crée une vraie profondeur — pas une ombre qui l'imite. */
+.carte{perspective:900px}
 .vignette{width:128px;height:128px;border-radius:var(--r-m);display:grid;place-items:center;
-  overflow:hidden;position:relative;background:linear-gradient(135deg,var(--ink),#1B3A57);
-  transition:transform var(--normal) var(--ease);box-shadow:var(--ombre-l)}
+  position:relative;background:linear-gradient(135deg,var(--ink),#1B3A57);
+  transform-style:preserve-3d;backface-visibility:hidden;will-change:transform;
+  transition:transform var(--normal) var(--ease-sortie),box-shadow var(--normal) var(--ease);
+  box-shadow:var(--ombre-l)}
+.carte:hover .vignette{transform:rotateX(9deg) rotateY(-13deg) translateZ(10px);box-shadow:var(--ombre-m)}
+.vignette .emo{transform:translateZ(26px)}
 .vignette svg{display:none}
-.vignette .emo{font-size:2.6rem;line-height:1;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28));
-  transition:transform var(--normal) var(--ease)}
-.carte:hover .emo{transform:scale(1.08) rotate(-5deg)}
+.vignette .emo{font-size:2.6rem;line-height:1;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28))}
 .carte[data-cat="Technologie"] .vignette{background:linear-gradient(135deg,#3A41C4,#6D6FF0)}
 .carte[data-cat="Business"]    .vignette{background:linear-gradient(135deg,#0E2135,#2C4A66)}
 .carte[data-cat="Éducation"]   .vignette{background:linear-gradient(135deg,#0E7490,#22D3EE)}
@@ -210,6 +269,23 @@ button{font-family:inherit;color:inherit}
   background-size:220% 100%;animation:scintille 1.3s linear infinite}
 @keyframes scintille{from{background-position:180% 0}to{background-position:-40% 0}}
 @media (prefers-reduced-motion:reduce){ .sq-carte{animation:none;background:var(--canvas)} }
+
+/* ── Chargeur circulaire ──
+   Un cercle SVG de rayon 9 a un périmètre de 2 × π × 9 = 56,549. En posant
+   `stroke-dasharray` à cette valeur exacte, le trait fait tout juste le tour :
+   décaler `stroke-dashoffset` dessine puis efface l'arc, sans raccord visible. */
+.chargeur{width:26px;height:26px;flex-shrink:0}
+.chargeur circle{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:56.549;transform-origin:center;
+  animation:chargeArc 1.5s ease-in-out infinite,chargeTour 1.5s linear infinite}
+@keyframes chargeArc{
+  0%  {stroke-dashoffset:53}
+  50% {stroke-dashoffset:14}
+  100%{stroke-dashoffset:53}
+}
+@keyframes chargeTour{to{transform:rotate(1turn)}}
+.attente{display:inline-flex;align-items:center;gap:.6rem;color:var(--slate);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){ .chargeur circle{animation:none;stroke-dashoffset:20} }
 
 .vide{padding:4rem 0;text-align:center}
 .vide-t{font:700 1.5rem/1.3 var(--disp);color:var(--ink);margin-bottom:.6rem}
