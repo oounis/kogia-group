@@ -208,6 +208,24 @@ button{font-family:inherit}
 .etape b{display:block;font:700 .96rem/1.4 var(--text);color:var(--ink)}
 .etape p{font-size:.9rem;line-height:1.55;color:var(--slate);margin:.2rem 0 0}
 .fleche{color:var(--indigo);font-size:1.1rem;margin:.45rem 0 .45rem 13px;line-height:1}
+
+/* ═══ Micro-interactions (étude 2026-08-12) ═══
+   Jetons de durée : instant 80-120ms (appui) · quick 160-200ms (confirmation,
+   compteur) · standard 220-280ms · emphasis 320-450ms (réservé à l'arrivée
+   Faz3a). Le retour visuel arrive AVANT la réponse réseau : un clic ne doit
+   jamais sembler ignoré. */
+.vote{transition:transform .12s var(--ease),background .16s var(--ease),border-color .16s var(--ease)}
+.vote:active{transform:scale(.98)}
+.vote-n{transition:opacity .18s var(--ease)}
+.vote-n.maj{opacity:0}                 /* fondu du compteur, pas de roulette */
+.vote.choisi .vote-n{color:var(--indigo-ink)}
+.comm-form button:active,.bouton:active{transform:scale(.98)}
+.comm-item{animation:entree .2s var(--ease)}   /* nouvel élément : fondu court */
+@keyframes entree{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .vote,.vote-n,.comm-item{transition:none;animation:none}
+  .vote:active,.bouton:active{transform:none}
+}
 </style>
 </head>
 <body>
@@ -423,9 +441,16 @@ async function demarrerArticle(){
   if (secV && !secV.dataset.pret) {
     secV.dataset.pret = '1';
     const slug = secV.dataset.slug;
-    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => el.textContent = t[el.dataset.n] ?? 0);
+    const peint = t => secV.querySelectorAll('[data-n]').forEach(el => {
+      const v = String(t[el.dataset.n] ?? 0);
+      if (el.textContent === v) return;
+      el.classList.add('maj');                     // fondu sortant…
+      setTimeout(() => { el.textContent = v; el.classList.remove('maj'); }, 180);
+    });
     fetch(`${API}/idees/${slug}/reactions`).then(r=>r.json()).then(d=>peint(d.reactions||{})).catch(()=>{});
     secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
+      // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
+      secV.querySelectorAll('.vote').forEach(x => x.classList.remove('choisi'));
       b.classList.add('choisi'); b.disabled = true;
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',
