@@ -276,10 +276,27 @@ async function demarrerFlux(){
     } else if (msg) msg.remove();
   }
 
+  // Clavier : dans une barre d'onglets, les flèches déplacent la sélection et
+  // un seul onglet reste dans l'ordre de tabulation. C'est la convention que
+  // les lecteurs d'écran attendent.
+  const lstOnglets = [...document.querySelectorAll('.onglet')];
+  lstOnglets.forEach((b, i) => {
+    b.tabIndex = b.classList.contains('actif') ? 0 : -1;
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1
+              : e.key === 'Home' ? -i : e.key === 'End' ? lstOnglets.length - 1 - i : 0;
+      if (!d && e.key !== 'Home' && e.key !== 'End') return;
+      e.preventDefault();
+      const cible = lstOnglets[(i + d + lstOnglets.length) % lstOnglets.length];
+      cible.focus(); cible.click();
+    });
+  });
+  const majTab = () => lstOnglets.forEach(x => { x.tabIndex = x.classList.contains('actif') ? 0 : -1; });
+
   document.querySelectorAll('.onglet').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.onglet').forEach(x => { x.classList.remove('actif'); x.setAttribute('aria-selected','false'); });
     b.classList.add('actif'); b.setAttribute('aria-selected','true');
-    filtre = b.dataset.f; appliquer();
+    majTab(); filtre = b.dataset.f; appliquer();
   }));
   document.querySelectorAll('.tri').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.tri').forEach(x => x.classList.remove('actif'));
@@ -314,7 +331,62 @@ function etincelles(bouton){
   }
 }
 
+/* Copier le lien : le retour doit être dans le bouton lui-même, sinon on ne
+   sait pas si l'action a marché. Repli par sélection si le presse-papier est
+   refusé (contexte non sécurisé, permission bloquée). */
+function demarrerPartage(){
+  const b = document.querySelector('[data-partager]');
+  if (!b || b.dataset.pret) return;
+  b.dataset.pret = '1';
+  const libelle = b.querySelector('.partage-txt');
+  const initial = libelle.textContent;
+  b.addEventListener('click', async () => {
+    const url = location.href;
+    let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; }
+    catch {
+      try {
+        const z = document.createElement('textarea');
+        z.value = url; z.setAttribute('readonly',''); z.style.position = 'fixed'; z.style.opacity = '0';
+        document.body.appendChild(z); z.select();
+        ok = document.execCommand('copy'); z.remove();
+      } catch { ok = false; }
+    }
+    b.classList.toggle('ok', ok); b.classList.toggle('ko', !ok);
+    libelle.textContent = ok ? 'Lien copié' : 'Copie impossible';
+    setTimeout(() => { libelle.textContent = initial; b.classList.remove('ok','ko'); }, 2000);
+  });
+}
+
+/* Idées connexes : même sujet d'abord, puis les plus récentes. Une raison de
+   rester après la dernière ligne — sinon l'article est un cul-de-sac. */
+async function demarrerConnexes(){
+  const hote = document.getElementById('connexes');
+  if (!hote || hote.dataset.pret) return;
+  hote.dataset.pret = '1';
+  const ici = location.pathname.split('/').pop().replace('.html','');
+  let idees = [];
+  try {
+    const r = await fetch(new URL('idees.json', location.origin + '/'), { cache: 'no-cache' });
+    idees = ((await r.json()).idees || []).filter(i => !i.brouillon && i.slug !== ici);
+  } catch { return; }
+  if (!idees.length) return;                 // rien à proposer : pas de section vide
+  const moi = document.querySelector('.idee-cat')?.textContent.replace(/[^\p{L} ]/gu,'').trim();
+  idees.sort((a, b) => (b.categorie === moi) - (a.categorie === moi)
+                    || (b.date || '').localeCompare(a.date || ''));
+  hote.innerHTML = `<h3>À lire ensuite</h3>
+    <div class="connexes-grille">${idees.slice(0, 3).map(i => `
+      <a class="connexe" href="${esc(i.slug)}.html" data-cat="${esc(i.categorie)}">
+        <span class="connexe-emo" aria-hidden="true">${emo(i.categorie)}</span>
+        <span class="connexe-cat">${esc(i.categorie)}</span>
+        <span class="connexe-titre">${esc(i.titre)}</span>
+        <span class="connexe-bas">${i.lecture || 6} min de lecture</span>
+      </a>`).join('')}</div>`;
+}
+
 async function demarrerArticle(){
+  demarrerPartage();
+  demarrerConnexes();
   const dateFr = s => { const d = new Date(s); return isNaN(d) ? '' :
     d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) + ' à ' +
     d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); };
@@ -323,21 +395,45 @@ async function demarrerArticle(){
   if (secV && !secV.dataset.pret) {
     secV.dataset.pret = '1';
     const slug = secV.dataset.slug;
-    const peint = t => secV.querySelectorAll('[data-n]')
-      .forEach(el => poserCompteur(el, t[el.dataset.n] ?? 0));
-    fetch(`${API}/idees/${slug}/reactions`).then(r=>r.json()).then(d=>peint(d.reactions||{})).catch(()=>{});
-    secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
-      // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
+    const etat = secV.querySelector('.votes-etat');
+    const peint = (d, force) => {
+      secV.querySelectorAll('[data-n]').forEach(el => poserCompteur(el, d.reactions?.[el.dataset.n] ?? 0));
+      // Mes propres réponses reviennent en surbrillance : le vote est un état,
+      // pas un feu de paille qui disparaît au rechargement.
+      const miens = new Set(d.miens || []);
+      // L'empreinte est calculée sur l'IP : elle peut changer entre l'envoi et
+      // la réponse (bascule réseau, sortie différente). Sans ce garde-fou, le
+      // choix qu'on vient de faire se décochait tout seul, sans un mot.
+      if (force) miens.add(force);
       secV.querySelectorAll('.vote').forEach(x => {
-        x.classList.remove('choisi'); x.setAttribute('aria-pressed', 'false');
+        const a = miens.has(x.dataset.choix);
+        x.classList.toggle('choisi', a);
+        x.setAttribute('aria-pressed', a ? 'true' : 'false');
       });
+    };
+    fetch(`${API}/idees/${slug}/reactions`)
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(peint)
+      .catch(() => { secV.querySelectorAll('[data-n]').forEach(el => el.textContent = '—'); });
+
+    secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
+      if (b.classList.contains('choisi')) return;          // déjà répondu : rien à refaire
+      // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
       b.classList.add('choisi'); b.setAttribute('aria-pressed', 'true');
       etincelles(b); b.disabled = true;
+      if (etat) { etat.textContent = ''; etat.className = 'votes-etat'; }
       try {
         const r = await fetch(`${API}/idees/${slug}/reactions`, { method:'POST',
           headers:{'Content-Type':'application/json'}, body: JSON.stringify({ choix: b.dataset.choix }) });
-        peint((await r.json()).reactions || {});
-      } catch {} finally { b.disabled = false; }
+        if (!r.ok) throw new Error(r.status);
+        peint(await r.json(), b.dataset.choix);
+      } catch {
+        // L'échec doit se voir : on retire l'état optimiste et on l'explique
+        // sous la barre, à côté du geste, jamais dans une alerte.
+        b.classList.remove('choisi'); b.setAttribute('aria-pressed', 'false');
+        if (etat) { etat.className = 'votes-etat ko';
+          etat.textContent = "Votre réponse n'a pas pu être enregistrée. Réessayez dans un instant."; }
+      } finally { b.disabled = false; }
     }));
   }
 

@@ -119,13 +119,16 @@ const serveur = http.createServer(async (req, res) => {
     // ── Réactions (un vote par choix et par personne) ──
     const mR = url.pathname.match(/^\/idees\/([a-z0-9-]{1,80})\/reactions$/)
     if (mR && req.method === 'GET') {
-      const r = await db.execute({
-        sql: 'SELECT choix, COUNT(*) n FROM reactions WHERE slug = ? GROUP BY choix',
-        args: [mR[1]],
-      })
+      // `miens` = ce que CETTE personne a déjà répondu, retrouvé par empreinte.
+      // Sans lui, on votait, on rechargeait, et la page faisait comme si de
+      // rien n'était : le geste n'avait pas d'état, donc pas de réalité.
+      const [tous, miens] = await db.batch([
+        { sql: 'SELECT choix, COUNT(*) n FROM reactions WHERE slug = ? GROUP BY choix', args: [mR[1]] },
+        { sql: 'SELECT choix FROM reactions WHERE slug = ? AND empreinte = ?', args: [mR[1], emp] },
+      ], 'read')
       const total = {}
-      for (const row of r.rows) total[row.choix] = Number(row.n)
-      return envoi(res, 200, { reactions: total }, origin)
+      for (const row of tous.rows) total[row.choix] = Number(row.n)
+      return envoi(res, 200, { reactions: total, miens: miens.rows.map(r => r.choix) }, origin)
     }
     if (mR && req.method === 'POST') {
       const b = await corps(req)
@@ -140,9 +143,12 @@ const serveur = http.createServer(async (req, res) => {
           args: [randomUUID(), mR[1], choix, emp, new Date().toISOString()],
         })
       } catch { /* déjà voté : on renvoie simplement le total */ }
-      const r = await db.execute({ sql: 'SELECT choix, COUNT(*) n FROM reactions WHERE slug = ? GROUP BY choix', args: [mR[1]] })
-      const total = {}; for (const row of r.rows) total[row.choix] = Number(row.n)
-      return envoi(res, 200, { reactions: total }, origin)
+      const [tous, miens] = await db.batch([
+        { sql: 'SELECT choix, COUNT(*) n FROM reactions WHERE slug = ? GROUP BY choix', args: [mR[1]] },
+        { sql: 'SELECT choix FROM reactions WHERE slug = ? AND empreinte = ?', args: [mR[1], emp] },
+      ], 'read')
+      const total = {}; for (const row of tous.rows) total[row.choix] = Number(row.n)
+      return envoi(res, 200, { reactions: total, miens: miens.rows.map(r => r.choix) }, origin)
     }
 
     // ── Contact ──

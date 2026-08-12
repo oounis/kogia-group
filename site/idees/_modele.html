@@ -64,10 +64,16 @@
     <div class="art-meta">
       <span class="idee-cat"><span aria-hidden="true">{{EMOJI}}</span>{{CATEGORIE}}</span>
       <span class="idee-pays">{{PAYS}}</span>
-      <span class="comm-date">{{DATE}} · {{LECTURE}} min de lecture</span>
+      <span class="par">Othman Ounis</span><span class="comm-date">{{DATE}} · {{LECTURE}} min de lecture</span>
     </div>
     <h1 class="art-h1">{{TITRE}}</h1>
     <p class="art-resume">{{RESUME}}</p>
+    <div class="art-actions">
+      <button class="partage" type="button" data-partager>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 13.5 15 10M9 10.5 15 14M7 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM22 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM22 17.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/></svg>
+        <span class="partage-txt">Copier le lien</span>
+      </button>
+    </div>
   </div>
 
   <div class="art-wrap art-corps">
@@ -93,9 +99,12 @@
         <button class="vote" data-choix="utiliserais" aria-pressed="false"><span class="vote-emo" aria-hidden="true">🙋</span><span class="vote-txt">Je l'utiliserais</span><span class="vote-n" data-n="utiliserais" data-affiche="0">0</span></button>
         <button class="vote" data-choix="investirais" aria-pressed="false"><span class="vote-emo" aria-hidden="true">💸</span><span class="vote-txt">J'y investirais</span><span class="vote-n" data-n="investirais" data-affiche="0">0</span></button>
       </div>
+      <p class="votes-etat" role="status"></p>
     </section>
 
-    <!-- ═══ Commentaires ═══ -->
+<section id="connexes" class="connexes"></section>
+
+        <!-- ═══ Commentaires ═══ -->
     <section class="comm" data-slug="{{SLUG}}">
       <h3>Discussion <span class="comm-n" data-comm-n>—</span></h3>
       <p class="comm-intro">Dites ce qui cloche, ce qui manque, ce que vous avez déjà essayé. Pas de compte à créer.</p>
