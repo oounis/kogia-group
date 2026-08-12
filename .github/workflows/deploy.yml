@@ -10,6 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
         with: { enablement: true }
+      # Une seule feuille de style dans le dépôt, zéro CSS bloquant en ligne.
+      - name: Replier la feuille de style dans les pages
+        run: python3 tools/inline-css.py
       - uses: actions/upload-pages-artifact@v3
         with: { path: site }
       - id: d

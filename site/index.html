@@ -17,136 +17,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
-<style>
-:root{
-    --abyss:#071726; --abyss2:#0C2135; --ink:#0E2135; --slate:#5B6B7D; --line:#E2E8F0;
-    --canvas:#F4F7FA; --surface:#FFFFFF; --pearl:#FDF6F0;
-    --indigo:#4F57DE; --indigo-ink:#3A41C4; --indigo-soft:#ECEEFC; --violet:#8B5CF6; --cyan:#22D3EE; --terra:#E85D2F;
-    --disp:"Sora","Avenir Next",system-ui,sans-serif;
-    --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-    --sh1:0 1px 2px rgba(14,33,53,.05);
-    --sh2:0 18px 44px -22px rgba(14,33,53,.28);
-    --sh3:0 40px 90px -34px rgba(7,23,38,.5);
-    --ease:cubic-bezier(.2,.75,.2,1);
-  }
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{font-family:var(--text);color:var(--ink);background:var(--surface);line-height:1.6;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit}
-
-/* ═══════════ BARRE DU HAUT ═══════════ */
-.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);
-  border-bottom:1px solid var(--line)}
-.top-in{max-width:1400px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;gap:1.2rem}
-.marque{display:flex;align-items:center;gap:.55rem;flex-shrink:0}
-.marque svg{width:34px;height:26px}
-.marque b{font:800 1.28rem/1 var(--disp);letter-spacing:-.02em;color:var(--ink)}
-.recherche{flex:1;max-width:260px;position:relative}
-.recherche input{width:100%;font:400 .88rem/1 var(--text);color:var(--ink);padding:.62rem .9rem .62rem 2.2rem;
-  border:1px solid transparent;border-radius:999px;background:var(--canvas);transition:all .16s var(--ease)}
-.recherche input:focus{outline:none;border-color:var(--line);background:var(--surface)}
-.recherche svg{position:absolute;left:.78rem;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--slate);fill:none;stroke-width:2}
-.top-actions{margin-left:auto;display:flex;align-items:center;gap:.7rem}
-.lien-discret{font:500 .88rem/1 var(--text);color:var(--slate);transition:color .15s}
-.lien-discret:hover{color:var(--ink)}
-.bouton{font:600 .86rem/1 var(--text);padding:.6rem 1.1rem;border-radius:999px;background:var(--ink);color:#fff;
-  border:0;cursor:pointer;transition:opacity .15s}
-.bouton:hover{opacity:.85}
-.bouton.clair{background:var(--indigo)}
-
-/* ═══════════ GRILLE 3 COLONNES ═══════════ */
-.page{max-width:1400px;margin:0 auto;padding:0 1.5rem;display:grid;
-  grid-template-columns:196px minmax(0,1fr) 340px;gap:3rem;align-items:start}
-
-/* ── Rail gauche ── */
-.rail-g{position:sticky;top:88px;padding:2rem 0;display:flex;flex-direction:column;gap:.15rem}
-.rail-lien{display:flex;align-items:center;gap:.75rem;padding:.62rem .8rem;border-radius:10px;
-  font:500 .93rem/1 var(--text);color:var(--slate);transition:all .15s var(--ease)}
-.rail-lien svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.rail-lien:hover{background:var(--canvas);color:var(--ink)}
-.rail-lien.actif{color:var(--ink);font-weight:600;background:var(--canvas)}
-.rail-sep{height:1px;background:var(--line);margin:1rem .8rem}
-.rail-note{padding:0 .8rem;font-size:.78rem;line-height:1.55;color:var(--slate)}
-
-/* ── Colonne centrale ── */
-.flux{padding:2rem 0 4rem;min-width:0}
-.onglets{display:flex;gap:1.6rem;border-bottom:1px solid var(--line);margin-bottom:.5rem;
-  overflow-x:auto;scrollbar-width:none}
-.onglets::-webkit-scrollbar{display:none}
-.onglet{background:none;border:0;padding:.9rem 0;font:500 .88rem/1 var(--text);color:var(--slate);
-  cursor:pointer;white-space:nowrap;border-bottom:1px solid transparent;margin-bottom:-1px;transition:all .15s}
-.onglet:hover{color:var(--ink)}
-.onglet.actif{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
-
-.carte{display:grid;grid-template-columns:1fr 112px;gap:1.6rem;padding:1.7rem 0;
-  border-bottom:1px solid var(--line);align-items:start}
-.carte:hover .carte-titre{color:var(--indigo-ink)}
-.carte-meta{display:flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--slate);margin-bottom:.55rem}
-.pastille{width:19px;height:19px;border-radius:5px;background:var(--indigo);display:grid;place-items:center;flex-shrink:0}
-.pastille svg{width:13px;height:10px}
-.carte-titre{font:700 1.38rem/1.26 var(--disp);color:var(--ink);letter-spacing:-.018em;
-  transition:color .15s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.carte-sous{font-size:.94rem;line-height:1.6;color:var(--slate);margin-top:.45rem;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.carte-bas{display:flex;align-items:center;gap:1rem;margin-top:.9rem;font-size:.8rem;color:var(--slate)}
-.carte-bas b{color:var(--slate);font-weight:600}
-.etiq{font-size:.76rem;padding:.28rem .68rem;border-radius:999px;background:var(--canvas);color:var(--slate)}
-.vignette{width:112px;height:112px;border-radius:10px;display:grid;place-items:center;overflow:hidden;
-  background:linear-gradient(135deg,var(--ink),#1B3A57)}
-.vignette svg{width:44px;height:33px;opacity:.9}
-.vignette svg use{fill:#fff}
-.carte[data-cat="Technologie"] .vignette{background:linear-gradient(135deg,#3A41C4,#6D6FF0)}
-.carte[data-cat="Business"]    .vignette{background:linear-gradient(135deg,#0E2135,#2C4A66)}
-.carte[data-cat="Éducation"]   .vignette{background:linear-gradient(135deg,#0E7490,#22D3EE)}
-.carte[data-cat="Fintech"]     .vignette{background:linear-gradient(135deg,#6D28D9,#A78BFA)}
-.carte[data-cat="Quotidien"]   .vignette{background:linear-gradient(135deg,#C2410C,#F97316)}
-.vignette img{width:100%;height:100%;object-fit:cover}
-
-.vide{padding:3.5rem 0;text-align:center}
-.vide-t{font:700 1.4rem/1.3 var(--disp);color:var(--ink);margin-bottom:.6rem}
-.vide-p{color:var(--slate);max-width:42ch;margin:0 auto 1.5rem;font-size:.96rem}
-
-/* ── Rail droit ── */
-.rail-d{position:sticky;top:88px;padding:2rem 0 4rem;border-left:1px solid var(--line);padding-left:2.4rem}
-.bloc{margin-bottom:2.2rem}
-.bloc-t{font:600 .95rem/1 var(--text);color:var(--ink);margin-bottom:.9rem}
-.bloc p{font-size:.88rem;line-height:1.6;color:var(--slate)}
-.sujets{display:flex;flex-wrap:wrap;gap:.5rem}
-.sujet{font:400 .82rem/1 var(--text);padding:.5rem .85rem;border-radius:999px;background:var(--canvas);
-  color:var(--slate);cursor:pointer;border:0;transition:all .15s}
-.sujet:hover{background:var(--indigo-soft);color:var(--indigo-ink)}
-.prod{display:flex;gap:.75rem;padding:.7rem 0;align-items:flex-start}
-.prod-p{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;
-  font:800 .8rem/1 var(--disp);color:#fff;background:var(--indigo)}
-.prod-p.f{background:var(--terra)} .prod-p.s{background:var(--slate)}
-.prod-n{font:600 .89rem/1.3 var(--text);color:var(--ink)}
-.prod-d{font-size:.79rem;line-height:1.45;color:var(--slate);margin-top:.15rem}
-.rail-pied{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.78rem;color:var(--slate);
-  border-top:1px solid var(--line);padding-top:1.2rem}
-
-/* ═══════════ RESPONSIVE ═══════════ */
-@media (max-width:1080px){
-  .page{grid-template-columns:196px minmax(0,1fr)}
-  .rail-d{display:none}
-}
-@media (max-width:760px){
-  .page{grid-template-columns:1fr;gap:0;padding:0 1.1rem}
-  .rail-g{position:static;flex-direction:row;overflow-x:auto;padding:.7rem 0;gap:.3rem;
-    border-bottom:1px solid var(--line);scrollbar-width:none}
-  .rail-g::-webkit-scrollbar{display:none}
-  .rail-sep,.rail-note{display:none}
-  .rail-lien{white-space:nowrap;padding:.5rem .75rem}
-  .recherche{display:none}
-  .carte{grid-template-columns:1fr 84px;gap:1rem;padding:1.4rem 0}
-  .vignette{width:84px;height:84px}
-  .carte-titre{font-size:1.12rem}
-  .top-in{padding:0 1.1rem;gap:.8rem}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<link rel="stylesheet" href="assets/kogia.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -186,6 +57,7 @@ button{font-family:inherit}
 
   <!-- ═══ COLONNE CENTRALE ═══ -->
   <main class="flux" id="centre">
+    <h1 class="hors-ecran">Les idées de Kogia</h1>
     <div class="onglets" role="tablist">
       <button class="onglet actif" data-f="tous">Pour vous</button>
       <button class="onglet" data-f="Technologie">Technologie</button>
