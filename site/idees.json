@@ -2,6 +2,28 @@
   "_lisezmoi": "La bibliothèque d'idées Kogia. Une entrée = un article dans site/idees/. \"brouillon\": true masque l'idée sans la supprimer.",
   "idees": [
     {
+      "slug": "ecole-parents-whatsapp",
+      "titre": "L'école qui parle aux parents sur WhatsApp",
+      "resume": "Les écoles communiquent déjà sur WhatsApp — mal. Le concurrent à battre n'est pas un logiciel, c'est le groupe gratuit de 40 parents.",
+      "categorie": "Éducation",
+      "pays": "Tunisie",
+      "date": "2026-08-13",
+      "lecture": 9,
+      "couleur": "cyan",
+      "signal": "Verdict Kogia : pas un produit — la meilleure fonctionnalité d'un système qui connaît déjà l'école"
+    },
+    {
+      "slug": "pharmacie-de-garde",
+      "titre": "La pharmacie de garde, sans faire le tour du quartier",
+      "resume": "À deux heures du matin, l'information existe — collée sur la porte d'une pharmacie fermée. Le produit n'est pas une carte, c'est la fraîcheur de la donnée.",
+      "categorie": "Quotidien",
+      "pays": "Tunisie",
+      "date": "2026-08-13",
+      "lecture": 8,
+      "couleur": "terra",
+      "signal": "Verdict Kogia : commencer par une lettre à la source des tableaux, pas par le code"
+    },
+    {
       "slug": "cantine-scolaire-zero-gaspillage",
       "titre": "La cantine scolaire qui ne jette plus rien",
       "resume": "Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.",
