@@ -13,30 +13,34 @@
 
 /* ═══════════ 1. JETONS ═══════════ */
 :root{
-  color-scheme:dark;
+  /* THÈME CLAIR — décision d'Othman du 2026-08-13 (soir) : fond blanc,
+     toujours. L'abysse reste dans la marque (baleine, indigo), pas dans
+     le fond. Le relief vient d'ombres légères, plus d'un empilement de noirs. */
+  color-scheme:light;
 
   /* Marque */
-  --indigo:#7C83F0; --indigo-ink:#A5AAF7; --cyan:#22D3EE;
+  --indigo:#4F57DE; --indigo-ink:#3B42C4; --cyan:#0891B2;
 
-  /* Surfaces — une échelle de valeurs, pas un noir plat.
-     Page < carte < survol : c'est ce relief qui manquait à l'abysse. */
-  --ink:#EDF2F9;          /* texte principal */
-  --slate:#9DB0C6;        /* texte secondaire */
-  --line:#243449;         /* filets et bordures de carte */
-  --line-forte:#33475F;   /* bordure au survol */
-  --surface:#0A111B;      /* fond de page — le plus sombre */
-  --carte:#111B28;        /* surface des cartes et du rail */
-  --carte-survol:#16222F; /* carte survolée */
-  --canvas:#0C1520;       /* surface en creux (champs, blocs cités) */
-  --indigo-soft:#1D2653;  /* aplat de sélection */
-  --voile:rgba(8,13,21,.82);
+  /* Surfaces — blanc, avec une échelle discrète pour le relief */
+  --ink:#182234;          /* texte principal */
+  --slate:#5C6B80;        /* texte secondaire */
+  --line:#E3E8EF;         /* filets et bordures de carte */
+  --line-forte:#C9D3E0;   /* bordure au survol */
+  --surface:#FFFFFF;      /* fond de page — blanc */
+  --carte:#FFFFFF;        /* surface des cartes et du rail */
+  --carte-survol:#FAFBFD; /* carte survolée */
+  --canvas:#F4F6FA;       /* surface en creux (champs, blocs cités) */
+  --indigo-soft:#E9EBFD;  /* aplat de sélection */
+  --voile:rgba(255,255,255,.86);
 
   /* États sémantiques */
-  --ok:#5AD79A; --ok-fond:#052E1C;
-  --ko:#F98A80; --ko-fond:#3A1210;
+  --ok:#178A54; --ok-fond:#E4F6EC;
+  --ko:#C43D32; --ko-fond:#FCEAE8;
 
-  /* Une seule ombre, pour les surfaces flottantes uniquement */
-  --ombre:0 14px 34px -18px rgba(0,0,0,.75);
+  /* Ombres : une pour poser les cartes, une pour les faire répondre */
+  --ombre:0 14px 34px -18px rgba(23,32,50,.25);
+  --ombre-carte:0 1px 2px rgba(23,32,50,.05);
+  --ombre-survol:0 8px 22px -10px rgba(23,32,50,.18);
 
   --disp:"Sora","Avenir Next",system-ui,sans-serif;
   --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -59,17 +63,16 @@
   --ease-sortie:cubic-bezier(.32,.72,0,1);
 
   /* Couleur de catégorie : un marqueur, pas un objet coloré */
-  --cat:#7C83F0;
+  --cat:#4A52D8;
   --touche:44px;
   --r-s:8px; --r-m:12px; --r-max:999px;   /* une famille de rayons */
 }
-/* Cinq teintes accordées : même clarté perçue sur fond sombre.
-   L'ancienne gamme mélangeait des saturations qui juraient entre elles. */
-[data-cat="Technologie"]{--cat:#949CFC}
-[data-cat="Business"]   {--cat:#67B9F5}
-[data-cat="Éducation"]  {--cat:#52D8E8}
-[data-cat="Fintech"]    {--cat:#BB9DFB}
-[data-cat="Quotidien"]  {--cat:#F5A05E}
+/* Cinq teintes accordées : même clarté perçue, lisibles en texte sur blanc. */
+[data-cat="Technologie"]{--cat:#4A52D8}
+[data-cat="Business"]   {--cat:#0E7CC9}
+[data-cat="Éducation"]  {--cat:#0A93A8}
+[data-cat="Fintech"]    {--cat:#7442D6}
+[data-cat="Quotidien"]  {--cat:#C4650F}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -92,7 +95,8 @@ button{font-family:inherit;color:inherit}
 .top-in{max-width:1200px;margin:0 auto;padding:0 1rem;height:56px;
   display:flex;align-items:center;gap:.8rem}
 .marque{display:flex;align-items:center;gap:.5rem;min-height:var(--touche);flex-shrink:0}
-.marque svg{width:30px;height:23px}
+.marque svg{width:30px;height:23px;transition:transform var(--selection) var(--ease)}
+.marque:hover svg{transform:translateY(-1.5px) rotate(-4deg)}   /* la baleine salue */
 .marque b{font:800 1.15rem/1 var(--disp);letter-spacing:-.02em;color:var(--ink)}
 .recherche{flex:1;max-width:560px;margin-inline:auto;position:relative;min-width:0}
 .recherche input{width:100%;min-height:40px;font:400 .9rem/1 var(--text);color:var(--ink);
@@ -188,8 +192,20 @@ button{font-family:inherit;color:inherit}
    [barre d'actions : avis · commentaires]                                  */
 .poste{position:relative;padding:1.05rem 1.25rem 1rem 1.45rem;margin-bottom:.7rem;
   background:var(--carte);border:1px solid var(--line);border-radius:var(--r-m);
-  transition:background var(--selection) var(--ease),border-color var(--selection) var(--ease)}
-.poste:hover{background:var(--carte-survol);border-color:var(--line-forte)}
+  box-shadow:var(--ombre-carte);cursor:pointer;
+  transition:background var(--selection) var(--ease),border-color var(--selection) var(--ease),
+             box-shadow var(--selection) var(--ease),transform var(--selection) var(--ease)}
+.poste:hover{background:var(--carte-survol);border-color:var(--line-forte);
+  box-shadow:var(--ombre-survol);transform:translateY(-2px)}
+.poste:active{transform:translateY(0)}
+/* La carte se lève en entrant dans l'écran — conduit par le défilement,
+   sur le compositeur, zéro JavaScript. `translate` pour l'entrée,
+   `transform` pour le survol : les deux ne se disputent pas. */
+@supports (animation-timeline:view()){
+  .poste{animation:surgir linear both;animation-timeline:view();
+    animation-range:entry 0% entry 38%}
+  @keyframes surgir{from{opacity:.2;translate:0 14px}to{opacity:1;translate:0 0}}
+}
 .poste::before{content:"";position:absolute;left:0;top:1.2rem;bottom:1.2rem;width:3px;
   border-radius:0 3px 3px 0;background:var(--cat)}
 .poste-lien{display:block}
@@ -271,8 +287,8 @@ button{font-family:inherit;color:inherit}
 /* Étiquettes d'honnêteté — la règle éditoriale, pas un décor. */
 .tag{display:inline-block;font:800 .6em/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
   padding:.35em .6em;border-radius:var(--r-s);margin-right:.5em;vertical-align:.12em;white-space:nowrap}
-.tag.fait{background:var(--ok-fond);color:var(--ok)} .tag.estim{background:#3A2408;color:#F5B266}
-.tag.hypo{background:#2A1B4D;color:#C4B0FA} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
+.tag.fait{background:var(--ok-fond);color:var(--ok)} .tag.estim{background:#FBEFDC;color:#8A5410}
+.tag.hypo{background:#EFE9FD;color:#5B3EA6} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
 
 .retour{display:inline-flex;align-items:center;gap:.4rem;min-height:var(--touche);
   font:600 .88rem/1 var(--text);color:var(--indigo-ink);margin-bottom:.6rem}
@@ -295,8 +311,8 @@ button{font-family:inherit;color:inherit}
   stroke-linecap:round;stroke-linejoin:round}
 .partage:hover{color:var(--ink);border-color:var(--slate)}
 .partage:active{transform:scale(.97)}
-.partage.ok{background:var(--ok-fond);border-color:#12603E;color:var(--ok)}
-.partage.ko{background:var(--ko-fond);border-color:#7A2620;color:var(--ko)}
+.partage.ok{background:var(--ok-fond);border-color:#9FD9BD;color:var(--ok)}
+.partage.ko{background:var(--ko-fond);border-color:#EFB4AE;color:var(--ko)}
 
 /* ═══════════ 7. LA BARRE DE VOTE — des commandes, pas des confettis ═══
    Quatre questions, quatre boutons de même forme : icône + libellé +
@@ -391,7 +407,9 @@ button{font-family:inherit;color:inherit}
 }
 @keyframes avancer{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-/* ═══════════ 10. TRANSITION ENTRE LES VUES ═══════════ */
+/* ═══════════ 10. TRANSITION ENTRE LES VUES ═══════════
+   Aussi entre les PAGES : la navigation fond au lieu de claquer. */
+@view-transition{navigation:auto}
 #centre{view-transition-name:centre}
 ::view-transition-old(centre){animation:fondre-sortie var(--selection) var(--ease) both}
 ::view-transition-new(centre){animation:fondre-entree var(--navigation) var(--ease-sortie) both}
@@ -407,7 +425,11 @@ button{font-family:inherit;color:inherit}
 .pied-mentions{max-width:1200px;margin:0 auto;padding:1rem 1rem 1.5rem;font-size:.78rem;
   color:var(--slate);border-top:1px solid var(--line)}
 .pied-mentions a{color:var(--indigo-ink);text-decoration:underline}
-.prod{display:flex;gap:.75rem;padding:.6rem 0;align-items:flex-start}
+.prod{display:flex;gap:.75rem;padding:.6rem;margin:0 -.6rem;align-items:flex-start;
+  border-radius:var(--r-s);transition:background var(--selection) var(--ease)}
+a.prod:hover{background:var(--carte-survol)}
+a.prod:hover .prod-n{color:var(--indigo-ink)}
+.prod-n{transition:color var(--selection) var(--ease)}
 .prod-p{width:32px;height:32px;border-radius:var(--r-s);display:grid;place-items:center;flex-shrink:0;
   font:800 .8rem/1 var(--disp);color:#fff;background:#4F57DE}
 .prod-p.f{background:#E85D2F} .prod-p.s{background:#41586F}
@@ -418,6 +440,9 @@ button{font-family:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important}
   .sq-carte,.sq-comm{animation:none;background:var(--canvas)}
+  .poste{animation:none!important}
+  .poste:hover{transform:none}
+  .marque:hover svg{transform:none}
   .progres{display:none!important}
 }
 

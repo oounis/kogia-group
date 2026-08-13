@@ -243,6 +243,16 @@ async function demarrerFlux(){
   }));
   const q = document.getElementById('q');
   if (q) q.addEventListener('input', e => { recherche = e.target.value.trim().toLowerCase(); appliquer(); });
+
+  // Toute la carte est cliquable, comme sur Reddit — pas seulement le titre.
+  // Un clic sur un lien ou un bouton interne garde son propre comportement,
+  // et une sélection de texte n'est pas un clic.
+  flux.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return;
+    if (getSelection().toString()) return;
+    const lien = e.target.closest('.poste')?.querySelector('.poste-lien');
+    if (lien) location.href = lien.href;
+  });
 }
 
 /* Copier le lien : le retour doit être dans le bouton lui-même, sinon on ne
