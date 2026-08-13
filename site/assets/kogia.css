@@ -18,14 +18,18 @@
   /* Marque */
   --indigo:#7C83F0; --indigo-ink:#A5AAF7; --cyan:#22D3EE;
 
-  /* Surfaces neutres — plates et calmes */
-  --ink:#EAF1F8;          /* texte principal */
-  --slate:#9DB0C4;        /* texte secondaire */
-  --line:#22344B;         /* filets */
-  --canvas:#0D1F31;       /* surface en creux (cartes, champs) */
-  --surface:#081420;      /* fond de page — plat, sans dégradé */
+  /* Surfaces — une échelle de valeurs, pas un noir plat.
+     Page < carte < survol : c'est ce relief qui manquait à l'abysse. */
+  --ink:#EDF2F9;          /* texte principal */
+  --slate:#9DB0C6;        /* texte secondaire */
+  --line:#243449;         /* filets et bordures de carte */
+  --line-forte:#33475F;   /* bordure au survol */
+  --surface:#0A111B;      /* fond de page — le plus sombre */
+  --carte:#111B28;        /* surface des cartes et du rail */
+  --carte-survol:#16222F; /* carte survolée */
+  --canvas:#0C1520;       /* surface en creux (champs, blocs cités) */
   --indigo-soft:#1D2653;  /* aplat de sélection */
-  --voile:rgba(6,15,26,.82);
+  --voile:rgba(8,13,21,.82);
 
   /* États sémantiques */
   --ok:#5AD79A; --ok-fond:#052E1C;
@@ -59,11 +63,13 @@
   --touche:44px;
   --r-s:8px; --r-m:12px; --r-max:999px;   /* une famille de rayons */
 }
-[data-cat="Technologie"]{--cat:#7C83F0}
-[data-cat="Business"]   {--cat:#6FA8DC}
-[data-cat="Éducation"]  {--cat:#22D3EE}
-[data-cat="Fintech"]    {--cat:#A78BFA}
-[data-cat="Quotidien"]  {--cat:#F97316}
+/* Cinq teintes accordées : même clarté perçue sur fond sombre.
+   L'ancienne gamme mélangeait des saturations qui juraient entre elles. */
+[data-cat="Technologie"]{--cat:#949CFC}
+[data-cat="Business"]   {--cat:#67B9F5}
+[data-cat="Éducation"]  {--cat:#52D8E8}
+[data-cat="Fintech"]    {--cat:#BB9DFB}
+[data-cat="Quotidien"]  {--cat:#F5A05E}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -88,7 +94,7 @@ button{font-family:inherit;color:inherit}
 .marque{display:flex;align-items:center;gap:.5rem;min-height:var(--touche);flex-shrink:0}
 .marque svg{width:30px;height:23px}
 .marque b{font:800 1.15rem/1 var(--disp);letter-spacing:-.02em;color:var(--ink)}
-.recherche{flex:1;max-width:420px;position:relative;min-width:0}
+.recherche{flex:1;max-width:560px;margin-inline:auto;position:relative;min-width:0}
 .recherche input{width:100%;min-height:40px;font:400 .9rem/1 var(--text);color:var(--ink);
   padding:.5rem .9rem .5rem 2.15rem;border:1px solid var(--line);border-radius:var(--r-max);
   background:var(--canvas);transition:border-color var(--selection) var(--ease)}
@@ -106,7 +112,7 @@ button{font-family:inherit;color:inherit}
 .bouton:active,.btn:active{transform:scale(.97)}
 .bouton.clair,.btn.accent{background:#4F57DE;color:#fff}
 .btn:disabled{opacity:.55;cursor:default;transform:none}
-.top-cta{margin-left:auto;min-height:40px;padding:0 1rem}
+.top-cta{min-height:40px;padding:0 1rem}
 .top-cta .ic{width:16px;height:16px}
 @media (max-width:560px){
   .top-cta span{display:none}                /* l'icône suffit ; une ligne, toujours */
@@ -114,25 +120,60 @@ button{font-family:inherit;color:inherit}
   .marque b{display:none}
 }
 
-/* ═══════════ 4. LA PAGE = UNE COLONNE ═══════════
-   Le flux est la page. 720 px de contenu, pas de rail : la promotion des
-   produits vit dans le pied de page, pas à côté des idées. */
-.page{max-width:720px;margin:0 auto;padding:0 1rem 3rem}
-.page--article{max-width:var(--colonne)}
+/* ═══════════ 4. LA PAGE — centre + rail à partir de 1180 px ═══════════
+   La structure de référence : haut · centre · droite. Le rail porte du
+   contenu vivant (sujets, discussions) — jamais de promotion produit.
+   Sous 1180 px il disparaît : le flux est la page. */
+.plan{max-width:1128px;margin:0 auto;padding:0 1rem;display:grid;
+  grid-template-columns:minmax(0,1fr);justify-content:center;gap:0 3rem}
+.rail{display:none}
+@media (min-width:1180px){
+  .plan{grid-template-columns:minmax(0,720px) 312px}
+  .rail{display:block;padding-top:2.65rem}
+}
+.rail-colle{position:sticky;top:76px;display:flex;flex-direction:column;gap:.9rem}
+.rail-bloc{background:var(--carte);border:1px solid var(--line);border-radius:var(--r-m);
+  padding:1.05rem 1.2rem}
+.rail-t{font:700 .7rem/1 var(--text);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--slate);margin-bottom:.75rem}
+.rail-p{font-size:.88rem;line-height:1.55;color:var(--slate)}
+.rail-lien{display:inline-flex;align-items:center;min-height:36px;margin-top:.35rem;
+  font:600 .85rem/1 var(--text);color:var(--indigo-ink)}
+.rail-lien:hover{color:var(--ink)}
+.sujet{display:flex;align-items:center;justify-content:space-between;gap:.6rem;width:100%;
+  min-height:38px;padding:0 .55rem;margin:0 -.55rem;border:0;background:none;border-radius:var(--r-s);
+  font:500 .88rem/1 var(--text);color:var(--slate);cursor:pointer;text-align:left;
+  transition:background var(--selection) var(--ease),color var(--selection) var(--ease)}
+.sujet:hover{background:var(--carte-survol);color:var(--ink)}
+.sujet .pt{width:8px;height:8px;border-radius:50%;background:var(--cat);flex-shrink:0}
+.sujet .nom{flex:1}
+.sujet b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--slate);font-size:.8rem}
+.rail-liste{list-style:none;display:flex;flex-direction:column}
+.rail-liste a{display:block;padding:.5rem 0;border-top:1px solid var(--line)}
+.rail-liste li:first-child a{border-top:0;padding-top:0}
+.rail-liste b{display:block;font:600 .88rem/1.35 var(--text);color:var(--ink)}
+.rail-liste a:hover b{color:var(--indigo-ink)}
+.rail-liste span{font-size:.78rem;color:var(--slate)}
+
+.page{max-width:720px;margin:0 auto;padding:0 0 3rem;min-width:0}
+.plan .page{margin:0}
+.page--article{max-width:var(--colonne);padding-inline:1rem}
 .titre-page{font:700 .74rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;
   color:var(--slate);padding:1rem 0 .4rem}
 
-/* ── Contrôles du flux : une zone compacte, stable ── */
+/* ── Contrôles du flux : une seule ligne — sujets à gauche, tri à droite ── */
 .controles{position:sticky;top:56px;z-index:20;background:var(--voile);backdrop-filter:blur(10px);
-  margin:0 -1rem;padding:.15rem 1rem .55rem;border-bottom:1px solid var(--line)}
-.onglets{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;padding:.35rem 0}
+  padding:.15rem 0 .5rem;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.onglets{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;padding:.35rem 0;
+  flex:1;min-width:0}
 .onglets::-webkit-scrollbar{display:none}
 .onglet{background:none;border:1px solid transparent;min-height:36px;padding:0 .85rem;
   border-radius:var(--r-max);font:500 .86rem/1 var(--text);color:var(--slate);cursor:pointer;
   white-space:nowrap;transition:background var(--selection) var(--ease),color var(--selection) var(--ease)}
 .onglet:hover{color:var(--ink);background:var(--canvas)}
 .onglet.actif{background:var(--indigo-soft);color:var(--indigo-ink);border-color:var(--indigo);font-weight:600}
-.tris{display:flex;gap:.35rem}
+.tris{display:flex;gap:.35rem;margin-left:auto;flex-shrink:0}
 .tri{display:inline-flex;align-items:center;min-height:32px;padding:0 .8rem;border:0;
   background:none;border-radius:var(--r-max);font:500 .8rem/1 var(--text);color:var(--slate);cursor:pointer;
   transition:background var(--selection) var(--ease),color var(--selection) var(--ease)}
@@ -145,9 +186,12 @@ button{font-family:inherit;color:inherit}
    Prémisse en deux lignes
    Signal éditorial (verdict ou risque principal)
    [barre d'actions : avis · commentaires]                                  */
-.poste{position:relative;padding:.95rem .25rem .95rem 1rem;border-bottom:1px solid var(--line)}
-.poste::before{content:"";position:absolute;left:0;top:1.1rem;bottom:1.1rem;width:3px;
-  border-radius:3px;background:var(--cat)}
+.poste{position:relative;padding:1.05rem 1.25rem 1rem 1.45rem;margin-bottom:.7rem;
+  background:var(--carte);border:1px solid var(--line);border-radius:var(--r-m);
+  transition:background var(--selection) var(--ease),border-color var(--selection) var(--ease)}
+.poste:hover{background:var(--carte-survol);border-color:var(--line-forte)}
+.poste::before{content:"";position:absolute;left:0;top:1.2rem;bottom:1.2rem;width:3px;
+  border-radius:0 3px 3px 0;background:var(--cat)}
 .poste-lien{display:block}
 .poste-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.3rem;
   font-size:.8rem;color:var(--slate);margin-bottom:.3rem}
@@ -158,10 +202,11 @@ button{font-family:inherit;color:inherit}
 .poste-lien:hover .poste-titre{color:var(--indigo-ink)}
 .poste-resume{font-size:.94rem;line-height:1.55;color:var(--slate);margin-top:.3rem;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-/* Le signal éditorial : la ligne qui aide vraiment à choisir. */
-.poste-signal{margin-top:.55rem;font-size:.84rem;line-height:1.5;color:var(--ink);
-  padding:.4rem .7rem;background:var(--canvas);border-radius:var(--r-s);
-  border-left:2px solid var(--cat)}
+/* Le signal éditorial : une ligne de marge, pas une boîte grise de plus.
+   En boîte, il se répétait carte après carte et écrasait les titres. */
+.poste-signal{margin-top:.55rem;font-size:.85rem;line-height:1.5;font-style:italic;
+  color:var(--slate);padding:.1rem 0 .1rem .8rem;
+  border-left:2px solid color-mix(in srgb,var(--cat) 55%,transparent)}
 .poste-actions{display:flex;align-items:center;gap:.4rem;margin-top:.6rem}
 .chip{display:inline-flex;align-items:center;gap:.4rem;min-height:36px;padding:0 .75rem;
   border-radius:var(--r-max);font:600 .82rem/1 var(--text);color:var(--slate);
@@ -172,6 +217,11 @@ button{font-family:inherit;color:inherit}
 .chip b{font-weight:700;font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch;
   transition:opacity var(--selection) var(--ease)}
 .chip b.maj{opacity:0}
+/* Une idée encore sans réaction n'affiche pas « 0 avis · 0 commentaires » :
+   une rangée de zéros dit « personne ne vient ici ». Elle invite, à la place. */
+.chip-invite{display:inline-flex;align-items:center;min-height:36px;
+  font:600 .82rem/1 var(--text);color:var(--indigo-ink)}
+.chip-invite:hover{color:var(--ink)}
 .signal b{font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch}
 
 .vide{padding:3.5rem 0;text-align:center}

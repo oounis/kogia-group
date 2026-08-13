@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="theme-color" content="#081420">
+<meta name="theme-color" content="#0A111B">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kogia — des idées avant qu'elles ne deviennent des entreprises</title>
 <meta name="description" content="Une idée par semaine, explorée sérieusement : problème, marché, modèle économique, coûts, risques. Et un atelier pour la construire.">
@@ -43,9 +43,12 @@
   </a>
 </div></header>
 
-<!-- ═══ LE FLUX — la page EST le flux ═══
-     Pas de héros, pas de rail : le premier titre d'idée est visible dans le
-     premier écran, même sur téléphone. C'est la règle numéro un. -->
+<!-- ═══ LE FLUX + LE RAIL ═══
+     Pas de héros : le premier titre d'idée reste visible dans le premier
+     écran, même sur téléphone. À partir de 1180 px, un rail de contenu
+     vivant (sujets, discussions) remplit l'écran large — jamais de
+     promotion produit à côté des idées. -->
+<div class="plan">
 <main class="page" id="centre">
   <h1 class="titre-page">Bibliothèque d'idées</h1>
 
@@ -70,6 +73,26 @@
 
   <div id="flux" aria-live="polite"></div>
 </main>
+
+<aside class="rail" aria-label="Autour des idées">
+  <div class="rail-colle">
+    <section class="rail-bloc" id="rail-sujets" hidden>
+      <h2 class="rail-t">Sujets</h2>
+      <div class="rail-sujets"><!-- rempli au chargement : un sujet, son point de couleur, son nombre d'idées --></div>
+    </section>
+    <section class="rail-bloc" id="rail-discutees" hidden>
+      <h2 class="rail-t">Les plus discutées</h2>
+      <ol class="rail-liste"></ol>
+    </section>
+    <section class="rail-bloc">
+      <h2 class="rail-t">Kogia</h2>
+      <p class="rail-p">Une idée par semaine, explorée sérieusement : problème, marché,
+        modèle, risques — et un verdict honnête. On construit celles qui le méritent.</p>
+      <a class="rail-lien" href="#contact">Nous écrire →</a>
+    </section>
+  </div>
+</aside>
+</div>
 
 <!-- ═══ PIED DE PAGE ═══
      Les cibles réelles de « Solutions » et « Nous écrire », rendues sur

@@ -147,6 +147,20 @@ async function demarrerFlux(){
     if (b.dataset.f !== 'tous' && !sujetsOccupes.has(b.dataset.f)) b.hidden = true;
   });
 
+  // Le rail des sujets : les mêmes filtres, avec le compte d'idées. Rempli
+  // ici, AVANT la pose des écouteurs, pour que .sujet soit déjà branché.
+  const railSujets = document.querySelector('#rail-sujets .rail-sujets');
+  if (railSujets && idees.length) {
+    const parSujet = {};
+    idees.forEach(i => { if (i.categorie) parSujet[i.categorie] = (parSujet[i.categorie] || 0) + 1; });
+    railSujets.innerHTML = Object.entries(parSujet)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([cat, n]) => `<button class="sujet" data-f="${esc(cat)}" data-cat="${esc(cat)}">
+        <span class="pt" aria-hidden="true"></span><span class="nom">${esc(cat)}</span><b>${n}</b></button>`)
+      .join('');
+    document.getElementById('rail-sujets').hidden = false;
+  }
+
   const parDate = idees.slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
   flux.innerHTML = parDate.length ? parDate.map(carte).join('') : VIDE;
   const onglets = document.querySelector('.onglets');
@@ -160,14 +174,36 @@ async function demarrerFlux(){
       if (!d) throw new Error('vide');
       document.querySelectorAll('.poste').forEach(c => {
         const s = d.compteurs?.[c.dataset.slug] || { votes: 0, commentaires: 0 };
+        // « 0 avis · 0 commentaires » sur une idée neuve dit « personne ne
+        // vient ici ». À zéro des deux côtés, la barre invite au lieu de compter.
+        if (!s.votes && !s.commentaires) {
+          c.querySelector('.poste-actions').innerHTML =
+            `<a class="chip-invite" href="idees/${esc(c.dataset.slug)}.html#votes">Donnez le premier avis →</a>`;
+          return;
+        }
         const v = c.querySelector('[data-votes]'), m = c.querySelector('[data-comms]');
         v.dataset.n = s.votes; m.dataset.n = s.commentaires;
         poserCompteur(v, s.votes); poserCompteur(m, s.commentaires);
       });
+      // Le rail « Plus discutées » : trois conversations réelles, jamais un
+      // classement vide. Sans commentaire nulle part, le bloc n'apparaît pas.
+      const railD = document.getElementById('rail-discutees');
+      if (railD) {
+        const avec = idees
+          .map(i => ({ ...i, n: d.compteurs?.[i.slug]?.commentaires || 0 }))
+          .filter(i => i.n > 0).sort((a, b) => b.n - a.n).slice(0, 3);
+        if (avec.length) {
+          railD.querySelector('.rail-liste').innerHTML = avec.map(i =>
+            `<li><a href="idees/${esc(i.slug)}.html#discussion"><b>${esc(i.titre)}</b>
+             <span>${i.n} commentaire${i.n > 1 ? 's' : ''}</span></a></li>`).join('');
+          railD.hidden = false;
+        }
+      }
     }).catch(() => {
       // L'API dort ou refuse : on retire les compteurs plutôt que d'afficher
       // un tiret pour toujours. Le flux reste entièrement lisible.
       document.querySelectorAll('.signal').forEach(s => s.remove());
+      document.querySelectorAll('.poste .chip b').forEach(b => b.remove());
       // Sans compteurs, « Plus discutées » n'a pas de sens : le contrôle part.
       document.querySelector('.tris')?.setAttribute('hidden', '');
     });
