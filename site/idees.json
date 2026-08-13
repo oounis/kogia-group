@@ -2,59 +2,15 @@
   "_lisezmoi": "La bibliothèque d'idées Kogia. Une entrée = un article dans site/idees/. \"brouillon\": true masque l'idée sans la supprimer.",
   "idees": [
     {
-      "slug": "ecole-parents-whatsapp",
-      "titre": "L'école qui parle aux parents sur WhatsApp",
-      "resume": "Les écoles communiquent déjà sur WhatsApp — mal. Le concurrent à battre n'est pas un logiciel, c'est le groupe gratuit de 40 parents.",
-      "categorie": "Éducation",
-      "pays": "Tunisie",
-      "date": "2026-08-13",
-      "lecture": 9,
-      "couleur": "cyan",
-      "signal": "Verdict Kogia : pas un produit — la meilleure fonctionnalité d'un système qui connaît déjà l'école"
-    },
-    {
-      "slug": "pharmacie-de-garde",
-      "titre": "La pharmacie de garde, sans faire le tour du quartier",
-      "resume": "À deux heures du matin, l'information existe — collée sur la porte d'une pharmacie fermée. Le produit n'est pas une carte, c'est la fraîcheur de la donnée.",
-      "categorie": "Quotidien",
-      "pays": "Tunisie",
-      "date": "2026-08-13",
-      "lecture": 8,
-      "couleur": "terra",
-      "signal": "Verdict Kogia : commencer par une lettre à la source des tableaux, pas par le code"
-    },
-    {
-      "slug": "cantine-scolaire-zero-gaspillage",
-      "titre": "La cantine scolaire qui ne jette plus rien",
-      "resume": "Prévoir les repas à partir des présences réelles plutôt que d'un effectif théorique. Une idée simple dont tout dépend d'une seule question contractuelle.",
-      "categorie": "Éducation",
-      "pays": "Tunisie",
-      "date": "2026-08-12",
-      "lecture": 7,
-      "couleur": "cyan",
-      "signal": "Verdict Kogia : tout dépend d'une seule question — l'école paie-t-elle au réel, ou au forfait ?"
-    },
-    {
-      "slug": "caisse-sans-caissier",
-      "titre": "Sortir du supermarché sans passer en caisse",
-      "resume": "Le client scanne avec son téléphone et s'en va. Ce que ça demande vraiment, et le taux de vol qui décide de tout.",
+      "slug": "kharbga-from-sand-to-screen",
+      "titre": "From Sand to Screen: Can Kharbga Become North Africa's Next Great Digital Strategy Game?",
+      "resume": "A Kogia Group project concept for preserving a living game, respecting its regional variants, and rebuilding it for mobile, web, competition, and play.",
       "categorie": "Technologie",
       "pays": "Tunisie",
-      "date": "2026-08-10",
-      "lecture": 12,
+      "date": "2026-08-13",
+      "lecture": 14,
       "couleur": "indigo",
-      "signal": "Verdict Kogia : non pour la grande distribution — oui pour un site fermé de 200 à 500 personnes"
-    },
-    {
-      "slug": "tontine-numerique",
-      "titre": "La tontine, mais sur téléphone",
-      "resume": "Un système d'épargne collective que des millions de gens utilisent déjà hors ligne. Le risque n'est pas technique.",
-      "categorie": "Fintech",
-      "pays": "Tunisie",
-      "date": "2026-08-08",
-      "lecture": 11,
-      "couleur": "violet",
-      "signal": "Risque principal : sans la garantie sociale, l'application devient un organisme de crédit non déclaré"
+      "signal": "Kogia verdict: the first deliverable is not an app-store build — it is a versioned rules-and-culture dossier, reviewed by the players themselves"
     }
   ]
 }
