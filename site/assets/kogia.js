@@ -342,10 +342,31 @@ async function demarrerArticle(){
       .then(peint)
       .catch(() => { secV.querySelectorAll('[data-n]').forEach(el => el.textContent = '—'); });
 
+    // Le nuage d'idées : la signature de l'animal (il libère un nuage sous
+    // pression) devenue retour de vote. Sept bulles, 640 ms, une seule fois.
+    const nuageIdees = b => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const r = b.getBoundingClientRect(), s = secV.getBoundingClientRect();
+      const teintes = ['#4F57DE', '#0891B2', '#7442D6', '#9BB4FF'];
+      for (let i = 0; i < 7; i++) {
+        const e = document.createElement('span');
+        e.className = 'bulle';
+        e.style.setProperty('--t', (8 + Math.random() * 10) + 'px');
+        e.style.setProperty('--dx', (Math.random() * 72 - 36) + 'px');
+        e.style.setProperty('--c', teintes[i % teintes.length]);
+        e.style.left = (r.left - s.left + 12 + Math.random() * (r.width - 24)) + 'px';
+        e.style.top = (r.top - s.top + 2) + 'px';
+        e.style.animationDelay = (Math.random() * 90) + 'ms';
+        secV.appendChild(e);
+        setTimeout(() => e.remove(), 950);
+      }
+    };
+
     secV.querySelectorAll('.vote').forEach(b => b.addEventListener('click', async () => {
       if (b.classList.contains('choisi')) return;          // déjà répondu : rien à refaire
       // Retour immédiat, avant l'aller-retour réseau : le clic est vu tout de suite.
       b.classList.add('choisi'); b.setAttribute('aria-pressed', 'true');
+      nuageIdees(b);
       b.disabled = true;
       if (etat) { etat.textContent = ''; etat.className = 'votes-etat'; }
       try {

@@ -347,6 +347,19 @@ button{font-family:inherit;color:inherit}
   transition:transform var(--appui) var(--ease),background var(--selection) var(--ease),
              border-color var(--selection) var(--ease)}
 .vote .ic{color:var(--slate);transition:color var(--selection) var(--ease)}
+/* Les baleines SONT les boutons de réaction : chacune sa couleur, chacune
+   sa question. Au survol elle se penche, choisie elle reste redressée. */
+.vote-baleine{width:30px;height:30px;flex-shrink:0;
+  transition:transform var(--selection) var(--ease)}
+.vote:hover .vote-baleine{transform:scale(1.15) rotate(-7deg)}
+.vote.choisi .vote-baleine{transform:scale(1.08)}
+/* Le nuage d'idées — LA signature Kogia : sous pression, l'animal libère un
+   nuage. Ici, voter libère une poignée de bulles d'idées. Une fois, courte,
+   après l'action — jamais en boucle. */
+.bulle{position:absolute;width:var(--t);height:var(--t);border-radius:50%;
+  background:var(--c);pointer-events:none;opacity:.95;z-index:2;
+  animation:bulle-monte 780ms var(--ease-sortie) forwards}
+@keyframes bulle-monte{to{translate:var(--dx) -64px;opacity:0;scale:.3}}
 .vote:hover{border-color:var(--indigo)}
 .vote:active{transform:scale(.98)}
 .vote.choisi{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo-ink)}
