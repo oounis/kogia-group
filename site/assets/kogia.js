@@ -89,6 +89,7 @@ async function demarrerFlux(){
   // ── État d'erreur : dire ce qui s'est passé, et proposer l'action.
   if (idees === null) {
     flux.innerHTML = `<div class="vide" role="alert">
+        <img class="vide-baleine" src="assets/whales/whale-vert-128.png" alt="" width="88" height="88">
         <p class="vide-t">La bibliothèque n'a pas pu être chargée.</p>
         <p class="vide-p">La connexion a échoué. Les idées sont bien là — c'est l'accès qui a manqué.</p>
         <button class="bouton clair" id="reessayer">Réessayer</button>
@@ -122,6 +123,7 @@ async function demarrerFlux(){
   </article>`;
 
   const VIDE = `<div class="vide">
+      <img class="vide-baleine" src="assets/whales/whale-vert-128.png" alt="" width="88" height="88">
       <p class="vide-t">La première idée arrive bientôt.</p>
       <p class="vide-p">Une idée sérieusement explorée vaut mieux que dix résumés. Revenez très vite.</p>
       <a class="bouton clair" href="mailto:contact@kogiagroup.com?subject=Une idée à explorer">Proposer un sujet</a>
@@ -221,7 +223,8 @@ async function demarrerFlux(){
     let msg = document.getElementById('rien');
     if (!n && idees.length) {
       if (!msg) { msg = document.createElement('div'); msg.id = 'rien'; msg.className = 'vide';
-        msg.innerHTML = '<p class="vide-p">Aucune idée ne correspond. Essayez un autre sujet.</p>'; flux.appendChild(msg); }
+        msg.innerHTML = '<img class="vide-baleine" src="assets/whales/whale-vert-128.png" alt="" width="88" height="88">' +
+          '<p class="vide-p">Aucune idée ne correspond. Essayez un autre sujet.</p>'; flux.appendChild(msg); }
     } else if (msg) msg.remove();
   }
 
