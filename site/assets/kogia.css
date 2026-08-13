@@ -45,13 +45,15 @@
   --disp:"Sora","Avenir Next",system-ui,sans-serif;
   --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  /* Lecture longue (mesurée — NOTE-MOTIF-LECTURE) : inchangée */
-  --lire:    clamp(1.125rem, 1.02rem + .45vw, 1.3125rem);
-  --lire-lh: 1.64;
-  --deck:    clamp(1.15rem, 1.02rem + .55vw, 1.4rem);
-  --t-h1:    clamp(1.95rem, 1.35rem + 2.6vw, 2.75rem);
-  --t-h2:    clamp(1.45rem, 1.2rem  + 1.1vw, 1.9rem);
-  --t-h3:    clamp(1.22rem, 1.13rem + .38vw, 1.45rem);
+  /* Lecture longue — resserrée le 2026-08-13 sur retour d'Othman :
+     le corps montait à 21 px et se sentait « plus gros que d'habitude ».
+     Plafond ramené à 18 px, l'échelle des titres suit. */
+  --lire:    clamp(1rem, .96rem + .2vw, 1.125rem);
+  --lire-lh: 1.66;
+  --deck:    clamp(1.05rem, .98rem + .35vw, 1.22rem);
+  --t-h1:    clamp(1.8rem, 1.3rem + 2.2vw, 2.45rem);
+  --t-h2:    clamp(1.32rem, 1.14rem + .8vw, 1.62rem);
+  --t-h3:    clamp(1.13rem, 1.06rem + .3vw, 1.28rem);
   --colonne: 56rem;
 
   /* Mouvement — après une action, jamais avant le contenu */
