@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Kogia — script unique du site.
+   Kogia - script unique du site.
    Il était recopié dans chaque page, et les deux copies avaient déjà
    divergé (le fondu des compteurs n'existait que dans les articles).
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* Un seul langage d'icônes : SVG en ligne, grille 24, trait 1.8. L'emoji
-   n'est plus une structure d'interface — il peut vivre DANS un article, en
+   n'est plus une structure d'interface - il peut vivre DANS un article, en
    contenu, jamais comme icône de catégorie ou de vote. */
 const IC = {
   avis: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11 12 6l5 5M12 6v12"/></svg>',
@@ -16,7 +16,7 @@ const IC = {
 const API = 'https://kogia-site-api.onrender.com';
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-/* Temps relatif — « il y a 3 h » se lit plus vite qu'une date complète, et
+/* Temps relatif - « il y a 3 h » se lit plus vite qu'une date complète, et
    c'est ce qui donne à un fil l'impression d'être vivant. La date exacte
    reste dans l'attribut title, pour qui veut la précision. */
 function depuis(iso){
@@ -31,7 +31,7 @@ function depuis(iso){
 
 const moinsDeMouvement = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Interpolation linéaire — la formule derrière presque toute animation :
+/* Interpolation linéaire - la formule derrière presque toute animation :
    valeur = départ + (arrivée - départ) × progression.                        */
 const lerp = (a, b, t) => a + (b - a) * t;
 /* Amortissement : rapide au début, posé à la fin. Sans lui, un compteur qui
@@ -91,7 +91,7 @@ async function demarrerFlux(){
     flux.innerHTML = `<div class="vide" role="alert">
         <img class="vide-baleine" src="assets/whales/whale-vert-128.png" alt="" width="88" height="88">
         <p class="vide-t">La bibliothèque n'a pas pu être chargée.</p>
-        <p class="vide-p">La connexion a échoué. Les idées sont bien là — c'est l'accès qui a manqué.</p>
+        <p class="vide-p">La connexion a échoué. Les idées sont bien là ; c'est l'accès qui a manqué.</p>
         <button class="bouton clair" id="reessayer">Réessayer</button>
       </div>`;
     flux.querySelector('#reessayer').addEventListener('click', () => {
@@ -116,9 +116,9 @@ async function demarrerFlux(){
     ${i.signal ? `<p class="poste-signal">${esc(i.signal)}</p>` : ''}
     <div class="poste-actions">
       <a class="chip" href="idees/${esc(i.slug)}.html#votes" title="Donner un avis">
-        ${IC.avis}<b data-votes data-affiche="0">—</b><span>avis</span></a>
+        ${IC.avis}<b data-votes data-affiche="0">…</b><span>avis</span></a>
       <a class="chip" href="idees/${esc(i.slug)}.html#discussion" title="Lire la discussion">
-        ${IC.comm}<b data-comms data-affiche="0">—</b><span>commentaires</span></a>
+        ${IC.comm}<b data-comms data-affiche="0">…</b><span>commentaires</span></a>
     </div>
   </article>`;
 
@@ -169,7 +169,7 @@ async function demarrerFlux(){
   if (!idees.length && onglets) onglets.style.display = 'none';
 
   // ── Compteurs : une seule requête pour tout le flux. Tant qu'elle n'a pas
-  //    répondu, les cartes affichent « — » et non « 0 » : zéro serait un
+  //    répondu, les cartes affichent « - » et non « 0 » : zéro serait un
   //    mensonge, le tiret dit honnêtement « pas encore su ».
   if (idees.length) {
     fetch(`${API}/idees/compteurs`).then(r => r.ok ? r.json() : null).then(d => {
@@ -247,7 +247,7 @@ async function demarrerFlux(){
   const q = document.getElementById('q');
   if (q) q.addEventListener('input', e => { recherche = e.target.value.trim().toLowerCase(); appliquer(); });
 
-  // Toute la carte est cliquable, comme sur Reddit — pas seulement le titre.
+  // Toute la carte est cliquable, comme sur Reddit - pas seulement le titre.
   // Un clic sur un lien ou un bouton interne garde son propre comportement,
   // et une sélection de texte n'est pas un clic.
   flux.addEventListener('click', e => {
@@ -286,7 +286,7 @@ function demarrerPartage(){
 }
 
 /* Idées connexes : même sujet d'abord, puis les plus récentes. Une raison de
-   rester après la dernière ligne — sinon l'article est un cul-de-sac. */
+   rester après la dernière ligne - sinon l'article est un cul-de-sac. */
 async function demarrerConnexes(){
   const hote = document.getElementById('connexes');
   if (!hote || hote.dataset.pret) return;
@@ -340,7 +340,7 @@ async function demarrerArticle(){
     fetch(`${API}/idees/${slug}/reactions`)
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(peint)
-      .catch(() => { secV.querySelectorAll('[data-n]').forEach(el => el.textContent = '—'); });
+      .catch(() => { secV.querySelectorAll('[data-n]').forEach(el => el.textContent = '…'); });
 
     // Le nuage d'idées : la signature de l'animal (il libère un nuage sous
     // pression) devenue retour de vote. Sept bulles, 640 ms, une seule fois.
@@ -409,18 +409,18 @@ async function demarrerArticle(){
                 <p class="comm-msg">${esc(c.message)}</p>
                 ${c.id ? `<button class="comm-signaler" type="button" data-signaler="${esc(c.id)}">Signaler</button>` : ''}
               </article>`).join('')
-          : '<p class="comm-vide">Personne n\'a encore réagi. Soyez le premier — même un désaccord est utile.</p>';
+          : '<p class="comm-vide">Personne n\'a encore réagi. Soyez le premier, même un désaccord est utile.</p>';
         // Signaler : trois signalements masquent le commentaire en attendant la
         // revue. Le retour est dans le bouton lui-même.
         liste.querySelectorAll('[data-signaler]').forEach(b => b.addEventListener('click', async () => {
           b.disabled = true;
           try {
             const r = await fetch(`${API}/idees/${slug}/commentaires/${b.dataset.signaler}/signaler`, { method: 'POST' });
-            b.textContent = r.ok ? 'Signalé — merci' : 'Signalement impossible';
+            b.textContent = r.ok ? 'Signalé, merci' : 'Signalement impossible';
           } catch { b.textContent = 'Signalement impossible'; b.disabled = false; }
         }));
       } catch {
-        if (compteur) compteur.textContent = '—';
+        if (compteur) compteur.textContent = '…';
         liste.innerHTML = `<p class="comm-vide">La discussion n'a pas pu être chargée.
           <button class="lien-texte" type="button" data-recharger>Réessayer</button></p>`;
         liste.querySelector('[data-recharger]')?.addEventListener('click', charger);
@@ -438,7 +438,7 @@ async function demarrerArticle(){
       try {
         const r = await fetch(`${API}/idees/${slug}/commentaires`, { method:'POST',
           headers:{'Content-Type':'application/json'}, body: JSON.stringify(d) });
-        if (r.ok) { f.reset(); etat.className='comm-etat ok'; etat.textContent='Merci — votre commentaire est publié.'; charger(); }
+        if (r.ok) { f.reset(); etat.className='comm-etat ok'; etat.textContent='Merci, votre commentaire est publié.'; charger(); }
         else { etat.className='comm-etat ko'; etat.textContent=(await r.json().catch(()=>({}))).erreur || 'Publication impossible.'; }
       } catch { etat.className='comm-etat ko'; etat.textContent='Connexion impossible.'; }
       finally { btn.disabled = false; }
@@ -503,7 +503,7 @@ async function demarrerArticle(){
     if (!/\/(index\.html)?$|\/idees\/[^/]+\.html$/.test(url.pathname)) return;
     // Une ancre dans la même page (#contact, #solutions…) : on conduit le
     // défilement nous-mêmes. Le défilement doux natif est annulé par le
-    // moindre décalage de mise en page — un compteur qui arrive suffisait à
+    // moindre décalage de mise en page - un compteur qui arrive suffisait à
     // tuer le trajet « Nous écrire ». Un filet vérifie l'arrivée : si le
     // défilement a été interrompu, on saute directement au bloc.
     if (url.hash && url.pathname === location.pathname) {

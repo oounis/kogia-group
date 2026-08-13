@@ -1,19 +1,19 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Kogia — feuille de style unique du site.
+   Kogia - feuille de style unique du site.
 
    Refonte « discipline d'interface » du 2026-08-13, sur la direction
    visuelle de l'audit : le contenu avant le décor. Un seul langage
    d'icônes (SVG en ligne, grille 24, trait 1.8), une seule famille de
-   rayons, des surfaces neutres, la couleur pour l'état et la catégorie —
+   rayons, des surfaces neutres, la couleur pour l'état et la catégorie -
    jamais pour décorer. Le mouvement ne vient qu'après une action.
 
-   UN SEUL THÈME : l'abysse, calme. La leçon du 2026-08-13 tient — pas de
+   UN SEUL THÈME : l'abysse, calme. La leçon du 2026-08-13 tient - pas de
    media query de thème, tout le monde voit le même site.
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ═══════════ 1. JETONS ═══════════ */
 :root{
-  /* THÈME CLAIR — décision d'Othman du 2026-08-13 (soir) : fond blanc,
+  /* THÈME CLAIR - décision d'Othman du 2026-08-13 (soir) : fond blanc,
      toujours. L'abysse reste dans la marque (baleine, indigo), pas dans
      le fond. Le relief vient d'ombres légères, plus d'un empilement de noirs. */
   color-scheme:light;
@@ -21,19 +21,19 @@
   /* Marque */
   --indigo:#4F57DE; --indigo-ink:#3B42C4; --cyan:#0891B2;
 
-  /* Surfaces — blanc, avec une échelle discrète pour le relief */
+  /* Surfaces - blanc, avec une échelle discrète pour le relief */
   --ink:#182234;          /* texte principal */
   --slate:#5C6B80;        /* texte secondaire */
   --line:#E3E8EF;         /* filets et bordures de carte */
   --line-forte:#C9D3E0;   /* bordure au survol */
-  --surface:#FFFFFF;      /* fond de page — blanc */
+  --surface:#FFFFFF;      /* fond de page - blanc */
   --carte:#FFFFFF;        /* surface des cartes et du rail */
   --carte-survol:#FAFBFD; /* carte survolée */
   --canvas:#F4F6FA;       /* surface en creux (champs, blocs cités) */
   --indigo-soft:#E9EBFD;  /* aplat de sélection */
   --voile:rgba(255,255,255,.86);
 
-  /* États sémantiques — encre assombrie : 4,5:1 minimum sur son fond pâle */
+  /* États sémantiques - encre assombrie : 4,5:1 minimum sur son fond pâle */
   --ok:#0F6B42; --ok-fond:#E4F6EC;
   --ko:#C43D32; --ko-fond:#FCEAE8;
 
@@ -45,7 +45,7 @@
   --disp:"Sora","Avenir Next",system-ui,sans-serif;
   --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  /* Lecture longue — resserrée le 2026-08-13 sur retour d'Othman :
+  /* Lecture longue - resserrée le 2026-08-13 sur retour d'Othman :
      le corps montait à 21 px et se sentait « plus gros que d'habitude ».
      Plafond ramené à 18 px, l'échelle des titres suit. */
   --lire:    clamp(1rem, .96rem + .2vw, 1.125rem);
@@ -56,7 +56,7 @@
   --t-h3:    clamp(1.13rem, 1.06rem + .3vw, 1.28rem);
   --colonne: 56rem;
 
-  /* Mouvement — après une action, jamais avant le contenu */
+  /* Mouvement - après une action, jamais avant le contenu */
   --appui:100ms;      /* pression d'un bouton */
   --selection:160ms;  /* vote choisi, compteur */
   --insertion:200ms;  /* nouveau commentaire */
@@ -85,13 +85,13 @@ button{font-family:inherit;color:inherit}
 ::selection{background:var(--indigo-soft);color:var(--indigo-ink)}
 :focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:4px}
 
-/* ═══════════ 2. ICÔNES — un seul langage ═══════════
+/* ═══════════ 2. ICÔNES - un seul langage ═══════════
    SVG en ligne, grille 24, trait 1.8, bouts ronds. Tout glyphe d'interface
    passe par cette classe : pas d'emoji structurel, pas de styles mélangés. */
 .ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
-/* ═══════════ 3. BARRE DU HAUT — une ligne, à toute taille ═══════════ */
+/* ═══════════ 3. BARRE DU HAUT - une ligne, à toute taille ═══════════ */
 .top{position:sticky;top:0;z-index:50;background:var(--voile);
   backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
 .top-in{max-width:1200px;margin:0 auto;padding:0 1rem;height:56px;
@@ -126,9 +126,9 @@ button{font-family:inherit;color:inherit}
   .marque b{display:none}
 }
 
-/* ═══════════ 4. LA PAGE — centre + rail à partir de 1180 px ═══════════
+/* ═══════════ 4. LA PAGE - centre + rail à partir de 1180 px ═══════════
    La structure de référence : haut · centre · droite. Le rail porte du
-   contenu vivant (sujets, discussions) — jamais de promotion produit.
+   contenu vivant (sujets, discussions) - jamais de promotion produit.
    Sous 1180 px il disparaît : le flux est la page. */
 .plan{max-width:1128px;margin:0 auto;padding:0 1rem;display:grid;
   grid-template-columns:minmax(0,1fr);justify-content:center;gap:0 3rem}
@@ -169,7 +169,7 @@ button{font-family:inherit;color:inherit}
 .titre-page{font:700 .74rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;
   color:var(--slate);padding:1rem 0 .4rem}
 
-/* ── Contrôles du flux : une seule ligne — sujets à gauche, tri à droite ── */
+/* ── Contrôles du flux : une seule ligne - sujets à gauche, tri à droite ── */
 .controles{position:sticky;top:56px;z-index:20;background:var(--voile);backdrop-filter:blur(10px);
   padding:.15rem 0 .5rem;border-bottom:1px solid var(--line);
   display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
@@ -188,9 +188,9 @@ button{font-family:inherit;color:inherit}
 .tri:hover{color:var(--ink)}
 .tri.actif{background:var(--canvas);color:var(--ink);font-weight:600}
 
-/* ═══════════ 5. LE POSTE — l'anatomie qui compte ═══════════
+/* ═══════════ 5. LE POSTE - l'anatomie qui compte ═══════════
    [marqueur de catégorie] sujet · date · lecture
-   Titre — une promesse claire
+   Titre - une promesse claire
    Prémisse en deux lignes
    Signal éditorial (verdict ou risque principal)
    [barre d'actions : avis · commentaires]                                  */
@@ -202,7 +202,7 @@ button{font-family:inherit;color:inherit}
 .poste:hover{background:var(--carte-survol);border-color:var(--line-forte);
   box-shadow:var(--ombre-survol);transform:translateY(-2px)}
 .poste:active{transform:translateY(0)}
-/* La carte se lève en entrant dans l'écran — conduit par le défilement,
+/* La carte se lève en entrant dans l'écran - conduit par le défilement,
    sur le compositeur, zéro JavaScript. `translate` pour l'entrée,
    `transform` pour le survol : les deux ne se disputent pas. */
 /* Montée seule, sans fondu : un texte semi-transparent sous la ligne de
@@ -264,7 +264,7 @@ button{font-family:inherit;color:inherit}
 .carte-statique b{font:700 1.05rem/1.3 var(--disp);color:var(--ink)}
 .carte-statique span{display:block;font-size:.9rem;color:var(--slate);margin-top:.2rem}
 
-/* ═══════════ 6. PAGE D'ARTICLE — la lecture ne change pas ═══════════ */
+/* ═══════════ 6. PAGE D'ARTICLE - la lecture ne change pas ═══════════ */
 .art-wrap{max-width:100%}
 .page--article .art-wrap{max-width:var(--colonne);margin-inline:auto}
 .art-tete{padding:.5rem 0 1.6rem}
@@ -292,7 +292,7 @@ button{font-family:inherit;color:inherit}
 .art-corps blockquote{border-left:3px solid var(--indigo);background:var(--canvas);padding:1.1rem 1.4rem;
   border-radius:0 var(--r-m) var(--r-m) 0;margin:1.6em 0;color:var(--ink);font-size:1.02em;line-height:1.5}
 
-/* Étiquettes d'honnêteté — la règle éditoriale, pas un décor. */
+/* Étiquettes d'honnêteté - la règle éditoriale, pas un décor. */
 .tag{display:inline-block;font:800 .6em/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
   padding:.35em .6em;border-radius:var(--r-s);margin-right:.5em;vertical-align:.12em;white-space:nowrap}
 .tag.fait{background:var(--ok-fond);color:var(--ok)} .tag.estim{background:#FBEFDC;color:#8A5410}
@@ -322,7 +322,7 @@ button{font-family:inherit;color:inherit}
 .partage.ok{background:var(--ok-fond);border-color:#9FD9BD;color:var(--ok)}
 .partage.ko{background:var(--ko-fond);border-color:#EFB4AE;color:var(--ko)}
 
-/* ═══════════ 7. LA BARRE DE VOTE — des commandes, pas des confettis ═══
+/* ═══════════ 7. LA BARRE DE VOTE - des commandes, pas des confettis ═══
    Quatre questions, quatre boutons de même forme : icône + libellé +
    compteur. L'état choisi est un remplissage, la confirmation est le
    compteur qui monte. Rien ne vole à travers l'écran. */
@@ -355,9 +355,9 @@ button{font-family:inherit;color:inherit}
   transition:transform var(--selection) var(--ease)}
 .vote:hover .vote-baleine{transform:scale(1.15) rotate(-7deg)}
 .vote.choisi .vote-baleine{transform:scale(1.08)}
-/* Le nuage d'idées — LA signature Kogia : sous pression, l'animal libère un
+/* Le nuage d'idées - LA signature Kogia : sous pression, l'animal libère un
    nuage. Ici, voter libère une poignée de bulles d'idées. Une fois, courte,
-   après l'action — jamais en boucle. */
+   après l'action - jamais en boucle. */
 .bulle{position:absolute;width:var(--t);height:var(--t);border-radius:50%;
   background:var(--c);pointer-events:none;opacity:.95;z-index:2;
   animation:bulle-monte 780ms var(--ease-sortie) forwards}
