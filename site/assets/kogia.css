@@ -284,7 +284,11 @@ button{font-family:inherit;color:inherit}
 .art-corps strong{font-weight:700}
 .art-corps ul,.art-corps ol{margin:0 0 .95em 1.25em} .art-corps li{margin-bottom:.4em}
 .art-corps img,.art-corps svg{max-width:100%;height:auto;border-radius:var(--r-m);margin:1.4em 0}
-.art-corps table{width:100%;border-collapse:collapse;margin:1.6em 0;font-size:.92em}
+/* Un tableau plus large que l'écran défile dans son propre cadre :
+   la page, elle, ne bouge jamais latéralement (vu sur téléphone à 390 px). */
+.art-corps table{width:100%;border-collapse:collapse;margin:1.6em 0;font-size:.92em;
+  display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.art-corps table thead,.art-corps table tbody{display:table;width:100%;min-width:480px}
 .art-corps th{background:var(--indigo-soft);color:var(--indigo-ink);font-weight:700;text-align:left;padding:.75rem .95rem}
 .art-corps th:first-child{border-radius:var(--r-s) 0 0 0} .art-corps th:last-child{border-radius:0 var(--r-s) 0 0}
 .art-corps td{border-top:1px solid var(--line);padding:.75rem .95rem;color:var(--slate)}
