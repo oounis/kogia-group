@@ -462,6 +462,21 @@ button{font-family:inherit;color:inherit}
 .pied-mentions{max-width:1200px;margin:0 auto;padding:1rem 1rem 1.5rem;font-size:.78rem;
   color:var(--slate);border-top:1px solid var(--line)}
 .pied-mentions a{color:var(--indigo-ink);text-decoration:underline}
+/* Réseaux : mêmes 24 grille / 1.8 trait que le reste du site (.ic) — pas des
+   badges de marque plaqués. Au repos, encre discrète ; au survol, un plein
+   doux vers la couleur reconnue de chaque réseau, jamais imposée au repos. */
+.reseaux{display:flex;gap:.6rem;margin-top:1rem}
+.reseau{width:var(--touche);height:var(--touche);border-radius:var(--r-max);
+  display:grid;place-items:center;border:1px solid var(--line);color:var(--slate);
+  transition:color var(--selection) var(--ease),border-color var(--selection) var(--ease),
+             background var(--selection) var(--ease),transform var(--appui) var(--ease)}
+.reseau svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.reseau:active{transform:scale(.94)}
+.reseau.facebook:hover{color:#1877F2;border-color:#1877F2;background:#EAF2FE}
+.reseau.reddit:hover{color:#FF4500;border-color:#FF4500;background:#FFEEE6}
+.reseau.discord:hover{color:#5865F2;border-color:#5865F2;background:#EEEFFD}
+
 .prod{display:flex;gap:.75rem;padding:.6rem;margin:0 -.6rem;align-items:flex-start;
   border-radius:var(--r-s);transition:background var(--selection) var(--ease)}
 a.prod:hover{background:var(--carte-survol)}
