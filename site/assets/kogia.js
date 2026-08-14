@@ -91,7 +91,7 @@ async function demarrerFlux(){
     flux.innerHTML = `<div class="vide" role="alert">
         <img class="vide-baleine" src="assets/whales/whale-vert-128.png" alt="" width="88" height="88">
         <p class="vide-t">La bibliothèque n'a pas pu être chargée.</p>
-        <p class="vide-p">La connexion a échoué. Les idées sont bien là ; c'est l'accès qui a manqué.</p>
+        <p class="vide-p">La connexion a échoué. Les idées sont bien là, c'est l'accès qui a manqué.</p>
         <button class="bouton clair" id="reessayer">Réessayer</button>
       </div>`;
     flux.querySelector('#reessayer').addEventListener('click', () => {
