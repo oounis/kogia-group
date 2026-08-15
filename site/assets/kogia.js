@@ -107,11 +107,16 @@ async function demarrerFlux(){
       data-date="${esc(i.date)}"
       data-q="${esc((i.titre + ' ' + (i.resume||'') + ' ' + (i.categorie||'') + ' ' + (i.pays||'')).toLowerCase())}">
     <a class="poste-lien" href="idees/${esc(i.slug)}.html">
-      <p class="poste-meta"><span class="poste-cat">${esc(i.categorie || 'Idée')}</span>
-        <span aria-hidden="true">·</span><span>${moisFr(i.date)}</span>
-        <span aria-hidden="true">·</span><span>${i.lecture || 6} min</span></p>
-      <h2 class="poste-titre">${esc(i.titre)}</h2>
-      <p class="poste-resume">${esc(i.resume)}</p>
+      <div class="poste-corps">
+        ${i.image ? `<img class="poste-vignette" src="${esc(i.image)}" alt="" width="84" height="84" loading="lazy">` : ''}
+        <div>
+          <p class="poste-meta"><span class="poste-cat">${esc(i.categorie || 'Idée')}</span>
+            <span aria-hidden="true">·</span><span>${moisFr(i.date)}</span>
+            <span aria-hidden="true">·</span><span>${i.lecture || 6} min</span></p>
+          <h2 class="poste-titre">${esc(i.titre)}</h2>
+          <p class="poste-resume">${esc(i.resume)}</p>
+        </div>
+      </div>
     </a>
     ${i.signal ? `<p class="poste-signal">${esc(i.signal)}</p>` : ''}
     <div class="poste-actions">
