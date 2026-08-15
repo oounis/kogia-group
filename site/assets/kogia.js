@@ -347,7 +347,10 @@ async function demarrerArticle(){
     const nuageIdees = b => {
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const r = b.getBoundingClientRect(), s = secV.getBoundingClientRect();
-      const teintes = ['#4F57DE', '#0891B2', '#7442D6', '#9BB4FF'];
+      // Famille resserrée sur l'unique accent (Magic Iris) + sa nuance
+      // pressée + un ton plus clair + le vert de réussite du moment :
+      // pas un feu d'artifice multicolore, une variation d'un seul thème.
+      const teintes = ['#6C4DE6', '#5E40D8', '#9B86FF', '#15866B'];
       for (let i = 0; i < 7; i++) {
         const e = document.createElement('span');
         e.className = 'bulle';

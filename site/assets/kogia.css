@@ -1,80 +1,99 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Kogia - feuille de style unique du site.
 
-   Refonte « discipline d'interface » du 2026-08-13, sur la direction
-   visuelle de l'audit : le contenu avant le décor. Un seul langage
-   d'icônes (SVG en ligne, grille 24, trait 1.8), une seule famille de
-   rayons, des surfaces neutres, la couleur pour l'état et la catégorie -
-   jamais pour décorer. Le mouvement ne vient qu'après une action.
+   REFONTE 2026-08-15 : système « Kogia Product Design » (doc d'Othman,
+   philosophie ChatGPT — calme, pas copie). Ce que ça change concrètement :
+     - Un seul accent (Magic Iris #6C4DE6), pas cinq couleurs de catégorie.
+       Le doc l'interdit explicitement (« لا 5 ألوان Accent ») : la couleur
+       n'a plus qu'un travail, marquer l'action et l'état actif. La
+       catégorie se lit désormais par le texte et le poids, pas la teinte.
+     - Une seule police, Inter, à la place de Sora + Inter — « la police,
+       la personnalité silencieuse » : trop de familles brouillent la voix.
+     - Quasi aucune ombre : les cartes se distinguent par la bordure, pas
+       par un relief. L'ombre est réservée aux couches réellement flottantes.
+     - Poids disciplinés à 4 paliers : Regular/Medium/Semibold/Bold — plus
+       d'ExtraBold hors logo (le doc l'interdit hors campagne publicitaire).
+     - Cible tactile 48px (au lieu de 44), trait d'icône 2px (au lieu de
+       1.8) : les deux chiffres exacts du document.
+     - Rayon de contrôle 18px unifié (boutons, cartes, champs, capsules) —
+       exactement le radius.control=18dp de sa table de jetons Compose.
 
-   UN SEUL THÈME : l'abysse, calme. La leçon du 2026-08-13 tient - pas de
-   media query de thème, tout le monde voit le même site.
+   Décision consciente, à discuter avec Othman : c'est la mesure la plus
+   radicale du lot. Tout le reste (structure, mascotte baleine, contenu,
+   discipline d'interface du 2026-08-13) est inchangé.
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ═══════════ 1. JETONS ═══════════ */
 :root{
-  /* THÈME CLAIR - décision d'Othman du 2026-08-13 (soir) : fond blanc,
-     toujours. L'abysse reste dans la marque (baleine, indigo), pas dans
-     le fond. Le relief vient d'ombres légères, plus d'un empilement de noirs. */
   color-scheme:light;
 
-  /* Marque */
-  --indigo:#4F57DE; --indigo-ink:#3B42C4; --cyan:#0891B2;
+  /* Marque — Magic Iris, l'unique accent. Une teinte rare vaut par sa
+     rareté : 80-88 % de la page reste neutre, l'accent ne dépasse jamais
+     3-5 %. --indigo-ink est l'état « pressé » exact du document (#5E40D8). */
+  --indigo:#6C4DE6; --indigo-ink:#5E40D8; --cyan:#0A93A8;
 
-  /* Surfaces - blanc, avec une échelle discrète pour le relief */
-  --ink:#182234;          /* texte principal */
-  --slate:#5C6B80;        /* texte secondaire */
-  --line:#E3E8EF;         /* filets et bordures de carte */
-  --line-forte:#C9D3E0;   /* bordure au survol */
-  --surface:#FFFFFF;      /* fond de page - blanc */
-  --carte:#FFFFFF;        /* surface des cartes et du rail */
-  --carte-survol:#FAFBFD; /* carte survolée */
-  --canvas:#F4F6FA;       /* surface en creux (champs, blocs cités) */
-  --indigo-soft:#E9EBFD;  /* aplat de sélection */
-  --voile:rgba(255,255,255,.86);
+  /* Surfaces — blanc chaleureux, pas blanc froid ni encre dure. */
+  --ink:#171717;          /* texte principal — Ink du document */
+  --slate:#666666;        /* texte secondaire — Muted du document */
+  --line:#E5E5E5;         /* filets — Divider du document */
+  --line-forte:#D6D6D3;   /* bordure au survol, un cran plus marqué */
+  --surface:#FFFFFF;      /* cartes et champs — Surface */
+  --carte:#FFFFFF;
+  --carte-survol:#FAFAF8; /* survol très discret, presque imperceptible */
+  --canvas:#F7F7F5;       /* fond de page — Canvas, blanc cassé chaud */
+  --indigo-soft:#EFEAFB;  /* aplat de sélection, teinte très pâle de l'accent */
+  --voile:rgba(255,255,255,.88);
 
-  /* États sémantiques - encre assombrie : 4,5:1 minimum sur son fond pâle */
-  --ok:#0F6B42; --ok-fond:#E4F6EC;
-  --ko:#C43D32; --ko-fond:#FCEAE8;
+  /* États sémantiques du document, assombris pour un contraste ≥4.5:1. */
+  --ok:#15866B; --ok-fond:#E3F3EF;
+  --ko:#C93C37; --ko-fond:#FCEAE9;
+  --attn:#A15C00; --attn-fond:#FBF0E0;
 
-  /* Ombres : une pour poser les cartes, une pour les faire répondre */
-  --ombre:0 14px 34px -18px rgba(23,32,50,.25);
-  --ombre-carte:0 1px 2px rgba(23,32,50,.05);
-  --ombre-survol:0 8px 22px -10px rgba(23,32,50,.18);
+  /* Ombres : réservées aux couches VRAIMENT flottantes (rien n'en a besoin
+     aujourd'hui). Les cartes ne portent plus d'ombre — seulement une
+     bordure. « لا shadow حول كل بطاقة » est une interdiction explicite. */
+  --ombre:0 16px 36px -16px rgba(23,23,23,.16);
+  --ombre-carte:none;
+  --ombre-survol:none;
 
-  --disp:"Sora","Avenir Next",system-ui,sans-serif;
+  /* Une seule famille : Inter partout. Le document est explicite — le
+     latin et les chiffres utilisent Inter au même rythme que l'arabe ;
+     Sora est retiré, il ajoutait une deuxième voix inutile. */
+  --disp:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  /* Lecture longue - resserrée le 2026-08-13 sur retour d'Othman :
-     le corps montait à 21 px et se sentait « plus gros que d'habitude ».
-     Plafond ramené à 18 px, l'échelle des titres suit. */
+  /* Lecture longue — le plafond de 18 px du 2026-08-13 tient. */
   --lire:    clamp(1rem, .96rem + .2vw, 1.125rem);
-  --lire-lh: 1.66;
+  --lire-lh: 1.6;
   --deck:    clamp(1.05rem, .98rem + .35vw, 1.22rem);
   --t-h1:    clamp(1.8rem, 1.3rem + 2.2vw, 2.45rem);
   --t-h2:    clamp(1.32rem, 1.14rem + .8vw, 1.62rem);
   --t-h3:    clamp(1.13rem, 1.06rem + .3vw, 1.28rem);
   --colonne: 56rem;
 
-  /* Mouvement - après une action, jamais avant le contenu */
+  /* Mouvement — durées du document, en secondes exactes de sa table :
+     Press 80-120ms, Toggle 160-220ms, Sheet 220-280ms, Navigation
+     260-320ms, Success 300-450ms. Les valeurs d'origine tombaient déjà
+     dans ces bandes ; navigation est resserrée vers son centre (280ms). */
   --appui:100ms;      /* pression d'un bouton */
-  --selection:160ms;  /* vote choisi, compteur */
+  --selection:180ms;  /* vote choisi, compteur, bascule d'état */
   --insertion:200ms;  /* nouveau commentaire */
-  --navigation:240ms; /* transition de vue */
+  --navigation:280ms; /* transition de vue */
   --ease:cubic-bezier(.2,.75,.2,1);
   --ease-sortie:cubic-bezier(.32,.72,0,1);
 
-  /* Couleur de catégorie : un marqueur, pas un objet coloré */
-  --cat:#4A52D8;
-  --touche:44px;
-  --r-s:8px; --r-m:12px; --r-max:999px;   /* une famille de rayons */
+  /* Catégorie : plus une couleur — le document l'interdit noir sur blanc
+     (« لا 5 ألوان Accent »). La hiérarchie vient du texte et du poids,
+     pas de la teinte ; --cat pointe désormais sur l'encre neutre. */
+  --cat:var(--ink);
+  --touche:48px;                          /* cible tactile exacte du document */
+  --r-s:8px; --r-m:18px; --r-max:999px;   /* radius.control = 18dp, sa valeur Compose */
 }
-/* Cinq teintes accordées : même clarté perçue, lisibles en texte sur blanc. */
-[data-cat="Technologie"]{--cat:#4A52D8}
-[data-cat="Business"]   {--cat:#0E7CC9}
-[data-cat="Éducation"]  {--cat:#0A93A8}
-[data-cat="Fintech"]    {--cat:#7442D6}
-[data-cat="Quotidien"]  {--cat:#C4650F}
+/* Les cinq catégories restent DISTINGUABLES par leur texte et gardent leurs
+   baleines-mascottes propres (illustration = identité de marque, hors
+   système d'interface) — mais ne colorent plus la bordure ni le texte. */
+[data-cat="Technologie"],[data-cat="Business"],[data-cat="Éducation"],
+[data-cat="Fintech"],[data-cat="Quotidien"]{--cat:var(--ink)}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -86,9 +105,9 @@ button{font-family:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:4px}
 
 /* ═══════════ 2. ICÔNES - un seul langage ═══════════
-   SVG en ligne, grille 24, trait 1.8, bouts ronds. Tout glyphe d'interface
-   passe par cette classe : pas d'emoji structurel, pas de styles mélangés. */
-.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;
+   SVG en ligne, grille 24, trait 2px (la valeur exacte du document),
+   bouts ronds. Tout glyphe d'interface passe par cette classe. */
+.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
 /* ═══════════ 3. BARRE DU HAUT - une ligne, à toute taille ═══════════ */
@@ -99,7 +118,7 @@ button{font-family:inherit;color:inherit}
 .marque{display:flex;align-items:center;gap:.5rem;min-height:var(--touche);flex-shrink:0}
 .marque svg{width:30px;height:23px;transition:transform var(--selection) var(--ease)}
 .marque:hover svg{transform:translateY(-1.5px) rotate(-4deg)}   /* la baleine salue */
-.marque b{font:800 1.15rem/1 var(--disp);letter-spacing:-.02em;color:var(--ink)}
+.marque b{font:800 1.15rem/1 var(--disp);letter-spacing:-.02em;color:var(--ink)} /* logo = exemption de marque */
 .recherche{flex:1;max-width:560px;margin-inline:auto;position:relative;min-width:0}
 .recherche input{width:100%;min-height:40px;font:400 .9rem/1 var(--text);color:var(--ink);
   padding:.5rem .9rem .5rem 2.15rem;border:1px solid var(--line);border-radius:var(--r-max);
@@ -109,14 +128,17 @@ button{font-family:inherit;color:inherit}
 .recherche svg{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);
   width:15px;height:15px;stroke:var(--slate);fill:none;stroke-width:2}
 
-/* Boutons : un système. Plein = action principale ; le reste est sobre. */
+/* Boutons : un système. Plein = action principale ; le reste est sobre.
+   Libellé en 500 (Medium) — le document classe Label/Button dans le
+   palier Medium, jamais Semibold ni Bold. */
 .bouton,.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
-  min-height:var(--touche);font:600 .88rem/1 var(--text);padding:0 1.15rem;
-  border-radius:var(--r-max);background:var(--ink);color:var(--surface);border:0;cursor:pointer;
+  min-height:var(--touche);font:500 .88rem/1 var(--text);padding:0 1.15rem;
+  border-radius:var(--r-m);background:var(--ink);color:var(--surface);border:0;cursor:pointer;
   transition:transform var(--appui) var(--ease),opacity var(--selection) var(--ease)}
 .bouton:hover,.btn:hover{opacity:.88}
-.bouton:active,.btn:active{transform:scale(.97)}
-.bouton.clair,.btn.accent{background:#4F57DE;color:#fff}
+.bouton:active,.btn:active{transform:scale(.98)}
+.bouton.clair,.btn.accent{background:var(--indigo);color:#fff}
+.bouton.clair:active,.btn.accent:active{background:var(--indigo-ink)}
 .btn:disabled{opacity:.55;cursor:default;transform:none}
 .top-cta{min-height:40px;padding:0 1rem}
 .top-cta .ic{width:16px;height:16px}
@@ -126,10 +148,7 @@ button{font-family:inherit;color:inherit}
   .marque b{display:none}
 }
 
-/* ═══════════ 4. LA PAGE - centre + rail à partir de 1180 px ═══════════
-   La structure de référence : haut · centre · droite. Le rail porte du
-   contenu vivant (sujets, discussions) - jamais de promotion produit.
-   Sous 1180 px il disparaît : le flux est la page. */
+/* ═══════════ 4. LA PAGE - centre + rail à partir de 1180 px ═══════════ */
 .plan{max-width:1128px;margin:0 auto;padding:0 1rem;display:grid;
   grid-template-columns:minmax(0,1fr);justify-content:center;gap:0 3rem}
 .rail{display:none}
@@ -140,11 +159,11 @@ button{font-family:inherit;color:inherit}
 .rail-colle{position:sticky;top:76px;display:flex;flex-direction:column;gap:.9rem}
 .rail-bloc{background:var(--carte);border:1px solid var(--line);border-radius:var(--r-m);
   padding:1.05rem 1.2rem}
-.rail-t{font:700 .7rem/1 var(--text);letter-spacing:.13em;text-transform:uppercase;
+.rail-t{font:600 .7rem/1 var(--text);letter-spacing:.13em;text-transform:uppercase;
   color:var(--slate);margin-bottom:.75rem}
 .rail-p{font-size:.88rem;line-height:1.55;color:var(--slate)}
 .rail-lien{display:inline-flex;align-items:center;min-height:36px;margin-top:.35rem;
-  font:600 .85rem/1 var(--text);color:var(--indigo-ink)}
+  font:500 .85rem/1 var(--text);color:var(--indigo-ink)}
 .rail-lien:hover{color:var(--ink)}
 .rail-baleine{float:right;width:52px;height:52px;margin:-4px 0 .3rem .6rem;
   animation:flotter 7s ease-in-out infinite}
@@ -153,7 +172,7 @@ button{font-family:inherit;color:inherit}
   font:500 .88rem/1 var(--text);color:var(--slate);cursor:pointer;text-align:left;
   transition:background var(--selection) var(--ease),color var(--selection) var(--ease)}
 .sujet:hover{background:var(--carte-survol);color:var(--ink)}
-.sujet .pt{width:8px;height:8px;border-radius:50%;background:var(--cat);flex-shrink:0}
+.sujet .pt{width:8px;height:8px;border-radius:50%;background:var(--slate);flex-shrink:0}
 .sujet .nom{flex:1}
 .sujet b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--slate);font-size:.8rem}
 .rail-liste{list-style:none;display:flex;flex-direction:column}
@@ -189,49 +208,39 @@ button{font-family:inherit;color:inherit}
 .tri.actif{background:var(--canvas);color:var(--ink);font-weight:600}
 
 /* ═══════════ 5. LE POSTE - l'anatomie qui compte ═══════════
-   [marqueur de catégorie] sujet · date · lecture
-   Titre - une promesse claire
-   Prémisse en deux lignes
-   Signal éditorial (verdict ou risque principal)
-   [barre d'actions : avis · commentaires]                                  */
+   Plus de bordure colorée par catégorie ni d'ombre au repos : la carte se
+   distingue par sa bordure, le survol par un fond à peine plus marqué et
+   la bordure qui s'affirme — jamais par un relief. */
 .poste{position:relative;padding:1.05rem 1.25rem 1rem 1.45rem;margin-bottom:.7rem;
   background:var(--carte);border:1px solid var(--line);border-radius:var(--r-m);
-  box-shadow:var(--ombre-carte);cursor:pointer;
-  transition:background var(--selection) var(--ease),border-color var(--selection) var(--ease),
-             box-shadow var(--selection) var(--ease),transform var(--selection) var(--ease)}
-.poste:hover{background:var(--carte-survol);border-color:var(--line-forte);
-  box-shadow:var(--ombre-survol);transform:translateY(-2px)}
-.poste:active{transform:translateY(0)}
+  cursor:pointer;
+  transition:background var(--selection) var(--ease),border-color var(--selection) var(--ease)}
+.poste:hover{background:var(--carte-survol);border-color:var(--line-forte)}
 /* La carte se lève en entrant dans l'écran - conduit par le défilement,
-   sur le compositeur, zéro JavaScript. `translate` pour l'entrée,
-   `transform` pour le survol : les deux ne se disputent pas. */
-/* Montée seule, sans fondu : un texte semi-transparent sous la ligne de
-   flottaison échouait le contraste (et retardait le rendu perçu). */
+   sur le compositeur, zéro JavaScript. */
 @supports (animation-timeline:view()){
   .poste{animation:surgir linear both;animation-timeline:view();
     animation-range:entry 0% entry 38%}
   @keyframes surgir{from{translate:0 16px}to{translate:0 0}}
 }
 .poste::before{content:"";position:absolute;left:0;top:1.2rem;bottom:1.2rem;width:3px;
-  border-radius:0 3px 3px 0;background:var(--cat)}
+  border-radius:0 3px 3px 0;background:var(--line-forte)}
 .poste-lien{display:block}
 .poste-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.3rem;
   font-size:.8rem;color:var(--slate);margin-bottom:.3rem}
 .poste-meta > span{white-space:nowrap}
-.poste-cat{color:var(--cat);font-weight:600}
-.poste-titre{font:700 1.22rem/1.3 var(--disp);color:var(--ink);letter-spacing:-.015em;
+.poste-cat{color:var(--slate);font-weight:600}
+.poste-titre{font:600 1.22rem/1.3 var(--disp);color:var(--ink);letter-spacing:-.015em;
   transition:color var(--selection) var(--ease)}
 .poste-lien:hover .poste-titre{color:var(--indigo-ink)}
 .poste-resume{font-size:.94rem;line-height:1.55;color:var(--slate);margin-top:.3rem;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-/* Le signal éditorial : une ligne de marge, pas une boîte grise de plus.
-   En boîte, il se répétait carte après carte et écrasait les titres. */
+/* Le signal éditorial : une ligne de marge, pas une boîte grise de plus. */
 .poste-signal{margin-top:.55rem;font-size:.85rem;line-height:1.5;font-style:italic;
-  color:var(--slate);padding:.1rem 0 .1rem .8rem;
-  border-left:2px solid color-mix(in srgb,var(--cat) 55%,transparent)}
+  color:var(--slate);padding:.1rem 0 .1rem .8rem;border-left:2px solid var(--line-forte)}
 .poste-actions{display:flex;align-items:center;gap:.4rem;margin-top:.6rem}
 .chip{display:inline-flex;align-items:center;gap:.4rem;min-height:36px;padding:0 .75rem;
-  border-radius:var(--r-max);font:600 .82rem/1 var(--text);color:var(--slate);
+  border-radius:var(--r-max);font:500 .82rem/1 var(--text);color:var(--slate);
   background:var(--canvas);border:1px solid transparent;
   transition:color var(--selection) var(--ease),border-color var(--selection) var(--ease)}
 .chip:hover{color:var(--ink);border-color:var(--line)}
@@ -242,12 +251,12 @@ button{font-family:inherit;color:inherit}
 /* Une idée encore sans réaction n'affiche pas « 0 avis · 0 commentaires » :
    une rangée de zéros dit « personne ne vient ici ». Elle invite, à la place. */
 .chip-invite{display:inline-flex;align-items:center;min-height:36px;
-  font:600 .82rem/1 var(--text);color:var(--indigo-ink)}
+  font:500 .82rem/1 var(--text);color:var(--indigo-ink)}
 .chip-invite:hover{color:var(--ink)}
 .signal b{font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch}
 
 .vide{padding:3rem 0 3.5rem;text-align:center}
-.vide-t{font:700 1.3rem/1.3 var(--disp);color:var(--ink);margin-bottom:.5rem}
+.vide-t{font:600 1.3rem/1.3 var(--disp);color:var(--ink);margin-bottom:.5rem}
 .vide-p{color:var(--slate);max-width:44ch;margin:0 auto 1.4rem;font-size:.95rem}
 .vide-baleine{width:88px;height:88px;margin:0 auto 1rem;display:block;
   animation:flotter 6s ease-in-out infinite}
@@ -256,12 +265,12 @@ button{font-family:inherit;color:inherit}
 .squelettes{padding-top:.4rem}
 .sq-carte{height:118px;border-radius:var(--r-m);margin-bottom:.6rem;
   background:linear-gradient(100deg,var(--canvas) 30%,var(--line) 50%,var(--canvas) 70%);
-  background-size:220% 100%;animation:scintille 1.3s linear infinite}
+  background-size:220% 100%;animation:scintille 1.4s linear infinite}
 @keyframes scintille{from{background-position:180% 0}to{background-position:-40% 0}}
 
 /* Liens statiques écrits au déploiement (moteurs, sans-JS). */
 .carte-statique{display:block;padding:.9rem 0;border-bottom:1px solid var(--line)}
-.carte-statique b{font:700 1.05rem/1.3 var(--disp);color:var(--ink)}
+.carte-statique b{font:600 1.05rem/1.3 var(--disp);color:var(--ink)}
 .carte-statique span{display:block;font-size:.9rem;color:var(--slate);margin-top:.2rem}
 
 /* ═══════════ 6. PAGE D'ARTICLE - la lecture ne change pas ═══════════ */
@@ -271,25 +280,23 @@ button{font-family:inherit;color:inherit}
 .art-meta{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin-bottom:1rem}
 .idee-cat,.idee-pays{display:inline-flex;align-items:center;font:600 .78rem/1 var(--text);
   padding:.4rem .75rem;border-radius:var(--r-max)}
-.idee-cat{background:color-mix(in srgb,var(--cat) 14%,transparent);color:var(--cat)}
+.idee-cat{background:var(--canvas);color:var(--slate)}
 .idee-pays{background:var(--canvas);color:var(--slate);border:1px solid var(--line)}
 .par{font:600 .82rem/1 var(--text);color:var(--ink)}
-.art-h1{font:800 var(--t-h1)/1.14 var(--disp);color:var(--ink);letter-spacing:-.025em}
+.art-h1{font:700 var(--t-h1)/1.2 var(--disp);color:var(--ink);letter-spacing:-.025em}
 .art-resume{font:400 var(--deck)/1.5 var(--text);color:var(--slate);margin-top:1rem}
 .art-actions{display:flex;gap:.6rem;margin-top:1.3rem}
 .art-corps{font-size:var(--lire);line-height:var(--lire-lh);color:var(--ink);padding-bottom:1rem}
-.art-corps h2{font:700 var(--t-h2)/1.22 var(--disp);color:var(--ink);margin:3rem 0 .85rem;letter-spacing:-.015em}
-.art-corps h3{font:700 var(--t-h3)/1.3 var(--disp);color:var(--ink);margin:2.1rem 0 .55rem}
+.art-corps h2{font:600 var(--t-h2)/1.28 var(--disp);color:var(--ink);margin:3rem 0 .85rem;letter-spacing:-.015em}
+.art-corps h3{font:600 var(--t-h3)/1.35 var(--disp);color:var(--ink);margin:2.1rem 0 .55rem}
 .art-corps p{margin-bottom:.95em}
 .art-corps strong{font-weight:700}
 .art-corps ul,.art-corps ol{margin:0 0 .95em 1.25em} .art-corps li{margin-bottom:.4em}
 .art-corps img,.art-corps svg{max-width:100%;height:auto;border-radius:var(--r-m);margin:1.4em 0}
-/* Un tableau plus large que l'écran défile dans son propre cadre :
-   la page, elle, ne bouge jamais latéralement (vu sur téléphone à 390 px). */
 .art-corps table{width:100%;border-collapse:collapse;margin:1.6em 0;font-size:.92em;
   display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .art-corps table thead,.art-corps table tbody{display:table;width:100%;min-width:480px}
-.art-corps th{background:var(--indigo-soft);color:var(--indigo-ink);font-weight:700;text-align:left;padding:.75rem .95rem}
+.art-corps th{background:var(--indigo-soft);color:var(--indigo-ink);font-weight:600;text-align:left;padding:.75rem .95rem}
 .art-corps th:first-child{border-radius:var(--r-s) 0 0 0} .art-corps th:last-child{border-radius:0 var(--r-s) 0 0}
 .art-corps td{border-top:1px solid var(--line);padding:.75rem .95rem;color:var(--slate)}
 .art-corps tr:hover td{background:var(--canvas)}
@@ -297,32 +304,32 @@ button{font-family:inherit;color:inherit}
   border-radius:0 var(--r-m) var(--r-m) 0;margin:1.6em 0;color:var(--ink);font-size:1.02em;line-height:1.5}
 
 /* Étiquettes d'honnêteté - la règle éditoriale, pas un décor. */
-.tag{display:inline-block;font:800 .6em/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
+.tag{display:inline-block;font:700 .6em/1 var(--text);letter-spacing:.09em;text-transform:uppercase;
   padding:.35em .6em;border-radius:var(--r-s);margin-right:.5em;vertical-align:.12em;white-space:nowrap}
-.tag.fait{background:var(--ok-fond);color:var(--ok)} .tag.estim{background:#FBEFDC;color:#8A5410}
+.tag.fait{background:var(--ok-fond);color:var(--ok)} .tag.estim{background:var(--attn-fond);color:var(--attn)}
 .tag.hypo{background:#EFE9FD;color:#5B3EA6} .tag.avis{background:var(--indigo-soft);color:var(--indigo-ink)}
 
 .retour{display:inline-flex;align-items:center;gap:.4rem;min-height:var(--touche);
-  font:600 .88rem/1 var(--text);color:var(--indigo-ink);margin-bottom:.6rem}
+  font:500 .88rem/1 var(--text);color:var(--indigo-ink);margin-bottom:.6rem}
 
 .schema{margin:2em 0;padding:1.6rem;border-radius:var(--r-m);background:var(--canvas);border:1px solid var(--line)}
 .etape{display:flex;gap:1rem;align-items:flex-start}
-.etape .n{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#4F57DE;color:#fff;
+.etape .n{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--indigo);color:#fff;
   display:grid;place-items:center;font:700 .8rem/1 var(--disp)}
-.etape b{display:block;font:700 .96rem/1.4 var(--text);color:var(--ink)}
+.etape b{display:block;font:600 .96rem/1.4 var(--text);color:var(--ink)}
 .etape p{font-size:.9rem;line-height:1.55;color:var(--slate);margin:.2rem 0 0}
 .fleche{color:var(--indigo);font-size:1.1rem;margin:.4rem 0 .4rem 13px;line-height:1}
 
 /* Partage : le retour est dans le bouton lui-même. */
 .partage{display:inline-flex;align-items:center;gap:.5rem;min-height:var(--touche);padding:0 1rem;
   border-radius:var(--r-max);border:1px solid var(--line);background:var(--canvas);cursor:pointer;
-  font:600 .85rem/1 var(--text);color:var(--slate);
+  font:500 .85rem/1 var(--text);color:var(--slate);
   transition:border-color var(--selection) var(--ease),color var(--selection) var(--ease),
              background var(--selection) var(--ease),transform var(--appui) var(--ease)}
-.partage svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;
+.partage svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round}
 .partage:hover{color:var(--ink);border-color:var(--slate)}
-.partage:active{transform:scale(.97)}
+.partage:active{transform:scale(.98)}
 .partage.ok{background:var(--ok-fond);border-color:#9FD9BD;color:var(--ok)}
 .partage.ko{background:var(--ko-fond);border-color:#EFB4AE;color:var(--ko)}
 
@@ -332,9 +339,8 @@ button{font-family:inherit;color:inherit}
    compteur qui monte. Rien ne vole à travers l'écran. */
 .votes{margin:3.4rem 0 2.6rem;padding:1.4rem;border-radius:var(--r-m);background:var(--canvas);
   border:1px solid var(--line);position:relative}
-/* La mascotte : une baleine aquarelle à la couleur du sujet, qui veille sur
-   le moment où l'on demande son avis au lecteur. Décorative (pas de sens
-   porté), donc en ::after et invisible aux lecteurs d'écran. */
+/* La mascotte : illustration de marque, hors système d'interface — reste
+   à la couleur du sujet, comme avant. */
 .votes::after{content:"";position:absolute;top:-44px;right:22px;width:72px;height:72px;
   background:center/contain no-repeat;pointer-events:none;
   animation:flotter 6s ease-in-out infinite}
@@ -344,24 +350,21 @@ button{font-family:inherit;color:inherit}
 [data-cat="Fintech"]     .votes::after{background-image:url(../assets/whales/whale-rose-128.png)}
 [data-cat="Quotidien"]   .votes::after{background-image:url(../assets/whales/whale-orange-128.png)}
 @keyframes flotter{0%,100%{translate:0 0}50%{translate:0 -7px}}
-.votes h3{font:700 1.2rem/1.3 var(--disp);color:var(--ink);margin-bottom:.3rem}
+.votes h3{font:600 1.2rem/1.3 var(--disp);color:var(--ink);margin-bottom:.3rem}
 .votes-intro{color:var(--slate);font-size:.9rem;margin-bottom:1rem}
 .votes-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.5rem}
 .vote{display:flex;align-items:center;gap:.55rem;min-height:var(--touche);padding:0 .9rem;
   border-radius:var(--r-m);border:1px solid var(--line);background:var(--surface);
-  cursor:pointer;font:600 .86rem/1.25 var(--text);color:var(--ink);text-align:left;
+  cursor:pointer;font:500 .86rem/1.25 var(--text);color:var(--ink);text-align:left;
   transition:transform var(--appui) var(--ease),background var(--selection) var(--ease),
              border-color var(--selection) var(--ease)}
 .vote .ic{color:var(--slate);transition:color var(--selection) var(--ease)}
-/* Les baleines SONT les boutons de réaction : chacune sa couleur, chacune
-   sa question. Au survol elle se penche, choisie elle reste redressée. */
 .vote-baleine{width:30px;height:30px;flex-shrink:0;
   transition:transform var(--selection) var(--ease)}
 .vote:hover .vote-baleine{transform:scale(1.15) rotate(-7deg)}
 .vote.choisi .vote-baleine{transform:scale(1.08)}
-/* Le nuage d'idées - LA signature Kogia : sous pression, l'animal libère un
-   nuage. Ici, voter libère une poignée de bulles d'idées. Une fois, courte,
-   après l'action - jamais en boucle. */
+/* Le nuage d'idées - la signature Kogia : un nuage de bulles au moment du
+   choix, une fois, jamais en boucle. */
 .bulle{position:absolute;width:var(--t);height:var(--t);border-radius:50%;
   background:var(--c);pointer-events:none;opacity:.95;z-index:2;
   animation:bulle-monte 780ms var(--ease-sortie) forwards}
@@ -371,7 +374,7 @@ button{font-family:inherit;color:inherit}
 .vote.choisi{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo-ink)}
 .vote.choisi .ic{color:var(--indigo-ink)}
 .vote-txt{flex:1}
-.vote-n{font:800 1.05rem/1 var(--disp);color:var(--indigo);font-variant-numeric:tabular-nums;
+.vote-n{font:700 1.05rem/1 var(--disp);color:var(--indigo);font-variant-numeric:tabular-nums;
   min-width:2ch;text-align:right}
 .vote.choisi .vote-n{color:var(--indigo-ink)}
 .votes-etat{margin-top:.8rem;font-size:.88rem;min-height:1.2em}
@@ -379,8 +382,8 @@ button{font-family:inherit;color:inherit}
 
 /* ═══════════ 8. DISCUSSION ═══════════ */
 .comm{margin:2.6rem 0}
-.comm h3{font:700 1.3rem/1.3 var(--disp);color:var(--ink);margin-bottom:.3rem}
-.comm-n{font:700 .92rem/1 var(--text);color:var(--slate);font-variant-numeric:tabular-nums;
+.comm h3{font:600 1.3rem/1.3 var(--disp);color:var(--ink);margin-bottom:.3rem}
+.comm-n{font:600 .92rem/1 var(--text);color:var(--slate);font-variant-numeric:tabular-nums;
   transition:opacity var(--selection) var(--ease)}
 .comm-n.maj{opacity:0}
 .comm-intro{color:var(--slate);font-size:.9rem;margin-bottom:1.1rem}
@@ -402,8 +405,8 @@ button{font-family:inherit;color:inherit}
 @keyframes entree{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .comm-tete{display:flex;gap:.55rem;align-items:center;margin-bottom:.45rem}
 .comm-pastille{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
-  font:700 .76rem/1 var(--disp);color:#fff;background:#4F57DE}
-.comm-nom{font:700 .92rem/1 var(--text);color:var(--ink)}
+  font:700 .76rem/1 var(--disp);color:#fff;background:var(--indigo)}
+.comm-nom{font:600 .92rem/1 var(--text);color:var(--ink)}
 .comm-date{font-size:.78rem;color:var(--slate)}
 .comm-tete .comm-date{margin-left:auto}
 .comm-msg{font-size:.95rem;line-height:1.6;color:var(--slate);white-space:pre-wrap}
@@ -418,24 +421,23 @@ button{font-family:inherit;color:inherit}
   text-decoration:underline;cursor:pointer}
 .sq-comm{height:72px;border-radius:var(--r-m);margin-bottom:.6rem;
   background:linear-gradient(100deg,var(--canvas) 30%,var(--line) 50%,var(--canvas) 70%);
-  background-size:220% 100%;animation:scintille 1.3s linear infinite}
+  background-size:220% 100%;animation:scintille 1.4s linear infinite}
 
 /* ── À lire ensuite : des lignes compactes, pas des tuiles ── */
 .connexes{margin:2.6rem 0 0}
 .connexes:empty{display:none}
-.connexes h3{font:700 1.2rem/1.3 var(--disp);color:var(--ink);margin-bottom:.7rem}
+.connexes h3{font:600 1.2rem/1.3 var(--disp);color:var(--ink);margin-bottom:.7rem}
 .connexe{position:relative;display:block;padding:.75rem .25rem .75rem 1rem;
   border-bottom:1px solid var(--line)}
 .connexe::before{content:"";position:absolute;left:0;top:.9rem;bottom:.9rem;width:3px;
-  border-radius:3px;background:var(--cat)}
-.connexe-cat{font:600 .76rem/1 var(--text);color:var(--cat)}
-.connexe-titre{display:block;font:700 1rem/1.35 var(--disp);color:var(--ink);margin-top:.2rem;
+  border-radius:3px;background:var(--line-forte)}
+.connexe-cat{font:600 .76rem/1 var(--text);color:var(--slate)}
+.connexe-titre{display:block;font:600 1rem/1.35 var(--disp);color:var(--ink);margin-top:.2rem;
   transition:color var(--selection) var(--ease)}
 .connexe:hover .connexe-titre{color:var(--indigo-ink)}
 .connexe-bas{display:block;font-size:.78rem;color:var(--slate);margin-top:.2rem}
 
-/* ═══════════ 9. BARRE DE PROGRESSION DE LECTURE ═══════════
-   Un état réel (la position de lecture), pas un ornement. */
+/* ═══════════ 9. BARRE DE PROGRESSION DE LECTURE ═══════════ */
 .progres{display:none}
 @supports (animation-timeline:scroll()){
   .page--article .progres{display:block;position:fixed;top:56px;left:0;right:0;height:2px;z-index:60;
@@ -444,8 +446,7 @@ button{font-family:inherit;color:inherit}
 }
 @keyframes avancer{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-/* ═══════════ 10. TRANSITION ENTRE LES VUES ═══════════
-   Aussi entre les PAGES : la navigation fond au lieu de claquer. */
+/* ═══════════ 10. TRANSITION ENTRE LES VUES ═══════════ */
 @view-transition{navigation:auto}
 #centre{view-transition-name:centre}
 ::view-transition-old(centre){animation:fondre-sortie var(--selection) var(--ease) both}
@@ -457,20 +458,17 @@ button{font-family:inherit;color:inherit}
 .pied{border-top:1px solid var(--line);background:var(--canvas);margin-top:3rem}
 .pied-in{max-width:1200px;margin:0 auto;padding:2.4rem 1rem 1.2rem;display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
-.pied-t{font:700 .95rem/1 var(--text);color:var(--ink);margin-bottom:.8rem}
+.pied-t{font:600 .95rem/1 var(--text);color:var(--ink);margin-bottom:.8rem}
 .pied-bloc p{font-size:.9rem;line-height:1.6;color:var(--slate);margin-bottom:.9rem}
 .pied-mentions{max-width:1200px;margin:0 auto;padding:1rem 1rem 1.5rem;font-size:.78rem;
   color:var(--slate);border-top:1px solid var(--line)}
 .pied-mentions a{color:var(--indigo-ink);text-decoration:underline}
-/* Réseaux : mêmes 24 grille / 1.8 trait que le reste du site (.ic) — pas des
-   badges de marque plaqués. Au repos, encre discrète ; au survol, un plein
-   doux vers la couleur reconnue de chaque réseau, jamais imposée au repos. */
 .reseaux{display:flex;gap:.6rem;margin-top:1rem}
 .reseau{width:var(--touche);height:var(--touche);border-radius:var(--r-max);
   display:grid;place-items:center;border:1px solid var(--line);color:var(--slate);
   transition:color var(--selection) var(--ease),border-color var(--selection) var(--ease),
              background var(--selection) var(--ease),transform var(--appui) var(--ease)}
-.reseau svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;
+.reseau svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round}
 .reseau:active{transform:scale(.94)}
 .reseau.facebook:hover{color:#1877F2;border-color:#1877F2;background:#EAF2FE}
@@ -483,7 +481,7 @@ a.prod:hover{background:var(--carte-survol)}
 a.prod:hover .prod-n{color:var(--indigo-ink)}
 .prod-n{transition:color var(--selection) var(--ease)}
 .prod-p{width:32px;height:32px;border-radius:var(--r-s);display:grid;place-items:center;flex-shrink:0;
-  font:800 .8rem/1 var(--disp);color:#fff;background:#4F57DE}
+  font:700 .8rem/1 var(--disp);color:#fff;background:var(--indigo)}
 .prod-p.f{background:#E85D2F} .prod-p.s{background:#41586F}
 .prod-n{font:600 .9rem/1.3 var(--text);color:var(--ink)}
 .prod-d{font-size:.8rem;line-height:1.45;color:var(--slate);margin-top:.15rem}
@@ -493,7 +491,6 @@ a.prod:hover .prod-n{color:var(--indigo-ink)}
   *{transition-duration:1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important}
   .sq-carte,.sq-comm{animation:none;background:var(--canvas)}
   .poste{animation:none!important}
-  .poste:hover{transform:none}
   .marque:hover svg{transform:none}
   .votes::after,.vide-baleine,.rail-baleine{animation:none!important}
   .progres{display:none!important}
