@@ -1,0 +1,59 @@
+/* Jetons Kogia — portés à l'identique depuis kogia-group/site/assets/kogia.css
+   (refonte du 2026-08-15) : blanc et noir littéraux, un seul bleu réservé à
+   l'action principale et à l'état sélectionné. Ne pas diverger sans mettre
+   à jour les deux dépôts. */
+:root {
+  color-scheme: light;
+
+  --indigo: #2A5CE0;
+  --indigo-ink: #1E46B8;
+
+  --ink: #0A0A0A;
+  --slate: #6B6B6B;
+  --line: #E4E4E4;
+  --line-forte: #C7C7C7;
+  --surface: #FFFFFF;
+  --canvas: #FFFFFF;
+  --indigo-soft: #EAF0FE;
+
+  --ok: #15866B; --ok-fond: #E3F3EF;
+  --ko: #C93C37; --ko-fond: #FCEAE9;
+
+  --touche: 48px;
+  --r-s: 8px; --r-m: 14px; --r-max: 999px;
+
+  --appui: 100ms;
+  --selection: 180ms;
+  --ease: cubic-bezier(.2,.75,.2,1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-radius: 4px; }
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  min-height: var(--touche); font: 500 .88rem/1 inherit; padding: 0 1.15rem;
+  border-radius: var(--r-m); background: var(--ink); color: var(--surface);
+  border: 0; cursor: pointer;
+  transition: transform var(--appui) var(--ease), opacity var(--selection) var(--ease);
+}
+.bouton:hover { opacity: .85; }
+.bouton:active { transform: scale(.98); }
+.bouton.accent { background: var(--indigo); color: #fff; }
+.bouton.accent:active { background: var(--indigo-ink); }
+.bouton:disabled { opacity: .5; cursor: default; transform: none; }
+
+.bouton.ligne {
+  background: var(--surface); color: var(--ink); border: 1px solid var(--ink);
+}
+.bouton.ligne:hover { background: var(--ink); color: #fff; opacity: 1; }

@@ -1,0 +1,25 @@
+.carte {
+  max-width: 380px; margin: 0 auto; padding: 2rem 1.75rem;
+  border: 1px solid var(--line); border-radius: var(--r-m);
+}
+.intention { font: 700 1.1rem/1.35 inherit; margin-bottom: 1.4rem; letter-spacing: -.01em; }
+.pleinLargeur { width: 100%; }
+.separateur {
+  display: flex; align-items: center; gap: .75rem; margin: 1.2rem 0;
+  color: var(--slate); font-size: .82rem;
+}
+.separateur::before, .separateur::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.form { display: flex; flex-direction: column; gap: .6rem; }
+.form label { font-size: .82rem; font-weight: 500; color: var(--slate); }
+.form input {
+  min-height: 48px; padding: 0 .9rem; border: 1px solid var(--line);
+  border-radius: var(--r-s); font-size: .95rem; font-family: inherit;
+}
+.form input:focus { outline: none; border-color: var(--ink); }
+.lienDiscret {
+  background: none; border: 0; text-decoration: underline; font-size: .82rem;
+  color: var(--slate); cursor: pointer; padding: .3rem 0; align-self: flex-start;
+}
+.erreur { margin-top: 1rem; font-size: .86rem; color: var(--ko); }
+.mentions { margin-top: 1.4rem; font-size: .76rem; line-height: 1.5; color: var(--slate); }
+.mentions a { text-decoration: underline; color: var(--ink); }

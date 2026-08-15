@@ -28,6 +28,7 @@ Soldéo (finance) · Relio (CRM) · Cadréo (HR) · Caissa (POS) · Cargon (WMS)
 - `site/` — the public corporate site (static, French). Deployed to GitHub Pages by `.github/workflows/deploy.yml`.
 - `brand/` — the Kogia Harmony brand kit (SVG mark, wordmark, per-division gradients). **Single source of truth** for logos; `site/assets/` mirrors it.
 - `app/` — Owner Console (React 19 + Vite): internal group ERP prototype. Front-end demo with localStorage persistence; run with `cd app && npm install && npm run dev`.
+- `community/` — Kogia Community (Next.js 15 + Supabase): accounts, articles, follows, comments, moderation. Not deployed yet, see `community/docs/STATUS.md` for what's blocking. Run with `cd community && npm install && npm run dev`.
 
 ## Deployment
 
