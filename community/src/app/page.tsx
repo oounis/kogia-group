@@ -19,7 +19,6 @@ export default function Home() {
           <Marque />
           <nav className={styles.nav} aria-label="Navigation principale">
             <Link href="/explore">Explorer</Link>
-            <Link href="/topics">Sujets</Link>
             <Link href="/about">Kogia</Link>
           </nav>
           <div className={styles.topActions}>

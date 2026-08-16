@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Démo Suite copiée (Vite build tiers, minifié, pas du code source à nous) :
+    "public/suite/**",
   ]),
 ]);
 
