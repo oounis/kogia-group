@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import PlaceholderPage from "@/components/PlaceholderPage";
+import styles from "../explore/explore.module.css";
 
 export const metadata: Metadata = { title: "Brouillons", robots: { index: false } };
 
@@ -10,10 +11,41 @@ export default async function DraftsPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?returnTo=/drafts");
 
+  const { data: drafts } = await supabase
+    .from("articles")
+    .select("slug, title, subtitle, updated_at")
+    .eq("author_id", user.id)
+    .eq("status", "draft")
+    .order("updated_at", { ascending: false });
+
   return (
-    <PlaceholderPage
-      titre="Vos brouillons"
-      description="La liste de vos articles non publiés arrive avec l'éditeur. Voir docs/STATUS.md."
-    />
+    <>
+      <header className={styles.top}>
+        <div className={styles.topIn}>
+          <Link href="/" className={styles.marque}>Kogia</Link>
+          <nav className={styles.nav} aria-label="Navigation principale">
+            <Link href="/write">Écrire</Link>
+            <Link href="/about">Kogia</Link>
+          </nav>
+        </div>
+      </header>
+      <main className={styles.main}>
+        <h1 className={styles.titre}>Vos brouillons</h1>
+        {!drafts || drafts.length === 0 ? (
+          <p className={styles.vide}>Aucun brouillon pour l&apos;instant.</p>
+        ) : (
+          <ul className={styles.liste}>
+            {drafts.map((d) => (
+              <li key={d.slug} className={styles.poste}>
+                <Link href={`/write?slug=${d.slug}`} className={styles.lien}>
+                  <h2 className={styles.titreArticle}>{d.title || "Sans titre"}</h2>
+                  {d.subtitle && <p className={styles.sousTitre}>{d.subtitle}</p>}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </main>
+    </>
   );
 }

@@ -1,0 +1,88 @@
+.top {
+  border-bottom: 1px solid var(--line);
+}
+.topIn {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.marque { font-weight: 700; font-size: 1.1rem; }
+.nav { display: flex; gap: 1.4rem; }
+.nav a { color: var(--slate); font-size: .9rem; }
+.nav a:hover { color: var(--ink); }
+
+.main {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+.retour {
+  display: inline-block;
+  color: var(--slate);
+  font-size: .88rem;
+  margin-bottom: 1.5rem;
+}
+.retour:hover { color: var(--ink); }
+
+.meta {
+  display: flex;
+  gap: .75rem;
+  font-size: .85rem;
+  color: var(--slate);
+  margin-bottom: .75rem;
+}
+.auteur { font-weight: 600; color: var(--ink); }
+
+.titre {
+  font: 800 clamp(1.8rem, 1.3rem + 2.2vw, 2.45rem)/1.15 inherit;
+  color: var(--ink);
+  letter-spacing: -.025em;
+}
+.sousTitre {
+  font-size: clamp(1.05rem, .98rem + .35vw, 1.22rem);
+  color: var(--slate);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.corps {
+  margin-top: 2rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.corps :global(h2) {
+  font: 700 clamp(1.32rem, 1.14rem + .8vw, 1.62rem)/1.28 inherit;
+  margin: 3rem 0 .85rem;
+  letter-spacing: -.015em;
+}
+.corps :global(h3) {
+  font: 700 clamp(1.13rem, 1.06rem + .3vw, 1.28rem)/1.35 inherit;
+  margin: 2.1rem 0 .55rem;
+}
+.corps :global(p) { margin-bottom: .95em; }
+.corps :global(strong) { font-weight: 700; }
+.corps :global(ul), .corps :global(ol) { margin: 0 0 .95em 1.25em; }
+.corps :global(li) { margin-bottom: .4em; }
+.corps :global(img), .corps :global(svg) {
+  max-width: 100%; height: auto; border-radius: 8px; margin: 1.4em 0;
+}
+.corps :global(a) { text-decoration: underline; }
+.corps :global(blockquote) {
+  border-left: 2px solid var(--ink);
+  padding: .2rem 0 .2rem 1.4rem;
+  margin: 1.6em 0;
+  font-size: 1.05em;
+  font-style: italic;
+}
+
+.pied {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .82rem;
+  color: var(--slate);
+}

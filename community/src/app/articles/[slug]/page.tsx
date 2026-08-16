@@ -1,18 +1,38 @@
 import type { Metadata } from "next";
-import PlaceholderPage from "@/components/PlaceholderPage";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
+import styles from "./article.module.css";
 
-/**
- * Cette route deviendra le rendu serveur des articles publiés, indexable,
- * avec métadonnées Open Graph propres — une fois la table `articles`
- * connectée à un vrai projet Supabase. Voir docs/STATUS.md.
- */
+async function getArticle(slug: string) {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("articles")
+    .select("id, slug, title, subtitle, body, cover_url, published_at, author:profiles!articles_author_id_fkey(handle, display_name, bio)")
+    .eq("slug", slug)
+    .eq("status", "published")
+    .single();
+  return data;
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  return { title: slug };
+  const article = await getArticle(slug);
+  if (!article) return { title: "Article introuvable" };
+  return {
+    title: article.title,
+    description: article.subtitle ?? undefined,
+    openGraph: {
+      title: article.title,
+      description: article.subtitle ?? undefined,
+      images: article.cover_url ? [article.cover_url] : undefined,
+      type: "article",
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -21,10 +41,43 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const article = await getArticle(slug);
+  if (!article) notFound();
+
+  const author = Array.isArray(article.author) ? article.author[0] : article.author;
+  const date = article.published_at
+    ? new Date(article.published_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
+    : null;
+
   return (
-    <PlaceholderPage
-      titre="Cet article arrive ici"
-      description={`La route /articles/${slug} rendra les articles publiés côté serveur, indexables par Google. L'unique article publié aujourd'hui reste sur kogiagroup.com le temps que le pipeline de contenu soit branché.`}
-    />
+    <>
+      <header className={styles.top}>
+        <div className={styles.topIn}>
+          <Link href="/" className={styles.marque}>Kogia</Link>
+          <nav className={styles.nav} aria-label="Navigation principale">
+            <Link href="/explore">Explorer</Link>
+            <Link href="/about">Kogia</Link>
+          </nav>
+        </div>
+      </header>
+
+      <main className={styles.main}>
+        <Link href="/explore" className={styles.retour}>← Toutes les idées</Link>
+        <div className={styles.meta}>
+          {author && <span className={styles.auteur}>{author.display_name}</span>}
+          {date && <span>{date}</span>}
+        </div>
+        <h1 className={styles.titre}>{article.title}</h1>
+        {article.subtitle && <p className={styles.sousTitre}>{article.subtitle}</p>}
+        <div
+          className={styles.corps}
+          dangerouslySetInnerHTML={{ __html: article.body }}
+        />
+      </main>
+
+      <footer className={styles.pied}>
+        <p>© 2026 Kogia Group</p>
+      </footer>
+    </>
   );
 }

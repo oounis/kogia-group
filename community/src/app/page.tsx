@@ -46,9 +46,9 @@ export default function Home() {
 
         <section className={styles.vedette}>
           <p className={styles.sectionT}>Article vedette</p>
-          <a
+          <Link
             className={styles.vedetteCarte}
-            href="https://kogiagroup.com/idees/kharbga-from-sand-to-screen.html"
+            href="/articles/kharbga-from-sand-to-screen"
           >
             <span className={styles.vedetteCat}>Technologie · 14 min de lecture</span>
             <h2>Du sable à l&apos;écran : le Kharbga peut-il devenir le grand jeu de stratégie numérique d&apos;Afrique du Nord ?</h2>
@@ -57,7 +57,7 @@ export default function Home() {
               respecter ses variantes régionales, et le reconstruire pour le
               mobile, le web et la compétition.
             </p>
-          </a>
+          </Link>
         </section>
 
         <section className={styles.comment}>

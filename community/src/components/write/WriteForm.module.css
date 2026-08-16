@@ -1,0 +1,30 @@
+.top { border-bottom: 1px solid var(--line); }
+.topIn {
+  max-width: 44rem; margin: 0 auto; padding: 1.1rem 1.5rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.marque { font-weight: 700; font-size: 1.1rem; }
+.mode { color: var(--slate); font-size: .9rem; }
+
+.main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: flex; flex-direction: column; gap: .9rem; }
+
+.champTitre {
+  border: none; font: 800 1.7rem/1.25 inherit; letter-spacing: -.02em;
+  padding: 0; outline: none;
+}
+.champTitre::placeholder { color: var(--line-forte); }
+
+.champSousTitre {
+  border: none; font-size: 1.05rem; color: var(--slate); padding: 0; outline: none;
+}
+.champSousTitre::placeholder { color: var(--line-forte); }
+
+.champCorps {
+  border: 1px solid var(--line); border-radius: 14px; padding: 1rem;
+  font: 1rem/1.6 inherit; resize: vertical; outline: none;
+}
+.champCorps:focus { border-color: var(--ink); }
+
+.erreur { color: var(--ko); font-size: .88rem; }
+
+.actions { display: flex; gap: .7rem; margin-top: .5rem; }
