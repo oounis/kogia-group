@@ -1,0 +1,29 @@
+import Link from "next/link";
+import styles from "./Marque.module.css";
+
+const MARK_BODY =
+  "M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z";
+const MARK_SPOUT = "M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6";
+
+/**
+ * Le cachalot Kogia (core/src/mark.js dans coreon-edu) : même symbole que
+ * les autres produits, seule la couleur change. Ici : encre, comme dans la
+ * barre du haut du site statique (la baleine = marque, jamais chrome UI).
+ */
+export default function Marque({ taille = 22 }: { taille?: number }) {
+  return (
+    <Link href="/" className={styles.marque}>
+      <svg
+        width={taille}
+        height={(taille * 96) / 132}
+        viewBox="0 0 132 96"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d={MARK_BODY} fill="currentColor" fillRule="evenodd" />
+        <path d={MARK_SPOUT} stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+      <span>Kogia</span>
+    </Link>
+  );
+}

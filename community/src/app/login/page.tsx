@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Marque from "@/components/Marque";
 import AuthForm from "@/components/auth/AuthForm";
 import styles from "../auth-page.module.css";
 
@@ -16,7 +17,7 @@ export default async function LoginPage({
   const { returnTo } = await searchParams;
   return (
     <main className={styles.page}>
-      <Link href="/" className={styles.marque}>Kogia</Link>
+      <Marque />
       <AuthForm intention="Content de vous revoir" returnTo={returnTo} />
       <p className={styles.bascule}>
         Pas encore de compte ?{" "}

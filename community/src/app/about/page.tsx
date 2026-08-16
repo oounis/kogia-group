@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Marque from "@/components/Marque";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ export default function AboutPage() {
     <>
       <header className={styles.top}>
         <div className={styles.topIn}>
-          <Link href="/" className={styles.marque}>Kogia</Link>
+          <Marque />
           <nav className={styles.nav} aria-label="Navigation principale">
             <Link href="/explore">Explorer</Link>
             <Link href="/about">Kogia</Link>

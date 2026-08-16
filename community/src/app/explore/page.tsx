@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Marque from "@/components/Marque";
 import { createClient } from "@/lib/supabase/server";
 import styles from "./explore.module.css";
 
@@ -26,7 +27,7 @@ export default async function ExplorePage() {
     <>
       <header className={styles.top}>
         <div className={styles.topIn}>
-          <Link href="/" className={styles.marque}>Kogia</Link>
+          <Marque />
           <nav className={styles.nav} aria-label="Navigation principale">
             <Link href="/explore">Explorer</Link>
             <Link href="/about">Kogia</Link>

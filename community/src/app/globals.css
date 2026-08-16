@@ -1,29 +1,51 @@
-/* Jetons Kogia — portés à l'identique depuis kogia-group/site/assets/kogia.css
-   (refonte du 2026-08-15) : blanc et noir littéraux, un seul bleu réservé à
-   l'action principale et à l'état sélectionné. Ne pas diverger sans mettre
-   à jour les deux dépôts. */
+/* Jetons Kogia — blanc et noir littéraux, un seul bleu réservé à l'action
+   principale et à l'état sélectionné. Structure de jetons élargie 2026-08-16
+   (échelle de surfaces, spacing, radius, ombres) sur le modèle d'un spec
+   « inspiré ChatGPT » fourni par Othman, MAIS le bleu reste #2A5CE0 (déjà
+   approuvé sur kogiagroup.com) et le thème reste clair uniquement (le fond
+   sombre a été essayé et explicitly abandonné le 2026-08-13, voir
+   kogia-design-language) — cohérence de marque avant conformité à un spec
+   générique. Ne pas diverger de kogia-group/site/assets/kogia.css sans
+   mettre à jour les deux dépôts. */
 :root {
   color-scheme: light;
 
   --indigo: #2A5CE0;
   --indigo-ink: #1E46B8;
+  --indigo-soft: #EAF0FE;
 
   --ink: #0A0A0A;
+  --text-doux: #374151;
   --slate: #6B6B6B;
   --line: #E4E4E4;
   --line-forte: #C7C7C7;
+
   --surface: #FFFFFF;
   --canvas: #FFFFFF;
-  --indigo-soft: #EAF0FE;
+  --surface-2: #F7F7F8;
+  --surface-3: #F3F4F6;
 
   --ok: #15866B; --ok-fond: #E3F3EF;
   --ko: #C93C37; --ko-fond: #FCEAE9;
 
+  --ombre-s: 0 1px 2px rgba(0,0,0,.05);
+  --ombre-m: 0 4px 12px rgba(0,0,0,.08);
+  --ombre-l: 0 12px 32px rgba(0,0,0,.10);
+
+  /* Échelle d'espacement — 4/8/12/16/20/24/32/40/48/64 */
+  --esp-1: .25rem; --esp-2: .5rem; --esp-3: .75rem; --esp-4: 1rem;
+  --esp-5: 1.25rem; --esp-6: 1.5rem; --esp-8: 2rem; --esp-10: 2.5rem;
+  --esp-12: 3rem; --esp-16: 4rem;
+
   --touche: 48px;
-  --r-s: 8px; --r-m: 14px; --r-max: 999px;
+  --r-s: 8px; --r-c: 12px; --r-m: 16px; --r-l: 20px; --r-xl: 24px; --r-max: 999px;
+
+  --icone-inline: 16px; --icone-std: 18px; --icone-nav: 20px; --icone-hero: 24px;
+  --trait-icone: 1.75;
 
   --appui: 100ms;
   --selection: 180ms;
+  --panneau: 200ms;
   --ease: cubic-bezier(.2,.75,.2,1);
 }
 
@@ -57,3 +79,36 @@ button { font-family: inherit; color: inherit; }
   background: var(--surface); color: var(--ink); border: 1px solid var(--ink);
 }
 .bouton.ligne:hover { background: var(--ink); color: #fff; opacity: 1; }
+
+/* ═══ Chargement ═══ discret, jamais une grande roue centrée. */
+@media (prefers-reduced-motion: no-preference) {
+  .squelette {
+    background: linear-gradient(90deg, var(--surface-3) 25%, var(--surface-2) 37%, var(--surface-3) 63%);
+    background-size: 400% 100%;
+    animation: miroitement 1400ms ease-in-out infinite;
+  }
+  @keyframes miroitement {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .points-attente span {
+    animation: pulsation 1300ms ease-in-out infinite;
+  }
+  .points-attente span:nth-child(2) { animation-delay: 160ms; }
+  .points-attente span:nth-child(3) { animation-delay: 320ms; }
+  @keyframes pulsation {
+    0%, 80%, 100% { opacity: .25; transform: scale(.85); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .squelette { background: var(--surface-3); }
+  .points-attente span { opacity: .6; }
+}
+.squelette { border-radius: var(--r-s); }
+.points-attente {
+  display: inline-flex; gap: 4px; align-items: center;
+}
+.points-attente span {
+  width: 5px; height: 5px; border-radius: var(--r-max); background: currentColor;
+}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Marque from "@/components/Marque";
 import styles from "./PlaceholderPage.module.css";
 
 /**
@@ -15,7 +16,7 @@ export default function PlaceholderPage({
 }) {
   return (
     <main className={styles.page}>
-      <Link href="/" className={styles.marque}>Kogia</Link>
+      <Marque />
       <div className={styles.corps}>
         <h1>{titre}</h1>
         <p>{description}</p>

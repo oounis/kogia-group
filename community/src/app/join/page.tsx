@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Marque from "@/components/Marque";
 import AuthForm from "@/components/auth/AuthForm";
 import styles from "../auth-page.module.css";
 
@@ -16,7 +17,7 @@ export default async function JoinPage({
   const { returnTo, raison } = await searchParams;
   return (
     <main className={styles.page}>
-      <Link href="/" className={styles.marque}>Kogia</Link>
+      <Marque />
       <AuthForm
         intention={raison || "Créez votre compte Kogia"}
         returnTo={returnTo}

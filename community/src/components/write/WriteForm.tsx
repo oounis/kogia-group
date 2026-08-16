@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Marque from "@/components/Marque";
 import { createClient } from "@/lib/supabase/client";
 import { texteVersHtml } from "@/lib/markdown-lite";
 import styles from "./WriteForm.module.css";
@@ -75,7 +75,7 @@ export default function WriteForm({ brouillon = null }: { brouillon?: Brouillon 
     <>
       <header className={styles.top}>
         <div className={styles.topIn}>
-          <Link href="/" className={styles.marque}>Kogia</Link>
+          <Marque />
           <span className={styles.mode}>Écrire</span>
         </div>
       </header>
@@ -112,7 +112,7 @@ export default function WriteForm({ brouillon = null }: { brouillon?: Brouillon 
             onClick={() => enregistrer("draft")}
             disabled={enCours !== null}
           >
-            {enCours === "brouillon" ? "Enregistrement…" : "Enregistrer le brouillon"}
+            {enCours === "brouillon" ? <PointsAttente /> : "Enregistrer le brouillon"}
           </button>
           <button
             type="button"
@@ -120,10 +120,18 @@ export default function WriteForm({ brouillon = null }: { brouillon?: Brouillon 
             onClick={() => enregistrer("published")}
             disabled={enCours !== null}
           >
-            {enCours === "publication" ? "Publication…" : "Publier"}
+            {enCours === "publication" ? <PointsAttente /> : "Publier"}
           </button>
         </div>
       </main>
     </>
+  );
+}
+
+function PointsAttente() {
+  return (
+    <span className="points-attente" role="status" aria-label="En cours">
+      <span /><span /><span />
+    </span>
   );
 }
