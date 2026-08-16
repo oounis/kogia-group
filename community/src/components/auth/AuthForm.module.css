@@ -2,7 +2,7 @@
   max-width: 380px; margin: 0 auto; padding: 2rem 1.75rem;
   border: 1px solid var(--line); border-radius: var(--r-m);
 }
-.intention { font: 700 1.1rem/1.35 inherit; margin-bottom: 1.4rem; letter-spacing: -.01em; }
+.intention { font: 700 1.1rem/1.35 var(--font-titre); margin-bottom: 1.4rem; letter-spacing: -.01em; }
 .pleinLargeur { width: 100%; }
 .separateur {
   display: flex; align-items: center; gap: .75rem; margin: 1.2rem 0;

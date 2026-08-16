@@ -1,7 +1,7 @@
 .page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.25rem; }
 .carte { width: 100%; max-width: 420px; }
 .form { display: flex; flex-direction: column; gap: .85rem; }
-.form h1 { font: 700 1.5rem/1.3 inherit; letter-spacing: -.015em; }
+.form h1 { font: 700 1.5rem/1.3 var(--font-titre); letter-spacing: -.015em; }
 .aide { color: var(--slate); font-size: .92rem; margin-bottom: .3rem; }
 .form label { font-size: .82rem; font-weight: 500; color: var(--slate); margin-top: .3rem; }
 .form input {

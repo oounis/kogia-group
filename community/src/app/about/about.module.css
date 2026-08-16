@@ -3,16 +3,16 @@
   max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
 }
-.marque { font-weight: 700; font-size: 1.1rem; }
+.marque { font: 700 1.1rem/1 var(--font-titre); }
 .nav { display: flex; gap: 1.4rem; }
 .nav a { color: var(--slate); font-size: .9rem; }
 .nav a:hover { color: var(--ink); }
 
 .main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-.titre { font: 800 2rem/1.15 inherit; letter-spacing: -.02em; margin-bottom: 1.2rem; }
+.titre { font: 800 2rem/1.15 var(--font-titre); letter-spacing: -.02em; margin-bottom: 1.2rem; }
 .lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
 .para { color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
-.sousTitre { font: 700 1.2rem/1.3 inherit; margin: 2.5rem 0 1rem; }
+.sousTitre { font: 700 1.2rem/1.3 var(--font-titre); margin: 2.5rem 0 1rem; }
 
 .produits { list-style: none; border-top: 1px solid var(--line); }
 .produit { border-bottom: 1px solid var(--line); }
