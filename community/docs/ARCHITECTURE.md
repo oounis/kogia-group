@@ -1,4 +1,4 @@
-# Kogia Community — architecture
+# community/ — architecture (nouvelle couche de kogiagroup.com)
 
 ## Vue d'ensemble
 

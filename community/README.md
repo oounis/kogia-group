@@ -1,9 +1,12 @@
-# Kogia Community
+# community/ — comptes et articles pour kogiagroup.com
 
-Plateforme communautaire de Kogia : comptes, articles, sujets, réactions,
-commentaires, modération. Vit dans ce dépôt, dossier `community/`, à côté de
-`site/` (le site statique [kogiagroup.com](https://kogiagroup.com) actuel),
-`app/` (Owner Console) et `api/`.
+**Ce n'est pas un produit séparé appelé « Kogia Community ».** C'est la
+prochaine couche de fonctionnalités de **kogiagroup.com** lui-même : comptes,
+vrais articles, réactions, commentaires, modération, présentation de
+l'entreprise et des produits. Une fois prêt, ce dossier devient le site
+kogiagroup.com, pas un site à côté. Vit dans ce dépôt, dossier `community/`,
+à côté de `site/` (le site statique actuel), `app/` (Owner Console) et `api/`
+— purement une question d'organisation interne du code, pas une marque.
 
 Lecture publique, participation avec compte. Voir `docs/PRODUCT.md` pour le
 modèle produit complet.

@@ -1,4 +1,4 @@
-# Kogia Community — le produit
+# community/ — le produit (nouvelle couche de kogiagroup.com, pas un site à part)
 
 ## Ce que c'est
 

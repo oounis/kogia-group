@@ -1,4 +1,4 @@
-# Kogia Community — instructions Claude
+# community/ — instructions Claude (nouvelle couche de kogiagroup.com)
 
 Plateforme communautaire de Kogia : comptes, publication, follows, réactions,
 commentaires. Ce dossier vit **dans le dépôt `kogia-group`**, à côté de
