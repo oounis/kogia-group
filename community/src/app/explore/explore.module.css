@@ -3,13 +3,13 @@
   max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
 }
-.marque { font: 700 1.1rem/1 var(--font-titre); }
+.marque { font-weight: 700; font-size: 1.1rem; }
 .nav { display: flex; gap: 1.4rem; }
 .nav a { color: var(--slate); font-size: .9rem; }
 .nav a:hover { color: var(--ink); }
 
 .main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.titre { font: 800 1.7rem/1.2 var(--font-titre); letter-spacing: -.02em; margin-bottom: 1.5rem; }
+.titre { font: 800 1.7rem/1.2 inherit; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 .vide { color: var(--slate); padding: 2rem 0; }
 
 .liste { list-style: none; }
@@ -18,5 +18,5 @@
 .poste:hover { background: #FAFAFA; }
 .lien { display: block; padding: 1.3rem .25rem; }
 .meta { display: flex; gap: .6rem; font-size: .8rem; color: var(--slate); margin-bottom: .4rem; }
-.titreArticle { font: 700 1.15rem/1.35 var(--font-titre); color: var(--ink); }
+.titreArticle { font: 700 1.15rem/1.35 inherit; color: var(--ink); }
 .sousTitre { color: var(--slate); font-size: .92rem; margin-top: .3rem; line-height: 1.5; }

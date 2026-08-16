@@ -1,31 +1,32 @@
-/* Direction « Éditoriale » — 2026-08-16. Choisie par Othman après
-   comparaison de trois directions dans Figma (A/B/C) : A retenue, B
-   explicitement écartée. Papier chaud, encre proche du noir mais chaude,
-   UN accent terracotta réservé à l'action principale (même architecture
-   qu'avant : un seul accent, un seul usage — seule sa couleur change).
-   Typographie : Fraunces (titres) + Source Serif 4 (texte), remplace Inter.
-   Thème clair uniquement, comme précédemment. Ne pas diverger de
-   kogia-group/site/assets/kogia.css sans mettre à jour les deux dépôts. */
+/* Jetons Kogia — blanc et noir littéraux, un seul bleu réservé à l'action
+   principale et à l'état sélectionné. Structure de jetons élargie 2026-08-16
+   (échelle de surfaces, spacing, radius, ombres) sur le modèle d'un spec
+   « inspiré ChatGPT » fourni par Othman, MAIS le bleu reste #2A5CE0 (déjà
+   approuvé sur kogiagroup.com) et le thème reste clair uniquement (le fond
+   sombre a été essayé et explicitly abandonné le 2026-08-13, voir
+   kogia-design-language) — cohérence de marque avant conformité à un spec
+   générique. Ne pas diverger de kogia-group/site/assets/kogia.css sans
+   mettre à jour les deux dépôts. */
 :root {
   color-scheme: light;
 
-  --indigo: #BA5221;
-  --indigo-ink: #833A15;
-  --indigo-soft: #F3E2D8;
+  --indigo: #2A5CE0;
+  --indigo-ink: #1E46B8;
+  --indigo-soft: #EAF0FE;
 
-  --ink: #1D1916;
-  --text-doux: #584F47;
-  --slate: #736860;
-  --line: #E4DACD;
-  --line-forte: #C7B8A5;
+  --ink: #0A0A0A;
+  --text-doux: #374151;
+  --slate: #6B6B6B;
+  --line: #E4E4E4;
+  --line-forte: #C7C7C7;
 
   --surface: #FFFFFF;
-  --canvas: #F9F6F2;
-  --surface-2: #F3ECE0;
-  --surface-3: #EDE6DB;
+  --canvas: #FFFFFF;
+  --surface-2: #F7F7F8;
+  --surface-3: #F3F4F6;
 
-  --ok: #2F7A4F; --ok-fond: #E5F3EA;
-  --ko: #B4342E; --ko-fond: #FBE8E7;
+  --ok: #15866B; --ok-fond: #E3F3EF;
+  --ko: #C93C37; --ko-fond: #FCEAE9;
 
   --ombre-s: 0 1px 2px rgba(0,0,0,.05);
   --ombre-m: 0 4px 12px rgba(0,0,0,.08);
@@ -49,19 +50,14 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html {
-  -webkit-text-size-adjust: 100%;
-  --font-titre: var(--font-fraunces), Georgia, serif;
-  --font-texte: var(--font-source-serif), Georgia, serif;
-}
+html { -webkit-text-size-adjust: 100%; }
 body {
-  font-family: var(--font-texte);
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--ink);
-  background: var(--canvas);
+  background: var(--surface);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-family: var(--font-titre); font-weight: 600; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-radius: 4px; }

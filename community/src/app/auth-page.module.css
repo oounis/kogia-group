@@ -2,6 +2,6 @@
   min-height: 100vh; display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 2rem; padding: 2rem 1.25rem;
 }
-.marque { font: 800 1.4rem/1 var(--font-titre); letter-spacing: -.02em; color: var(--ink); }
+.marque { font: 800 1.4rem/1 inherit; letter-spacing: -.02em; color: var(--ink); }
 .bascule { font-size: .88rem; color: var(--slate); }
 .bascule a { text-decoration: underline; color: var(--ink); font-weight: 500; }

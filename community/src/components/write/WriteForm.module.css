@@ -3,13 +3,13 @@
   max-width: 44rem; margin: 0 auto; padding: 1.1rem 1.5rem;
   display: flex; align-items: center; gap: .8rem;
 }
-.marque { font: 700 1.1rem/1 var(--font-titre); }
+.marque { font-weight: 700; font-size: 1.1rem; }
 .mode { color: var(--slate); font-size: .9rem; }
 
 .main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: flex; flex-direction: column; gap: .9rem; }
 
 .champTitre {
-  border: none; font: 800 1.7rem/1.25 var(--font-titre); letter-spacing: -.02em;
+  border: none; font: 800 1.7rem/1.25 inherit; letter-spacing: -.02em;
   padding: 0; outline: none;
 }
 .champTitre::placeholder { color: var(--line-forte); }
