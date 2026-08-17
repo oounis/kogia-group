@@ -11,7 +11,15 @@ import styles from "./AuthForm.module.css";
  *
  * Deux méthodes seulement pour la V1 : Google OAuth, et un code à 6
  * chiffres envoyé par e-mail (OTP) — pas de mot de passe à gérer.
+ *
+ * Le bouton Google ne s'affiche que si le fournisseur est réellement activé
+ * côté Supabase (NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true). Vérifié le
+ * 2026-08-17 : il ne l'est pas encore, et afficher un bouton qui échoue au
+ * clic est pire que ne pas l'afficher. Une fois Google configuré dans le
+ * tableau de bord Supabase, poser la variable sur Render suffit.
  */
+const GOOGLE_ACTIF = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+
 export default function AuthForm({
   intention,
   returnTo = "/",
@@ -65,11 +73,14 @@ export default function AuthForm({
     <div className={styles.carte}>
       <p className={styles.intention}>{intention}</p>
 
-      <button type="button" className={`bouton ligne ${styles.pleinLargeur}`} onClick={continuerAvecGoogle}>
-        Continuer avec Google
-      </button>
-
-      <div className={styles.separateur}><span>ou</span></div>
+      {GOOGLE_ACTIF && (
+        <>
+          <button type="button" className={`bouton ligne ${styles.pleinLargeur}`} onClick={continuerAvecGoogle}>
+            Continuer avec Google
+          </button>
+          <div className={styles.separateur}><span>ou</span></div>
+        </>
+      )}
 
       {etape === "e-mail" && (
         <form onSubmit={envoyerCode} className={styles.form}>

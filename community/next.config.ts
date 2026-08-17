@@ -12,6 +12,22 @@ const nextConfig: NextConfig = {
       { source: "/suite/", destination: "/suite/index.html" },
     ];
   },
+
+  /* Anciennes URL du site statique (avant le transfert de domaine du
+     2026-08-16). Elles ont été partagées sur Facebook et Reddit : sans
+     redirection permanente, ces liens tombent en 404 et le référencement
+     acquis est perdu. */
+  async redirects() {
+    return [
+      {
+        source: "/idees/:slug.html",
+        destination: "/articles/:slug",
+        permanent: true,
+      },
+      { source: "/idees", destination: "/explore", permanent: true },
+      { source: "/idees/", destination: "/explore", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
