@@ -27,7 +27,13 @@ export const metadata: Metadata = {
    secret. Sans cookie, sans donnée personnelle. */
 const CF_ANALYTICS_TOKEN = "0cb53abfe15a41e1baca72e3ff184e52";
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+/* Type explicite plutôt que le global `LayoutProps<"/">` généré par Next :
+   celui-ci vit dans `.next/types/`, donc il n'existe qu'APRÈS un build, et
+   `tsc --noEmit` échouait sur un dépôt propre (« Cannot find name
+   LayoutProps »). Un layout racine n'a de toute façon pas de paramètre de
+   route : les deux types sont équivalents ici, et celui-ci ne dépend pas de
+   l'ordre des étapes en CI. */
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={inter.variable}>
       <body>

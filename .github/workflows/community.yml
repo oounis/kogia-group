@@ -1,0 +1,94 @@
+# ════════════════════════════════════════════════════════════════════════════
+# LA PORTE DE QUALITÉ DU SITE — community/ sert kogiagroup.com depuis le
+# 2026-08-16.
+#
+# Avant ce fichier (ajouté le 2026-08-17), ce dossier n'avait AUCUNE CI : le
+# site public partait en production sur la seule foi de vérifications lancées
+# à la main en local. Le seul workflow du dépôt validait `site/`, l'ancien
+# site statique retiré du domaine — il ne regardait pas une ligne du code
+# réellement servi.
+#
+# Render déploie automatiquement sur push vers main. Cette porte tourne donc
+# EN PARALLÈLE du déploiement, pas avant : elle ne peut pas bloquer une mise
+# en ligne, mais elle dit la vérité sur ce qui vient de partir. Pour qu'elle
+# bloque vraiment, il faudrait couper l'auto-deploy de Render et déployer
+# depuis ce workflow — décision d'Othman, pas prise ici.
+# ════════════════════════════════════════════════════════════════════════════
+name: Qualité — site kogiagroup.com (community/)
+
+on:
+  push:
+    branches: [main]
+    paths: ['community/**', '.github/workflows/community.yml']
+  pull_request:
+    branches: [main]
+    paths: ['community/**', '.github/workflows/community.yml']
+  workflow_dispatch:
+
+# Groupe qui inclut la référence : deux PR ne s'annulent pas mutuellement.
+# (La même erreur existait sur coreon-edu et y a annulé quatre PR de
+# sécurité — voir coreon-edu PR #30.)
+concurrency:
+  group: "community-${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: community
+
+jobs:
+  qualite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # Node 22 : les paquets @supabase/* avertissent explicitement que Node
+      # 20 n'est plus supporté, à chaque build.
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: community/package-lock.json
+
+      - name: Installer (verrouillé)
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # Fonctionne sur un dépôt propre depuis que layout.tsx n'utilise plus
+      # le global `LayoutProps` généré par Next, qui n'existe qu'après build.
+      - name: Types
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          # Le build rend des pages qui interrogent Supabase. Sans ces
+          # variables il échoue à la génération statique, pas au compilateur —
+          # un échec déroutant si on ne le sait pas.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+  # Le site réel, après coup : un 200 ne prouve pas qu'une page s'affiche.
+  # C'est exactement le piège qui a laissé /suite/ complètement blanc pendant
+  # une journée en répondant 200 (voir kogia-domain-cutover mémoire).
+  fumee-production:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: qualite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Installer Playwright
+        run: npm i -D @playwright/test && npx playwright install --with-deps chromium
+
+      - name: Laisser Render finir son déploiement
+        run: sleep 90
+
+      - name: Le site rend-il vraiment quelque chose ?
+        run: npx playwright test --config=playwright.smoke.config.ts
