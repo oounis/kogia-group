@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -17,10 +18,26 @@ export const metadata: Metadata = {
     "Kogia est une communauté pour découvrir, publier et développer des idées sérieuses. Articles pratiques, gens curieux, projets qui deviennent réels.",
 };
 
+/* Cloudflare Web Analytics — RESTAURÉ le 2026-08-17. L'ancien site statique
+   portait ce beacon (créé le 2026-08-13) ; le transfert de domaine du
+   2026-08-16 l'a fait disparaître sans que personne ne le remarque, donc
+   kogiagroup.com n'a plus mesuré aucune visite pendant une journée, au
+   moment précis où le trafic Facebook/Reddit arrive. Le jeton est public
+   par conception (il vit dans la source de la page), ce n'est pas un
+   secret. Sans cookie, sans donnée personnelle. */
+const CF_ANALYTICS_TOKEN = "0cb53abfe15a41e1baca72e3ff184e52";
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          strategy="afterInteractive"
+          data-cf-beacon={`{"token": "${CF_ANALYTICS_TOKEN}"}`}
+        />
+      </body>
     </html>
   );
 }
