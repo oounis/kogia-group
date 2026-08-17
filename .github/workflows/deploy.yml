@@ -1,5 +1,16 @@
 name: Deploy Kogia Group site to Pages
-on: { push: { branches: [main] }, workflow_dispatch: {} }
+# ⚠️ DÉCLENCHEMENT AUTOMATIQUE RETIRÉ LE 2026-08-17.
+# Depuis le 2026-08-16, kogiagroup.com est servi par Render (dossier
+# community/), plus par GitHub Pages. Ce workflow continuait de réussir à
+# chaque push tout en publiant vers une destination inatteignable :
+# oounis.github.io/kogia-group/ renvoie un 301 vers kogiagroup.com, que
+# Render possède désormais. Chaque badge vert était un faux positif.
+#
+# Volontairement CONSERVÉ en `workflow_dispatch` : l'ancien site statique
+# vit toujours dans site/ et reste la voie de retour si le nouveau site
+# doit être annulé. Pour revenir en arrière : repointer le DNS de
+# kogiagroup.com vers GitHub Pages, puis lancer ce workflow à la main.
+on: { workflow_dispatch: {} }
 permissions: { contents: read, pages: write, id-token: write }
 concurrency: { group: pages, cancel-in-progress: true }
 jobs:
