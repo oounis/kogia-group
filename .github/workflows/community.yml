@@ -42,11 +42,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # Node 22 : les paquets @supabase/* avertissent explicitement que Node
-      # 20 n'est plus supporté, à chaque build.
+      # ⚠️ DOIT correspondre au Node de Render, sinon cette porte valide un
+      # runtime différent de la production et ne prouve plus rien.
+      # Constaté le 2026-08-18 : `engines: >=22` laissait Render choisir, il
+      # prenait 26.7.0 pendant que la CI testait en 22. `engines` est
+      # maintenant borné (>=22 <27) et les deux côtés utilisent 26.
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 26
           cache: npm
           cache-dependency-path: community/package-lock.json
 
@@ -82,7 +85,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 26
 
       - name: Installer Playwright
         run: npm i -D @playwright/test && npx playwright install --with-deps chromium
