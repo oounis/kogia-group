@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Marque from "@/components/Marque";
+import Icone from "@/components/icons/Icone";
 import styles from "./page.module.css";
 
 /**
@@ -63,15 +64,27 @@ export default function Home() {
         <section className={styles.comment}>
           <p className={styles.sectionT}>Comment Kogia fonctionne</p>
           <div className={styles.commentGrille}>
+            {/* Icônes du système Kogia : « plonger » puis « discuter » puis
+                « faire remonter » racontent la métaphore de la marque, là où
+                trois pictogrammes génériques n'auraient rien dit. */}
             <div>
+              <span className={styles.etapeIcone} aria-hidden="true">
+                <Icone nom="deep-dive" taille="feature" />
+              </span>
               <h3>Découvrir</h3>
               <p>Une idée explorée sérieusement : le problème, le marché, les risques, un verdict honnête.</p>
             </div>
             <div>
+              <span className={styles.etapeIcone} aria-hidden="true">
+                <Icone nom="comment" taille="feature" />
+              </span>
               <h3>Discuter</h3>
               <p>Réagir, commenter, dire ce qui cloche ou ce qui manque — avec les gens qui ont vécu le problème.</p>
             </div>
             <div>
+              <span className={styles.etapeIcone} aria-hidden="true">
+                <Icone nom="surface" taille="feature" />
+              </span>
               <h3>Développer</h3>
               <p>Les idées qui méritent d&apos;exister deviennent des projets, puis des produits.</p>
             </div>

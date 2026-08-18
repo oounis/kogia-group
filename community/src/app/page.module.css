@@ -84,3 +84,11 @@
   color: var(--slate); font-size: .82rem;
 }
 .pied a { text-decoration: underline; color: var(--ink); }
+
+/* Icône d'étape dans « Comment Kogia fonctionne ». L'accent bleu de l'icône
+   bicolore reste le SEUL bleu de la section : le titre et le texte restent
+   noir/gris, conformément à la règle « un accent, un usage ». */
+.etapeIcone {
+  display: inline-flex; margin-bottom: .7rem;
+  color: var(--ink); --icone-accent: var(--indigo);
+}

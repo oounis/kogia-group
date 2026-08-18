@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Marque from "@/components/Marque";
+import Icone, { type NomIcone } from "@/components/icons/Icone";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -8,23 +9,32 @@ export const metadata: Metadata = {
   description: "L'histoire, la mission et les produits de Kogia.",
 };
 
-const PRODUITS = [
+/* Icônes du système Kogia plutôt qu'une initiale dans un carré : chacune dit
+   ce que le produit FAIT (éducation, action citoyenne, plateforme), là où
+   « C », « F », « K » ne disaient rien à qui ne connaît pas déjà les noms. */
+const PRODUITS: {
+  icone: NomIcone;
+  nom: string;
+  detail: string;
+  statut: string;
+  href: string | null;
+}[] = [
   {
-    lettre: "C",
+    icone: "education",
     nom: "Coreon EDU",
     detail: "Gestion scolaire",
     statut: "En production",
     href: "https://edu.kogiagroup.com",
   },
   {
-    lettre: "F",
+    icone: "civic-action",
     nom: "Faz3a",
     detail: "Action citoyenne",
     statut: "En construction",
     href: null,
   },
   {
-    lettre: "K",
+    icone: "platform",
     nom: "Suite Kogia",
     detail: "Finance, CRM, RH",
     statut: "En préparation",
@@ -63,7 +73,9 @@ export default function AboutPage() {
           {PRODUITS.map((p) => {
             const contenu = (
               <>
-                <span className={styles.lettre}>{p.lettre}</span>
+                <span className={styles.lettre} aria-hidden="true">
+                  <Icone nom={p.icone} taille="nav" />
+                </span>
                 <span className={styles.produitTexte}>
                   <span className={styles.produitNom}>{p.nom}</span>
                   <span className={styles.produitDetail}>{p.detail} · {p.statut.toLowerCase()}</span>
