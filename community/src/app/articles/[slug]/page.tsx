@@ -119,7 +119,7 @@ export default async function ArticlePage({
           {date && article.published_at && (
             <time dateTime={new Date(article.published_at).toISOString()}>{date}</time>
           )}
-          <span>{minutes} min de lecture</span>
+          <span>{`${minutes} min de lecture`}</span>
         </div>
         <h1 className={styles.titre}>{article.title}</h1>
         {article.subtitle && <p className={styles.sousTitre}>{article.subtitle}</p>}

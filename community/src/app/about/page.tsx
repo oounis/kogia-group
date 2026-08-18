@@ -6,7 +6,8 @@ import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "À propos",
-  description: "L'histoire, la mission et les produits de Kogia.",
+  description:
+    "Kogia est une aventure technologique indépendante menée depuis la Tunisie et Bahreïn : on explore des idées, et on construit celles qui méritent d'exister.",
 };
 
 /* Icônes du système Kogia plutôt qu'une initiale dans un carré : chacune dit

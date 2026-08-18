@@ -6,7 +6,8 @@ import styles from "./explore.module.css";
 
 export const metadata: Metadata = {
   title: "Explorer",
-  description: "Parcourez les articles Kogia par sujet.",
+  description:
+    "Toutes les idées publiées par Kogia : problème, marché, risques et un verdict honnête. Technologie, business, projets et créativité.",
 };
 
 async function getArticles() {

@@ -200,3 +200,66 @@ test("les métadonnées sociales sont absolues et publiques", async ({ page }) =
   const img = await page.request.get(meta.ogImage!);
   expect(img.status(), "l'image sociale ne se charge pas").toBe(200);
 });
+
+/* ═══ ACCESSIBILITÉ ═══
+   Audit du 2026-08-18 : /join et /login ne rendaient AUCUN <h1>, le champ
+   e-mail rendait `outline-style: none` (donc aucun anneau de focus visible
+   au clavier), les champs faisaient 15,2 px (Safari iOS zoome sous 16 px) et
+   plusieurs liens mesuraient 15 à 23 px de haut, sous le plancher tactile de
+   44 px. Rien de tout cela ne cassait un test : aucun test ne regardait. */
+for (const route of ROUTES_PUBLIQUES) {
+  test(`structure de titres correcte sur ${route}`, async ({ page }) => {
+    await page.goto(route, { waitUntil: "load" });
+    const h1 = await page.locator("h1").count();
+    expect(h1, `${route} doit avoir exactement un <h1>, il en a ${h1}`).toBe(1);
+  });
+}
+
+test("les champs de formulaire ont un anneau de focus visible", async ({ page }) => {
+  await page.goto("/join", { waitUntil: "load" });
+  const champ = page.locator('input[type="email"]');
+  await champ.focus();
+  const s = await champ.evaluate((e) => {
+    const c = getComputedStyle(e);
+    return { style: c.outlineStyle, width: c.outlineWidth, taille: parseFloat(c.fontSize) };
+  });
+  expect(s.style, "aucun anneau de focus : au clavier on ne sait plus où l'on est").not.toBe("none");
+  // Sous 16 px, Safari iOS zoome la page à la mise au point du champ.
+  expect(s.taille, "police du champ sous 16 px, Safari iOS va zoomer").toBeGreaterThanOrEqual(16);
+});
+
+test("les cibles tactiles atteignent 44 px", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const trop_petites: string[] = [];
+  for (const route of ["/", "/about", "/join", "/explore"]) {
+    await page.goto(route, { waitUntil: "load" });
+    const p = await page.evaluate(() =>
+      [...document.querySelectorAll("a,button")]
+        /* WCAG 2.5.5 exempte explicitement les liens EN LIGNE dans une phrase :
+           on ne peut pas agrandir un lien au milieu d'un paragraphe sans casser
+           l'interligne. Seules les cibles autonomes sont mesurées. */
+        .filter((e) => !e.closest("p, li"))
+        .map((e) => ({ t: (e.textContent || "").trim().slice(0, 22), h: Math.round(e.getBoundingClientRect().height) }))
+        .filter((x) => x.h > 0 && x.h < 44)
+    );
+    p.forEach((x) => trop_petites.push(`${route} « ${x.t} » ${x.h}px`));
+  }
+  expect(trop_petites, `cibles sous 44 px : ${trop_petites.join(" · ")}`).toEqual([]);
+});
+
+test("le temps de lecture est cohérent entre l'accueil et l'article", async ({ page }) => {
+  await page.goto("/", { waitUntil: "load" });
+  const accueil = (await page.locator("body").innerText()).match(/(\d+) min de lecture/)?.[1];
+  await page.goto("/articles/kharbga-from-sand-to-screen", { waitUntil: "load" });
+  const article = (await page.locator("body").innerText()).match(/(\d+) min de lecture/)?.[1];
+  expect(accueil, `l'accueil annonce ${accueil} min, l'article ${article} min`).toBe(article);
+});
+
+test("chaque page a une image de partage", async ({ page }) => {
+  for (const route of ["/", "/explore", "/about", "/articles/kharbga-from-sand-to-screen"]) {
+    await page.goto(route, { waitUntil: "load" });
+    const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+    expect(og, `${route} n'a pas d'image de partage`).toBeTruthy();
+    expect(og, `${route} : image de partage non absolue`).toMatch(/^https:\/\//);
+  }
+});

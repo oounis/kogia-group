@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Marque from "@/components/Marque";
 import Icone from "@/components/icons/Icone";
+import { createClient } from "@/lib/supabase/server";
+import { dureeDeLecture } from "@/lib/site";
 import styles from "./page.module.css";
 
 /**
@@ -12,7 +14,26 @@ import styles from "./page.module.css";
  * qu'il n'y a pas assez d'articles réels pour les remplir sans inventer des
  * données — voir docs/STATUS.md.
  */
-export default function Home() {
+const SLUG_VEDETTE = "kharbga-from-sand-to-screen";
+
+/* Le temps de lecture était écrit en dur (« 14 min ») alors que la page
+   d'article le calcule depuis le contenu et affiche 15 min : deux chiffres
+   différents pour le même texte, visibles par n'importe quel lecteur.
+   Une seule source de vérité désormais : le contenu. */
+async function dureeVedette(): Promise<number | null> {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("articles").select("body")
+      .eq("slug", SLUG_VEDETTE).eq("status", "published").single();
+    return data?.body ? dureeDeLecture(data.body) : null;
+  } catch {
+    return null;
+  }
+}
+
+export default async function Home() {
+  const minutes = await dureeVedette();
   return (
     <>
       <header className={styles.top}>
@@ -51,7 +72,9 @@ export default function Home() {
             className={styles.vedetteCarte}
             href="/articles/kharbga-from-sand-to-screen"
           >
-            <span className={styles.vedetteCat}>Technologie · 14 min de lecture</span>
+            <span className={styles.vedetteCat}>
+              Technologie{minutes ? ` · ${minutes} min de lecture` : ""}
+            </span>
             <h2>Du sable à l&apos;écran : le Kharbga peut-il devenir le grand jeu de stratégie numérique d&apos;Afrique du Nord ?</h2>
             <p>
               Un concept de projet Kogia Group : préserver un jeu vivant,

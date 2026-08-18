@@ -29,7 +29,7 @@
   .topActions { gap: .75rem; }
   .lienDiscret { font-size: .85rem; }
   .topActions :global(.bouton) {
-    min-height: 40px; padding: 0 .85rem; font-size: .82rem; white-space: nowrap;
+    min-height: 44px; padding: 0 .85rem; font-size: .82rem; white-space: nowrap;
   }
 }
 
@@ -92,3 +92,12 @@
   display: inline-flex; margin-bottom: .7rem;
   color: var(--ink); --icone-accent: var(--indigo);
 }
+
+/* Cibles tactiles : mesurées le 2026-08-18 sous le plancher de 44 px exigé
+   par WCAG 2.5.5 — liens d'en-tête 22-23 px, « Se connecter » 22 px, lien de
+   pied de page 16 px. Le texte garde sa taille discrète, seule la zone
+   cliquable grandit. */
+.nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.lienDiscret { display: inline-flex; align-items: center; min-height: 44px; }
+.marque { display: inline-flex; align-items: center; min-height: 44px; }
+.pied a { display: inline-flex; align-items: center; min-height: 44px; }

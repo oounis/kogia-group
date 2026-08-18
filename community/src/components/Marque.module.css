@@ -5,4 +5,8 @@
   color: var(--ink);
   font-weight: 700;
   font-size: 1.1rem;
+  /* Plancher tactile de 44 px (WCAG 2.5.5) : la marque mesurait 28 px.
+     La règle doit vivre ICI — un `.marque` écrit dans page.module.css ne
+     peut pas atteindre ce composant, les classes étant hachées par module. */
+  min-height: 44px;
 }

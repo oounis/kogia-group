@@ -11,3 +11,7 @@
 .marque { font: 800 1.4rem/1 inherit; letter-spacing: -.02em; color: var(--ink); }
 .bascule { font-size: .88rem; color: var(--slate); }
 .bascule a { text-decoration: underline; color: var(--ink); font-weight: 500; }
+
+/* Le lien de bascule connexion/inscription mesurait 17 px de haut. */
+.bascule a { display: inline-flex; align-items: center; min-height: 44px; }
+.marque { display: inline-flex; align-items: center; min-height: 44px; }

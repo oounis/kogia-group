@@ -40,3 +40,7 @@ a.produitLien:hover { background: #FAFAFA; }
   border-top: 1px solid var(--line); margin-top: 2rem;
   padding: 1.5rem; text-align: center; font-size: .78rem; color: var(--slate);
 }
+
+/* Même correction de plancher tactile (44 px) que sur l'accueil. */
+.nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.marque { display: inline-flex; align-items: center; min-height: 44px; }

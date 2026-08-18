@@ -3,7 +3,10 @@ import styles from "./explore.module.css";
 export default function ChargementExplore() {
   return (
     <main className={styles.main}>
-      <h1 className={styles.titre}>Toutes les idées</h1>
+      {/* <p> et non <h1> : Next diffuse le squelette EN MÊME TEMPS que la page,
+          donc un <h1> ici en produisait deux dans le même document (vérifié
+          le 2026-08-18). Le vrai titre appartient à la page. */}
+      <p className={styles.titre} aria-hidden="true">Toutes les idées</p>
       <ul className={styles.liste}>
         {[0, 1, 2].map((i) => (
           <li key={i} className={styles.poste}>

@@ -9,7 +9,7 @@
 @media (max-width: 360px) {
   .carte { padding: 1.5rem 1.1rem; }
 }
-.intention { font: 700 1.1rem/1.35 inherit; margin-bottom: 1.4rem; letter-spacing: -.01em; }
+.intention { font: 700 1.1rem/1.35 inherit; margin: 0 0 1.4rem; letter-spacing: -.01em; }
 .pleinLargeur { width: 100%; }
 .separateur {
   display: flex; align-items: center; gap: .75rem; margin: 1.2rem 0;
@@ -20,13 +20,24 @@
 .form label { font-size: .82rem; font-weight: 500; color: var(--slate); }
 .form input {
   min-height: 48px; padding: 0 .9rem; border: 1px solid var(--line);
-  border-radius: var(--r-s); font-size: .95rem; font-family: inherit;
+  border-radius: var(--r-s); font-size: 1rem; font-family: inherit;
 }
-.form input:focus { outline: none; border-color: var(--ink); }
+/* `outline: none` supprimait purement et simplement l'anneau de focus :
+   au clavier, plus rien n'indiquait où l'on se trouvait dans le formulaire.
+   Vérifié le 2026-08-18 : le champ e-mail rendait `outline-style: none`
+   quand tous les autres éléments rendaient `2px solid`. On garde le
+   changement de bordure ET on rend un anneau visible. */
+.form input:focus-visible {
+  outline: 2px solid var(--indigo); outline-offset: 2px; border-color: var(--ink);
+}
+.form input:focus { border-color: var(--ink); }
 .lienDiscret {
   background: none; border: 0; text-decoration: underline; font-size: .82rem;
   color: var(--slate); cursor: pointer; padding: .3rem 0; align-self: flex-start;
 }
 .erreur { margin-top: 1rem; font-size: .86rem; color: var(--ko); }
+/* Ces liens mesuraient 15 px de haut : sous le plancher tactile de 44 px
+   (WCAG 2.5.5). Le texte reste discret, la zone cliquable s'agrandit. */
 .mentions { margin-top: 1.4rem; font-size: .76rem; line-height: 1.5; color: var(--slate); }
+.mentions a { display: inline-flex; align-items: center; min-height: 44px; }
 .mentions a { text-decoration: underline; color: var(--ink); }

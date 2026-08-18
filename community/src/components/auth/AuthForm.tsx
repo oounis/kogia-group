@@ -71,7 +71,11 @@ export default function AuthForm({
 
   return (
     <div className={styles.carte}>
-      <p className={styles.intention}>{intention}</p>
+      {/* Vraie <h1> et non un <p> : /join et /login ne rendaient AUCUN titre
+          de niveau 1 (vérifié le 2026-08-18). Un lecteur d'écran arrivait sur
+          une page sans titre, et la structure du document était invalide.
+          L'apparence ne change pas, seule la sémantique est corrigée. */}
+      <h1 className={styles.intention}>{intention}</h1>
 
       {GOOGLE_ACTIF && (
         <>

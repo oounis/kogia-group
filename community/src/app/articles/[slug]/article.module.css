@@ -115,3 +115,8 @@
   font-size: .82rem;
   color: var(--slate);
 }
+
+/* Même correction de plancher tactile (44 px) que sur l'accueil. */
+.nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.marque { display: inline-flex; align-items: center; min-height: 44px; }
+.retour { padding: .55rem 0; }
