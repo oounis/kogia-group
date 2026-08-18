@@ -25,11 +25,19 @@ Soldéo (finance) · Relio (CRM) · Cadréo (HR) · Caissa (POS) · Cargon (WMS)
 
 ## Repository layout
 
-- `site/` — the public corporate site (static, French). Deployed to GitHub Pages by `.github/workflows/deploy.yml`.
+- `site/` — the PREVIOUS static corporate site (French). No longer serves the domain since 16 August 2026, and its Pages workflow is manual-only. Kept as reference and as the rollback path.
 - `brand/` — the Kogia Harmony brand kit (SVG mark, wordmark, per-division gradients). **Single source of truth** for logos; `site/assets/` mirrors it.
 - `app/` — Owner Console (React 19 + Vite): internal group ERP prototype. Front-end demo with localStorage persistence; run with `cd app && npm install && npm run dev`.
-- `community/` — the next version of kogiagroup.com itself (Next.js 15 + Supabase): real accounts, articles, comments, company/product pages. Not a separate product or brand — this becomes kogiagroup.com once ready, not a site next to it. Currently live for review only at kogia-community.onrender.com (temporary preview URL, not the final domain). See `community/docs/STATUS.md`. Run with `cd community && npm install && npm run dev`.
+- `community/` — **this IS kogiagroup.com** since 16 August 2026 (Next.js 16 + React 19 + Supabase): real accounts, database-backed articles, company/product pages. Not a separate product or brand. Served by Render; the apex and www CNAME to it through Cloudflare. `site/` below is the previous static implementation, kept only as reference and as a rollback path. Run with `cd community && npm install && npm run dev`.
 
 ## Deployment
 
-The site deploys automatically on every push to `main` (GitHub Actions → Pages).
+kogiagroup.com is served by **Render** from `community/`, which auto-deploys on every push to
+`main`. Quality runs in `.github/workflows/community.yml` (lint, typecheck, build on Node 26,
+then a production smoke suite). ⚠️ Because Render deploys independently, that workflow reports
+on a deploy rather than gating it.
+
+`edu.kogiagroup.com` (Coreon EDU) is unaffected and still on GitHub Pages from its own repo.
+
+**Rollback:** point the Cloudflare apex + www records back to the GitHub Pages A records
+(185.199.108–111.153, DNS-only) and run the "Deploy Kogia Group site to Pages" workflow by hand.
