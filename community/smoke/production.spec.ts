@@ -54,20 +54,71 @@ test("les anciennes URL partagées redirigent au lieu de tomber en 404", async (
   expect(page.url()).toContain("/articles/kharbga-from-sand-to-screen");
 });
 
-/* Le 2026-08-18, l'en-tête débordait de 86 px à 390 px : « Rejoindre Kogia »
-   sortait de l'écran et toute la page défilait latéralement. Aucun test ne
-   l'a vu, parce qu'ils comptaient du texte, pas de la géométrie. */
-for (const [nom, largeur] of [["mobile", 390], ["tablette", 768]] as const) {
-  test(`aucun débordement horizontal en ${nom} (${largeur}px)`, async ({ page }) => {
-    await page.setViewportSize({ width: largeur, height: 844 });
-    await page.goto("/", { waitUntil: "load" });
-    const { scrollW, clientW } = await page.evaluate(() => ({
-      scrollW: document.documentElement.scrollWidth,
-      clientW: document.documentElement.clientWidth,
-    }));
-    expect(scrollW, `la page déborde de ${scrollW - clientW}px et défile latéralement`).toBeLessThanOrEqual(clientW + 1);
+/* ═══ Géométrie : TOUTES les routes publiques × TOUTES les largeurs ═══
+   Première version : seul l'accueil, à 390 et 768 px. Elle passait au vert
+   pendant que l'article débordait de 165 px à 320 px et que les pages
+   d'authentification débordaient à 320 px. Une matrice trop étroite donne
+   une fausse assurance — c'est pire que pas de test, parce qu'on s'y fie. */
+const ROUTES_PUBLIQUES = [
+  "/",
+  "/explore",
+  "/about",
+  "/articles/kharbga-from-sand-to-screen",
+  "/join",
+  "/login",
+  "/terms",
+  "/privacy",
+];
+const LARGEURS = [320, 360, 375, 390, 412, 768, 1024, 1440];
+
+for (const route of ROUTES_PUBLIQUES) {
+  test(`aucun débordement horizontal sur ${route}`, async ({ page }) => {
+    const debordements: string[] = [];
+    for (const largeur of LARGEURS) {
+      await page.setViewportSize({ width: largeur, height: 844 });
+      await page.goto(route, { waitUntil: "load" });
+      const { scrollW, clientW } = await page.evaluate(() => ({
+        scrollW: document.documentElement.scrollWidth,
+        clientW: document.documentElement.clientWidth,
+      }));
+      if (scrollW > clientW + 1) debordements.push(`${largeur}px: +${scrollW - clientW}px`);
+    }
+    expect(debordements, `${route} défile latéralement — ${debordements.join(", ")}`).toEqual([]);
   });
 }
+
+/* Les pages légales sont liées depuis le formulaire d'inscription : on
+   demandait aux gens d'accepter des documents qui répondaient 404. */
+test("les pages légales liées à l'inscription existent vraiment", async ({ request }) => {
+  for (const chemin of ["/terms", "/privacy"]) {
+    const r = await request.get(chemin);
+    expect(r.status(), `${chemin} devrait exister, il est lié depuis /join`).toBe(200);
+    expect((await r.text()).length, `${chemin} répond mais semble vide`).toBeGreaterThan(1500);
+  }
+});
+
+/* Aucun lien interne ne doit tomber en 404 : c'est exactement comme ça que
+   /terms et /privacy sont restés cassés sans que rien ne le dise. */
+test("aucun lien interne cassé sur les pages principales", async ({ page, request }) => {
+  const vus = new Set<string>();
+  const casses: string[] = [];
+  for (const depart of ["/", "/about", "/join"]) {
+    await page.goto(depart, { waitUntil: "load" });
+    const liens: string[] = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('a[href^="/"]'))
+        .map((a) => (a as HTMLAnchorElement).getAttribute("href")!)
+        .filter((h) => !h.startsWith("//"))
+    );
+    for (const lien of liens) {
+      const propre = lien.split("#")[0];
+      if (!propre || vus.has(propre)) continue;
+      vus.add(propre);
+      const r = await request.get(propre);
+      if (r.status() >= 400) casses.push(`${propre} -> ${r.status()} (lié depuis ${depart})`);
+    }
+  }
+  expect(casses, `liens internes cassés : ${casses.join(", ")}`).toEqual([]);
+});
 
 /* L'image de couverture de l'article a été cassée pendant deux jours sans
    que rien ne le signale : les tests comptaient les caractères du corps, et

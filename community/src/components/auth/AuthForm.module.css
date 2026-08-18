@@ -1,6 +1,13 @@
+/* `max-width` seul ne suffit pas : sans `width:100%` et `min-width:0`, la
+   carte prenait la largeur de son contenu et débordait de 8 px à 320 px.
+   Le rembourrage se resserre aussi sur les très petits écrans. */
 .carte {
-  max-width: 380px; margin: 0 auto; padding: 2rem 1.75rem;
+  width: 100%; max-width: 380px; min-width: 0; margin: 0 auto;
+  padding: 2rem 1.75rem;
   border: 1px solid var(--line); border-radius: var(--r-m);
+}
+@media (max-width: 360px) {
+  .carte { padding: 1.5rem 1.1rem; }
 }
 .intention { font: 700 1.1rem/1.35 inherit; margin-bottom: 1.4rem; letter-spacing: -.01em; }
 .pleinLargeur { width: 100%; }

@@ -33,6 +33,18 @@
   }
 }
 
+/* Les très petits téléphones (320 px, iPhone SE 1ʳᵉ génération) : même avec
+   la navigation masquée, marque + « Se connecter » + le bouton débordaient
+   encore de 11 px. Le lien discret disparaît — l'écran de connexion reste
+   atteignable depuis la page rejoindre et le pied de page. */
+@media (max-width: 359px) {
+  .topIn { gap: .5rem; padding: 0 .65rem; }
+  .lienDiscret { display: none; }
+  .topActions :global(.bouton) { padding: 0 .7rem; font-size: .78rem; }
+  .hero { padding-left: 1rem; padding-right: 1rem; }
+  .heroActions { flex-direction: column; align-items: stretch; }
+}
+
 .hero {
   max-width: 640px; margin: 0 auto; padding: 5rem 1.25rem 3.5rem; text-align: center;
 }

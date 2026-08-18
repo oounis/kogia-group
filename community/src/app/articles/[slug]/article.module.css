@@ -71,6 +71,35 @@
   max-width: 100%; height: auto; border-radius: 8px; margin: 1.4em 0;
 }
 .corps :global(a) { text-decoration: underline; }
+
+/* ═══ Tableaux ═══
+   Régression trouvée le 2026-08-18 : l'article débordait de 165 px à 320 px,
+   110 px à 375, 95 px à 390 et 73 px à 412 — toute la page défilait
+   latéralement. La migration vers cette feuille avait perdu les règles de
+   tableau que l'ancienne (site/assets/kogia.css) avait pourtant justes.
+   Le tableau devient sa propre zone de défilement horizontal, au lieu
+   d'élargir la page entière. */
+.corps :global(table) {
+  width: 100%; border-collapse: collapse; margin: 1.6em 0; font-size: .92em;
+  display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.corps :global(table thead), .corps :global(table tbody) {
+  display: table; width: 100%; min-width: 480px;
+}
+.corps :global(th) {
+  border-bottom: 2px solid var(--ink); color: var(--ink);
+  font-weight: 700; text-align: left; padding: .6rem .95rem .6rem 0;
+}
+.corps :global(td) {
+  border-top: 1px solid var(--line); padding: .75rem .95rem .75rem 0; color: var(--slate);
+}
+.corps :global(tr:hover td) { background: var(--surface-2); }
+
+/* Rien d'autre dans le corps ne doit pouvoir élargir la page : un `pre`, une
+   URL sans espace ou une image trop large produisent le même défaut. */
+.corps :global(pre) { overflow-x: auto; }
+.corps :global(*) { max-width: 100%; }
+.corps { overflow-wrap: break-word; }
 .corps :global(blockquote) {
   border-left: 2px solid var(--ink);
   padding: .2rem 0 .2rem 1.4rem;

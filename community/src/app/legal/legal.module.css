@@ -1,0 +1,33 @@
+.top { border-bottom: 1px solid var(--line); }
+.topIn {
+  max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav { display: flex; gap: 1.4rem; }
+.nav a { color: var(--slate); font-size: .9rem; }
+.nav a:hover { color: var(--ink); }
+
+.main {
+  width: 100%; max-width: 44rem; margin: 0 auto;
+  padding: 3rem 1.5rem 4rem; overflow-wrap: break-word;
+}
+@media (max-width: 360px) { .main { padding: 2rem 1rem 3rem; } }
+
+.titre { font: 800 2rem/1.15 var(--font-titre); letter-spacing: -.02em; }
+.maj { color: var(--slate); font-size: .85rem; margin-top: .5rem; }
+.lede { font-size: 1.08rem; line-height: 1.6; margin-top: 1.5rem; }
+
+.main h2 {
+  font: 700 1.2rem/1.3 var(--font-titre);
+  margin: 2.4rem 0 .8rem; letter-spacing: -.01em;
+}
+.main p { color: var(--text-doux); line-height: 1.7; margin-bottom: 1rem; }
+.main ul { margin: 0 0 1rem 1.15rem; color: var(--text-doux); line-height: 1.7; }
+.main li { margin-bottom: .45rem; }
+.main a { text-decoration: underline; }
+.main :global(strong) { color: var(--ink); }
+
+.pied {
+  border-top: 1px solid var(--line); margin-top: 3rem;
+  padding: 1.5rem; text-align: center; font-size: .82rem; color: var(--slate);
+}
