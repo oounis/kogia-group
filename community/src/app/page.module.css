@@ -11,8 +11,27 @@
 .nav { display: flex; gap: 1.4rem; flex: 1; }
 .nav a { font-size: .9rem; color: var(--slate); font-weight: 500; }
 .nav a:hover { color: var(--ink); }
-.topActions { display: flex; align-items: center; gap: 1rem; }
-.lienDiscret { font-size: .88rem; font-weight: 500; color: var(--ink); }
+.topActions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.lienDiscret { font-size: .88rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+
+/* ═══ Mobile ═══
+   Constaté le 2026-08-18 à 390 px : cinq éléments se disputaient une seule
+   rangée. « Se connecter » passait sur deux lignes et « Rejoindre Kogia »
+   sortait de l'écran (bord droit à 476 px pour une fenêtre de 390), ce qui
+   faisait défiler toute la page latéralement.
+   Les liens de navigation disparaissent sous 640 px : ils sont déjà
+   atteignables depuis le contenu et le pied de page. Restent la marque, la
+   connexion et UNE action principale, ce qui tient sans déborder. */
+@media (max-width: 640px) {
+  .topIn { gap: .75rem; padding: 0 .9rem; }
+  .nav { display: none; }
+  .marque { margin-right: auto; }
+  .topActions { gap: .75rem; }
+  .lienDiscret { font-size: .85rem; }
+  .topActions :global(.bouton) {
+    min-height: 40px; padding: 0 .85rem; font-size: .82rem; white-space: nowrap;
+  }
+}
 
 .hero {
   max-width: 640px; margin: 0 auto; padding: 5rem 1.25rem 3.5rem; text-align: center;

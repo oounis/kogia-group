@@ -54,6 +54,34 @@ test("les anciennes URL partagées redirigent au lieu de tomber en 404", async (
   expect(page.url()).toContain("/articles/kharbga-from-sand-to-screen");
 });
 
+/* Le 2026-08-18, l'en-tête débordait de 86 px à 390 px : « Rejoindre Kogia »
+   sortait de l'écran et toute la page défilait latéralement. Aucun test ne
+   l'a vu, parce qu'ils comptaient du texte, pas de la géométrie. */
+for (const [nom, largeur] of [["mobile", 390], ["tablette", 768]] as const) {
+  test(`aucun débordement horizontal en ${nom} (${largeur}px)`, async ({ page }) => {
+    await page.setViewportSize({ width: largeur, height: 844 });
+    await page.goto("/", { waitUntil: "load" });
+    const { scrollW, clientW } = await page.evaluate(() => ({
+      scrollW: document.documentElement.scrollWidth,
+      clientW: document.documentElement.clientWidth,
+    }));
+    expect(scrollW, `la page déborde de ${scrollW - clientW}px et défile latéralement`).toBeLessThanOrEqual(clientW + 1);
+  });
+}
+
+/* L'image de couverture de l'article a été cassée pendant deux jours sans
+   que rien ne le signale : les tests comptaient les caractères du corps, et
+   une image morte n'enlève aucun caractère. */
+test("les images de l'article se chargent vraiment", async ({ page }) => {
+  await page.goto("/articles/kharbga-from-sand-to-screen", { waitUntil: "load" });
+  const cassees = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("img"))
+      .filter((i) => !i.complete || i.naturalWidth === 0)
+      .map((i) => i.currentSrc || i.src)
+  );
+  expect(cassees, `images cassées : ${cassees.join(", ")}`).toEqual([]);
+});
+
 test("robots.txt et sitemap.xml existent", async ({ request }) => {
   const robots = await request.get("/robots.txt");
   expect(robots.status()).toBe(200);
