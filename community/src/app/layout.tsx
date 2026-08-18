@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -10,6 +11,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  /* Sans metadataBase, Next rendait les images Open Graph relatives en
+     `http://localhost:10000/...` en production : chaque partage Facebook,
+     Reddit, LinkedIn ou WhatsApp affichait un aperçu cassé. */
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Kogia",
+    locale: "fr_FR",
+    url: SITE_URL,
+  },
+  twitter: { card: "summary_large_image" },
   title: {
     default: "Kogia",
     template: "%s · Kogia",

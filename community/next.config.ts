@@ -28,6 +28,54 @@ const nextConfig: NextConfig = {
       { source: "/idees/", destination: "/explore", permanent: true },
     ];
   },
+
+  /* Retire `x-powered-by: Next.js` — annoncer sa pile et sa version ne sert
+     qu'à celui qui cherche une faille connue. */
+  poweredByHeader: false,
+
+  /* En-têtes de sécurité. La CSP est volontairement conçue autour de ce que
+     le site utilise RÉELLEMENT, vérifié avant écriture :
+       - Supabase (auth + base) en connexions XHR/WebSocket
+       - Cloudflare Web Analytics (script + beacon)
+       - la démo Suite dans /suite/, un bundle Vite compilé
+     `'unsafe-inline'` sur les styles reste nécessaire (Next injecte des
+     styles en ligne) ; il est en revanche ABSENT de script-src, ce qui est
+     la partie qui compte contre le XSS. */
+  async headers() {
+    const csp = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data:",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://cloudflareinsights.com",
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "object-src 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: csp },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

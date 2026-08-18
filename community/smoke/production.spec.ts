@@ -142,3 +142,61 @@ test("robots.txt et sitemap.xml existent", async ({ request }) => {
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).toContain("/articles/");
 });
+
+/* ═══ SÉCURITÉ ═══
+   Le 2026-08-18, un compte `role = member` pouvait publier directement via
+   l'API (POST /rest/v1/articles avec status='published'), le contenu
+   devenait visible du public, et son corps était rendu tel quel. Autrement
+   dit : toute personne pouvant s'inscrire pouvait exécuter du JavaScript
+   chez chaque visiteur. Corrigé par la migration 0004 + l'assainissement
+   au rendu. Ces tests existent pour que la faille ne se rouvre pas en
+   silence. */
+test("les en-têtes de sécurité sont bien servis", async ({ request }) => {
+  const r = await request.get("/");
+  const h = r.headers();
+  expect(h["content-security-policy"], "CSP absente").toBeTruthy();
+  expect(h["content-security-policy"]).toContain("object-src 'none'");
+  expect(h["x-content-type-options"]).toBe("nosniff");
+  expect(h["referrer-policy"]).toBeTruthy();
+  expect(h["strict-transport-security"]).toBeTruthy();
+  expect(h["x-powered-by"], "la pile ne doit pas s'annoncer").toBeUndefined();
+});
+
+test("l'article ne contient aucun vecteur de script exécutable", async ({ page }) => {
+  await page.goto("/articles/kharbga-from-sand-to-screen", { waitUntil: "load" });
+  const dangers = await page.evaluate(() => {
+    const corps = document.querySelector("main");
+    if (!corps) return ["<main> introuvable"];
+    const trouves: string[] = [];
+    corps.querySelectorAll("*").forEach((el) => {
+      for (const a of Array.from(el.attributes)) {
+        if (a.name.startsWith("on")) trouves.push(`${el.tagName}[${a.name}]`);
+        if (/^javascript:/i.test(a.value)) trouves.push(`${el.tagName} javascript: URL`);
+      }
+      if (["IFRAME", "OBJECT", "EMBED", "FORM"].includes(el.tagName)) trouves.push(el.tagName);
+    });
+    return trouves;
+  });
+  expect(dangers, `vecteurs trouvés : ${dangers.join(", ")}`).toEqual([]);
+});
+
+/* L'image Open Graph pointait sur http://localhost:10000/... en production :
+   chaque partage Facebook/Reddit/WhatsApp affichait un aperçu cassé. */
+test("les métadonnées sociales sont absolues et publiques", async ({ page }) => {
+  await page.goto("/articles/kharbga-from-sand-to-screen", { waitUntil: "load" });
+  const meta = await page.evaluate(() => ({
+    ogImage: document.querySelector('meta[property="og:image"]')?.getAttribute("content"),
+    ogUrl: document.querySelector('meta[property="og:url"]')?.getAttribute("content"),
+    canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href"),
+    jsonLd: !!document.querySelector('script[type="application/ld+json"]'),
+  }));
+  expect(meta.ogImage, "og:image manquante").toBeTruthy();
+  expect(meta.ogImage, "og:image doit être absolue et publique").toMatch(/^https:\/\/kogiagroup\.com\//);
+  expect(meta.ogUrl).toMatch(/^https:\/\/kogiagroup\.com\//);
+  expect(meta.canonical, "lien canonique manquant").toMatch(/^https:\/\/kogiagroup\.com\//);
+  expect(meta.jsonLd, "données structurées absentes").toBe(true);
+
+  // L'image annoncée doit réellement se charger pour les robots sociaux.
+  const img = await page.request.get(meta.ogImage!);
+  expect(img.status(), "l'image sociale ne se charge pas").toBe(200);
+});
