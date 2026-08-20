@@ -41,7 +41,7 @@ export default async function Home() {
           <Marque />
           <nav className={styles.nav} aria-label="Navigation principale">
             <Link href="/explore">Explorer</Link>
-            <Link href="/about">Kogia</Link>
+            <Link href="/about">À propos</Link>
           </nav>
           <div className={styles.topActions}>
             <Link href="/login" className={styles.lienDiscret}>Se connecter</Link>

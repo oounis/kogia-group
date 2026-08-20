@@ -26,7 +26,7 @@ export default async function DraftsPage() {
           <Marque />
           <nav className={styles.nav} aria-label="Navigation principale">
             <Link href="/write">Écrire</Link>
-            <Link href="/about">Kogia</Link>
+            <Link href="/about">À propos</Link>
           </nav>
         </div>
       </header>
