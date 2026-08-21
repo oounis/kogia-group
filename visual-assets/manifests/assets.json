@@ -544,6 +544,15 @@
   ],
   "avatars": [
     {
+      "name": "amin",
+      "family": "avatar",
+      "path": "avatars/png/amin.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "bunyan",
       "family": "avatar",
       "path": "avatars/png/bunyan.png",
@@ -553,9 +562,27 @@
       "alpha": true
     },
     {
+      "name": "jojo",
+      "family": "avatar",
+      "path": "avatars/png/jojo.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "kogi",
       "family": "avatar",
       "path": "avatars/png/kogi.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "malik",
+      "family": "avatar",
+      "path": "avatars/png/malik.png",
       "format": "png",
       "width": 512,
       "height": 512,
@@ -580,6 +607,24 @@
       "alpha": true
     },
     {
+      "name": "nour",
+      "family": "avatar",
+      "path": "avatars/png/nour.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "rami",
+      "family": "avatar",
+      "path": "avatars/png/rami.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "rasm",
       "family": "avatar",
       "path": "avatars/png/rasm.png",
@@ -592,6 +637,33 @@
       "name": "sada",
       "family": "avatar",
       "path": "avatars/png/sada.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "salim",
+      "family": "avatar",
+      "path": "avatars/png/salim.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "tala",
+      "family": "avatar",
+      "path": "avatars/png/tala.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "zeno",
+      "family": "avatar",
+      "path": "avatars/png/zeno.png",
       "format": "png",
       "width": 512,
       "height": 512,
@@ -708,5 +780,5 @@
       "alpha": true
     }
   ],
-  "total": 84
+  "total": 92
 }
