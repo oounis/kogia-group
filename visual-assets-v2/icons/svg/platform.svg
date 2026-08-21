@@ -1,0 +1,7 @@
+<svg role="img" aria-labelledby="kg-v2-platform-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-platform-title">Plateforme</title>
+  <rect x="4" y="5" width="7" height="6" rx="1.5"/>
+  <rect x="13" y="5" width="7" height="6" rx="1.5"/>
+  <rect x="8.5" y="14" width="7" height="5" rx="1.5" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <path d="M7.5 11v1.5h9V11M12 12.5V14"/>
+</svg>

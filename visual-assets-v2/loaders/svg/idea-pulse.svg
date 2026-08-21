@@ -1,0 +1,6 @@
+<svg role="img" aria-labelledby="kg-v2-idea-pulse-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <title id="kg-v2-idea-pulse-title">Messages, agents, génération ou réflexion.</title>
+  <circle class="kg-loader-dot kg-loader-dot-1" cx="14" cy="24" r="4" fill="currentColor" opacity=".35"/>
+  <circle class="kg-loader-dot kg-loader-dot-2" cx="24" cy="24" r="4" fill="var(--kg-icon-accent,#2547E8)"/>
+  <circle class="kg-loader-dot kg-loader-dot-3" cx="34" cy="24" r="4" fill="currentColor" opacity=".35"/>
+</svg>

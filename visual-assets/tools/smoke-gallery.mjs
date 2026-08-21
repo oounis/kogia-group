@@ -43,7 +43,8 @@ try {
   // La capture est une trace de revue, pas un actif : hors dépôt.
   await page.screenshot({ path: resolve(process.env.TMPDIR || "/tmp", "kogia-gallery-desktop.png"), fullPage: true });
   await browser.close();
-  if (JSON.stringify(counts) !== JSON.stringify({ avatars: 6, reactions: 12, icons: 60, loaders: 6 })) throw new Error(`Unexpected gallery counts: ${JSON.stringify(counts)}`);
+  // 14 avatars depuis la vague 2 (7fc17c4) : les six approuvés plus les huit de Codex.
+  if (JSON.stringify(counts) !== JSON.stringify({ avatars: 14, reactions: 12, icons: 60, loaders: 6 })) throw new Error(`Unexpected gallery counts: ${JSON.stringify(counts)}`);
   if (product !== "kharbga") throw new Error("Product color switch failed");
   if (errors.length) throw new Error(`Browser errors: ${errors.join(" | ")}`);
   console.log(`Gallery smoke passed: ${JSON.stringify(counts)}, color switch=${product}.`);

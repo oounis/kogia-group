@@ -1,0 +1,9 @@
+<svg role="img" aria-labelledby="kg-v2-service-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-service-title">Service</title>
+  <path d="M12 20V10m0 4-4-3m4 5 4-3"/>
+  <path d="M8 11V7.5M16 13V8M12 10V5"/>
+  <circle cx="8" cy="6" r="1.5" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <circle cx="12" cy="3.5" r="1.5" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <circle cx="16" cy="6.5" r="1.5" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <path d="M7 20h10"/>
+</svg>

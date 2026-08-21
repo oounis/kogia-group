@@ -1,0 +1,7 @@
+<svg role="img" aria-labelledby="kg-v2-surface-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-surface-title">Surface</title>
+  <path d="M3 16.5c2.2-1.5 3.8-1.5 6 0s3.8 1.5 6 0 3.8-1.5 6 0"/>
+  <path d="M5 20c1.6-1.1 2.8-1.1 4.4 0s2.8 1.1 4.4 0 2.8-1.1 4.4 0"/>
+  <path d="M12 17V4m0 0L8.8 7.2M12 4l3.2 3.2" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <circle cx="12" cy="2.5" r="1"/>
+</svg>

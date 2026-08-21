@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr" data-kogia-product="group">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kogia · revue d'actifs visuels V2</title>
+  <link rel="stylesheet" href="../../visual-assets/tokens/product-colors.css">
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">Art : Codex · Intégration : Claude · Approbation : Othman</p>
+      <h1>Revue d'actifs visuels</h1>
+    </div>
+    <div class="controls">
+      <div class="mode-switch" role="tablist" aria-label="Mode de revue">
+        <button type="button" role="tab" data-mode="current" aria-selected="false">Actuel</button>
+        <button type="button" role="tab" data-mode="v2" aria-selected="true">Revue V2</button>
+      </div>
+      <label>Couleur produit <select id="product"></select></label>
+      <label>Fond <select id="background">
+        <option value="light">Clair</option>
+        <option value="abyss">Abysse (sombre)</option>
+        <option value="checker">Damier (alpha)</option>
+        <option value="product">Produit actif</option>
+      </select></label>
+    </div>
+  </header>
+
+  <!-- Mode « Actuel » : la galerie de production, chargée telle quelle, jamais modifiée. -->
+  <section id="mode-current" class="mode" hidden>
+    <p class="mode-note">
+      Galerie de production, servie sans aucune modification depuis
+      <code>visual-assets/gallery/</code>. La revue V2 n'y touche pas.
+      <a href="../../visual-assets/gallery/index.html" target="_blank" rel="noopener">Ouvrir dans un onglet</a>
+    </p>
+    <iframe id="current-frame" title="Galerie de production actuelle" loading="lazy"></iframe>
+  </section>
+
+  <!-- Mode « Revue V2 » : la couche candidate. -->
+  <main id="mode-v2" class="mode">
+    <p class="mode-note verdict-bar">
+      <span id="verdict-summary">Aucun verdict enregistré.</span>
+      <button type="button" id="export-verdicts">Exporter les verdicts</button>
+      <button type="button" id="reset-verdicts">Tout remettre à « candidat »</button>
+    </p>
+
+    <section>
+      <div class="section-title">
+        <h2>Avatars — six approuvés, huit candidats</h2>
+        <p>Les approuvés V1 servent d'étalon. Contrôle à 40 px, la taille réelle en liste.</p>
+      </div>
+      <h3 class="sub">Approuvés (V1, référence)</h3>
+      <div id="avatars-approved" class="grid avatars"></div>
+      <h3 class="sub">Candidats V2, à côté de la version déjà en production</h3>
+      <div id="avatars-v2" class="grid avatars"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Réactions — V1 contre V2</h2>
+        <p>Vue de revue à 92 px, puis la taille réelle d'usage à 32 px.</p>
+      </div>
+      <div id="reactions" class="grid compare"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Icônes sémantiques — V1 contre V2</h2>
+        <p>Seuls les concepts propres à Kogia sont remplacés. Revue à 32 px, usage réel à 20 px.</p>
+      </div>
+      <div id="icons" class="grid compare"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Loaders — quatre rôles consolidés</h2>
+        <p>Le mouvement vit dans le CSS de la galerie. Image fixe sous <code>prefers-reduced-motion</code>.</p>
+      </div>
+      <label class="inline-toggle">
+        <input type="checkbox" id="freeze-motion"> Simuler « mouvement réduit »
+      </label>
+      <div id="loaders" class="grid loaders"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Objets du monde Kogia</h2>
+        <p>Décor d'article, objets de réussite, états vides, motifs d'accueil. À 128, 64 et 40 px.</p>
+      </div>
+      <div id="world" class="grid world"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Planches de direction</h2>
+        <p>Dont la planche narrative : six récits récurrents, sans mots.</p>
+      </div>
+      <div id="boards" class="grid boards"></div>
+    </section>
+  </main>
+
+  <script type="module" src="review.js"></script>
+</body>
+</html>

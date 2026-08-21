@@ -1,0 +1,6 @@
+<svg role="img" aria-labelledby="kg-v2-surface-progress-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-surface-progress-title">Tâche longue qui progresse vers l'achèvement.</title>
+  <path class="kg-loader-wave" d="M7 30c4.2-3 7.8-3 12 0s7.8 3 12 0 7.8-3 10 0" opacity=".45"/>
+  <path class="kg-loader-rise" d="M24 30V14m0 0-5 5m5-5 5 5" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <circle class="kg-loader-pearl" cx="24" cy="10" r="3" fill="var(--kg-icon-accent,#2547E8)" stroke="none"/>
+</svg>

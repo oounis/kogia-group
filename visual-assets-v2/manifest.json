@@ -1,0 +1,811 @@
+{
+  "system": "Kogia visual assets — revue V2",
+  "version": "2026.08.21",
+  "status": "candidate",
+  "boundary": "Couche de revue. Ne remplace ni visual-assets/, ni brand/, ni le manifeste de production.",
+  "author": "Codex (art) · Claude (intégration) · Othman (approbation)",
+  "products": {
+    "group": {
+      "name": "KogiaGroup",
+      "accent600": "#2547E8",
+      "surface50": "#EFF4FF"
+    },
+    "coreon": {
+      "name": "Coreon EDU",
+      "accent600": "#7539E4",
+      "surface50": "#F6F3FF"
+    },
+    "job": {
+      "name": "Kogia Job",
+      "accent600": "#C2410C",
+      "surface50": "#FFF5ED"
+    },
+    "faz3a": {
+      "name": "Faz3a",
+      "accent600": "#6C4DE6",
+      "surface50": "#F5F2FF"
+    },
+    "kharbga": {
+      "name": "Kharbga",
+      "accent600": "#244A63",
+      "surface50": "#F3F7F9",
+      "secondary": "#B96945"
+    },
+    "eduplus": {
+      "name": "EduPlus Connect",
+      "accent600": "#223DE7",
+      "surface50": "#EEF4FF"
+    },
+    "coffee": {
+      "name": "Kogia Coffee",
+      "accent600": "#7A4B2E",
+      "surface50": "#FBF6F0"
+    },
+    "suite": {
+      "name": "Kogia Platform",
+      "accent600": "#4361D0",
+      "surface50": "#F1F5FF"
+    },
+    "soldeo": {
+      "name": "Soldeo",
+      "accent600": "#2547E8"
+    },
+    "relio": {
+      "name": "Relio",
+      "accent600": "#5145CD"
+    },
+    "cadreo": {
+      "name": "Cadreo",
+      "accent600": "#7539E4"
+    },
+    "caissa": {
+      "name": "Caissa",
+      "accent600": "#C2410C"
+    },
+    "cargon": {
+      "name": "Cargon",
+      "accent600": "#975D16"
+    },
+    "areneo": {
+      "name": "Areneo",
+      "accent600": "#0F766E"
+    },
+    "planeo": {
+      "name": "Planeo",
+      "accent600": "#0B70A3"
+    },
+    "serveo": {
+      "name": "Serveo",
+      "accent600": "#A23A61"
+    },
+    "lumeon": {
+      "name": "Lumeon",
+      "accent600": "#36506F",
+      "secondary": "#14A595"
+    }
+  },
+  "baseline": {
+    "approvedAvatars": [
+      {
+        "name": "kogi",
+        "path": "../visual-assets/avatars/png/kogi.png",
+        "status": "approved"
+      },
+      {
+        "name": "nara",
+        "path": "../visual-assets/avatars/png/nara.png",
+        "status": "approved"
+      },
+      {
+        "name": "rasm",
+        "path": "../visual-assets/avatars/png/rasm.png",
+        "status": "approved"
+      },
+      {
+        "name": "mira",
+        "path": "../visual-assets/avatars/png/mira.png",
+        "status": "approved"
+      },
+      {
+        "name": "bunyan",
+        "path": "../visual-assets/avatars/png/bunyan.png",
+        "status": "approved"
+      },
+      {
+        "name": "sada",
+        "path": "../visual-assets/avatars/png/sada.png",
+        "status": "approved"
+      }
+    ]
+  },
+  "avatars": [
+    {
+      "name": "amin",
+      "family": "avatar",
+      "meaning": "Sage des eaux profondes ; écoute avant de parler.",
+      "path": "avatars/png/amin.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/amin.png"
+    },
+    {
+      "name": "jojo",
+      "family": "avatar",
+      "meaning": "Farceur du nuage d'idées ; devient drôle et inventif sous pression.",
+      "path": "avatars/png/jojo.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/jojo.png"
+    },
+    {
+      "name": "malik",
+      "family": "avatar",
+      "meaning": "Capitaine de surface ; ramène les découvertes finies vers les gens.",
+      "path": "avatars/png/malik.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/malik.png"
+    },
+    {
+      "name": "nour",
+      "family": "avatar",
+      "meaning": "Écouteuse de rêves ; entend les motifs dans le bruit.",
+      "path": "avatars/png/nour.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/nour.png"
+    },
+    {
+      "name": "rami",
+      "family": "avatar",
+      "meaning": "Cuisinier d'idées ; transforme le concept brut en plan concret.",
+      "path": "avatars/png/rami.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/rami.png"
+    },
+    {
+      "name": "salim",
+      "family": "avatar",
+      "meaning": "Testeur d'écho sceptique ; sérieux, la preuve d'abord.",
+      "path": "avatars/png/salim.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/salim.png"
+    },
+    {
+      "name": "tala",
+      "family": "avatar",
+      "meaning": "Scientifique de l'écho ; cartographie les opportunités invisibles.",
+      "path": "avatars/png/tala.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/tala.png"
+    },
+    {
+      "name": "zeno",
+      "family": "avatar",
+      "meaning": "Chasseur de prototypes étranges ; curieux des idées que les autres écartent.",
+      "path": "avatars/png/zeno.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 40,
+      "v1": "../visual-assets/avatars/png/zeno.png"
+    }
+  ],
+  "reactions": [
+    {
+      "name": "agree",
+      "family": "reaction",
+      "meaning": "D'accord",
+      "path": "reactions/png/agree.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/agree.png"
+    },
+    {
+      "name": "celebrate",
+      "family": "reaction",
+      "meaning": "Célébrer",
+      "path": "reactions/png/celebrate.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/celebrate.png"
+    },
+    {
+      "name": "concern",
+      "family": "reaction",
+      "meaning": "Inquiétude",
+      "path": "reactions/png/concern.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/concern.png"
+    },
+    {
+      "name": "disagree",
+      "family": "reaction",
+      "meaning": "Pas d'accord",
+      "path": "reactions/png/disagree.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/disagree.png"
+    },
+    {
+      "name": "evidence-check",
+      "family": "reaction",
+      "meaning": "Vérification des preuves",
+      "path": "reactions/png/evidence-check.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/evidence-check.png"
+    },
+    {
+      "name": "inspired",
+      "family": "reaction",
+      "meaning": "Inspiré",
+      "path": "reactions/png/inspired.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/inspired.png"
+    },
+    {
+      "name": "laugh",
+      "family": "reaction",
+      "meaning": "Rire",
+      "path": "reactions/png/laugh.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/laugh.png"
+    },
+    {
+      "name": "offer-help",
+      "family": "reaction",
+      "meaning": "Proposer de l'aide",
+      "path": "reactions/png/offer-help.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/offer-help.png"
+    },
+    {
+      "name": "question",
+      "family": "reaction",
+      "meaning": "Question",
+      "path": "reactions/png/question.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/question.png"
+    },
+    {
+      "name": "surprised",
+      "family": "reaction",
+      "meaning": "Surpris",
+      "path": "reactions/png/surprised.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/surprised.png"
+    },
+    {
+      "name": "thanks",
+      "family": "reaction",
+      "meaning": "Merci",
+      "path": "reactions/png/thanks.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/thanks.png"
+    },
+    {
+      "name": "thoughtful",
+      "family": "reaction",
+      "meaning": "Pensif",
+      "path": "reactions/png/thoughtful.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "checkAt": 32,
+      "v1": "../visual-assets/reactions/png/thoughtful.png"
+    }
+  ],
+  "worldElements": [
+    {
+      "name": "community-shoal",
+      "family": "world-element",
+      "meaning": "Petite communauté de confiance ; banc soudé.",
+      "path": "world-elements/png/community-shoal.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "data-shrimp",
+      "family": "world-element",
+      "meaning": "Donnée brute, minuscule mais nourrissante.",
+      "path": "world-elements/png/data-shrimp.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "depth-coffee",
+      "family": "world-element",
+      "meaning": "Pause en profondeur ; conversation lente.",
+      "path": "world-elements/png/depth-coffee.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "echo-compass",
+      "family": "world-element",
+      "meaning": "Orientation par écholocation ; trouver sans voir.",
+      "path": "world-elements/png/echo-compass.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "hidden-opportunity",
+      "family": "world-element",
+      "meaning": "Opportunité cachée sous la surface.",
+      "path": "world-elements/png/hidden-opportunity.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "idea-cloud",
+      "family": "world-element",
+      "meaning": "Nuage d'idées sous pression créative.",
+      "path": "world-elements/png/idea-cloud.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "knowledge-pearl",
+      "family": "world-element",
+      "meaning": "Savoir condensé, patiemment formé.",
+      "path": "world-elements/png/knowledge-pearl.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "project-plankton",
+      "family": "world-element",
+      "meaning": "Projet naissant ; abondant, fragile.",
+      "path": "world-elements/png/project-plankton.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "prototype-bubble",
+      "family": "world-element",
+      "meaning": "Prototype ; léger, remonte vite, peut éclater.",
+      "path": "world-elements/png/prototype-bubble.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "solution-coral",
+      "family": "world-element",
+      "meaning": "Solution qui se construit par couches et dure.",
+      "path": "world-elements/png/solution-coral.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "surface-beacon",
+      "family": "world-element",
+      "meaning": "Balise de surface ; la découverte rendue visible.",
+      "path": "world-elements/png/surface-beacon.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    },
+    {
+      "name": "technology-meal",
+      "family": "world-element",
+      "meaning": "Technologie consommée comme ressource, pas comme trophée.",
+      "path": "world-elements/png/technology-meal.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "status": "candidate",
+      "sizes": [
+        128,
+        64,
+        40
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "name": "civic-action",
+      "meaning": "Action civique",
+      "path": "icons/svg/civic-action.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-civic-action.svg"
+    },
+    {
+      "name": "deep-dive",
+      "meaning": "Plongée profonde",
+      "path": "icons/svg/deep-dive.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-deep-dive.svg"
+    },
+    {
+      "name": "echolocation",
+      "meaning": "Écholocation",
+      "path": "icons/svg/echolocation.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-echolocation.svg"
+    },
+    {
+      "name": "hidden-opportunity",
+      "meaning": "Opportunité cachée",
+      "path": "icons/svg/hidden-opportunity.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-hidden-opportunity.svg"
+    },
+    {
+      "name": "idea-cloud",
+      "meaning": "Nuage d'idées",
+      "path": "icons/svg/idea-cloud.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-idea-cloud.svg"
+    },
+    {
+      "name": "launch",
+      "meaning": "Lancement",
+      "path": "icons/svg/launch.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-launch.svg"
+    },
+    {
+      "name": "loading",
+      "meaning": "Chargement",
+      "path": "icons/svg/loading.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-loading.svg"
+    },
+    {
+      "name": "partnership",
+      "meaning": "Partenariat",
+      "path": "icons/svg/partnership.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-partnership.svg"
+    },
+    {
+      "name": "pearl",
+      "meaning": "Perle",
+      "path": "icons/svg/pearl.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-pearl.svg"
+    },
+    {
+      "name": "platform",
+      "meaning": "Plateforme",
+      "path": "icons/svg/platform.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-platform.svg"
+    },
+    {
+      "name": "revenue",
+      "meaning": "Revenu",
+      "path": "icons/svg/revenue.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-revenue.svg"
+    },
+    {
+      "name": "service",
+      "meaning": "Service",
+      "path": "icons/svg/service.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-service.svg"
+    },
+    {
+      "name": "solution",
+      "meaning": "Solution",
+      "path": "icons/svg/solution.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-solution.svg"
+    },
+    {
+      "name": "surface",
+      "meaning": "Surface",
+      "path": "icons/svg/surface.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-surface.svg"
+    },
+    {
+      "name": "topic",
+      "meaning": "Sujet",
+      "path": "icons/svg/topic.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent",
+      "checkAt": 20,
+      "status": "candidate",
+      "v1": "../visual-assets/icons/svg/kg-topic.svg"
+    }
+  ],
+  "loaders": [
+    {
+      "name": "echo-ring",
+      "usage": "Recherche en ligne, synchronisation, écoute ou scan.",
+      "path": "loaders/svg/echo-ring.svg",
+      "format": "animated-svg",
+      "reducedMotion": true,
+      "status": "candidate"
+    },
+    {
+      "name": "idea-pulse",
+      "usage": "Messages, agents, génération ou réflexion.",
+      "path": "loaders/svg/idea-pulse.svg",
+      "format": "animated-svg",
+      "reducedMotion": true,
+      "status": "candidate"
+    },
+    {
+      "name": "pearl-orbit",
+      "usage": "Opération indéterminée compacte, dans un bouton.",
+      "path": "loaders/svg/pearl-orbit.svg",
+      "format": "animated-svg",
+      "reducedMotion": true,
+      "status": "candidate"
+    },
+    {
+      "name": "surface-progress",
+      "usage": "Tâche longue qui progresse vers l'achèvement.",
+      "path": "loaders/svg/surface-progress.svg",
+      "format": "animated-svg",
+      "reducedMotion": true,
+      "status": "candidate"
+    }
+  ],
+  "directionBoards": [
+    {
+      "name": "avatars-v2",
+      "caption": "Huit personnalités candidates affinées, planche 4×2.",
+      "path": "direction-boards/avatars-v2.png",
+      "format": "png",
+      "status": "candidate"
+    },
+    {
+      "name": "reactions-v2",
+      "caption": "Douze réactions universelles redessinées pour 32 px.",
+      "path": "direction-boards/reactions-v2.png",
+      "format": "png",
+      "status": "candidate"
+    },
+    {
+      "name": "story-scenes-v2",
+      "caption": "Six scènes narratives sans mots pour articles et communauté.",
+      "path": "direction-boards/story-scenes-v2.png",
+      "format": "png",
+      "status": "candidate"
+    },
+    {
+      "name": "world-elements-v2",
+      "caption": "Douze objets et motifs réutilisables.",
+      "path": "direction-boards/world-elements-v2.png",
+      "format": "png",
+      "status": "candidate"
+    }
+  ],
+  "total": 55
+}

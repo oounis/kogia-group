@@ -1,0 +1,7 @@
+<svg role="img" aria-labelledby="kg-v2-launch-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-launch-title">Lancement</title>
+  <path d="M3 17.5c3-2 5.4-2 8.2 0s5.2 2 9.8 0"/>
+  <circle cx="12" cy="10.3" r="2.2" stroke="var(--kg-icon-accent,#2547E8)"/>
+  <path d="M12 7V3.5m0 0L9.8 5.7M12 3.5l2.2 2.2"/>
+  <path d="M9.3 13.3 8 15m6.7-1.7L16 15"/>
+</svg>

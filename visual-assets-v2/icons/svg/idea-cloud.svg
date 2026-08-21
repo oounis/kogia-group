@@ -1,0 +1,6 @@
+<svg role="img" aria-labelledby="kg-v2-idea-cloud-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <title id="kg-v2-idea-cloud-title">Nuage d'idées</title>
+  <path d="M6.2 16.8h10.9a3.4 3.4 0 0 0 .3-6.8 5.5 5.5 0 0 0-10.5-1.4 4.1 4.1 0 0 0-.7 8.2Z"/>
+  <path d="M8.6 12.3h.01m3.39-2h.01m3.39 2h.01" stroke="var(--kg-icon-accent,#2547E8)" stroke-width="2.6"/>
+  <path d="M7.5 19.4h.01M5.4 21h.01"/>
+</svg>

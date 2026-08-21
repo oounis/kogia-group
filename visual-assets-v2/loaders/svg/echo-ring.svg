@@ -1,0 +1,7 @@
+<svg role="img" aria-labelledby="kg-v2-echo-ring-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+  <title id="kg-v2-echo-ring-title">Recherche en ligne, synchronisation, écoute ou scan.</title>
+  <circle class="kg-loader-core" cx="24" cy="24" r="4" fill="var(--kg-icon-accent,#2547E8)" stroke="none"/>
+  <path class="kg-loader-echo kg-loader-echo-1" d="M16.2 16.2a11 11 0 0 1 0 15.6"/>
+  <path class="kg-loader-echo kg-loader-echo-2" d="M31.8 16.2a11 11 0 0 1 0 15.6"/>
+  <circle class="kg-loader-echo kg-loader-echo-3" cx="24" cy="24" r="17" opacity=".28"/>
+</svg>
