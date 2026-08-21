@@ -1,5 +1,7 @@
 # Brief Codex — avatars et réactions Kogia, deuxième vague
 
+> **LE FEU VERT EST DONNÉ (Othman, 2026-08-21). Pas de nouvelle analyse, pas de demande de confirmation : produire la planche, détourer, déposer les PNG, prévenir Claude.** L'analyse de Codex du même jour est acceptée telle quelle et intégrée ci-dessous.
+
 Owner: Othman. Priorité: haute. Ce stade (la galerie `visual-assets/gallery/`) est celui qu'il regarde. Il veut **plus de personnalités** (drôles, bizarres, sérieuses) au niveau de finition des six premiers avatars, et la collection complète pour **chaque produit de Kogia World**, EduPlus Connect inclus.
 
 Claude a tenté sept avatars en vecteur le 2026-08-21 : **rejetés par Othman**, retirés du paquet. L'illustration revient à Codex (génération d'images + détourage) ; Claude garde la structure, la validation, la galerie et l'intégration dans les produits.
@@ -23,7 +25,8 @@ Claude a tenté sept avatars en vecteur le 2026-08-21 : **rejetés par Othman**,
 
 - **Buste** : personnage anthropomorphe inspiré du cachalot pygmée, vu de trois-quarts, tête vers la droite, museau court terminé par une petite nageoire, cadré des épaules au sommet de la tête, centré, même échelle sur tous.
 - **Anatomie** : ventre crème `#F1E8D2` en larme sur le bas du museau avec deux taches `#D9CDB2` ; œil minuscule, rond, sombre ; pas de bouche dessinée sauf expression explicite.
-- **Trait** : contour marin sombre continu, épaisseur constante (équivalent 6–8 px à 512) ; 2 à 3 aplats par personnage ; **aucun dégradé, 3D, texture, ombre portée, photoréalisme**.
+- **Trait et matière** : contour marin sombre continu, épaisseur constante (équivalent 6–8 px à 512) ; 2 à 3 couleurs dominantes par personnage. **Correction Codex, acceptée : ressembler aux six approuvés prime sur « tout plat ».** Les six ont une profondeur discrète (légers ombrages, nuances de teinte) : la garder. Éditorial et propre, jamais du clip-art plat ni, à l'inverse, du 3D, du photoréalisme ou des textures lourdes.
+- **Anatomie du cachalot, non négociable** (c'est ce qui a coulé la tentative de Claude) : tête et corps d'un seul tenant, pas un cercle sur un torse ; pas de bec ; le ventre crème est une forme organique qui épouse le museau, pas une pastille collée ; l'accessoire soutient la personnalité, il ne la remplace pas ; recadrage et échelle identiques aux six ; lisible à **40 px** réels.
 - **Un accessoire par personnage**, lisible à 40 px, qui porte la personnalité ; jamais de lettre, de logo, de texte, de marque.
 - **Palette** : une couleur dominante par personnage, tirée ou accordée aux couloirs produit (`product-colors.json`) ou aux neutres Harmony ; les six existants occupent déjà océan, terracotta, sauge, violet, ambre, sarcelle : **choisir d'autres teintes** (corail, citron, indigo nuit, olive, prune, gris ardoise, turquoise, brique).
 - **Fond** : chroma magenta `#FF00FF` parfaitement plat, puis détourage → **PNG 512 × 512 RGBA**, bord doux, aucun halo magenta.
