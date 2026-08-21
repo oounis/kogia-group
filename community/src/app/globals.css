@@ -1,52 +1,60 @@
-/* Jetons Kogia — blanc et noir littéraux, un seul bleu réservé à l'action
-   principale et à l'état sélectionné. Structure de jetons élargie 2026-08-16
-   (échelle de surfaces, spacing, radius, ombres) sur le modèle d'un spec
-   « inspiré ChatGPT » fourni par Othman, MAIS le bleu reste #2A5CE0 (déjà
-   approuvé sur kogiagroup.com) et le thème reste clair uniquement (le fond
-   sombre a été essayé et explicitly abandonné le 2026-08-13, voir
-   kogia-design-language) — cohérence de marque avant conformité à un spec
-   générique. Ne pas diverger de kogia-group/site/assets/kogia.css sans
-   mettre à jour les deux dépôts. */
+/* Le site parle KOGIA HARMONY (brand/tokens/kogia.css), la seule langue de
+   design de la société — depuis le 2026-08-21, fin du vocabulaire à part.
+   Les noms locaux ci-dessous sont des ALIAS vers les jetons Harmony : aucune
+   valeur n'est écrite ici, on change un jeton dans brand/ et le site suit.
+
+   Ce que le site garde, par DÉCISION d'Othman (2026-08-13/15), et que la
+   charte consigne désormais comme « couloir éditorial » :
+   · fond blanc, thème clair uniquement (l'abysse a été essayé et abandonné) ;
+   · UNE police, Inter (pas de Sora en titre sur le site) ;
+   · UN seul accent, réservé à l'action principale et à l'état sélectionné ;
+   · presque aucune ombre, hiérarchie par filets, listes et graisse.
+   L'accent est l'océan Harmony (#2547E8) ; l'ancien #2A5CE0 en était une
+   copie à la main. */
+@import "./jetons-harmony.css";   /* copie générée de brand/tokens/kogia.css (tools/synchroniser-jetons.mjs) */
+
 :root {
   color-scheme: light;
 
-  --indigo: #2A5CE0;
-  --indigo-ink: #1E46B8;
-  --indigo-soft: #EAF0FE;
+  --indigo: var(--k-p-600);
+  --indigo-ink: var(--k-p-700);
+  --indigo-soft: var(--k-p-50);
 
-  --ink: #0A0A0A;
-  --text-doux: #374151;
-  --slate: #6B6B6B;
-  --line: #E4E4E4;
+  --ink: var(--k-ink);
+  --text-doux: var(--k-slate);
+  --slate: var(--k-slate);
+  --line: var(--k-line);
   --line-forte: #C7C7C7;
 
-  --surface: #FFFFFF;
-  --canvas: #FFFFFF;
-  --surface-2: #F7F7F8;
-  --surface-3: #F3F4F6;
+  --surface: var(--k-surface);
+  --canvas: var(--k-surface);        /* couloir éditorial : blanc, pas le canvas marin */
+  --surface-2: var(--k-neutral-soft);
+  --surface-3: var(--k-canvas);
 
-  --ok: #15866B; --ok-fond: #E3F3EF;
-  --ko: #C93C37; --ko-fond: #FCEAE9;
+  --ok: var(--k-ok); --ok-fond: var(--k-ok-soft);
+  --ko: var(--k-danger); --ko-fond: var(--k-danger-soft);
 
-  --ombre-s: 0 1px 2px rgba(0,0,0,.05);
-  --ombre-m: 0 4px 12px rgba(0,0,0,.08);
-  --ombre-l: 0 12px 32px rgba(0,0,0,.10);
+  --ombre-s: var(--k-sh-1);
+  --ombre-m: var(--k-sh-2);
+  --ombre-l: var(--k-sh-3);
 
-  /* Échelle d'espacement — 4/8/12/16/20/24/32/40/48/64 */
+  /* Grille de 4 px, en rem pour suivre la taille de police de l'utilisateur */
   --esp-1: .25rem; --esp-2: .5rem; --esp-3: .75rem; --esp-4: 1rem;
   --esp-5: 1.25rem; --esp-6: 1.5rem; --esp-8: 2rem; --esp-10: 2.5rem;
   --esp-12: 3rem; --esp-16: 4rem;
 
   --touche: 48px;
-  --r-s: 8px; --r-c: 12px; --r-m: 16px; --r-l: 20px; --r-xl: 24px; --r-max: 999px;
+  /* Quatre rayons Harmony, pas un cinquième : 12 contrôle · 16 carte · 24 tuile · pilule */
+  --r-s: var(--k-r-control); --r-c: var(--k-r-control); --r-m: var(--k-r-card);
+  --r-l: var(--k-r-card); --r-xl: var(--k-r-tile); --r-max: var(--k-r-pill);
 
   --icone-inline: 16px; --icone-std: 18px; --icone-nav: 20px; --icone-hero: 24px;
   --trait-icone: 1.75;
 
-  --appui: 100ms;
-  --selection: 180ms;
-  --panneau: 200ms;
-  --ease: cubic-bezier(.2,.75,.2,1);
+  --appui: var(--k-t-instant);
+  --selection: var(--k-t-micro);
+  --panneau: var(--k-t-standard);
+  --ease: var(--k-ease);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

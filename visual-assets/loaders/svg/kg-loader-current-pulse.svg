@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-labelledby="kg-loader-current-pulse-title">
+  <title id="kg-loader-current-pulse-title">current pulse loading</title>
+  <style>@keyframes current{0%,100%{opacity:.3;transform:translateX(-2px)}50%{opacity:1;transform:translateX(2px)}}.current{animation:current 1.2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.moving{animation:none!important}}</style>
+  <path class="moving current" d="M7 18c6-4 11-4 17 0s11 4 17 0M7 30c6-4 11-4 17 0s11 4 17 0" stroke="var(--kg-accent,currentColor)" stroke-width="4" stroke-linecap="round"/>
+</svg>

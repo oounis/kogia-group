@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-labelledby="kg-loader-pearl-orbit-title">
+  <title id="kg-loader-pearl-orbit-title">pearl orbit loading</title>
+  <style>@keyframes orbit{to{transform:rotate(360deg)}}.orbit{animation:orbit 1.2s linear infinite;transform-origin:24px 24px}@media(prefers-reduced-motion:reduce){.moving{animation:none!important}}</style>
+  <circle cx="24" cy="24" r="6" fill="currentColor"/><circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="3" opacity=".2"/><g class="moving orbit"><circle cx="24" cy="8" r="4" fill="var(--kg-accent,currentColor)"/></g>
+</svg>

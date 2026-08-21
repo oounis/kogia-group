@@ -1,0 +1,54 @@
+:root,
+[data-kogia-product="group"] {
+  --kg-accent-50:#EFF4FF; --kg-accent-100:#DBE6FE; --kg-accent-300:#93B4FD;
+  --kg-accent-500:#3B66F5; --kg-accent-600:#2547E8; --kg-accent-700:#1D35D0;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+[data-kogia-product="coreon"] {
+  --kg-accent-50:#F6F3FF; --kg-accent-100:#EDE7FE; --kg-accent-300:#C4B0FB;
+  --kg-accent-500:#8B5CF6; --kg-accent-600:#7539E4; --kg-accent-700:#6329C4;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+[data-kogia-product="job"] {
+  --kg-accent-50:#FFF5ED; --kg-accent-100:#FFE7D4; --kg-accent-300:#FCA974;
+  --kg-accent-500:#E85D2F; --kg-accent-600:#C2410C; --kg-accent-700:#9A3412;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+[data-kogia-product="faz3a"] {
+  --kg-accent-50:#F5F2FF; --kg-accent-100:#EEEAFB; --kg-accent-300:#B9AAF4;
+  --kg-accent-500:#8068EA; --kg-accent-600:#6C4DE6; --kg-accent-700:#5E40D8;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+[data-kogia-product="kharbga"] {
+  --kg-accent-50:#F3F7F9; --kg-accent-100:#E2EBF0; --kg-accent-300:#91A8B4;
+  --kg-accent-500:#3C6880; --kg-accent-600:#244A63; --kg-accent-700:#18384D;
+  --kg-icon-accent:#B96945;
+}
+[data-kogia-product="coffee"] {
+  --kg-accent-50:#FBF6F0; --kg-accent-100:#F3E8DB; --kg-accent-300:#CDA982;
+  --kg-accent-500:#9B6642; --kg-accent-600:#7A4B2E; --kg-accent-700:#5F3824;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+[data-kogia-product="suite"] {
+  --kg-accent-50:#F1F5FF; --kg-accent-100:#E4EBFF; --kg-accent-300:#A9BAF4;
+  --kg-accent-500:#5E76D6; --kg-accent-600:#4361D0; --kg-accent-700:#344EAE;
+  --kg-icon-accent:var(--kg-accent-600);
+}
+
+/* Proposed suite-module accents. Keep component geometry unchanged. */
+[data-kogia-product="soldeo"] { --kg-accent-600:#2547E8; --kg-icon-accent:#2547E8; }
+[data-kogia-product="relio"]  { --kg-accent-600:#5145CD; --kg-icon-accent:#5145CD; }
+[data-kogia-product="cadreo"] { --kg-accent-600:#7539E4; --kg-icon-accent:#7539E4; }
+[data-kogia-product="caissa"] { --kg-accent-600:#C2410C; --kg-icon-accent:#C2410C; }
+[data-kogia-product="cargon"] { --kg-accent-600:#975D16; --kg-icon-accent:#975D16; }
+[data-kogia-product="areneo"] { --kg-accent-600:#0F766E; --kg-icon-accent:#0F766E; }
+[data-kogia-product="planeo"] { --kg-accent-600:#0B70A3; --kg-icon-accent:#0B70A3; }
+[data-kogia-product="serveo"] { --kg-accent-600:#A23A61; --kg-icon-accent:#A23A61; }
+[data-kogia-product="lumeon"] { --kg-accent-600:#36506F; --kg-icon-accent:#14A595; }
+
+.kg-avatar-frame {
+  background:var(--kg-accent-50); border:2px solid var(--kg-accent-300);
+  border-radius:999px; overflow:hidden;
+}
+.kg-icon { color:#0E2135; --kg-icon-accent:var(--kg-accent-600); }
+.kg-loader { color:#0E2135; --kg-accent:var(--kg-accent-600); }
