@@ -342,5 +342,55 @@
       "tier": "expert",
       "path": "marque/tiers/kharbga/kogia-tier-expert.svg"
     }
+  ],
+  "loaders": [
+    {
+      "id": "souffle",
+      "name": "Souffle",
+      "usage": "une requête courte : la page respire",
+      "path": "marque/loaders/kogia-loader-souffle.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    },
+    {
+      "id": "echo",
+      "name": "Écho",
+      "usage": "recherche, synchronisation : on sonde",
+      "path": "marque/loaders/kogia-loader-echo.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    },
+    {
+      "id": "sillage",
+      "name": "Sillage",
+      "usage": "chargement indéterminé classique, le cachalot au centre",
+      "path": "marque/loaders/kogia-loader-sillage.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    },
+    {
+      "id": "plongee",
+      "name": "Plongée",
+      "usage": "un calcul long : le cachalot plonge et remonte",
+      "path": "marque/loaders/kogia-loader-plongee.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    },
+    {
+      "id": "surface",
+      "name": "Surface",
+      "usage": "contenu qui arrive : l'eau se retire, la marque apparaît",
+      "path": "marque/loaders/kogia-loader-surface.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    },
+    {
+      "id": "nage",
+      "name": "Nage",
+      "usage": "envoi en cours : le cachalot avance",
+      "path": "marque/loaders/kogia-loader-nage.svg",
+      "followsLane": true,
+      "reducedMotion": "immobile, état lisible"
+    }
   ]
 }

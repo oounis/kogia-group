@@ -99,5 +99,46 @@ for (const lane of fige) {
   }
 }
 
+// ── Les états de chargement, tirés de la marque ─────────────────────────────
+// Le cachalot ne bouge pas d'un point de tracé ; c'est ce qui l'entoure qui
+// vit : le souffle, l'écho, le sillage, l'eau. Six sens, un par usage. Chaque
+// loader suit le couloir produit (variables CSS, repli KogiaGroup) et
+// s'immobilise sous `prefers-reduced-motion` en gardant un état lisible.
+await mkdir(resolve(OUT, "loaders"), { recursive: true });
+const A = "var(--kg-accent-600,#2547E8)", A3 = "var(--kg-accent-300,#93B4FD)", A5 = "var(--kg-accent-50,#EFF4FF)";
+const corpsSeul = (fill) => `<path fill="${fill}" fill-rule="evenodd" d="${corps}"/>`;
+const souffleSeul = (stroke, extra = "") => `<path d="${souffle}" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round" ${extra}/>`;
+const W = (inner) => `<g transform="translate(${(C - 132 * 0.5 / 2).toFixed(2)},${(C - 96 * 0.5 / 2 + 4).toFixed(2)}) scale(.5)">${inner}</g>`;
+const loaderSvg = (id, label, css, body) => svg("0 0 140 140", label,
+  `<style>${css}@media (prefers-reduced-motion: reduce){.${id} *,.${id}{animation:none!important}}</style>\n<g class="${id}">${body}</g>`);
+
+const LOADERS = {
+  souffle: { name: "Souffle", usage: "une requête courte : la page respire",
+    css: `.souffle .jet{stroke-dasharray:14;stroke-dashoffset:14;animation:souffle 1.4s var(--kg-ease,cubic-bezier(.2,.8,.2,1)) infinite}@keyframes souffle{0%{stroke-dashoffset:14;opacity:0}35%{stroke-dashoffset:0;opacity:.85}75%{opacity:.85}100%{stroke-dashoffset:-14;opacity:0}}`,
+    body: () => W(corpsSeul(A) + souffleSeul(A, 'class="jet"')) },
+  echo: { name: "Écho", usage: "recherche, synchronisation : on sonde",
+    css: `.echo .onde{transform-origin:70px 70px;animation:echo 2.2s ease-out infinite}.echo .o2{animation-delay:.7s}.echo .o3{animation-delay:1.4s}@keyframes echo{0%{transform:scale(.55);opacity:.8}100%{transform:scale(1.25);opacity:0}}`,
+    body: () => `<circle class="onde o1" cx="70" cy="70" r="52" fill="none" stroke="${A3}" stroke-width="2"/><circle class="onde o2" cx="70" cy="70" r="52" fill="none" stroke="${A3}" stroke-width="2"/><circle class="onde o3" cx="70" cy="70" r="52" fill="none" stroke="${A3}" stroke-width="2"/>` + W(CACHALOT(A)) },
+  sillage: { name: "Sillage", usage: "chargement indéterminé classique, le cachalot au centre",
+    css: `.sillage .anneau{transform-origin:70px 70px;stroke-dasharray:200 140;animation:sillage 1.6s linear infinite}@keyframes sillage{to{transform:rotate(360deg)}}`,
+    body: () => `<circle cx="70" cy="70" r="56" fill="none" stroke="${A5}" stroke-width="5"/><circle class="anneau" cx="70" cy="70" r="56" fill="none" stroke="${A}" stroke-width="5" stroke-linecap="round"/>` + W(CACHALOT(A)) },
+  plongee: { name: "Plongée", usage: "un calcul long : le cachalot plonge et remonte",
+    css: `.plongee .baleine{animation:plongee 2.4s var(--kg-ease,cubic-bezier(.2,.8,.2,1)) infinite}.plongee .eau{animation:eau 2.4s ease-in-out infinite}@keyframes plongee{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(9px) rotate(5deg)}}@keyframes eau{0%,100%{transform:translateX(0)}50%{transform:translateX(-10px)}}`,
+    body: () => `<g class="baleine" style="transform-origin:70px 70px">${W(CACHALOT(A))}</g><path class="eau" d="M8 96 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" fill="none" stroke="${A3}" stroke-width="3" stroke-linecap="round"/>` },
+  surface: { name: "Surface", usage: "contenu qui arrive : l'eau se retire, la marque apparaît",
+    css: `.surface .masque rect{animation:surface 2s ease-in-out infinite}@keyframes surface{0%{transform:translateY(0)}60%,100%{transform:translateY(62px)}}`,
+    body: () => `<defs><clipPath id="surface-clip"><rect x="0" y="0" width="140" height="140"/></clipPath><mask id="surface-eau" class="masque"><rect x="0" y="0" width="140" height="140" fill="#fff"/><rect x="0" y="40" width="140" height="100" fill="#000"/></mask></defs>` + `<g opacity=".25">${W(CACHALOT(A3))}</g><g mask="url(#surface-eau)">${W(CACHALOT(A))}</g>` },
+  nage: { name: "Nage", usage: "envoi en cours : le cachalot avance",
+    css: `.nage .baleine{animation:nage 2.6s ease-in-out infinite}@keyframes nage{0%{transform:translateX(-14px)}50%{transform:translateX(14px)}100%{transform:translateX(-14px)}}.nage .bulle{animation:bulle 2.6s ease-out infinite}.nage .b2{animation-delay:.9s}.nage .b3{animation-delay:1.8s}@keyframes bulle{0%{transform:translate(0,0);opacity:0}20%{opacity:.9}100%{transform:translate(-30px,-18px);opacity:0}}`,
+    body: () => `<g class="baleine">${W(CACHALOT(A))}</g><circle class="bulle b1" cx="36" cy="62" r="3" fill="${A3}"/><circle class="bulle b2" cx="40" cy="70" r="2.2" fill="${A3}"/><circle class="bulle b3" cx="34" cy="78" r="2.6" fill="${A3}"/>` },
+};
+manifest.loaders = [];
+for (const [id, l] of Object.entries(LOADERS)) {
+  const f = `loaders/kogia-loader-${id}.svg`;
+  await writeFile(resolve(OUT, f), loaderSvg(id, `Kogia · chargement · ${l.name}`, l.css, l.body()));
+  manifest.loaders.push({ id, name: l.name, usage: l.usage, path: `marque/${f}`, followsLane: true, reducedMotion: "immobile, état lisible" });
+}
+
 await writeFile(resolve(OUT, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
+console.log(`loaders/ : ${manifest.loaders.length} états de chargement tirés de la marque`);
 console.log(`marque/ : ${manifest.marks.length} marques, ${manifest.tiles.length} tuiles, ${manifest.tiers.length} niveaux (suivent le couloir) + ${manifest.tiersParCouloir.length} figés`);

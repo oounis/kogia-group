@@ -22,6 +22,12 @@ if (marque) {
       <strong>${m.name}</strong><span>${m.color} · ${m.status}</span></article>`;
   }));
   document.querySelector("#marks").innerHTML = marks.join("");
+
+  if (marque.loaders) {
+    const loaders = await Promise.all(marque.loaders.map(async (l) =>
+      `<article class="card tier"><div class="tier-art">${await texte(`${brand}/${l.path}`)}</div><strong>${l.name}</strong><span>${l.usage}</span></article>`));
+    document.querySelector("#mark-loaders").innerHTML = loaders.join("");
+  }
 }
 
 // ── Art partagé ─────────────────────────────────────────────────────────────
