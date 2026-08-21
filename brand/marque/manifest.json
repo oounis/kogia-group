@@ -1,0 +1,346 @@
+{
+  "source": "brand/kogia-mark.svg",
+  "rule": "un seul tracé, seule la couleur change (Kogia Harmony §4)",
+  "marks": [
+    {
+      "lane": "group",
+      "name": "KogiaGroup",
+      "path": "marque/mark/kogia-mark-group.svg",
+      "color": "#2547E8",
+      "status": "approuvé"
+    },
+    {
+      "lane": "coreon",
+      "name": "Coreon EDU",
+      "path": "marque/mark/kogia-mark-coreon.svg",
+      "color": "#7539E4",
+      "status": "approuvé"
+    },
+    {
+      "lane": "job",
+      "name": "Kogia Job",
+      "path": "marque/mark/kogia-mark-job.svg",
+      "color": "#C2410C",
+      "status": "approuvé"
+    },
+    {
+      "lane": "faz3a",
+      "name": "Faz3a",
+      "path": "marque/mark/kogia-mark-faz3a.svg",
+      "color": "#6C4DE6",
+      "status": "couleur existante"
+    },
+    {
+      "lane": "kharbga",
+      "name": "Kharbga",
+      "path": "marque/mark/kogia-mark-kharbga.svg",
+      "color": "#244A63",
+      "status": "couleur existante"
+    },
+    {
+      "lane": "coffee",
+      "name": "Kogia Coffee",
+      "path": "marque/mark/kogia-mark-coffee.svg",
+      "color": "#7A4B2E",
+      "status": "proposé"
+    },
+    {
+      "lane": "suite",
+      "name": "Kogia Platform",
+      "path": "marque/mark/kogia-mark-suite.svg",
+      "color": "#4361D0",
+      "status": "proposé"
+    },
+    {
+      "lane": "soldeo",
+      "name": "Soldeo",
+      "path": "marque/mark/kogia-mark-soldeo.svg",
+      "color": "#2547E8",
+      "status": "proposé"
+    },
+    {
+      "lane": "relio",
+      "name": "Relio",
+      "path": "marque/mark/kogia-mark-relio.svg",
+      "color": "#5145CD",
+      "status": "proposé"
+    },
+    {
+      "lane": "cadreo",
+      "name": "Cadreo",
+      "path": "marque/mark/kogia-mark-cadreo.svg",
+      "color": "#7539E4",
+      "status": "proposé"
+    },
+    {
+      "lane": "caissa",
+      "name": "Caissa",
+      "path": "marque/mark/kogia-mark-caissa.svg",
+      "color": "#C2410C",
+      "status": "proposé"
+    },
+    {
+      "lane": "cargon",
+      "name": "Cargon",
+      "path": "marque/mark/kogia-mark-cargon.svg",
+      "color": "#975D16",
+      "status": "proposé"
+    },
+    {
+      "lane": "areneo",
+      "name": "Areneo",
+      "path": "marque/mark/kogia-mark-areneo.svg",
+      "color": "#0F766E",
+      "status": "proposé"
+    },
+    {
+      "lane": "planeo",
+      "name": "Planeo",
+      "path": "marque/mark/kogia-mark-planeo.svg",
+      "color": "#0B70A3",
+      "status": "proposé"
+    },
+    {
+      "lane": "serveo",
+      "name": "Serveo",
+      "path": "marque/mark/kogia-mark-serveo.svg",
+      "color": "#A23A61",
+      "status": "proposé"
+    },
+    {
+      "lane": "lumeon",
+      "name": "Lumeon",
+      "path": "marque/mark/kogia-mark-lumeon.svg",
+      "color": "#36506F",
+      "status": "proposé"
+    },
+    {
+      "lane": "ink",
+      "name": "Encre",
+      "path": "marque/mark/kogia-mark-ink.svg",
+      "color": "#0E2135",
+      "status": "neutre"
+    },
+    {
+      "lane": "white",
+      "name": "Blanc (fond sombre)",
+      "path": "marque/mark/kogia-mark-white.svg",
+      "color": "#FFFFFF",
+      "status": "neutre"
+    }
+  ],
+  "tiles": [
+    {
+      "lane": "group",
+      "name": "KogiaGroup",
+      "path": "marque/tile/kogia-tile-group.svg",
+      "color": "#2547E8",
+      "status": "approuvé"
+    },
+    {
+      "lane": "coreon",
+      "name": "Coreon EDU",
+      "path": "marque/tile/kogia-tile-coreon.svg",
+      "color": "#7539E4",
+      "status": "approuvé"
+    },
+    {
+      "lane": "job",
+      "name": "Kogia Job",
+      "path": "marque/tile/kogia-tile-job.svg",
+      "color": "#C2410C",
+      "status": "approuvé"
+    },
+    {
+      "lane": "faz3a",
+      "name": "Faz3a",
+      "path": "marque/tile/kogia-tile-faz3a.svg",
+      "color": "#6C4DE6",
+      "status": "couleur existante"
+    },
+    {
+      "lane": "kharbga",
+      "name": "Kharbga",
+      "path": "marque/tile/kogia-tile-kharbga.svg",
+      "color": "#244A63",
+      "status": "couleur existante"
+    },
+    {
+      "lane": "coffee",
+      "name": "Kogia Coffee",
+      "path": "marque/tile/kogia-tile-coffee.svg",
+      "color": "#7A4B2E",
+      "status": "proposé"
+    },
+    {
+      "lane": "suite",
+      "name": "Kogia Platform",
+      "path": "marque/tile/kogia-tile-suite.svg",
+      "color": "#4361D0",
+      "status": "proposé"
+    },
+    {
+      "lane": "soldeo",
+      "name": "Soldeo",
+      "path": "marque/tile/kogia-tile-soldeo.svg",
+      "color": "#2547E8",
+      "status": "proposé"
+    },
+    {
+      "lane": "relio",
+      "name": "Relio",
+      "path": "marque/tile/kogia-tile-relio.svg",
+      "color": "#5145CD",
+      "status": "proposé"
+    },
+    {
+      "lane": "cadreo",
+      "name": "Cadreo",
+      "path": "marque/tile/kogia-tile-cadreo.svg",
+      "color": "#7539E4",
+      "status": "proposé"
+    },
+    {
+      "lane": "caissa",
+      "name": "Caissa",
+      "path": "marque/tile/kogia-tile-caissa.svg",
+      "color": "#C2410C",
+      "status": "proposé"
+    },
+    {
+      "lane": "cargon",
+      "name": "Cargon",
+      "path": "marque/tile/kogia-tile-cargon.svg",
+      "color": "#975D16",
+      "status": "proposé"
+    },
+    {
+      "lane": "areneo",
+      "name": "Areneo",
+      "path": "marque/tile/kogia-tile-areneo.svg",
+      "color": "#0F766E",
+      "status": "proposé"
+    },
+    {
+      "lane": "planeo",
+      "name": "Planeo",
+      "path": "marque/tile/kogia-tile-planeo.svg",
+      "color": "#0B70A3",
+      "status": "proposé"
+    },
+    {
+      "lane": "serveo",
+      "name": "Serveo",
+      "path": "marque/tile/kogia-tile-serveo.svg",
+      "color": "#A23A61",
+      "status": "proposé"
+    },
+    {
+      "lane": "lumeon",
+      "name": "Lumeon",
+      "path": "marque/tile/kogia-tile-lumeon.svg",
+      "color": "#36506F",
+      "status": "proposé"
+    }
+  ],
+  "tiers": [
+    {
+      "tier": "amateur",
+      "name": "Amateur",
+      "reading": "un anneau fin",
+      "path": "marque/tiers/kogia-tier-amateur.svg",
+      "followsLane": true
+    },
+    {
+      "tier": "pro",
+      "name": "Pro",
+      "reading": "un anneau plein et douze crans",
+      "path": "marque/tiers/kogia-tier-pro.svg",
+      "followsLane": true
+    },
+    {
+      "tier": "expert",
+      "name": "Expert",
+      "reading": "deux anneaux et vingt-quatre crans sur l'abysse",
+      "path": "marque/tiers/kogia-tier-expert.svg",
+      "followsLane": true
+    }
+  ],
+  "tiersParCouloir": [
+    {
+      "lane": "group",
+      "tier": "amateur",
+      "path": "marque/tiers/group/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "group",
+      "tier": "pro",
+      "path": "marque/tiers/group/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "group",
+      "tier": "expert",
+      "path": "marque/tiers/group/kogia-tier-expert.svg"
+    },
+    {
+      "lane": "coreon",
+      "tier": "amateur",
+      "path": "marque/tiers/coreon/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "coreon",
+      "tier": "pro",
+      "path": "marque/tiers/coreon/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "coreon",
+      "tier": "expert",
+      "path": "marque/tiers/coreon/kogia-tier-expert.svg"
+    },
+    {
+      "lane": "job",
+      "tier": "amateur",
+      "path": "marque/tiers/job/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "job",
+      "tier": "pro",
+      "path": "marque/tiers/job/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "job",
+      "tier": "expert",
+      "path": "marque/tiers/job/kogia-tier-expert.svg"
+    },
+    {
+      "lane": "faz3a",
+      "tier": "amateur",
+      "path": "marque/tiers/faz3a/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "faz3a",
+      "tier": "pro",
+      "path": "marque/tiers/faz3a/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "faz3a",
+      "tier": "expert",
+      "path": "marque/tiers/faz3a/kogia-tier-expert.svg"
+    },
+    {
+      "lane": "kharbga",
+      "tier": "amateur",
+      "path": "marque/tiers/kharbga/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "kharbga",
+      "tier": "pro",
+      "path": "marque/tiers/kharbga/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "kharbga",
+      "tier": "expert",
+      "path": "marque/tiers/kharbga/kogia-tier-expert.svg"
+    }
+  ]
+}
