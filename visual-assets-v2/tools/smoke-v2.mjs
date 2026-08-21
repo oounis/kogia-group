@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Sert le dépôt et ouvre la revue V2 dans un vrai navigateur : compte les
-// cartes, bascule les modes, vérifie que la galerie de production reste
-// intacte dans l'iframe, et que le repli « mouvement réduit » coupe bien tout.
+// Ouvre la galerie de production dans un vrai navigateur et exerce la bascule
+// Actuel / Revue V2 : comptes, décodage des rasters, verdicts, mouvement
+// réduit, fonds. Vérifie aussi que le mode Actuel reste exactement la galerie
+// d'origine et que la page autonome V2 rend la même revue.
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
@@ -27,7 +28,24 @@ const server = createServer(async (request, response) => {
 });
 await new Promise((done) => server.listen(0, "127.0.0.1", done));
 const port = server.address().port;
-const attendu = { approved: 6, avatars: 8, reactions: 12, icons: 15, loaders: 4, world: 12, boards: 4 };
+
+const ATTENDU_V1 = { avatars: 14, reactions: 12, icons: 60, loaders: 6 };
+const ATTENDU_V2 = { approved: 6, avatars: 8, reactions: 12, icons: 15, loaders: 4, world: 12, boards: 4 };
+
+const comptesV2 = () => ({
+  approved: document.querySelectorAll("#v2-review .avatars .card").length,
+  avatars: document.querySelectorAll("#v2-review #kg-v2-avatars .card").length,
+  reactions: document.querySelectorAll("#v2-review .compare")[0].querySelectorAll(".card").length,
+  icons: document.querySelectorAll("#v2-review .compare")[1].querySelectorAll(".card").length,
+  loaders: document.querySelectorAll("#v2-review .loaders .card").length,
+  world: document.querySelectorAll("#v2-review .world .card").length,
+  boards: document.querySelectorAll("#v2-review .boards .card").length,
+});
+
+const affichage = () => ({
+  actuel: getComputedStyle(document.querySelector("#current-gallery")).display,
+  revue: getComputedStyle(document.querySelector("#v2-review")).display,
+});
 
 try {
   const browser = await chromium.launch({ headless: true });
@@ -36,94 +54,110 @@ try {
   page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
   page.on("pageerror", (error) => errors.push(error.message));
   page.on("requestfailed", (request) => errors.push(`requête échouée : ${request.url()}`));
-  await page.goto(`http://127.0.0.1:${port}/visual-assets-v2/gallery/`, { waitUntil: "networkidle" });
+  await page.goto(`http://127.0.0.1:${port}/visual-assets/gallery/`, { waitUntil: "networkidle" });
 
-  const counts = await page.evaluate(() => ({
-    approved: document.querySelectorAll("#avatars-approved .card").length,
-    avatars: document.querySelectorAll("#avatars-v2 .card").length,
+  // La galerie démarre en mode Actuel, exactement comme avant.
+  const v1 = await page.evaluate(() => ({
+    avatars: document.querySelectorAll("#avatars .card").length,
     reactions: document.querySelectorAll("#reactions .card").length,
     icons: document.querySelectorAll("#icons .card").length,
     loaders: document.querySelectorAll("#loaders .card").length,
-    world: document.querySelectorAll("#world .card").length,
-    boards: document.querySelectorAll("#boards .card").length,
   }));
-  if (JSON.stringify(counts) !== JSON.stringify(attendu)) {
-    throw new Error(`Comptes inattendus : ${JSON.stringify(counts)} ≠ ${JSON.stringify(attendu)}`);
+  if (JSON.stringify(v1) !== JSON.stringify(ATTENDU_V1)) {
+    throw new Error(`Comptes V1 inattendus : ${JSON.stringify(v1)}`);
+  }
+  const auChargement = await page.evaluate(affichage);
+  if (auChargement.revue !== "none" || auChargement.actuel === "none") {
+    throw new Error(`La galerie ne démarre pas en mode Actuel : ${JSON.stringify(auChargement)}`);
+  }
+  // Rien de V2 ne doit être chargé tant qu'on n'a pas demandé la revue.
+  const premature = await page.evaluate(() => document.querySelector("#v2-review").children.length);
+  if (premature !== 0) throw new Error("La revue V2 se construit au chargement au lieu du premier passage");
+
+  // ── Bascule vers la revue V2 ────────────────────────────────────────────
+  await page.click('.kg-mode-switch button[data-mode="v2"]');
+  await page.locator("#v2-review .boards .card").first().waitFor({ timeout: 20000 });
+  const v2 = await page.evaluate(comptesV2);
+  if (JSON.stringify(v2) !== JSON.stringify(ATTENDU_V2)) {
+    throw new Error(`Comptes V2 inattendus : ${JSON.stringify(v2)} ≠ ${JSON.stringify(ATTENDU_V2)}`);
+  }
+  const enRevue = await page.evaluate(affichage);
+  if (enRevue.actuel !== "none" || enRevue.revue === "none") {
+    throw new Error(`Modes mal masqués en revue : ${JSON.stringify(enRevue)}`);
   }
 
-  // La bascule doit vraiment cacher : l'attribut [hidden] seul se fait battre
-  // par une règle d'id, et la page affiche alors les deux modes à la fois.
-  const visibles = await page.evaluate(() => ({
-    v2: getComputedStyle(document.querySelector("#mode-v2")).display,
-    actuel: getComputedStyle(document.querySelector("#mode-current")).display,
-  }));
-  if (visibles.actuel !== "none" || visibles.v2 === "none") {
-    throw new Error(`Modes mal masqués en V2 : ${JSON.stringify(visibles)}`);
-  }
+  // Chaque raster doit vraiment être décodé, pas juste référencé. La revue est
+  // montée d'un coup : on attend la fin du décodage avant de juger.
+  await page.waitForFunction(
+    () => [...document.querySelectorAll("#v2-review img")].every((image) => image.complete),
+    null, { timeout: 30000 });
+  const brisees = await page.evaluate(() => [...document.querySelectorAll("#v2-review img")]
+    .filter((image) => image.naturalWidth === 0).map((image) => image.getAttribute("src")));
+  if (brisees.length) throw new Error(`Images non décodées : ${brisees.slice(0, 5).join(", ")}`);
 
   // Aucune carte ne doit déborder de sa colonne (libellés de verdict coupés).
-  const debordent = await page.evaluate(() => [...document.querySelectorAll("#mode-v2 .card")]
+  const debordent = await page.evaluate(() => [...document.querySelectorAll("#v2-review .card")]
     .filter((card) => card.scrollWidth > card.clientWidth + 1).length);
   if (debordent) throw new Error(`${debordent} cartes débordent horizontalement`);
 
-  // Chaque raster doit vraiment être décodé, pas juste référencé.
-  const brisees = await page.evaluate(() => [...document.querySelectorAll("#mode-v2 img")]
-    .filter((image) => !image.complete || image.naturalWidth === 0).map((image) => image.getAttribute("src")));
-  if (brisees.length) throw new Error(`Images non décodées : ${brisees.slice(0, 5).join(", ")}`);
-
   // Contrôles de statut : un jeu par candidat, aucun sur les approuvés V1.
   const statuts = await page.evaluate(() => ({
-    candidats: document.querySelectorAll("#mode-v2 .status").length,
-    surApprouves: document.querySelectorAll("#avatars-approved .status").length,
+    candidats: document.querySelectorAll("#v2-review .status").length,
+    surApprouves: document.querySelectorAll("#v2-review .avatars .status").length,
   }));
   if (statuts.candidats !== 55 || statuts.surApprouves !== 0) {
     throw new Error(`Contrôles de statut inattendus : ${JSON.stringify(statuts)}`);
   }
 
   // Le verdict se pose et se relit.
-  await page.click('#avatars-v2 .card:first-child .status button[data-status="approved"]');
-  const verdict = await page.getAttribute("#avatars-v2 .card:first-child", "data-verdict");
-  if (verdict !== "approved") throw new Error("Le contrôle de statut n'a pas pris");
+  await page.click('#kg-v2-avatars .card:first-child .status button[data-status="approved"]');
+  if (await page.getAttribute("#kg-v2-avatars .card:first-child", "data-verdict") !== "approved") {
+    throw new Error("Le contrôle de statut n'a pas pris");
+  }
 
   // Mouvement réduit : plus aucune animation ne tourne.
-  await page.check("#freeze-motion");
-  const anime = await page.evaluate(() => [...document.querySelectorAll(".loader-art *")]
+  await page.check("#kg-v2-motion");
+  const anime = await page.evaluate(() => [...document.querySelectorAll("#v2-review .loader-art *")]
     .filter((node) => getComputedStyle(node).animationName !== "none").length);
   if (anime !== 0) throw new Error(`${anime} éléments encore animés sous mouvement réduit`);
-  await page.uncheck("#freeze-motion");
-  const enMouvement = await page.evaluate(() => [...document.querySelectorAll(".loader-art *")]
+  await page.uncheck("#kg-v2-motion");
+  const enMouvement = await page.evaluate(() => [...document.querySelectorAll("#v2-review .loader-art *")]
     .filter((node) => getComputedStyle(node).animationName !== "none").length);
   if (enMouvement === 0) throw new Error("Aucune animation active hors mouvement réduit");
 
-  // Fonds et couleur produit.
+  // Fonds et couloir produit.
   for (const fond of ["abyss", "checker", "product", "light"]) {
-    await page.selectOption("#background", fond);
-    if (await page.getAttribute("body", "data-bg") !== fond) throw new Error(`Fond ${fond} non appliqué`);
+    await page.selectOption("#kg-v2-bg", fond);
+    if (await page.getAttribute("#v2-review", "data-bg") !== fond) throw new Error(`Fond ${fond} non appliqué`);
   }
   await page.selectOption("#product", "kharbga");
-  if (await page.getAttribute("html", "data-kogia-product") !== "kharbga") throw new Error("Bascule de couleur produit échouée");
-
-  // Mode « Actuel » : la production s'affiche telle quelle, dans l'iframe.
-  await page.click('.mode-switch button[data-mode="current"]');
-  const basculees = await page.evaluate(() => ({
-    v2: getComputedStyle(document.querySelector("#mode-v2")).display,
-    actuel: getComputedStyle(document.querySelector("#mode-current")).display,
-  }));
-  if (basculees.v2 !== "none" || basculees.actuel === "none") {
-    throw new Error(`Modes mal masqués en Actuel : ${JSON.stringify(basculees)}`);
+  if (await page.getAttribute("html", "data-kogia-product") !== "kharbga") {
+    throw new Error("Bascule de couleur produit échouée");
   }
-  const cadre = await page.frameLocator("#current-frame");
-  await cadre.locator("#avatars .card").first().waitFor({ timeout: 15000 });
-  const production = await page.evaluate(async () => {
-    const frame = document.querySelector("#current-frame").contentDocument;
-    return { avatars: frame.querySelectorAll("#avatars .card").length, titre: frame.title };
-  });
-  if (production.titre !== "Kogia visual asset review") throw new Error(`Galerie de production altérée : ${production.titre}`);
+
+  // Retour à Actuel : la galerie d'origine est toujours là, intacte.
+  await page.click('.kg-mode-switch button[data-mode="current"]');
+  const retour = await page.evaluate(() => ({
+    avatars: document.querySelectorAll("#avatars .card").length,
+    actuel: getComputedStyle(document.querySelector("#current-gallery")).display,
+    revue: getComputedStyle(document.querySelector("#v2-review")).display,
+  }));
+  if (retour.avatars !== ATTENDU_V1.avatars) throw new Error("La galerie d'origine a changé après la bascule");
+  if (retour.revue !== "none" || retour.actuel === "none") {
+    throw new Error(`Retour à Actuel mal masqué : ${JSON.stringify(retour)}`);
+  }
+
+  // ── La page autonome rend la même revue ─────────────────────────────────
+  await page.goto(`http://127.0.0.1:${port}/visual-assets-v2/gallery/`, { waitUntil: "networkidle" });
+  await page.locator("#review .boards .card").first().waitFor({ timeout: 20000 });
+  const autonome = await page.evaluate(() =>
+    document.querySelectorAll("#review .card").length);
 
   await browser.close();
   if (errors.length) throw new Error(`Erreurs navigateur : ${errors.join(" | ")}`);
-  console.log(`Smoke V2 vert : ${JSON.stringify(counts)}, `
-    + `production intacte (${production.avatars} avatars), mouvement réduit propre, 4 fonds, bascule produit.`);
+  console.log(`Smoke V2 vert : galerie de production ${JSON.stringify(v1)}, `
+    + `revue ${JSON.stringify(v2)}, page autonome ${autonome} cartes, `
+    + "mouvement réduit propre, 4 fonds, bascule produit, retour à Actuel intact.");
 } finally {
   await new Promise((done) => server.close(done));
 }

@@ -6,101 +6,43 @@
   <title>Kogia · revue d'actifs visuels V2</title>
   <link rel="stylesheet" href="../../visual-assets/tokens/product-colors.css">
   <link rel="stylesheet" href="review.css">
+  <style>
+    /* Coquille minimale : la revue elle-même est entièrement portée par .kg-v2. */
+    body{margin:0;background:#F4F7FA;color:#0E2135;font:15px/1.5 Inter,system-ui,sans-serif}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+      padding:18px clamp(20px,5vw,48px);background:#fff;border-bottom:1px solid #DCE3EB
+    }
+    h1{margin:0;font:700 clamp(23px,4vw,32px)/1.15 Sora,system-ui}
+    .eyebrow{margin:0 0 4px;color:var(--kg-accent-600);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    label{display:grid;gap:5px;color:#485868;font-size:12px;font-weight:700}
+    select{min-width:170px;padding:9px 12px;border:1px solid #DCE3EB;border-radius:12px;background:#fff;color:#0E2135;font:inherit}
+    .note{margin:20px clamp(20px,5vw,48px) 0;color:#485868;font-size:13px}
+    .note a{color:var(--kg-accent-600)}
+    #review{margin:16px clamp(20px,5vw,48px) 40px}
+  </style>
 </head>
 <body>
   <header>
     <div>
       <p class="eyebrow">Art : Codex · Intégration : Claude · Approbation : Othman</p>
-      <h1>Revue d'actifs visuels</h1>
+      <h1>Revue d'actifs visuels V2</h1>
     </div>
-    <div class="controls">
-      <div class="mode-switch" role="tablist" aria-label="Mode de revue">
-        <button type="button" role="tab" data-mode="current" aria-selected="false">Actuel</button>
-        <button type="button" role="tab" data-mode="v2" aria-selected="true">Revue V2</button>
-      </div>
-      <label>Couleur produit <select id="product"></select></label>
-      <label>Fond <select id="background">
-        <option value="light">Clair</option>
-        <option value="abyss">Abysse (sombre)</option>
-        <option value="checker">Damier (alpha)</option>
-        <option value="product">Produit actif</option>
-      </select></label>
-    </div>
+    <label>Couleur produit <select id="product"></select></label>
   </header>
+  <p class="note">
+    Page autonome du paquet candidat. La même revue est montée dans la galerie de
+    production, sous la bascule « Revue V2 » :
+    <a href="../../visual-assets/gallery/index.html">ouvrir la galerie</a>.
+  </p>
+  <div id="review"></div>
 
-  <!-- Mode « Actuel » : la galerie de production, chargée telle quelle, jamais modifiée. -->
-  <section id="mode-current" class="mode" hidden>
-    <p class="mode-note">
-      Galerie de production, servie sans aucune modification depuis
-      <code>visual-assets/gallery/</code>. La revue V2 n'y touche pas.
-      <a href="../../visual-assets/gallery/index.html" target="_blank" rel="noopener">Ouvrir dans un onglet</a>
-    </p>
-    <iframe id="current-frame" title="Galerie de production actuelle" loading="lazy"></iframe>
-  </section>
-
-  <!-- Mode « Revue V2 » : la couche candidate. -->
-  <main id="mode-v2" class="mode">
-    <p class="mode-note verdict-bar">
-      <span id="verdict-summary">Aucun verdict enregistré.</span>
-      <button type="button" id="export-verdicts">Exporter les verdicts</button>
-      <button type="button" id="reset-verdicts">Tout remettre à « candidat »</button>
-    </p>
-
-    <section>
-      <div class="section-title">
-        <h2>Avatars — six approuvés, huit candidats</h2>
-        <p>Les approuvés V1 servent d'étalon. Contrôle à 40 px, la taille réelle en liste.</p>
-      </div>
-      <h3 class="sub">Approuvés (V1, référence)</h3>
-      <div id="avatars-approved" class="grid avatars"></div>
-      <h3 class="sub">Candidats V2, à côté de la version déjà en production</h3>
-      <div id="avatars-v2" class="grid avatars"></div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Réactions — V1 contre V2</h2>
-        <p>Vue de revue à 92 px, puis la taille réelle d'usage à 32 px.</p>
-      </div>
-      <div id="reactions" class="grid compare"></div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Icônes sémantiques — V1 contre V2</h2>
-        <p>Seuls les concepts propres à Kogia sont remplacés. Revue à 32 px, usage réel à 20 px.</p>
-      </div>
-      <div id="icons" class="grid compare"></div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Loaders — quatre rôles consolidés</h2>
-        <p>Le mouvement vit dans le CSS de la galerie. Image fixe sous <code>prefers-reduced-motion</code>.</p>
-      </div>
-      <label class="inline-toggle">
-        <input type="checkbox" id="freeze-motion"> Simuler « mouvement réduit »
-      </label>
-      <div id="loaders" class="grid loaders"></div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Objets du monde Kogia</h2>
-        <p>Décor d'article, objets de réussite, états vides, motifs d'accueil. À 128, 64 et 40 px.</p>
-      </div>
-      <div id="world" class="grid world"></div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h2>Planches de direction</h2>
-        <p>Dont la planche narrative : six récits récurrents, sans mots.</p>
-      </div>
-      <div id="boards" class="grid boards"></div>
-    </section>
-  </main>
-
-  <script type="module" src="review.js"></script>
+  <script type="module">
+    import { renderReviewV2 } from "./review.js";
+    const manifest = await renderReviewV2({ base: "..", mount: document.querySelector("#review") });
+    const product = document.querySelector("#product");
+    for (const [id, item] of Object.entries(manifest.products)) product.add(new Option(item.name, id));
+    product.addEventListener("change", () => { document.documentElement.dataset.kogiaProduct = product.value; });
+  </script>
 </body>
 </html>

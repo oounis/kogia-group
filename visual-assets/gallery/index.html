@@ -6,13 +6,22 @@
   <title>Kogia visual asset review</title>
   <link rel="stylesheet" href="../tokens/product-colors.css">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="../../visual-assets-v2/gallery/review.css">
 </head>
 <body>
   <header>
     <div><p class="eyebrow">Kogia Harmony · identity from brand/, art from visual-assets/</p><h1>Visual asset review</h1></div>
-    <label>Product color <select id="product"></select></label>
+    <div class="header-controls">
+      <div class="kg-mode-switch" role="tablist" aria-label="Mode de revue">
+        <button type="button" role="tab" data-mode="current" aria-selected="true">Actuel</button>
+        <button type="button" role="tab" data-mode="v2" aria-selected="false">Revue V2</button>
+      </div>
+      <label>Product color <select id="product"></select></label>
+    </div>
   </header>
-  <main>
+  <!-- Couche candidate : construite au premier passage, jamais au chargement. -->
+  <div id="v2-review" hidden></div>
+  <main id="current-gallery">
     <section><div class="section-title"><h2>Account levels</h2><p>The same whale, never redrawn. The level reads without colour: one thin ring, a full ring with twelve notches, two rings with twenty-four notches on the abyss. Follows the product colour above.</p></div><div id="tiers" class="grid tiers"></div></section>
     <section><div class="section-title"><h2>The mark, per product</h2><p>Generated from <code>brand/kogia-mark.svg</code> by <code>brand/tools/construire-marque.mjs</code>: only the colour changes. Tiles are app icons / favicons.</p></div><div id="marks" class="grid marks"></div></section>
     <section><div class="section-title"><h2>Loading states, from the mark</h2><p>The whale never moves a point; the spout, the echo, the wake and the water do. One per meaning. Follows the product colour; stands still under reduced motion.</p></div><div id="mark-loaders" class="grid mark-loaders"></div></section>

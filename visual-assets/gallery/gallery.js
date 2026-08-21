@@ -43,3 +43,13 @@ async function vectorCards(items, loader = false) {
 }
 document.querySelector("#icons").innerHTML = (await vectorCards(manifest.icons)).join("");
 document.querySelector("#loaders").innerHTML = (await vectorCards(manifest.loaders, true)).join("");
+
+// ── Bascule Actuel / Revue V2 ───────────────────────────────────────────────
+// La revue V2 lit son propre manifeste : rien de candidat n'entre ici.
+const { wireModeSwitch } = await import("../../visual-assets-v2/gallery/review.js");
+wireModeSwitch({
+  buttons: [...document.querySelectorAll(".kg-mode-switch button")],
+  current: document.querySelector("#current-gallery"),
+  review: document.querySelector("#v2-review"),
+  base: "../../visual-assets-v2",
+});
