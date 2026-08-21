@@ -24,6 +24,11 @@
   --kg-accent-500:#3C6880; --kg-accent-600:#244A63; --kg-accent-700:#18384D;
   --kg-icon-accent:#B96945;
 }
+[data-kogia-product="eduplus"] {
+  --kg-accent-50:#EEF4FF; --kg-accent-100:#D9E5FF; --kg-accent-300:#8EAEFF;
+  --kg-accent-500:#3459F2; --kg-accent-600:#223DE7; --kg-accent-700:#1C2FD4;
+  --kg-icon-accent:var(--kg-accent-600);
+}
 [data-kogia-product="coffee"] {
   --kg-accent-50:#FBF6F0; --kg-accent-100:#F3E8DB; --kg-accent-300:#CDA982;
   --kg-accent-500:#9B6642; --kg-accent-600:#7A4B2E; --kg-accent-700:#5F3824;

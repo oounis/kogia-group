@@ -38,6 +38,13 @@
       "status": "couleur existante"
     },
     {
+      "lane": "eduplus",
+      "name": "EduPlus Connect",
+      "path": "marque/mark/kogia-mark-eduplus.svg",
+      "color": "#223DE7",
+      "status": "couleur existante"
+    },
+    {
       "lane": "coffee",
       "name": "Kogia Coffee",
       "path": "marque/mark/kogia-mark-coffee.svg",
@@ -163,6 +170,13 @@
       "name": "Kharbga",
       "path": "marque/tile/kogia-tile-kharbga.svg",
       "color": "#244A63",
+      "status": "couleur existante"
+    },
+    {
+      "lane": "eduplus",
+      "name": "EduPlus Connect",
+      "path": "marque/tile/kogia-tile-eduplus.svg",
+      "color": "#223DE7",
       "status": "couleur existante"
     },
     {
@@ -341,6 +355,21 @@
       "lane": "kharbga",
       "tier": "expert",
       "path": "marque/tiers/kharbga/kogia-tier-expert.svg"
+    },
+    {
+      "lane": "eduplus",
+      "tier": "amateur",
+      "path": "marque/tiers/eduplus/kogia-tier-amateur.svg"
+    },
+    {
+      "lane": "eduplus",
+      "tier": "pro",
+      "path": "marque/tiers/eduplus/kogia-tier-pro.svg"
+    },
+    {
+      "lane": "eduplus",
+      "tier": "expert",
+      "path": "marque/tiers/eduplus/kogia-tier-expert.svg"
     }
   ],
   "loaders": [
