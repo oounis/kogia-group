@@ -539,6 +539,15 @@
   ],
   "avatars": [
     {
+      "name": "boubou",
+      "family": "avatar",
+      "path": "avatars/png/boubou.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "bunyan",
       "family": "avatar",
       "path": "avatars/png/bunyan.png",
@@ -548,9 +557,27 @@
       "alpha": true
     },
     {
+      "name": "hakim",
+      "family": "avatar",
+      "path": "avatars/png/hakim.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "kogi",
       "family": "avatar",
       "path": "avatars/png/kogi.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "lulu",
+      "family": "avatar",
+      "path": "avatars/png/lulu.png",
       "format": "png",
       "width": 512,
       "height": 512,
@@ -575,6 +602,24 @@
       "alpha": true
     },
     {
+      "name": "nour",
+      "family": "avatar",
+      "path": "avatars/png/nour.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "pixel",
+      "family": "avatar",
+      "path": "avatars/png/pixel.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
       "name": "rasm",
       "family": "avatar",
       "path": "avatars/png/rasm.png",
@@ -587,6 +632,24 @@
       "name": "sada",
       "family": "avatar",
       "path": "avatars/png/sada.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "samir",
+      "family": "avatar",
+      "path": "avatars/png/samir.png",
+      "format": "png",
+      "width": 512,
+      "height": 512,
+      "alpha": true
+    },
+    {
+      "name": "zayd",
+      "family": "avatar",
+      "path": "avatars/png/zayd.png",
       "format": "png",
       "width": 512,
       "height": 512,
@@ -703,5 +766,5 @@
       "alpha": true
     }
   ],
-  "total": 84
+  "total": 91
 }

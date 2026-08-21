@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="kg-avatar-pixel-title">
+  <title id="kg-avatar-pixel-title">Pixel, le bizarre</title>
+  <path d="M96 512 V400 C96 340 160 300 256 300 C352 300 416 340 416 400 V512 Z" fill="#2E7D5B" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M186 306 C210 280 302 280 326 306 C300 322 212 322 186 306 Z" fill="#B6E8A8" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M132 236 C120 150 170 70 256 62 C336 56 386 118 392 176 C404 176 420 186 428 204 C416 214 402 218 390 218 C372 262 318 296 256 302 C196 306 150 288 132 236 Z" fill="#8BD17C" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M150 214 C170 196 214 190 246 212 C262 236 254 274 232 292 C198 300 168 286 150 250 Z" fill="#F1E8D2" stroke="#1F3346" stroke-width="4"/>
+    <circle cx="212" cy="244" r="8" fill="#D9CDB2"/><circle cx="236" cy="268" r="6" fill="#D9CDB2"/>
+  <circle cx="300" cy="154" r="13" fill="#FFFFFF" stroke="#1F2430" stroke-width="5"/><circle cx="302" cy="156" r="5" fill="#1F2430"/>
+  <ellipse cx="336" cy="208" rx="9" ry="12" fill="#1F2430"/>
+  <g stroke="#1F3346" stroke-width="7" stroke-linecap="round"><path d="M150 120 C150 60 230 50 250 40" fill="none"/><path d="M232 56 q-6 -22 18 -26" fill="none"/><circle cx="256" cy="24" r="16" fill="#FFD23F"/><circle cx="256" cy="24" r="6" fill="#FFFFFF" stroke="none"/></g><g stroke="#1F3346" stroke-width="6"><path d="M110 420 h292 M104 456 h304" stroke="#1F3346" stroke-opacity=".35"/></g>
+</svg>

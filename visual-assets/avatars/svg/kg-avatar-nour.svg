@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="kg-avatar-nour-title">
+  <title id="kg-avatar-nour-title">Nour, la rêveuse</title>
+  <path d="M96 512 V400 C96 340 160 300 256 300 C352 300 416 340 416 400 V512 Z" fill="#6F5BB5" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M186 306 C210 280 302 280 326 306 C300 322 212 322 186 306 Z" fill="#E5DCF7" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M132 236 C120 150 170 70 256 62 C336 56 386 118 392 176 C404 176 420 186 428 204 C416 214 402 218 390 218 C372 262 318 296 256 302 C196 306 150 288 132 236 Z" fill="#B49BE8" stroke="#1F3346" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M150 214 C170 196 214 190 246 212 C262 236 254 274 232 292 C198 300 168 286 150 250 Z" fill="#F1E8D2" stroke="#1F3346" stroke-width="4"/>
+    <circle cx="212" cy="244" r="8" fill="#D9CDB2"/><circle cx="236" cy="268" r="6" fill="#D9CDB2"/>
+  <path d="M290 158 q10 8 20 0" fill="none" stroke="#1F2430" stroke-width="7" stroke-linecap="round"/>
+  <path d="M322 208 q14 6 28 0" fill="none" stroke="#1F2430" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#1F3346" stroke-width="7" stroke-linecap="round"><path d="M150 176 C140 90 200 50 262 52 C330 54 382 100 386 170" fill="none"/><rect x="126" y="168" width="40" height="64" rx="16" fill="#F08A8A"/><rect x="372" y="160" width="40" height="64" rx="16" fill="#F08A8A"/></g><g fill="#FFD23F"><path d="M430 80 l6 14 l14 6 l-14 6 l-6 14 l-6 -14 l-14 -6 l14 -6 Z"/><path d="M70 120 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"/></g>
+</svg>
