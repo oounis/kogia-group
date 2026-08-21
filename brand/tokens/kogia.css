@@ -32,6 +32,14 @@
   --k-terra-400:#F97C43; --k-terra-500:#E85D2F; --k-terra-600:#C2410C; --k-terra-700:#9A3412;
   --k-terra-800:#7C2D12; --k-terra-900:#652411;
 
+  /* Torréfaction — la famille de Kogia Coffee. Les six pas repris tels quels du
+     couloir « coffee » déjà approuvé dans visual-assets/tokens/product-colors.json,
+     pour que la galerie et la boutique parlent enfin de la même couleur.
+     200/400/800/900 ne sont PAS définis : ils n'ont jamais été mesurés, et on ne
+     les invente pas — les ajouter demande le même travail d'écart que les autres. */
+  --k-roast-50:#FBF6F0; --k-roast-100:#F3E8DB; --k-roast-300:#CDA982;
+  --k-roast-500:#9B6642; --k-roast-600:#7A4B2E; --k-roast-700:#5F3824;
+
   /* ── Status: RESERVED. Never a brand hue, never a chart series.
         Always with an icon or a word — never colour alone. ──────────────── */
   --k-ok:#12946F;      --k-ok-soft:#E7F5F0;
@@ -93,6 +101,14 @@
   --k-p-300:var(--k-terra-300); --k-p-400:var(--k-terra-400); --k-p-500:var(--k-terra-500);
   --k-p-600:var(--k-terra-600); --k-p-700:var(--k-terra-700); --k-p-800:var(--k-terra-800);
   --k-p-900:var(--k-terra-900);
+}
+/* Kogia Coffee. Seuls les six pas mesurés sont déclarés : un composant qui
+   demanderait --k-p-200 ici doit d'abord faire mesurer le pas, pas se rabattre
+   sur une valeur approchante. */
+[data-product="coffee"] {
+  --k-p-50:var(--k-roast-50);   --k-p-100:var(--k-roast-100);
+  --k-p-300:var(--k-roast-300); --k-p-500:var(--k-roast-500);
+  --k-p-600:var(--k-roast-600); --k-p-700:var(--k-roast-700);
 }
 
 /* THE STEP CONTRACT — identical in all three families:
