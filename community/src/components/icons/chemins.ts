@@ -1,27 +1,23 @@
-/* Généré depuis KOGIAGROUP_VISUAL_ASSET_SYSTEM_2026-08-18/icons/svg.
-   Ne pas modifier à la main : régénérer depuis les SVG sources.
-
-   Deux corrections appliquées à la conversion :
-   - les couleurs codées en dur (#12233F, #2F6BFF) deviennent
-     currentColor et var(--icone-accent), sans quoi une icône ne peut
-     ni suivre la couleur du texte, ni changer au survol, ni exister
-     sur fond sombre ;
-   - le <title id="title"> des SVG sources était identique dans les 46
-     fichiers : deux icônes sur une même page produisaient des
-     identifiants DOM en double et une étiquette de lecteur d'écran
-     cassée. Le titre est désormais porté par le composant. */
+/* GÉNÉRÉ par tools/generer-icones.mjs depuis ../visual-assets/icons/svg
+   (la seule source d'icônes partagées Kogia). NE PAS MODIFIER À LA MAIN :
+   corriger le SVG source puis relancer le script. 60 icônes. */
 
 export const CHEMINS_ICONES = {
   "accessibility": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"4.5\" r=\"1.5\"/><path d=\"M5 8h14M12 8v5M8 21l4-8 4 8M7 12l5-4 5 4\"/></g>",
   "analytics": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20V10M9 20V6M14 20v-8M19 20V3M3 20h18\"/></g>",
   "article": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3.5h8l4 4V20.5H6z\"/><path d=\"M14 3.5v4h4M9 11h6M9 14.5h6M9 18h4\"/></g>",
+  "back": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m10 5-7 7 7 7M3 12h18\"/></g>",
   "bookmark": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 3.5h10v17l-5-3.5-5 3.5z\"/></g>",
+  "bottom-nav": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M3 15h18M7 18h.01M12 18h.01M17 18h.01\"/></g>",
+  "camera": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 8h4l1.5-2h5L16 8h4v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/></g>",
   "civic-action": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l8 4H4zM5 9h14M6 9v8M10 9v8M14 9v8M18 9v8M4 20h16M3 17h18\"/></g>",
+  "close": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"><path d=\"m5 5 14 14M19 5 5 19\"/></g>",
   "comment": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8 9h8M8 12h5\"/></g>",
   "community": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"3\"/><circle cx=\"5.5\" cy=\"10\" r=\"2\"/><circle cx=\"18.5\" cy=\"10\" r=\"2\"/><path d=\"M6 20c.3-4 2.3-6 6-6s5.7 2 6 6M2.5 19c.1-2.7 1.2-4.2 3.5-4.7M21.5 19c-.1-2.7-1.2-4.2-3.5-4.7\"/></g>",
   "compass": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15.5 8.5l-2 5-5 2 2-5z\" fill=\"var(--icone-accent, currentColor)\"/><circle cx=\"12\" cy=\"12\" r=\"1\" fill=\"white\" stroke=\"none\"/></g>",
   "dark-mode": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19.5 15.5A8 8 0 018.5 4.5 8.5 8.5 0 1019.5 15.5z\"/></g>",
   "deep-dive": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7c3-2 6-2 9 0s6 2 9 0M3 11c3-2 6-2 9 0s6 2 9 0\"/><path d=\"M12 13v8M8.5 17.5L12 21l3.5-3.5\" stroke=\"var(--icone-accent, currentColor)\"/></g>",
+  "download": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4v12m-4-4 4 4 4-4M5 19h14\"/></g>",
   "draft": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3.5h9l3 3V20H6z\"/><path d=\"M9 11h6M9 14.5h4\" stroke-dasharray=\"2 2\"/></g>",
   "echolocation": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"12\" r=\"2\" fill=\"var(--icone-accent, currentColor)\" stroke=\"none\"/><path d=\"M10 9c2 1.5 2 4.5 0 6M14 6c4 3.5 4 8.5 0 12M18 3c5.5 5 5.5 13 0 18\"/></g>",
   "edit": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20l4.2-1 10.5-10.5-3.2-3.2L5 15.8z\"/><path d=\"M13.8 7l3.2 3.2M4 20h5\"/></g>",
@@ -29,18 +25,26 @@ export const CHEMINS_ICONES = {
   "filter": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 5h18l-7 8v6l-4 2v-8z\"/></g>",
   "follow": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3.5 19c.5-3.7 2.3-5.5 5.5-5.5s5 1.8 5.5 5.5M18 8v6M15 11h6\"/></g>",
   "hidden-opportunity": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 16c3-1 5-1 8 0s5 1 10 0M4 19c3-1 5-1 8 0s5 1 8 0\"/><path d=\"M8 14l4-9 4 9z\" fill=\"var(--icone-accent, currentColor)\"/><path d=\"M12 8v3\" stroke=\"white\"/></g>",
+  "home": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v10h13V10M9.5 20v-6h5v6\"/></g>",
   "idea-cloud": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17h10a4 4 0 00.7-7.9A6 6 0 006.3 8 4.5 4.5 0 007 17z\"/><path d=\"M10 12h4M12 10v4\" stroke=\"var(--icone-accent, currentColor)\"/><circle cx=\"5\" cy=\"20\" r=\"1\" fill=\"var(--icone-accent, currentColor)\" stroke=\"none\"/></g>",
   "language": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3z\"/></g>",
   "launch": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 15l-3 3M15 9l3-3M8 16l-3-.5.5-3M16 8l.5-3 3 .5\"/><path d=\"M8 16c4-1 7-4 8-8-4 1-7 4-8 8z\"/><circle cx=\"13.2\" cy=\"10.8\" r=\"1.2\"/></g>",
   "loading": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8\" stroke-dasharray=\"8 5\"/><path d=\"M12 4v3\" stroke=\"var(--icone-accent, currentColor)\"/></g>",
   "locked": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"10\" width=\"14\" height=\"11\" rx=\"2\"/><path d=\"M8 10V7a4 4 0 018 0v3M12 14v3\"/></g>",
+  "map-pin": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2\" fill=\"var(--icone-accent, currentColor)\"/></g>",
+  "menu": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></g>",
+  "microphone": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"3\" width=\"6\" height=\"11\" rx=\"3\"/><path d=\"M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6\"/></g>",
   "moderation": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l7 3v5c0 4.5-2.3 7.4-7 10-4.7-2.6-7-5.5-7-10V6z\"/><path d=\"M9 12l2 2 4-4\"/></g>",
+  "more": "<g fill=\"currentColor\"><circle cx=\"5\" cy=\"12\" r=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"1.5\"/><circle cx=\"19\" cy=\"12\" r=\"1.5\"/></g>",
   "notification": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 17h12l-1.5-2.5V10a4.5 4.5 0 00-9 0v4.5zM10 20h4\"/></g>",
+  "offline": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 9a10 10 0 0 1 13.5-.5M8 12a6 6 0 0 1 7.5-.3M11 15a2.2 2.2 0 0 1 2 0M4 4l16 16\"/></g>",
   "partnership": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 14l3 3c1 1 2.5 1 3.5 0l5-5M4.5 12l4-4 3 1.5M2.5 9l4-4 3 3-4 4zM14.5 8l3-3 4 4-3 3z\"/><path d=\"M9 12l2-2 5 5\"/></g>",
   "pearl": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"6\" fill=\"var(--icone-accent, currentColor)\"/><path d=\"M9 9c1-1 2-1.5 3.5-1.5\" stroke=\"white\"/><path d=\"M3 12c2-5 5-8 9-9M21 12c-2 5-5 8-9 9\" stroke-dasharray=\"2 2\"/></g>",
+  "phone": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 3h3l1 5-2 1c1.3 2.7 3.3 4.7 6 6l1-2 5 1v3c0 2.2-1.8 4-4 4C9.3 21 3 14.7 3 7c0-2.2 1.8-4 4-4z\"/></g>",
   "platform": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 9h18M8 9v11M6 6.5h.01M9 6.5h.01\"/></g>",
   "profile": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"3.5\"/><path d=\"M5 20c.5-4.5 2.8-6.5 7-6.5s6.5 2 7 6.5\"/></g>",
   "project": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"6\" width=\"16\" height=\"14\" rx=\"2\"/><path d=\"M9 6V4h6v2M8 11h8M8 15h5\"/></g>",
+  "proof": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"m8 14 2.5 2.5L16 11M8 7h8\"/></g>",
   "prototype": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l8 4.5v9L12 21l-8-4.5v-9z\"/><path d=\"M4 7.5l8 4.5 8-4.5M12 12v9M8 5.2l8 4.5\"/></g>",
   "publish": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 16V4M7.5 8.5L12 4l4.5 4.5\"/><path d=\"M5 14v6h14v-6\"/></g>",
   "reaction": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M8.5 10h.01M15.5 10h.01M8.5 14c1.8 2 5.2 2 7 0\"/></g>",
@@ -55,9 +59,10 @@ export const CHEMINS_ICONES = {
   "surface": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 15c3-2 6-2 9 0s6 2 9 0M3 19c3-2 6-2 9 0s6 2 9 0\"/><path d=\"M12 13V4M8.5 7.5L12 4l3.5 3.5\" stroke=\"var(--icone-accent, currentColor)\"/></g>",
   "sync": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 7V3l-2 2a8 8 0 00-12 3M5 17v4l2-2a8 8 0 0012-3\"/><path d=\"M19 3h-4M5 21h4\"/></g>",
   "topic": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 7h16M7 3L5 21M17 3l-2 18M3 16h16\"/></g>",
+  "upload": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 16V4m-4 4 4-4 4 4M5 15v5h14v-5\"/></g>",
+  "verify": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 3 2 2.1 2.8-.2.7 2.7 2.4 1.5-1 2.6 1 2.6-2.4 1.5-.7 2.7-2.8-.2L12 21l-2-2.1-2.8.2-.7-2.7-2.4-1.5 1-2.6-1-2.6 2.4-1.5.7-2.7 2.8.2z\"/><path d=\"m8.5 12 2.2 2.2 4.8-4.8\" stroke=\"var(--icone-accent, currentColor)\"/></g>",
   "visible": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\"/></g>",
   "warning": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l10 18H2z\"/><path d=\"M12 9v5M12 17.5h.01\"/></g>",
-  "whale-mark": "<g stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 13c1.2-4.4 5-7 9.2-6.4 3.4.5 5.8 3 6.8 6.4-2.5 4.3-6 6.5-10.4 5.5C7 17.9 5.1 16 4 13z\"/><path d=\"M4 13c-1.5-.2-2.2-1.2-2-3 1.5.2 2.6.8 3.2 2M19.8 11.8c1.2-1 1.9-2.2 2.2-3.8-1.8.2-3 .9-3.7 2.2\"/><circle cx=\"14.8\" cy=\"10.8\" r=\".6\" fill=\"var(--icone-accent, currentColor)\" stroke=\"none\"/></g>",
 } as const;
 
 export type NomIcone = keyof typeof CHEMINS_ICONES;

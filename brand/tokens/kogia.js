@@ -91,7 +91,7 @@ export const SH = {
 
 /* ── Motion: stillness is the resting state. One curve, four durations. ─── */
 export const EASE = 'cubic-bezier(.2,.8,.2,1)'
-export const T = { micro:160, standard:220, deliberate:320, welcome:600 }
+export const T = { instant:100, micro:160, standard:220, deliberate:320, welcome:600 }
 
 /** The mark. ONE path — the K and the whale are the same silhouette. */
 export const MARK = {

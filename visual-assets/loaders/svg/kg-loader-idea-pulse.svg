@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-labelledby="kg-loader-idea-pulse-title">
+  <title id="kg-loader-idea-pulse-title">idea pulse loading</title>
+  <style>@keyframes pulse{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}.moving{animation:pulse .9s ease-in-out infinite}.d2{animation-delay:.15s}.d3{animation-delay:.3s}@media(prefers-reduced-motion:reduce){.moving{animation:none!important}}</style>
+  <circle class="moving d1" cx="12" cy="24" r="4" fill="var(--kg-accent,currentColor)"/><circle class="moving d2" cx="24" cy="24" r="4" fill="var(--kg-accent,currentColor)"/><circle class="moving d3" cx="36" cy="24" r="4" fill="var(--kg-accent,currentColor)"/>
+</svg>

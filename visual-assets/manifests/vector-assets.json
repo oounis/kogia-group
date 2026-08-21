@@ -1,0 +1,462 @@
+{
+  "icons": [
+    {
+      "name": "accessibility",
+      "path": "icons/svg/kg-accessibility.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "analytics",
+      "path": "icons/svg/kg-analytics.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "article",
+      "path": "icons/svg/kg-article.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "back",
+      "path": "icons/svg/kg-back.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "bookmark",
+      "path": "icons/svg/kg-bookmark.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "bottom-nav",
+      "path": "icons/svg/kg-bottom-nav.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "camera",
+      "path": "icons/svg/kg-camera.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "civic-action",
+      "path": "icons/svg/kg-civic-action.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "close",
+      "path": "icons/svg/kg-close.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "comment",
+      "path": "icons/svg/kg-comment.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "community",
+      "path": "icons/svg/kg-community.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "compass",
+      "path": "icons/svg/kg-compass.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "dark-mode",
+      "path": "icons/svg/kg-dark-mode.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "deep-dive",
+      "path": "icons/svg/kg-deep-dive.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "download",
+      "path": "icons/svg/kg-download.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "draft",
+      "path": "icons/svg/kg-draft.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "echolocation",
+      "path": "icons/svg/kg-echolocation.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "edit",
+      "path": "icons/svg/kg-edit.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "education",
+      "path": "icons/svg/kg-education.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "filter",
+      "path": "icons/svg/kg-filter.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "follow",
+      "path": "icons/svg/kg-follow.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "hidden-opportunity",
+      "path": "icons/svg/kg-hidden-opportunity.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "home",
+      "path": "icons/svg/kg-home.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "idea-cloud",
+      "path": "icons/svg/kg-idea-cloud.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "language",
+      "path": "icons/svg/kg-language.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "launch",
+      "path": "icons/svg/kg-launch.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "loading",
+      "path": "icons/svg/kg-loading.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "locked",
+      "path": "icons/svg/kg-locked.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "map-pin",
+      "path": "icons/svg/kg-map-pin.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "menu",
+      "path": "icons/svg/kg-menu.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "microphone",
+      "path": "icons/svg/kg-microphone.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "moderation",
+      "path": "icons/svg/kg-moderation.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "more",
+      "path": "icons/svg/kg-more.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "notification",
+      "path": "icons/svg/kg-notification.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "offline",
+      "path": "icons/svg/kg-offline.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "partnership",
+      "path": "icons/svg/kg-partnership.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "pearl",
+      "path": "icons/svg/kg-pearl.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "phone",
+      "path": "icons/svg/kg-phone.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "platform",
+      "path": "icons/svg/kg-platform.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "profile",
+      "path": "icons/svg/kg-profile.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "project",
+      "path": "icons/svg/kg-project.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "proof",
+      "path": "icons/svg/kg-proof.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "prototype",
+      "path": "icons/svg/kg-prototype.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "publish",
+      "path": "icons/svg/kg-publish.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "reaction",
+      "path": "icons/svg/kg-reaction.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "revenue",
+      "path": "icons/svg/kg-revenue.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "roadmap",
+      "path": "icons/svg/kg-roadmap.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "search",
+      "path": "icons/svg/kg-search.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "service",
+      "path": "icons/svg/kg-service.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "settings",
+      "path": "icons/svg/kg-settings.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "share",
+      "path": "icons/svg/kg-share.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "solution",
+      "path": "icons/svg/kg-solution.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "success",
+      "path": "icons/svg/kg-success.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "surface",
+      "path": "icons/svg/kg-surface.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "sync",
+      "path": "icons/svg/kg-sync.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "topic",
+      "path": "icons/svg/kg-topic.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "upload",
+      "path": "icons/svg/kg-upload.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "verify",
+      "path": "icons/svg/kg-verify.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "visible",
+      "path": "icons/svg/kg-visible.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    },
+    {
+      "name": "warning",
+      "path": "icons/svg/kg-warning.svg",
+      "format": "svg",
+      "color": "currentColor",
+      "accent": "--kg-icon-accent"
+    }
+  ],
+  "loaders": [
+    {
+      "name": "echo-scan",
+      "path": "loaders/svg/kg-loader-echo-scan.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    },
+    {
+      "name": "deep-dive",
+      "path": "loaders/svg/kg-loader-deep-dive.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    },
+    {
+      "name": "surface-wave",
+      "path": "loaders/svg/kg-loader-surface-wave.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    },
+    {
+      "name": "idea-pulse",
+      "path": "loaders/svg/kg-loader-idea-pulse.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    },
+    {
+      "name": "pearl-orbit",
+      "path": "loaders/svg/kg-loader-pearl-orbit.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    },
+    {
+      "name": "current-pulse",
+      "path": "loaders/svg/kg-loader-current-pulse.svg",
+      "format": "animated-svg",
+      "reducedMotion": true
+    }
+  ]
+}

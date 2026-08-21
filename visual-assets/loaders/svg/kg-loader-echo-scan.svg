@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-labelledby="kg-loader-echo-scan-title">
+  <title id="kg-loader-echo-scan-title">echo scan loading</title>
+  <style>@keyframes echo{0%{r:7px;opacity:1}100%{r:20px;opacity:0}}.ring{animation:echo 1.4s ease-out infinite;transform-origin:24px 24px}.b{animation-delay:.7s}@media(prefers-reduced-motion:reduce){.moving{animation:none!important}}</style>
+  <circle cx="24" cy="24" r="4" fill="var(--kg-accent,currentColor)"/><circle class="moving ring a" cx="24" cy="24" r="9" stroke="currentColor" stroke-width="3"/><circle class="moving ring b" cx="24" cy="24" r="9" stroke="currentColor" stroke-width="3"/>
+</svg>

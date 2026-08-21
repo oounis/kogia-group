@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-labelledby="kg-loader-surface-wave-title">
+  <title id="kg-loader-surface-wave-title">surface wave loading</title>
+  <style>@keyframes rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}.dot{animation:rise 1.6s cubic-bezier(.2,.8,.2,1) infinite}@media(prefers-reduced-motion:reduce){.moving{animation:none!important}}</style>
+  <path d="M8 13c6-4 10-4 16 0s10 4 16 0M8 24c6-4 10-4 16 0s10 4 16 0M8 35c6-4 10-4 16 0s10 4 16 0" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".28"/><circle class="moving dot" cx="24" cy="39" r="4" fill="var(--kg-accent,currentColor)"/>
+</svg>

@@ -488,6 +488,32 @@ Before anything ships, on every product:
 
 ## 16. Changelog
 
+### v5.1 — 2026-08-21 — *One vocabulary, two sources, controlled product lanes*
+- **Harmony is the only company-level design language.** The "ChatGPT-inspired" token
+  vocabulary that kogiagroup.com (`community/`) had grown since 2026-08-15 is retired as a
+  *separate* system: its variables are now aliases of `brand/tokens/kogia.css`. No value is
+  typed in the site any more; the action colour is ocean-600 `#2547E8` (the old `#2A5CE0`
+  was a hand copy of it), the ink is `--k-ink`, the secondary text is `--k-slate` (AAA,
+  it was `#6B6B6B`), the radii are the four of §6.
+- **The editorial lane, recorded as a decision and not as drift.** Othman decided
+  (2026-08-13/15) that the public site is **white-grounded, light-only, Inter-only, with
+  one accent reserved for the primary action and the selected state, and almost no
+  shadow**. This is a *lane* inside Harmony, like a product colour family: it changes
+  canvas (`--k-surface` instead of `--k-canvas`), the display face (text face everywhere)
+  and elevation (§8 minimal). Neutrals, status, spacing, radii, motion, icons and
+  components are Harmony's. Products that are *applications* (Coreon, Suite, Faz3a,
+  Fixéo) keep the cool canvas and Sora.
+- **Motion gains its missing step:** `--k-t-instant` 100 ms for the press/tint feedback
+  that precedes any network answer (§8 already described it, the token did not exist).
+- **Two shared sources, and only two.** Identity lives in `brand/`; shared functional and
+  expressive artwork (60 icons, 12 reactions, 6 avatars, 6 loaders, product colour lanes)
+  lives in `visual-assets/`. The community icon registry is *generated* from it
+  (`community/tools/generer-icones.mjs`); the earlier 46-icon system and the glossy 114-asset
+  library of 2026-08-18 are archived outside the repositories, not competing any more.
+- **Product extensions, not separate systems:** Faz3a Iris `#6C4DE6`, Coreon purple,
+  Fixéo terracotta and Kharbga "Living Heritage" are colour/art lanes that import this
+  contract; none may redefine spacing, radii, type roles, motion or icon grammar.
+
 ### v5.0 — 2026-07-13 — *The whale is the logo*
 - **The logo is the Kogia whale.** Othman's decision, and final. The K experiments
   (v4.0–v4.2) are abandoned. Section 4 is rewritten around the whale: construction,

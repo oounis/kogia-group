@@ -1,0 +1,25 @@
+{
+  "status": {
+    "approved": ["group", "coreon", "job"],
+    "existing-product-colors": ["faz3a", "kharbga"],
+    "proposed": ["coffee", "suite", "soldeo", "relio", "cadreo", "caissa", "cargon", "areneo", "planeo", "serveo", "lumeon"]
+  },
+  "products": {
+    "group":   { "name": "KogiaGroup", "accent600": "#2547E8", "surface50": "#EFF4FF" },
+    "coreon":  { "name": "Coreon EDU", "accent600": "#7539E4", "surface50": "#F6F3FF" },
+    "job":     { "name": "Kogia Job", "accent600": "#C2410C", "surface50": "#FFF5ED" },
+    "faz3a":   { "name": "Faz3a", "accent600": "#6C4DE6", "surface50": "#F5F2FF" },
+    "kharbga": { "name": "Kharbga", "accent600": "#244A63", "surface50": "#F3F7F9", "secondary": "#B96945" },
+    "coffee":  { "name": "Kogia Coffee", "accent600": "#7A4B2E", "surface50": "#FBF6F0" },
+    "suite":   { "name": "Kogia Platform", "accent600": "#4361D0", "surface50": "#F1F5FF" },
+    "soldeo":  { "name": "Soldeo", "accent600": "#2547E8" },
+    "relio":   { "name": "Relio", "accent600": "#5145CD" },
+    "cadreo":  { "name": "Cadreo", "accent600": "#7539E4" },
+    "caissa":  { "name": "Caissa", "accent600": "#C2410C" },
+    "cargon":  { "name": "Cargon", "accent600": "#975D16" },
+    "areneo":  { "name": "Areneo", "accent600": "#0F766E" },
+    "planeo":  { "name": "Planeo", "accent600": "#0B70A3" },
+    "serveo":  { "name": "Serveo", "accent600": "#A23A61" },
+    "lumeon":  { "name": "Lumeon", "accent600": "#36506F", "secondary": "#14A595" }
+  }
+}

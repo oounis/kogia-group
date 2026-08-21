@@ -56,6 +56,12 @@ jobs:
       - name: Installer (verrouillé)
         run: npm ci
 
+      # Deux fichiers de l'app sont GÉNÉRÉS depuis les sources uniques du dépôt
+      # (brand/tokens/kogia.css, visual-assets/icons/svg). S'ils dérivent, on
+      # n'a plus une source mais deux : la porte refuse.
+      - name: Fichiers générés à jour (jetons Harmony, registre d'icônes)
+        run: node tools/synchroniser-jetons.mjs --check && node tools/generer-icones.mjs --check
+
       - name: Lint
         run: npm run lint
 
