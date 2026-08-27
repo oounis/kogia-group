@@ -1,0 +1,11 @@
+{
+  "//": "Playwright charge ces fichiers hors du bundler Next. Le tsconfig racine cible `esnext`/`bundler` pour Next, ce qui faisait échouer le chargement des tests (« exports is not defined in ES module scope ») dès qu'un test importait un autre module. Ici, et seulement ici, on compile en CommonJS.",
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "incremental": false
+  },
+  "include": ["**/*.ts"]
+}

@@ -14,6 +14,21 @@ export default async function OnboardingPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  // Les sujets viennent de la base, plus d'une liste écrite en dur dans le
+  // composant. L'ancienne liste proposait dix sujets quand `topics` n'en
+  // contenait qu'un : les choix ne pouvaient pas être enregistrés, la clé
+  // étrangère de `profile_topics` les aurait tous refusés sauf un.
+  const { data: sujets } = await supabase
+    .from("topics")
+    .select("id, name")
+    .order("name");
+
   const { returnTo } = await searchParams;
-  return <OnboardingFlow userId={user.id} returnTo={returnTo || "/"} />;
+  return (
+    <OnboardingFlow
+      userId={user.id}
+      returnTo={returnTo || "/"}
+      sujets={sujets ?? []}
+    />
+  );
 }

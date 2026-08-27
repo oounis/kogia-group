@@ -18,7 +18,8 @@ export default async function LoginPage({
   return (
     <main className={styles.page}>
       <Marque />
-      <AuthForm intention="Content de vous revoir" returnTo={returnTo} />
+      {/* creerCompte={false} : se connecter ne doit jamais créer un compte. */}
+      <AuthForm intention="Content de vous revoir" returnTo={returnTo} creerCompte={false} />
       <p className={styles.bascule}>
         Pas encore de compte ?{" "}
         <Link href={`/join${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ""}`}>

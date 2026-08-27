@@ -23,9 +23,16 @@ const GOOGLE_ACTIF = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
 export default function AuthForm({
   intention,
   returnTo = "/",
+  creerCompte = true,
 }: {
   intention: string;
   returnTo?: string;
+  /**
+   * `true` sur /join, `false` sur /login. Les deux pages appelaient le même
+   * `signInWithOtp` avec ses réglages par défaut, donc « Se connecter » avec
+   * une adresse inconnue CRÉAIT un compte au lieu de dire qu'il n'y en a pas.
+   */
+  creerCompte?: boolean;
 }) {
   const [email, setEmail] = useState("");
   const [etape, setEtape] = useState<"e-mail" | "code" | "envoi">("e-mail");
@@ -51,12 +58,25 @@ export default function AuthForm({
     e.preventDefault();
     setErreur(null);
     setChargement(true);
-    const { error } = await supabase.auth.signInWithOtp({ email });
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: creerCompte },
+    });
     setChargement(false);
-    // Message neutre volontaire : ne révèle jamais si l'adresse a un compte
-    // ou non (protection contre l'énumération de comptes).
-    if (error) setErreur("Impossible d'envoyer le code pour le moment. Réessayez.");
-    else setEtape("code");
+    if (!error) {
+      setEtape("code");
+      return;
+    }
+    // Sur /login, `shouldCreateUser: false` fait répondre Supabase par
+    // `otp_disabled` quand l'adresse n'a pas de compte. On le dit, et on
+    // propose la sortie utile, plutôt que de laisser attendre un code qui
+    // n'arrivera jamais. Ce choix révèle l'existence d'un compte : c'est
+    // celui retenu dans docs/STATUS.md, parce qu'une page de connexion qui
+    // crée des comptes en silence était le défaut le plus coûteux.
+    const inconnu = error.code === "otp_disabled"
+      || /signups? not allowed/i.test(error.message);
+    if (inconnu && !creerCompte) setErreur("Aucun compte Kogia sur cette adresse. Créez-en un juste en dessous.");
+    else setErreur("Impossible d'envoyer le code pour le moment. Réessayez.");
   }
 
   async function verifierCode(e: React.FormEvent) {
@@ -64,9 +84,35 @@ export default function AuthForm({
     setErreur(null);
     setChargement(true);
     const { error } = await supabase.auth.verifyOtp({ email, token: code, type: "email" });
+    if (error) {
+      setChargement(false);
+      setErreur("Ce code n'est pas valide ou a expiré. Demandez-en un nouveau.");
+      return;
+    }
+    // Même règle que le rappel Google (src/app/auth/callback/route.ts) : sans
+    // ce contrôle, un compte tout neuf arrivé par code e-mail atterrissait
+    // sur l'accueil sans pseudo ni profil, et l'onboarding ne se déclenchait
+    // plus jamais. Seul le chemin OAuth le vérifiait.
+    const { data: { user } } = await supabase.auth.getUser();
+    let destination = safeReturn;
+    if (user) {
+      const { data: profil } = await supabase
+        .from("profiles")
+        .select("onboarding_completed_at")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (!profil?.onboarding_completed_at) {
+        destination = `/onboarding?returnTo=${encodeURIComponent(safeReturn)}`;
+      }
+    }
     setChargement(false);
-    if (error) setErreur("Ce code n'est pas valide ou a expiré. Demandez-en un nouveau.");
-    else window.location.href = safeReturn;
+    // Rechargement complet volontaire, pas `router.push` : la session vient
+    // d'être posée en cookie côté navigateur, et seules une nouvelle requête
+    // document la fait voir aux composants serveur (/onboarding vérifie
+    // `getUser()` et renverrait sur /login sinon). Même choix que le rappel
+    // OAuth, qui redirige côté serveur.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+    window.location.href = destination;
   }
 
   return (
@@ -103,10 +149,20 @@ export default function AuthForm({
       {etape === "code" && (
         <form onSubmit={verifierCode} className={styles.form}>
           <label htmlFor="code">Code reçu par e-mail</label>
+          {/* La LONGUEUR du code est un réglage du projet Supabase, pas une
+              constante de l'interface. Ce champ imposait `maxLength={6}` et
+              `pattern="[0-9]{6}"` alors que le projet émet des codes de 8
+              chiffres (mesuré le 2026-08-26, trois tirages) : le navigateur
+              tronquait chaque code réel à six caractères et la connexion par
+              e-mail échouait systématiquement. On accepte donc l'intervalle
+              que GoTrue permet (6 à 10) plutôt qu'un chiffre en dur, et le
+              gabarit ne suggère plus une longueur. */}
           <input
-            id="code" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} required
-            value={code} onChange={(e) => setCode(e.target.value)}
-            placeholder="123456" autoFocus
+            id="code" inputMode="numeric" pattern="[0-9]{6,10}"
+            minLength={6} maxLength={10} required
+            autoComplete="one-time-code"
+            value={code} onChange={(e) => setCode(e.target.value.replace(/[^0-9]/g, ""))}
+            autoFocus
           />
           <button type="submit" className="bouton accent" disabled={chargement}>
             {chargement ? "Vérification…" : "Confirmer"}

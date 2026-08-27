@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Marque from "@/components/Marque";
 import styles from "../legal/legal.module.css";
+import { DATE_DOCUMENTS_HUMAINE } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Conditions d'utilisation",
@@ -32,7 +33,7 @@ export default function TermsPage() {
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Conditions d&apos;utilisation</h1>
-        <p className={styles.maj}>Dernière mise à jour : 18 août 2026</p>
+        <p className={styles.maj}>Dernière mise à jour : {DATE_DOCUMENTS_HUMAINE}</p>
 
         <p className={styles.lede}>
           Kogia est un service édité par KogiaGroup. En créant un compte, vous

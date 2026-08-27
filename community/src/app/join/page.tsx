@@ -21,6 +21,7 @@ export default async function JoinPage({
       <AuthForm
         intention={raison || "Créez votre compte Kogia"}
         returnTo={returnTo}
+        creerCompte
       />
       <p className={styles.bascule}>
         Déjà un compte ?{" "}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Marque from "@/components/Marque";
 import styles from "../legal/legal.module.css";
+import { DATE_DOCUMENTS_HUMAINE } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
@@ -34,7 +35,7 @@ export default function PrivacyPage() {
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Politique de confidentialité</h1>
-        <p className={styles.maj}>Dernière mise à jour : 18 août 2026</p>
+        <p className={styles.maj}>Dernière mise à jour : {DATE_DOCUMENTS_HUMAINE}</p>
 
         <p className={styles.lede}>
           Kogia est édité par KogiaGroup, une entreprise individuelle fondée par

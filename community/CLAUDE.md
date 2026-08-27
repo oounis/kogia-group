@@ -2,10 +2,16 @@
 
 Plateforme communautaire de Kogia : comptes, publication, follows, réactions,
 commentaires. Ce dossier vit **dans le dépôt `kogia-group`**, à côté de
-`site/` (le site statique actuel), `app/` (Owner Console) et `api/`. Le
-site statique reste la vérité tant que cette app n'est pas testée et
-approuvée. Ne jamais migrer le domaine principal `kogiagroup.com` vers cette
-app avant validation explicite d'Othman.
+`site/` (l'ancien site statique), `app/` (Owner Console) et `api/`.
+
+**Ce dossier EST kogiagroup.com depuis le 16 août 2026.** Le domaine public
+pointe ici, servi par Render. Les versions précédentes de ce fichier
+demandaient de ne pas migrer le domaine et présentaient le site statique
+comme la vérité : c'est faux depuis cette date. `site/` reste uniquement la
+voie de retour en arrière, et son pipeline de publication est toujours vert
+(`tools/construire.py`, puis `inline-css.py`, puis `verifier.py` — dans cet
+ordre : lancer le vérificateur seul le fait échouer sur des défauts que le
+constructeur répare).
 
 ## Premiers pas, à chaque session
 - Lire `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/STATUS.md` avant tout.
@@ -41,8 +47,13 @@ compte**. Jamais de mur d'inscription devant le contenu.
 
 ## Qualité avant de dire « fini »
 - `npm run build` doit passer.
-- `npm run lint` doit passer.
+- `npm run lint` doit passer, sans avertissement neuf.
+- `npm run typecheck` doit passer.
 - Tout changement de comportement a un test.
+- Touchant à l'authentification ou à l'inscription : `npm run e2e` (rejoue le
+  parcours complet sur un compte jetable, contre un serveur local — voir
+  `e2e/inscription.spec.ts`). Demande un `npm run build` puis
+  `PORT=3100 npm start` à côté.
 - Mettre à jour `docs/STATUS.md` en fin de session : ce qui marche, ce qui est
   en cours, ce qui bloque, la prochaine tâche.
 
