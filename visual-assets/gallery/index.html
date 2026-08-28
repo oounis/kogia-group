@@ -3,24 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kogia visual asset review</title>
+  <title>Kogia Official Visual Asset Review</title>
   <link rel="stylesheet" href="../tokens/product-colors.css">
-  <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="gallery.css?v=20260822-official">
   <link rel="stylesheet" href="../../visual-assets-v2/gallery/review.css">
+  <link rel="stylesheet" href="../../visual-assets-kharbga-v2/gallery/catalogue.css?v=20260822-refined">
+  <link rel="stylesheet" href="../../visual-assets-faz3a-v1/gallery/catalogue.css?v=20260822-product">
+  <link rel="stylesheet" href="../../visual-assets-group-v1/gallery/catalogue.css?v=20260822-product">
 </head>
 <body>
   <header>
-    <div><p class="eyebrow">Kogia Harmony · identity from brand/, art from visual-assets/</p><h1>Visual asset review</h1></div>
+    <div><p class="eyebrow">Official source of truth · Kogia Harmony</p><h1>Visual asset review</h1></div>
     <div class="header-controls">
       <div class="kg-mode-switch" role="tablist" aria-label="Mode de revue">
-        <button type="button" role="tab" data-mode="current" aria-selected="true">Actuel</button>
-        <button type="button" role="tab" data-mode="v2" aria-selected="false">Revue V2</button>
+        <button type="button" role="tab" data-mode="current" aria-selected="true">Shared V1</button>
+        <button type="button" role="tab" data-mode="v2" aria-selected="false">Shared V2</button>
+        <button type="button" role="tab" data-mode="kharbga" aria-selected="false">Kharbga V3.2</button>
+        <button type="button" role="tab" data-mode="faz3a" aria-selected="false">Faz3a V1</button>
+        <button type="button" role="tab" data-mode="group" aria-selected="false">KogiaGroup V1</button>
       </div>
-      <label>Product color <select id="product"></select></label>
+      <label>Product / color lane <select id="product"></select></label>
     </div>
   </header>
+  <aside class="official-bar" aria-label="Official review status">
+    <span class="official-seal">OFFICIAL</span>
+    <p><small>PRODUCT</small><strong id="official-product">KogiaGroup</strong></p>
+    <p><small>REVIEW</small><strong id="official-version">Shared V1</strong></p>
+    <p><small>COVERAGE</small><strong id="official-categories">7 complete categories</strong></p>
+    <i></i>
+    <a href="../OFFICIAL_REVIEW_CONTRACT.md">Integration contract</a>
+  </aside>
   <!-- Couche candidate : construite au premier passage, jamais au chargement. -->
   <div id="v2-review" hidden></div>
+  <div id="kharbga-review" hidden></div>
+  <div id="faz3a-review" hidden></div>
+  <div id="group-review" hidden></div>
   <main id="current-gallery">
     <section><div class="section-title"><h2>Account levels</h2><p>The same whale, never redrawn. The level reads without colour: one thin ring, a full ring with twelve notches, two rings with twenty-four notches on the abyss. Follows the product colour above.</p></div><div id="tiers" class="grid tiers"></div></section>
     <section><div class="section-title"><h2>The mark, per product</h2><p>Generated from <code>brand/kogia-mark.svg</code> by <code>brand/tools/construire-marque.mjs</code>: only the colour changes. Tiles are app icons / favicons.</p></div><div id="marks" class="grid marks"></div></section>
@@ -30,6 +47,6 @@
     <section><div class="section-title"><h2>Functional icons</h2><p>One geometry across web and mobile; color is token-driven.</p></div><div id="icons" class="grid icons"></div></section>
     <section><div class="section-title"><h2>Loading states</h2><p>Semantic motion with reduced-motion fallback.</p></div><div id="loaders" class="grid loaders"></div></section>
   </main>
-  <script type="module" src="gallery.js"></script>
+  <script type="module" src="gallery.js?v=20260822-official"></script>
 </body>
 </html>

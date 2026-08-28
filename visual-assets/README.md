@@ -1,5 +1,7 @@
 # Kogia visual assets
 
+> **Source officielle :** `gallery/` est la revue visuelle officielle pour Claude, Codex et les équipes produit. Le produit, la couleur, la version et la couverture de catégories y sont synchronisés. Toute intégration suit obligatoirement [`OFFICIAL_REVIEW_CONTRACT.md`](./OFFICIAL_REVIEW_CONTRACT.md).
+
 L'art **partagé** de KogiaGroup pour les sites et les applications mobiles. Ce paquet ne contient volontairement **aucun logo, mot-symbole, favicon ni marque de remplacement** : l'identité vit dans `../brand/`, et seulement là. L'état de la consolidation (ce qui est canonique, archivé, à faire) est dans `CONSOLIDATION.md`.
 
 ## Contenu
@@ -11,6 +13,7 @@ L'art **partagé** de KogiaGroup pour les sites et les applications mobiles. Ce 
 - `tokens/` : les couloirs de couleur produit. La géométrie ne change jamais, la couleur si.
 - `manifests/assets.json`, `manifests/vector-assets.json` : inventaires lisibles par machine, pour l'adoption et la validation.
 - `gallery/` : page de revue locale. Servir le dépôt et ouvrir `/visual-assets/gallery/`.
+- `OFFICIAL_REVIEW_CONTRACT.md` : contrat d'intégration commun à Claude, Codex et chaque dépôt produit.
 - `PROMPTS.md` : les invites exactes de génération et la provenance (les planches de direction IA sont archivées hors dépôt).
 
 ## Règles

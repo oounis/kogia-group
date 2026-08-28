@@ -1,0 +1,52 @@
+{
+  "version": "3.2.0-candidate",
+  "name": "Kharbga — Refined Game Ecosystem Review",
+  "promise": "Kogia shapes the interface; Kharbga shapes the rules.",
+  "functionalIcons": {
+    "path": "assets/svg/icons.svg",
+    "format": "svg-symbol-sprite",
+    "size": 24,
+    "strokeWidth": 1.75,
+    "count": 36,
+    "symbols": ["move", "capture", "exchange", "citadel", "placement", "history", "sound", "mute", "undo", "restart", "hint", "timer", "classic", "origins", "online", "accessibility", "place-two", "salty-middle", "legal-route", "blocked-route", "chain-capture", "safe-soldier", "spectators", "teacher", "rulebook", "skins", "invite", "friends", "chat", "resign", "draw-offer", "leaderboard", "achievement", "settings", "fullscreen", "report"]
+  },
+  "defaultSkin": "heritage",
+  "skins": [
+    { "id": "heritage", "name": "Palm & limestone", "attacker": "pieces/png/palm-pit.png", "defender": "pieces/png/limestone-pebble.png", "source": "Date pits and pebbles gathered from the local environment." },
+    { "id": "market", "name": "Brick & basalt", "attacker": "pieces/png/red-brick.png", "defender": "pieces/png/dark-basalt.png", "source": "Brick fragments and dark stones used as immediately distinct sides." },
+    { "id": "street", "name": "Reused caps", "attacker": "pieces/png/copper-cap.png", "defender": "pieces/png/indigo-cap.png", "source": "Bottle-cap play translated into a controlled digital material pair." },
+    { "id": "ceramic", "name": "Kogia ceramic", "attacker": "pieces/png/palm-ceramic.png", "defender": "pieces/png/bone-ceramic.png", "source": "Premium skin; equal footprint and power remain unchanged." }
+  ],
+  "profiles": [
+    { "name": "hamma", "title": "Board Builder", "path": "profiles/png/hamma.png", "meaning": "Draws the houses, welcomes the circle, and knows where every line begins." },
+    { "name": "meriem", "title": "Counter", "path": "profiles/png/meriem.png", "meaning": "Counts two placements ahead before her first date pit touches the board." },
+    { "name": "salah", "title": "Market Challenger", "path": "profiles/png/salah.png", "meaning": "Plays for the laughter around the table—and remembers every defeat." },
+    { "name": "noura", "title": "Pattern Teacher", "path": "profiles/png/noura.png", "meaning": "Turns enclosure, safe entry and continuation into lessons anyone can see." },
+    { "name": "ammar", "title": "Storykeeper", "path": "profiles/png/ammar.png", "meaning": "Carries rules through memory while admitting where history is uncertain." },
+    { "name": "rim", "title": "Young Learner", "path": "profiles/png/rim.png", "meaning": "Finds the chain capture the adults missed." },
+    { "name": "aliya", "title": "Café Champion", "path": "profiles/png/aliya.png", "meaning": "Quiet authority, patient defence, devastating timing." },
+    { "name": "naji", "title": "Quiet Observer", "path": "profiles/png/naji.png", "meaning": "Brings Kogia curiosity to the table without changing the game." }
+  ],
+  "reactions": [
+    { "name": "respect", "path": "reactions-v3/png/respect.png", "meaning": "Respect the player and the table." },
+    { "name": "trap", "path": "reactions-v3/png/trap.png", "meaning": "The orthogonal enclosure closes." },
+    { "name": "captured", "path": "reactions-v3/png/captured.png", "meaning": "A Soldier is enclosed as a result of the move." },
+    { "name": "chain-capture", "path": "reactions-v3/png/chain-capture.png", "meaning": "The same Soldier must continue while another capture exists." },
+    { "name": "safe-haff", "path": "reactions-v3/png/safe-haff.png", "meaning": "A free, protected Soldier remains mobile." },
+    { "name": "exchange", "path": "reactions-v3/png/exchange.png", "meaning": "Defender requests one protected Soldier for two Attacker Soldiers." },
+    { "name": "blocked", "path": "reactions-v3/png/blocked.png", "meaning": "No legal adjacent orthogonal house remains." },
+    { "name": "rematch", "path": "reactions-v3/png/rematch.png", "meaning": "Smooth the sand and begin another round." }
+  ],
+  "history": [
+    { "title": "Old, but not precisely dated", "body": "The Tunisian heritage inventory says the appearance date is difficult to determine; collective memory connects it to the Bey era and Hilalian transmission." },
+    { "title": "A board made anywhere", "body": "The 49 houses can be carved in soil or sand, or marked in chalk or white paint on cement." },
+    { "title": "Objects become Soldiers", "body": "Date pits, pebbles, brick fragments and bottle caps become two visually distinct armies of equal pieces." },
+    { "title": "A circle, not a throne room", "body": "Children, adults and elders play in homes, cafés, markets and shopfronts, often surrounded by advice and spectators." }
+  ],
+  "directionBoards": [
+    { "name": "equal material soldiers", "path": "direction-boards/material-soldiers-v2.png" },
+    { "name": "living community", "path": "direction-boards/community-profiles-v2.png" },
+    { "name": "rule reactions", "path": "direction-boards/rule-reactions-v2.png" },
+    { "name": "living heritage mood", "path": "direction-boards/living-heritage-v2.png" }
+  ]
+}

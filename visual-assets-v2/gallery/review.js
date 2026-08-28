@@ -17,9 +17,13 @@ const CLE = "kogia-v2-verdicts";
  * @param {HTMLElement} options.mount  conteneur ; reçoit la classe .kg-v2
  */
 export async function renderReviewV2({ base, mount }) {
-  const manifest = await fetch(`${base}/manifest.json`).then((response) => response.json());
+  const [manifest, marque] = await Promise.all([
+    fetch(`${base}/manifest.json`).then((response) => response.json()),
+    fetch(`${base}/../brand/marque/manifest.json`).then((response) => response.json()),
+  ]);
   const verdicts = JSON.parse(localStorage.getItem(CLE) || "{}");
   const url = (path) => `${base}/${path}`;
+  const brandUrl = (path) => `${base}/../brand/${path}`;
 
   mount.classList.add("kg-v2");
   mount.dataset.bg = mount.dataset.bg || "light";
@@ -35,6 +39,22 @@ export async function renderReviewV2({ base, mount }) {
     `<article class="card" data-verdict="${verdicts[id] || "candidate"}">${corps}${controlesStatut(id)}</article>`;
 
   // ── Sections ──────────────────────────────────────────────────────────────
+  const niveaux = (await Promise.all(marque.tiers.map(async (asset) =>
+    `<article class="card identity-card"><div class="identity-art">${await texte(brandUrl(asset.path))}</div>
+     <strong>${asset.name}</strong><span class="meaning">${asset.reading}</span></article>`))).join("");
+
+  const tuiles = new Map(marque.tiles.map((asset) => [asset.lane, asset]));
+  const marques = (await Promise.all(marque.marks.filter((asset) => tuiles.has(asset.lane)).map(async (asset) => {
+    const tuile = tuiles.get(asset.lane);
+    return `<article class="card identity-card${asset.status === "proposé" ? " proposed" : ""}">
+      <div class="mark-art"><img src="${brandUrl(tuile.path)}" alt="" class="tile">${await texte(brandUrl(asset.path))}</div>
+      <strong>${asset.name}</strong><span class="meaning">${asset.color} · ${asset.status}</span></article>`;
+  }))).join("");
+
+  const loadersMarque = (await Promise.all(marque.loaders.map(async (asset) =>
+    `<article class="card identity-card"><div class="identity-art mark-loader-art">${await texte(brandUrl(asset.path))}</div>
+     <strong>${asset.name}</strong><span class="meaning">${asset.usage}</span></article>`))).join("");
+
   const approuves = manifest.baseline.approvedAvatars.map((asset) =>
     `<article class="card"><img class="avatar-art" src="${url(asset.path)}" alt="${libelle(asset.name)}">
      <strong>${asset.name}</strong>
@@ -83,16 +103,7 @@ export async function renderReviewV2({ base, mount }) {
     carte(`loader:${asset.name}`,
       `<div class="loader-art">${await texte(url(asset.path))}</div>
        <strong>${asset.name}</strong><p class="meaning">${asset.usage}</p>`)))).join("");
-
-  const monde = manifest.worldElements.map((asset) => carte(`world:${asset.name}`,
-    `<div class="world-sizes">
-       ${asset.sizes.map((taille) => `<img class="w${taille}" src="${url(asset.path)}" alt="${libelle(asset.name)}">`).join("")}
-     </div>
-     <strong>${libelle(asset.name)}</strong><p class="meaning">${asset.meaning}</p>`)).join("");
-
-  const planches = manifest.directionBoards.map((asset) => carte(`board:${asset.name}`,
-    `<img src="${url(asset.path)}" alt="${libelle(asset.name)}">
-     <strong>${libelle(asset.name)}</strong><p class="meaning">${asset.caption}</p>`)).join("");
+  const reviewTotal = manifest.avatars.length + manifest.reactions.length + manifest.icons.length + manifest.loaders.length;
 
   mount.innerHTML = `
     <div class="review-bar">
@@ -108,37 +119,42 @@ export async function renderReviewV2({ base, mount }) {
       <button type="button" id="kg-v2-reset">Tout remettre à « candidat »</button>
     </div>
     <section>
-      <div class="section-title"><h2>Avatars — six approuvés, huit candidats</h2>
-        <p>Les approuvés V1 servent d'étalon. Contrôle à 40 px.</p></div>
+      <div class="section-title"><h2>Account levels</h2>
+        <p>Socle identitaire partagé, inchangé en V2. La couleur suit le produit actif.</p></div>
+      <div class="grid identity-grid tiers">${niveaux}</div>
+    </section>
+    <section>
+      <div class="section-title"><h2>The mark, per product</h2>
+        <p>Un seul tracé de marque ; seuls le couloir couleur et la tuile changent.</p></div>
+      <div class="grid identity-grid marks">${marques}</div>
+    </section>
+    <section>
+      <div class="section-title"><h2>Loading states, from the mark</h2>
+        <p>Les six états identitaires officiels restent la première famille de chargement.</p></div>
+      <div class="grid identity-grid mark-loaders">${loadersMarque}</div>
+    </section>
+    <section>
+      <div class="section-title"><h2>Character avatars</h2>
+        <p>Six références approuvées, puis huit candidats V2 comparés à la production à 40 px.</p></div>
       <h3>Approuvés (V1, référence)</h3>
       <div class="grid avatars">${approuves}</div>
       <h3>Candidats V2, à côté de la version déjà en production</h3>
       <div id="kg-v2-avatars" class="grid">${candidats}</div>
     </section>
     <section>
-      <div class="section-title"><h2>Réactions — V1 contre V2</h2>
+      <div class="section-title"><h2>Custom reactions</h2>
         <p>Vue de revue à 92 px, puis la taille réelle d'usage à 32 px.</p></div>
       <div class="grid compare">${reactions}</div>
     </section>
     <section>
-      <div class="section-title"><h2>Icônes sémantiques — V1 contre V2</h2>
+      <div class="section-title"><h2>Functional icons</h2>
         <p>Seuls les concepts propres à Kogia sont remplacés. Usage réel à 20 px.</p></div>
       <div class="grid compare">${icones}</div>
     </section>
     <section>
-      <div class="section-title"><h2>Loaders — quatre rôles consolidés</h2>
+      <div class="section-title"><h2>Loading states</h2>
         <p>Le mouvement vit dans le CSS de la galerie. Image fixe sous <code>prefers-reduced-motion</code>.</p></div>
       <div class="grid loaders">${loaders}</div>
-    </section>
-    <section>
-      <div class="section-title"><h2>Objets du monde Kogia</h2>
-        <p>Décor d'article, objets de réussite, états vides. À 128, 64 et 40 px.</p></div>
-      <div class="grid world">${monde}</div>
-    </section>
-    <section>
-      <div class="section-title"><h2>Planches de direction</h2>
-        <p>Dont la planche narrative : six récits récurrents, sans mots.</p></div>
-      <div class="grid boards">${planches}</div>
     </section>`;
 
   // ── Contrôles ─────────────────────────────────────────────────────────────
@@ -149,7 +165,7 @@ export async function renderReviewV2({ base, mount }) {
     const non = valeurs.filter((valeur) => valeur === "rejected").length;
     resume.textContent = oui + non === 0
       ? "Aucun verdict enregistré."
-      : `${oui} approuvés · ${non} rejetés · ${manifest.total - oui - non} en attente sur ${manifest.total}.`;
+        : `${oui} approuvés · ${non} rejetés · ${reviewTotal - oui - non} en attente sur ${reviewTotal}.`;
   };
 
   mount.querySelector("#kg-v2-bg").addEventListener("change", (event) => {

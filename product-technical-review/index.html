@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CLAMP WARS v0.1 product and technical build contract.">
+  <title>CLAMP WARS · v0.1 Build Contract</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#requirements">Skip to requirements</a>
+  <header class="topbar">
+    <a class="brand" href="#overview" aria-label="CLAMP WARS technical review home">
+      <span class="brand-mark" aria-hidden="true">CW</span>
+      <span><b>CLAMP WARS</b><small>A Strategic Board Game of Encirclement</small></span>
+    </a>
+    <nav aria-label="Review tools">
+      <a href="http://localhost:8984/visual-assets/gallery/">Visual assets ↗</a>
+      <button class="button ghost" id="export-json" type="button">Export JSON</button>
+      <button class="button primary" id="copy-brief" type="button">Copy Claude brief</button>
+    </nav>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Technical categories">
+      <div class="sidebar-heading"><span>Specification map</span><b id="sidebar-count"></b></div>
+      <nav id="category-nav"></nav>
+    </aside>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="eyebrow">Independent repository · v0.1 source of truth</div>
+        <h1>CLAMP WARS is a new strategic battlefield.</h1>
+        <p class="lede">This contract defines a fully playable local two-player v0.1: special selection, founding, legal movement, interception capture, forced chains, sealed-siege wins, competitive clocks, and replay-ready match data.</p>
+        <div class="boundary">
+          <b>Build boundary</b>
+          <span>Create <code>clamp-wars</code> from an empty project. Keep previous game repositories untouched. Do not ship fake multiplayer or fake AI.</span>
+        </div>
+        <div class="metrics" id="metrics"></div>
+      </section>
+
+      <section class="decision-grid" aria-label="Key product decisions">
+        <article><span class="decision-no">01</span><div><b>9x9 open battlefield</b><p>No home zones, no player direction, no protected sides.</p></div></article>
+        <article><span class="decision-no">02</span><div><b>Specials are movement only</b><p>Rampart, Compass, and Strider add reach without immunity or powers.</p></div></article>
+        <article><span class="decision-no">03</span><div><b>Founding is a real phase</b><p>Private special selection, alternating placement, and no captures before battle.</p></div></article>
+        <article><span class="decision-no">04</span><div><b>Replay data from day one</b><p>Every selection, placement, move, capture, clock, siege, and result is logged.</p></div></article>
+      </section>
+
+      <section class="battlefield" id="battlefield">
+        <div class="section-head">
+          <div><span class="eyebrow">Board and pieces</span><h2>Premium tactical identity</h2></div>
+          <p>The preview demonstrates the required color parity and original special-piece silhouettes. The final game must use production-quality assets, but the movement identities are fixed here.</p>
+        </div>
+        <div class="battlefield-grid">
+          <div class="board-panel">
+            <div class="board-preview" id="board-preview" aria-label="CLAMP WARS 9 by 9 board preview"></div>
+            <div class="board-facts" id="board-facts"></div>
+          </div>
+          <div class="piece-showcase" id="piece-showcase"></div>
+        </div>
+      </section>
+
+      <section class="surfaces" id="surfaces">
+        <div class="section-head"><div><span class="eyebrow">Web interfaces</span><h2>Features become screens</h2></div><p>Profile, sign-in, settings, replay, learning, and operations are explicit route contracts. v0.1 local play works without accounts.</p></div>
+        <div class="surface-grid" id="surface-grid"></div>
+      </section>
+
+      <section class="architecture" id="architecture">
+        <div class="section-head"><div><span class="eyebrow">System map</span><h2>Technical architecture</h2></div></div>
+        <div class="architecture-grid" id="architecture-grid"></div>
+      </section>
+
+      <section class="catalogue" id="requirements">
+        <div class="section-head">
+          <div><span class="eyebrow">Claude build contract</span><h2>Requirements catalogue</h2></div>
+          <button class="button ghost" id="clear-filters" type="button">Reset filters</button>
+        </div>
+        <div class="filterbar">
+          <label class="search"><span>Search</span><input id="search" type="search" placeholder="ID, feature, siege, profile, replay…" autocomplete="off"></label>
+          <label><span>Stage</span><select id="stage-filter"><option value="all">All stages</option></select></label>
+          <label><span>Priority</span><select id="priority-filter"><option value="all">All priorities</option><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select></label>
+          <label><span>Status</span><select id="status-filter"><option value="all">All statuses</option></select></label>
+        </div>
+        <div class="result-line" aria-live="polite"><b id="result-count"></b><span id="active-filter"></span></div>
+        <div id="category-sections"></div>
+        <div class="empty" id="empty" hidden><b>No matching requirements</b><p>Clear a filter or search for a broader product concept.</p></div>
+      </section>
+
+      <section class="evidence" id="evidence">
+        <div class="section-head"><div><span class="eyebrow">Evidence register</span><h2>33 product observations</h2></div><p>Every capture is accounted for as product-completeness evidence. The descriptions identify capabilities, not assets to reproduce.</p></div>
+        <div class="evidence-grid" id="screenshot-grid"></div>
+      </section>
+
+      <section class="handoff" id="handoff">
+        <span class="eyebrow">Delivery rule</span>
+        <h2>Build the playable local game first.</h2>
+        <p>Each slice must connect UI, engine, replay data, persistence, accessibility, responsive behavior, tests, and operational status. A painted screen without working rules is not complete.</p>
+        <button class="button primary" id="copy-brief-bottom" type="button">Copy full Claude brief</button>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

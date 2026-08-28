@@ -1,0 +1,342 @@
+export const product = {
+  id: "clamp-wars",
+  name: "CLAMP WARS",
+  tagline: "A Strategic Board Game of Encirclement",
+  version: "v0.1 Product + Technical Build Contract",
+  repository: "clamp-wars",
+  ruleSource: "product-technical-review/CLAMP_WARS_RULES_AND_PRODUCT_FOUNDATION.md",
+  purpose: "Create an independent, production-grade local two-player game foundation with clean seams for accounts, online play, AI, rankings, tournaments, and future piece types.",
+  warning: "Start from a new repository. Do not rename, import, overwrite, or modify any previous game project. Do not ship fake online multiplayer or fake AI.",
+};
+
+const r = (id, title, stage, priority, status, requirement, acceptance, dependencies = []) => ({
+  id, title, stage, priority, status, requirement, acceptance, dependencies,
+});
+
+const category = (id, group, title, summary, screenshots, requirements) => ({
+  id, group, title, summary, screenshots, requirements,
+});
+
+export const stages = {
+  foundation: "Foundation",
+  v01: "Playable v0.1",
+  web: "Web interfaces",
+  account: "Accounts & profiles",
+  online: "Online-ready",
+  expansion: "Expansion",
+  operations: "Operations",
+};
+
+export const boardSpec = {
+  size: 9,
+  files: ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
+  ranks: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  center: "e5",
+  yellowSquares: "a1 is yellow; e5 is yellow; color alternates by coordinate parity.",
+  deployablePiecesPerPlayer: 24,
+  totalDeployedPieces: 48,
+  emptySquaresAfterFounding: 33,
+  siegeWinThreshold: 5,
+};
+
+export const pieceClasses = [
+  {
+    id: "guard",
+    code: "normal",
+    name: "Guard",
+    label: "Normal",
+    countPerPlayer: 20,
+    movement: "Exactly one empty square horizontally or vertically.",
+    visual: "Heavy stone disc with a bronze clamp groove; readable as the standard unit from mobile distance.",
+  },
+  {
+    id: "rampart",
+    code: "typeI",
+    name: "Rampart",
+    label: "Type I",
+    countPerPlayer: 2,
+    selectedLimit: "Chosen from the six-piece special pool.",
+    movement: "Any number of clear empty squares horizontally or vertically.",
+    visual: "Tall bronze wall-stone with two vertical jaws; communicates straight-line control without using tower or fortress icons.",
+  },
+  {
+    id: "compass",
+    code: "typeII",
+    name: "Compass",
+    label: "Type II",
+    countPerPlayer: 2,
+    selectedLimit: "Chosen from the six-piece special pool.",
+    movement: "Any number of clear empty squares horizontally, vertically, or diagonally.",
+    visual: "Eight-ridge navigation seal set in white stone; communicates full-lane reach without royal or mystical status.",
+  },
+  {
+    id: "strider",
+    code: "typeIII",
+    name: "Strider",
+    label: "Type III",
+    countPerPlayer: 2,
+    selectedLimit: "Chosen from the six-piece special pool.",
+    movement: "Any of the eight directions for one, two, or three clear squares.",
+    visual: "Low fast wedge with three bronze ribs; communicates limited burst movement and remains visually subordinate to rules.",
+  },
+];
+
+export const interfaceSurfaces = [
+  ["Play", "First screen", "Local match setup, private special selection, founding flow, live board, clocks, history, result"],
+  ["Sign In", "Account route", "Email magic link and OAuth-ready shell; not required for local v0.1 play"],
+  ["Profile", "Player route", "Avatar, handle, ratings-ready stats, match history, awards, clubs, privacy"],
+  ["Replay", "Game route", "Recorded selections, placements, moves, captures, clocks, siege events, final board"],
+  ["Learn", "Rules route", "Interactive rule diagrams for movement, capture, founding, clocks, and sealed siege"],
+  ["Settings", "Player route", "Theme, accessibility, sound, language, clock presets, privacy, sessions"],
+  ["Operations", "Admin route", "Feature flags, rule versions, event logs, support tools, and release health"],
+];
+
+export const categories = [
+  category("repository-identity", "Foundation", "Repository boundary & product identity", "CLAMP WARS is a new game and a new codebase with its own naming, routes, assets, and rules.", ["194321", "202120"], [
+    r("CW-FND-001", "Create independent repository", "foundation", "P0", "locked", "Create a new repository named clamp-wars and keep previous game projects untouched.", ["Repository slug is clamp-wars", "No previous project source folders are copied into runtime", "Build scripts, package names, and README identify CLAMP WARS only"]),
+    r("CW-FND-002", "Product name is authoritative", "foundation", "P0", "locked", "The app title, visible UI, metadata, export filenames, route labels, and assets use CLAMP WARS and the subtitle A Strategic Board Game of Encirclement.", ["No legacy game name appears in product UI", "Browser title and social metadata match product identity", "Replay exports use clamp-wars naming"]),
+    r("CW-FND-003", "No clone language", "foundation", "P0", "locked", "Do not use chess piece names, chess artwork, chess notation, casino motifs, or children's puzzle styling.", ["Piece names are original", "Move history uses a1-i9 coordinate notation only", "Art review rejects copied board-game iconography"]),
+    r("CW-FND-004", "Local-first scope", "v01", "P0", "required", "v0.1 ships a complete local two-player game before online, AI, monetization, or ranking systems are added.", ["No fake multiplayer controls", "No fake AI opponent", "Future services are represented as inactive route contracts, not pretend features"]),
+  ]),
+  category("rules-source", "Foundation", "Rules source of truth", "The rules engine is deterministic, versioned, configurable where specified, and independent from presentation.", ["195149", "194548"], [
+    r("CW-RULE-001", "Ruleset identifier", "foundation", "P0", "locked", "Every match stores ruleset id clamp-wars-standard and a semantic version.", ["Ruleset id appears in GameState", "Replay stores exact engine version", "Unknown future versions fail with a clear migration error"]),
+    r("CW-RULE-002", "Configurable constants", "foundation", "P0", "required", "Board size, piece inventory, founding clocks, battle clocks, increment, and siegeWinThreshold are configuration values with v0.1 defaults.", ["Defaults match 9x9, 24 pieces per player, 5 minute founding, 10+5 battle, threshold 5", "Tests can override config", "UI displays the active preset"]),
+    r("CW-RULE-003", "No hidden powers", "v01", "P0", "locked", "Special pieces differ only by movement. They have no immunity, remote attack, promotion, terrain effect, royal status, or special capture rule.", ["Capture resolver treats every piece class equally", "Win evaluator ignores piece class value", "Rules page states movement is the only special difference"]),
+    r("CW-RULE-004", "Deterministic random choices", "foundation", "P0", "required", "The Founding Player random choice is generated once and recorded with enough data to replay or audit it.", ["Match log includes random seed or signed outcome", "Refresh does not reroll founding order", "Replay reconstructs the same first placement player"]),
+  ]),
+  category("board-coordinates", "Game", "9x9 board, coordinates & color pattern", "The board is a neutral battlefield with no home zones, player directions, or protected sides.", ["194520", "195226"], [
+    r("CW-BOARD-001", "Coordinate system", "foundation", "P0", "locked", "Represent cells as a1 through i9 with file a-i and rank 1-9.", ["Parser accepts only valid lowercase coordinates", "Serializer emits lowercase coordinates", "Coordinate tests cover corners and center"]),
+    r("CW-BOARD-002", "Alternating terrain colors", "web", "P0", "required", "Render alternating yellow desert sand and white stone squares, with a1 and e5 yellow.", ["Color parity formula is tested", "Colors are visual only in v0.1", "Legal states are not conveyed by color alone"]),
+    r("CW-BOARD-003", "No ownership geometry", "foundation", "P0", "locked", "Both players may place and move across the full board; there are no north/south sides, home zones, or player directions.", ["Placement validator accepts any empty square", "Movement validator has no forward direction field", "UI does not label sides as home territory"]),
+    r("CW-BOARD-004", "Board capacity", "v01", "P0", "required", "After founding, 48 pieces occupy the board and 33 squares remain empty.", ["Each player deploys exactly 24 pieces", "Founding cannot overfill the board", "Post-founding invariant is asserted before battle starts"]),
+  ]),
+  category("piece-taxonomy", "Game", "Piece taxonomy & naming", "The game uses one normal class and three named special classes with neutral technical aliases for the engine.", ["194520", "195202"], [
+    r("CW-PIECE-001", "Guard normal piece", "v01", "P0", "required", "Each player owns 20 Guards, the normal piece class.", ["Inventory starts with 20 per player", "Guard movement is exactly one orthogonal square", "Guard art is not reused for special pieces"]),
+    r("CW-PIECE-002", "Rampart special piece", "v01", "P0", "required", "Type I is named Rampart in the UI and moves through clear orthogonal lanes.", ["Two Ramparts exist in each player's special pool", "Path blocking is enforced", "Replay records code typeI and display name Rampart"]),
+    r("CW-PIECE-003", "Compass special piece", "v01", "P0", "required", "Type II is named Compass in the UI and moves through clear orthogonal or diagonal lanes.", ["Two Compasses exist in each player's special pool", "Diagonal path blocking is enforced", "Compass has no capture exception"]),
+    r("CW-PIECE-004", "Strider special piece", "v01", "P0", "required", "Type III is named Strider in the UI and moves one to three clear squares in any of eight directions.", ["Two Striders exist in each player's special pool", "Four-square moves fail", "Intermediate blockers invalidate longer moves"]),
+  ]),
+  category("state-model", "Architecture", "Pure game state model", "The rules core owns legal state, while UI, animation, storage, and clocks consume typed events.", ["194548", "202023"], [
+    r("CW-STATE-001", "Serializable GameState", "foundation", "P0", "required", "GameState contains board, players, selected specials, inventories, phase, current player, founding order, forced chain state, clocks, result, and revision.", ["State round-trips through JSON", "No DOM or timer object appears in GameState", "Revision increments once per accepted command"]),
+    r("CW-STATE-002", "Board representation", "foundation", "P0", "required", "Board storage maps coordinates to nullable piece records with owner, class, id, and creation order.", ["Piece ids are stable", "Empty cells serialize compactly", "Lookup by coordinate is O(1) or equivalent"]),
+    r("CW-STATE-003", "Command reducer", "foundation", "P0", "required", "All game actions pass through a pure reducer returning next state, domain events, and validation errors.", ["Same input yields same output", "Invalid commands leave state unchanged", "Events are sufficient for replay"]),
+    r("CW-STATE-004", "Future extensibility", "expansion", "P1", "planned", "The model can add new piece classes without rewriting capture, clock, account, replay, or UI shell contracts.", ["Movement rules are class adapters", "Capture remains class-agnostic unless a future ruleset declares otherwise", "Unknown piece class fails safely"]),
+  ]),
+  category("special-selection", "Game", "Private special-piece selection", "Both players secretly choose four special pieces from their six-piece pool before founding starts.", ["194347", "201909"], [
+    r("CW-SEL-001", "Selection inventory", "v01", "P0", "required", "Each player chooses any four from two Ramparts, two Compasses, and two Striders.", ["Cannot choose more than four", "Cannot choose a piece not in the pool", "Remaining two specials are excluded from match state"]),
+    r("CW-SEL-002", "Private selection UI", "web", "P0", "required", "Local two-player selection must hide the previous player's choices before the other player selects.", ["Pass-device screen exists", "Selections are masked until reveal", "Keyboard users can complete selection"]),
+    r("CW-SEL-003", "Simultaneous reveal", "v01", "P0", "required", "Both selections are revealed only after both players lock their four pieces.", ["Reveal event includes both selected lists", "Move history records the reveal", "Players cannot alter selection after reveal"]),
+    r("CW-SEL-004", "Selection replay data", "foundation", "P0", "required", "Replay data records selected and unselected special pieces for each player.", ["Replay can reconstruct inventories", "Export includes display names and technical codes", "Selections appear before founding placements"]),
+  ]),
+  category("founding-specials", "Game", "Founding phase: special placement", "A randomly chosen Founding Player starts alternating placement of the selected special pieces.", ["194321", "194622"], [
+    r("CW-FNDG-001", "Founding Player assignment", "v01", "P0", "required", "Randomly choose the Founding Player after special selections are revealed.", ["Outcome is displayed once", "Outcome is stored in replay", "Manual refresh does not change it"]),
+    r("CW-FNDG-002", "Alternate special placement", "v01", "P0", "required", "Players alternate placing one selected special piece at a time on any empty square.", ["Only selected specials can be placed", "Occupied squares are rejected", "No square is restricted by player side"]),
+    r("CW-FNDG-003", "No founding captures", "v01", "P0", "locked", "Captures, capture chains, siege checks, and wins are disabled during all founding placements.", ["Capture engine is not called during founding", "Elimination cannot occur before battle", "History labels founding events separately"]),
+    r("CW-FNDG-004", "Special placement completion", "v01", "P0", "required", "The phase advances only after each player places all four selected special pieces.", ["Eight special placements are logged", "Inventories decrement correctly", "Normal placement cannot start early"]),
+  ]),
+  category("founding-normals", "Game", "Founding phase: Guard placement", "After specials, players alternate placing all 20 Guards each on any empty square.", ["194520", "195202"], [
+    r("CW-NORM-001", "Alternate Guard placement", "v01", "P0", "required", "Players place one Guard per placement turn until both have placed 20.", ["Exactly 40 Guard placements are logged", "Occupied cells are rejected", "Counters update after each accepted command"]),
+    r("CW-NORM-002", "Full-board freedom", "v01", "P0", "locked", "A Guard may be founded on any empty square anywhere on the board.", ["No home-zone validation exists", "No center restriction exists", "Available square count reaches 33 after founding"]),
+    r("CW-NORM-003", "Battle starter rule", "v01", "P0", "required", "The player who did not place the final Guard receives the first battle turn.", ["Final normal placer is recorded", "Current player flips at battle start", "Replay proves the first battle mover"]),
+    r("CW-NORM-004", "Founding clock", "v01", "P0", "required", "Each player has a five-minute founding clock with no increment in v0.1.", ["Clock decreases only for active founder", "Timeout during founding ends the game", "No increment is added during founding"]),
+  ]),
+  category("movement-engine", "Game", "Legal movement engine", "Movement uses clear paths, empty destinations, and class-specific reach without jumping.", ["194520", "194528"], [
+    r("CW-MOVE-001", "Empty destination", "v01", "P0", "locked", "Every move must end on an empty valid board coordinate.", ["Occupied destinations fail", "Off-board coordinates fail", "No capture-by-displacement exists"]),
+    r("CW-MOVE-002", "Clear path validation", "v01", "P0", "required", "Pieces cannot jump; every intermediate square on a multi-square path must be empty.", ["Path tests cover orthogonal and diagonal lanes", "Adjacent one-step moves have no intermediate cells", "Blocked paths return a specific error"]),
+    r("CW-MOVE-003", "Class move generation", "v01", "P0", "required", "The engine generates legal moves for Guard, Rampart, Compass, and Strider from the same board state.", ["Generated moves equal validator results", "No diagonal Guard move appears", "Strider generation stops at distance three"]),
+    r("CW-MOVE-004", "No direction ownership", "foundation", "P0", "locked", "Player identity never changes which direction a piece can move.", ["Both players share movement tables", "Board orientation does not alter legal moves", "Tests mirror positions for both players"]),
+  ]),
+  category("capture-engine", "Game", "Interception capture engine", "After a legal move, enemy pieces trapped orthogonally between two moving-player pieces are removed.", ["194548", "194614"], [
+    r("CW-CAP-001", "Orthogonal sandwich capture", "v01", "P0", "locked", "An enemy adjacent to the moved piece is captured when the next cell in the same orthogonal line contains another moving-player piece.", ["Horizontal captures work both directions", "Vertical captures work both directions", "Diagonal trapping never captures"]),
+    r("CW-CAP-002", "Mover-created capture only", "v01", "P0", "required", "Captures are evaluated from the moved piece destination after the move, not from passive board positions.", ["Existing sandwiches before move are not removed", "Only affected orthogonal rays are checked", "Capture event identifies the moved piece"]),
+    r("CW-CAP-003", "Simultaneous captures", "v01", "P0", "required", "Remove all enemy pieces captured by the same move as one event.", ["Multiple captured coordinates are sorted", "Captured pieces cannot also block later checks in the same event", "History groups the captures under one move"]),
+    r("CW-CAP-004", "Class-neutral capture", "foundation", "P0", "locked", "Guard, Rampart, Compass, and Strider capture and are captured by the same rule.", ["Piece class is ignored by capture eligibility", "Special pieces receive no immunity", "Tests cover all four piece classes as victims"]),
+  ]),
+  category("capture-chains", "Game", "Mandatory capture chains", "If a capturing move creates a forced continuation, the chain is completed before the turn ends.", ["194630", "195113"], [
+    r("CW-CHAIN-001", "Chain trigger", "v01", "P0", "required", "After a move captures at least one enemy, the engine checks whether the same moved piece has another legal capturing move.", ["No capture means no chain", "Capturing move with continuation locks the active piece", "Chain state stores origin turn id"]),
+    r("CW-CHAIN-002", "Same-piece continuation", "v01", "P0", "locked", "During a forced chain, only the active capturing piece may move.", ["Other pieces cannot be selected", "Noncapturing moves by the active piece are rejected while a capture exists", "Turn does not end early"]),
+    r("CW-CHAIN-003", "Branch choice", "v01", "P1", "required", "When multiple capturing continuations exist, the player chooses the legal branch.", ["UI highlights only capturing continuations", "Replay stores each chain step", "Clock continues for the active player"]),
+    r("CW-CHAIN-004", "One completed turn", "v01", "P0", "locked", "A full forced capture chain counts as one turn and receives one battle increment after the chain ends.", ["Increment added once", "Move history groups substeps", "Result evaluation runs after the completed chain"]),
+  ]),
+  category("sealed-siege", "Game", "Sealed-siege win evaluator", "A player wins by closing a true sealed pocket around enemy material at or above the configured threshold.", ["195113", "194528"], [
+    r("CW-SIEGE-001", "Pocket detection", "v01", "P0", "required", "Find connected empty regions and enemy pieces enclosed by the moving player's pieces.", ["Pocket contains at least one empty square", "Pocket contains enemy pieces", "At least one empty square exists outside the pocket"]),
+    r("CW-SIEGE-002", "True seal validation", "v01", "P0", "required", "A pocket counts only when every exit is blocked by the attacking player's pieces.", ["Board edge is not treated as an attacker wall by itself", "Open diagonal gaps do not matter unless movement could use them", "Validator records the sealing coordinates"]),
+    r("CW-SIEGE-003", "Immediate escape test", "v01", "P0", "required", "If the trapped player can immediately capture a wall piece and create an exit, the pocket is not sealed.", ["Escape capture is simulated from the trapped side", "Internal moves that do not open an exit do not prevent siege", "False-positive fixtures are tested"]),
+    r("CW-SIEGE-004", "Threshold and draw edge case", "v01", "P0", "locked", "A sealed pocket with five or more enemy pieces wins immediately; simultaneous valid siege for both players is a draw and logged.", ["siegeWinThreshold defaults to 5", "Smaller pockets are not removed automatically", "Draw event stores full board for review"]),
+  ]),
+  category("clocks", "Game", "Competitive clocks", "Founding and battle clocks are separate, configurable, and recorded in the replay ledger.", ["201931", "194321"], [
+    r("CW-TIME-001", "Battle 10+5 default", "v01", "P0", "required", "Battle defaults to 10 minutes per player plus 5 seconds increment after a completed turn.", ["Preset displays as 10+5", "Increment applies after turn completion", "Increment applies once after a full chain"]),
+    r("CW-TIME-002", "Founding 5-minute clock", "v01", "P0", "required", "Founding defaults to 5 minutes per player with no increment.", ["Active founder's time decreases", "Inactive time remains unchanged", "Timeout result is immediate"]),
+    r("CW-TIME-003", "Clock ownership", "foundation", "P0", "required", "Clock logic is independent from animation and cannot be altered by client-only UI state.", ["Clock state serializes", "Clock values are included in every committed turn event", "Pause rules are explicit for local play"]),
+    r("CW-TIME-004", "Preset-ready controls", "expansion", "P1", "planned", "Time controls support future presets such as 5+3, 10+5, and 20+10.", ["Preset schema has base and increment", "UI can list named presets", "Replay records exact seconds, not only preset name"]),
+  ]),
+  category("result-engine", "Game", "Win, draw & result rules", "Every terminal outcome is explicit, ordered, and replayable.", ["195113", "194614"], [
+    r("CW-RES-001", "Elimination win", "v01", "P0", "locked", "A player wins immediately when all opponent pieces have been removed.", ["Captured count matches board state", "Elimination after chain resolves instantly", "Result event identifies winner and reason"]),
+    r("CW-RES-002", "No legal move win", "v01", "P0", "locked", "A player loses when they begin a battle turn with no legal move.", ["Evaluator runs at turn start", "Founding placement shortages are not treated as no-move loss", "Legal-move generation is reused"]),
+    r("CW-RES-003", "Timeout loss", "v01", "P0", "required", "A player who runs out of time loses immediately in the active phase.", ["Founding timeout and battle timeout have separate reason codes", "Clock cannot go below zero in display", "Timeout event records remaining opponent time"]),
+    r("CW-RES-004", "Result modal", "web", "P0", "required", "The UI presents the winner, reason, final board, replay actions, and a special CLAMP! moment for sealed siege.", ["Sealed siege result displays CLAMP!", "Other wins avoid siege language", "Replay and export remain available after result"]),
+  ]),
+  category("replay-ledger", "Architecture", "Move history & replay data", "Every match is recorded from selection through final board in a replay-ready event stream.", ["194548", "195149", "202023"], [
+    r("CW-REP-001", "Replay event schema", "foundation", "P0", "required", "Events cover selections, founding placements, moves, captures, chains, clocks, siege events, result, and final board.", ["Schema is versioned", "Events are append-only", "Replay can rebuild state from an empty match"]),
+    r("CW-REP-002", "Coordinate notation", "foundation", "P0", "locked", "Human-readable history uses coordinates from a1 to i9.", ["Every placement has one coordinate", "Every move has from and to coordinates", "Captured coordinates are listed"]),
+    r("CW-REP-003", "Clock snapshots", "v01", "P0", "required", "Replay records clock values at meaningful turn boundaries and terminal events.", ["Founding placements include remaining time", "Battle turns include post-increment values", "Timeout replay is deterministic"]),
+    r("CW-REP-004", "Analysis-ready metadata", "expansion", "P1", "planned", "Replay format supports future opening theory, rankings, tournaments, AI training, and balance analysis.", ["Player ids can be anonymized", "Rules config is embedded", "Event stream is exportable as JSON"]),
+  ]),
+  category("local-game-flow", "Web interfaces", "Playable local game flow", "The first screen is a usable game, not a marketing page or static prototype.", ["201909", "194321"], [
+    r("CW-LOCAL-001", "Start local match", "web", "P0", "required", "The default Play route starts a local two-player setup with names, colors, and time preset.", ["No account required", "Players can accept defaults quickly", "Setup creates a valid empty GameState"]),
+    r("CW-LOCAL-002", "Phase-aware actions", "web", "P0", "required", "The UI exposes only actions valid for selection, special founding, Guard founding, battle, chain, and result phases.", ["Invalid controls are hidden or disabled with reason", "Current phase is visible", "Engine remains authoritative"]),
+    r("CW-LOCAL-003", "Move history panel", "web", "P0", "required", "A live side panel shows selections, placements, moves, captures, chains, clocks, and result.", ["History updates after every event", "Entries use stable notation", "Panel is usable on mobile"]),
+    r("CW-LOCAL-004", "Resume local match", "web", "P1", "required", "Local v0.1 saves in-progress matches in local storage or equivalent durable browser storage.", ["Saved state includes revision", "Version mismatch is handled", "Player can clear local data"]),
+  ]),
+  category("board-ui", "Web interfaces", "Responsive board interface", "The board must be readable, tactile, and precise on desktop and mobile.", ["194520", "195226"], [
+    r("CW-UI-001", "9x9 responsive board", "web", "P0", "required", "Render a square 9x9 board with fixed coordinate labels and no layout shift during play.", ["Board remains fully visible at 320px width", "Cells keep square aspect ratio", "Coordinates remain legible"]),
+    r("CW-UI-002", "Selection and legal highlights", "web", "P0", "required", "Show selected piece, legal moves, capturing moves, forced chain moves, last move, and siege pocket preview.", ["Capture highlights differ from quiet moves", "Forced chain cannot be missed", "State cues are not color-only"]),
+    r("CW-UI-003", "Touch and keyboard input", "web", "P0", "required", "Pointer, touch, and keyboard control paths submit the same engine commands.", ["Tap targets are at least 44px where practical", "Keyboard can traverse every cell", "Screen-reader feedback announces accepted actions"]),
+    r("CW-UI-004", "Board orientation", "web", "P1", "required", "Players may flip visual orientation without changing logical coordinates.", ["Replay coordinates remain stable", "Coordinate labels update predictably", "Orientation setting persists"]),
+  ]),
+  category("special-piece-design", "Design", "Special-piece art direction", "Special pieces need original premium designs that communicate movement without borrowing from existing board-game icon sets.", ["194520", "202110"], [
+    r("CW-ART-001", "Shared material language", "web", "P0", "required", "Pieces use stone, bronze, charcoal shadowing, and clamp-groove geometry across both players.", ["Two player palettes remain distinct", "Shapes remain recognizable in monochrome", "High contrast mode has approved fallbacks"]),
+    r("CW-ART-002", "Rampart silhouette", "web", "P0", "required", "Rampart uses a vertical wall-jaw silhouette and straight channel marks for orthogonal reach.", ["Distinct from Guard at small size", "Does not look like a tower from another game", "Animation reinforces straight lanes"]),
+    r("CW-ART-003", "Compass silhouette", "web", "P0", "required", "Compass uses an eight-ridge seal to suggest full-direction lanes.", ["Diagonal capability is visually implied", "No crown, royal, or magical iconography", "Selected state remains readable on yellow and white squares"]),
+    r("CW-ART-004", "Strider silhouette", "web", "P0", "required", "Strider uses a low three-rib wedge to suggest bounded movement up to three squares.", ["Three-step limit is visible in piece detail", "Does not look like a horse or knight", "Mobile size preserves the three-rib motif"]),
+  ]),
+  category("game-panel", "Web interfaces", "Game panel, controls & status", "The game shell exposes all needed functions without covering the board or clocks.", ["194548", "194630"], [
+    r("CW-PANEL-001", "Player strips", "web", "P0", "required", "Show player name, avatar, active state, phase role, remaining pieces, captured count, and clock.", ["Active player is obvious", "Timeout risk is visible", "Private selection state is masked when needed"]),
+    r("CW-PANEL-002", "Action controls", "web", "P0", "required", "Provide resign, restart, export replay, copy replay data, board flip, sound, and accessibility controls.", ["Destructive actions confirm", "Export works after result", "Controls remain reachable on mobile"]),
+    r("CW-PANEL-003", "Capture and siege feedback", "web", "P0", "required", "Captures, chains, and sealed-siege events receive dramatic but clean visual feedback.", ["Effects never obscure legal controls", "Reduced motion has static equivalents", "CLAMP! only appears for sealed-siege victory"]),
+    r("CW-PANEL-004", "Replay readiness", "web", "P1", "required", "The panel can switch from live history to replay navigation without mutating the original game.", ["First/previous/next/last controls exist", "Replay mode cannot submit moves", "Return-to-live works before game completion"]),
+  ]),
+  category("responsive-accessibility", "Quality", "Accessibility, localization & mobile quality", "CLAMP WARS must work for touch, keyboard, screen readers, RTL, and reduced-motion users.", ["194411", "202120", "202129"], [
+    r("CW-A11Y-001", "Accessible grid semantics", "web", "P0", "required", "Expose the board as an interactive 9x9 grid with coordinate, occupant, phase, selected, and legal-move state.", ["Screen reader names each cell", "Focus order follows visible board", "Move feedback is announced"]),
+    r("CW-A11Y-002", "Visual contrast", "web", "P0", "required", "Yellow sand, white stone, bronze, and charcoal styling must pass readability for pieces, labels, clocks, and highlights.", ["Contrast checks cover both square colors", "Selection is not color-only", "Critical text remains readable at 200% zoom"]),
+    r("CW-I18N-001", "English, Arabic-ready architecture", "web", "P1", "required", "Use structured message keys and layout rules that support Arabic RTL without changing board coordinate meaning.", ["No concatenated grammar-sensitive strings", "Coordinate notation remains a1-i9", "Language setting persists"]),
+    r("CW-RESP-001", "Mobile board-first layout", "web", "P0", "required", "Mobile prioritizes board, player strips, clock, current action, and compact history.", ["No horizontal overflow at 320px", "Board is playable one-handed", "Dialogs fit without hiding confirm buttons"]),
+  ]),
+  category("public-routes", "Web interfaces", "Public web route catalogue", "Required routes become real interfaces with states, not hidden services or placeholder menu items.", ["201843", "194508"], [
+    r("CW-ROUTE-001", "Core public routes", "web", "P0", "required", "Provide /, /play, /rules, /learn, /replay/:id, /about, /support, /privacy, and /terms.", ["Each route has metadata", "Play is the primary first screen", "Rules match the engine version"]),
+    r("CW-ROUTE-002", "Feature discovery", "web", "P1", "required", "Navigation exposes Play, Learn, Watch, Community, Events, Profile, and Settings with unavailable future features clearly labeled.", ["No fake data appears", "Unavailable features explain status", "Mobile uses bottom navigation or compact menu"]),
+    r("CW-ROUTE-003", "Rules pages", "web", "P0", "required", "Rules pages explain board, pieces, founding, movement, capture, chains, clocks, and sealed siege using diagrams.", ["Examples are generated from valid positions", "Rule version is displayed", "Diagrams use a1-i9 coordinates"]),
+    r("CW-ROUTE-004", "About boundary", "web", "P1", "planned", "About content may discuss inspiration later, but v0.1 product UI stays focused on CLAMP WARS as an independent game.", ["No legacy name needed for v0.1", "Credits are separate from rules", "Marketing copy cannot alter rules"]),
+  ]),
+  category("signin-accounts", "Accounts & profiles", "Sign-in, account entry & sessions", "Account flows are planned as first-class interfaces while local v0.1 remains playable without sign-in.", ["201924", "201931"], [
+    r("CW-AUTH-001", "Guest-first local play", "account", "P0", "required", "A guest can play local CLAMP WARS, export replay data, and later attach local history to an account.", ["No sign-in wall before local play", "Guest id is local and resettable", "Account merge policy is defined"]),
+    r("CW-AUTH-002", "Sign-in interface", "account", "P1", "planned", "Provide /signin with email magic-link and OAuth-ready provider slots.", ["Errors are actionable", "Rate limits are planned", "Session rotation is specified"]),
+    r("CW-AUTH-003", "Session management", "account", "P1", "planned", "Players can inspect active sessions, revoke devices, and receive security notifications.", ["Session list shows device and last activity", "Revocation invalidates credentials", "Sensitive actions reauthenticate"]),
+    r("CW-AUTH-004", "Onboarding", "account", "P1", "planned", "New accounts choose handle, avatar, region/time zone, language, accessibility preferences, and tutorial status.", ["Handle uniqueness is checked", "Nonessential fields can be skipped", "Preferences are editable"]),
+  ]),
+  category("profiles", "Accounts & profiles", "Player profile interface", "Profiles are real web surfaces for identity, history, privacy, achievements, and future competitive data.", ["201924", "201953", "202103"], [
+    r("CW-PROF-001", "Public profile", "account", "P1", "planned", "Profile shows avatar, handle, optional region, bio, recent games, awards, clubs, and fair-play status according to privacy settings.", ["Private fields are not shipped", "Blocked viewers are restricted", "Empty states are designed"]),
+    r("CW-PROF-002", "Stats panels", "account", "P1", "planned", "Stats panels summarize local and online records separately, including wins by elimination, no legal move, sealed siege, and timeout.", ["Local games are not ranked", "Reason counts match game ledger", "Filters are URL-addressable"]),
+    r("CW-PROF-003", "Avatar system", "web", "P1", "required", "Avatars use original CLAMP WARS visual language and never reuse old product marks as player identity.", ["Default avatar set exists", "Upload policy is defined for later", "Small-size readability is checked"]),
+    r("CW-PROF-004", "Profile privacy", "account", "P1", "planned", "Players control visibility of game history, region, presence, messages, friend requests, and profile search.", ["Defaults are privacy-safe", "Server APIs enforce settings", "Privacy changes are auditable"]),
+  ]),
+  category("settings-personalization", "Accounts & profiles", "Settings, presets & personalization", "Settings handle legitimate player preferences without changing competitive rules.", ["201931", "202120"], [
+    r("CW-SET-001", "Game preferences", "web", "P1", "required", "Players can set board orientation, coordinates, legal-move hints, animation intensity, sound, and default clock preset.", ["Settings persist locally", "Reduced motion overrides animation intensity", "Hints do not change legal moves"]),
+    r("CW-SET-002", "Accessibility settings", "web", "P0", "required", "Provide high contrast, reduced motion, larger controls, sound layers, and keyboard help.", ["Settings are reachable during a game", "No setting hides clocks", "Preferences persist"]),
+    r("CW-SET-003", "Account settings", "account", "P1", "planned", "Authenticated settings include profile, login methods, sessions, notifications, privacy, data export, and deletion.", ["Sensitive changes reauthenticate", "Export is machine-readable", "Deletion retention policy is visible"]),
+    r("CW-SET-004", "Cosmetic themes", "expansion", "P2", "future", "Future board and piece themes remain cosmetic and must preserve rule clarity.", ["Themes pass board-readability tests", "Opponent fallback works", "No theme grants gameplay information"]),
+  ]),
+  category("learning-rules", "Web interfaces", "Learning, tutorials & rule diagrams", "CLAMP WARS needs rule teaching around founding, movement, capture, chains, and sealed siege from day one.", ["194401", "202103"], [
+    r("CW-LEARN-001", "Interactive rule lessons", "web", "P1", "required", "Lessons teach selection, founding, Guard movement, Rampart, Compass, Strider, capture, chain, clocks, and sealed siege.", ["Each lesson has setup and validation", "Incorrect actions explain the violated rule", "Progress stores locally"]),
+    r("CW-LEARN-002", "Piece movement cards", "web", "P0", "required", "Piece cards show names, technical aliases, inventory counts, movement diagrams, and no-extra-power warning.", ["Rampart, Compass, Strider are clearly differentiated", "Diagrams are generated from engine move tables", "Mobile cards remain readable"]),
+    r("CW-LEARN-003", "Sealed-siege examples", "web", "P0", "required", "Provide diagrams for valid pocket, invalid open pocket, invalid immediate escape, smaller non-winning pocket, and CLAMP! threshold.", ["Each example has engine fixture", "Threshold value is displayed", "Examples avoid ambiguous edge cases"]),
+    r("CW-LEARN-004", "Future puzzle service", "expansion", "P2", "planned", "Replay data supports future daily puzzles, siege puzzles, capture-chain drills, and founding exercises.", ["Puzzle records include unique solution metadata", "Attempts are separate from games", "Puzzle ruleset version is stored"]),
+  ]),
+  category("history-replay-ui", "Web interfaces", "History, replay & export interface", "Players and future systems need complete replay data from v0.1.", ["195149", "202023"], [
+    r("CW-HIST-001", "Live history notation", "web", "P0", "required", "Show selections, founding placements, movements, captures, chain steps, clock updates, siege events, and result in readable notation.", ["Notation uses a1-i9", "History groups chain substeps", "Clock values are visible"]),
+    r("CW-HIST-002", "Replay controls", "web", "P1", "required", "Provide first, previous, play/pause, next, last, speed, and orientation controls.", ["Replay cannot mutate live game", "Founding phase is replayable", "Final board matches result event"]),
+    r("CW-HIST-003", "Replay import/export", "web", "P0", "required", "Export and import replay-ready JSON for local analysis and future account sync.", ["Export includes schema version", "Import validates before rendering", "Invalid replay shows errors without crashing"]),
+    r("CW-HIST-004", "Game list shell", "account", "P1", "planned", "Authenticated /games will filter by opponent, result, win condition, time control, date, and event.", ["Cursor pagination is planned", "Private visibility is enforced", "Rows link to immutable replay"]),
+  ]),
+  category("data-model", "Architecture", "Data model & storage contracts", "The local game and future services share stable entities and event contracts.", ["202023", "201924"], [
+    r("CW-DATA-001", "Local persistence", "v01", "P0", "required", "Persist local in-progress match, completed match list, settings, and exported replay cache.", ["Data has version keys", "Storage errors have fallback UI", "Player can delete local records"]),
+    r("CW-DATA-002", "Identity entities", "account", "P1", "planned", "Future backend entities include User, Profile, Session, Preference, Relationship, Block, Notification, and Consent.", ["PII is separated from public profile", "Timestamps use server time", "Deletion policy is defined"]),
+    r("CW-DATA-003", "Game ledger entities", "online", "P1", "planned", "Future backend stores Game, Participant, GameEvent, GameSnapshot, ClockState, Result, Replay, and Analysis records.", ["Events are append-only", "Snapshots are derived", "Idempotency keys prevent duplicate commands"]),
+    r("CW-DATA-004", "Competition entities", "online", "P2", "planned", "Future competition stores RatingPool, RatingChange, Season, LeaguePlacement, Tournament, Registration, Round, Pairing, and Standing.", ["Finished-game ratings are immutable", "Pools separate rules/time controls", "Recompute path is documented"]),
+  ]),
+  category("api-events", "Architecture", "Commands, events & APIs", "The engine and future backend speak typed commands and domain events instead of UI-authored mutations.", ["194321", "194548"], [
+    r("CW-API-001", "Game commands", "foundation", "P0", "required", "Commands include CreateLocalGame, SelectSpecials, RevealSpecials, PlaceSpecial, PlaceGuard, MovePiece, ContinueChain, Resign, ExportReplay, and ImportReplay.", ["Commands validate phase and actor", "Errors have stable codes", "Commands are serializable"]),
+    r("CW-API-002", "Game events", "foundation", "P0", "required", "Events include GameCreated, SpecialsSelected, SpecialsRevealed, PieceFounded, PieceMoved, PiecesCaptured, ChainRequired, TurnEnded, SiegeDetected, ClockUpdated, and GameCompleted.", ["Events include revision", "Replay uses the same events", "Private data is marked"]),
+    r("CW-API-003", "Future platform APIs", "online", "P1", "planned", "Define paginated APIs for profiles, games, friends, notifications, leaderboards, challenges, content, reports, and settings.", ["Authorization is object-level", "Rate-limit headers are specified", "Error envelope is consistent"]),
+    r("CW-API-004", "Schema publication", "operations", "P1", "planned", "Publish TypeScript types and OpenAPI or equivalent schemas for app/backend boundaries.", ["Types are generated or validated in CI", "Breaking changes require version bump", "Docs include examples"]),
+  ]),
+  category("online-readiness", "Online-ready", "Online multiplayer readiness", "Do not fake online play in v0.1, but build the local engine so authoritative online play can use it later.", ["201916", "194622"], [
+    r("CW-ON-001", "Authoritative future server", "online", "P1", "planned", "Online games will validate every command on the server and broadcast ordered events.", ["Client cannot author captures", "Expected revision prevents stale moves", "Duplicate commands are idempotent"]),
+    r("CW-ON-002", "Reconnect model", "online", "P1", "planned", "Future live sessions define connected, degraded, reconnecting, resyncing, restored, and forfeited states.", ["Missed events can replay from revision", "Clock catches up from server time", "Pending command resolves once"]),
+    r("CW-ON-003", "No fake multiplayer", "v01", "P0", "locked", "v0.1 must not show public matchmaking, friend challenge, spectators, ratings, or chat as functioning unless real services exist.", ["Unavailable controls are clearly marked", "No invented online counters", "Local game remains complete"]),
+    r("CW-ON-004", "Spectator-ready replay", "expansion", "P2", "planned", "Replay format supports future delayed spectators, featured games, and educational watch pages.", ["Private games are not enumerable", "Display-name changes do not alter replays", "Spectator data excludes hidden profile fields"]),
+  ]),
+  category("competition-future", "Online-ready", "Matchmaking, ratings & events", "Future competitive systems must respect ruleset, time control, region, rating, and fair-play boundaries.", ["201909", "202009"], [
+    r("CW-COMP-001", "Matchmaking contract", "online", "P2", "planned", "Queue key includes ruleset version, rated flag, time preset, region, rating band, and platform constraints.", ["Players cannot match themselves", "Cancel is idempotent", "Queue status is truthful"]),
+    r("CW-COMP-002", "Rating pools", "online", "P2", "planned", "Ratings are separated by ruleset and time-control family; local and AI games are unrated.", ["Pool is visible before match", "Rating change is transactional", "Result reason is stored"]),
+    r("CW-COMP-003", "Tournaments", "online", "P2", "planned", "Events support schedule, rules, participants, check-in, pairings, standings, and replay links.", ["Event fixes ruleset and time preset", "Withdraw/no-show policy is explicit", "Directors cannot edit moves"]),
+    r("CW-COMP-004", "Rank names", "expansion", "P2", "future", "Future ranks and leagues use original CLAMP WARS language and do not borrow legacy or chess tier names.", ["Rank taxonomy is documented", "Season reset policy is visible", "Rewards are cosmetic/status only"]),
+  ]),
+  category("social-notifications", "Accounts & profiles", "Friends, community & notifications", "Social features support play while keeping privacy and moderation controls explicit.", ["201843", "202028"], [
+    r("CW-SOC-001", "Friends and follows", "account", "P2", "planned", "Support friend requests or follows, challenge shortcuts, mute, block, and discovery settings.", ["State transitions are atomic", "Blocks affect invites and chat", "Preferences are respected"]),
+    r("CW-SOC-002", "Notification center", "account", "P1", "planned", "Notifications cover turn reminders, invites, results, friend events, account security, tournaments, and moderation messages.", ["Read/archive state exists", "Deep links restore context", "Sensitive content obeys privacy settings"]),
+    r("CW-SOC-003", "Safe reactions", "online", "P2", "planned", "In-game communication starts with safe preset reactions; optional text chat requires moderation controls.", ["Mute/report are quick", "Chat is excluded from public replay by default", "Age and region settings are enforceable"]),
+    r("CW-SOC-004", "Clubs", "online", "P2", "future", "Future clubs support membership roles, announcements, internal events, leaderboards, and moderation ownership.", ["Join policy is configurable", "Club stats never alter individual rating", "Club admins have scoped permissions"]),
+  ]),
+  category("trust-ops-monetization", "Trust & business", "Trust, operations & monetization boundaries", "Commercial and operational systems cannot compromise board clarity, fairness, or player safety.", ["202009", "202120"], [
+    r("CW-TRUST-001", "Fair-play baseline", "online", "P1", "planned", "Collect server-side timing, disconnect, command, and engine-correlation signals for future rated play without one-score automatic bans.", ["Human review is required for serious action", "Evidence retention is defined", "Privacy notice covers signals"]),
+    r("CW-TRUST-002", "Reporting workflow", "account", "P1", "planned", "Reports cover harassment, spam, inappropriate profile, stalling, suspected assistance, and account abuse.", ["Reporter receives receipt", "Private outcomes are not leaked", "Report abuse is rate-limited"]),
+    r("CW-BIZ-001", "Cosmetics only", "expansion", "P2", "future", "Future subscriptions, cosmetics, and board themes never alter rules, legal moves, clocks, matching, or rating.", ["No pay-to-win entitlement", "Cosmetic fallback works", "Purchases are restorable"]),
+    r("CW-BIZ-002", "Ads never cover play", "expansion", "P2", "future", "If ads exist later, they never overlay board state, clocks, legal moves, dialogs, or accessibility controls.", ["Layout reserves space", "Ad failure does not affect game", "Consent and age rules are enforced"]),
+  ]),
+  category("admin-ops", "Operations", "Admin, flags & observability", "Operations surfaces manage the product without direct mutation of finished game history.", ["202023", "202009"], [
+    r("CW-OPS-001", "Feature flags", "operations", "P1", "planned", "Admin flags configure rule experiments, time presets, queue parameters, banners, and rollout scopes.", ["Flags are typed", "Changes are audited", "Core v0.1 rules are not editable as casual config"]),
+    r("CW-OPS-002", "Observability", "operations", "P1", "planned", "Collect logs, metrics, and traces for game commands, replay import/export, socket connections, queues, auth, and job workers.", ["Correlation ids connect events", "PII is redacted", "Dashboards have owners"]),
+    r("CW-OPS-003", "Support tools", "operations", "P2", "planned", "Support can inspect account and game metadata, handle reports, and export diagnostic bundles without editing moves.", ["Access is audited", "Reason is required", "Sensitive fields are masked"]),
+    r("CW-OPS-004", "Release health", "operations", "P0", "required", "Every release verifies routes, assets, rules config, engine tests, local match start, legal move, capture, sealed siege, replay export, and responsive layout.", ["Smoke checks run in CI", "Failure blocks promotion where possible", "Rollback metadata is stored"]),
+  ]),
+  category("testing-delivery", "Quality", "Testing strategy & delivery order", "The build is complete only when engine, UI, replay, clocks, accessibility, and edge cases are verified.", ["194321", "195226"], [
+    r("CW-TEST-001", "Engine unit tests", "v01", "P0", "required", "Test coordinates, color parity, inventory, selection, founding, movement, path blocking, capture, chains, clocks, results, and sealed siege.", ["Fixtures cover all piece classes", "Random legal-game tests maintain invariants", "Invalid commands leave state unchanged"]),
+    r("CW-TEST-002", "Browser journeys", "web", "P0", "required", "End-to-end tests cover setup, selection reveal, special placement, Guard placement, battle move, capture, chain, timeout, result, export, and replay.", ["No console errors", "Desktop and mobile viewports pass", "No horizontal overflow"]),
+    r("CW-TEST-003", "Accessibility checks", "web", "P0", "required", "Automated and manual checks cover keyboard play, screen-reader labels, focus order, contrast, reduced motion, and touch targets.", ["Board can be operated by keyboard", "State changes are announced", "Reduced motion removes impact animation"]),
+    r("CW-DEL-001", "Delivery order", "foundation", "P0", "locked", "Build in order: repo foundation, board, state model, pieces, selection, founding, movement, capture/chains, turns/clocks, sealed siege, result/replay, polish/tests.", ["No online work before local game is correct", "Each milestone has tests", "Completion report lists requirement IDs"]),
+  ]),
+];
+
+export const screenshotInventory = [
+  ["194321", "Full live-game desktop shell", "Rail navigation, player strips, board, game panel, clocks, ads"],
+  ["194347", "Quick-play menu", "Time choice, start game, custom challenge, friend, tournaments"],
+  ["194401", "Learning/navigation surface", "Discovery cards and structured destinations"],
+  ["194411", "Mobile layout", "Compressed board-first navigation and controls"],
+  ["194508", "Icon rail crop", "Primary application navigation"],
+  ["194520", "Board and pieces", "Readable board state and piece interaction"],
+  ["194528", "Result/modal detail", "Post-game actions and hierarchy"],
+  ["194536", "Small control", "Compact utility control behavior"],
+  ["194548", "Analysis panel", "Tabs, move list, playback and review"],
+  ["194601", "Compact game state", "Player information and status"],
+  ["194614", "Post-game/analysis state", "Review and continuation"],
+  ["194622", "Wide gameplay shell", "Board, panel and monetization layout"],
+  ["194630", "Control strip", "Playback and game actions"],
+  ["194655", "Menu/profile card", "Contextual player options"],
+  ["194sd435", "Expanded play menu over live board", "Online play, coaching, statistics, tournaments, variants and history grouped as one discoverable game ecosystem"],
+  ["195113", "Result summary", "Stats, rematch and review"],
+  ["195149", "History/review page", "Game records, filtering and replay"],
+  ["195202", "Compact player strip", "Avatar, identity, clock"],
+  ["195210", "Compact opponent strip", "Opponent identity and game state"],
+  ["195226", "Mobile game page", "Phone board and bottom actions"],
+  ["201843", "Expanded application menu", "Full product destination catalogue"],
+  ["201909", "Quick start page", "One-click play and secondary play modes"],
+  ["201916", "Live ecosystem counters", "Players online and games today"],
+  ["201924", "Player profile", "Identity, tabs, privacy and social graph"],
+  ["201931", "Clock/settings crop", "Time display and preferences"],
+  ["201953", "Ratings and performance", "Multiple rating pools and trend cards"],
+  ["202009", "Stats/ads/learning dashboard", "Metrics, sponsor space and learning CTA"],
+  ["202023", "Game history table", "Filters, result rows, review actions"],
+  ["202028", "Streak and league", "Activity progression separate from skill"],
+  ["202103", "Achievements/books/passports", "Progression and collection systems"],
+  ["202110", "Awards taxonomy", "Achievements, medals, badges, cheers, books, passports"],
+  ["202120", "Legal/footer links", "Support, language, policies and social destinations"],
+  ["202129", "Footer/social strip", "Platform presence and secondary navigation"],
+];
+
+export const architecture = {
+  clients: ["CLAMP WARS web app", "Installable PWA shell", "Replay viewer", "Future admin console"],
+  core: ["Pure rules engine", "Coordinate and board codec", "Movement generators", "Capture and chain resolver", "Sealed-siege evaluator", "Replay/event ledger"],
+  backend: ["Identity and profiles", "Authoritative games", "Realtime events", "Matchmaking", "Competition", "Community", "Learning content", "Trust and operations"],
+  data: ["Local storage v0.1", "Postgres future ledger", "Object storage for avatars/assets", "Job queue", "Analytics warehouse", "Config registry"],
+};

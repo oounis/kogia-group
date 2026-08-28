@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0-candidate",
+  "name": "Kharbga War Council",
+  "direction": "60% Kharbga war-council heritage, 40% Kogia personality",
+  "palette": { "abyss": "#171C20", "panel": "#22282D", "indigo": "#173D63", "sand": "#E9D8B4", "clay": "#B86B3F", "palm": "#628154", "copper": "#C98242", "bone": "#F4EBD8" },
+  "pieces": [
+    { "name": "footguard", "sand": "pieces/png/footguard-sand.png", "night": "pieces/png/footguard-night.png", "character": "Disciplined shield bearer; simple, numerous, never disposable." },
+    { "name": "sand-rider", "sand": "pieces/png/sand-rider-sand.png", "night": "pieces/png/sand-rider-night.png", "character": "Fast flanking silhouette shaped by wind and momentum." },
+    { "name": "oracle", "sand": "pieces/png/oracle-sand.png", "night": "pieces/png/oracle-night.png", "character": "Reads long lines and hidden consequences." },
+    { "name": "citadel-guard", "sand": "pieces/png/citadel-guard-sand.png", "night": "pieces/png/citadel-guard-night.png", "character": "A mobile wall with the square authority of a gate." },
+    { "name": "war-captain", "sand": "pieces/png/war-captain-sand.png", "night": "pieces/png/war-captain-night.png", "character": "The widest tactical reach and boldest command silhouette." },
+    { "name": "clan-elder", "sand": "pieces/png/clan-elder-sand.png", "night": "pieces/png/clan-elder-night.png", "character": "The leader whose survival holds the council together." }
+  ],
+  "profiles": [
+    { "name": "amina", "title": "Patient Commander", "rating": 1450, "path": "profiles/png/amina.png" },
+    { "name": "massin", "title": "Desert Scout", "rating": 900, "path": "profiles/png/massin.png" },
+    { "name": "zahra", "title": "Trap Weaver", "rating": 1675, "path": "profiles/png/zahra.png" },
+    { "name": "nadir", "title": "Bold Rider", "rating": 1200, "path": "profiles/png/nadir.png" },
+    { "name": "salma", "title": "Citadel Defender", "rating": 1820, "path": "profiles/png/salma.png" },
+    { "name": "yuba", "title": "Elder Strategist", "rating": 2100, "path": "profiles/png/yuba.png" },
+    { "name": "tarek", "title": "Chain Hunter", "rating": 1950, "path": "profiles/png/tarek.png" },
+    { "name": "lila", "title": "Kogia Inventor", "rating": 1100, "path": "profiles/png/lila.png" }
+  ],
+  "reactions": ["respect", "brilliant", "trap", "surprised", "thinking", "rematch", "good-game", "challenge"],
+  "directionBoards": [
+    { "name": "warrior pieces", "path": "direction-boards/warrior-pieces-v1.png" },
+    { "name": "war council", "path": "direction-boards/war-council-profiles-v1.png" },
+    { "name": "table reactions", "path": "direction-boards/reactions-v1.png" }
+  ]
+}
