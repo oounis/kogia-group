@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* Émet .next/standalone : un serveur autonome qui n'embarque que les
+     node_modules réellement atteints. C'est ce que l'image Docker copie,
+     et c'est la différence entre une image de ~200 Mo et une de ~1,5 Go. */
+  output: "standalone",
+
   /* Le fichier public/ ne sert un dossier que si le chemin exact est demandé
      (/suite/index.html), pas /suite/ tout court comme le fait un serveur
      statique classique. La démo Soldéo/Relio vit dans public/suite/

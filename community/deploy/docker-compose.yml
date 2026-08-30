@@ -1,0 +1,78 @@
+# kogiagroup.com sur kogia-prod-01.
+#
+# Le site est un locataire de la plateforme partagée (/opt/kogia/platform) :
+# il n'apporte ni TLS, ni nginx, ni certbot. Sa base de données reste
+# Supabase, hébergé ailleurs — la plateforme ne lui fournit que l'entrée
+# réseau.
+#
+#   cd /opt/kogia/apps/kogiagroup && ./src/deploy/deploy.sh
+name: kogiagroup
+
+x-site: &site
+  build:
+    context: ..
+    dockerfile: Dockerfile
+    args:
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:?set NEXT_PUBLIC_SUPABASE_URL}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:?set NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://kogiagroup.com}
+      NEXT_PUBLIC_GOOGLE_AUTH_ENABLED: ${NEXT_PUBLIC_GOOGLE_AUTH_ENABLED:-false}
+  image: kogiagroup-site:latest
+  restart: unless-stopped
+  security_opt: [no-new-privileges:true]
+  environment:
+    NODE_ENV: production
+    PORT: "3000"
+    NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+    NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://kogiagroup.com}
+    NEXT_PUBLIC_GOOGLE_AUTH_ENABLED: ${NEXT_PUBLIC_GOOGLE_AUTH_ENABLED:-false}
+    TZ: UTC
+  # Pas de réseau `data` : ce site ne touche pas au cluster PostgreSQL de la
+  # plateforme. Lui donner l'accès serait lui donner un chemin vers les
+  # données des autres applications sans raison.
+  networks: [edge]
+  expose: ["3000"]
+  healthcheck:
+    test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+    interval: 30s
+    timeout: 5s
+    retries: 3
+    start_period: 30s
+  logging: &logging
+    driver: json-file
+    options: { max-size: "10m", max-file: "5" }
+  labels: &labels
+    traefik.enable: "true"
+    traefik.docker.network: kogia-edge
+
+    # L'apex sert le site.
+    traefik.http.routers.kogiagroup.rule: Host(`kogiagroup.com`)
+    traefik.http.routers.kogiagroup.entrypoints: websecure
+    traefik.http.routers.kogiagroup.middlewares: rate-limit@file
+
+    # www redirige en 301 vers l'apex. Deux hôtes qui servent le même contenu,
+    # c'est du contenu dupliqué pour les moteurs de recherche et deux origines
+    # distinctes pour les cookies de session Supabase.
+    traefik.http.routers.kogiagroup-www.rule: Host(`www.kogiagroup.com`)
+    traefik.http.routers.kogiagroup-www.entrypoints: websecure
+    traefik.http.routers.kogiagroup-www.middlewares: kogiagroup-www-redirect
+    traefik.http.middlewares.kogiagroup-www-redirect.redirectregex.regex: ^https://www\.kogiagroup\.com/(.*)
+    traefik.http.middlewares.kogiagroup-www-redirect.redirectregex.replacement: https://kogiagroup.com/$${1}
+    traefik.http.middlewares.kogiagroup-www-redirect.redirectregex.permanent: "true"
+
+    traefik.http.services.kogiagroup.loadbalancer.server.port: "3000"
+    traefik.http.services.kogiagroup.loadbalancer.healthcheck.path: /api/health
+    traefik.http.services.kogiagroup.loadbalancer.healthcheck.interval: "10s"
+
+services:
+  # Deux répliques, pas quatre : le site est très majoritairement du rendu
+  # statique et EduPlus a plus besoin des cœurs. Ce chiffre se monte quand la
+  # fréquentation le justifie, pas avant.
+  site1: { <<: *site, container_name: kogiagroup-site1, labels: *labels }
+  site2: { <<: *site, container_name: kogiagroup-site2, labels: *labels }
+
+networks:
+  edge:
+    name: kogia-edge
+    external: true

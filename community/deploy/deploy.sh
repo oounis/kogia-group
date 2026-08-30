@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Deploy kogiagroup.com on kogia-prod-01.
+#
+# The repo root is oounis/kogia-group; this site is its community/ folder,
+# so every compose path carries that prefix.
+#
+#   /opt/kogia/apps/kogiagroup/src/deploy/deploy.sh
+#
+# Idempotent. Safe to run again after a failure — it stops before touching
+# running replicas if the build or the migration fails.
+set -euo pipefail
+
+APP_DIR="/opt/kogia/apps/kogiagroup"
+SRC_DIR="${APP_DIR}/src"
+# No --project-directory: compose resolves `context: ..` relative to the
+# compose file's own directory, which is exactly src/ — where the Dockerfile
+# is. Overriding the project directory silently repoints that one level too
+# high and the build cannot find the Dockerfile.
+COMPOSE=("docker" "compose" "-f" "${SRC_DIR}/community/deploy/docker-compose.yml" "--env-file" "${APP_DIR}/.env")
+
+cd "${SRC_DIR}"
+
+echo "==> 1/4  fetching"
+git fetch --quiet origin
+BEFORE="$(git rev-parse --short HEAD)"
+git reset --hard --quiet "origin/$(git rev-parse --abbrev-ref HEAD)"
+AFTER="$(git rev-parse --short HEAD)"
+echo "        ${BEFORE} -> ${AFTER}"
+
+# This script is inside the tree it just updated. Bash reads a script
+# incrementally from disk, so a version that changed under a running shell is
+# at best stale and at worst executed half-old, half-new. If this file moved,
+# hand over to the new copy and stop.
+if [ "${BEFORE}" != "${AFTER}" ] && [ -z "${KOGIA_DEPLOY_REEXEC:-}" ]; then
+  if ! git diff --quiet "${BEFORE}" "${AFTER}" -- community/deploy/deploy.sh; then
+    echo "        deploy.sh itself changed — re-executing the new version"
+    KOGIA_DEPLOY_REEXEC=1 exec "${SRC_DIR}/community/deploy/deploy.sh" "$@"
+  fi
+fi
+
+echo "==> 2/4  building image"
+# Built here rather than pulled: one host, one operator, no registry to
+# authenticate against. When the second VPS arrives this becomes a push to
+# GHCR so both hosts run a byte-identical image.
+"${COMPOSE[@]}" build --quiet site1
+
+# No migration step: this site's data lives in Supabase, which is managed
+# elsewhere and never migrated from here.
+
+echo "==> 3/4  rolling replicas"
+# One at a time. Traefik's health check pulls each container out of rotation
+# before it stops and puts it back only once /api/health answers, so the site
+# stays up through the deploy.
+for svc in site1 site2; do
+  printf '        %s ... ' "$svc"
+  "${COMPOSE[@]}" up -d --no-deps --force-recreate "$svc" >/dev/null 2>&1
+  # The container is named after the service (kogiagroup-app1). Wait up to 3
+  # minutes: the image has a 40s start_period and a 30s check interval, so a
+  # shorter wait reports nothing and moves on to recreate the next replica
+  # while this one is still starting — which is how you take all four down
+  # at once during what is supposed to be a rolling deploy.
+  ok=""
+  for _ in $(seq 1 60); do
+    if [ "$(docker inspect -f '{{.State.Health.Status}}' "kogiagroup-${svc}" 2>/dev/null)" = "healthy" ]; then
+      ok=1; echo "healthy"; break
+    fi
+    sleep 3
+  done
+  [ -n "$ok" ] || { echo "NOT healthy — stopping the rollout, $svc did not come up"; exit 1; }
+done
+
+echo "==> 4/4  verifying"
+sleep 3
+HOSTNAME_FQDN="$(grep -E '^APP_HOSTNAME=' "${APP_DIR}/.env" | cut -d= -f2)"
+CODE="$(curl -s -o /dev/null -w '%{http_code}' "https://${HOSTNAME_FQDN}/api/health" || echo 000)"
+echo "        https://${HOSTNAME_FQDN}/api/health -> ${CODE}"
+[ "$CODE" = "200" ] || { echo "!! health check did not return 200"; exit 1; }
+echo "==> deployed ${AFTER}"
