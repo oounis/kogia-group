@@ -8,11 +8,12 @@
 # site statique retiré du domaine — il ne regardait pas une ligne du code
 # réellement servi.
 #
-# Render déploie automatiquement sur push vers main. Cette porte tourne donc
-# EN PARALLÈLE du déploiement, pas avant : elle ne peut pas bloquer une mise
-# en ligne, mais elle dit la vérité sur ce qui vient de partir. Pour qu'elle
-# bloque vraiment, il faudrait couper l'auto-deploy de Render et déployer
-# depuis ce workflow — décision d'Othman, pas prise ici.
+# DEPUIS LE 2026-08-30 : le site n'est plus sur Render (suspendu) ni sur
+# GitHub Pages (désactivé le même jour). Il tourne sur kogia-prod-01
+# (13.140.153.6), déployé À LA MAIN par community/deploy/deploy.sh. Il n'y a
+# donc plus aucun déploiement automatique sur push : cette porte peut mentir
+# sur ce qui est EN LIGNE, elle ne dit la vérité que sur ce qui est dans
+# main. Ce qui est en ligne, c'est ce qui a été déployé en dernier.
 # ════════════════════════════════════════════════════════════════════════════
 name: Qualité — site kogiagroup.com (community/)
 
