@@ -63,6 +63,29 @@ export default async function ExplorePage() {
             })}
           </ul>
         )}
+
+        {/* Une bibliothèque qui contient un livre ne doit pas prétendre le
+            contraire, ni laisser 70 % de page blanche sans rien dire. Ce bloc
+            dit où en est le catalogue et donne quelque chose à faire ensuite —
+            il disparaît de lui-même dès qu'il y a de quoi remplir la page. */}
+        {articles.length > 0 && articles.length < 6 && (
+          <aside className={styles.jeune}>
+            <p className={styles.jeuneT}>
+              {articles.length === 1
+                ? "Une seule idée publiée pour l'instant."
+                : `${articles.length} idées publiées pour l'instant.`}
+            </p>
+            <p>
+              On publie quand une idée vaut la lecture, pas pour tenir un
+              calendrier. En attendant, ce qui est déjà construit se regarde
+              plutôt que se lit.
+            </p>
+            <div className={styles.jeuneActions}>
+              <Link href="/#ce-qui-tourne" className="bouton accent">Ce qu&apos;on a construit</Link>
+              <a href="mailto:contact@kogiagroup.com" className="bouton ligne">Proposer une idée</a>
+            </div>
+          </aside>
+        )}
       </main>
     </>
   );

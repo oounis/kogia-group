@@ -16,6 +16,56 @@ import styles from "./page.module.css";
  */
 const SLUG_VEDETTE = "kharbga-from-sand-to-screen";
 
+/**
+ * Ce qui existe vraiment, avec l'état réel — pas la liste de trois produits
+ * que cette page portait alors que cinq tournent ou sont prêts à tourner.
+ * Un état honnête vaut mieux qu'un catalogue flatteur : « en préparation »
+ * dit la vérité, « bientôt » ne dit rien.
+ */
+const PRODUITS: {
+  nom: string;
+  quoi: string;
+  etat: string;
+  ton: "vit" | "chantier" | "prepare";
+  href: string | null;
+}[] = [
+  {
+    nom: "Coreon EDU",
+    quoi: "La gestion d'un établissement scolaire — élèves, classes, présence, notes.",
+    etat: "En production",
+    ton: "vit",
+    href: "https://edu.kogiagroup.com",
+  },
+  {
+    nom: "Kogia Kids",
+    quoi: "Des fiches à imprimer pour les 3-12 ans, gratuites, sans compte. Arabe et français.",
+    etat: "Bientôt",
+    ton: "chantier",
+    href: null,
+  },
+  {
+    nom: "Faz3a",
+    quoi: "L'action citoyenne : signaler, vérifier, suivre ce qui est réparé.",
+    etat: "En construction",
+    ton: "chantier",
+    href: null,
+  },
+  {
+    nom: "Kharbga",
+    quoi: "Le jeu de stratégie nord-africain, reconstruit pour le mobile et le web.",
+    etat: "En construction",
+    ton: "chantier",
+    href: null,
+  },
+  {
+    nom: "Suite Kogia",
+    quoi: "Le socle de gestion d'entreprise : finance d'abord, le reste s'y branche.",
+    etat: "En préparation",
+    ton: "prepare",
+    href: null,
+  },
+];
+
 /* Le temps de lecture était écrit en dur (« 14 min ») alors que la page
    d'article le calcule depuis le contenu et affiche 15 min : deux chiffres
    différents pour le même texte, visibles par n'importe quel lecteur.
@@ -52,18 +102,47 @@ export default async function Home() {
 
       <main>
         <section className={styles.hero}>
-          <h1>Des idées qui méritent de remonter à la surface.</h1>
+          <h1>On construit des logiciels. Et on écrit ce qu&apos;on apprend.</h1>
           <p>
-            Kogia est une communauté pour découvrir, publier et développer des
-            idées sérieuses. Des articles pratiques, des gens curieux, une
-            discussion sur les opportunités, et des projets prometteurs qui
-            deviennent réels.
+            Kogia explore une idée jusqu&apos;au bout — le problème, le marché,
+            les risques, un verdict honnête — puis construit celles qui le
+            méritent. Certaines tournent déjà en production, chez de vrais
+            utilisateurs.
           </p>
           <div className={styles.heroActions}>
-            <Link href="/explore" className="bouton accent">Explorer les articles</Link>
-            <Link href="/join" className="bouton ligne">Rejoindre Kogia</Link>
+            <Link href="#ce-qui-tourne" className="bouton accent">Ce qu&apos;on a construit</Link>
+            <Link href="/explore" className="bouton ligne">Lire les idées</Link>
           </div>
-          <p className={styles.heroSujets}>Technologie · Business · Projets · Créativité</p>
+        </section>
+
+        {/* Ce qui tourne, avec un état honnête par ligne.
+            Cette section existe parce que la page vendait une communauté à
+            un seul article, alors que la seule preuve qui compte — du logiciel
+            en service chez de vrais utilisateurs — n'était nulle part. */}
+        <section id="ce-qui-tourne" className={styles.tourne}>
+          <p className={styles.sectionT}>Ce qui tourne</p>
+          <ul className={styles.produits}>
+            {PRODUITS.map((p) => (
+              <li key={p.nom} className={styles.produit}>
+                <span className={`${styles.etat} ${styles[p.ton]}`}>{p.etat}</span>
+                <div>
+                  <h3>
+                    {p.href ? (
+                      <a href={p.href}>{p.nom}</a>
+                    ) : (
+                      p.nom
+                    )}
+                  </h3>
+                  <p>{p.quoi}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.preuve}>
+            Un registre scolaire construit ici sert aujourd&apos;hui une école
+            de <strong>323 élèves</strong> : dix classes, l&apos;appel fait au
+            téléphone par les enseignants, en arabe.
+          </p>
         </section>
 
         <section className={styles.vedette}>
@@ -115,8 +194,14 @@ export default async function Home() {
         </section>
 
         <section className={styles.cta}>
-          <h2>Rejoignez les gens qui font remonter des idées utiles à la surface.</h2>
-          <Link href="/join" className="bouton accent">Créer votre compte</Link>
+          <h2>Une idée, un projet, ou juste une remarque ?</h2>
+          {/* La question demandait un mot et le bouton ouvrait un compte.
+              Le bouton fait maintenant ce que la phrase promet ; s'inscrire
+              reste offert en haut de page, pour qui le cherche. */}
+          <div className={styles.ctaActions}>
+            <a href="mailto:contact@kogiagroup.com" className="bouton accent">Écrire à Kogia</a>
+            <Link href="/join" className="bouton ligne">Créer un compte</Link>
+          </div>
         </section>
       </main>
 

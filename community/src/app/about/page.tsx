@@ -28,6 +28,13 @@ const PRODUITS: {
     href: "https://edu.kogiagroup.com",
   },
   {
+    icone: "education",
+    nom: "Kogia Kids",
+    detail: "Fiches à imprimer, 3-12 ans",
+    statut: "Bientôt en ligne",
+    href: null,
+  },
+  {
     icone: "civic-action",
     nom: "Faz3a",
     detail: "Action citoyenne",
@@ -36,8 +43,15 @@ const PRODUITS: {
   },
   {
     icone: "platform",
+    nom: "Kharbga",
+    detail: "Jeu de stratégie nord-africain",
+    statut: "En construction",
+    href: null,
+  },
+  {
+    icone: "platform",
     nom: "Suite Kogia",
-    detail: "Finance, CRM, RH",
+    detail: "Finance d'abord, le reste s'y branche",
     statut: "En préparation",
     href: "https://kogiagroup.com/suite/",
   },
@@ -59,14 +73,16 @@ export default function AboutPage() {
       <main className={styles.main}>
         <h1 className={styles.titre}>Kogia</h1>
         <p className={styles.lede}>
-          Une aventure technologique indépendante, menée par Othman Ounis
-          depuis la Tunisie et Bahreïn. On explore des idées, et on construit
-          celles qui méritent d&apos;exister.
+          Une maison de logiciel indépendante, fondée par Othman Ounis, entre la
+          Tunisie et Bahreïn. On explore des idées, on construit celles qui
+          méritent d&apos;exister — et certaines servent déjà de vrais
+          utilisateurs, tous les jours.
         </p>
         <p className={styles.para}>
-          Une idée par semaine, explorée sérieusement : problème, marché,
+          Une idée, explorée sérieusement : problème, marché,
           modèle, risques, et un verdict honnête. On construit celles qui le
-          méritent.
+          méritent. On publie quand une idée vaut la lecture, pas pour tenir un
+          calendrier.
         </p>
 
         <h2 className={styles.sousTitre}>Ce qu&apos;on a construit</h2>

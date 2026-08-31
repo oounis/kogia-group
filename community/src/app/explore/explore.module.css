@@ -24,3 +24,18 @@
 /* Même correction de plancher tactile (44 px) que sur l'accueil. */
 .nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .marque { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ── Catalogue encore jeune ──────────────────────────────────────────────────
+   Un article sur une page qui s'appelle « Toutes les idées » laissait 70 % de
+   blanc et aucune explication. Dire où on en est coûte moins cher que faire
+   semblant, et donne au lecteur quelque chose à faire. */
+.jeune {
+  margin-top: 2.5rem;
+  padding: 1.6rem 1.5rem;
+  background: var(--k-canvas);
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+}
+.jeuneT { font-weight: 800; color: var(--ink); margin-bottom: .4rem; }
+.jeune p { color: var(--slate); line-height: 1.6; }
+.jeuneActions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
