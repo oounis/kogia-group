@@ -13,7 +13,7 @@ export default async function SettingsAccountPage() {
   return (
     <PlaceholderPage
       titre="Paramètres du compte"
-      description="Adresse e-mail, méthode de connexion, suppression du compte — arrive avec le reste des paramètres. Voir docs/STATUS.md."
+      description="Adresse e-mail, méthode de connexion, suppression du compte, arrive avec le reste des paramètres. Voir docs/STATUS.md."
     />
   );
 }

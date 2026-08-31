@@ -4,7 +4,7 @@ import styles from "./PlaceholderPage.module.css";
 
 /**
  * Gabarit honnête pour les routes déjà câblées mais pas encore construites.
- * Pas de fausse donnée, pas de faux compteur — juste ce qui est vrai : la
+ * Pas de fausse donnée, pas de faux compteur, juste ce qui est vrai : la
  * route existe, la fonctionnalité arrive. Voir docs/STATUS.md pour l'ordre.
  */
 export default function PlaceholderPage({

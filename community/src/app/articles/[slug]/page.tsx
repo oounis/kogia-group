@@ -81,7 +81,7 @@ export default async function ArticlePage({
     : null;
 
   /* Le corps est du HTML stocké : on ne le rend JAMAIS tel quel. Voir
-     src/lib/sanitize.ts — deuxième barrière après l'autorisation en base. */
+     src/lib/sanitize.ts, deuxième barrière après l'autorisation en base. */
   const corpsSain = assainirHtmlArticle(article.body ?? "");
   const minutes = dureeDeLecture(corpsSain);
 

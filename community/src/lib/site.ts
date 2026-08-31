@@ -1,7 +1,7 @@
 /** L'origine publique du site. Sert à rendre absolues les URL destinées aux
  *  robots sociaux et aux liens canoniques, qui n'acceptent pas de chemin
  *  relatif. NEXT_PUBLIC_SITE_URL est posée sur Render ; la valeur de repli
- *  est le domaine réel, jamais localhost — c'est précisément ce défaut qui
+ *  est le domaine réel, jamais localhost, c'est précisément ce défaut qui
  *  a fait publier `http://localhost:10000/...` dans les balises Open Graph
  *  en production. */
 export const SITE_URL = (

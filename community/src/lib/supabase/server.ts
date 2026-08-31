@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 
 /**
  * Client Supabase côté serveur (Server Components, Route Handlers, Server
- * Actions). Sessions en cookies via @supabase/ssr — jamais de token dans le
+ * Actions). Sessions en cookies via @supabase/ssr, jamais de token dans le
  * localStorage. Voir docs/ARCHITECTURE.md.
  */
 export async function createClient() {

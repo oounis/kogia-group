@@ -75,7 +75,7 @@ export default function AboutPage() {
         <p className={styles.lede}>
           Une maison de logiciel indépendante, fondée par Othman Ounis, entre la
           Tunisie et Bahreïn. On explore des idées, on construit celles qui
-          méritent d&apos;exister — et certaines servent déjà de vrais
+          méritent d&apos;exister, et certaines servent déjà de vrais
           utilisateurs, tous les jours.
         </p>
         <p className={styles.para}>

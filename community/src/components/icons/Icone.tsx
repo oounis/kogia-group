@@ -16,7 +16,7 @@ type Props = {
    *  sens à elle seule** (un bouton sans texte, par exemple). L'omettre rend
    *  l'icône décorative : elle est alors masquée aux technologies
    *  d'assistance, ce qui est correct lorsqu'un libellé visible l'accompagne
-   *  déjà — mais faux si l'icône est la seule information. */
+   *  déjà, mais faux si l'icône est la seule information. */
   libelle?: string;
   className?: string;
 };

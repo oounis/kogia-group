@@ -23,7 +23,7 @@ export default async function AdminModerationPage() {
   return (
     <PlaceholderPage
       titre="File de modération"
-      description="Signalements en attente, actions de modération, historique — arrive avec les tables reports et moderation_actions branchées. Voir docs/STATUS.md."
+      description="Signalements en attente, actions de modération, historique, arrive avec les tables reports et moderation_actions branchées. Voir docs/STATUS.md."
     />
   );
 }

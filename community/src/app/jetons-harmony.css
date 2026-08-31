@@ -2,11 +2,11 @@
    (la seule source des jetons Kogia Harmony). NE PAS MODIFIER ICI : corriger
    brand/tokens/kogia.css puis relancer le script. */
 /* ============================================================================
-   Kogia Harmony — design tokens (web). Mirror of kogia.js.
+   Kogia Harmony, design tokens (web). Mirror of kogia.js.
    Source of truth: brand/KOGIA_HARMONY.md. Never write a hex in a product file.
 
    THE ONE IDEA: each product owns ONE colour family (--k-p-*). Everything else
-   — type, spacing, radius, motion, icons, components — is IDENTICAL. A Kogia
+  , type, spacing, radius, motion, icons, components, is IDENTICAL. A Kogia
    product is recognised by its HUE, not by a different design.
 
    USAGE: a product sets `data-product="group|edu|job"` on <html>. Components
@@ -17,9 +17,9 @@
   /* ── Neutrals: "the water". Identical in every product, forever. ──────── */
   --k-abyss:   #071726;
   --k-ink:     #0E2135;  /* 16.3:1 on white */
-  --k-slate:   #485868;  /* 7.31:1 on white — AAA; darkened 2026-07-14, the old #5B6B7D read too light */
+  --k-slate:   #485868;  /* 7.31:1 on white, AAA; darkened 2026-07-14, the old #5B6B7D read too light */
   --k-line:    #DCE3EB;
-  --k-canvas:  #F4F7FA;  /* cool, marine — never a neutral grey */
+  --k-canvas:  #F4F7FA;  /* cool, marine, never a neutral grey */
   --k-surface: #FFFFFF;
 
   /* ── The families. Every step measured. See §3 of the brand book. ─────── */
@@ -35,16 +35,16 @@
   --k-terra-400:#F97C43; --k-terra-500:#E85D2F; --k-terra-600:#C2410C; --k-terra-700:#9A3412;
   --k-terra-800:#7C2D12; --k-terra-900:#652411;
 
-  /* Torréfaction — la famille de Kogia Coffee. Les six pas repris tels quels du
+  /* Torréfaction, la famille de Kogia Coffee. Les six pas repris tels quels du
      couloir « coffee » déjà approuvé dans visual-assets/tokens/product-colors.json,
      pour que la galerie et la boutique parlent enfin de la même couleur.
      200/400/800/900 ne sont PAS définis : ils n'ont jamais été mesurés, et on ne
-     les invente pas — les ajouter demande le même travail d'écart que les autres. */
+     les invente pas, les ajouter demande le même travail d'écart que les autres. */
   --k-roast-50:#FBF6F0; --k-roast-100:#F3E8DB; --k-roast-300:#CDA982;
   --k-roast-500:#9B6642; --k-roast-600:#7A4B2E; --k-roast-700:#5F3824;
 
   /* ── Status: RESERVED. Never a brand hue, never a chart series.
-        Always with an icon or a word — never colour alone. ──────────────── */
+        Always with an icon or a word, never colour alone. ──────────────── */
   --k-ok:#12946F;      --k-ok-soft:#E7F5F0;
   --k-warn:#C97C1E;    --k-warn-soft:#FBF1E3;
   --k-danger:#DC4B54;  --k-danger-soft:#FBEBEC;
@@ -56,13 +56,13 @@
   --k-series-4:#9061F0; --k-series-5:#B07414; --k-series-6:#2F8050;
   --k-grid:#EEF1F6;
 
-  /* ── Type. ONE display face everywhere — it is the thread. ────────────── */
+  /* ── Type. ONE display face everywhere, it is the thread. ────────────── */
   --k-display: "Sora", system-ui, sans-serif;
   --k-text:    "Inter", system-ui, sans-serif;   /* Group + Kogia Job */
   --k-warm:    "Nunito", system-ui, sans-serif;  /* Coreon Edu only */
   --k-body-weight: 500;
 
-  /* Type scale — stay on it. */
+  /* Type scale, stay on it. */
   --k-fs-xs:12px; --k-fs-sm:13px; --k-fs-base:15px; --k-fs-md:17px;
   --k-fs-lg:20px; --k-fs-xl:24px; --k-fs-xxl:32px; --k-fs-hero:44px;
 
@@ -77,7 +77,7 @@
   --k-sh-3: 0 24px 50px -20px rgb(14 33 53 / .20);
 
   /* ── Motion: stillness is the resting state. ──────────────────────────── */
-  --k-ease: cubic-bezier(.2, .8, .2, 1);
+  --k-ease: cubic-bezier(.2.8.2, 1);
   /* instant = l'appui (scale .98, teinte d'icône) : le retour qui précède la réponse réseau */
   --k-t-instant:100ms; --k-t-micro:160ms; --k-t-standard:220ms; --k-t-deliberate:320ms; --k-t-welcome:600ms;
 }
@@ -114,7 +114,7 @@
   --k-p-600:var(--k-roast-600); --k-p-700:var(--k-roast-700);
 }
 
-/* THE STEP CONTRACT — identical in all three families:
+/* THE STEP CONTRACT, identical in all three families:
      500 = THE BRAND STEP. The mark, big display type. DECORATIVE (≥3:1).
            NOT an action colour: white on purple-500 is only 4.2:1.
      600 = THE ACTION STEP. Buttons, links, focus. Text on white ≥4.5:1 AND
@@ -155,7 +155,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .k-reveal { animation: none !important }
-  .k-lift:hover, .k-press:active { transform: none }
+  .k-lift:hover.k-press:active { transform: none }
   *, *::before, *::after {
     animation-duration:.01ms !important; animation-iteration-count:1 !important;
     transition-duration:.01ms !important;

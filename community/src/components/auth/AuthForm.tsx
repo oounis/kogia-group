@@ -5,12 +5,12 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "./AuthForm.module.css";
 
 /**
- * Le composant d'authentification réel, partagé entre /join et /login — la
+ * Le composant d'authentification réel, partagé entre /join et /login, la
  * différence entre les deux pages est la présentation et l'intention, pas
  * deux systèmes d'authentification séparés (voir docs/ARCHITECTURE.md).
  *
  * Deux méthodes seulement pour la V1 : Google OAuth, et un code à 6
- * chiffres envoyé par e-mail (OTP) — pas de mot de passe à gérer.
+ * chiffres envoyé par e-mail (OTP), pas de mot de passe à gérer.
  *
  * Le bouton Google ne s'affiche que si le fournisseur est réellement activé
  * côté Supabase (NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true). Vérifié le

@@ -13,7 +13,7 @@ export default async function SettingsNotificationsPage() {
   return (
     <PlaceholderPage
       titre="Préférences de notification"
-      description="Quels événements vous notifient et par quel canal — arrive avec la table notifications branchée. Voir docs/STATUS.md."
+      description="Quels événements vous notifient et par quel canal, arrive avec la table notifications branchée. Voir docs/STATUS.md."
     />
   );
 }

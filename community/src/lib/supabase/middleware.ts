@@ -35,7 +35,7 @@ export async function updateSession(request: NextRequest) {
 }
 
 /**
- * returnTo doit être un chemin interne relatif — jamais une URL externe.
+ * returnTo doit être un chemin interne relatif, jamais une URL externe.
  * Protection open-redirect : voir docs/ARCHITECTURE.md.
  */
 export function safeReturnTo(value: string | null): string {

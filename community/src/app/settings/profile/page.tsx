@@ -13,7 +13,7 @@ export default async function SettingsProfilePage() {
   return (
     <PlaceholderPage
       titre="Modifier votre profil"
-      description="Photo, nom affiché, identifiant, bio, liens — la vraie édition arrive une fois la table profiles connectée à un projet Supabase actif."
+      description="Photo, nom affiché, identifiant, bio, liens, la vraie édition arrive une fois la table profiles connectée à un projet Supabase actif."
     />
   );
 }

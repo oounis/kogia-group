@@ -66,7 +66,7 @@ export default async function ExplorePage() {
 
         {/* Une bibliothèque qui contient un livre ne doit pas prétendre le
             contraire, ni laisser 70 % de page blanche sans rien dire. Ce bloc
-            dit où en est le catalogue et donne quelque chose à faire ensuite —
+            dit où en est le catalogue et donne quelque chose à faire ensuite , 
             il disparaît de lui-même dès qu'il y a de quoi remplir la page. */}
         {articles.length > 0 && articles.length < 6 && (
           <aside className={styles.jeune}>

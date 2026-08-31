@@ -7,17 +7,17 @@ import styles from "./page.module.css";
 
 /**
  * L'entrée de Kogia. Explique le monde Kogia en quelques secondes avant de
- * proposer le contenu — pas un article au hasard en premier écran.
+ * proposer le contenu, pas un article au hasard en premier écran.
  *
  * L'article vedette est réel (celui déjà publié sur kogiagroup.com) ; les
  * sections « tendances » et « recommandé » restent honnêtement absentes tant
  * qu'il n'y a pas assez d'articles réels pour les remplir sans inventer des
- * données — voir docs/STATUS.md.
+ * données, voir docs/STATUS.md.
  */
 const SLUG_VEDETTE = "kharbga-from-sand-to-screen";
 
 /**
- * Ce qui existe vraiment, avec l'état réel — pas la liste de trois produits
+ * Ce qui existe vraiment, avec l'état réel, pas la liste de trois produits
  * que cette page portait alors que cinq tournent ou sont prêts à tourner.
  * Un état honnête vaut mieux qu'un catalogue flatteur : « en préparation »
  * dit la vérité, « bientôt » ne dit rien.
@@ -31,14 +31,14 @@ const PRODUITS: {
 }[] = [
   {
     nom: "Coreon EDU",
-    quoi: "La gestion d'un établissement scolaire — élèves, classes, présence, notes.",
+    quoi: "La gestion d'un établissement scolaire : élèves, classes, présence, notes.",
     etat: "En production",
     ton: "vit",
     href: "https://edu.kogiagroup.com",
   },
   {
     nom: "Kogia Kids",
-    quoi: "Des fiches à imprimer pour les 3-12 ans, gratuites, sans compte. Arabe et français.",
+    quoi: "Des fiches à imprimer pour les 3-12 ans. Gratuites, sans compte, en arabe et en français.",
     etat: "Bientôt",
     ton: "chantier",
     href: null,
@@ -104,8 +104,8 @@ export default async function Home() {
         <section className={styles.hero}>
           <h1>On construit des logiciels. Et on écrit ce qu&apos;on apprend.</h1>
           <p>
-            Kogia explore une idée jusqu&apos;au bout — le problème, le marché,
-            les risques, un verdict honnête — puis construit celles qui le
+            Kogia explore une idée jusqu&apos;au bout : le problème, le marché,
+            les risques, un verdict honnête. Puis construit celles qui le
             méritent. Certaines tournent déjà en production, chez de vrais
             utilisateurs.
           </p>
@@ -117,8 +117,8 @@ export default async function Home() {
 
         {/* Ce qui tourne, avec un état honnête par ligne.
             Cette section existe parce que la page vendait une communauté à
-            un seul article, alors que la seule preuve qui compte — du logiciel
-            en service chez de vrais utilisateurs — n'était nulle part. */}
+            un seul article, alors que la seule preuve qui compte, du logiciel
+            en service chez de vrais utilisateurs, n'était nulle part. */}
         <section id="ce-qui-tourne" className={styles.tourne}>
           <p className={styles.sectionT}>Ce qui tourne</p>
           <ul className={styles.produits}>
@@ -181,7 +181,7 @@ export default async function Home() {
                 <Icone nom="comment" taille="feature" />
               </span>
               <h3>Discuter</h3>
-              <p>Réagir, commenter, dire ce qui cloche ou ce qui manque — avec les gens qui ont vécu le problème.</p>
+              <p>Réagir, commenter, dire ce qui cloche ou ce qui manque, avec les gens qui ont vécu le problème.</p>
             </div>
             <div>
               <span className={styles.etapeIcone} aria-hidden="true">

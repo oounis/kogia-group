@@ -13,7 +13,7 @@ export default async function SettingsSecurityPage() {
   return (
     <PlaceholderPage
       titre="Sécurité du compte"
-      description="Sessions actives, connexions récentes, révocation d'accès — arrive avec le reste des paramètres. Voir docs/STATUS.md."
+      description="Sessions actives, connexions récentes, révocation d'accès, arrive avec le reste des paramètres. Voir docs/STATUS.md."
     />
   );
 }

@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           données personnelles sont effacés. Les contenus que vous avez publiés
           publiquement peuvent rester visibles de façon anonymisée si
           d&apos;autres personnes y ont répondu, afin de ne pas trouer des
-          discussions existantes — dites-le nous si vous voulez qu&apos;ils
+          discussions existantes, dites-le nous si vous voulez qu&apos;ils
           soient retirés aussi.
         </p>
 

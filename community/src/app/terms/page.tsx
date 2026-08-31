@@ -89,7 +89,7 @@ export default function TermsPage() {
           Nous pouvons masquer ou supprimer un contenu, et suspendre un compte,
           en cas de manquement à ces règles. Quand c&apos;est possible, nous
           expliquons pourquoi. Si vous pensez que c&apos;est une erreur, écrivez
-          à <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a> —
+          à <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a> , 
           une personne lira.
         </p>
 
@@ -118,7 +118,7 @@ export default function TermsPage() {
         <p>
           Vous pouvez arrêter d&apos;utiliser le service quand vous voulez. Nous
           pouvons clore un compte en cas de manquement grave ou répété, ou si le
-          service s&apos;arrête — dans ce dernier cas, avec un préavis
+          service s&apos;arrête, dans ce dernier cas, avec un préavis
           raisonnable et la possibilité d&apos;exporter vos contenus.
         </p>
 

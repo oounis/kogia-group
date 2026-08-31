@@ -46,7 +46,7 @@ export default function OnboardingFlow({
    * Impossible plus tôt dans le parcours : `user_consents.user_id` référence
    * `profiles(id)`, et la ligne de profil naît ici, à l'étape 1.
    *
-   * Les consentements sont un historique, jamais réécrits — d'où la
+   * Les consentements sont un historique, jamais réécrits, d'où la
    * vérification préalable, pour qu'un onboarding rejoué n'empile pas des
    * doublons de la même version.
    */

@@ -13,7 +13,7 @@ export default async function FeedPage() {
   return (
     <PlaceholderPage
       titre="Votre fil personnalisé"
-      description="Basé sur les sujets et les auteurs que vous suivez — arrive une fois qu'il y a assez de contenu réel pour le personnaliser."
+      description="Basé sur les sujets et les auteurs que vous suivez, arrive une fois qu'il y a assez de contenu réel pour le personnaliser."
     />
   );
 }

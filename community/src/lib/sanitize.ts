@@ -6,13 +6,13 @@ import DOMPurify from "isomorphic-dompurify";
  * Pourquoi c'est nécessaire même après la migration 0004 : celle-ci empêche
  * un membre de publier, mais le corps d'un article reste du HTML stocké,
  * rendu via dangerouslySetInnerHTML. Une seule couche d'autorisation ne
- * suffit pas — si un compte staff est compromis, ou si un import futur
+ * suffit pas, si un compte staff est compromis, ou si un import futur
  * insère du contenu, le rendu doit rester inoffensif. Défense en
  * profondeur, pas redondance inutile.
  *
  * Liste blanche explicite : tout ce qui n'est pas listé disparaît. On
  * n'essaie pas de deviner ce qui est dangereux, on énumère ce qui est
- * autorisé — c'est la seule approche qui résiste aux contournements.
+ * autorisé, c'est la seule approche qui résiste aux contournements.
  */
 const BALISES_AUTORISEES = [
   "p", "br", "hr",

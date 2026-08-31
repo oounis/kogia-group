@@ -35,7 +35,7 @@
 
 /* Les très petits téléphones (320 px, iPhone SE 1ʳᵉ génération) : même avec
    la navigation masquée, marque + « Se connecter » + le bouton débordaient
-   encore de 11 px. Le lien discret disparaît — l'écran de connexion reste
+   encore de 11 px. Le lien discret disparaît, l'écran de connexion reste
    atteignable depuis la page rejoindre et le pied de page. */
 @media (max-width: 359px) {
   .topIn { gap: .5rem; padding: 0 .65rem; }
@@ -94,7 +94,7 @@
 }
 
 /* Cibles tactiles : mesurées le 2026-08-18 sous le plancher de 44 px exigé
-   par WCAG 2.5.5 — liens d'en-tête 22-23 px, « Se connecter » 22 px, lien de
+   par WCAG 2.5.5, liens d'en-tête 22-23 px, « Se connecter » 22 px, lien de
    pied de page 16 px. Le texte garde sa taille discrète, seule la zone
    cliquable grandit. */
 .nav a { display: inline-flex; align-items: center; min-height: 44px; }
@@ -105,7 +105,7 @@
 /* ── Ce qui tourne ───────────────────────────────────────────────────────────
    La section qui manquait : ce qui existe vraiment, avec un état par ligne.
    Les pastilles d'état sont la seule couleur de la page, et elles portent une
-   information — vert : en service ; ambre : en chantier ; ardoise : en
+   information, vert : en service ; ambre : en chantier ; ardoise : en
    préparation. Les jetons Harmony existaient depuis le début et cette page
    n'en utilisait aucun. */
 .tourne {

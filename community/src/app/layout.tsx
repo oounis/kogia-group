@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     /* « Kogia » seul faisait 5 caractères : dans un résultat Google ou un
        onglet, rien n'indiquait de quoi il s'agit. Le gabarit reste court
        pour les pages internes, seule la page d'accueil se décrit. */
-    default: "Kogia — des idées explorées sérieusement",
+    default: "Kogia, des idées explorées sérieusement",
     template: "%s · Kogia",
   },
   description:
     "Kogia est une communauté pour découvrir, publier et développer des idées sérieuses. Articles pratiques, gens curieux, projets qui deviennent réels.",
 };
 
-/* Cloudflare Web Analytics — RESTAURÉ le 2026-08-17. L'ancien site statique
+/* Cloudflare Web Analytics, RESTAURÉ le 2026-08-17. L'ancien site statique
    portait ce beacon (créé le 2026-08-13) ; le transfert de domaine du
    2026-08-16 l'a fait disparaître sans que personne ne le remarque, donc
    kogiagroup.com n'a plus mesuré aucune visite pendant une journée, au

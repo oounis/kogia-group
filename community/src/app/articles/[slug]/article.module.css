@@ -42,7 +42,7 @@
   letter-spacing: -.025em;
 }
 .sousTitre {
-  font-size: clamp(1.05rem, .98rem + .35vw, 1.22rem);
+  font-size: clamp(1.05rem.98rem + .35vw, 1.22rem);
   color: var(--slate);
   margin-top: 1rem;
   line-height: 1.5;
@@ -65,16 +65,16 @@
 }
 .corps :global(p) { margin-bottom: .95em; }
 .corps :global(strong) { font-weight: 700; }
-.corps :global(ul), .corps :global(ol) { margin: 0 0 .95em 1.25em; }
+.corps :global(ul).corps :global(ol) { margin: 0 0 .95em 1.25em; }
 .corps :global(li) { margin-bottom: .4em; }
-.corps :global(img), .corps :global(svg) {
+.corps :global(img).corps :global(svg) {
   max-width: 100%; height: auto; border-radius: 8px; margin: 1.4em 0;
 }
 .corps :global(a) { text-decoration: underline; }
 
 /* ═══ Tableaux ═══
    Régression trouvée le 2026-08-18 : l'article débordait de 165 px à 320 px,
-   110 px à 375, 95 px à 390 et 73 px à 412 — toute la page défilait
+   110 px à 375, 95 px à 390 et 73 px à 412, toute la page défilait
    latéralement. La migration vers cette feuille avait perdu les règles de
    tableau que l'ancienne (site/assets/kogia.css) avait pourtant justes.
    Le tableau devient sa propre zone de défilement horizontal, au lieu
@@ -83,7 +83,7 @@
   width: 100%; border-collapse: collapse; margin: 1.6em 0; font-size: .92em;
   display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
-.corps :global(table thead), .corps :global(table tbody) {
+.corps :global(table thead).corps :global(table tbody) {
   display: table; width: 100%; min-width: 480px;
 }
 .corps :global(th) {

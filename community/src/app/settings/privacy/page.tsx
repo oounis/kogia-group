@@ -13,7 +13,7 @@ export default async function SettingsPrivacyPage() {
   return (
     <PlaceholderPage
       titre="Confidentialité"
-      description="Blocages, mise en sourdine, visibilité du profil, export et suppression des données — arrive avec le reste des paramètres. Voir docs/STATUS.md."
+      description="Blocages, mise en sourdine, visibilité du profil, export et suppression des données, arrive avec le reste des paramètres. Voir docs/STATUS.md."
     />
   );
 }
