@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter } from "next/font/google";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, IMAGE_PARTAGE } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,8 +24,11 @@ export const metadata: Metadata = {
     /* L'ancien site statique avait cette image de partage (1200×630) ; la
        migration l'a perdue, donc tout partage d'une page autre qu'un
        article s'affichait sans visuel. Les articles gardent leur propre
-       couverture, qui remplace celle-ci. */
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Kogia" }],
+       couverture, qui remplace celle-ci.
+
+       La valeur vit dans `lib/site.ts` : les pages qui redéfinissent
+       `openGraph` doivent pouvoir la reprendre, sinon elles la perdent. */
+    images: [IMAGE_PARTAGE],
   },
   twitter: { card: "summary_large_image" },
   title: {

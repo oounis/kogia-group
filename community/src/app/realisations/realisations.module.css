@@ -35,9 +35,17 @@
   font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
   color: var(--slate); margin: 3rem 0 1.25rem;
 }
+/* `minmax(20rem, 1fr)` seul est un piège classique : 20rem valent 320 px, et
+   une piste de grille ne descend jamais sous son minimum. Sur un écran de
+   320 px, moins la marge du conteneur, les cartes faisaient donc 320 px de
+   large dans 280 px de place et la page défilait latéralement de 20 px.
+   Mesuré sur la production le 2026-09-02.
+
+   `min(20rem, 100%)` fait plancher la piste à la plus petite des deux
+   valeurs : 20rem quand il y a la place, la largeur du conteneur sinon. */
 .grille {
   list-style: none; display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
 }
 .carte {
   display: flex; flex-direction: column; gap: .85rem;

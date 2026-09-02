@@ -5,6 +5,7 @@ import { EnTete, Pied } from "@/components/Chrome";
 import Icone from "@/components/icons/Icone";
 import { TRAVAUX, travailParSlug, LIBELLE_ETAT, type Etat } from "@/lib/travaux";
 import { dateLisible } from "@/lib/journal";
+import { IMAGE_PARTAGE } from "@/lib/site";
 import styles from "./projet.module.css";
 
 /** Les dix pages sont pré-rendues à la construction : le contenu vient d'un
@@ -24,7 +25,15 @@ export async function generateMetadata(
     title: t.nom,
     description: t.baseline,
     alternates: { canonical: `/realisations/${t.slug}` },
-    openGraph: { title: `${t.nom} · Kogia`, description: t.baseline },
+    /* `images` est répété ici volontairement : Next remplace le bloc
+       `openGraph` du gabarit au lieu de le compléter, donc l'omettre revient
+       à publier dix pages sans aperçu de partage. */
+    openGraph: {
+      title: `${t.nom} · Kogia`,
+      description: t.baseline,
+      url: `/realisations/${t.slug}`,
+      images: [IMAGE_PARTAGE],
+    },
   };
 }
 

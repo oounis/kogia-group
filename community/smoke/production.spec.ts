@@ -59,10 +59,20 @@ test("les anciennes URL partagées redirigent au lieu de tomber en 404", async (
    pendant que l'article débordait de 165 px à 320 px et que les pages
    d'authentification débordaient à 320 px. Une matrice trop étroite donne
    une fausse assurance — c'est pire que pas de test, parce qu'on s'y fie. */
+/* Les quatre routes de vitrine ont été livrées le 2026-09-02 sans entrer dans
+   cette liste, et la liste EST la couverture : la géométrie et la structure
+   de titres n'en vérifiaient donc aucune. Deux débordements sont passés en
+   production le jour même, tous deux à 320 px seulement, tous deux invisibles
+   pour la matrice 1440/390 utilisée à la main pendant le développement.
+   Une page nouvelle s'ajoute ici en même temps qu'elle s'ajoute au site. */
 const ROUTES_PUBLIQUES = [
   "/",
   "/explore",
   "/about",
+  "/realisations",
+  "/realisations/coreon-edu",
+  "/journal",
+  "/savoir-faire",
   "/articles/kharbga-from-sand-to-screen",
   "/join",
   "/login",
@@ -102,7 +112,7 @@ test("les pages légales liées à l'inscription existent vraiment", async ({ re
 test("aucun lien interne cassé sur les pages principales", async ({ page, request }) => {
   const vus = new Set<string>();
   const casses: string[] = [];
-  for (const depart of ["/", "/about", "/join"]) {
+  for (const depart of ["/", "/about", "/join", "/realisations", "/journal", "/savoir-faire"]) {
     await page.goto(depart, { waitUntil: "load" });
     const liens: string[] = await page.evaluate(() =>
       Array.from(document.querySelectorAll('a[href^="/"]'))
@@ -231,7 +241,7 @@ test("les champs de formulaire ont un anneau de focus visible", async ({ page })
 test("les cibles tactiles atteignent 44 px", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const trop_petites: string[] = [];
-  for (const route of ["/", "/about", "/join", "/explore"]) {
+  for (const route of ["/", "/about", "/join", "/explore", "/realisations", "/journal", "/savoir-faire"]) {
     await page.goto(route, { waitUntil: "load" });
     const p = await page.evaluate(() =>
       [...document.querySelectorAll("a,button")]
@@ -256,7 +266,10 @@ test("le temps de lecture est cohérent entre l'accueil et l'article", async ({ 
 });
 
 test("chaque page a une image de partage", async ({ page }) => {
-  for (const route of ["/", "/explore", "/about", "/articles/kharbga-from-sand-to-screen"]) {
+  for (const route of [
+    "/", "/explore", "/about", "/articles/kharbga-from-sand-to-screen",
+    "/realisations", "/realisations/coreon-edu", "/journal", "/savoir-faire",
+  ]) {
     await page.goto(route, { waitUntil: "load" });
     const og = await page.locator('meta[property="og:image"]').getAttribute("content");
     expect(og, `${route} n'a pas d'image de partage`).toBeTruthy();

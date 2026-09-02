@@ -120,3 +120,19 @@
     min-height: 44px; padding: 0 .8rem; font-size: .82rem; white-space: nowrap;
   }
 }
+/* Sous 380 px, le mot « Menu » ne tient plus. Mesuré sur la production le
+   2026-09-02 à 320 px : marque 70 px + tiroir 82 px + « Rejoindre Kogia »
+   123 px + deux écarts de 12 px = 299 px pour 291 px disponibles, donc la
+   page entière défilait latéralement de 8 px. Le correctif de 520 px avait
+   traité 390 px et s'était arrêté là.
+
+   C'est le libellé qui part plutôt que le bouton : le tiroir reste un
+   pictogramme compris partout, alors que « Rejoindre Kogia » est la seule
+   action que la barre propose. Retirer le mot libère une quarantaine de
+   pixels, soit cinq fois le débordement constaté, pour ne pas retomber
+   dessus au premier lien de navigation ajouté. */
+@media (max-width: 380px) {
+  .tiroirLibelle { display: none; }
+  .tiroirBouton { padding: 0 .35rem; }
+  .topIn { gap: .5rem; }
+}

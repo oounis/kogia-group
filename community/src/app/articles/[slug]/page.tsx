@@ -5,7 +5,7 @@ import Link from "next/link";
 import Marque from "@/components/Marque";
 import { createClient } from "@/lib/supabase/server";
 import { assainirHtmlArticle } from "@/lib/sanitize";
-import { SITE_URL, dureeDeLecture } from "@/lib/site";
+import { SITE_URL, dureeDeLecture, IMAGE_PARTAGE } from "@/lib/site";
 import styles from "./article.module.css";
 
 /* `cache()` déduplique l'appel pour une même requête : generateMetadata() et
@@ -52,16 +52,19 @@ export async function generateMetadata({
       url: `${SITE_URL}/articles/${article.slug}`,
       title: article.title,
       description: article.subtitle ?? undefined,
-      images: image ? [image] : undefined,
+      /* Un article sans couverture retombe sur l'image du site plutôt que
+         sur rien : un partage sans visuel passe inaperçu dans un fil. */
+      images: [image ?? IMAGE_PARTAGE],
       publishedTime: article.published_at ?? undefined,
       modifiedTime: article.updated_at ?? undefined,
       authors: auteur?.display_name ? [auteur.display_name] : undefined,
     },
     twitter: {
-      card: image ? "summary_large_image" : "summary",
+      /* Il y a toujours une image, donc toujours la grande carte. */
+      card: "summary_large_image",
       title: article.title,
       description: article.subtitle ?? undefined,
-      images: image ? [image] : undefined,
+      images: [image ?? IMAGE_PARTAGE],
     },
   };
 }

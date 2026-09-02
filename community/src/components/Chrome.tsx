@@ -58,7 +58,10 @@ export function EnTete({
         <details className={styles.tiroir}>
           <summary className={styles.tiroirBouton}>
             <Icone nom="menu" taille="nav" libelle="Ouvrir la navigation" />
-            Menu
+            {/* Le mot est dans un span pour pouvoir disparaître seul sous
+                380 px, où la barre ne tient plus. L'icône porte déjà le nom
+                accessible, donc le bouton reste nommé sans lui. */}
+            <span className={styles.tiroirLibelle}>Menu</span>
           </summary>
           <div className={styles.tiroirPanneau}>
             {LIENS.map((l) => (
