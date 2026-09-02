@@ -1,0 +1,91 @@
+/* « Comment on travaille ». La page qui explique la maison sans vendre un
+   produit. Elle porte le diagramme de la plateforme, les règles internes et,
+   surtout, la liste de ce qu'on ne fait pas. */
+
+.main { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+
+.entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
+.lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.6; color: var(--ink); }
+.sousLede { margin-top: .9rem; font-size: .98rem; line-height: 1.65; color: var(--slate); }
+
+.bloc { margin-top: 3.2rem; }
+.bloc > h2 {
+  font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--slate); padding-bottom: .8rem; border-bottom: 1px solid var(--ink);
+  margin-bottom: 1.4rem;
+}
+.intro { font-size: 1.01rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.4rem; }
+
+/* ── Les règles ────────────────────────────────────────────────────────────
+   Chaque règle porte la panne qui l'a produite. Une règle sans son incident
+   se lit comme un slogan ; avec son incident, elle se lit comme une leçon. */
+.regle { padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+.regle:first-of-type { border-top: 1px solid var(--line); }
+.regleNum {
+  font: 700 .78rem/1 inherit; color: var(--indigo);
+  font-variant-numeric: tabular-nums; letter-spacing: .04em;
+}
+.regle h3 { margin-top: .5rem; font: 700 1.14rem/1.4 inherit; letter-spacing: -.012em; }
+.regle p { margin-top: .6rem; line-height: 1.7; color: var(--slate); }
+.origine {
+  display: block; margin-top: .8rem; font-size: .85rem; line-height: 1.6;
+  color: var(--slate); padding-left: .9rem; border-left: 2px solid var(--line);
+}
+.origine strong { color: var(--ink); }
+
+/* ── Le diagramme de la plateforme ───────────────────────────────────────
+   Dessiné en HTML et en filets, pas en image : il reste lisible à n'importe
+   quelle taille de police, se sélectionne, s'imprime, et un lecteur d'écran
+   en lit les étages dans l'ordre. Une capture d'écran n'aurait rien de tout
+   cela. */
+.schema {
+  margin: 0; padding: 1.5rem 1.3rem;
+  border: 1px solid var(--line); border-radius: var(--r-m);
+  background: var(--surface-2);
+}
+.etage { padding: .95rem 1.1rem; background: var(--surface); border-radius: var(--r-s); border: 1px solid var(--line); }
+.etageT { font: 700 .95rem/1.3 inherit; }
+.etageD { margin-top: .3rem; font-size: .86rem; line-height: 1.55; color: var(--slate); }
+.fleche {
+  display: block; text-align: center; padding: .45rem 0;
+  color: var(--slate); font-size: .78rem; line-height: 1.4;
+}
+.legende { margin-top: 1rem; font-size: .84rem; line-height: 1.6; color: var(--slate); }
+
+/* ── Les listes de contrôle ──────────────────────────────────────────────── */
+.liste { list-style: none; }
+.liste li {
+  position: relative; padding: .9rem 0 .9rem 1.7rem;
+  border-bottom: 1px solid var(--line); line-height: 1.65;
+}
+.liste li:first-child { border-top: 1px solid var(--line); }
+.liste li::before {
+  content: ""; position: absolute; left: .3rem; top: 1.5rem;
+  width: .4rem; height: .4rem; border-radius: 50%; background: var(--indigo);
+}
+.liste strong { font-weight: 600; }
+
+/* La liste des limites. Le même filet, une puce carrée plutôt que ronde :
+   c'est une liste de nature différente et elle se distingue sans couleur. */
+.limites { list-style: none; }
+.limites li {
+  position: relative; padding: .9rem 0 .9rem 1.7rem;
+  border-bottom: 1px solid var(--line); line-height: 1.65; color: var(--ink);
+}
+.limites li:first-child { border-top: 1px solid var(--line); }
+.limites li::before {
+  content: ""; position: absolute; left: .3rem; top: 1.45rem;
+  width: .42rem; height: .42rem; background: var(--slate);
+}
+
+.pile { display: flex; flex-wrap: wrap; gap: .45rem; }
+.pileItem {
+  padding: .34rem .68rem; border: 1px solid var(--line); border-radius: var(--r-max);
+  font-size: .82rem; color: var(--slate);
+}
+.pileT { font: 600 .88rem/1.4 inherit; margin: 1.2rem 0 .6rem; }
+
+.appel { margin-top: 3.2rem; padding: 2rem 0 0; border-top: 1px solid var(--line); }
+.appel h2 { font: 700 1.25rem/1.3 inherit; }
+.appel p { margin-top: .7rem; color: var(--slate); line-height: 1.65; }
+.appelActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }

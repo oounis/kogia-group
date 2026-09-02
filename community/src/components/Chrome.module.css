@@ -1,0 +1,122 @@
+/* L'en-tête et le pied de page du site, en un seul endroit.
+   Ils étaient recopiés dans `page.tsx` et `about/page.tsx`, avec deux
+   hauteurs, deux largeurs de conteneur et deux jeux de liens différents.
+   Ajouter les pages de vitrine en aurait fait six copies, donc six occasions
+   d'oublier un lien quelque part.
+
+   ORDRE DU FICHIER, et ce n'est pas cosmétique : les règles de base
+   d'abord, les requêtes de média À LA FIN. Une première version de ce
+   fichier ajoutait les cibles tactiles après les requêtes de média ; la
+   règle `display: inline-flex` a donc écrasé le `display: none` qui masque
+   « Se connecter » sur téléphone, le lien est réapparu, et l'en-tête a
+   débordé de 47 px à 390 px. Mesuré, pas supposé. */
+
+/* ── Cibles tactiles ─────────────────────────────────────────────────────
+   WCAG 2.5.5 demande 44 px de haut pour une cible qui n'est pas au milieu
+   d'une phrase. `page.module.css` portait déjà ce correctif pour l'en-tête,
+   mesuré le 2026-08-18 ; en sortant l'en-tête dans ce composant partagé il
+   avait été perdu, et les liens étaient repassés à 23 px. Il vaut maintenant
+   pour les six pages d'un coup. Le texte garde sa taille discrète : seule la
+   zone cliquable grandit. */
+.cible { display: inline-flex; align-items: center; min-height: 44px; }
+
+.top {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.topIn {
+  max-width: 1200px; margin: 0 auto; padding: 0 1rem; height: 56px;
+  display: flex; align-items: center; gap: 2rem;
+}
+.nav { display: flex; gap: 1.4rem; flex: 1; }
+.nav a {
+  font-size: .9rem; color: var(--slate); font-weight: 500;
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+.nav a:hover { color: var(--ink); }
+/* La page courante n'est pas un lien mort : elle reste cliquable mais se
+   distingue par la graisse et l'encre, et `aria-current` le dit aux lecteurs
+   d'écran, qui ne voient pas la graisse. */
+.actif { color: var(--ink) !important; font-weight: 600; }
+
+.topActions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.lienDiscret {
+  font-size: .88rem; font-weight: 500; color: var(--ink); white-space: nowrap;
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+
+/* Le tiroir mobile, masqué par défaut : c'est un <details> natif, donc il
+   s'ouvre, se ferme et se pilote au clavier sans une ligne de JavaScript. */
+.tiroir { display: none; }
+.tiroirBouton {
+  display: flex; align-items: center; gap: .4rem;
+  min-height: 44px; padding: 0 .5rem; cursor: pointer;
+  font: 500 .88rem/1 inherit; color: var(--ink); list-style: none;
+}
+.tiroirBouton::-webkit-details-marker { display: none; }
+.tiroirPanneau {
+  position: absolute; right: 0; top: calc(100% + .5rem);
+  min-width: 13rem; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r-m);
+  box-shadow: var(--ombre-m); padding: .35rem; z-index: 60;
+}
+.tiroirPanneau a {
+  display: flex; align-items: center; min-height: 44px;
+  padding: .5rem .8rem; border-radius: var(--r-s);
+  font-size: .92rem; color: var(--ink);
+}
+.tiroirPanneau a:hover { background: var(--surface-2); }
+
+/* ── Le pied de page ─────────────────────────────────────────────────────
+   Un vrai plan du site plutôt qu'une ligne de copyright : c'est le seul
+   endroit où toutes les pages sont atteignables, y compris quand la
+   navigation du haut est repliée sur téléphone. */
+.pied { border-top: 1px solid var(--line); margin-top: 4rem; background: var(--surface-2); }
+.piedIn {
+  max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.25rem 2rem;
+  display: grid; gap: 2rem;
+  grid-template-columns: minmax(14rem, 1.4fr) repeat(3, minmax(8rem, 1fr));
+}
+.piedMarque p {
+  margin-top: .7rem; font-size: .86rem; color: var(--slate);
+  line-height: 1.55; max-width: 26rem;
+}
+.piedCol h2 {
+  font: 700 .72rem/1 inherit; letter-spacing: .11em; text-transform: uppercase;
+  color: var(--slate); margin-bottom: .5rem;
+}
+.piedCol ul { list-style: none; display: flex; flex-direction: column; }
+.piedCol a {
+  font-size: .88rem; color: var(--ink); width: 100%;
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+.piedCol a:hover { text-decoration: underline; }
+.piedBas {
+  max-width: 1200px; margin: 0 auto;
+  padding: 1.1rem 1.25rem 2rem; border-top: 1px solid var(--line);
+  font-size: .8rem; color: var(--slate); line-height: 1.7;
+}
+/* Les liens du bas sont au milieu d'une phrase : l'exception « inline » de
+   WCAG 2.5.5 s'applique, ils restent soulignés et gardent leur taille. */
+.piedBas a { text-decoration: underline; }
+
+/* ── Requêtes de média, EN DERNIER. Voir la note en tête de fichier. ───── */
+@media (max-width: 860px) {
+  .topIn { gap: .75rem; padding: 0 .9rem; }
+  .nav { display: none; }
+  .tiroir { display: block; position: relative; margin-left: auto; }
+}
+@media (max-width: 780px) {
+  .piedIn { grid-template-columns: 1fr 1fr; }
+  .piedMarque { grid-column: 1 / -1; }
+}
+/* Sous 520 px, la marque, le tiroir et une action principale tiennent ; le
+   lien de connexion ne tient pas, et il reste atteignable depuis le tiroir
+   et le pied de page. */
+@media (max-width: 520px) {
+  .lienDiscret { display: none; }
+  .topActions :global(.bouton) {
+    min-height: 44px; padding: 0 .8rem; font-size: .82rem; white-space: nowrap;
+  }
+}

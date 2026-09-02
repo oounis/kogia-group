@@ -44,3 +44,29 @@ a.produitLien:hover { background: #FAFAFA; }
 /* Même correction de plancher tactile (44 px) que sur l'accueil. */
 .nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .marque { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* Les chiffres de la maison, mêmes que sur l'accueil et les réalisations.
+   Chiffres tabulaires : sans cela, les quatre colonnes se décalent entre
+   « 647 » et « 82 500 ». */
+.chiffres {
+  margin: 2rem 0 0; padding: 1.4rem 0;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
+}
+@media (max-width: 620px) { .chiffres { grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
+.chiffre { display: flex; flex-direction: column; gap: .18rem; }
+.chiffreValeur {
+  font: 800 1.35rem/1 inherit; letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.chiffreLibelle { font-size: .8rem; color: var(--slate); line-height: 1.35; }
+.note { margin-top: .9rem; font-size: .82rem; line-height: 1.6; color: var(--slate); }
+.note a { text-decoration: underline; }
+
+.para a { color: var(--indigo); text-decoration: underline; }
+.ctaActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.2rem; }
+
+/* La page dépasse maintenant une hauteur d'écran : les cibles tactiles des
+   lignes de produit doivent tenir les 44 px exigés par WCAG 2.5.5, comme
+   celles de l'en-tête. */
+.produitLien { min-height: 44px; }

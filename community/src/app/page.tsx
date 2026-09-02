@@ -1,70 +1,24 @@
 import Link from "next/link";
-import Marque from "@/components/Marque";
+import { EnTete, Pied } from "@/components/Chrome";
 import Icone from "@/components/icons/Icone";
 import { createClient } from "@/lib/supabase/server";
 import { dureeDeLecture } from "@/lib/site";
+import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT_COURT, type Etat } from "@/lib/travaux";
+import { dernieres, dateLisible } from "@/lib/journal";
 import styles from "./page.module.css";
 
 /**
- * L'entrée de Kogia. Explique le monde Kogia en quelques secondes avant de
- * proposer le contenu, pas un article au hasard en premier écran.
+ * L'entrée de Kogia. Elle doit répondre à trois questions en quelques
+ * secondes : qu'est-ce que cette société, qu'a-t-elle réellement construit,
+ * et qu'est-ce qui s'est passé récemment.
  *
- * L'article vedette est réel (celui déjà publié sur kogiagroup.com) ; les
- * sections « tendances » et « recommandé » restent honnêtement absentes tant
- * qu'il n'y a pas assez d'articles réels pour les remplir sans inventer des
- * données, voir docs/STATUS.md.
+ * La liste des produits n'est plus écrite ici : elle vient de `lib/travaux`,
+ * qui alimente aussi la page des réalisations et « À propos ». Les trois
+ * copies précédentes ne s'accordaient déjà plus, et l'une annonçait Coreon
+ * EDU « en production » alors que son propre audit écrit que l'application
+ * déployée est locale au navigateur.
  */
 const SLUG_VEDETTE = "kharbga-from-sand-to-screen";
-
-/**
- * Ce qui existe vraiment, avec l'état réel, pas la liste de trois produits
- * que cette page portait alors que cinq tournent ou sont prêts à tourner.
- * Un état honnête vaut mieux qu'un catalogue flatteur : « en préparation »
- * dit la vérité, « bientôt » ne dit rien.
- */
-const PRODUITS: {
-  nom: string;
-  quoi: string;
-  etat: string;
-  ton: "vit" | "chantier" | "prepare";
-  href: string | null;
-}[] = [
-  {
-    nom: "Coreon EDU",
-    quoi: "La gestion d'un établissement scolaire : élèves, classes, présence, notes.",
-    etat: "En production",
-    ton: "vit",
-    href: "https://edu.kogiagroup.com",
-  },
-  {
-    nom: "Kogia Kids",
-    quoi: "Des fiches à imprimer pour les 3-12 ans. Gratuites, sans compte, en arabe et en français.",
-    etat: "Bientôt",
-    ton: "chantier",
-    href: null,
-  },
-  {
-    nom: "Faz3a",
-    quoi: "L'action citoyenne : signaler, vérifier, suivre ce qui est réparé.",
-    etat: "En construction",
-    ton: "chantier",
-    href: null,
-  },
-  {
-    nom: "Kharbga",
-    quoi: "Le jeu de stratégie nord-africain, reconstruit pour le mobile et le web.",
-    etat: "En construction",
-    ton: "chantier",
-    href: null,
-  },
-  {
-    nom: "Suite Kogia",
-    quoi: "Le socle de gestion d'entreprise : finance d'abord, le reste s'y branche.",
-    etat: "En préparation",
-    ton: "prepare",
-    href: null,
-  },
-];
 
 /* Le temps de lecture était écrit en dur (« 14 min ») alors que la page
    d'article le calcule depuis le contenu et affiche 15 min : deux chiffres
@@ -82,67 +36,126 @@ async function dureeVedette(): Promise<number | null> {
   }
 }
 
+/* La pastille d'état de la page d'accueil. Quatre teintes : ce qui sert de
+   vrais utilisateurs, ce qui est visible mais n'est pas un service, ce qui
+   avance, ce qui est arrêté. La démo avait d'abord le vert de la production,
+   ce qui est exactement la confusion que cette page vient corriger : une
+   démo publique n'est pas une production. */
+const TON: Record<Etat, string> = {
+  production: styles.vit,
+  demo: styles.demo,
+  chantier: styles.chantier,
+  pause: styles.prepare,
+  prepare: styles.prepare,
+};
+
+/** Les six projets mis en avant : les deux en production, la démo, et les
+ *  trois chantiers. Le reste est sur la page des réalisations, qui est là
+ *  pour ça. */
+const EN_AVANT = ["registre-scolaire", "la-plateforme", "coreon-edu", "kogia-kids", "clampwars", "kogiagroup-com"];
+
 export default async function Home() {
   const minutes = await dureeVedette();
+  const produits = EN_AVANT
+    .map((s) => TRAVAUX.find((t) => t.slug === s))
+    .filter((t): t is NonNullable<typeof t> => Boolean(t));
+  const nouvelles = dernieres(4);
+
   return (
     <>
-      <header className={styles.top}>
-        <div className={styles.topIn}>
-          <Marque />
-          <nav className={styles.nav} aria-label="Navigation principale">
-            <Link href="/explore">Explorer</Link>
-            <Link href="/about">À propos</Link>
-          </nav>
-          <div className={styles.topActions}>
-            <Link href="/login" className={styles.lienDiscret}>Se connecter</Link>
-            <Link href="/join" className="bouton accent">Rejoindre Kogia</Link>
-          </div>
-        </div>
-      </header>
+      <EnTete actif="/" />
 
       <main>
         <section className={styles.hero}>
           <h1>On construit des logiciels. Et on écrit ce qu&apos;on apprend.</h1>
           <p>
-            Kogia explore une idée jusqu&apos;au bout : le problème, le marché,
-            les risques, un verdict honnête. Puis construit celles qui le
-            méritent. Certaines tournent déjà en production, chez de vrais
-            utilisateurs.
+            Kogia explore une idée jusqu&apos;au bout, puis construit celles
+            qui le méritent. Dix projets depuis juin 2026, dont un registre
+            scolaire qui sert 323 élèves tous les jours, et une plateforme
+            dont les sauvegardes sont vérifiées par une vraie restauration
+            chaque nuit.
           </p>
           <div className={styles.heroActions}>
-            <Link href="#ce-qui-tourne" className="bouton accent">Ce qu&apos;on a construit</Link>
-            <Link href="/explore" className="bouton ligne">Lire les idées</Link>
+            <Link href="/realisations" className="bouton accent">Ce qu&apos;on a construit</Link>
+            <Link href="/journal" className="bouton ligne">Le journal</Link>
           </div>
         </section>
 
-        {/* Ce qui tourne, avec un état honnête par ligne.
-            Cette section existe parce que la page vendait une communauté à
-            un seul article, alors que la seule preuve qui compte, du logiciel
-            en service chez de vrais utilisateurs, n'était nulle part. */}
+        {/* La bande de chiffres. Elle vient du même fichier que les projets,
+            et la méthode de comptage est écrite sur la page des
+            réalisations : un chiffre sans sa méthode n'est qu'une
+            affirmation. */}
+        <section className={styles.bande} aria-label="La société en chiffres">
+          <div className={styles.bandeIn}>
+            {CHIFFRES_MAISON.map((c) => (
+              <div key={c.libelle} className={styles.bandeItem}>
+                <span className={styles.bandeValeur}>{c.valeur}</span>
+                <span className={styles.bandeLibelle}>{c.libelle}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Ce qui tourne, avec un état honnête par ligne, et chaque ligne
+            mène désormais à une vraie page de projet plutôt qu'à rien. */}
         <section id="ce-qui-tourne" className={styles.tourne}>
-          <p className={styles.sectionT}>Ce qui tourne</p>
+          <div className={styles.sectionEntete}>
+            <p className={styles.sectionT}>Ce qui tourne</p>
+            <Link href="/realisations" className={styles.lienSection}>
+              Les dix projets
+            </Link>
+          </div>
           <ul className={styles.produits}>
-            {PRODUITS.map((p) => (
-              <li key={p.nom} className={styles.produit}>
-                <span className={`${styles.etat} ${styles[p.ton]}`}>{p.etat}</span>
+            {produits.map((p) => (
+              <li key={p.slug} className={styles.produit}>
+                <span className={`${styles.etat} ${TON[p.etat]}`}>
+                  {LIBELLE_ETAT_COURT[p.etat]}
+                </span>
                 <div>
                   <h3>
-                    {p.href ? (
-                      <a href={p.href}>{p.nom}</a>
-                    ) : (
-                      p.nom
-                    )}
+                    <Link href={`/realisations/${p.slug}`}>{p.nom}</Link>
                   </h3>
-                  <p>{p.quoi}</p>
+                  <p>{p.baseline}</p>
                 </div>
               </li>
             ))}
           </ul>
           <p className={styles.preuve}>
-            Un registre scolaire construit ici sert aujourd&apos;hui une école
-            de <strong>323 élèves</strong> : dix classes, l&apos;appel fait au
-            téléphone par les enseignants, en arabe.
+            <strong>La preuve qui compte.</strong> Un registre scolaire
+            construit ici sert aujourd&apos;hui une école de 323 élèves : dix
+            classes, la présence prise par période, au téléphone par les
+            enseignants, en arabe. C&apos;est le seul de ces projets dont se
+            servent des gens qui ne travaillent pas ici, et c&apos;est écrit
+            comme tel partout sur ce site.
           </p>
+        </section>
+
+        {/* Les dernières nouvelles. Le journal n'est pas une rubrique de
+            communiqués : ce sont des faits datés, et plusieurs racontent une
+            panne. Les montrer sur la page d'accueil est un choix. */}
+        <section className={styles.nouvelles}>
+          <div className={styles.sectionEntete}>
+            <p className={styles.sectionT}>Dernières nouvelles</p>
+            <Link href="/journal" className={styles.lienSection}>
+              Tout le journal
+            </Link>
+          </div>
+          <ul className={styles.nouvellesListe}>
+            {nouvelles.map((e) => (
+              <li key={e.titre} className={styles.nouvelle}>
+                <div className={styles.nouvelleHaut}>
+                  <time className={styles.nouvelleDate} dateTime={e.date}>
+                    {dateLisible(e.date)}
+                  </time>
+                  <span className={styles.nouvelleRubrique}>{e.rubrique}</span>
+                  {e.projet && <span className={styles.nouvelleProjet}>{e.projet}</span>}
+                </div>
+                <Link href="/journal" className={styles.nouvelleTitre}>
+                  {e.titre}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className={styles.vedette}>
@@ -191,6 +204,11 @@ export default async function Home() {
               <p>Les idées qui méritent d&apos;exister deviennent des projets, puis des produits.</p>
             </div>
           </div>
+          <p className={styles.commentPlus}>
+            La façon de travailler est écrite en entier, avec les huit règles
+            de la maison et la panne qui a produit chacune :{" "}
+            <Link href="/savoir-faire">comment on travaille</Link>.
+          </p>
         </section>
 
         <section className={styles.cta}>
@@ -205,9 +223,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className={styles.pied}>
-        <p>© 2026 Kogia Group · <a href="https://kogiagroup.com">kogiagroup.com</a></p>
-      </footer>
+      <Pied />
     </>
   );
 }

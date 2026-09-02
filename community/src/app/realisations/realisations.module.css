@@ -1,0 +1,116 @@
+/* La page des réalisations. Couloir éditorial du site : fond blanc, une
+   police, un seul accent, presque aucune ombre, hiérarchie par filets et
+   par graisse. Rien de neuf n'est inventé ici. */
+
+.main { max-width: 1060px; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+
+.entete { max-width: 44rem; }
+.entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
+.lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink); }
+.sousLede { margin-top: .9rem; font-size: .98rem; line-height: 1.6; color: var(--slate); }
+
+/* ── La bande de chiffres ───────────────────────────────────────────────
+   Quatre nombres, et la façon dont ils ont été comptés juste en dessous.
+   Un chiffre sans sa méthode est une affirmation ; avec sa méthode, c'est
+   une mesure. */
+.bande {
+  margin-top: 2.5rem; padding: 1.6rem 0;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+}
+@media (max-width: 720px) { .bande { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; } }
+.chiffre { display: flex; flex-direction: column; gap: .25rem; }
+.chiffreValeur {
+  font: 800 clamp(1.5rem, 1.2rem + 1.1vw, 2rem)/1 inherit;
+  letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.chiffreLibelle { font-size: .84rem; color: var(--slate); line-height: 1.35; }
+.methode {
+  margin-top: 1rem; font-size: .8rem; line-height: 1.6; color: var(--slate);
+  max-width: 52rem;
+}
+
+/* ── La grille des projets ─────────────────────────────────────────────── */
+.sectionT {
+  font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--slate); margin: 3rem 0 1.25rem;
+}
+.grille {
+  list-style: none; display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+.carte {
+  display: flex; flex-direction: column; gap: .85rem;
+  padding: 1.4rem; height: 100%;
+  border: 1px solid var(--line); border-radius: var(--r-m);
+  background: var(--surface);
+  transition: border-color var(--selection) var(--ease);
+}
+.carte:hover { border-color: var(--line-forte); }
+.carteHaut { display: flex; align-items: flex-start; gap: .8rem; }
+.icone {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.3rem; height: 2.3rem; border-radius: 8px; flex-shrink: 0;
+  background: var(--surface-2); color: var(--ink);
+  --icone-accent: var(--indigo);
+}
+.carteTitres { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.carte h3 { font: 700 1.06rem/1.25 inherit; letter-spacing: -.01em; }
+.domaine { font-size: .78rem; color: var(--slate); letter-spacing: .02em; }
+.baseline { font-size: .93rem; line-height: 1.55; color: var(--slate); flex: 1; }
+
+/* Les chiffres de la carte : deux mesures, en chiffres tabulaires pour que
+   les colonnes ne dansent pas d'une carte à l'autre. */
+.mini { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+.miniItem { display: flex; flex-direction: column; }
+.miniValeur { font: 700 .98rem/1.2 inherit; font-variant-numeric: tabular-nums; }
+.miniLibelle { font-size: .74rem; color: var(--slate); }
+
+.carteBas {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  padding-top: .9rem; border-top: 1px solid var(--line);
+}
+.lire { font-size: .87rem; font-weight: 600; color: var(--indigo); }
+.carte:hover .lire { text-decoration: underline; }
+
+/* ── La pastille d'état ─────────────────────────────────────────────────
+   Un mot, jamais une couleur seule : la teinte accompagne le texte, elle ne
+   le remplace pas, sinon l'information disparaît pour qui ne distingue pas
+   les deux verts. */
+.etat {
+  display: inline-block; padding: .28rem .6rem; border-radius: var(--r-max);
+  font: 600 .72rem/1.25 inherit; letter-spacing: .01em; white-space: nowrap;
+  border: 1px solid transparent;
+}
+.production { background: var(--k-ok-soft); color: #0B6B50; border-color: #BFE4D7; }
+.demo       { background: var(--k-info-soft); color: #0A5E88; border-color: #BFDCEC; }
+.chantier   { background: var(--k-warn-soft); color: #8A5511; border-color: #EBD7B4; }
+.pause      { background: var(--k-neutral-soft); color: #5A6577; border-color: var(--line); }
+.prepare    { background: var(--k-neutral-soft); color: #5A6577; border-color: var(--line); }
+
+/* ── Le bas de page de la vitrine ──────────────────────────────────────── */
+.appel {
+  margin-top: 3.5rem; padding: 2rem 0 0; border-top: 1px solid var(--line);
+  max-width: 40rem;
+}
+.appel h2 { font: 700 1.3rem/1.3 inherit; }
+.appel p { margin-top: .7rem; color: var(--slate); line-height: 1.6; }
+.appelActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+
+/* Le lien de l'appel final et celui de la méthode : cibles isolées. */
+.methode a, .appel a:not(:global(.bouton)) {
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+
+/* ── Deux corrections mesurées en capture à 1440 px ──────────────────────
+   1. « Démo publique en ligne » est le plus long des cinq libellés d'état, et
+      il poussait « Lire le détail » sur deux lignes dans la carte de Coreon
+      EDU. La rangée peut désormais passer à la ligne proprement, et le lien
+      ne se coupe plus au milieu.
+   2. Les deux chiffres d'une carte étaient en `flex` : quand un libellé était
+      long, le second chiffre passait sous le premier et les cartes d'une même
+      rangée n'alignaient plus rien. Deux colonnes fixes règlent le problème
+      sans toucher au contenu. */
+.carteBas { flex-wrap: wrap; row-gap: .55rem; }
+.lire { white-space: nowrap; margin-left: auto; }
+.mini { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 1rem; }
