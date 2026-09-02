@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Marque from "@/components/Marque";
+import { EnTete, Pied } from "@/components/Chrome";
 import { createClient } from "@/lib/supabase/server";
 import styles from "./explore.module.css";
 
@@ -26,15 +26,7 @@ export default async function ExplorePage() {
 
   return (
     <>
-      <header className={styles.top}>
-        <div className={styles.topIn}>
-          <Marque />
-          <nav className={styles.nav} aria-label="Navigation principale">
-            <Link href="/explore">Explorer</Link>
-            <Link href="/about">À propos</Link>
-          </nav>
-        </div>
-      </header>
+      <EnTete actif="/explore" />
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Toutes les idées</h1>
@@ -87,6 +79,7 @@ export default async function ExplorePage() {
           </aside>
         )}
       </main>
+      <Pied />
     </>
   );
 }

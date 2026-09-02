@@ -1,11 +1,9 @@
-.top { border-bottom: 1px solid var(--line); }
-.topIn {
-  max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.nav { display: flex; gap: 1.4rem; }
-.nav a { color: var(--slate); font-size: .9rem; }
-.nav a:hover { color: var(--ink); }
+/* L'en-tête et le pied de page de cette page viennent de
+   `components/Chrome.tsx`. Les règles qui les décrivaient ici ont été
+   retirées le 2026-09-02 : elles ne s'appliquaient plus à rien, mais un
+   module CSS embarque ses classes mortes dans le paquet servi, et surtout
+   la prochaine personne à vouloir corriger l'en-tête les aurait modifiées
+   sans effet. */
 
 .main {
   width: 100%; max-width: 44rem; margin: 0 auto;
@@ -27,11 +25,3 @@
 .main a { text-decoration: underline; }
 .main :global(strong) { color: var(--ink); }
 
-.pied {
-  border-top: 1px solid var(--line); margin-top: 3rem;
-  padding: 1.5rem; text-align: center; font-size: .82rem; color: var(--slate);
-}
-
-/* Même correction de plancher tactile (44 px) que sur l'accueil. */
-.nav a { display: inline-flex; align-items: center; min-height: 44px; }
-.pied a { display: inline-flex; align-items: center; min-height: 44px; }

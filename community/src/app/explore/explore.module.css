@@ -1,9 +1,11 @@
+/* `.top`, `.topIn` et `.nav` restent ici pour `drafts/page.tsx`, qui porte
+   encore son propre en-tête. `/explore` est passé à `components/Chrome.tsx`
+   le 2026-09-02 : ses règles de marque, elles, ne servaient plus. */
 .top { border-bottom: 1px solid var(--line); }
 .topIn {
   max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
 }
-.marque { font-weight: 700; font-size: 1.1rem; }
 .nav { display: flex; gap: 1.4rem; }
 .nav a { color: var(--slate); font-size: .9rem; }
 .nav a:hover { color: var(--ink); }
@@ -23,7 +25,6 @@
 
 /* Même correction de plancher tactile (44 px) que sur l'accueil. */
 .nav a { display: inline-flex; align-items: center; min-height: 44px; }
-.marque { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ── Catalogue encore jeune ──────────────────────────────────────────────────
    Un article sur une page qui s'appelle « Toutes les idées » laissait 70 % de

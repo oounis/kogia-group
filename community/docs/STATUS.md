@@ -1,6 +1,6 @@
 # État du projet
 
-Dernière mise à jour : 27 août 2026.
+Dernière mise à jour : 2 septembre 2026.
 
 > **Ce dossier EST kogiagroup.com** depuis le 16 août 2026. Il ne s'agit ni
 > d'un produit séparé, ni d'une préversion : le domaine public pointe ici.
@@ -10,10 +10,21 @@ Dernière mise à jour : 27 août 2026.
 
 ## Ce qui fonctionne réellement, vérifié en production
 
-- **Le domaine public.** kogiagroup.com et www sont servis par Render
-  (service `kogia-community`), via un CNAME aplati par Cloudflare. TLS actif,
-  `edu.kogiagroup.com` intact, tous les enregistrements de messagerie Zoho
-  intacts.
+- **Le domaine public.** kogiagroup.com est servi par **kogia-prod-01**
+  (Contabo, `13.140.153.6`), en deux répliques derrière Traefik, depuis le
+  30 août 2026. Ce n'est plus Render : le paragraphe qui décrivait ici un
+  service suspendu répondant 503 a été vrai du 20 au 30 août et faux ensuite,
+  et il est resté trois jours de trop. Déploiement sans coupure par
+  `/opt/kogia/apps/kogiagroup/src/community/deploy/deploy.sh`, lancé en tant
+  que `kogia`, jamais avec `sudo`. TLS actif, `edu.kogiagroup.com` intact,
+  enregistrements Zoho intacts.
+- **La vitrine.** `/realisations` et ses dix pages de projet, `/journal`
+  (vingt-sept faits datés) et `/savoir-faire`, en ligne depuis le
+  2 septembre 2026. La liste des produits a une seule source,
+  `src/lib/travaux.ts`, dont dérivent quatre pages et le plan du site.
+- **L'en-tête et le pied de page sont partagés** (`src/components/Chrome.tsx`).
+  Ils étaient recopiés page par page, ce qui avait déjà fait qu'une correction
+  mobile ne touchait qu'une seule page.
 - **Les articles viennent de la base.** L'article Kharbga est stocké dans
   Supabase avec son auteur réel, rendu côté serveur, indexable.
   `/explore` liste depuis la base, `sitemap.xml` aussi.
@@ -31,7 +42,9 @@ Dernière mise à jour : 27 août 2026.
 - **Redirections** des anciennes URL `/idees/<slug>.html` partagées sur
   Facebook et Reddit.
 - **CI** : lint, types, build sur Node 26, puis une fumée de production de
-  8 routes × 8 largeurs (320 → 1440) plus sécurité, images et liens internes.
+  **12 routes × 8 largeurs** (320 → 1440) plus sécurité, images, liens
+  internes, cibles tactiles et image de partage. **40 tests, tous verts en
+  production le 2 septembre 2026.**
 
 ## L'inscription, menée à terme le 27 août 2026
 
@@ -81,11 +94,6 @@ Le compte jetable est supprimé en fin de test, vérifié : aucun résidu.
 
 ## Ce qui attend une décision d'Othman
 
-- **Le domaine est suspendu, pas cassé.** kogiagroup.com répond 503 avec la
-  page « Service Suspended » de Render, comme les sept services depuis le
-  2026-08-20 : c'est la facturation, pas le code. Tant que ça dure, la fumée
-  de production (`playwright.smoke.config.ts`) est rouge pour cette raison et
-  pour aucune autre, et le site ne sert rien au public.
 - **Les dix sujets ne sont pas encore semés en base.** La production ne
   contient qu'un sujet (`technologie`). Le correctif de code fonctionne avec
   ce qu'il trouve — l'onboarding exige `min(3, nombre de sujets)` et n'est
@@ -116,24 +124,37 @@ perdue à la migration, pas seulement recolorée.
 
 - Trois systèmes de jetons concurrents (`brand/`, `site/`, `community/`) qui
   se contredisent. Les 38 variables Figma ne sont donc pas la vérité du code.
-- Cinq routes redéfinissent chacune le même en-tête ; quatre modules CSS
-  redéfinissent `.top`/`.topIn`/`.nav`. C'est la raison pour laquelle une
-  correction mobile n'a d'abord touché qu'une seule page.
+- **En-tête dupliqué, en grande partie résorbé le 2026-09-02.** Neuf pages
+  publiques passent par `components/Chrome.tsx` : l'accueil, à propos,
+  réalisations et ses pages de projet, journal, savoir-faire, explorer,
+  conditions, confidentialité. Le CSS mort qu'elles laissaient derrière elles
+  a été supprimé de `page.module.css`, `about.module.css`, `legal.module.css`
+  et `explore.module.css`. **Restent quatre pages** avec leur propre en-tête :
+  `articles/[slug]`, `drafts`, `write` et les réglages. Les deux premières
+  partagent encore `.top`/`.topIn`/`.nav` dans `explore.module.css`, qui ne
+  peut donc pas encore être nettoyé complètement.
 - 24 icônes dessinées dans Figma, une seule (la baleine) livrée en React.
-- La CI rapporte sur un déploiement, elle ne le bloque pas : Render déploie
-  de son côté. Pour en faire une vraie barrière, il faut couper le
-  déploiement automatique de Render — décision d'Othman.
+- **La CI rapporte, elle ne bloque toujours pas**, mais plus pour la même
+  raison. Render n'existe plus dans le circuit : le déploiement est lancé à
+  la main sur kogia-prod-01 par `deploy.sh`. Rien n'empêche donc de déployer
+  un commit dont la CI est rouge, sauf la discipline. En faire une barrière
+  demande d'appeler la fumée avant le basculement des répliques, dans
+  `deploy.sh` lui-même.
 
 ## Prochaine tâche
 
-L'inscription est terminée et prouvée. La suite, dans cet ordre :
+L'inscription est terminée et prouvée, la vitrine est en ligne, l'en-tête
+partagé existe. La suite, dans cet ordre :
 
-1. Semer les dix sujets en base (une commande, ci-dessus) — l'onboarding
-   fonctionne déjà, mais il n'a qu'un sujet à proposer.
-2. L'en-tête partagé : cinq routes le redéfinissent, quatre modules CSS
-   redéfinissent `.top`/`.topIn`/`.nav`. C'est la cause directe d'une
-   correction mobile qui n'avait touché qu'une seule page.
-3. Le contrat de jetons unique, puis les icônes en React.
+1. **Semer les dix sujets en base** (une commande, ci-dessus). L'onboarding
+   fonctionne déjà, mais il n'a qu'un sujet à proposer, donc la première
+   question posée à une nouvelle personne n'a qu'une réponse possible.
+2. **Donner à `/explore` de quoi exister.** Un seul article publié depuis le
+   18 juin. La vitrine dit maintenant la vérité sur les produits, mais la
+   partie « idées » du site promet une lecture qu'elle n'a pas.
+3. **Le contrat de jetons unique**, puis les icônes en React.
+4. **Une image de partage par projet.** Les dix pages retombent sur `og.png`,
+   ce qui vaut mieux que rien mais donne dix aperçus identiques.
 
 Non bloquant mais utile : brancher Resend, et activer Google côté Supabase
 (le code du bouton attend derrière `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED`).

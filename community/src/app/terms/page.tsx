@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Marque from "@/components/Marque";
+import { EnTete, Pied } from "@/components/Chrome";
 import styles from "../legal/legal.module.css";
 import { DATE_DOCUMENTS_HUMAINE } from "@/lib/legal";
 
@@ -21,15 +20,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <header className={styles.top}>
-        <div className={styles.topIn}>
-          <Marque />
-          <nav className={styles.nav} aria-label="Navigation principale">
-            <Link href="/explore">Explorer</Link>
-            <Link href="/about">À propos</Link>
-          </nav>
-        </div>
-      </header>
+      <EnTete actif="/explore" />
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Conditions d&apos;utilisation</h1>
@@ -134,11 +125,7 @@ export default function TermsPage() {
         </p>
       </main>
 
-      <footer className={styles.pied}>
-        <p>
-          <Link href="/privacy">Politique de confidentialité</Link> · © 2026 KogiaGroup
-        </p>
-      </footer>
+      <Pied />
     </>
   );
 }

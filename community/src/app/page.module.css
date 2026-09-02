@@ -1,46 +1,13 @@
-.top {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-}
-.topIn {
-  max-width: 1200px; margin: 0 auto; padding: 0 1rem; height: 56px;
-  display: flex; align-items: center; gap: 2rem;
-}
-.marque { font: 800 1.15rem/1 inherit; letter-spacing: -.02em; color: var(--ink); flex-shrink: 0; }
-.nav { display: flex; gap: 1.4rem; flex: 1; }
-.nav a { font-size: .9rem; color: var(--slate); font-weight: 500; }
-.nav a:hover { color: var(--ink); }
-.topActions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
-.lienDiscret { font-size: .88rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+/* L'en-tête et le pied de page viennent de `components/Chrome.tsx` depuis le
+   2026-09-02. Les règles qui les décrivaient ici, y compris leurs deux
+   requêtes de média et leurs correctifs de cible tactile, ont été retirées :
+   elles ne s'appliquaient plus à rien. Un module CSS embarque ses classes
+   mortes dans le paquet servi, et surtout la prochaine personne à vouloir
+   corriger l'en-tête les aurait modifiées sans effet. Le raisonnement sur les
+   petits écrans a été repris dans `Chrome.module.css`, où il agit. */
 
-/* ═══ Mobile ═══
-   Constaté le 2026-08-18 à 390 px : cinq éléments se disputaient une seule
-   rangée. « Se connecter » passait sur deux lignes et « Rejoindre Kogia »
-   sortait de l'écran (bord droit à 476 px pour une fenêtre de 390), ce qui
-   faisait défiler toute la page latéralement.
-   Les liens de navigation disparaissent sous 640 px : ils sont déjà
-   atteignables depuis le contenu et le pied de page. Restent la marque, la
-   connexion et UNE action principale, ce qui tient sans déborder. */
-@media (max-width: 640px) {
-  .topIn { gap: .75rem; padding: 0 .9rem; }
-  .nav { display: none; }
-  .marque { margin-right: auto; }
-  .topActions { gap: .75rem; }
-  .lienDiscret { font-size: .85rem; }
-  .topActions :global(.bouton) {
-    min-height: 44px; padding: 0 .85rem; font-size: .82rem; white-space: nowrap;
-  }
-}
-
-/* Les très petits téléphones (320 px, iPhone SE 1ʳᵉ génération) : même avec
-   la navigation masquée, marque + « Se connecter » + le bouton débordaient
-   encore de 11 px. Le lien discret disparaît, l'écran de connexion reste
-   atteignable depuis la page rejoindre et le pied de page. */
+/* Les très petits téléphones gardent leur mise en page de contenu. */
 @media (max-width: 359px) {
-  .topIn { gap: .5rem; padding: 0 .65rem; }
-  .lienDiscret { display: none; }
-  .topActions :global(.bouton) { padding: 0 .7rem; font-size: .78rem; }
   .hero { padding-left: 1rem; padding-right: 1rem; }
   .heroActions { flex-direction: column; align-items: stretch; }
 }
@@ -79,12 +46,6 @@
 }
 .cta h2 { font: 700 1.4rem/1.35 inherit; letter-spacing: -.015em; margin-bottom: 1.4rem; }
 
-.pied {
-  border-top: 1px solid var(--line); padding: 1.5rem 1.25rem; text-align: center;
-  color: var(--slate); font-size: .82rem;
-}
-.pied a { text-decoration: underline; color: var(--ink); }
-
 /* Icône d'étape dans « Comment Kogia fonctionne ». L'accent bleu de l'icône
    bicolore reste le SEUL bleu de la section : le titre et le texte restent
    noir/gris, conformément à la règle « un accent, un usage ». */
@@ -92,15 +53,6 @@
   display: inline-flex; margin-bottom: .7rem;
   color: var(--ink); --icone-accent: var(--indigo);
 }
-
-/* Cibles tactiles : mesurées le 2026-08-18 sous le plancher de 44 px exigé
-   par WCAG 2.5.5, liens d'en-tête 22-23 px, « Se connecter » 22 px, lien de
-   pied de page 16 px. Le texte garde sa taille discrète, seule la zone
-   cliquable grandit. */
-.nav a { display: inline-flex; align-items: center; min-height: 44px; }
-.lienDiscret { display: inline-flex; align-items: center; min-height: 44px; }
-.marque { display: inline-flex; align-items: center; min-height: 44px; }
-.pied a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ── Ce qui tourne ───────────────────────────────────────────────────────────
    La section qui manquait : ce qui existe vraiment, avec un état par ligne.
