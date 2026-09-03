@@ -66,18 +66,28 @@ export default async function Home() {
       <EnTete actif="/" />
 
       <main>
+        {/* Le titre disait « On construit des logiciels. Et on écrit ce qu'on
+            apprend. » C'était honnête, mais ça décrivait un atelier, pas une
+            société : un visiteur ne pouvait pas savoir en cinq secondes si
+            Kogia prend des clients, vend des plateformes, ou tient un carnet.
+            Ce qui distingue Kogia n'est pas de construire des logiciels,
+            c'est de montrer les preuves. Donc le titre dit ce qu'on fait, et
+            les chiffres au-dessous le prouvent. */}
         <section className={styles.hero}>
-          <h1>On construit des logiciels. Et on écrit ce qu&apos;on apprend.</h1>
+          <h1>
+            Des logiciels qui tournent en production, avec les preuves.
+          </h1>
           <p>
-            Kogia explore une idée jusqu&apos;au bout, puis construit celles
-            qui le méritent. Dix projets depuis juin 2026, dont un registre
-            scolaire qui sert 323 élèves tous les jours, et une plateforme
-            dont les sauvegardes sont vérifiées par une vraie restauration
-            chaque nuit.
+            Kogia Group conçoit et exploite des plateformes métier, pour
+            l&apos;éducation d&apos;abord. Pas des maquettes : un registre
+            scolaire qui sert <strong>323 élèves</strong> chaque jour de
+            classe, des sauvegardes dont la restauration est réellement
+            rejouée, et l&apos;état exact de chaque projet écrit noir sur
+            blanc, y compris quand il est à l&apos;arrêt.
           </p>
           <div className={styles.heroActions}>
-            <Link href="/realisations" className="bouton accent">Ce qu&apos;on a construit</Link>
-            <Link href="/journal" className="bouton ligne">Le journal</Link>
+            <Link href="/realisations" className="bouton accent">Nos plateformes</Link>
+            <Link href="/savoir-faire" className="bouton ligne">Ce qu&apos;on sait faire</Link>
           </div>
         </section>
 
