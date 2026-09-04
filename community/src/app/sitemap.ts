@@ -24,6 +24,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pagesFixes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE}/realisations`, changeFrequency: "monthly", priority: 0.9 },
+    /* `/news` et `/journal` partagent la même source, donc la même date de
+       dernière modification : celle de la dernière entrée, pas celle du jour.
+       Priorité plus haute pour les actualités, c'est la porte d'entrée d'un
+       visiteur extérieur, alors que le journal est le registre complet. */
+    {
+      url: `${SITE}/news`,
+      lastModified: dernierJournal ? new Date(dernierJournal) : undefined,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     {
       url: `${SITE}/journal`,
       lastModified: dernierJournal ? new Date(dernierJournal) : undefined,

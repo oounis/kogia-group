@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { EnTete, Pied } from "@/components/Chrome";
-import Icone from "@/components/icons/Icone";
+import Parcours from "@/components/Parcours";
 import { createClient } from "@/lib/supabase/server";
 import { dureeDeLecture } from "@/lib/site";
 import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT_COURT, type Etat } from "@/lib/travaux";
@@ -66,18 +66,28 @@ export default async function Home() {
       <EnTete actif="/" />
 
       <main>
+        {/* Le titre disait « On construit des logiciels. Et on écrit ce qu'on
+            apprend. » C'était honnête, mais ça décrivait un atelier, pas une
+            société : un visiteur ne pouvait pas savoir en cinq secondes si
+            Kogia prend des clients, vend des plateformes, ou tient un carnet.
+            Ce qui distingue Kogia n'est pas de construire des logiciels,
+            c'est de montrer les preuves. Donc le titre dit ce qu'on fait, et
+            les chiffres au-dessous le prouvent. */}
         <section className={styles.hero}>
-          <h1>On construit des logiciels. Et on écrit ce qu&apos;on apprend.</h1>
+          <h1>
+            Des logiciels qui tournent en production, avec les preuves.
+          </h1>
           <p>
-            Kogia explore une idée jusqu&apos;au bout, puis construit celles
-            qui le méritent. Dix projets depuis juin 2026, dont un registre
-            scolaire qui sert 323 élèves tous les jours, et une plateforme
-            dont les sauvegardes sont vérifiées par une vraie restauration
-            chaque nuit.
+            Kogia Group conçoit et exploite des plateformes métier, pour
+            l&apos;éducation d&apos;abord. Pas des maquettes : un registre
+            scolaire qui sert <strong>323 élèves</strong> chaque jour de
+            classe, des sauvegardes dont la restauration est réellement
+            rejouée, et l&apos;état exact de chaque projet écrit noir sur
+            blanc, y compris quand il est à l&apos;arrêt.
           </p>
           <div className={styles.heroActions}>
-            <Link href="/realisations" className="bouton accent">Ce qu&apos;on a construit</Link>
-            <Link href="/journal" className="bouton ligne">Le journal</Link>
+            <Link href="/realisations" className="bouton accent">Nos plateformes</Link>
+            <Link href="/savoir-faire" className="bouton ligne">Ce qu&apos;on sait faire</Link>
           </div>
         </section>
 
@@ -85,7 +95,7 @@ export default async function Home() {
             et la méthode de comptage est écrite sur la page des
             réalisations : un chiffre sans sa méthode n'est qu'une
             affirmation. */}
-        <section className={styles.bande} aria-label="La société en chiffres">
+        <section className={`${styles.bande} entree-douce`} data-rang="2" aria-label="La société en chiffres">
           <div className={styles.bandeIn}>
             {CHIFFRES_MAISON.map((c) => (
               <div key={c.libelle} className={styles.bandeItem}>
@@ -98,7 +108,7 @@ export default async function Home() {
 
         {/* Ce qui tourne, avec un état honnête par ligne, et chaque ligne
             mène désormais à une vraie page de projet plutôt qu'à rien. */}
-        <section id="ce-qui-tourne" className={styles.tourne}>
+        <section id="ce-qui-tourne" className={`${styles.tourne} entree-douce`} data-rang="3">
           <div className={styles.sectionEntete}>
             <p className={styles.sectionT}>Ce qui tourne</p>
             <Link href="/realisations" className={styles.lienSection}>
@@ -133,7 +143,7 @@ export default async function Home() {
         {/* Les dernières nouvelles. Le journal n'est pas une rubrique de
             communiqués : ce sont des faits datés, et plusieurs racontent une
             panne. Les montrer sur la page d'accueil est un choix. */}
-        <section className={styles.nouvelles}>
+        <section className={`${styles.nouvelles} entree-douce`} data-rang="4">
           <div className={styles.sectionEntete}>
             <p className={styles.sectionT}>Dernières nouvelles</p>
             <Link href="/journal" className={styles.lienSection}>
@@ -178,32 +188,11 @@ export default async function Home() {
 
         <section className={styles.comment}>
           <p className={styles.sectionT}>Comment Kogia fonctionne</p>
-          <div className={styles.commentGrille}>
-            {/* Icônes du système Kogia : « plonger » puis « discuter » puis
-                « faire remonter » racontent la métaphore de la marque, là où
-                trois pictogrammes génériques n'auraient rien dit. */}
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="deep-dive" taille="feature" />
-              </span>
-              <h3>Découvrir</h3>
-              <p>Une idée explorée sérieusement : le problème, le marché, les risques, un verdict honnête.</p>
-            </div>
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="comment" taille="feature" />
-              </span>
-              <h3>Discuter</h3>
-              <p>Réagir, commenter, dire ce qui cloche ou ce qui manque, avec les gens qui ont vécu le problème.</p>
-            </div>
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="surface" taille="feature" />
-              </span>
-              <h3>Développer</h3>
-              <p>Les idées qui méritent d&apos;exister deviennent des projets, puis des produits.</p>
-            </div>
-          </div>
+          {/* C'etaient trois cartes cote a cote. Le texte etait juste mais la
+              mise en page ne disait pas que les etapes se SUIVENT, ni que la
+              plupart des idees s'arretent en route. Un schema le dit en une
+              image, et prend moins de hauteur que trois cartes. */}
+          <Parcours />
           <p className={styles.commentPlus}>
             La façon de travailler est écrite en entier, avec les huit règles
             de la maison et la panne qui a produit chacune :{" "}

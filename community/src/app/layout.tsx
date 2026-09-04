@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import { SITE_URL, IMAGE_PARTAGE } from "@/lib/site";
 import "./globals.css";
 
@@ -8,6 +8,19 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+/* Sora, pour le lockup de marque UNIQUEMENT.
+   `brand/lockup-kogia-group.svg` écrit le mot « kogia » en Sora. Le lockup
+   contient du `<text>` et non un tracé vectorisé, donc sans cette police le
+   navigateur retombe sur system-ui : le logo devient faux sans que rien ne
+   signale l'erreur. Deux graisses seulement, celles que le fichier officiel
+   emploie, pour ne pas alourdir le chargement d'une police décorative. */
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -59,7 +72,7 @@ const CF_ANALYTICS_TOKEN = "0cb53abfe15a41e1baca72e3ff184e52";
    l'ordre des étapes en CI. */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={inter.variable}>
+    <html lang="fr" className={`${inter.variable} ${sora.variable}`}>
       <body>
         {children}
         <Script

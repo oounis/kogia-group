@@ -1,0 +1,30 @@
+.cadre {
+  margin: 0;
+  color: var(--ink);
+}
+
+.schema {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Le viewBox fait 680 de large. Au-dela, le schema grandirait sans raison
+     et les textes deviendraient enormes par rapport au corps de la page. */
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.legende {
+  margin: .9rem auto 0;
+  max-width: 44ch;
+  text-align: center;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--slate);
+}
+
+/* Sous 560px, trois pastilles cote a cote donnent des libelles illisibles.
+   Le schema passe en colonne, en reutilisant le meme SVG plutot qu'un second
+   fichier : on change la mise en page, jamais le dessin. */
+@media (max-width: 559px) {
+  .schema { max-width: 340px; }
+}

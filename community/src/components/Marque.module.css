@@ -1,12 +1,28 @@
 .marque {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
-  color: var(--ink);
-  font-weight: 700;
-  font-size: 1.1rem;
-  /* Plancher tactile de 44 px (WCAG 2.5.5) : la marque mesurait 28 px.
-     La règle doit vivre ICI, un `.marque` écrit dans page.module.css ne
-     peut pas atteindre ce composant, les classes étant hachées par module. */
+  /* Plancher tactile de 44 px (WCAG 2.5.5). La règle doit vivre ICI : un
+     `.marque` écrit dans page.module.css ne peut pas atteindre ce composant,
+     les classes étant hachées par module. */
   min-height: 44px;
+  text-decoration: none;
+}
+
+.lockup {
+  display: block;
+  /* Le lockup officiel est en Sora. Sans elle, le `<text>` SVG retombe sur
+     system-ui et le logo est faux tout en paraissant correct : c'est le piège
+     d'un lockup qui contient du texte plutôt qu'un tracé vectorisé. */
+  font-family: var(--font-sora), system-ui, sans-serif;
+}
+
+/* Le mot se repeint sur fond sombre, le bleu de la marque jamais. */
+.mot { fill: var(--marque-encre, #0E2135); }
+.motSecondaire { /* le bleu est écrit dans le composant, il ne varie pas */ }
+
+/* Sur les très petits téléphones, la ligne GROUP devient illisible avant le
+   mot lui-même. On réduit le lockup entier plutôt que de masquer une moitié
+   de la marque, ce qui donnerait un logo tronqué. */
+@media (max-width: 359px) {
+  .lockup { height: 24px; width: 100px; }
 }

@@ -481,7 +481,11 @@ export const TRAVAUX: Travail[] = [
     slug: "kogiagroup-com",
     nom: "kogiagroup.com",
     baseline:
-      "Le site que vous lisez : une maison d'édition d'idées, et la vitrine de tout le reste.",
+      /* Disait « une maison d'édition d'idées ». C'était vrai de la première
+         version du site, et cela contredisait désormais son propre titre, qui
+         annonce des logiciels en production. Une vitrine qui se décrit comme
+         un éditeur d'idées dit au visiteur qu'il n'y a rien à acheter. */
+      "La vitrine de la société : ce qui tourne en production, avec l'état réel de chaque projet.",
     domaine: "Site",
     icone: "community",
     etat: "production",

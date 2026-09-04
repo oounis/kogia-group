@@ -112,6 +112,36 @@ button { font-family: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .squelette { background: var(--surface-3); }
   .points-attente span { opacity: .6; }
+  /* Les entrees ci-dessous ne s'animent pas, mais le contenu doit rester
+     visible : sans cette regle, un `opacity: 0` initial masquerait la page
+     entiere pour qui demande moins de mouvement. */
+  .entree-douce { opacity: 1; transform: none; animation: none; }
+}
+
+/* ═══ Mouvement ═══
+   Emprunte a Kogia Kids, dont le systeme est le plus abouti de la maison :
+   une courbe a rebond leger plutot qu'un ease-out plat, et une entree qui
+   monte de quelques pixels. Kids l'emploie pour un public d'enfants avec de
+   grandes amplitudes ; ici l'amplitude est divisee par trois, parce que le
+   site s'adresse a des acheteurs et qu'un site d'entreprise qui rebondit
+   perd sa credibilite. Le principe est repris, pas l'intensite.
+
+   La teinte marine de Kids n'est PAS reprise : `--canvas` reste blanc, choix
+   documente dans les jetons sous le nom de couloir editorial. */
+@media (prefers-reduced-motion: no-preference) {
+  .entree-douce {
+    animation: entree-douce 460ms cubic-bezier(.34, 1.4, .64, 1) both;
+  }
+  @keyframes entree-douce {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  /* Un decalage par rang, pour que les blocs arrivent l'un apres l'autre
+     plutot que tous ensemble. Quatre paliers suffisent : au-dela, le dernier
+     bloc arrive si tard qu'on croit la page cassee. */
+  .entree-douce[data-rang="2"] { animation-delay: 70ms; }
+  .entree-douce[data-rang="3"] { animation-delay: 140ms; }
+  .entree-douce[data-rang="4"] { animation-delay: 210ms; }
 }
 .squelette { border-radius: var(--r-s); }
 .points-attente {
