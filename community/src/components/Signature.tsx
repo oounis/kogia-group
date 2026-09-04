@@ -20,26 +20,35 @@ import styles from "./Signature.module.css";
 
 const BLEU_MARQUE = "#2547E8";
 
-/* Les paliers. Une profondeur croissante et une opacité décroissante : plus on
-   descend, moins on voit, ce qui est vrai sous l'eau et vrai d'une idée. */
+/* Les paliers, du haut-fond vers l'abysse.
+ *
+ * La teinte vient de `--k-p-*`, la famille du produit, et c'est exactement ce
+ * que le livre de marque demande : « components then only ever reference
+ * --k-p-50 … --k-p-900. No component names a family. » Pour Kogia Group,
+ * `--k-p-*` est la rampe océan. Le dessin est donc plus conforme qu'avec
+ * `currentColor`, et pas seulement plus coloré.
+ *
+ * Et la rampe dit la même chose que le sujet : l'eau s'assombrit en
+ * descendant. Le palier de surface est clair, l'abysse est presque noir. La
+ * couleur porte l'information, elle ne décore pas. */
 const PALIERS = [
-  { y: 22, o: 0.82, d: "M0 22 C60 12 120 32 180 22 S300 12 360 22" },
-  { y: 52, o: 0.62, d: "M0 52 C70 40 130 64 200 52 S320 40 360 52" },
-  { y: 82, o: 0.46, d: "M0 82 C50 72 140 94 210 82 S310 70 360 82" },
-  { y: 112, o: 0.33, d: "M0 112 C80 102 150 124 220 112 S330 102 360 112" },
-  { y: 142, o: 0.22, d: "M0 142 C60 134 140 154 210 142 S320 132 360 142" },
-  { y: 172, o: 0.13, d: "M0 172 C70 166 140 182 215 172 S320 164 360 172" },
+  { y: 22,  c: "var(--k-p-300)", w: 1.5, d: "M0 22 C60 12 120 32 180 22 S300 12 360 22" },
+  { y: 52,  c: "var(--k-p-400)", w: 1.6, d: "M0 52 C70 40 130 64 200 52 S320 40 360 52" },
+  { y: 82,  c: "var(--k-p-500)", w: 1.7, d: "M0 82 C50 72 140 94 210 82 S310 70 360 82" },
+  { y: 112, c: "var(--k-p-600)", w: 1.8, d: "M0 112 C80 102 150 124 220 112 S330 102 360 112" },
+  { y: 142, c: "var(--k-p-700)", w: 1.9, d: "M0 142 C60 134 140 154 210 142 S320 132 360 142" },
+  { y: 172, c: "var(--k-p-800)", w: 2.0, d: "M0 172 C70 166 140 182 215 172 S320 164 360 172" },
 ];
 
 /* Les trouvailles, une par palier sauf le dernier : tout ne remonte pas. */
 const TROUVAILLES = [
-  { x: 96, y: 22, r: 4.5 },
-  { x: 262, y: 22, r: 3 },
-  { x: 236, y: 52, r: 4 },
-  { x: 74, y: 82, r: 3.5 },
-  { x: 148, y: 82, r: 3 },
-  { x: 292, y: 112, r: 3 },
-  { x: 120, y: 142, r: 2.5 },
+  { x: 96,  y: 22,  r: 4.5, c: "var(--k-p-400)" },
+  { x: 262, y: 22,  r: 3,   c: "var(--k-p-400)" },
+  { x: 236, y: 52,  r: 4,   c: "var(--k-p-500)" },
+  { x: 74,  y: 82,  r: 3.5, c: "var(--k-p-600)" },
+  { x: 148, y: 82,  r: 3,   c: "var(--k-p-600)" },
+  { x: 292, y: 112, r: 3,   c: "var(--k-p-700)" },
+  { x: 120, y: 142, r: 2.5, c: "var(--k-p-800)" },
 ];
 
 export default function Signature() {
@@ -55,9 +64,8 @@ export default function Signature() {
           <path
             key={p.y}
             d={p.d}
-            stroke="currentColor"
-            strokeWidth="1.6"
-            opacity={p.o}
+            stroke={p.c}
+            strokeWidth={p.w}
             strokeLinecap="round"
           />
         ))}
@@ -74,7 +82,7 @@ export default function Signature() {
         />
 
         {TROUVAILLES.map((t) => (
-          <circle key={`${t.x}-${t.y}`} cx={t.x} cy={t.y} r={t.r} fill="currentColor" opacity=".5" />
+          <circle key={`${t.x}-${t.y}`} cx={t.x} cy={t.y} r={t.r} fill={t.c} />
         ))}
 
         {/* Le point de départ, en surface, plein et en bleu de marque : c'est

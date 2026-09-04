@@ -14,9 +14,9 @@ import styles from "./Parcours.module.css";
  * couleurs du thème, et une correction de texte est un caractère à changer.
  * Une image aurait imposé de régénérer le fichier pour une faute de frappe.
  *
- * Aucune couleur n'est écrite en dur ici sauf le bleu de marque, qui ne varie
- * pas. Le reste passe par `currentColor` et les jetons, donc le schéma suit
- * l'encre du texte sans variante de fichier.
+ * Aucune couleur en dur : tout passe par `--k-p-*`, la famille du produit,
+ * comme le livre de marque l'exige des composants. La dernière pastille est
+ * pleine parce que c'est l'étape qui produit quelque chose.
  */
 export default function Parcours() {
   return (
@@ -38,7 +38,7 @@ export default function Parcours() {
             se lisent comme une suite et non comme trois blocs. */}
         <line
           x1="110" y1="52" x2="670" y2="52"
-          stroke="currentColor" strokeWidth="1.5" opacity=".18"
+          stroke="var(--k-p-200)" strokeWidth="2"
         />
 
         {[
@@ -51,10 +51,10 @@ export default function Parcours() {
                 et distingue visuellement l'étape qui produit quelque chose. */}
             <circle
               cx={e.x} cy="52" r="21"
-              fill={i === 2 ? "#2547E8" : "var(--surface)"}
-              stroke={i === 2 ? "#2547E8" : "currentColor"}
+              fill={i === 2 ? "var(--k-p-600)" : "var(--surface)"}
+              stroke={i === 2 ? "var(--k-p-600)" : "var(--k-p-400)"}
               strokeWidth="1.5"
-              strokeOpacity={i === 2 ? 1 : 0.32}
+              strokeOpacity={1}
             />
             <text
               x={e.x} y="59" textAnchor="middle"
