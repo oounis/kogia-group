@@ -7,7 +7,7 @@ export default function ChargementNews() {
   return (
     <main className={styles.main}>
       <div className={styles.entete}>
-        <p aria-hidden="true" style={{ font: "700 var(--t-h1)/1.1 var(--disp)" }}>
+        <p aria-hidden="true" style={{ font: "800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit", letterSpacing: "-.025em" }}>
           Actualités
         </p>
         <div className="squelette" style={{ width: "62%", height: 18, marginTop: 12 }} />

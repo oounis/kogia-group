@@ -25,7 +25,7 @@
 .entree { padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
 .entreeHaut {
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem;
-  margin-bottom: .7rem;
+  margin-bottom: .4rem;
 }
 .date {
   font-size: .82rem; color: var(--slate); font-variant-numeric: tabular-nums;
@@ -63,14 +63,20 @@
 .liste { list-style: none; margin: 2.4rem 0 0; padding: 0; }
 
 .titre {
-  font: 700 var(--t-h3)/1.35 var(--disp);
+  /* Valeurs littérales et `inherit`, comme partout dans community/. Les
+     jetons --t-h3 et --disp n'existent QUE dans site/assets/kogia.css, l'ancien
+     site retiré du domaine : les employer ici les faisait retomber
+     silencieusement sur les défauts du navigateur, donc un titre d'actualité
+     rendu en 16px normal, plus petit que son propre chapeau. */
+  font: 700 1.25rem/1.35 inherit;
+  letter-spacing: -.015em;
   color: var(--ink);
-  margin: .5rem 0 .4rem;
+  margin: .25rem 0 .5rem;
 }
 
 .texte {
-  font-size: var(--lire);
-  line-height: var(--lire-lh);
+  font-size: .95rem;
+  line-height: 1.65;
   color: var(--slate);
   margin: 0;
 }
@@ -92,8 +98,8 @@
   margin: 3rem 0;
   padding: 2rem;
   border: 1px solid var(--line);
-  border-radius: var(--r-m, 10px);
+  border-radius: var(--r-s);
   color: var(--slate);
-  font-size: var(--lire);
+  font-size: .95rem;
   text-align: center;
 }
