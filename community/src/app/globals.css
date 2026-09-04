@@ -53,6 +53,22 @@
 
   --appui: var(--k-t-instant);
   --selection: var(--k-t-micro);
+
+  /* ── Largeurs de page ──────────────────────────────────────────────────
+     Il n'y en avait AUCUNE. Chaque page inventait sa propre valeur, et le
+     dépôt en comptait douze différentes: 940, 1200, 780, 720, 680, 860,
+     760, 640, 620. Rien ne s'alignait d'une section à l'autre, et le
+     contenu tombait dans un ruban étroit au milieu avec les côtés vides.
+     C'est le défaut de mise en page le plus visible du site.
+
+     Deux largeurs suffisent, et elles ont chacune un rôle:
+       --page  la grille, les grilles de cartes, les bandes de chiffres
+       --texte la prose. Au-delà de 68 caractères par ligne, l'oeil perd
+               le début de la ligne suivante, donc un article ne doit
+               JAMAIS occuper --page. */
+  --page: 1280px;
+  --texte: 68ch;
+  --marge-page: clamp(1.25rem, 4vw, 4rem);
   --panneau: var(--k-t-standard);
   --ease: var(--k-ease);
 }

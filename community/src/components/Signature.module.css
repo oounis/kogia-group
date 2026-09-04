@@ -1,0 +1,31 @@
+.cadre {
+  /* L'encre du dessin suit le texte, mais plus discrete: la signature
+     accompagne le titre, elle ne rivalise pas avec lui. */
+  color: var(--ink);
+  opacity: .85;
+}
+
+.dessin {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Sous 900px le heros passe en une colonne et la signature vient sous le
+   texte. Elle rapetisse alors: a pleine largeur sur un telephone elle
+   pousserait les boutons hors de l'ecran. */
+@media (max-width: 899px) {
+  .cadre { max-width: 320px; margin-inline: auto; opacity: .6; }
+}
+
+/* Le mouvement: une derive tres lente, empruntee a `drift` de Kogia Kids
+   mais divisee par cinq. Kids anime pour des enfants avec de grandes
+   amplitudes; ici le dessin doit respirer sans attirer l'oeil pendant la
+   lecture du titre. */
+@media (prefers-reduced-motion: no-preference) {
+  .dessin { animation: derive 14s ease-in-out infinite; }
+  @keyframes derive {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+  }
+}

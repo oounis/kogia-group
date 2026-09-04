@@ -1,3 +1,30 @@
+/* ════════════════════════════════════════════════════════════════════════
+   MISE EN PAGE, refonte du 2026-09-04.
+
+   Le défaut corrigé: tout le contenu tombait dans une colonne centrée de 640
+   à 940px, sections empilées les unes sous les autres, et les côtés de
+   l'écran restaient vides sur un portable ou un écran de bureau. On lisait
+   un ruban étroit qui descendait très loin.
+
+   Le principe maintenant: une seule largeur de page, `--page`, et des
+   sections qui se lisent EN LARGEUR. Le héros est asymétrique, deux colonnes
+   au lieu d'un bloc centré. Les produits, les actualités et la clôture sont
+   des grilles. La prose, elle, garde `--texte`: une ligne de plus de 68
+   caractères fait perdre le début de la ligne suivante, donc élargir un
+   paragraphe le rendrait moins lisible, pas plus.
+
+   Le rythme vertical reste serré volontairement. Othman a signalé deux fois
+   que la page descendait trop: gagner de la place se fait en largeur, jamais
+   en ajoutant de la hauteur entre les sections.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Le conteneur unique. Toute section l'utilise, donc tout s'aligne. */
+.bloc {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding-inline: var(--marge-page);
+}
+
 /* L'en-tête et le pied de page viennent de `components/Chrome.tsx` depuis le
    2026-09-02. Les règles qui les décrivaient ici, y compris leurs deux
    requêtes de média et leurs correctifs de cible tactile, ont été retirées :
@@ -13,18 +40,34 @@
 }
 
 .hero {
-  max-width: 680px; margin: 0 auto; padding: 3.2rem 1.25rem 2.4rem; text-align: center;
+  /* Etait centre dans 680px. Devient une grille asymetrique: le discours a
+     gauche, la signature visuelle a droite. Le premier ecran cesse d'etre
+     une colonne etroite au milieu du vide. */
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 3rem var(--marge-page) 2.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  text-align: left;
 }
-.hero h1 { font: 800 clamp(2rem, 1.5rem + 2vw, 2.8rem)/1.15 inherit; letter-spacing: -.025em; }
-.hero p { margin-top: .9rem; color: var(--slate); font-size: 1.08rem; line-height: 1.55; }
-.heroActions { display: flex; gap: .75rem; justify-content: center; margin-top: 1.4rem; }
+.hero h1 {
+  /* Plus grand: sur 7 colonnes de 1280px il y a la place, et un titre
+     d'accueil doit porter. */
+  font: 800 clamp(2.1rem, 1.2rem + 3.2vw, 3.6rem)/1.08 inherit;
+  letter-spacing: -.03em;
+  max-width: 22ch;
+}
+.hero p { margin-top: 1rem; max-width: 46ch; color: var(--slate); font-size: 1.08rem; line-height: 1.55; }
+.heroActions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
 .heroSujets { margin-top: 1rem; font-size: .8rem; color: var(--slate); letter-spacing: .02em; }
 
 .sectionT {
   font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
   color: var(--slate); margin-bottom: 1rem;
 }
-.vedette { max-width: 760px; margin: 0 auto; padding: 1.8rem 1.25rem; }
+.vedette { max-width: var(--page); margin: 0 auto; padding: 1.8rem var(--marge-page); }
 .vedetteCarte {
   display: block; border: 1px solid var(--line); border-radius: var(--r-m);
   padding: 1.6rem; transition: border-color var(--selection) var(--ease);
@@ -34,12 +77,22 @@
 .vedetteCarte h2 { font: 700 1.4rem/1.3 inherit; margin: .5rem 0 .6rem; letter-spacing: -.015em; }
 .vedetteCarte p { color: var(--slate); line-height: 1.55; }
 
-.comment { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.25rem; border-top: 1px solid var(--line); }
+.comment { max-width: var(--page); margin: 0 auto; padding: 2.4rem var(--marge-page); border-top: 1px solid var(--line); }
 @media (max-width: 720px) { 
  }
 
 .cta {
-  max-width: 680px; margin: 0 auto; padding: 2.4rem 1.25rem 3rem; text-align: center;
+  /* La cloture devient deux colonnes: l'invitation a gauche, le moyen de
+     repondre a droite. Centre, elle laissait deux tiers de l'ecran vides. */
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 2.6rem var(--marge-page) 3.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.2rem, 4vw, 3rem);
+  align-items: center;
+  text-align: left;
+  border-top: 1px solid var(--line);
   border-top: 1px solid var(--line);
 }
 .cta h2 { font: 700 1.4rem/1.35 inherit; letter-spacing: -.015em; margin-bottom: 1.4rem; }
@@ -57,9 +110,9 @@
 .tourne {
   /* 940 et non 760 : une grille a deux colonnes a besoin de la largeur,
      sinon elle retombe en une colonne et on n a rien gagne. */
-  max-width: 940px;
+  max-width: var(--page);
   margin: 0 auto;
-  padding: .8rem 1.25rem 2rem;
+  padding: 1rem var(--marge-page) 2rem;
   text-align: left;
 }
 .produits {
@@ -69,7 +122,7 @@
      se lit en largeur au lieu de descendre. C'etait le premier motif de
      defilement de la page d'accueil. */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
   gap: .8rem;
 }
 .produit {
@@ -137,7 +190,7 @@
    qu'un chiffre sans sa méthode n'est qu'une affirmation. */
 .bande { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .bandeIn {
-  max-width: 940px; margin: 0 auto; padding: 1.1rem 1.25rem;
+  max-width: var(--page); margin: 0 auto; padding: 1.2rem var(--marge-page);
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
 }
 @media (max-width: 640px) {
@@ -167,13 +220,13 @@
 /* ── Dernières nouvelles ─────────────────────────────────────────────────
    Quatre faits datés, sans résumé : le titre du journal est déjà une phrase
    complète, et un extrait tronqué aurait coupé la moitié des leçons en deux. */
-.nouvelles { max-width: 940px; margin: 0 auto; padding: .8rem 1.25rem 2rem; }
+.nouvelles { max-width: var(--page); margin: 0 auto; padding: 1rem var(--marge-page) 2rem; }
 .nouvellesListe {
   list-style: none;
   /* Deux colonnes des 640px : quatre nouvelles sur deux rangees. */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 0 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 0 2.4rem;
 }
 .nouvelle { padding: .85rem 0; border-bottom: 1px solid var(--line); }
 :is(.nouvelle:nth-child(1), .nouvelle:nth-child(2)) { border-top: 1px solid var(--line); }
@@ -220,3 +273,23 @@
    production, alors que la distinction entre « des gens s'en servent » et
    « c'est visible en ligne » est précisément ce que cette page corrige. */
 .demo { background: var(--k-ocean-50); color: var(--k-ocean-700); }
+
+
+/* Sous 900px, le heros et la cloture repassent en une colonne: a deux
+   colonnes sur un ecran etroit, le titre tomberait a trois mots par ligne. */
+@media (max-width: 899px) {
+  .hero { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero h1 { max-width: none; }
+  .cta { grid-template-columns: 1fr; }
+}
+
+.ctaTexte {
+  margin-top: .7rem;
+  max-width: 46ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.ctaActions { flex-direction: column; align-items: stretch; }
+@media (min-width: 900px) { .ctaActions { min-width: 15rem; } }
+@media (max-width: 899px) { .ctaActions { flex-direction: row; flex-wrap: wrap; } }

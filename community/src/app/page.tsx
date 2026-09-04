@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EnTete, Pied } from "@/components/Chrome";
 import Parcours from "@/components/Parcours";
+import Signature from "@/components/Signature";
 import { createClient } from "@/lib/supabase/server";
 import { dureeDeLecture } from "@/lib/site";
 import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT_COURT, type Etat } from "@/lib/travaux";
@@ -74,6 +75,7 @@ export default async function Home() {
             c'est de montrer les preuves. Donc le titre dit ce qu'on fait, et
             les chiffres au-dessous le prouvent. */}
         <section className={styles.hero}>
+          <div>
           <h1>
             Des logiciels qui tournent en production, avec les preuves.
           </h1>
@@ -89,6 +91,10 @@ export default async function Home() {
             <Link href="/realisations" className="bouton accent">Nos plateformes</Link>
             <Link href="/savoir-faire" className="bouton ligne">Ce qu&apos;on sait faire</Link>
           </div>
+          </div>
+          {/* La signature visuelle occupe la seconde colonne. Le premier
+              ecran n'avait aucune image et laissait les cotes vides. */}
+          <Signature />
         </section>
 
         {/* La bande de chiffres. Elle vient du même fichier que les projets,
@@ -200,8 +206,17 @@ export default async function Home() {
           </p>
         </section>
 
+        {/* Deux colonnes: l'invitation a gauche, le moyen de repondre a
+            droite. Centree, cette section laissait les deux tiers de l'ecran
+            vides pour une seule phrase et deux boutons. */}
         <section className={styles.cta}>
-          <h2>Une idée, un projet, ou juste une remarque ?</h2>
+          <div>
+            <h2>Une idée, un projet, ou juste une remarque ?</h2>
+            <p className={styles.ctaTexte}>
+              Kogia lit tout ce qui arrive. Un problème réel décrit en trois
+              lignes est plus utile qu&apos;un cahier des charges.
+            </p>
+          </div>
           {/* La question demandait un mot et le bouton ouvrait un compte.
               Le bouton fait maintenant ce que la phrase promet ; s'inscrire
               reste offert en haut de page, pour qui le cherche. */}
