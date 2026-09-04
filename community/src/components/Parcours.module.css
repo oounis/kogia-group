@@ -7,15 +7,18 @@
   display: block;
   width: 100%;
   height: auto;
-  /* Le viewBox fait 680 de large. Au-dela, le schema grandirait sans raison
-     et les textes deviendraient enormes par rapport au corps de la page. */
-  max-width: 780px;
-  margin: 0 auto;
+  /* Corrige apres avoir VU la page: plafonne a 780px dans un conteneur de
+     1280px, le schema flottait au milieu d'une bande vide. Il prend
+     desormais toute la largeur disponible. Les textes ne grossissent pas
+     pour autant: ils sont dimensionnes en unites du viewBox, donc ils
+     suivent l'echelle du dessin, ce qui est le comportement voulu. */
+  width: 100%;
+  margin: 0;
 }
 
 .legende {
-  margin: .9rem auto 0;
-  max-width: 44ch;
+  margin: 1rem auto 0;
+  max-width: 52ch;
   text-align: center;
   font-size: .88rem;
   line-height: 1.5;
@@ -26,5 +29,8 @@
    Le schema passe en colonne, en reutilisant le meme SVG plutot qu'un second
    fichier : on change la mise en page, jamais le dessin. */
 @media (max-width: 559px) {
-  .schema { max-width: 340px; }
+  /* Sous 560px, trois pastilles cote a cote donnent des libelles illisibles.
+     Le viewBox se retrecit pour grossir le texte relativement au dessin. */
+  .schema { min-width: 340px; }
+  .cadre { overflow-x: auto; }
 }

@@ -1,8 +1,9 @@
 .cadre {
-  /* L'encre du dessin suit le texte, mais plus discrete: la signature
-     accompagne le titre, elle ne rivalise pas avec lui. */
+  /* Corrige apres avoir VU la page rendue: a .85 d'opacite sur des traits
+     de 1.25px, le dessin passait pour un defaut d'affichage. Il garde
+     l'encre du texte mais a pleine opacite, et c'est l'opacite de chaque
+     palier, dans le composant, qui cree la profondeur. */
   color: var(--ink);
-  opacity: .85;
 }
 
 .dessin {
@@ -15,7 +16,7 @@
    texte. Elle rapetisse alors: a pleine largeur sur un telephone elle
    pousserait les boutons hors de l'ecran. */
 @media (max-width: 899px) {
-  .cadre { max-width: 320px; margin-inline: auto; opacity: .6; }
+  .cadre { max-width: 360px; margin-inline: auto; }
 }
 
 /* Le mouvement: une derive tres lente, empruntee a `drift` de Kogia Kids

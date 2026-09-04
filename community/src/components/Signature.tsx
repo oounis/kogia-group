@@ -23,19 +23,23 @@ const BLEU_MARQUE = "#2547E8";
 /* Les paliers. Une profondeur croissante et une opacité décroissante : plus on
    descend, moins on voit, ce qui est vrai sous l'eau et vrai d'une idée. */
 const PALIERS = [
-  { y: 26, o: 0.5, d: "M0 26 C60 18 120 34 180 26 S300 18 360 26" },
-  { y: 62, o: 0.38, d: "M0 62 C70 52 130 72 200 62 S320 52 360 62" },
-  { y: 98, o: 0.26, d: "M0 98 C50 90 140 108 210 98 S310 90 360 98" },
-  { y: 134, o: 0.16, d: "M0 134 C80 126 150 144 220 134 S330 128 360 134" },
-  { y: 170, o: 0.1, d: "M0 170 C60 164 140 178 210 170 S320 166 360 170" },
+  { y: 22, o: 0.82, d: "M0 22 C60 12 120 32 180 22 S300 12 360 22" },
+  { y: 52, o: 0.62, d: "M0 52 C70 40 130 64 200 52 S320 40 360 52" },
+  { y: 82, o: 0.46, d: "M0 82 C50 72 140 94 210 82 S310 70 360 82" },
+  { y: 112, o: 0.33, d: "M0 112 C80 102 150 124 220 112 S330 102 360 112" },
+  { y: 142, o: 0.22, d: "M0 142 C60 134 140 154 210 142 S320 132 360 142" },
+  { y: 172, o: 0.13, d: "M0 172 C70 166 140 182 215 172 S320 164 360 172" },
 ];
 
 /* Les trouvailles, une par palier sauf le dernier : tout ne remonte pas. */
 const TROUVAILLES = [
-  { x: 96, y: 26, r: 3.5 },
-  { x: 236, y: 62, r: 3 },
-  { x: 148, y: 98, r: 2.5 },
-  { x: 292, y: 134, r: 2 },
+  { x: 96, y: 22, r: 4.5 },
+  { x: 262, y: 22, r: 3 },
+  { x: 236, y: 52, r: 4 },
+  { x: 74, y: 82, r: 3.5 },
+  { x: 148, y: 82, r: 3 },
+  { x: 292, y: 112, r: 3 },
+  { x: 120, y: 142, r: 2.5 },
 ];
 
 export default function Signature() {
@@ -52,7 +56,7 @@ export default function Signature() {
             key={p.y}
             d={p.d}
             stroke="currentColor"
-            strokeWidth="1.25"
+            strokeWidth="1.6"
             opacity={p.o}
             strokeLinecap="round"
           />
@@ -61,21 +65,22 @@ export default function Signature() {
         {/* La descente. Un seul trait qui traverse tous les paliers : c'est le
             trajet, et il est en pointillé parce qu'il n'est jamais droit. */}
         <path
-          d="M182 8 C176 44 196 70 186 104 C178 138 200 158 190 192"
+          d="M182 6 C174 40 198 62 186 90 C176 118 202 140 190 168 C182 182 188 190 186 196"
           stroke={BLEU_MARQUE}
-          strokeWidth="1.5"
-          strokeDasharray="4 5"
-          opacity=".55"
+          strokeWidth="2.25"
+          strokeDasharray="5 5"
+          opacity=".9"
           strokeLinecap="round"
         />
 
         {TROUVAILLES.map((t) => (
-          <circle key={`${t.x}-${t.y}`} cx={t.x} cy={t.y} r={t.r} fill="currentColor" opacity=".32" />
+          <circle key={`${t.x}-${t.y}`} cx={t.x} cy={t.y} r={t.r} fill="currentColor" opacity=".5" />
         ))}
 
         {/* Le point de départ, en surface, plein et en bleu de marque : c'est
             le seul élément appuyé du dessin, et il marque où l'on entre. */}
-        <circle cx="182" cy="8" r="5" fill={BLEU_MARQUE} />
+        <circle cx="182" cy="6" r="6.5" fill={BLEU_MARQUE} />
+        <circle cx="186" cy="196" r="4" fill={BLEU_MARQUE} opacity=".45" />
       </svg>
     </div>
   );

@@ -34,7 +34,11 @@ const CACHALOT_SOUFFLE = "M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6";
  *  de thème, sinon un changement de palette repeindrait le logo. */
 const BLEU_MARQUE = "#2547E8";
 
-export default function Marque({ hauteur = 30 }: { hauteur?: number }) {
+/* 30px etait trop petit: vu rendu, la ligne GROUP etait a peine lisible et le
+   lockup disparaissait a cote des libelles de navigation. 38px place le mot
+   « kogia » a la meme force optique que le titre de section le plus proche,
+   sans depasser la hauteur d'en-tete de 72px. */
+export default function Marque({ hauteur = 38 }: { hauteur?: number }) {
   return (
     <Link href="/" className={styles.marque} aria-label="Kogia Group, accueil">
       <svg

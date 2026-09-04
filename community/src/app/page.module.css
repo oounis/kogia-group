@@ -122,7 +122,10 @@
      se lit en largeur au lieu de descendre. C'etait le premier motif de
      defilement de la page d'accueil. */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
+  /* Corrige apres avoir VU la page: auto-fit posait 4 cartes puis 2, donc un
+     trou d'un tiers de rangee. Les six produits mis en avant tiennent
+     exactement sur deux rangees de trois, et la grille est pleine. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .8rem;
 }
 .produit {
@@ -196,8 +199,21 @@
 @media (max-width: 640px) {
   .bandeIn { grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; }
 }
-.bandeItem { display: flex; flex-direction: column; gap: .2rem; }
+.bandeItem {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  /* Un filet a gauche plutot qu'une carte: la maison separe par des traits,
+     jamais par du relief. Il donne un bord a chaque chiffre, ce qui manquait
+     completement quand les quatre nombres flottaient dans le vide. */
+  padding-left: .9rem;
+  border-left: 2px solid var(--k-series-1);
+}
+.bandeItem:nth-child(2) { border-left-color: var(--k-series-2); }
+.bandeItem:nth-child(3) { border-left-color: var(--k-series-4); }
+.bandeItem:nth-child(4) { border-left-color: var(--k-series-6); }
 .bandeValeur {
+  font-variant-numeric: tabular-nums;
   font: 800 clamp(1.45rem, 1.2rem + 1vw, 1.85rem)/1 inherit;
   letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums;
 }
@@ -277,6 +293,9 @@
 
 /* Sous 900px, le heros et la cloture repassent en une colonne: a deux
    colonnes sur un ecran etroit, le titre tomberait a trois mots par ligne. */
+@media (max-width: 1023px) { .produits { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px)  { .produits { grid-template-columns: 1fr; } }
+
 @media (max-width: 899px) {
   .hero { grid-template-columns: 1fr; gap: 1.6rem; }
   .hero h1 { max-width: none; }
