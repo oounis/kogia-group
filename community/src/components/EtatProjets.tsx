@@ -23,21 +23,36 @@ import styles from "./EtatProjets.module.css";
    qui n'a pas encore commencé. Ce n'est pas l'ordre alphabétique. */
 const ORDRE: Etat[] = ["production", "demo", "chantier", "pause", "prepare"];
 
-/* La palette catégorielle de Harmony, `--k-series-*`, et pas des familles
- * nommées. Le livre de marque est explicite : « each product owns ONE colour
- * family » et « no component names a family ». Écrire `--k-terra-700` dans un
- * composant du site aurait donc violé l'idée qui tient tout le système, même
- * si la tendance 2026 « explosion of color » y invite.
+/* LA COULEUR ICI EST CALCULEE, PAS CHOISIE.
  *
- * `--k-series-*` existe précisément pour ça : distinguer des catégories dans
- * une donnée. C'est le seul endroit où plusieurs teintes sont légitimes, et
- * la série est déjà réglée pour rester distinguable en mode sombre. */
+ * Premiere version: j'avais pris quatre teintes de `--k-series-*` a l'oeil.
+ * Le validateur de palette les a refusees, et il avait raison: series-5
+ * (ambre #B07414) et series-3 (terre cuite #D2603A) sont a Delta E 2.4 en
+ * deuteranopie et 8.5 en vision normale, tres au-dessous du plancher de 15.
+ * Personne ne distinguait « en pause » de « en construction », y compris
+ * avec une vision des couleurs complete. C'etait un defaut d'accessibilite
+ * reel, mis en ligne.
+ *
+ * Mais le vrai probleme etait le CHOIX DE FORME, pas la palette. L'etat d'un
+ * projet est ORDONNE: production, demo, chantier, pause, preparation est une
+ * progression de maturite. Une donnee ordonnee prend une rampe SEQUENTIELLE
+ * d'une seule teinte, du clair au fonce, pas quatre teintes categorielles
+ * sans rapport. Une palette categorielle sur de l'ordinal jette l'ordre.
+ *
+ * La rampe est donc `--k-p-*`, la famille du produit, ce que le livre de
+ * marque demande aux composants. Verifie: la rampe ocean est strictement
+ * monotone en luminance, de 0.903 a 0.040, donc valide comme sequentielle.
+ * Et elle passe par construction: une sequentielle demande la monotonie de
+ * luminance, pas une separation categorielle.
+ *
+ * La couleur seule ne porte jamais l'information: chaque part est libellee
+ * en clair dans la legende, et la barre a un ecart de 2px entre les parts. */
 const TEINTE: Record<Etat, string> = {
-  production: "var(--k-series-6)",
-  demo: "var(--k-series-1)",
-  chantier: "var(--k-series-3)",
-  pause: "var(--k-series-5)",
-  prepare: "var(--line-forte)",
+  production: "var(--k-p-700)",
+  demo:       "var(--k-p-500)",
+  chantier:   "var(--k-p-400)",
+  pause:      "var(--k-p-200)",
+  prepare:    "var(--k-p-100)",
 };
 
 export default function EtatProjets() {

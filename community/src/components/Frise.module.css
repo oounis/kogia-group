@@ -11,9 +11,12 @@
 
 .ligne {
   position: absolute;
-  left: 6%; right: 6%; top: 34px;
-  height: 1.5px;
-  background: var(--line-forte);
+  left: 6%; right: 6%; top: 33px;
+  /* Axe recessif: 2px mais dans le gris de filet, pas dans la teinte de
+     serie. L'axe situe, il ne concurrence pas les donnees. */
+  height: 2px;
+  border-radius: 999px;
+  background: var(--line);
 }
 
 .repere {
@@ -29,13 +32,16 @@
 
 .point {
   position: absolute;
-  top: 28px;
-  width: 13px; height: 13px;
-  margin-left: -6.5px;
+  top: 27px;
+  /* 14px: au-dessus du plancher de 8px pour un marqueur, et assez grand pour
+     rester une cible tactile lisible. */
+  width: 14px; height: 14px;
+  margin-left: -7px;
   border-radius: 50%;
-  /* Un anneau de la couleur du fond: sans lui, deux projets demarres a trois
-     jours d'intervalle se fondent en une seule tache. */
-  box-shadow: 0 0 0 2.5px var(--surface);
+  /* Anneau de 2px de la couleur du fond sur des marques qui se chevauchent:
+     sans lui, deux projets demarres a trois jours d'intervalle se fondent en
+     une seule tache. C'est la spec, pas une preference. */
+  box-shadow: 0 0 0 2px var(--surface);
 }
 
 .noms {
@@ -49,7 +55,15 @@
 }
 .noms li { display: flex; align-items: baseline; gap: .5rem; }
 .noms b { color: var(--ink); font-weight: 600; }
-.puce { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; transform: translateY(-1px); }
+.puce {
+  /* 10px et un anneau, comme les points de la piste: la legende et le dessin
+     doivent employer la MEME marque, sinon on ne les relie pas. */
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1.5px var(--surface);
+}
 .etat { margin-left: auto; font-size: .8rem; color: var(--slate); white-space: nowrap; }
 
 .note {

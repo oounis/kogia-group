@@ -19,15 +19,17 @@ import styles from "./Frise.module.css";
  * ajouter un projet met la frise à jour et elle ne peut pas se périmer.
  */
 
-/* Palette catégorielle de Harmony. Le livre de marque interdit à un composant
-   de nommer une famille de couleur, `--k-series-*` est fait pour distinguer
-   des catégories dans une donnée. */
+/* Meme rampe sequentielle que le schema de repartition, pour la meme raison:
+ * l'etat d'un projet est ordonne. Voir EtatProjets.tsx pour le detail, y
+ * compris le defaut d'accessibilite que le validateur a trouve dans ma
+ * premiere version. Les deux schemas doivent parler la meme langue: un point
+ * fonce veut dire la meme chose ici et la-bas. */
 const TEINTE: Record<Etat, string> = {
-  production: "var(--k-series-6)",
-  demo: "var(--k-series-1)",
-  chantier: "var(--k-series-3)",
-  pause: "var(--k-series-5)",
-  prepare: "var(--line-forte)",
+  production: "var(--k-p-700)",
+  demo:       "var(--k-p-500)",
+  chantier:   "var(--k-p-400)",
+  pause:      "var(--k-p-200)",
+  prepare:    "var(--k-p-100)",
 };
 
 const MOIS = ["janv.", "févr.", "mars", "avril", "mai", "juin",

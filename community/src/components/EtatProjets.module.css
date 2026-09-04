@@ -20,18 +20,23 @@
 
 .barre {
   display: flex;
-  height: 12px;
-  margin: 1.1rem 0 .9rem;
-  border-radius: 999px;
+  /* 14px: une barre fine, pas un bandeau. Une barre epaisse crie sans
+     ajouter d'information. */
+  height: 14px;
+  margin: 1.2rem 0 1rem;
+  border-radius: 4px;
   overflow: hidden;
-  /* Un fond, pour que la barre existe visuellement meme si une part est
-     minuscule. */
   background: var(--surface-3, #F1F4F8);
 }
 .part { display: block; height: 100%; }
-/* Un filet blanc entre les parts: sans lui, deux teintes voisines se
-   confondent en une seule bande. */
-.part + .part { box-shadow: inset 2px 0 0 var(--surface); }
+/* Ecart de 2px de la couleur du fond entre deux remplissages. Sur une rampe
+   sequentielle, deux pas voisins se touchent presque: sans cet ecart la barre
+   se lit comme un degrade continu et on perd le decoupage. */
+.part + .part { margin-left: 2px; }
+/* Extremites arrondies de 4px, ancrees a la barre: c'est la fin de la donnee,
+   pas un bord decoratif. */
+.part:first-child { border-radius: 4px 0 0 4px; }
+.part:last-child { border-radius: 0 4px 4px 0; }
 
 .legende {
   list-style: none;
@@ -44,7 +49,14 @@
 }
 .legende li { display: inline-flex; align-items: center; gap: .45rem; }
 .legende b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.puce { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+.puce {
+  /* Meme marque que la barre, en carre arrondi de 10px avec un anneau: la
+     legende doit ressembler a ce qu'elle legende. */
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1.5px var(--surface);
+}
 
 .note {
   margin: .9rem 0 0;
