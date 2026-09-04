@@ -22,10 +22,10 @@
 }
 .tete > div > :is(.lede, .para) { max-width: var(--texte); }
 @media (max-width: 899px) { .tete { grid-template-columns: 1fr; } }
-.titre { font: 800 clamp(2rem, 1.4rem + 2vw, 3rem)/1.1 inherit; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+.titre { font-weight: 800; font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1.1; letter-spacing: -.03em; margin-bottom: 1.1rem; }
 .lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
 .para { max-width: var(--texte); color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
-.sousTitre { font: 700 clamp(1.3rem, 1.1rem + .6vw, 1.7rem)/1.25 inherit; letter-spacing: -.015em; margin: 2.6rem 0 1rem; }
+.sousTitre { font-weight: 700; font-size: clamp(1.3rem, 1.1rem + .6vw, 1.7rem); line-height: 1.25; letter-spacing: -.015em; margin: 2.6rem 0 1rem; }
 
 /* Dix produits en liste verticale faisaient dix rangees. En grille ils
    tiennent sur trois. */
@@ -72,7 +72,7 @@ a.produitLien:hover { background: #FAFAFA; }
      la seconde colonne au lieu d'ajouter une rangee. */ grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
 .chiffre { display: flex; flex-direction: column; gap: .18rem; }
 .chiffreValeur {
-  font: 800 1.35rem/1 inherit; letter-spacing: -.03em;
+  font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: -.03em;
   font-variant-numeric: tabular-nums;
 }
 .chiffreLibelle { font-size: .8rem; color: var(--slate); line-height: 1.35; }

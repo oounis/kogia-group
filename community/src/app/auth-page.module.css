@@ -8,7 +8,7 @@
 @media (max-width: 360px) {
   .page { padding: 1.5rem .75rem; }
 }
-.marque { font: 800 1.4rem/1 inherit; letter-spacing: -.02em; color: var(--ink); }
+.marque { font-weight: 800; font-size: 1.4rem; line-height: 1; letter-spacing: -.02em; color: var(--ink); }
 .bascule { font-size: .88rem; color: var(--slate); }
 .bascule a { text-decoration: underline; color: var(--ink); font-weight: 500; }
 

@@ -12,7 +12,7 @@
 
 /* Une liste d'articles, donc pleine largeur. */
 .main { max-width: var(--page); margin: 0 auto; padding: 2.2rem var(--marge-page) 3rem; }
-.titre { font: 800 1.7rem/1.2 inherit; letter-spacing: -.02em; margin-bottom: 1.5rem; }
+.titre { font-weight: 800; font-size: 1.7rem; line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 .vide { color: var(--slate); padding: 2rem 0; }
 
 .liste {
@@ -26,7 +26,7 @@
 .poste:hover { background: #FAFAFA; }
 .lien { display: block; padding: 1.3rem .25rem; }
 .meta { display: flex; gap: .6rem; font-size: .8rem; color: var(--slate); margin-bottom: .4rem; }
-.titreArticle { font: 700 1.15rem/1.35 inherit; color: var(--ink); }
+.titreArticle { font-weight: 700; font-size: 1.15rem; line-height: 1.35; color: var(--ink); }
 .sousTitre { color: var(--slate); font-size: .92rem; margin-top: .3rem; line-height: 1.5; }
 
 /* Même correction de plancher tactile (44 px) que sur l'accueil. */

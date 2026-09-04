@@ -88,7 +88,7 @@ button { font-family: inherit; color: inherit; }
 
 .bouton {
   display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
-  min-height: var(--touche); font: 500 .88rem/1 inherit; padding: 0 1.15rem;
+  min-height: var(--touche); font-weight: 500; font-size: .88rem; line-height: 1; padding: 0 1.15rem;
   border-radius: var(--r-m); background: var(--ink); color: var(--surface);
   border: 0; cursor: pointer;
   transition: transform var(--appui) var(--ease), opacity var(--selection) var(--ease);

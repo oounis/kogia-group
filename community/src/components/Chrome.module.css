@@ -52,7 +52,7 @@
 .tiroirBouton {
   display: flex; align-items: center; gap: .4rem;
   min-height: 44px; padding: 0 .5rem; cursor: pointer;
-  font: 500 .88rem/1 inherit; color: var(--ink); list-style: none;
+  font-weight: 500; font-size: .88rem; line-height: 1; color: var(--ink); list-style: none;
 }
 .tiroirBouton::-webkit-details-marker { display: none; }
 .tiroirPanneau {
@@ -83,7 +83,7 @@
   line-height: 1.55; max-width: 26rem;
 }
 .piedCol h2 {
-  font: 700 .72rem/1 inherit; letter-spacing: .11em; text-transform: uppercase;
+  font-weight: 700; font-size: .72rem; line-height: 1; letter-spacing: .11em; text-transform: uppercase;
   color: var(--slate); margin-bottom: .5rem;
 }
 .piedCol ul { list-style: none; display: flex; flex-direction: column; }

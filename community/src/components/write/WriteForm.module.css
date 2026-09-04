@@ -9,7 +9,7 @@
 .main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: flex; flex-direction: column; gap: .9rem; }
 
 .champTitre {
-  border: none; font: 800 1.7rem/1.25 inherit; letter-spacing: -.02em;
+  border: none; font-weight: 800; font-size: 1.7rem; line-height: 1.25; letter-spacing: -.02em;
   padding: 0; outline: none;
 }
 .champTitre::placeholder { color: var(--line-forte); }
@@ -21,7 +21,7 @@
 
 .champCorps {
   border: 1px solid var(--line); border-radius: 14px; padding: 1rem;
-  font: 1rem/1.6 inherit; resize: vertical; outline: none;
+  font-size: 1rem; line-height: 1.6; resize: vertical; outline: none;
 }
 .champCorps:focus { border-color: var(--ink); }
 

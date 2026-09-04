@@ -6,7 +6,7 @@
 .main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 0; }
 .entete { max-width: var(--texte); }
 
-.entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
+.entete h1 { font-weight: 800; font-size: clamp(2rem, 1.6rem + 1.8vw, 2.6rem); line-height: 1.12; letter-spacing: -.025em; }
 .lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink); }
 .sousLede { margin-top: .9rem; font-size: .98rem; line-height: 1.6; color: var(--slate); }
 
@@ -36,7 +36,7 @@
 }
 .moisT { grid-column: 1 / -1; }
 .moisT {
-  font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 700; font-size: .74rem; line-height: 1; letter-spacing: .12em; text-transform: uppercase;
   color: var(--slate); padding-bottom: .8rem; border-bottom: 1px solid var(--ink);
 }
 
@@ -53,23 +53,23 @@
 .rubrique {
   padding: .22rem .58rem; border-radius: var(--r-max);
   border: 1px solid var(--line); background: var(--surface-2);
-  font: 600 .72rem/1.3 inherit; color: var(--slate); white-space: nowrap;
+  font-weight: 600; font-size: .72rem; line-height: 1.3; color: var(--slate); white-space: nowrap;
 }
 .projet { font-size: .82rem; font-weight: 600; color: var(--ink); }
-.entree h3 { font: 700 1.14rem/1.35 inherit; letter-spacing: -.012em; }
+.entree h3 { font-weight: 700; font-size: 1.14rem; line-height: 1.35; letter-spacing: -.012em; }
 .entree p { margin-top: .6rem; line-height: 1.7; color: var(--slate); }
 
 /* Le fait mesuré, détaché du récit : c'est la ligne qu'on peut vérifier. */
 .chiffre {
   margin-top: .9rem; padding: .65rem .9rem;
   background: var(--surface-2); border-radius: var(--r-s);
-  font: 600 .84rem/1.5 inherit; color: var(--ink);
+  font-weight: 600; font-size: .84rem; line-height: 1.5; color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
 
 .appel {
   margin-top: 3rem; padding: 2rem 0 0; border-top: 1px solid var(--line);
 }
-.appel h2 { font: 700 1.25rem/1.3 inherit; }
+.appel h2 { font-weight: 700; font-size: 1.25rem; line-height: 1.3; }
 .appel p { margin-top: .7rem; color: var(--slate); line-height: 1.6; }
 .appelActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }
