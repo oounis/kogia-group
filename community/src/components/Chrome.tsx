@@ -7,8 +7,13 @@ import styles from "./Chrome.module.css";
  *  rangée sur grand écran et dans un tiroir sur téléphone, à partir du même
  *  tableau : c'est la seule façon de garantir que les deux disent la même
  *  chose. */
+/* « Actualités » vient avant « Journal », et les deux existent : la première
+   ne montre que ce qui concerne quelqu'un d'extérieur, le second reste le
+   registre complet, ajustements et pannes compris. `/news` renvoyait 404,
+   relevé par l'audit du site en ligne. */
 const LIENS = [
   { href: "/realisations", libelle: "Réalisations" },
+  { href: "/news", libelle: "Actualités" },
   { href: "/journal", libelle: "Journal" },
   { href: "/savoir-faire", libelle: "Comment on travaille" },
   { href: "/explore", libelle: "Idées" },
