@@ -4,6 +4,7 @@ import { EnTete, Pied } from "@/components/Chrome";
 import Icone from "@/components/icons/Icone";
 import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT, PREMIER_JOUR } from "@/lib/travaux";
 import { dateLisible } from "@/lib/journal";
+import Frise from "@/components/Frise";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,9 @@ export default function AboutPage() {
       <EnTete actif="/about" compact />
 
       <main className={styles.main}>
+        {/* Chapeau a deux colonnes: le discours, puis les chiffres. */}
+        <div className={styles.tete}>
+        <div>
         <h1 className={styles.titre}>Kogia</h1>
         <p className={styles.lede}>
           Une maison de logiciel indépendante, fondée par Othman Ounis, entre la
@@ -46,6 +50,8 @@ export default function AboutPage() {
           calendrier.
         </p>
 
+        </div>
+        <div>
         {/* Les chiffres de la maison, tirés du même fichier que les projets. */}
         <div className={styles.chiffres}>
           {CHIFFRES_MAISON.map((c) => (
@@ -60,8 +66,14 @@ export default function AboutPage() {
           du {dateLisible(PREMIER_JOUR)}. La méthode est détaillée sur la page
           des <Link href="/realisations">réalisations</Link>.
         </p>
+        </div>
+        </div>
 
         <h2 className={styles.sousTitre}>Ce qu&apos;on a construit</h2>
+        {/* « Dix projets depuis juin 2026 » est vrai mais ne dit ni le rythme,
+            ni que plusieurs ont demarre la meme semaine, ni que ceux qui
+            tournent vraiment sont les plus recents. La frise le montre. */}
+        <Frise />
         <p className={styles.para}>
           Dix projets, chacun avec son état réel. Quatre sont en pause ou
           volontairement arrêtés, et c&apos;est écrit : « en préparation » dit

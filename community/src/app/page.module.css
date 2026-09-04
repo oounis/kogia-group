@@ -293,3 +293,34 @@
 .ctaActions { flex-direction: column; align-items: stretch; }
 @media (min-width: 900px) { .ctaActions { min-width: 15rem; } }
 @media (max-width: 899px) { .ctaActions { flex-direction: row; flex-wrap: wrap; } }
+
+/* ── Le résumé en trois points ──────────────────────────────────────────
+   Les gens balaient avant de lire. Trois points donnent la portée complète
+   en une seconde, et qui veut le détail descend. Rien n'est caché derrière:
+   ce résumé s'ajoute, il ne remplace rien.
+   Un <dl> et pas trois <div>: c'est bien une liste de définitions, terme et
+   explication, et un lecteur d'écran l'annonce comme telle. */
+.resume {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+  margin: 2rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+.resume dt {
+  font: 700 .78rem/1 inherit;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.resume dd {
+  margin: .5rem 0 0;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--slate);
+}
+/* Sous 700px, trois colonnes donnent deux mots par ligne. */
+@media (max-width: 699px) {
+  .resume { grid-template-columns: 1fr; gap: 1rem; }
+}

@@ -91,6 +91,26 @@ export default async function Home() {
             <Link href="/realisations" className="bouton accent">Nos plateformes</Link>
             <Link href="/savoir-faire" className="bouton ligne">Ce qu&apos;on sait faire</Link>
           </div>
+
+          {/* Le résumé en trois points, juste sous le héros.
+              Les gens balaient une page avant de la lire. Trois points donnent
+              la portée complète en une seconde, et celui qui veut le détail
+              descend. Le reste de la page ne change pas: rien n'est caché
+              derrière ce résumé, il est en plus, pas à la place. */}
+          <dl className={styles.resume}>
+            <div>
+              <dt>Explorer</dt>
+              <dd>Le problème, le marché, les risques, et un verdict honnête même quand il est négatif.</dd>
+            </div>
+            <div>
+              <dt>Construire</dt>
+              <dd>Seulement ce qui a survécu à l&apos;exploration. Trois projets tournent en production.</dd>
+            </div>
+            <div>
+              <dt>Apprendre</dt>
+              <dd>Chaque panne est écrite, datée, publique. Huit règles en sont sorties.</dd>
+            </div>
+          </dl>
           </div>
           {/* La signature visuelle occupe la seconde colonne. Le premier
               ecran n'avait aucune image et laissait les cotes vides. */}

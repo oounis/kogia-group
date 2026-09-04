@@ -23,11 +23,20 @@ import styles from "./EtatProjets.module.css";
    qui n'a pas encore commencé. Ce n'est pas l'ordre alphabétique. */
 const ORDRE: Etat[] = ["production", "demo", "chantier", "pause", "prepare"];
 
+/* La palette catégorielle de Harmony, `--k-series-*`, et pas des familles
+ * nommées. Le livre de marque est explicite : « each product owns ONE colour
+ * family » et « no component names a family ». Écrire `--k-terra-700` dans un
+ * composant du site aurait donc violé l'idée qui tient tout le système, même
+ * si la tendance 2026 « explosion of color » y invite.
+ *
+ * `--k-series-*` existe précisément pour ça : distinguer des catégories dans
+ * une donnée. C'est le seul endroit où plusieurs teintes sont légitimes, et
+ * la série est déjà réglée pour rester distinguable en mode sombre. */
 const TEINTE: Record<Etat, string> = {
-  production: "var(--k-ok, #1B7F4E)",
-  demo: "#2547E8",
-  chantier: "var(--k-terra-700, #A15C00)",
-  pause: "var(--slate)",
+  production: "var(--k-series-6)",
+  demo: "var(--k-series-1)",
+  chantier: "var(--k-series-3)",
+  pause: "var(--k-series-5)",
   prepare: "var(--line-forte)",
 };
 

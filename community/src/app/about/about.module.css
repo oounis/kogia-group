@@ -5,13 +5,37 @@
    la prochaine personne à vouloir corriger l'en-tête les aurait modifiées
    sans effet. */
 
-.main { max-width: var(--texte); margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-.titre { font: 800 2rem/1.15 inherit; letter-spacing: -.02em; margin-bottom: 1.2rem; }
-.lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
-.para { color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
-.sousTitre { font: 700 1.2rem/1.3 inherit; margin: 2.5rem 0 1rem; }
+/* La page etait UNE colonne etroite de paragraphes, du haut en bas. C'est
+   pour ca qu'elle paraissait pauvre: du texte correct, aucune mise en page.
+   Elle passe a la pleine largeur, et c'est chaque BLOC qui garde sa mesure:
+   la prose reste a --texte, les grilles et la frise prennent la largeur. */
+.main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 3.5rem; }
 
-.produits { list-style: none; border-top: 1px solid var(--line); }
+/* Le chapeau devient deux colonnes: le discours a gauche, les chiffres a
+   droite. Empiles, ils faisaient descendre la page pour rien. */
+.tete {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  margin-bottom: 2.4rem;
+}
+.tete > div > :is(.lede, .para) { max-width: var(--texte); }
+@media (max-width: 899px) { .tete { grid-template-columns: 1fr; } }
+.titre { font: 800 clamp(2rem, 1.4rem + 2vw, 3rem)/1.1 inherit; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+.lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
+.para { max-width: var(--texte); color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
+.sousTitre { font: 700 clamp(1.3rem, 1.1rem + .6vw, 1.7rem)/1.25 inherit; letter-spacing: -.015em; margin: 2.6rem 0 1rem; }
+
+/* Dix produits en liste verticale faisaient dix rangees. En grille ils
+   tiennent sur trois. */
+.produits {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: 0 2rem;
+  border-top: 1px solid var(--line);
+}
 .produit { border-bottom: 1px solid var(--line); }
 .produitLien {
   display: flex; align-items: center; gap: .9rem; padding: 1rem .1rem;
@@ -37,11 +61,15 @@ a.produitLien:hover { background: #FAFAFA; }
    Chiffres tabulaires : sans cela, les quatre colonnes se décalent entre
    « 647 » et « 82 500 ». */
 .chiffres {
+  /* En colonne dans le chapeau plutot qu'en bande horizontale: elle occupe
+     la seconde colonne au lieu d'ajouter une rangee. */
   margin: 2rem 0 0; padding: 1.4rem 0;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
 }
-@media (max-width: var(--texte)) { .chiffres { grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
+@media (max-width: var(--texte)) { .chiffres {
+  /* En colonne dans le chapeau plutot qu'en bande horizontale: elle occupe
+     la seconde colonne au lieu d'ajouter une rangee. */ grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
 .chiffre { display: flex; flex-direction: column; gap: .18rem; }
 .chiffreValeur {
   font: 800 1.35rem/1 inherit; letter-spacing: -.03em;
