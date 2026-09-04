@@ -13,18 +13,18 @@
 }
 
 .hero {
-  max-width: 640px; margin: 0 auto; padding: 5rem 1.25rem 3.5rem; text-align: center;
+  max-width: 680px; margin: 0 auto; padding: 3.2rem 1.25rem 2.4rem; text-align: center;
 }
 .hero h1 { font: 800 clamp(2rem, 1.5rem + 2vw, 2.8rem)/1.15 inherit; letter-spacing: -.025em; }
-.hero p { margin-top: 1.2rem; color: var(--slate); font-size: 1.08rem; line-height: 1.55; }
-.heroActions { display: flex; gap: .75rem; justify-content: center; margin-top: 2rem; }
-.heroSujets { margin-top: 1.6rem; font-size: .8rem; color: var(--slate); letter-spacing: .02em; }
+.hero p { margin-top: .9rem; color: var(--slate); font-size: 1.08rem; line-height: 1.55; }
+.heroActions { display: flex; gap: .75rem; justify-content: center; margin-top: 1.4rem; }
+.heroSujets { margin-top: 1rem; font-size: .8rem; color: var(--slate); letter-spacing: .02em; }
 
 .sectionT {
   font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
   color: var(--slate); margin-bottom: 1rem;
 }
-.vedette { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem; }
+.vedette { max-width: 760px; margin: 0 auto; padding: 1.8rem 1.25rem; }
 .vedetteCarte {
   display: block; border: 1px solid var(--line); border-radius: var(--r-m);
   padding: 1.6rem; transition: border-color var(--selection) var(--ease);
@@ -34,14 +34,14 @@
 .vedetteCarte h2 { font: 700 1.4rem/1.3 inherit; margin: .5rem 0 .6rem; letter-spacing: -.015em; }
 .vedetteCarte p { color: var(--slate); line-height: 1.55; }
 
-.comment { max-width: 900px; margin: 0 auto; padding: 3rem 1.25rem; border-top: 1px solid var(--line); }
+.comment { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.25rem; border-top: 1px solid var(--line); }
 .commentGrille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .commentGrille h3 { font: 700 1.05rem/1 inherit; margin-bottom: .5rem; }
 .commentGrille p { color: var(--slate); font-size: .92rem; line-height: 1.55; }
 @media (max-width: 720px) { .commentGrille { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 .cta {
-  max-width: 640px; margin: 0 auto; padding: 3.5rem 1.25rem 4.5rem; text-align: center;
+  max-width: 680px; margin: 0 auto; padding: 2.4rem 1.25rem 3rem; text-align: center;
   border-top: 1px solid var(--line);
 }
 .cta h2 { font: 700 1.4rem/1.35 inherit; letter-spacing: -.015em; margin-bottom: 1.4rem; }
@@ -61,31 +61,52 @@
    préparation. Les jetons Harmony existaient depuis le début et cette page
    n'en utilisait aucun. */
 .tourne {
-  max-width: 760px;
+  /* 940 et non 760 : une grille a deux colonnes a besoin de la largeur,
+     sinon elle retombe en une colonne et on n a rien gagne. */
+  max-width: 940px;
   margin: 0 auto;
-  padding: 1rem 1.25rem 3rem;
+  padding: .8rem 1.25rem 2rem;
   text-align: left;
 }
-.produits { list-style: none; display: grid; gap: 0; }
+.produits {
+  list-style: none;
+  /* Six produits en liste verticale faisaient six rangees a faire defiler.
+     En grille auto-ajustee ils tiennent sur deux rangees des 720px, et la page
+     se lit en largeur au lieu de descendre. C'etait le premier motif de
+     defilement de la page d'accueil. */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+  gap: .8rem;
+}
 .produit {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: .5rem;
+  padding: .95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  background: var(--surface);
+  /* Ombre plate et decalee, sans flou, empruntee a Kogia Kids : une ombre
+     gaussienne molle fait immediatement « application web ». */
+  box-shadow: 0 2px 0 rgba(14, 33, 53, .05);
+  transition: transform 140ms cubic-bezier(.34,1.56,.64,1),
+              box-shadow 140ms ease, border-color 140ms ease;
 }
-.produit:first-child { border-top: 1px solid var(--line); }
+.produit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(14, 33, 53, .08);
+  border-color: var(--line-forte);
+}
 .produit h3 { font: 700 1.05rem/1.3 inherit; letter-spacing: -.01em; }
 .produit h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--k-ocean-300); }
 .produit h3 a:hover { border-bottom-color: var(--ink); }
 .produit p { margin-top: .3rem; color: var(--slate); font-size: .95rem; line-height: 1.5; }
 .etat {
-  flex-shrink: 0;
-  /* Fixed, not min-width: three labels of three different lengths each pushed
-     the product name to a different indent, which reads as carelessness. */
-  width: 9.2rem;
+  /* La largeur fixe alignait les noms dans une liste verticale. En grille
+     chaque pastille est seule sur sa ligne, donc elle se dimensionne sur son
+     texte. */
+  align-self: flex-start;
   white-space: nowrap;
-  margin-top: .15rem;
   font-size: .68rem;
   font-weight: 800;
   letter-spacing: .06em;
@@ -122,7 +143,7 @@
    qu'un chiffre sans sa méthode n'est qu'une affirmation. */
 .bande { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .bandeIn {
-  max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem;
+  max-width: 940px; margin: 0 auto; padding: 1.1rem 1.25rem;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
 }
 @media (max-width: 640px) {
@@ -152,10 +173,17 @@
 /* ── Dernières nouvelles ─────────────────────────────────────────────────
    Quatre faits datés, sans résumé : le titre du journal est déjà une phrase
    complète, et un extrait tronqué aurait coupé la moitié des leçons en deux. */
-.nouvelles { max-width: 760px; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
-.nouvellesListe { list-style: none; }
-.nouvelle { padding: 1.05rem 0; border-bottom: 1px solid var(--line); }
-.nouvelle:first-child { border-top: 1px solid var(--line); }
+.nouvelles { max-width: 940px; margin: 0 auto; padding: .8rem 1.25rem 2rem; }
+.nouvellesListe {
+  list-style: none;
+  /* Deux colonnes des 640px : quatre nouvelles sur deux rangees. */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0 1.8rem;
+}
+.nouvelle { padding: .85rem 0; border-bottom: 1px solid var(--line); }
+:is(.nouvelle:nth-child(1), .nouvelle:nth-child(2)) { border-top: 1px solid var(--line); }
+@media (max-width: 639px) { .nouvelle:nth-child(2) { border-top: 0; } }
 .nouvelleHaut {
   display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .7rem;
   margin-bottom: .35rem;

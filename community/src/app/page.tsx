@@ -95,7 +95,7 @@ export default async function Home() {
             et la méthode de comptage est écrite sur la page des
             réalisations : un chiffre sans sa méthode n'est qu'une
             affirmation. */}
-        <section className={styles.bande} aria-label="La société en chiffres">
+        <section className={`${styles.bande} entree-douce`} data-rang="2" aria-label="La société en chiffres">
           <div className={styles.bandeIn}>
             {CHIFFRES_MAISON.map((c) => (
               <div key={c.libelle} className={styles.bandeItem}>
@@ -108,7 +108,7 @@ export default async function Home() {
 
         {/* Ce qui tourne, avec un état honnête par ligne, et chaque ligne
             mène désormais à une vraie page de projet plutôt qu'à rien. */}
-        <section id="ce-qui-tourne" className={styles.tourne}>
+        <section id="ce-qui-tourne" className={`${styles.tourne} entree-douce`} data-rang="3">
           <div className={styles.sectionEntete}>
             <p className={styles.sectionT}>Ce qui tourne</p>
             <Link href="/realisations" className={styles.lienSection}>
@@ -143,7 +143,7 @@ export default async function Home() {
         {/* Les dernières nouvelles. Le journal n'est pas une rubrique de
             communiqués : ce sont des faits datés, et plusieurs racontent une
             panne. Les montrer sur la page d'accueil est un choix. */}
-        <section className={styles.nouvelles}>
+        <section className={`${styles.nouvelles} entree-douce`} data-rang="4">
           <div className={styles.sectionEntete}>
             <p className={styles.sectionT}>Dernières nouvelles</p>
             <Link href="/journal" className={styles.lienSection}>
