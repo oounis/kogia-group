@@ -6,6 +6,7 @@ import {
   TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT, PREMIER_JOUR, type Etat,
 } from "@/lib/travaux";
 import { dateLisible } from "@/lib/journal";
+import EtatProjets from "@/components/EtatProjets";
 import styles from "./realisations.module.css";
 
 export const metadata: Metadata = {
@@ -73,6 +74,9 @@ export default function RealisationsPage() {
         </p>
 
         <p className={styles.sectionT}>Les dix projets</p>
+        {/* L'etat du portefeuille avant les cartes: il fallait compter dix
+            cartes a la main pour savoir combien tournent reellement. */}
+        <EtatProjets />
         <ul className={styles.grille}>
           {travaux.map((t) => (
             <li key={t.slug}>

@@ -1,7 +1,10 @@
 /* Le journal. Une seule colonne de lecture, groupée par mois, chaque entrée
    datée. Pas de carte, pas d'ombre : un filet suffit à séparer deux faits. */
 
-.main { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+/* Meme raison que le journal: une liste, donc la pleine largeur, et un
+   chapeau etroit. */
+.main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 0; }
+.entete { max-width: var(--texte); }
 
 .entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
 .lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink); }

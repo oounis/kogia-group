@@ -119,6 +119,9 @@ export default function SavoirFairePage() {
 
         <section className={styles.bloc}>
           <h2>Les huit règles, et la panne derrière chacune</h2>
+          {/* Enveloppe de grille: huit regles independantes se lisent en deux
+              colonnes au lieu de derouler huit ecrans. */}
+          <div className={styles.regles}>
           {REGLES.map((r, i) => (
             <div key={r.titre} className={styles.regle}>
               <span className={styles.regleNum}>
@@ -131,6 +134,7 @@ export default function SavoirFairePage() {
               </span>
             </div>
           ))}
+          </div>
         </section>
 
         <section className={styles.bloc}>

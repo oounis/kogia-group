@@ -3,18 +3,24 @@
    le 2026-09-02 : ses règles de marque, elles, ne servaient plus. */
 .top { border-bottom: 1px solid var(--line); }
 .topIn {
-  max-width: 56rem; margin: 0 auto; padding: 1.1rem 1.5rem;
+  max-width: var(--page); margin: 0 auto; padding: 1.1rem var(--marge-page);
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav { display: flex; gap: 1.4rem; }
 .nav a { color: var(--slate); font-size: .9rem; }
 .nav a:hover { color: var(--ink); }
 
-.main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+/* Une liste d'articles, donc pleine largeur. */
+.main { max-width: var(--page); margin: 0 auto; padding: 2.2rem var(--marge-page) 3rem; }
 .titre { font: 800 1.7rem/1.2 inherit; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 .vide { color: var(--slate); padding: 2rem 0; }
 
-.liste { list-style: none; }
+.liste {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(23rem, 100%), 1fr));
+  gap: 0 2.4rem;
+}
 .poste { border-bottom: 1px solid var(--line); transition: background .18s var(--ease); }
 .poste:first-child { border-top: 1px solid var(--line); }
 .poste:hover { background: #FAFAFA; }

@@ -2,7 +2,7 @@
   border-bottom: 1px solid var(--line);
 }
 .topIn {
-  max-width: 56rem;
+  max-width: var(--texte);
   margin: 0 auto;
   padding: 1.1rem 1.5rem;
   display: flex;
@@ -15,7 +15,7 @@
 .nav a:hover { color: var(--ink); }
 
 .main {
-  max-width: 56rem;
+  max-width: var(--texte);
   margin: 0 auto;
   padding: 2.5rem 1.5rem 4rem;
 }

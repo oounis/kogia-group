@@ -1,0 +1,55 @@
+.cadre {
+  margin: 0 0 2.2rem;
+  padding: 1.4rem 1.5rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  background: var(--surface);
+  /* Ombre plate et decalee, sans flou. Meme discipline que les cartes
+     produit: une ombre gaussienne molle fait « application web ». */
+  box-shadow: 0 2px 0 rgba(14, 33, 53, .05);
+}
+
+.entete { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.gros {
+  font: 800 clamp(2.2rem, 1.4rem + 2.4vw, 3.2rem)/1 inherit;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.apres { font-size: 1rem; color: var(--slate); }
+
+.barre {
+  display: flex;
+  height: 12px;
+  margin: 1.1rem 0 .9rem;
+  border-radius: 999px;
+  overflow: hidden;
+  /* Un fond, pour que la barre existe visuellement meme si une part est
+     minuscule. */
+  background: var(--surface-3, #F1F4F8);
+}
+.part { display: block; height: 100%; }
+/* Un filet blanc entre les parts: sans lui, deux teintes voisines se
+   confondent en une seule bande. */
+.part + .part { box-shadow: inset 2px 0 0 var(--surface); }
+
+.legende {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.4rem;
+  margin: 0;
+  font-size: .88rem;
+  color: var(--slate);
+}
+.legende li { display: inline-flex; align-items: center; gap: .45rem; }
+.legende b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.puce { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+
+.note {
+  margin: .9rem 0 0;
+  font-size: .84rem;
+  line-height: 1.5;
+  color: var(--slate);
+  max-width: 62ch;
+}

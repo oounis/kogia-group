@@ -5,7 +5,7 @@
    la prochaine personne à vouloir corriger l'en-tête les aurait modifiées
    sans effet. */
 
-.main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+.main { max-width: var(--texte); margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 .titre { font: 800 2rem/1.15 inherit; letter-spacing: -.02em; margin-bottom: 1.2rem; }
 .lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
 .para { color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
@@ -41,7 +41,7 @@ a.produitLien:hover { background: #FAFAFA; }
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
 }
-@media (max-width: 620px) { .chiffres { grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
+@media (max-width: var(--texte)) { .chiffres { grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
 .chiffre { display: flex; flex-direction: column; gap: .18rem; }
 .chiffreValeur {
   font: 800 1.35rem/1 inherit; letter-spacing: -.03em;

@@ -6,7 +6,7 @@
    sans effet. */
 
 .main {
-  width: 100%; max-width: 44rem; margin: 0 auto;
+  width: 100%; max-width: var(--texte); margin: 0 auto;
   padding: 3rem 1.5rem 4rem; overflow-wrap: break-word;
 }
 @media (max-width: 360px) { .main { padding: 2rem 1rem 3rem; } }

@@ -2,9 +2,11 @@
    police, un seul accent, presque aucune ombre, hiérarchie par filets et
    par graisse. Rien de neuf n'est inventé ici. */
 
-.main { max-width: 1060px; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+/* Etait 1060px, une des douze largeurs differentes du depot. Passe au jeton
+   commun: la page des produits doit s'aligner sur la page d'accueil. */
+.main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 0; }
 
-.entete { max-width: 44rem; }
+.entete { max-width: var(--texte); }
 .entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
 .lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink); }
 .sousLede { margin-top: .9rem; font-size: .98rem; line-height: 1.6; color: var(--slate); }
@@ -45,7 +47,9 @@
    valeurs : 20rem quand il y a la place, la largeur du conteneur sinon. */
 .grille {
   list-style: none; display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  /* 22rem au lieu de 20rem: avec 1280px disponibles les cartes peuvent
+     respirer sans tomber a quatre par rangee, ce qui les rendrait etroites. */
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
 }
 .carte {
   display: flex; flex-direction: column; gap: .85rem;

@@ -2,7 +2,7 @@
    qui existe, comment, où ça en est, ce qu'on en a appris. Un lecteur qui a
    lu une de ces pages sait lire les neuf autres. */
 
-.main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 0; }
+.main { max-width: var(--texte); margin: 0 auto; padding: 2.5rem 1.25rem 0; }
 
 .fil { font-size: .84rem; color: var(--slate); }
 .fil a:hover { text-decoration: underline; }
@@ -38,7 +38,7 @@
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem 1rem;
 }
-@media (max-width: 620px) { .chiffres { grid-template-columns: 1fr 1fr; } }
+@media (max-width: var(--texte)) { .chiffres { grid-template-columns: 1fr 1fr; } }
 .chiffre { display: flex; flex-direction: column; gap: .2rem; }
 .chiffreValeur {
   font: 800 1.4rem/1.1 inherit; letter-spacing: -.025em;
@@ -101,7 +101,7 @@
   color: var(--slate); margin-bottom: 1rem;
 }
 .suiteGrille { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-@media (max-width: 620px) { .suiteGrille { grid-template-columns: 1fr; } }
+@media (max-width: var(--texte)) { .suiteGrille { grid-template-columns: 1fr; } }
 .suiteCarte {
   display: block; padding: 1.1rem 1.2rem;
   border: 1px solid var(--line); border-radius: var(--r-m);

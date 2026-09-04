@@ -1,7 +1,10 @@
 /* Le journal. Une seule colonne de lecture, groupée par mois, chaque entrée
    datée. Pas de carte, pas d'ombre : un filet suffit à séparer deux faits. */
 
-.main { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+/* Etait 46rem. Le journal est une LISTE d'entrees datees, donc il passe en
+   pleine largeur; seul son chapeau reste etroit pour rester lisible. */
+.main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 0; }
+.entete { max-width: var(--texte); }
 
 .entete h1 { font: 800 clamp(2rem, 1.6rem + 1.8vw, 2.6rem)/1.12 inherit; letter-spacing: -.025em; }
 .lede { margin-top: 1.1rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink); }
@@ -16,13 +19,29 @@
 .compte strong { color: var(--ink); font-variant-numeric: tabular-nums; }
 
 /* ── Les mois ──────────────────────────────────────────────────────────── */
-.mois { margin-top: 3rem; }
+.mois { margin-top: 2.4rem; }
+/* La grille est portee par le mois lui-meme, et son titre traverse toutes les
+   colonnes. Le balisage n'a pas d'enveloppe autour des entrees: ce sont des
+   <article> poses directement dans la <section>, donc un selecteur enfant
+   aurait cible le vide.
+   La grille vit dans le MOIS et pas au-dessus: sinon deux mois differents se
+   retrouveraient sur la meme rangee et le regroupement ne voudrait plus rien
+   dire. Et elargir la page sans grille aurait donne des lignes de 1280px,
+   donc moins lisibles qu'avant. */
+.mois {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(21rem, 100%), 1fr));
+  gap: 0 2.4rem;
+  align-items: start;
+}
+.moisT { grid-column: 1 / -1; }
 .moisT {
   font: 700 .74rem/1 inherit; letter-spacing: .12em; text-transform: uppercase;
   color: var(--slate); padding-bottom: .8rem; border-bottom: 1px solid var(--ink);
 }
 
-.entree { padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
+.entree { padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+.entree p { max-width: var(--texte); }
 .entreeHaut {
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem;
   margin-bottom: .7rem;
