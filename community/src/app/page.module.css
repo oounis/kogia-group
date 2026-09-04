@@ -35,10 +35,8 @@
 .vedetteCarte p { color: var(--slate); line-height: 1.55; }
 
 .comment { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.25rem; border-top: 1px solid var(--line); }
-.commentGrille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.commentGrille h3 { font: 700 1.05rem/1 inherit; margin-bottom: .5rem; }
-.commentGrille p { color: var(--slate); font-size: .92rem; line-height: 1.55; }
-@media (max-width: 720px) { .commentGrille { grid-template-columns: 1fr; gap: 1.5rem; } }
+@media (max-width: 720px) { 
+ }
 
 .cta {
   max-width: 680px; margin: 0 auto; padding: 2.4rem 1.25rem 3rem; text-align: center;
@@ -49,10 +47,6 @@
 /* Icône d'étape dans « Comment Kogia fonctionne ». L'accent bleu de l'icône
    bicolore reste le SEUL bleu de la section : le titre et le texte restent
    noir/gris, conformément à la règle « un accent, un usage ». */
-.etapeIcone {
-  display: inline-flex; margin-bottom: .7rem;
-  color: var(--ink); --icone-accent: var(--indigo);
-}
 
 /* ── Ce qui tourne ───────────────────────────────────────────────────────────
    La section qui manquait : ce qui existe vraiment, avec un état par ligne.

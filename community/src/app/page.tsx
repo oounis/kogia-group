@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { EnTete, Pied } from "@/components/Chrome";
-import Icone from "@/components/icons/Icone";
+import Parcours from "@/components/Parcours";
 import { createClient } from "@/lib/supabase/server";
 import { dureeDeLecture } from "@/lib/site";
 import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT_COURT, type Etat } from "@/lib/travaux";
@@ -188,32 +188,11 @@ export default async function Home() {
 
         <section className={styles.comment}>
           <p className={styles.sectionT}>Comment Kogia fonctionne</p>
-          <div className={styles.commentGrille}>
-            {/* Icônes du système Kogia : « plonger » puis « discuter » puis
-                « faire remonter » racontent la métaphore de la marque, là où
-                trois pictogrammes génériques n'auraient rien dit. */}
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="deep-dive" taille="feature" />
-              </span>
-              <h3>Découvrir</h3>
-              <p>Une idée explorée sérieusement : le problème, le marché, les risques, un verdict honnête.</p>
-            </div>
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="comment" taille="feature" />
-              </span>
-              <h3>Discuter</h3>
-              <p>Réagir, commenter, dire ce qui cloche ou ce qui manque, avec les gens qui ont vécu le problème.</p>
-            </div>
-            <div>
-              <span className={styles.etapeIcone} aria-hidden="true">
-                <Icone nom="surface" taille="feature" />
-              </span>
-              <h3>Développer</h3>
-              <p>Les idées qui méritent d&apos;exister deviennent des projets, puis des produits.</p>
-            </div>
-          </div>
+          {/* C'etaient trois cartes cote a cote. Le texte etait juste mais la
+              mise en page ne disait pas que les etapes se SUIVENT, ni que la
+              plupart des idees s'arretent en route. Un schema le dit en une
+              image, et prend moins de hauteur que trois cartes. */}
+          <Parcours />
           <p className={styles.commentPlus}>
             La façon de travailler est écrite en entier, avec les huit règles
             de la maison et la panne qui a produit chacune :{" "}
