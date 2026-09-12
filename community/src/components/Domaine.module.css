@@ -1,0 +1,42 @@
+/* La page d'un domaine. Même gabarit pour les cinq : ce qui change est le
+   contenu, pas la mise en page — un domaine vide et un domaine plein doivent
+   se lire de la même façon, sinon le vide ressemble à une page inachevée. */
+
+.page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+
+.fil { padding-top: 2.25rem; font-size: .85rem; color: var(--encre-douce, #777); }
+.fil a { color: inherit; }
+
+.chapeau { padding-block: 1rem 2.25rem; max-width: 44rem; }
+.titre { font-size: clamp(1.8rem, 1.1rem + 2.3vw, 2.75rem); line-height: 1.12; margin: 0 0 .75rem; }
+.mandat { font-size: 1.1rem; line-height: 1.55; color: var(--encre, #222); margin: 0 0 1rem; font-weight: 500; }
+.intro { font-size: 1.02rem; line-height: 1.65; color: var(--encre-douce, #555); margin: 0; }
+
+.etat { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .45rem .8rem; border-radius: 999px; font-size: .85rem; border: 1px solid var(--trait, #e2e2e2); }
+.etatActif { color: var(--vert, #3e6b4a); border-color: currentColor; }
+.etatVide { color: var(--encre-douce, #888); font-style: italic; }
+
+.section { padding-block: 2.25rem; border-top: 1px solid var(--trait, #eee); }
+.sectionTitre { font-size: 1.3rem; margin: 0 0 1rem; }
+.texte { max-width: 42rem; line-height: 1.65; margin: 0 0 1rem; }
+
+.champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .75rem; list-style: none; padding: 0; margin: 0; }
+.champ { border: 1px solid var(--trait, #e2e2e2); border-radius: 8px; padding: .8rem .9rem; }
+.champNom { font-weight: 600; font-size: .92rem; display: block; margin-bottom: .2rem; }
+.champQuoi { font-size: .85rem; color: var(--encre-douce, #666); line-height: 1.45; }
+
+.produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0; }
+.produit { border: 1px solid var(--trait, #e2e2e2); border-radius: 10px; padding: 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
+.produitNom { font-weight: 650; }
+.produitQuoi { font-size: .9rem; line-height: 1.5; color: var(--encre-douce, #555); margin: 0; }
+.produitLien { font-size: .85rem; margin-top: auto; }
+
+.note { margin-block: 1.25rem; padding: 1rem 1.15rem; border-left: 3px solid var(--accent, #1f3a5f); background: var(--fond-doux, #f7f7f7); border-radius: 0 8px 8px 0; }
+.note p { margin: 0; line-height: 1.6; font-size: .95rem; }
+.note p + p { margin-top: .55rem; }
+.noteAvertit { border-left-color: var(--ambre, #9a6b1e); }
+
+.suite { padding-block: 2.25rem 3.5rem; border-top: 1px solid var(--trait, #eee); }
+.suiteListe { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
+.suiteListe li { padding-left: 1.4rem; position: relative; line-height: 1.55; }
+.suiteListe li::before { content: "→"; position: absolute; left: 0; color: var(--encre-douce, #999); }

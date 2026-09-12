@@ -23,6 +23,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const pagesFixes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1 },
+    /* L'écosystème et ses cinq domaines. Ce sont des pages de structure : elles
+       changent quand la société change, pas quand un contenu est publié. */
+    { url: `${SITE}/ecosysteme`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE}/education`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE}/skills`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/business`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/play`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE}/research`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE}/realisations`, changeFrequency: "monthly", priority: 0.9 },
     /* `/news` et `/journal` partagent la même source, donc la même date de
        dernière modification : celle de la dernière entrée, pas celle du jour.

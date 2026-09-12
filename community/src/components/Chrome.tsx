@@ -12,6 +12,7 @@ import styles from "./Chrome.module.css";
    registre complet, ajustements et pannes compris. `/news` renvoyait 404,
    relevé par l'audit du site en ligne. */
 const LIENS = [
+  { href: "/ecosysteme", libelle: "L'écosystème" },
   { href: "/realisations", libelle: "Réalisations" },
   { href: "/news", libelle: "Actualités" },
   { href: "/journal", libelle: "Journal" },
@@ -110,6 +111,7 @@ export function Pied() {
         <div className={styles.piedCol}>
           <h2>La société</h2>
           <ul>
+            <li><Link href="/ecosysteme">L'écosystème</Link></li>
             <li><Link href="/realisations">Réalisations</Link></li>
             <li><Link href="/journal">Journal</Link></li>
             <li><Link href="/savoir-faire">Comment on travaille</Link></li>
