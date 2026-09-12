@@ -1,0 +1,43 @@
+# Kogia Group — mises à jour de dépendances.
+#
+# Ce fichier manquait jusqu'au 2026-09-12. Les alertes de sécurité étaient bien
+# levées par GitHub, mais rien ne proposait de correctif : deux exécutions de
+# code à distance critiques dans Next.js sont restées ouvertes jusqu'à ce qu'on
+# aille les chercher à la main. Une alerte que personne ne transforme en
+# proposition de correctif ne protège rien.
+version: 2
+
+updates:
+  # Le site public. C'est le seul dossier qui sert kogiagroup.com.
+  - package-ecosystem: npm
+    directory: /community
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: [dependences, community]
+    commit-message:
+      prefix: "deps"
+    groups:
+      # Les correctifs mineurs et de patch arrivent groupés : cinq PR par
+      # semaine pour des montées de patch font qu'on cesse de les lire.
+      mineur-et-patch:
+        update-types: [minor, patch]
+    ignore:
+      # React et Next majeurs se montent à la main, avec le guide de migration
+      # et une vérification du rendu. Jamais par fusion automatique.
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+
+  # Les actions GitHub : la porte de qualité elle-même.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels: [dependences, ci]
+    commit-message:
+      prefix: "ci"
