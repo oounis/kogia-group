@@ -1,0 +1,56 @@
+/* Le schéma de la société. Les couleurs viennent de la rampe produit
+   (--k-p-*), jamais d'un hexadécimal écrit ici : c'est ce que le livre de
+   marque demande, et c'est ce qui fait qu'il suit le thème. */
+
+.bloc { margin: 0; }
+
+.svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* Le groupe : le pas 600, celui de l'action, le seul qui tient le texte blanc. */
+.groupe { fill: var(--k-p-600, #1f3a5f); }
+.groupeTexte {
+  fill: #fff; font-size: 15px; font-weight: 650; letter-spacing: .12em;
+  text-anchor: middle; font-family: inherit;
+}
+
+/* Un domaine qui contient quelque chose : plein, discret. */
+.domaine { fill: var(--k-p-50, #f4f7fa); stroke: var(--k-p-300, #cbd5e1); stroke-width: 1.2; }
+
+/* Un domaine vide : trait interrompu. Ce qui n'existe pas se voit. */
+.domaineVide {
+  fill: transparent; stroke: var(--trait, #d8d8d8);
+  stroke-width: 1.2; stroke-dasharray: 5 4;
+}
+
+.domaineNom {
+  fill: var(--encre, #1b1b1b); font-size: 14.5px; font-weight: 620;
+  text-anchor: middle; font-family: inherit;
+}
+.compteur {
+  fill: var(--k-p-700, #2f5d43); font-size: 11.5px; font-weight: 600;
+  text-anchor: middle; font-family: inherit;
+}
+.compteurVide {
+  fill: var(--encre-douce, #9a9a9a); font-size: 11.5px; font-style: italic;
+  text-anchor: middle; font-family: inherit;
+}
+
+.trait { stroke: var(--trait, #d8d8d8); stroke-width: 1.2; fill: none; }
+
+.socle { fill: var(--fond-doux, #f5f5f5); stroke: var(--trait, #e2e2e2); stroke-width: 1.2; }
+.socleTexte {
+  fill: var(--encre-douce, #666); font-size: 12.5px; letter-spacing: .02em;
+  text-anchor: middle; font-family: inherit;
+}
+
+.legende {
+  margin-top: 1rem; font-size: .88rem; line-height: 1.55;
+  color: var(--encre-douce, #777); max-width: 48ch;
+}
+
+/* Sous 720px le schéma devient illisible s'il rétrécit encore : il défile.
+   Un schéma écrasé ment sur la forme qu'il décrit. */
+@media (max-width: 720px) {
+  .bloc { overflow-x: auto; }
+  .svg { min-width: 640px; }
+}

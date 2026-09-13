@@ -45,13 +45,6 @@
       "status": "couleur existante"
     },
     {
-      "lane": "coffee",
-      "name": "Kogia Coffee",
-      "path": "marque/mark/kogia-mark-coffee.svg",
-      "color": "#7A4B2E",
-      "status": "proposé"
-    },
-    {
       "lane": "suite",
       "name": "Kogia Platform",
       "path": "marque/mark/kogia-mark-suite.svg",
@@ -178,13 +171,6 @@
       "path": "marque/tile/kogia-tile-eduplus.svg",
       "color": "#223DE7",
       "status": "couleur existante"
-    },
-    {
-      "lane": "coffee",
-      "name": "Kogia Coffee",
-      "path": "marque/tile/kogia-tile-coffee.svg",
-      "color": "#7A4B2E",
-      "status": "proposé"
     },
     {
       "lane": "suite",
