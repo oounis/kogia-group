@@ -8,8 +8,8 @@
 .fil a { color: inherit; }
 
 .chapeau { padding-block: 1rem 2.25rem; max-width: 44rem; }
-.titre { font-size: clamp(1.8rem, 1.1rem + 2.3vw, 2.75rem); line-height: 1.12; margin: 0 0 .75rem; }
-.mandat { font-size: 1.1rem; line-height: 1.55; color: var(--encre, #222); margin: 0 0 1rem; font-weight: 500; }
+.titre { font-family: var(--display, inherit); font-size: clamp(2rem, 1.1rem + 3.2vw, 3.4rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; margin: 0 0 .85rem; }
+.mandat { font-family: var(--display, inherit); font-size: clamp(1.1rem, 1rem + .6vw, 1.45rem); line-height: 1.4; letter-spacing: -.02em; color: var(--k-p-600, #2547E8); margin: 0 0 1.1rem; font-weight: 600; }
 .intro { font-size: 1.02rem; line-height: 1.65; color: var(--encre-douce, #555); margin: 0; }
 
 .etat { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .45rem .8rem; border-radius: 999px; font-size: .85rem; border: 1px solid var(--trait, #e2e2e2); }
@@ -17,7 +17,7 @@
 .etatVide { color: var(--encre-douce, #888); font-style: italic; }
 
 .section { padding-block: 2.25rem; border-top: 1px solid var(--trait, #eee); }
-.sectionTitre { font-size: 1.3rem; margin: 0 0 1rem; }
+.sectionTitre { font-family: var(--display, inherit); font-size: clamp(1.3rem, 1.1rem + .8vw, 1.75rem); letter-spacing: -.025em; font-weight: 660; margin: 0 0 1rem; }
 .texte { max-width: 42rem; line-height: 1.65; margin: 0 0 1rem; }
 
 .champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .75rem; list-style: none; padding: 0; margin: 0; }

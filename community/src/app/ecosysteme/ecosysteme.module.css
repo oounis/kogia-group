@@ -4,7 +4,7 @@
 .page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
 
 .chapeau { padding-block: 3.5rem 2rem; max-width: 44rem; }
-.titre { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3rem); line-height: 1.1; margin: 0 0 1rem; }
+.titre { font-family: var(--display, inherit); font-size: clamp(2.2rem, 1.2rem + 3.6vw, 3.8rem); line-height: 1; letter-spacing: -.04em; font-weight: 700; margin: 0 0 1rem; }
 .devise { font-size: 1.05rem; color: var(--encre-douce, #555); margin: 0 0 1.25rem; }
 .intro { font-size: 1.05rem; line-height: 1.65; color: var(--encre, #222); margin: 0; }
 
@@ -28,7 +28,7 @@
 .socle strong { color: var(--encre, #222); font-weight: 600; }
 
 .section { padding-block: 2.5rem; border-top: 1px solid var(--trait, #eee); }
-.sectionTitre { font-size: 1.35rem; margin: 0 0 1.25rem; }
+.sectionTitre { font-family: var(--display, inherit); font-size: clamp(1.35rem, 1.1rem + .9vw, 1.8rem); letter-spacing: -.025em; font-weight: 660; margin: 0 0 1.25rem; }
 .texte { max-width: 42rem; line-height: 1.65; margin: 0 0 1rem; }
 
 .produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0; }

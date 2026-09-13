@@ -32,12 +32,12 @@ const H_DOM = 78;
 const Y_SOCLE = 232;
 const LARGEUR = X0 * 2 + DOMAINES.length * L + (DOMAINES.length - 1) * G;
 
-export default function Structure() {
+export default function Structure({ sombre = false }: { sombre?: boolean }) {
   const xDe = (i: number) => X0 + i * (L + G);
   const centre = LARGEUR / 2;
 
   return (
-    <figure className={styles.bloc}>
+    <figure className={`${styles.bloc} ${sombre ? styles.sombre : ""}`}>
       <svg
         className={styles.svg}
         viewBox={`0 0 ${LARGEUR} 292`}

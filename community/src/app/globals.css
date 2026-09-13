@@ -5,8 +5,11 @@
 
    Ce que le site garde, par DÉCISION d'Othman (2026-08-13/15), et que la
    charte consigne désormais comme « couloir éditorial » :
-   · fond blanc, thème clair uniquement (l'abysse a été essayé et abandonné) ;
-   · UNE police, Inter (pas de Sora en titre sur le site) ;
+   · fond blanc, thème clair uniquement (l'abysse a été essayé et abandonné,
+     et réessayé le 2026-09-13 : écarté une deuxième fois) ;
+   · Inter pour le texte. Sora pour les titres depuis le 2026-09-13 : le site
+     manquait de présence et la hiérarchie par graisse seule ne suffisait plus.
+     Deux polices, pas trois, et jamais Sora dans un paragraphe ;
    · UN seul accent, réservé à l'action principale et à l'état sélectionné ;
    · presque aucune ombre, hiérarchie par filets, listes et graisse.
    L'accent est l'océan Harmony (#2547E8) ; l'ancien #2A5CE0 en était une
@@ -15,6 +18,11 @@
 
 :root {
   color-scheme: light;
+
+  /* La face d'affichage réellement chargée (next/font). Le jeton --k-display
+     de la charte nomme « Sora » sans la charger : ici on pointe la variable
+     que next/font a posée, sinon le navigateur retombe en silence. */
+  --display: var(--font-sora), var(--k-display);
 
   --indigo: var(--k-p-600);
   --indigo-ink: var(--k-p-700);

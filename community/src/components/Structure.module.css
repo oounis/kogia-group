@@ -1,56 +1,84 @@
-/* Le schéma de la société. Les couleurs viennent de la rampe produit
-   (--k-p-*), jamais d'un hexadécimal écrit ici : c'est ce que le livre de
-   marque demande, et c'est ce qui fait qu'il suit le thème. */
+/* Le schéma de la société.
 
-.bloc { margin: 0; }
+   Les couleurs passent par des variables locales (--sch-*) plutôt que par la
+   rampe directement : la section sombre de l'accueil les redéfinit, et le même
+   dessin se retourne sans deuxième fichier. */
+
+.bloc {
+  margin: 0;
+  --sch-groupe: var(--k-p-600, #2547E8);
+  --sch-groupe-texte: #fff;
+  --sch-plein: var(--k-p-50, #EFF4FF);
+  --sch-bord: var(--k-p-200, #BFD2FE);
+  --sch-bord-vide: var(--line, #d8d8d8);
+  --sch-nom: var(--ink, #0E2135);
+  --sch-compteur: var(--k-p-700, #1D35D0);
+  --sch-vide: var(--text-doux, #9a9a9a);
+  --sch-trait: var(--line, #d8d8d8);
+  --sch-socle: var(--surface-2, #f5f5f5);
+  --sch-socle-texte: var(--text-doux, #666);
+  --sch-legende: var(--text-doux, #777);
+}
+
+/* Le retournement sur fond sombre. */
+.sombre {
+  --sch-groupe: #fff;
+  --sch-groupe-texte: var(--k-ink, #0E2135);
+  --sch-plein: rgba(255, 255, 255, .1);
+  --sch-bord: rgba(255, 255, 255, .3);
+  --sch-bord-vide: rgba(255, 255, 255, .22);
+  --sch-nom: #fff;
+  --sch-compteur: var(--k-p-300, #93B4FD);
+  --sch-vide: rgba(255, 255, 255, .45);
+  --sch-trait: rgba(255, 255, 255, .22);
+  --sch-socle: rgba(255, 255, 255, .06);
+  --sch-socle-texte: rgba(255, 255, 255, .66);
+  --sch-legende: rgba(255, 255, 255, .6);
+}
 
 .svg { width: 100%; height: auto; display: block; overflow: visible; }
 
-/* Le groupe : le pas 600, celui de l'action, le seul qui tient le texte blanc. */
-.groupe { fill: var(--k-p-600, #1f3a5f); }
+.groupe { fill: var(--sch-groupe); }
 .groupeTexte {
-  fill: #fff; font-size: 15px; font-weight: 650; letter-spacing: .12em;
-  text-anchor: middle; font-family: inherit;
+  fill: var(--sch-groupe-texte);
+  font-family: var(--display, inherit);
+  font-size: 15px; font-weight: 700; letter-spacing: .16em; text-anchor: middle;
 }
 
-/* Un domaine qui contient quelque chose : plein, discret. */
-.domaine { fill: var(--k-p-50, #f4f7fa); stroke: var(--k-p-300, #cbd5e1); stroke-width: 1.2; }
-
-/* Un domaine vide : trait interrompu. Ce qui n'existe pas se voit. */
+.domaine { fill: var(--sch-plein); stroke: var(--sch-bord); stroke-width: 1.1; }
 .domaineVide {
-  fill: transparent; stroke: var(--trait, #d8d8d8);
-  stroke-width: 1.2; stroke-dasharray: 5 4;
+  fill: transparent; stroke: var(--sch-bord-vide);
+  stroke-width: 1.1; stroke-dasharray: 4 5;
 }
 
 .domaineNom {
-  fill: var(--encre, #1b1b1b); font-size: 14.5px; font-weight: 620;
-  text-anchor: middle; font-family: inherit;
+  fill: var(--sch-nom); font-family: var(--display, inherit);
+  font-size: 15px; font-weight: 600; text-anchor: middle; letter-spacing: -.01em;
 }
 .compteur {
-  fill: var(--k-p-700, #2f5d43); font-size: 11.5px; font-weight: 600;
-  text-anchor: middle; font-family: inherit;
+  fill: var(--sch-compteur); font-size: 11px; font-weight: 600;
+  text-anchor: middle; letter-spacing: .04em; text-transform: uppercase;
 }
 .compteurVide {
-  fill: var(--encre-douce, #9a9a9a); font-size: 11.5px; font-style: italic;
-  text-anchor: middle; font-family: inherit;
+  fill: var(--sch-vide); font-size: 11px; font-style: italic;
+  text-anchor: middle; letter-spacing: .02em;
 }
 
-.trait { stroke: var(--trait, #d8d8d8); stroke-width: 1.2; fill: none; }
+.trait { stroke: var(--sch-trait); stroke-width: 1.1; fill: none; }
 
-.socle { fill: var(--fond-doux, #f5f5f5); stroke: var(--trait, #e2e2e2); stroke-width: 1.2; }
+.socle { fill: var(--sch-socle); stroke: var(--sch-bord-vide); stroke-width: 1.1; }
 .socleTexte {
-  fill: var(--encre-douce, #666); font-size: 12.5px; letter-spacing: .02em;
-  text-anchor: middle; font-family: inherit;
+  fill: var(--sch-socle-texte); font-size: 12px;
+  letter-spacing: .06em; text-anchor: middle;
 }
 
 .legende {
-  margin-top: 1rem; font-size: .88rem; line-height: 1.55;
-  color: var(--encre-douce, #777); max-width: 48ch;
+  margin-top: 1.15rem; font-size: .86rem; line-height: 1.6;
+  color: var(--sch-legende); max-width: 46ch;
 }
 
-/* Sous 720px le schéma devient illisible s'il rétrécit encore : il défile.
-   Un schéma écrasé ment sur la forme qu'il décrit. */
-@media (max-width: 720px) {
-  .bloc { overflow-x: auto; }
-  .svg { min-width: 640px; }
+/* Sous 760px, il défile. Un schéma comprimé ment sur la forme qu'il décrit. */
+@media (max-width: 760px) {
+  .bloc { overflow-x: auto; padding-bottom: .5rem; }
+  .svg { min-width: 660px; }
 }

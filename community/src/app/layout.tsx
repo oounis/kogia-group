@@ -10,16 +10,17 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-/* Sora, pour le lockup de marque UNIQUEMENT.
+/* Sora : le lockup de marque, et depuis le 2026-09-13 les titres.
    `brand/lockup-kogia-group.svg` écrit le mot « kogia » en Sora. Le lockup
    contient du `<text>` et non un tracé vectorisé, donc sans cette police le
-   navigateur retombe sur system-ui : le logo devient faux sans que rien ne
-   signale l'erreur. Deux graisses seulement, celles que le fichier officiel
-   emploie, pour ne pas alourdir le chargement d'une police décorative. */
+   logo devient faux sans que rien ne signale l'erreur.
+   Les graisses 500 à 700 ont été ajoutées quand Sora est passée en titre : la
+   charge d'une police d'affichage se paie une fois, et le site n'a qu'une
+   seule autre police. */
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 

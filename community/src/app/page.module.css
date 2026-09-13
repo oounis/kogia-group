@@ -1,108 +1,187 @@
-/* La page d'accueil.
-   Deux colonnes en haut : la phrase à gauche, le schéma à droite. Le visiteur
-   voit la forme de la société avant de lire quoi que ce soit d'autre. */
+/* L'accueil.
 
-.hero { padding-block: 4rem 3.5rem; }
+   Un premier écran sur fond d'encre, une bande typographique qui pose les cinq
+   verbes, puis trois sections numérotées. La face d'affichage (Sora) n'était
+   utilisée nulle part : elle porte maintenant les titres. */
+
+/* ── 1. Le premier écran ─────────────────────────────────────────────── */
+
+.hero {
+  padding-block: clamp(3rem, 2rem + 5vw, 5.5rem);
+  position: relative;
+}
 .heroIn {
-  max-width: var(--largeur-page, 76rem); margin: 0 auto; padding: 0 1.25rem;
-  display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: 3rem; align-items: center;
+  position: relative; z-index: 1;
+  max-width: 78rem; margin: 0 auto; padding: 0 1.5rem;
+  display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem); align-items: center;
 }
 .heroTexte { min-width: 0; }
 .heroSchema { min-width: 0; }
 
 .devise {
-  font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--k-p-600, #1f3a5f); font-weight: 600; margin: 0 0 1rem;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--k-p-600, #2547E8); font-weight: 700; margin: 0 0 1.4rem;
 }
 .titre {
-  font-size: clamp(1.85rem, 1.1rem + 2.6vw, 3rem); line-height: 1.08;
-  margin: 0 0 1.1rem; max-width: 18ch; letter-spacing: -.015em;
+  font-family: var(--display, inherit);
+  font-size: clamp(2.6rem, 1.1rem + 5.4vw, 5.2rem);
+  line-height: .94; letter-spacing: -.042em; font-weight: 700;
+  margin: 0 0 1.6rem; color: var(--ink, #0E2135);
 }
+.accent { font-style: normal; color: var(--k-p-600, #2547E8); }
+
 .chapeau {
-  font-size: 1.05rem; line-height: 1.65; color: var(--encre-douce, #555);
-  max-width: 44ch; margin: 0 0 1.75rem;
+  padding-top: 1.5rem; border-top: 2px solid var(--ink, #0E2135);
+  font-size: clamp(1rem, .95rem + .3vw, 1.15rem); line-height: 1.6;
+  color: var(--text-doux, #485868); max-width: 36ch; margin: 0 0 2rem;
 }
 .heroLiens { margin: 0; }
-
-.bande { padding-block: 3.25rem; border-top: 1px solid var(--trait, #eee); }
-.bandeDouce { background: var(--fond-doux, #fafafa); }
-.bandeIn { max-width: var(--largeur-page, 76rem); margin: 0 auto; padding: 0 1.25rem; }
-
-.enTeteBande {
-  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: 1.6rem;
+.cta {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .78rem 1.5rem; border-radius: 999px;
+  background: var(--k-p-600, #2547E8); color: #fff;
+  font-weight: 620; font-size: .95rem; text-decoration: none;
+  transition: transform .16s, box-shadow .16s;
 }
-.h2 { font-size: 1.32rem; margin: 0; letter-spacing: -.01em; }
-.sousTitre { font-size: .92rem; color: var(--encre-douce, #888); margin: 0; }
+.cta::after { content: "→"; transition: transform .16s; }
+.cta:hover, .cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 .6rem 1.5rem rgba(37, 71, 232, .28);
+}
+.cta:hover::after { transform: translateX(3px); }
 
-/* Les domaines : cinq colonnes qui retombent proprement. */
+/* ── 2. La bande des verbes ──────────────────────────────────────────── */
+
+.verbes {
+  background: var(--k-p-600, #2547E8); color: #fff;
+  padding-block: clamp(1.1rem, .8rem + 1vw, 1.6rem);
+}
+.verbesLigne {
+  margin: 0; display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: baseline; gap: .1rem .9rem;
+  font-family: var(--display, inherit);
+}
+.verbe {
+  font-size: clamp(.95rem, .8rem + .7vw, 1.5rem);
+  font-weight: 600; letter-spacing: -.01em;
+}
+.sep { opacity: .42; margin-left: .9rem; font-weight: 300; }
+
+/* ── 3. Les sections ─────────────────────────────────────────────────── */
+
+.bande { padding-block: clamp(3rem, 2rem + 3vw, 5rem); }
+.bandeDouce { background: var(--surface-2, #F6F8FA); }
+.bandeIn { max-width: 78rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.enTete {
+  display: grid; grid-template-columns: auto 1fr; gap: .3rem 1.15rem;
+  align-items: baseline; margin-bottom: clamp(1.6rem, 1rem + 1.5vw, 2.6rem);
+}
+.num {
+  grid-row: span 2;
+  font-family: var(--display, inherit);
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem); font-weight: 700;
+  color: var(--k-p-200, #BFD2FE); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.h2 {
+  font-family: var(--display, inherit);
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem);
+  letter-spacing: -.025em; font-weight: 660; margin: 0; line-height: 1.1;
+}
+.sousTitre { font-size: .97rem; color: var(--text-doux, #6b7684); margin: 0; }
+
+/* Les domaines */
 .domaines {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem;
   list-style: none; padding: 0; margin: 0;
 }
 .domaine {
-  display: flex; flex-direction: column; gap: .4rem; height: 100%;
-  padding: 1.15rem 1.05rem; border: 1px solid var(--trait, #e4e4e4);
-  border-radius: 11px; text-decoration: none; color: inherit; background: var(--fond, #fff);
-  transition: border-color .16s, transform .16s;
+  display: flex; flex-direction: column; gap: .55rem; height: 100%;
+  padding: 1.35rem 1.15rem 1.15rem;
+  border: 1px solid var(--line, #e4e7eb); border-radius: 14px;
+  background: var(--surface, #fff); text-decoration: none; color: inherit;
+  transition: border-color .18s, transform .18s, box-shadow .18s;
 }
 .domaine:hover, .domaine:focus-visible {
-  border-color: var(--k-p-500, #7d93ad); transform: translateY(-2px);
+  border-color: var(--k-p-400, #608DFA); transform: translateY(-3px);
+  box-shadow: 0 .7rem 1.5rem rgba(14, 33, 53, .07);
 }
-.domaineNom { font-weight: 640; font-size: .97rem; letter-spacing: -.005em; }
-.domaineRole { font-size: .82rem; color: var(--encre-douce, #666); line-height: 1.45; }
-.puce {
-  margin-top: auto; padding-top: .75rem; font-size: .76rem;
-  font-variant-numeric: tabular-nums;
+.domaineTete { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.domaineNom {
+  font-family: var(--display, inherit);
+  font-weight: 640; font-size: 1.05rem; letter-spacing: -.015em;
 }
-.puceActif { color: var(--k-p-700, #2f5d43); font-weight: 600; }
-.puceVide { color: var(--encre-douce, #a0a0a0); font-style: italic; }
+.pastille { width: .5rem; height: .5rem; border-radius: 50%; flex: none; }
+.plein { background: var(--k-p-600, #2547E8); }
+.creux { border: 1.5px dashed var(--line-forte, #c7c7c7); }
 
+.domaineRole { font-size: .87rem; color: var(--text-doux, #6b7684); line-height: 1.5; }
+.puce {
+  margin-top: auto; padding-top: .85rem; font-size: .72rem;
+  letter-spacing: .06em; text-transform: uppercase; font-weight: 600;
+}
+.puceActif { color: var(--k-p-700, #1D35D0); }
+.puceVide { color: var(--text-doux, #9aa4b0); font-weight: 500; font-style: italic; text-transform: none; letter-spacing: .01em; font-size: .78rem; }
+
+/* Les produits */
 .produits {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 1rem; list-style: none; padding: 0; margin: 0;
 }
 .produit {
-  display: flex; flex-direction: column; gap: .5rem; padding: 1.3rem;
-  border: 1px solid var(--trait, #e4e4e4); border-radius: 11px;
-  background: var(--fond, #fff);
+  display: flex; flex-direction: column; gap: .55rem; padding: 1.5rem;
+  border: 1px solid var(--line, #e4e7eb); border-radius: 14px;
+  background: var(--surface, #fff);
 }
-.produitNom { font-weight: 650; font-size: 1.04rem; }
-.produitQuoi { font-size: .9rem; line-height: 1.55; color: var(--encre-douce, #555); margin: 0; }
-.produitLien { font-size: .85rem; margin-top: auto; }
+.produitTag {
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--k-p-600, #2547E8); font-weight: 700;
+}
+.produitNom {
+  font-family: var(--display, inherit);
+  font-weight: 660; font-size: 1.18rem; letter-spacing: -.02em;
+}
+.produitQuoi { font-size: .92rem; line-height: 1.58; color: var(--text-doux, #5b6673); margin: 0; }
+.produitLien { font-size: .86rem; margin-top: auto; padding-top: .35rem; }
 
-/* Les étapes : une bande horizontale qui se lit comme une progression. */
-.etapes {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem;
-  list-style: none; padding: 0; margin: 0 0 1.5rem;
+/* Les portes */
+.portes {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem;
+  list-style: none; padding: 0; margin: 0 0 2.25rem; counter-reset: p;
 }
-.etape {
-  display: flex; flex-direction: column; gap: .35rem;
-  padding: 1.05rem 1rem; border-radius: 11px;
-  background: var(--fond-doux, #fafafa); border: 1px solid var(--trait, #eee);
+.porte {
+  display: flex; flex-direction: column; gap: .4rem;
+  padding: 1.25rem 1.1rem; border-radius: 14px;
+  background: var(--surface, #fff); border: 1px solid var(--line, #e9ecef);
+  position: relative;
 }
-.etapeNum {
-  width: 1.55rem; height: 1.55rem; border-radius: 50%;
-  background: var(--k-p-600, #1f3a5f); color: #fff;
-  display: grid; place-items: center; font-size: .76rem; font-weight: 650;
-  font-variant-numeric: tabular-nums; margin-bottom: .2rem;
+.porteNum {
+  font-family: var(--display, inherit);
+  font-size: 1.9rem; font-weight: 700; line-height: 1;
+  color: var(--k-p-100, #DBE6FE); font-variant-numeric: tabular-nums;
 }
-.etapeTitre { font-weight: 620; font-size: .93rem; }
-.etapeQ { font-size: .82rem; color: var(--encre-douce, #6a6a6a); line-height: 1.45; }
+.porteTitre { font-weight: 640; font-size: .97rem; letter-spacing: -.01em; }
+.porteQ { font-size: .85rem; color: var(--text-doux, #6b7684); line-height: 1.45; }
 
-.note {
-  max-width: 52ch; line-height: 1.65; margin: 0;
-  padding-left: 1rem; border-left: 3px solid var(--k-p-600, #1f3a5f);
-  color: var(--encre, #222);
+.citation {
+  margin: 0; max-width: 46ch;
+  font-family: var(--display, inherit);
+  font-size: clamp(1.05rem, .95rem + .55vw, 1.4rem); line-height: 1.42;
+  letter-spacing: -.015em; font-weight: 500; color: var(--ink, #0E2135);
+  padding-left: 1.4rem; border-left: 3px solid var(--k-p-600, #2547E8);
 }
 
 @media (max-width: 1040px) {
-  .heroIn { grid-template-columns: 1fr; gap: 2.25rem; }
-  .titre { max-width: 22ch; }
-  .domaines, .etapes { grid-template-columns: repeat(3, 1fr); }
+  .heroIn { grid-template-columns: 1fr; }
+  .domaines, .portes { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 680px) {
-  .domaines, .etapes { grid-template-columns: 1fr; }
-  .enTeteBande { gap: .3rem; }
+  .domaines, .portes { grid-template-columns: 1fr 1fr; }
+  .enTete { grid-template-columns: 1fr; gap: .2rem; }
+  .num { grid-row: auto; }
+}
+@media (max-width: 460px) {
+  .domaines, .portes { grid-template-columns: 1fr; }
 }
