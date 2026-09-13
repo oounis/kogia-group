@@ -12,8 +12,8 @@ export default function Page() {
   return (
     <Domaine
       nom="Kogia Skills"
-      mandat="Transformer une capacité humaine en opportunité."
-      intro="Volontairement beaucoup plus large qu'un site d'offres d'emploi. Un site d'offres publie des annonces. Kogia Skills tiendrait le relevé de ce qu'une personne sait faire, prouvé, et de ce que cela lui ouvre."
+      mandat="Un CV s'affirme. Une compétence se prouve."
+      intro="Un site d'offres publie des annonces. Kogia Skills tiendrait le relevé de ce qu'une personne sait faire, prouvé, et de ce que cela lui ouvre. La différence est entière."
       champs={[
         { nom: "Identity", quoi: "Qui peux-tu devenir ?" },
         { nom: "Skills", quoi: "Que sais-tu faire ?" },

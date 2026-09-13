@@ -12,8 +12,8 @@ export default function Page() {
   return (
     <Domaine
       nom="Kogia Business"
-      mandat="Moderniser le travail qui tourne encore sur papier."
-      intro="Ce n'est pas une société de service qui fabrique des sites sur commande. C'est une méthode : trouver les métiers qui tournent encore sur papier, téléphone, WhatsApp et Excel, vérifier que personne ne l'a déjà bien résolu, puis construire le logiciel d'un seul d'entre eux."
+      mandat="Des métiers entiers tournent encore sur du papier."
+      intro="Pas une société de service qui fabrique des sites sur commande. Une méthode : trouver un métier resté au papier, vérifier que personne ne l'a déjà bien résolu, puis construire le logiciel d'un seul d'entre eux."
       champs={[
         { nom: "Professional Services", quoi: "Juridique, comptabilité, conseil, administratif" },
         { nom: "Field Services", quoi: "Maintenance, bâtiment, technique" },

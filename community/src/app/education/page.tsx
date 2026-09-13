@@ -12,8 +12,8 @@ export default function Page() {
   return (
     <Domaine
       nom="Kogia Education"
-      mandat="Développer le savoir humain."
-      intro="Pas « des logiciels pour l'école ». Le cycle complet de l'apprentissage, quelle que soit sa forme : un logiciel, une plateforme, un contenu, un service, ou une méthode d'enseignement."
+      mandat="Ce qu'un enfant apprend le suit trente ans."
+      intro="Pas « des logiciels pour l'école ». Tout le cycle de l'apprentissage, quelle que soit sa forme : un logiciel, une plateforme, un contenu, un service, une méthode. C'est le seul domaine qui contient déjà des produits."
       champs={[
         { nom: "Early Learning", quoi: "Avant l'école, par le jeu" },
         { nom: "School Education", quoi: "De la maternelle au CM2 et au-delà" },

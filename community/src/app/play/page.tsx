@@ -12,8 +12,8 @@ export default function Page() {
   return (
     <Domaine
       nom="Kogia Play"
-      mandat="Défier, créer et relier par le jeu."
-      intro="« Play » plutôt que « Games », volontairement. Games enfermerait le domaine dans le jeu vidéo pour vingt ans. Play laisse la place aux jeux numériques, aux jeux éducatifs, aux jeux de plateau, aux casse-têtes, aux expériences interactives, à la compétition et au divertissement familial."
+      mandat="On revient jouer sans qu'on vous le demande."
+      intro="« Play » plutôt que « Games », volontairement : Games enfermerait le domaine dans le jeu vidéo pour vingt ans. Aujourd'hui ce domaine est vide, et c'est un choix."
       champs={[
         { nom: "Games", quoi: "Jeux numériques et de plateau" },
         { nom: "Interactive Experiences", quoi: "Expériences interactives" },

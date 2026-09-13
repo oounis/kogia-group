@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <Domaine
       nom="Kogia Research"
-      mandat="Observer le monde avant de construire pour lui."
+      mandat="Regarder le monde avant de construire pour lui."
       intro="Une capacité du groupe, pas une activité commerciale. Elle ne vend rien. Elle décide de ce qui mérite d'exister et, tout aussi important, de ce qui ne le mérite pas."
       champs={[
         { nom: "Education", quoi: "Ce que l'apprentissage devient" },
