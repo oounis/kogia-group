@@ -6,7 +6,7 @@ import styles from "./ecosysteme.module.css";
 export const metadata: Metadata = {
   title: "L'écosystème",
   description:
-    "Kogia est organisée autour de cinq domaines humains — apprendre, savoir faire, jouer, travailler, chercher — et non autour des produits du moment. Voici la structure, et ce qu'elle contient vraiment aujourd'hui.",
+    "Kogia est organisée autour de cinq domaines humains (apprendre, savoir faire, jouer, travailler, chercher), et non autour des produits du moment. Voici la structure, et ce qu'elle contient vraiment aujourd'hui.",
   alternates: { canonical: "/ecosysteme" },
 };
 
@@ -91,8 +91,8 @@ export default function Page() {
           <h1 className={styles.titre}>L'écosystème</h1>
           <p className={styles.devise}>Technology for Human Progress.</p>
           <p className={styles.intro}>
-            Kogia est organisée autour de cinq domaines humains — apprendre,
-            savoir faire, jouer, travailler, chercher — et non autour des
+            Kogia est organisée autour de cinq domaines humains (apprendre,
+            savoir faire, jouer, travailler, chercher), et non autour des
             produits qui existent cette année. Un produit peut échouer sans
             laisser de trou dans la société.
           </p>
@@ -121,7 +121,7 @@ export default function Page() {
           </div>
 
           <div className={styles.socle}>
-            <strong>Kogia Platform</strong> — une identité, une intelligence, des
+            <strong>Kogia Platform</strong> : une identité, une intelligence, des
             données, un langage visuel, partagés par tous les domaines
           </div>
         </section>
@@ -130,7 +130,7 @@ export default function Page() {
           <h2 className={styles.sectionTitre}>Ce qui est réellement en ligne</h2>
           <p className={styles.texte}>
             Quatre produits, tous dans le même domaine. Les quatre autres
-            domaines existent dans la structure et ne contiennent rien — c'est la
+            domaines existent dans la structure et ne contiennent rien. C'est la
             photographie exacte de la société aujourd'hui.
           </p>
 
@@ -176,7 +176,7 @@ export default function Page() {
             </p>
             <p>
               <strong>Un dépôt de code se crée quand on va écrire du code</strong>
-              {" "}— pas quand on a trouvé un nom. Entre les deux il y a une
+              {" "}, pas quand on a trouvé un nom. Entre les deux il y a une
               recherche, une page qui décrit l'idée, et dix personnes qui
               disent la vouloir.
             </p>

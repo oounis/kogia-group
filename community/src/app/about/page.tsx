@@ -20,8 +20,8 @@ export default function Page() {
           <h1 className={styles.titre}>À propos</h1>
           <p className={styles.intro}>
             Kogia Group est une société de technologie tunisienne. Elle est
-            organisée autour de cinq domaines humains — apprendre, savoir faire,
-            jouer, travailler, chercher — et non autour des produits qui existent
+            organisée autour de cinq domaines humains (apprendre, savoir faire,
+            jouer, travailler, chercher), et non autour des produits qui existent
             cette année.
           </p>
         </header>
@@ -48,7 +48,7 @@ export default function Page() {
               utilisateurs, une valeur et un chemin vers le revenu.
             </p>
             <p>
-              <strong>Un dépôt de code se crée quand on va écrire du code</strong> —
+              <strong>Un dépôt de code se crée quand on va écrire du code</strong>,
               pas quand on a trouvé un nom. Entre les deux : une recherche, une
               page, et dix personnes qui disent la vouloir.
             </p>
@@ -77,7 +77,7 @@ export default function Page() {
         <section className={styles.section}>
           <h2 className={styles.h2}>Nous joindre</h2>
           <p className={styles.texte}>
-            <Link href="/contact">Écrire à Kogia</Link> — une adresse, et une
+            <Link href="/contact">Écrire à Kogia</Link> : une adresse, et une
             personne au bout.
           </p>
         </section>

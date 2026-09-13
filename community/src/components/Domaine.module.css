@@ -1,5 +1,5 @@
 /* La page d'un domaine. Même gabarit pour les cinq : ce qui change est le
-   contenu, pas la mise en page — un domaine vide et un domaine plein doivent
+   contenu, pas la mise en page : un domaine vide et un domaine plein doivent
    se lire de la même façon, sinon le vide ressemble à une page inachevée. */
 
 .page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }

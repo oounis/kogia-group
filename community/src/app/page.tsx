@@ -5,7 +5,7 @@ import Signature from "@/components/Signature";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Kogia Group — Technology for Human Progress",
+  title: "Kogia Group, Technology for Human Progress",
   description:
     "Une société de technologie organisée autour de cinq domaines humains : apprendre, savoir faire, jouer, travailler, chercher. Quatre produits en ligne, et trois domaines qui n'en ont encore aucun.",
   alternates: { canonical: "/" },
@@ -63,8 +63,8 @@ export default function Page() {
             </h1>
             <p className={styles.chapeau}>
               Apprendre, savoir faire, jouer, travailler, chercher. Cinq domaines
-              humains qui ne changent pas. Les produits, eux, changent — et
-              peuvent échouer sans laisser de trou dans la société.
+              humains qui ne changent pas. Les produits, eux, changent,
+              et peuvent échouer sans laisser de trou dans la société.
             </p>
             <p className={styles.heroLiens}>
               <Link href="/ecosysteme" className="bouton accent">
@@ -95,7 +95,7 @@ export default function Page() {
               ))}
             </ul>
             <p className={styles.socle}>
-              Tous s'appuient sur une base commune — une identité, une
+              Tous s'appuient sur une base commune : une identité, une
               intelligence, des données, un langage visuel.
             </p>
           </div>
@@ -106,8 +106,8 @@ export default function Page() {
             <h2 className={styles.h2}>Ce qui est en ligne aujourd'hui</h2>
             <p className={styles.texte}>
               Trois produits, tous dans le même domaine. Les quatre autres
-              domaines existent dans la structure et ne contiennent rien encore —
-              c'est la photographie exacte de la société.
+              domaines existent dans la structure et ne contiennent rien encore.
+              C'est la photographie exacte de la société.
             </p>
             <ul className={styles.produits}>
               {PRODUITS.map((p) => (
@@ -128,11 +128,11 @@ export default function Page() {
           <div className={styles.bandeIn}>
             <h2 className={styles.h2}>Comment une idée devient un produit</h2>
             <ol className={styles.etapes}>
-              <li><strong>Recherche</strong> — le problème existe-t-il vraiment ?</li>
-              <li><strong>Une page</strong> — quelqu'un laisse-t-il son adresse ?</li>
-              <li><strong>Un prototype</strong> — dix personnes l'utilisent-elles ?</li>
-              <li><strong>Un client</strong> — une seule personne paie-t-elle ?</li>
-              <li><strong>Un produit</strong> — revient-elle ?</li>
+              <li><strong>Recherche</strong> : le problème existe-t-il vraiment ?</li>
+              <li><strong>Une page</strong> : quelqu'un laisse-t-il son adresse ?</li>
+              <li><strong>Un prototype</strong> : dix personnes l'utilisent-elles ?</li>
+              <li><strong>Un client</strong> : une seule personne paie-t-elle ?</li>
+              <li><strong>Un produit</strong> : revient-elle ?</li>
             </ol>
             <p className={styles.texte}>
               Le code s'écrit à la troisième étape, pas à la première. Un domaine

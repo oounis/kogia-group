@@ -13,7 +13,7 @@ export default function Page() {
     <Domaine
       nom="Kogia Research"
       mandat="Observer le monde avant de construire pour lui."
-      intro="Une capacité du groupe, pas une activité commerciale. Elle ne vend rien. Elle décide de ce qui mérite d'exister — et, tout aussi important, de ce qui ne le mérite pas."
+      intro="Une capacité du groupe, pas une activité commerciale. Elle ne vend rien. Elle décide de ce qui mérite d'exister et, tout aussi important, de ce qui ne le mérite pas."
       champs={[
         { nom: "Education", quoi: "Ce que l'apprentissage devient" },
         { nom: "Future of Work", quoi: "Ce que le travail devient" },
@@ -28,7 +28,7 @@ export default function Page() {
           titre: "Elle a déjà servi une fois",
           texte: [
             "La recherche sur le marché tunisien a montré que les restaurants sont bien servis et que les places de marché d'artisans sont encombrées, pendant que les cabinets professionnels tournent encore sur papier.",
-            "Ce seul constat a réorienté tout le domaine Business — avant qu'une ligne de code soit écrite.",
+            "Ce seul constat a réorienté tout le domaine Business, avant qu'une ligne de code soit écrite.",
           ],
         },
         {
@@ -42,14 +42,14 @@ export default function Page() {
           avertit: true,
           titre: "À une condition",
           texte: [
-            "Chaque indicateur doit dire ses sources et sa méthode. Un chiffre que personne ne peut vérifier n'est pas de la recherche, c'est de la publicité — et il sera lu comme tel.",
+            "Chaque indicateur doit dire ses sources et sa méthode. Un chiffre que personne ne peut vérifier n'est pas de la recherche, c'est de la publicité, et il sera lu comme tel.",
             "C'est la même règle que sur le reste de ce site : un chiffre sans sa méthode n'est qu'une affirmation.",
           ],
         },
       ]}
       suite={[
         "Rien n'est publié pour l'instant. Le premier geste est de publier, pas de construire.",
-        "Un indicateur, un article, un constat réel — et vérifiable.",
+        "Un indicateur, un article, un constat réel, et vérifiable.",
         "Kogia Labs suivra : l'endroit où un problème vérifié devient une expérience, avec une page qui la décrit avant qu'on écrive du code.",
         "L'ordre est : idée, recherche, page, dix utilisateurs, puis du code. Pas l'inverse.",
       ]}

@@ -61,7 +61,7 @@ export function Domaine({
           >
             {actif
               ? `${produits.length} produit${produits.length > 1 ? "s" : ""} en ligne`
-              : "Aucun produit — ce domaine existe dans la structure, pas encore dans les faits"}
+              : "Aucun produit : ce domaine existe dans la structure, pas encore dans les faits"}
           </span>
         </header>
 

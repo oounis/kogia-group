@@ -36,7 +36,7 @@ export default function Page() {
           titre: "Pourquoi il est vide, et pourquoi c'est un choix",
           texte: [
             "Kharbga et ClampWars ont tous les deux été retirés le 12 septembre 2026. C'était correct : les deux avaient été construits avant que quiconque les demande, et aucun n'a atteint d'utilisateur.",
-            "Play ne contiendra rien tant que Education et Skills n'auront pas de clients qui paient. Le domaine existe dans la structure pour que le jour où un jeu mérite sa place, il ait une maison — et ne devienne pas une nouvelle société.",
+            "Play ne contiendra rien tant que Education et Skills n'auront pas de clients qui paient. Le domaine existe dans la structure pour que le jour où un jeu mérite sa place, il ait une maison, et ne devienne pas une nouvelle société.",
           ],
         },
       ]}

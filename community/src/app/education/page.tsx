@@ -39,7 +39,7 @@ export default function Page() {
         },
         {
           nom: "EduPlus Connect",
-          quoi: "La gestion d'école : deux registres de présence, observations, tâches, rapports exportables, droits d'accès par module. Arabe par défaut, de droite à gauche partout. C'est le seul produit du domaine en usage quotidien réel — donc la source la plus fiable sur ce dont une école a vraiment besoin.",
+          quoi: "La gestion d'école : deux registres de présence, observations, tâches, rapports exportables, droits d'accès par module. Arabe par défaut, de droite à gauche partout. C'est le seul produit du domaine en usage quotidien réel, donc la source la plus fiable sur ce dont une école a vraiment besoin.",
           libelle: "en usage réel dans une école",
         },
       ]}
@@ -47,15 +47,15 @@ export default function Page() {
         {
           titre: "Le lien avec le reste de Kogia",
           texte: [
-            "Un enfant qui apprend ici devrait, des années plus tard, être la même personne dans Kogia Skills — pas un nouveau compte. C'est le rôle du Learning Passport : un relevé qui traverse les années au lieu de s'arrêter au trimestre.",
+            "Un enfant qui apprend ici devrait, des années plus tard, être la même personne dans Kogia Skills, pas un nouveau compte. C'est le rôle du Learning Passport : un relevé qui traverse les années au lieu de s'arrêter au trimestre.",
             "C'est aussi ce qui relie Education à Skills : ce qu'on a appris devient ce qu'on sait faire, et ce qu'on sait faire devient ce qu'on peut prouver.",
           ],
         },
       ]}
       suite={[
         "Transformer les produits existants en utilisateurs, puis en clients qui paient. Les trois produits existent ; le client qui paie, non.",
-        "Learning Passport — le relevé d'un enfant sur plusieurs années, qui alimente Kogia Skills.",
-        "Teacher Toolkit — générer fiches, leçons et activités. L'extension commerciale naturelle de Kogia Kids.",
+        "Learning Passport : le relevé d'un enfant sur plusieurs années, qui alimente Kogia Skills.",
+        "Teacher Toolkit : générer fiches, leçons et activités. L'extension commerciale naturelle de Kogia Kids.",
         "Parent Companion et Micro Learning attendent dans la banque d'idées, jusqu'à ce qu'un utilisateur réel les demande.",
       ]}
     />

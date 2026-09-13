@@ -32,12 +32,12 @@ export default function Page() {
           <ul className={styles.liste}>
             <li>
               <strong>Une école</strong> qui cherche à suivre ses présences, ses
-              évaluations et sa communication avec les parents — Coreon EDU et
+              évaluations et sa communication avec les parents : Coreon EDU et
               EduPlus Connect existent et tournent.
             </li>
             <li>
               <strong>Un parent ou un enseignant</strong> qui veut des fiches
-              imprimables pour le primaire — Kogia Kids est gratuit, sans compte.
+              imprimables pour le primaire : Kogia Kids est gratuit, sans compte.
             </li>
             <li>
               <strong>Un cabinet ou un office professionnel</strong> qui tourne

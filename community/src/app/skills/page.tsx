@@ -29,9 +29,9 @@ export default function Page() {
         {
           titre: "Les trois idées qui comptent",
           texte: [
-            "Skill Passport — une identité professionnelle vérifiée. Un CV affirme « je suis excellent en électricité » et personne ne peut le vérifier. Un passeport porte les preuves.",
-            "Opportunity Radar — au lieu que la personne cherche, elle se décrit une fois, et le système lui rapporte les opportunités qui correspondent, avec un score. C'est la réponse à « pourquoi quelqu'un reviendrait-il sur le site ? » : les opportunités changent tous les jours, pas la personne.",
-            "Kogia Proof — la preuve qu'une compétence est réelle, tirée de plusieurs sources indépendantes : évaluations, certificats, vérification par un employeur, travaux réalisés, avis de clients.",
+            "Skill Passport : une identité professionnelle vérifiée. Un CV affirme « je suis excellent en électricité » et personne ne peut le vérifier. Un passeport porte les preuves.",
+            "Opportunity Radar : au lieu que la personne cherche, elle se décrit une fois, et le système lui rapporte les opportunités qui correspondent, avec un score. C'est la réponse à « pourquoi quelqu'un reviendrait-il sur le site ? » : les opportunités changent tous les jours, pas la personne.",
+            "Kogia Proof : la preuve qu'une compétence est réelle, tirée de plusieurs sources indépendantes : évaluations, certificats, vérification par un employeur, travaux réalisés, avis de clients.",
           ],
         },
         {

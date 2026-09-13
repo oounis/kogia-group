@@ -1,5 +1,5 @@
 /* La page de l'écosystème. Elle porte le schéma des cinq domaines et la liste
-   des produits réels — y compris les domaines vides, qui se disent vides. */
+   des produits réels, y compris les domaines vides, qui se disent vides. */
 
 .page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
 

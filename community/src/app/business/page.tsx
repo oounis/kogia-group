@@ -4,7 +4,7 @@ import { Domaine } from "@/components/Domaine";
 export const metadata: Metadata = {
   title: "Kogia Business",
   description:
-    "Moderniser le travail qui tourne encore sur papier, téléphone, WhatsApp et Excel. Le domaine le plus proche du revenu — et celui où la recherche compte plus que le code.",
+    "Moderniser le travail qui tourne encore sur papier, téléphone, WhatsApp et Excel. Le domaine le plus proche du revenu, et celui où la recherche compte plus que le code.",
   alternates: { canonical: "/business" },
 };
 
@@ -35,8 +35,8 @@ export default function Page() {
           titre: "Ce que la recherche a déjà écarté",
           texte: [
             "Les restaurants sont déjà servis en Tunisie : Kessti, Wings, Al-Makhzan couvrent caisse, cuisine, stock, QR et fournisseurs. Arriver avec une caisse de plus serait une copie générique.",
-            "Les places de marché d'artisans aussi : ServicePro, Service.tn, Guedli mettent déjà en relation plombiers et électriciens avec des clients. Mais elles mettent en relation — elles ne font pas tourner l'activité du professionnel. C'est un autre produit, et personne ne tient les deux bouts.",
-            "Ce qui reste ouvert : les cabinets et offices professionnels. L'État numérise le tribunal ; personne ne numérise le cabinet — les clients, les dossiers, les rendez-vous, les documents, les rappels, la recherche, l'archivage, la facturation.",
+            "Les places de marché d'artisans aussi : ServicePro, Service.tn, Guedli mettent déjà en relation plombiers et électriciens avec des clients. Mais elles mettent en relation, elles ne font pas tourner l'activité du professionnel. C'est un autre produit, et personne ne tient les deux bouts.",
+            "Ce qui reste ouvert : les cabinets et offices professionnels. L'État numérise le tribunal ; personne ne numérise le cabinet : les clients, les dossiers, les rendez-vous, les documents, les rappels, la recherche, l'archivage, la facturation.",
           ],
         },
         {
