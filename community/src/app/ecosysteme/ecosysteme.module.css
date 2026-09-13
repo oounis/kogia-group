@@ -1,50 +1,91 @@
-/* La page de l'écosystème. Elle porte le schéma des cinq domaines et la liste
-   des produits réels, y compris les domaines vides, qui se disent vides. */
+/* La page de l'écosystème. Même langage que l'accueil et les domaines. */
 
-.page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+.page { max-width: 78rem; margin: 0 auto; padding: 0 1.5rem; }
 
-.chapeau { padding-block: 3.5rem 2rem; max-width: 44rem; }
-.titre { font-family: var(--display, inherit); font-size: clamp(2.2rem, 1.2rem + 3.6vw, 3.8rem); line-height: 1; letter-spacing: -.04em; font-weight: 700; margin: 0 0 1rem; }
-.devise { font-size: 1.05rem; color: var(--encre-douce, #555); margin: 0 0 1.25rem; }
-.intro { font-size: 1.05rem; line-height: 1.65; color: var(--encre, #222); margin: 0; }
-
-/* Le schéma. Une grille plutôt qu'une image : elle reste lisible au clavier,
-   dans un lecteur d'écran, et à 400px de large. */
-.schema { margin-block: 2.5rem; border: 1px solid var(--trait, #e2e2e2); border-radius: 12px; overflow: hidden; }
-.schemaTete { padding: 1.1rem 1.25rem; text-align: center; background: var(--fond-doux, #f7f7f7); border-bottom: 1px solid var(--trait, #e2e2e2); }
-.schemaTete strong { display: block; font-size: 1.1rem; }
-.schemaTete span { font-size: .85rem; color: var(--encre-douce, #666); }
-
-.domaines { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--trait, #e2e2e2); }
-.domaine { background: var(--fond, #fff); padding: 1.25rem 1rem; display: flex; flex-direction: column; gap: .4rem; text-decoration: none; color: inherit; transition: background .15s; }
-.domaine:hover, .domaine:focus-visible { background: var(--fond-doux, #f7f7f7); }
-.domaineNom { font-weight: 650; font-size: .95rem; }
-.domaineRole { font-size: .8rem; color: var(--encre-douce, #666); line-height: 1.4; }
-.compteur { margin-top: auto; padding-top: .6rem; font-size: .78rem; font-variant-numeric: tabular-nums; }
-.actif { color: var(--vert, #3e6b4a); }
-.vide { color: var(--encre-douce, #999); font-style: italic; }
-
-.socle { padding: 1rem 1.25rem; text-align: center; background: var(--fond-doux, #f7f7f7); border-top: 1px solid var(--trait, #e2e2e2); font-size: .85rem; color: var(--encre-douce, #666); }
-.socle strong { color: var(--encre, #222); font-weight: 600; }
-
-.section { padding-block: 2.5rem; border-top: 1px solid var(--trait, #eee); }
-.sectionTitre { font-family: var(--display, inherit); font-size: clamp(1.35rem, 1.1rem + .9vw, 1.8rem); letter-spacing: -.025em; font-weight: 660; margin: 0 0 1.25rem; }
-.texte { max-width: 42rem; line-height: 1.65; margin: 0 0 1rem; }
-
-.produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0; }
-.produit { border: 1px solid var(--trait, #e2e2e2); border-radius: 10px; padding: 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
-.produitNom { font-weight: 650; }
-.produitDomaine { font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--encre-douce, #888); }
-.produitQuoi { font-size: .9rem; line-height: 1.5; color: var(--encre-douce, #555); margin: 0; }
-.produitLien { font-size: .85rem; margin-top: auto; }
-
-.regle { margin-block: 1.5rem; padding: 1.1rem 1.25rem; border-left: 3px solid var(--accent, #1f3a5f); background: var(--fond-doux, #f7f7f7); border-radius: 0 8px 8px 0; }
-.regle p { margin: 0; line-height: 1.6; }
-.regle p + p { margin-top: .6rem; }
-
-@media (max-width: 900px) {
-  .domaines { grid-template-columns: repeat(2, 1fr); }
+.chapeau { padding-block: 3.25rem 2.5rem; max-width: 52rem; }
+.devise {
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--k-p-600, #2547E8); font-weight: 700; margin: 0 0 1.2rem;
 }
-@media (max-width: 520px) {
-  .domaines { grid-template-columns: 1fr; }
+.titre {
+  font-family: var(--display, inherit);
+  font-size: clamp(2.5rem, 1.2rem + 5vw, 5rem);
+  line-height: .95; letter-spacing: -.045em; font-weight: 700;
+  margin: 0 0 1.3rem; color: var(--ink, #0E2135);
+}
+.intro {
+  padding-top: 1.4rem; border-top: 2px solid var(--ink, #0E2135);
+  font-size: 1.04rem; line-height: 1.68; color: var(--text-doux, #485868);
+  margin: 0; max-width: 48ch;
+}
+
+.schemaBloc { padding-block: 1rem 3rem; }
+
+.section { padding-block: clamp(2.5rem, 1.8rem + 2.4vw, 4rem); border-top: 1px solid var(--line, #eceff2); }
+.derniere { padding-bottom: 4.5rem; }
+
+.enTete {
+  display: grid; grid-template-columns: auto 1fr; gap: .25rem 1.15rem;
+  align-items: baseline; margin-bottom: 1.75rem;
+}
+.num {
+  grid-row: span 2; font-family: var(--display, inherit);
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem); font-weight: 700;
+  color: var(--k-p-200, #BFD2FE); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.sectionTitre {
+  font-family: var(--display, inherit);
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
+  letter-spacing: -.028em; font-weight: 660; margin: 0; line-height: 1.1;
+}
+.sousTitre { font-size: .95rem; color: var(--text-doux, #6b7684); margin: 0; max-width: 54ch; }
+.texte { max-width: 48ch; line-height: 1.68; margin: 0 0 1.3rem; color: var(--text-doux, #485868); }
+
+/* Les domaines en liste large : un rang par domaine, qui se lit comme un index */
+.domaines { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line, #eceff2); }
+.rang {
+  display: grid; grid-template-columns: 1.4fr 2fr auto; gap: 1.25rem;
+  align-items: center; padding: 1.25rem .35rem;
+  border-bottom: 1px solid var(--line, #eceff2);
+  text-decoration: none; color: inherit; transition: background .16s, padding-left .16s;
+}
+.rang:hover, .rang:focus-visible { background: var(--k-p-50, #EFF4FF); padding-left: 1rem; }
+.rangNom {
+  font-family: var(--display, inherit); font-weight: 660;
+  font-size: clamp(1.1rem, 1rem + .5vw, 1.4rem); letter-spacing: -.025em;
+}
+.rangRole { font-size: .92rem; color: var(--text-doux, #6b7684); line-height: 1.5; }
+.rangEtat { font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; font-weight: 650; white-space: nowrap; }
+.actif { color: var(--k-p-700, #1D35D0); }
+.vide { color: var(--text-doux, #9aa4b0); font-weight: 500; font-style: italic; text-transform: none; letter-spacing: .01em; font-size: .82rem; }
+
+/* Les produits */
+.produits {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem; list-style: none; padding: 0; margin: 0;
+}
+.produit {
+  border: 1px solid var(--line, #e4e7eb); border-radius: 14px; padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .55rem; background: var(--surface, #fff);
+}
+.produitTag {
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--k-p-600, #2547E8); font-weight: 700;
+}
+.produitNom { font-family: var(--display, inherit); font-weight: 660; font-size: 1.18rem; letter-spacing: -.022em; }
+.produitQuoi { font-size: .91rem; line-height: 1.58; color: var(--text-doux, #5b6673); margin: 0; }
+.produitLien { font-size: .86rem; margin-top: auto; padding-top: .3rem; }
+
+.citation {
+  margin: 0 0 1.4rem; max-width: 48ch;
+  font-family: var(--display, inherit);
+  font-size: clamp(1.05rem, .95rem + .6vw, 1.45rem); line-height: 1.4;
+  letter-spacing: -.02em; font-weight: 500; color: var(--ink, #0E2135);
+  padding-left: 1.4rem; border-left: 3px solid var(--k-p-600, #2547E8);
+}
+
+@media (max-width: 760px) {
+  .rang { grid-template-columns: 1fr; gap: .4rem; }
+  .enTete { grid-template-columns: 1fr; gap: .2rem; }
+  .num { grid-row: auto; }
 }

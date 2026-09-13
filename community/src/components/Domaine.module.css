@@ -1,42 +1,133 @@
-/* La page d'un domaine. Même gabarit pour les cinq : ce qui change est le
-   contenu, pas la mise en page : un domaine vide et un domaine plein doivent
-   se lire de la même façon, sinon le vide ressemble à une page inachevée. */
+/* La page d'un domaine.
 
-.page { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+   Même langage que l'accueil : filet noir sous le titre, sections numérotées,
+   chiffres pâles en Sora, bande d'accent pleine largeur. Les cinq domaines
+   partagent ce gabarit, y compris ceux qui ne contiennent rien : un domaine
+   vide avec une page plus pauvre se lirait comme une page inachevée plutôt que
+   comme un choix. */
 
-.fil { padding-top: 2.25rem; font-size: .85rem; color: var(--encre-douce, #777); }
-.fil a { color: inherit; }
+.page { max-width: 78rem; margin: 0 auto; padding: 0 1.5rem; }
 
-.chapeau { padding-block: 1rem 2.25rem; max-width: 44rem; }
-.titre { font-family: var(--display, inherit); font-size: clamp(2rem, 1.1rem + 3.2vw, 3.4rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; margin: 0 0 .85rem; }
-.mandat { font-family: var(--display, inherit); font-size: clamp(1.1rem, 1rem + .6vw, 1.45rem); line-height: 1.4; letter-spacing: -.02em; color: var(--k-p-600, #2547E8); margin: 0 0 1.1rem; font-weight: 600; }
-.intro { font-size: 1.02rem; line-height: 1.65; color: var(--encre-douce, #555); margin: 0; }
+/* ── Le premier écran ─────────────────────────────────────────────────── */
 
-.etat { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .45rem .8rem; border-radius: 999px; font-size: .85rem; border: 1px solid var(--trait, #e2e2e2); }
-.etatActif { color: var(--vert, #3e6b4a); border-color: currentColor; }
-.etatVide { color: var(--encre-douce, #888); font-style: italic; }
+.fil {
+  padding-top: 2.5rem; font-size: .78rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-doux, #8b95a1); font-weight: 600;
+}
+.fil a { color: var(--k-p-600, #2547E8); text-decoration: none; }
+.fil a:hover { text-decoration: underline; }
 
-.section { padding-block: 2.25rem; border-top: 1px solid var(--trait, #eee); }
-.sectionTitre { font-family: var(--display, inherit); font-size: clamp(1.3rem, 1.1rem + .8vw, 1.75rem); letter-spacing: -.025em; font-weight: 660; margin: 0 0 1rem; }
-.texte { max-width: 42rem; line-height: 1.65; margin: 0 0 1rem; }
+.chapeau { padding-block: 1.4rem 2.75rem; max-width: 52rem; }
+.titre {
+  font-family: var(--display, inherit);
+  font-size: clamp(2.4rem, 1.2rem + 4.6vw, 4.6rem);
+  line-height: .96; letter-spacing: -.042em; font-weight: 700;
+  margin: 0 0 1.1rem; color: var(--ink, #0E2135);
+}
+.mandat {
+  font-family: var(--display, inherit);
+  font-size: clamp(1.15rem, 1rem + .8vw, 1.6rem); line-height: 1.32;
+  letter-spacing: -.025em; color: var(--k-p-600, #2547E8);
+  margin: 0 0 1.4rem; font-weight: 600; max-width: 26ch;
+}
+.intro {
+  padding-top: 1.35rem; border-top: 2px solid var(--ink, #0E2135);
+  font-size: 1.02rem; line-height: 1.68; color: var(--text-doux, #485868);
+  margin: 0; max-width: 46ch;
+}
 
-.champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .75rem; list-style: none; padding: 0; margin: 0; }
-.champ { border: 1px solid var(--trait, #e2e2e2); border-radius: 8px; padding: .8rem .9rem; }
-.champNom { font-weight: 600; font-size: .92rem; display: block; margin-bottom: .2rem; }
-.champQuoi { font-size: .85rem; color: var(--encre-douce, #666); line-height: 1.45; }
+.etat {
+  display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.6rem;
+  padding: .5rem 1rem; border-radius: 999px; font-size: .8rem;
+  letter-spacing: .04em; font-weight: 620;
+}
+.etatActif { background: var(--k-p-50, #EFF4FF); color: var(--k-p-700, #1D35D0); }
+.etatVide {
+  color: var(--text-doux, #8b95a1); border: 1px dashed var(--line-forte, #c7c7c7);
+  font-weight: 500; font-style: italic; letter-spacing: .01em;
+}
 
-.produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0; }
-.produit { border: 1px solid var(--trait, #e2e2e2); border-radius: 10px; padding: 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
-.produitNom { font-weight: 650; }
-.produitQuoi { font-size: .9rem; line-height: 1.5; color: var(--encre-douce, #555); margin: 0; }
-.produitLien { font-size: .85rem; margin-top: auto; }
+/* ── Les sections ─────────────────────────────────────────────────────── */
 
-.note { margin-block: 1.25rem; padding: 1rem 1.15rem; border-left: 3px solid var(--accent, #1f3a5f); background: var(--fond-doux, #f7f7f7); border-radius: 0 8px 8px 0; }
-.note p { margin: 0; line-height: 1.6; font-size: .95rem; }
-.note p + p { margin-top: .55rem; }
-.noteAvertit { border-left-color: var(--ambre, #9a6b1e); }
+.section { padding-block: clamp(2.5rem, 1.8rem + 2.4vw, 4rem); border-top: 1px solid var(--line, #eceff2); }
 
-.suite { padding-block: 2.25rem 3.5rem; border-top: 1px solid var(--trait, #eee); }
-.suiteListe { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
-.suiteListe li { padding-left: 1.4rem; position: relative; line-height: 1.55; }
-.suiteListe li::before { content: "→"; position: absolute; left: 0; color: var(--encre-douce, #999); }
+.enTete {
+  display: grid; grid-template-columns: auto 1fr; gap: .25rem 1.15rem;
+  align-items: baseline; margin-bottom: 1.75rem;
+}
+.num {
+  grid-row: span 2; font-family: var(--display, inherit);
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem); font-weight: 700;
+  color: var(--k-p-200, #BFD2FE); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.sectionTitre {
+  font-family: var(--display, inherit);
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
+  letter-spacing: -.028em; font-weight: 660; margin: 0; line-height: 1.1;
+}
+.sousTitre { font-size: .95rem; color: var(--text-doux, #6b7684); margin: 0; max-width: 52ch; }
+
+.texte { max-width: 46ch; line-height: 1.68; margin: 0 0 1.35rem; color: var(--text-doux, #485868); }
+
+/* Les champs d'activité */
+.champs {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: .7rem; list-style: none; padding: 0; margin: 0;
+}
+.champ {
+  border: 1px solid var(--line, #e4e7eb); border-radius: 12px;
+  padding: 1rem 1.05rem; background: var(--surface, #fff);
+  transition: border-color .16s;
+}
+.champ:hover { border-color: var(--k-p-300, #93B4FD); }
+.champNom {
+  font-family: var(--display, inherit); font-weight: 640; font-size: .96rem;
+  display: block; margin-bottom: .3rem; letter-spacing: -.012em;
+}
+.champQuoi { font-size: .85rem; color: var(--text-doux, #6b7684); line-height: 1.5; }
+
+/* Les produits */
+.produits {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem; list-style: none; padding: 0; margin: 0;
+}
+.produit {
+  border: 1px solid var(--line, #e4e7eb); border-radius: 14px; padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .55rem; background: var(--surface, #fff);
+}
+.produitNom {
+  font-family: var(--display, inherit); font-weight: 660;
+  font-size: 1.18rem; letter-spacing: -.022em;
+}
+.produitQuoi { font-size: .91rem; line-height: 1.58; color: var(--text-doux, #5b6673); margin: 0; }
+.produitLien { font-size: .86rem; margin-top: auto; padding-top: .3rem; }
+
+/* Les notes : une affirmation, pas un encadré d'aide */
+.note {
+  margin-block: 1.15rem; padding-left: 1.4rem;
+  border-left: 3px solid var(--k-p-600, #2547E8); max-width: 54ch;
+}
+.noteAvertit { border-left-color: var(--k-warn, #C97C1E); }
+.noteTitre {
+  font-family: var(--display, inherit); font-weight: 650; font-size: 1.02rem;
+  letter-spacing: -.015em; margin: 0 0 .45rem; display: block;
+}
+.note p { margin: 0; line-height: 1.62; font-size: .95rem; color: var(--text-doux, #485868); }
+.note p + p { margin-top: .6rem; }
+
+/* La suite */
+.suite { padding-block: clamp(2.5rem, 1.8rem + 2.4vw, 4rem) 4.5rem; border-top: 1px solid var(--line, #eceff2); }
+.suiteListe { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; max-width: 56ch; }
+.suiteListe li {
+  padding-left: 1.9rem; position: relative; line-height: 1.6;
+  color: var(--text-doux, #485868);
+}
+.suiteListe li::before {
+  content: ""; position: absolute; left: 0; top: .62em;
+  width: 1.1rem; height: 2px; background: var(--k-p-600, #2547E8);
+}
+
+@media (max-width: 680px) {
+  .enTete { grid-template-columns: 1fr; gap: .2rem; }
+  .num { grid-row: auto; }
+}

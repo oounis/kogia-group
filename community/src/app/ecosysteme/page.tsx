@@ -1,192 +1,137 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnTete, Pied } from "@/components/Chrome";
+import Structure from "@/components/Structure";
 import styles from "./ecosysteme.module.css";
 
 export const metadata: Metadata = {
   title: "L'écosystème",
   description:
-    "Kogia est organisée autour de cinq domaines humains (apprendre, savoir faire, jouer, travailler, chercher), et non autour des produits du moment. Voici la structure, et ce qu'elle contient vraiment aujourd'hui.",
+    "Cinq domaines humains, une base commune, et trois produits en ligne. Voici la forme de Kogia, et ce qu'elle contient réellement aujourd'hui.",
   alternates: { canonical: "/ecosysteme" },
 };
 
-/** Les cinq domaines.
- *
- *  `produits` est le nombre de produits réellement en ligne, pas le nombre
- *  d'intentions. Trois domaines sur cinq sont à zéro et l'affichent : une page
- *  d'écosystème qui laisse croire que tout existe se démonte à la première
- *  visite, et on ne la lit plus jamais pareil ensuite. */
 const DOMAINES = [
-  {
-    href: "/education",
-    nom: "Kogia Education",
-    role: "Développer le savoir humain",
-    produits: 3,
-  },
-  {
-    href: "/skills",
-    nom: "Kogia Skills",
-    role: "Transformer une capacité en opportunité",
-    produits: 0,
-  },
-  {
-    href: "/play",
-    nom: "Kogia Play",
-    role: "Défier, créer et relier par le jeu",
-    produits: 0,
-  },
-  {
-    href: "/business",
-    nom: "Kogia Business",
-    role: "Moderniser le travail qui tourne encore sur papier",
-    produits: 0,
-  },
-  {
-    href: "/research",
-    nom: "Kogia Research",
-    role: "Observer le monde avant de construire pour lui",
-    produits: 0,
-  },
+  { href: "/education", nom: "Kogia Education", role: "Développer le savoir humain, de la première lettre au métier.", produits: 3 },
+  { href: "/skills", nom: "Kogia Skills", role: "Une compétence prouvée vaut mieux qu'une compétence affirmée.", produits: 0 },
+  { href: "/play", nom: "Kogia Play", role: "On revient jouer sans qu'on vous le demande.", produits: 0 },
+  { href: "/business", nom: "Kogia Business", role: "Des métiers entiers tournent encore sur du papier.", produits: 0 },
+  { href: "/research", nom: "Kogia Research", role: "Regarder le monde avant de construire pour lui.", produits: 0 },
 ] as const;
 
-/** Les produits en ligne. Quatre, tous dans le même domaine. */
 const PRODUITS = [
   {
-    nom: "Kogia Kids",
-    domaine: "Education",
-    quoi: "Des fiches imprimables gratuites pour l'école primaire. Un parent trouve une fiche, la télécharge, l'imprime. Pas de compte, pas de limite.",
-    lien: "https://kogiakids.com",
-    libelle: "kogiakids.com",
+    nom: "Kogia Kids", tag: "Education",
+    quoi: "Des fiches imprimables pour l'école primaire. Gratuites, sans compte, sans limite.",
+    lien: "https://kogiakids.com", libelle: "kogiakids.com",
   },
   {
-    nom: "Coreon EDU",
-    domaine: "Education",
-    quoi: "L'ERP scolaire : évaluer une classe en trente secondes, suivre la journée d'un enfant, de la maternelle au CM2.",
-    lien: "https://edu.kogiagroup.com",
-    libelle: "edu.kogiagroup.com",
+    nom: "Coreon EDU", tag: "Education",
+    quoi: "Évaluer une classe en trente secondes. Suivre la journée d'un enfant. De la maternelle au CM2.",
+    lien: "https://edu.kogiagroup.com", libelle: "edu.kogiagroup.com",
   },
   {
-    nom: "EduPlus Connect",
-    domaine: "Education",
-    quoi: "La gestion d'école : présences quotidiennes et par créneau, observations, rapports, droits d'accès par module. Arabe par défaut.",
-    lien: null,
-    libelle: "en usage réel dans une école",
-  },
-  {
-    nom: "kogiagroup.com",
-    domaine: "Group",
-    quoi: "La porte du monde Kogia : les réalisations, le journal, les règles de la maison, et cette page.",
-    lien: "/realisations",
-    libelle: "Voir les réalisations",
+    nom: "EduPlus Connect", tag: "Education",
+    quoi: "Présences, observations, rapports, droits par module. Arabe par défaut, de droite à gauche partout.",
+    lien: null, libelle: "en usage quotidien dans une école",
   },
 ] as const;
 
 export default function Page() {
   return (
     <>
-      <EnTete compact />
+      <EnTete actif="/ecosysteme" compact />
 
       <main className={styles.page}>
         <header className={styles.chapeau}>
-          <h1 className={styles.titre}>L'écosystème</h1>
-          <p className={styles.devise}>Technology for Human Progress.</p>
+          <p className={styles.devise}>Technology for Human Progress</p>
+          <h1 className={styles.titre}>
+            Cinq domaines.
+            <br />
+            Une seule base.
+          </h1>
           <p className={styles.intro}>
-            Kogia est organisée autour de cinq domaines humains (apprendre,
-            savoir faire, jouer, travailler, chercher), et non autour des
-            produits qui existent cette année. Un produit peut échouer sans
-            laisser de trou dans la société.
+            Apprendre, savoir faire, jouer, travailler, chercher. Ce que les gens
+            font ne change pas. Ce qu&apos;on construit pour eux, si.
           </p>
         </header>
 
-        <section className={styles.schema} aria-label="Structure de Kogia">
-          <div className={styles.schemaTete}>
-            <strong>Kogia Group</strong>
-            <span>La maison mère : stratégie, marque, technologie, finances, gouvernance</span>
-          </div>
-
-          <div className={styles.domaines}>
-            {DOMAINES.map((d) => (
-              <Link key={d.href} href={d.href} className={styles.domaine}>
-                <span className={styles.domaineNom}>{d.nom}</span>
-                <span className={styles.domaineRole}>{d.role}</span>
-                <span
-                  className={`${styles.compteur} ${d.produits > 0 ? styles.actif : styles.vide}`}
-                >
-                  {d.produits > 0
-                    ? `${d.produits} produit${d.produits > 1 ? "s" : ""} en ligne`
-                    : "aucun produit"}
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className={styles.socle}>
-            <strong>Kogia Platform</strong> : une identité, une intelligence, des
-            données, un langage visuel, partagés par tous les domaines
-          </div>
-        </section>
+        <div className={styles.schemaBloc}>
+          <Structure />
+        </div>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitre}>Ce qui est réellement en ligne</h2>
-          <p className={styles.texte}>
-            Quatre produits, tous dans le même domaine. Les quatre autres
-            domaines existent dans la structure et ne contiennent rien. C'est la
-            photographie exacte de la société aujourd'hui.
-          </p>
+          <header className={styles.enTete}>
+            <span className={styles.num}>01</span>
+            <h2 className={styles.sectionTitre}>Les domaines</h2>
+            <p className={styles.sousTitre}>
+              Trois sur cinq ne contiennent rien. La page le dit au lieu de le
+              cacher.
+            </p>
+          </header>
 
-          <ul className={styles.produits}>
-            {PRODUITS.map((p) => (
-              <li key={p.nom} className={styles.produit}>
-                <span className={styles.produitDomaine}>{p.domaine}</span>
-                <span className={styles.produitNom}>{p.nom}</span>
-                <p className={styles.produitQuoi}>{p.quoi}</p>
-                <span className={styles.produitLien}>
-                  {p.lien ? (
-                    p.lien.startsWith("http") ? (
-                      <a href={p.lien}>{p.libelle}</a>
-                    ) : (
-                      <Link href={p.lien}>{p.libelle}</Link>
-                    )
-                  ) : (
-                    p.libelle
-                  )}
-                </span>
+          <ul className={styles.domaines}>
+            {DOMAINES.map((d) => (
+              <li key={d.href}>
+                <Link href={d.href} className={styles.rang}>
+                  <span className={styles.rangNom}>{d.nom}</span>
+                  <span className={styles.rangRole}>{d.role}</span>
+                  <span className={`${styles.rangEtat} ${d.produits ? styles.actif : styles.vide}`}>
+                    {d.produits ? `${d.produits} produits` : "aucun produit"}
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitre}>Pourquoi cette forme</h2>
+          <header className={styles.enTete}>
+            <span className={styles.num}>02</span>
+            <h2 className={styles.sectionTitre}>Ce qui existe vraiment</h2>
+            <p className={styles.sousTitre}>
+              Trois produits, tous dans le même domaine.
+            </p>
+          </header>
+
+          <ul className={styles.produits}>
+            {PRODUITS.map((p) => (
+              <li key={p.nom} className={styles.produit}>
+                <span className={styles.produitTag}>{p.tag}</span>
+                <span className={styles.produitNom}>{p.nom}</span>
+                <p className={styles.produitQuoi}>{p.quoi}</p>
+                <span className={styles.produitLien}>
+                  {p.lien ? <a href={p.lien}>{p.libelle}</a> : p.libelle}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={`${styles.section} ${styles.derniere}`}>
+          <header className={styles.enTete}>
+            <span className={styles.num}>03</span>
+            <h2 className={styles.sectionTitre}>Pourquoi cette forme</h2>
+          </header>
+
           <p className={styles.texte}>
-            Le 12 septembre 2026, Kogia est passée de trente-deux dépôts de code
-            à sept. Quatorze de ceux qui ont disparu ne contenaient qu'un nom :
+            Le 12 septembre 2026, Kogia est passée de trente-deux dépôts de code à
+            sept. Quatorze de ceux qui ont disparu ne contenaient qu&apos;un nom :
             une marque, une description, et pas une ligne de produit. La société
-            grossissait par accumulation d'idées plutôt que par accumulation
-            d'utilisateurs.
+            grossissait par accumulation d&apos;idées plutôt que par accumulation
+            d&apos;utilisateurs.
           </p>
 
-          <div className={styles.regle}>
-            <p>
-              <strong>
-                Un domaine ne se crée pas parce qu'on a une idée.
-              </strong>{" "}
-              Il se crée quand il existe un domaine d'activité autonome, avec des
-              utilisateurs, une valeur, et un chemin vers le revenu.
-            </p>
-            <p>
-              <strong>Un dépôt de code se crée quand on va écrire du code</strong>
-              {" "}, pas quand on a trouvé un nom. Entre les deux il y a une
-              recherche, une page qui décrit l'idée, et dix personnes qui
-              disent la vouloir.
-            </p>
-          </div>
+          <blockquote className={styles.citation}>
+            Un domaine ne se crée pas parce qu&apos;on a une idée. Il se crée
+            quand il y a des utilisateurs, une valeur, et un chemin vers le
+            revenu.
+          </blockquote>
 
           <p className={styles.texte}>
-            Les idées ne sont pas perdues pour autant : elles attendent dans une
-            banque d'idées, avec l'épreuve que chacune doit passer. C'est aussi
-            pour ça que trois domaines de cette page affichent « aucun produit »
-            au lieu d'une promesse.
+            Un dépôt de code se crée quand on va écrire du code, pas quand on a
+            trouvé un nom. Entre les deux : une recherche, une page, et dix
+            personnes qui disent la vouloir.
           </p>
           <p className={styles.texte}>
             <Link href="/about">À propos de Kogia</Link> ·{" "}

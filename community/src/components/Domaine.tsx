@@ -15,11 +15,8 @@ export type DomaineProps = {
   nom: string;
   mandat: string;
   intro: string;
-  /** Les sous-domaines. Ce sont des champs d'activité, pas des produits. */
   champs: Champ[];
-  /** Vide est une valeur valide, et elle s'affiche comme telle. */
   produits: ProduitDomaine[];
-  /** Ce que ce domaine attend avant d'exister vraiment. */
   suite: string[];
   notes?: Note[];
 };
@@ -27,9 +24,10 @@ export type DomaineProps = {
 /**
  * Le gabarit d'une page de domaine.
  *
- * Les cinq domaines partagent exactement la même mise en page, y compris ceux
- * qui ne contiennent aucun produit. Si un domaine vide avait un gabarit plus
- * pauvre, il se lirait comme une page inachevée plutôt que comme un choix.
+ * Même langage que l'accueil : filet noir sous le titre, sections numérotées,
+ * chiffres pâles. Les cinq domaines partagent ce gabarit, y compris les trois
+ * qui ne contiennent aucun produit. Un domaine vide avec une page plus pauvre
+ * se lirait comme une page inachevée plutôt que comme un choix assumé.
  */
 export function Domaine({
   nom,
@@ -42,13 +40,18 @@ export function Domaine({
 }: DomaineProps) {
   const actif = produits.length > 0;
 
+  /* Les sections se numérotent dans l'ordre du rendu, donc le numéro reste
+     juste quand un domaine n'a pas de produits. */
+  let n = 0;
+  const num = () => String(++n).padStart(2, "0");
+
   return (
     <>
       <EnTete compact />
 
       <main className={styles.page}>
         <p className={styles.fil}>
-          <Link href="/ecosysteme">L'écosystème</Link> → {nom}
+          <Link href="/ecosysteme">L&apos;écosystème</Link> / {nom}
         </p>
 
         <header className={styles.chapeau}>
@@ -61,17 +64,21 @@ export function Domaine({
           >
             {actif
               ? `${produits.length} produit${produits.length > 1 ? "s" : ""} en ligne`
-              : "Aucun produit : ce domaine existe dans la structure, pas encore dans les faits"}
+              : "Aucun produit. Ce domaine existe dans la structure, pas encore dans les faits."}
           </span>
         </header>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitre}>Ce que couvre ce domaine</h2>
-          <p className={styles.texte}>
-            Ce sont des champs d'activité, pas des produits. Tout produit futur
-            qui appartient à l'un d'eux trouve sa place ici, sans qu'on ait à
-            créer un nouveau domaine.
-          </p>
+          <header className={styles.enTete}>
+            <span className={styles.num}>{num()}</span>
+            <h2 className={styles.sectionTitre}>Le terrain</h2>
+            <p className={styles.sousTitre}>
+              Des champs d&apos;activité, pas des produits. Tout produit futur
+              qui appartient à l&apos;un d&apos;eux trouve sa place ici, sans
+              qu&apos;on crée un domaine de plus.
+            </p>
+          </header>
+
           <ul className={styles.champs}>
             {champs.map((c) => (
               <li key={c.nom} className={styles.champ}>
@@ -82,9 +89,16 @@ export function Domaine({
           </ul>
         </section>
 
-        {produits.length > 0 && (
+        {actif && (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitre}>Les produits en ligne</h2>
+            <header className={styles.enTete}>
+              <span className={styles.num}>{num()}</span>
+              <h2 className={styles.sectionTitre}>Ce qui tourne</h2>
+              <p className={styles.sousTitre}>
+                En ligne, utilisé, vérifiable.
+              </p>
+            </header>
+
             <ul className={styles.produits}>
               {produits.map((p) => (
                 <li key={p.nom} className={styles.produit}>
@@ -107,26 +121,35 @@ export function Domaine({
           </section>
         )}
 
-        {notes.map((n, i) => (
-          <div
-            key={i}
-            className={`${styles.note} ${n.avertit ? styles.noteAvertit : ""}`}
-          >
-            {n.titre && (
-              <p>
-                <strong>{n.titre}</strong>
-              </p>
-            )}
-            {n.texte.map((t, j) => (
-              <p key={j}>{t}</p>
+        {notes.length > 0 && (
+          <section className={styles.section}>
+            <header className={styles.enTete}>
+              <span className={styles.num}>{num()}</span>
+              <h2 className={styles.sectionTitre}>Ce qu&apos;il faut savoir</h2>
+            </header>
+
+            {notes.map((nt, i) => (
+              <div
+                key={i}
+                className={`${styles.note} ${nt.avertit ? styles.noteAvertit : ""}`}
+              >
+                {nt.titre && <strong className={styles.noteTitre}>{nt.titre}</strong>}
+                {nt.texte.map((t, j) => (
+                  <p key={j}>{t}</p>
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
+          </section>
+        )}
 
         <section className={styles.suite}>
-          <h2 className={styles.sectionTitre}>
-            {actif ? "Ce qui vient ensuite" : "Ce qui doit arriver avant qu'il existe"}
-          </h2>
+          <header className={styles.enTete}>
+            <span className={styles.num}>{num()}</span>
+            <h2 className={styles.sectionTitre}>
+              {actif ? "La suite" : "Avant qu'il existe"}
+            </h2>
+          </header>
+
           <ul className={styles.suiteListe}>
             {suite.map((s, i) => (
               <li key={i}>{s}</li>

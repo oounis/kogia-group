@@ -1,17 +1,66 @@
-/* À propos. Une page de texte : une seule colonne, mesure courte, rien qui
-   bouge. */
+/* À propos. Même langage : filet noir sous le titre, sections numérotées. */
 
-.page { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.page { max-width: 78rem; margin: 0 auto; padding: 0 1.5rem; }
 
-.chapeau { padding-block: 3.5rem 2rem; }
-.titre { font-family: var(--display, inherit); font-size: clamp(2.1rem, 1.2rem + 3.2vw, 3.4rem); line-height: 1.02; letter-spacing: -.038em; font-weight: 700; margin: 0 0 1rem; }
-.intro { font-size: 1.08rem; line-height: 1.65; color: var(--encre, #222); margin: 0; }
+.chapeau { padding-block: 3.25rem 2.5rem; max-width: 52rem; }
+.titre {
+  font-family: var(--display, inherit);
+  font-size: clamp(2.5rem, 1.2rem + 5vw, 5rem);
+  line-height: .95; letter-spacing: -.045em; font-weight: 700;
+  margin: 0 0 1.3rem; color: var(--ink, #0E2135);
+}
+.intro {
+  padding-top: 1.4rem; border-top: 2px solid var(--ink, #0E2135);
+  font-size: 1.04rem; line-height: 1.68; color: var(--text-doux, #485868);
+  margin: 0; max-width: 48ch;
+}
 
-.section { padding-block: 2.25rem; border-top: 1px solid var(--trait, #eee); }
-.h2 { font-family: var(--display, inherit); font-size: clamp(1.25rem, 1.1rem + .7vw, 1.6rem); letter-spacing: -.025em; font-weight: 660; margin: 0 0 1rem; }
-.texte { line-height: 1.68; margin: 0 0 1rem; }
+.section { padding-block: clamp(2.5rem, 1.8rem + 2.4vw, 4rem); border-top: 1px solid var(--line, #eceff2); }
+.derniere { padding-bottom: 4.5rem; }
+
+.enTete {
+  display: grid; grid-template-columns: auto 1fr; gap: .25rem 1.15rem;
+  align-items: baseline; margin-bottom: 1.6rem;
+}
+.num {
+  grid-row: span 2; font-family: var(--display, inherit);
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem); font-weight: 700;
+  color: var(--k-p-200, #BFD2FE); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.h2 {
+  font-family: var(--display, inherit);
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
+  letter-spacing: -.028em; font-weight: 660; margin: 0; line-height: 1.1;
+}
+.texte { line-height: 1.7; margin: 0 0 1.2rem; max-width: 48ch; color: var(--text-doux, #485868); }
 .texte:last-child { margin-bottom: 0; }
 
-.regle { margin-top: 1.5rem; padding: 1.1rem 1.25rem; border-left: 3px solid var(--accent, #1f3a5f); background: var(--fond-doux, #f7f7f7); border-radius: 0 8px 8px 0; }
-.regle p { margin: 0; line-height: 1.6; }
-.regle p + p { margin-top: .7rem; }
+.citation {
+  margin: 1.5rem 0; max-width: 48ch;
+  font-family: var(--display, inherit);
+  font-size: clamp(1.05rem, .95rem + .6vw, 1.45rem); line-height: 1.4;
+  letter-spacing: -.02em; font-weight: 500; color: var(--ink, #0E2135);
+  padding-left: 1.4rem; border-left: 3px solid var(--k-p-600, #2547E8);
+}
+
+/* Les deux objectifs, en bande */
+.jalons {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+}
+.jalon {
+  padding: 1.4rem 1.3rem; border-radius: 14px;
+  border: 1px solid var(--line, #e4e7eb); background: var(--surface, #fff);
+}
+.jalonAn {
+  font-family: var(--display, inherit); font-size: 2rem; font-weight: 700;
+  color: var(--k-p-200, #BFD2FE); line-height: 1; display: block; margin-bottom: .5rem;
+  font-variant-numeric: tabular-nums;
+}
+.jalonQuoi { font-size: .98rem; line-height: 1.55; color: var(--ink, #0E2135); font-weight: 500; }
+
+@media (max-width: 680px) {
+  .enTete { grid-template-columns: 1fr; gap: .2rem; }
+  .num { grid-row: auto; }
+  .jalons { grid-template-columns: 1fr; }
+}
