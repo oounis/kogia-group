@@ -1,135 +1,86 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnTete, Pied } from "@/components/Chrome";
-import Icone from "@/components/icons/Icone";
-import { TRAVAUX, CHIFFRES_MAISON, LIBELLE_ETAT, PREMIER_JOUR } from "@/lib/travaux";
-import { dateLisible } from "@/lib/journal";
-import Frise from "@/components/Frise";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "Kogia est une maison de logiciel indépendante, d'une personne, entre la Tunisie et Bahreïn : dix projets menés depuis juin 2026, dont un registre scolaire qui sert 323 élèves tous les jours.",
+    "Ce qu'est Kogia Group, comment elle est organisée, et pourquoi elle est passée de trente-deux dépôts de code à sept en une journée.",
   alternates: { canonical: "/about" },
 };
 
-export default function AboutPage() {
-  /* La liste des produits vient du catalogue, comme sur la page d'accueil et
-     sur les réalisations. Elle était recopiée à la main ici, et les deux
-     copies ne s'accordaient déjà plus : cette page donnait à Kharbga une
-     adresse publique que la page d'accueil ne connaissait pas. */
+export default function Page() {
   return (
     <>
       <EnTete actif="/about" compact />
 
-      <main className={styles.main}>
-        {/* Chapeau a deux colonnes: le discours, puis les chiffres. */}
-        <div className={styles.tete}>
-        <div>
-        <h1 className={styles.titre}>Kogia</h1>
-        <p className={styles.lede}>
-          Une maison de logiciel indépendante, fondée par Othman Ounis, entre la
-          Tunisie et Bahreïn. On explore des idées, on construit celles qui
-          méritent d&apos;exister, et l&apos;une d&apos;elles sert de vrais
-          utilisateurs tous les jours.
-        </p>
-        <p className={styles.para}>
-          Autant le dire tout de suite, parce que c&apos;est ce qui compte le
-          plus pour décider si vous voulez travailler avec nous : Kogia est une
-          personne. Ce qui remplace une équipe, ce sont des règles écrites, des
-          vérifications automatiques et un journal public de ce qui a cassé.
-          Les huit règles et les pannes qui les ont produites sont écrites
-          en entier dans <Link href="/savoir-faire">comment on travaille</Link>,
-          avec la liste de ce qu&apos;on ne fait pas.
-        </p>
-        <p className={styles.para}>
-          Une idée est explorée sérieusement : problème, marché, modèle,
-          risques, et un verdict honnête, y compris quand le verdict est
-          négatif. On publie quand une idée vaut la lecture, pas pour tenir un
-          calendrier.
-        </p>
-
-        </div>
-        <div>
-        {/* Les chiffres de la maison, tirés du même fichier que les projets. */}
-        <div className={styles.chiffres}>
-          {CHIFFRES_MAISON.map((c) => (
-            <div key={c.libelle} className={styles.chiffre}>
-              <span className={styles.chiffreValeur}>{c.valeur}</span>
-              <span className={styles.chiffreLibelle}>{c.libelle}</span>
-            </div>
-          ))}
-        </div>
-        <p className={styles.note}>
-          Comptés le 2 septembre 2026 sur les dépôts, depuis le premier commit
-          du {dateLisible(PREMIER_JOUR)}. La méthode est détaillée sur la page
-          des <Link href="/realisations">réalisations</Link>.
-        </p>
-        </div>
-        </div>
-
-        <h2 className={styles.sousTitre}>Ce qu&apos;on a construit</h2>
-        {/* « Dix projets depuis juin 2026 » est vrai mais ne dit ni le rythme,
-            ni que plusieurs ont demarre la meme semaine, ni que ceux qui
-            tournent vraiment sont les plus recents. La frise le montre. */}
-        <Frise />
-        <p className={styles.para}>
-          Dix projets, chacun avec son état réel. Quatre sont en pause ou
-          volontairement arrêtés, et c&apos;est écrit : « en préparation » dit
-          la vérité, « bientôt » ne dit rien.
-        </p>
-        <ul className={styles.produits}>
-          {TRAVAUX.map((p) => (
-            <li key={p.slug} className={styles.produit}>
-              <Link href={`/realisations/${p.slug}`} className={styles.produitLien}>
-                <span className={styles.lettre} aria-hidden="true">
-                  <Icone nom={p.icone} taille="nav" />
-                </span>
-                <span className={styles.produitTexte}>
-                  <span className={styles.produitNom}>{p.nom}</span>
-                  <span className={styles.produitDetail}>
-                    {p.domaine} · {LIBELLE_ETAT[p.etat].toLowerCase()}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <h2 className={styles.sousTitre}>La preuve qu&apos;on met en avant</h2>
-        <p className={styles.para}>
-          Une école utilise un registre construit ici : 323 élèves, dix
-          classes, la présence prise par période, au téléphone, en arabe, par
-          les enseignants eux-mêmes. L&apos;école n&apos;est pas nommée et
-          aucun nom d&apos;enfant n&apos;apparaît nulle part sur ce site.
-          C&apos;est le seul projet dont se servent des gens qui ne travaillent
-          pas ici, et il est écrit comme tel partout.
-        </p>
-
-        <h2 className={styles.sousTitre}>Ce qu&apos;on publie</h2>
-        <p className={styles.para}>
-          Deux choses. Des <Link href="/explore">idées explorées</Link> jusqu&apos;au
-          verdict, et un <Link href="/journal">journal</Link> de ce qui
-          s&apos;est réellement passé, à la date où c&apos;est arrivé. Le
-          journal ne contient aucun communiqué : ce sont des faits datés, et
-          une bonne partie raconte une panne et comment elle a été fermée. Le
-          registre des pannes d&apos;une maison de logiciel en dit plus long
-          sur elle que sa liste de succès.
-        </p>
-
-        <div className={styles.cta}>
-          <h2 className={styles.sousTitre}>Un projet en tête ?</h2>
-          <p className={styles.para}>
-            Application, site, plateforme, ou une idée lue ici. Je réponds
-            personnellement, et je dis non quand je pense que le projet
-            n&apos;a pas besoin de moi.
+      <main className={styles.page}>
+        <header className={styles.chapeau}>
+          <h1 className={styles.titre}>À propos</h1>
+          <p className={styles.intro}>
+            Kogia Group est une société de technologie tunisienne. Elle est
+            organisée autour de cinq domaines humains — apprendre, savoir faire,
+            jouer, travailler, chercher — et non autour des produits qui existent
+            cette année.
           </p>
-          <div className={styles.ctaActions}>
-            <a href="mailto:contact@kogiagroup.com" className="bouton accent">Écrire à Kogia</a>
-            <Link href="/realisations" className="bouton ligne">Voir les réalisations</Link>
+        </header>
+
+        <section className={styles.section}>
+          <h2 className={styles.h2}>Pourquoi cette forme</h2>
+          <p className={styles.texte}>
+            Les produits changent, échouent, fusionnent. Une société construite
+            sur la liste de ses produits du moment se réorganise à chaque échec.
+            Une société construite sur des domaines humains, non : un produit peut
+            disparaître sans laisser de trou.
+          </p>
+          <p className={styles.texte}>
+            Le 12 septembre 2026, Kogia est passée de trente-deux dépôts de code à
+            sept. Quatorze de ceux qui ont disparu ne contenaient qu&apos;un nom :
+            une marque, une description, et pas une ligne de produit. La société
+            grossissait par accumulation d&apos;idées plutôt que par accumulation
+            d&apos;utilisateurs.
+          </p>
+          <div className={styles.regle}>
+            <p>
+              <strong>Un domaine ne se crée pas parce qu&apos;on a une idée.</strong>{" "}
+              Il se crée quand il existe une activité autonome, avec des
+              utilisateurs, une valeur et un chemin vers le revenu.
+            </p>
+            <p>
+              <strong>Un dépôt de code se crée quand on va écrire du code</strong> —
+              pas quand on a trouvé un nom. Entre les deux : une recherche, une
+              page, et dix personnes qui disent la vouloir.
+            </p>
           </div>
-        </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.h2}>Où en est la société</h2>
+          <p className={styles.texte}>
+            Trois produits en ligne, tous dans le même domaine. Quatre domaines
+            sur cinq ne contiennent rien. C&apos;est écrit tel quel sur{" "}
+            <Link href="/ecosysteme">la page de l&apos;écosystème</Link>, y compris
+            les compteurs à zéro.
+          </p>
+          <p className={styles.texte}>
+            L&apos;objectif commercial est volontairement court :{" "}
+            <strong>
+              en 2026, prouver que des inconnus utilisent Kogia ; en 2027, prouver
+              qu&apos;ils paient.
+            </strong>{" "}
+            Tant que ces deux choses ne sont pas vraies, Kogia est une société que
+            son fondateur construit pour lui-même.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.h2}>Nous joindre</h2>
+          <p className={styles.texte}>
+            <Link href="/contact">Écrire à Kogia</Link> — une adresse, et une
+            personne au bout.
+          </p>
+        </section>
       </main>
 
       <Pied />

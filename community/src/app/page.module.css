@@ -1,345 +1,38 @@
-/* ════════════════════════════════════════════════════════════════════════
-   MISE EN PAGE, refonte du 2026-09-04.
+/* La page d'accueil. Elle ne vend pas une liste de produits : elle montre la
+   forme de la société, puis ce qui existe vraiment dedans. */
 
-   Le défaut corrigé: tout le contenu tombait dans une colonne centrée de 640
-   à 940px, sections empilées les unes sous les autres, et les côtés de
-   l'écran restaient vides sur un portable ou un écran de bureau. On lisait
-   un ruban étroit qui descendait très loin.
+.hero { padding-block: 4.5rem 3rem; border-bottom: 1px solid var(--trait, #eee); }
+.heroIn { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+.devise { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--encre-douce, #888); margin: 0 0 1rem; }
+.titre { font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem); line-height: 1.08; margin: 0 0 1.25rem; max-width: 22ch; }
+.chapeau { font-size: 1.08rem; line-height: 1.65; color: var(--encre-douce, #555); max-width: 46ch; margin: 0 0 1.75rem; }
+.heroLiens { margin: 0; }
 
-   Le principe maintenant: une seule largeur de page, `--page`, et des
-   sections qui se lisent EN LARGEUR. Le héros est asymétrique, deux colonnes
-   au lieu d'un bloc centré. Les produits, les actualités et la clôture sont
-   des grilles. La prose, elle, garde `--texte`: une ligne de plus de 68
-   caractères fait perdre le début de la ligne suivante, donc élargir un
-   paragraphe le rendrait moins lisible, pas plus.
+.bande { padding-block: 3rem; border-bottom: 1px solid var(--trait, #eee); }
+.bandeIn { max-width: var(--largeur-page, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+.h2 { font-size: 1.4rem; margin: 0 0 1.25rem; }
+.texte { max-width: 46ch; line-height: 1.65; color: var(--encre-douce, #555); margin: 0 0 1.5rem; }
 
-   Le rythme vertical reste serré volontairement. Othman a signalé deux fois
-   que la page descendait trop: gagner de la place se fait en largeur, jamais
-   en ajoutant de la hauteur entre les sections.
-   ════════════════════════════════════════════════════════════════════════ */
+.domaines { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.domaine { display: flex; flex-direction: column; gap: .35rem; height: 100%; padding: 1.1rem 1rem; border: 1px solid var(--trait, #e2e2e2); border-radius: 10px; text-decoration: none; color: inherit; transition: background .15s, border-color .15s; }
+.domaine:hover, .domaine:focus-visible { background: var(--fond-doux, #f7f7f7); border-color: var(--encre-douce, #bbb); }
+.domaineNom { font-weight: 650; font-size: .98rem; }
+.domaineRole { font-size: .82rem; color: var(--encre-douce, #666); line-height: 1.4; }
+.compteur { margin-top: auto; padding-top: .7rem; font-size: .78rem; font-variant-numeric: tabular-nums; }
+.actif { color: var(--vert, #3e6b4a); }
+.vide { color: var(--encre-douce, #999); font-style: italic; }
+.socle { font-size: .9rem; color: var(--encre-douce, #777); margin: 0; max-width: 52ch; }
 
-/* Le conteneur unique. Toute section l'utilise, donc tout s'aligne. */
-.bloc {
-  max-width: var(--page);
-  margin: 0 auto;
-  padding-inline: var(--marge-page);
-}
+.produits { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0; }
+.produit { display: flex; flex-direction: column; gap: .45rem; padding: 1.15rem; border: 1px solid var(--trait, #e2e2e2); border-radius: 10px; }
+.produitDomaine { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--encre-douce, #999); }
+.produitNom { font-weight: 650; font-size: 1.02rem; }
+.produitQuoi { font-size: .9rem; line-height: 1.5; color: var(--encre-douce, #555); margin: 0; }
+.produitLien { font-size: .85rem; margin-top: auto; }
 
-/* L'en-tête et le pied de page viennent de `components/Chrome.tsx` depuis le
-   2026-09-02. Les règles qui les décrivaient ici, y compris leurs deux
-   requêtes de média et leurs correctifs de cible tactile, ont été retirées :
-   elles ne s'appliquaient plus à rien. Un module CSS embarque ses classes
-   mortes dans le paquet servi, et surtout la prochaine personne à vouloir
-   corriger l'en-tête les aurait modifiées sans effet. Le raisonnement sur les
-   petits écrans a été repris dans `Chrome.module.css`, où il agit. */
+.etapes { counter-reset: e; list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: .6rem; max-width: 46ch; }
+.etapes li { counter-increment: e; position: relative; padding-left: 2.1rem; line-height: 1.55; }
+.etapes li::before { content: counter(e); position: absolute; left: 0; top: .05rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--fond-doux, #f2f2f2); color: var(--encre-douce, #666); font-size: .78rem; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
 
-/* Les très petits téléphones gardent leur mise en page de contenu. */
-@media (max-width: 359px) {
-  .hero { padding-left: 1rem; padding-right: 1rem; }
-  .heroActions { flex-direction: column; align-items: stretch; }
-}
-
-.hero {
-  /* Etait centre dans 680px. Devient une grille asymetrique: le discours a
-     gauche, la signature visuelle a droite. Le premier ecran cesse d'etre
-     une colonne etroite au milieu du vide. */
-  max-width: var(--page);
-  margin: 0 auto;
-  padding: 3rem var(--marge-page) 2.2rem;
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: center;
-  text-align: left;
-}
-.hero h1 {
-  /* Plus grand: sur 7 colonnes de 1280px il y a la place, et un titre
-     d'accueil doit porter. */
-  font-weight: 800; font-size: clamp(2.1rem, 1.2rem + 3.2vw, 3.6rem); line-height: 1.08;
-  letter-spacing: -.03em;
-  max-width: 22ch;
-}
-.hero p { margin-top: 1rem; max-width: 46ch; color: var(--slate); font-size: 1.08rem; line-height: 1.55; }
-.heroActions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
-.heroSujets { margin-top: 1rem; font-size: .8rem; color: var(--slate); letter-spacing: .02em; }
-
-.sectionT {
-  font-weight: 700; font-size: .74rem; line-height: 1; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--slate); margin-bottom: 1rem;
-}
-.vedette { max-width: var(--page); margin: 0 auto; padding: 1.8rem var(--marge-page); }
-.vedetteCarte {
-  display: block; border: 1px solid var(--line); border-radius: var(--r-m);
-  padding: 1.6rem; transition: border-color var(--selection) var(--ease);
-}
-.vedetteCarte:hover { border-color: var(--ink); }
-.vedetteCat { font-size: .8rem; color: var(--slate); }
-.vedetteCarte h2 { font-weight: 700; font-size: 1.4rem; line-height: 1.3; margin: .5rem 0 .6rem; letter-spacing: -.015em; }
-.vedetteCarte p { color: var(--slate); line-height: 1.55; }
-
-.comment { max-width: var(--page); margin: 0 auto; padding: 2.4rem var(--marge-page); border-top: 1px solid var(--line); }
-@media (max-width: 720px) { 
- }
-
-.cta {
-  /* La cloture devient deux colonnes: l'invitation a gauche, le moyen de
-     repondre a droite. Centre, elle laissait deux tiers de l'ecran vides. */
-  max-width: var(--page);
-  margin: 0 auto;
-  padding: 2.6rem var(--marge-page) 3.2rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1.2rem, 4vw, 3rem);
-  align-items: center;
-  text-align: left;
-  border-top: 1px solid var(--line);
-  border-top: 1px solid var(--line);
-}
-.cta h2 { font-weight: 700; font-size: 1.4rem; line-height: 1.35; letter-spacing: -.015em; margin-bottom: 1.4rem; }
-
-/* Icône d'étape dans « Comment Kogia fonctionne ». L'accent bleu de l'icône
-   bicolore reste le SEUL bleu de la section : le titre et le texte restent
-   noir/gris, conformément à la règle « un accent, un usage ». */
-
-/* ── Ce qui tourne ───────────────────────────────────────────────────────────
-   La section qui manquait : ce qui existe vraiment, avec un état par ligne.
-   Les pastilles d'état sont la seule couleur de la page, et elles portent une
-   information, vert : en service ; ambre : en chantier ; ardoise : en
-   préparation. Les jetons Harmony existaient depuis le début et cette page
-   n'en utilisait aucun. */
-.tourne {
-  /* 940 et non 760 : une grille a deux colonnes a besoin de la largeur,
-     sinon elle retombe en une colonne et on n a rien gagne. */
-  max-width: var(--page);
-  margin: 0 auto;
-  padding: 1rem var(--marge-page) 2rem;
-  text-align: left;
-}
-.produits {
-  list-style: none;
-  /* Six produits en liste verticale faisaient six rangees a faire defiler.
-     En grille auto-ajustee ils tiennent sur deux rangees des 720px, et la page
-     se lit en largeur au lieu de descendre. C'etait le premier motif de
-     defilement de la page d'accueil. */
-  display: grid;
-  /* Corrige apres avoir VU la page: auto-fit posait 4 cartes puis 2, donc un
-     trou d'un tiers de rangee. Les six produits mis en avant tiennent
-     exactement sur deux rangees de trois, et la grille est pleine. */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .8rem;
-}
-.produit {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  padding: .95rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-s);
-  background: var(--surface);
-  /* Ombre plate et decalee, sans flou, empruntee a Kogia Kids : une ombre
-     gaussienne molle fait immediatement « application web ». */
-  box-shadow: 0 2px 0 rgba(14, 33, 53, .05);
-  transition: transform 140ms cubic-bezier(.34,1.56,.64,1),
-              box-shadow 140ms ease, border-color 140ms ease;
-}
-.produit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 0 rgba(14, 33, 53, .08);
-  border-color: var(--line-forte);
-}
-.produit h3 { font-weight: 700; font-size: 1.05rem; line-height: 1.3; letter-spacing: -.01em; }
-.produit h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--k-ocean-300); }
-.produit h3 a:hover { border-bottom-color: var(--ink); }
-.produit p { margin-top: .3rem; color: var(--slate); font-size: .95rem; line-height: 1.5; }
-.etat {
-  /* La largeur fixe alignait les noms dans une liste verticale. En grille
-     chaque pastille est seule sur sa ligne, donc elle se dimensionne sur son
-     texte. */
-  align-self: flex-start;
-  white-space: nowrap;
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  padding: .3rem .6rem;
-  border-radius: 999px;
-  text-align: center;
-}
-.vit      { background: var(--k-ok-soft, #E7F6EE); color: var(--k-ok, #1B7F4E); }
-.chantier { background: var(--k-terra-50);  color: var(--k-terra-700); }
-.prepare  { background: var(--k-canvas);    color: var(--slate); }
-.preuve {
-  margin-top: 1.6rem;
-  padding: 1rem 1.2rem;
-  background: var(--k-ocean-50);
-  border-left: 3px solid var(--k-ocean-500);
-  border-radius: .5rem;
-  color: var(--ink);
-  font-size: .95rem;
-  line-height: 1.6;
-}
-.preuve strong { font-weight: 800; }
-
-@media (max-width: 560px) {
-  .produit { flex-direction: column; gap: .5rem; }
-  .etat { min-width: 0; }
-}
-.ctaActions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
-
-/* ── La bande de chiffres ─────────────────────────────────────────────────
-   Quatre nombres mesurés, juste sous le héros. Ils remplacent l'adjectif :
-   « on a beaucoup construit » ne se vérifie pas, « 647 changements publiés »
-   se vérifie. La méthode de comptage est écrite sur /realisations, parce
-   qu'un chiffre sans sa méthode n'est qu'une affirmation. */
-.bande { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.bandeIn {
-  max-width: var(--page); margin: 0 auto; padding: 1.2rem var(--marge-page);
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
-}
-@media (max-width: 640px) {
-  .bandeIn { grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; }
-}
-.bandeItem {
-  display: flex;
-  flex-direction: column;
-  gap: .3rem;
-  /* Un filet a gauche plutot qu'une carte: la maison separe par des traits,
-     jamais par du relief. Il donne un bord a chaque chiffre, ce qui manquait
-     completement quand les quatre nombres flottaient dans le vide. */
-  padding-left: .9rem;
-  border-left: 2px solid var(--k-series-1);
-}
-.bandeItem:nth-child(2) { border-left-color: var(--k-series-2); }
-.bandeItem:nth-child(3) { border-left-color: var(--k-series-4); }
-.bandeItem:nth-child(4) { border-left-color: var(--k-series-6); }
-.bandeValeur {
-  font-variant-numeric: tabular-nums;
-  font-weight: 800; font-size: clamp(1.45rem, 1.2rem + 1vw, 1.85rem); line-height: 1;
-  letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums;
-}
-.bandeLibelle { font-size: .82rem; color: var(--slate); line-height: 1.35; }
-
-/* En-tête de section avec son lien « voir tout » à droite : la même barre
-   sert « Ce qui tourne » et « Dernières nouvelles », pour que les deux
-   sections se lisent comme une paire. */
-.sectionEntete {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 1rem; margin-bottom: 1rem;
-}
-.sectionEntete .sectionT { margin-bottom: 0; }
-.lienSection {
-  font-size: .86rem; font-weight: 600; color: var(--indigo);
-  white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px;
-}
-.lienSection:hover { text-decoration: underline; }
-
-/* ── Dernières nouvelles ─────────────────────────────────────────────────
-   Quatre faits datés, sans résumé : le titre du journal est déjà une phrase
-   complète, et un extrait tronqué aurait coupé la moitié des leçons en deux. */
-.nouvelles { max-width: var(--page); margin: 0 auto; padding: 1rem var(--marge-page) 2rem; }
-.nouvellesListe {
-  list-style: none;
-  /* Deux colonnes des 640px : quatre nouvelles sur deux rangees. */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-  gap: 0 2.4rem;
-}
-.nouvelle { padding: .85rem 0; border-bottom: 1px solid var(--line); }
-:is(.nouvelle:nth-child(1), .nouvelle:nth-child(2)) { border-top: 1px solid var(--line); }
-@media (max-width: 639px) { .nouvelle:nth-child(2) { border-top: 0; } }
-.nouvelleHaut {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .7rem;
-  margin-bottom: .35rem;
-}
-.nouvelleDate {
-  font-size: .78rem; color: var(--slate); white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-.nouvelleRubrique {
-  padding: .18rem .5rem; border-radius: var(--r-max);
-  border: 1px solid var(--line); background: var(--surface-2);
-  font-weight: 600; font-size: .7rem; line-height: 1.3; color: var(--slate); white-space: nowrap;
-}
-.nouvelleProjet { font-size: .78rem; font-weight: 600; color: var(--ink); }
-.nouvelleTitre {
-  display: block; font-weight: 600; font-size: 1.02rem; line-height: 1.45; color: var(--ink);
-  letter-spacing: -.01em;
-}
-.nouvelleTitre:hover { text-decoration: underline; }
-
-/* Le renvoi vers « comment on travaille », sous les trois étapes : les trois
-   étapes disent l'intention, cette page-là donne les preuves. */
-.commentPlus {
-  margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
-  font-size: .93rem; line-height: 1.6; color: var(--slate);
-}
-.commentPlus a { color: var(--indigo); font-weight: 600; text-decoration: underline; }
-
-/* Le nom du produit dans « Ce qui tourne » est devenu un lien vers sa page
-   de projet : il lui faut donc les 44 px d'une vraie cible. Mesuré à 24 px
-   après le passage du texte au lien. */
-.produit h3 a { display: inline-flex; align-items: center; min-height: 44px; }
-
-/* Le titre d'une nouvelle est un lien de bloc, pas un lien dans une phrase :
-   l'exception « inline » de WCAG 2.5.5 ne s'applique pas. Mesuré à 26 px sur
-   un titre d'une seule ligne. */
-.nouvelleTitre { display: flex; align-items: center; min-height: 44px; }
-
-/* La démo a sa propre teinte, l'océan pâle : elle avait le vert de la
-   production, alors que la distinction entre « des gens s'en servent » et
-   « c'est visible en ligne » est précisément ce que cette page corrige. */
-.demo { background: var(--k-ocean-50); color: var(--k-ocean-700); }
-
-
-/* Sous 900px, le heros et la cloture repassent en une colonne: a deux
-   colonnes sur un ecran etroit, le titre tomberait a trois mots par ligne. */
-@media (max-width: 1023px) { .produits { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 639px)  { .produits { grid-template-columns: 1fr; } }
-
-@media (max-width: 899px) {
-  .hero { grid-template-columns: 1fr; gap: 1.6rem; }
-  .hero h1 { max-width: none; }
-  .cta { grid-template-columns: 1fr; }
-}
-
-.ctaTexte {
-  margin-top: .7rem;
-  max-width: 46ch;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--slate);
-}
-.ctaActions { flex-direction: column; align-items: stretch; }
-@media (min-width: 900px) { .ctaActions { min-width: 15rem; } }
-@media (max-width: 899px) { .ctaActions { flex-direction: row; flex-wrap: wrap; } }
-
-/* ── Le résumé en trois points ──────────────────────────────────────────
-   Les gens balaient avant de lire. Trois points donnent la portée complète
-   en une seconde, et qui veut le détail descend. Rien n'est caché derrière:
-   ce résumé s'ajoute, il ne remplace rien.
-   Un <dl> et pas trois <div>: c'est bien une liste de définitions, terme et
-   explication, et un lecteur d'écran l'annonce comme telle. */
-.resume {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-  margin: 2rem 0 0;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--line);
-}
-.resume dt {
-  font-weight: 700; font-size: .78rem; line-height: 1;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.resume dd {
-  margin: .5rem 0 0;
-  font-size: .9rem;
-  line-height: 1.5;
-  color: var(--slate);
-}
-/* Sous 700px, trois colonnes donnent deux mots par ligne. */
-@media (max-width: 699px) {
-  .resume { grid-template-columns: 1fr; gap: 1rem; }
-}
+@media (max-width: 1000px) { .domaines { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .domaines { grid-template-columns: 1fr; } }

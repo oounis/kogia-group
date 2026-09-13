@@ -1,82 +1,35 @@
 import type { MetadataRoute } from "next";
-import { createClient } from "@/lib/supabase/server";
-import { TRAVAUX } from "@/lib/travaux";
-import { journalTrie } from "@/lib/journal";
 
 const SITE = "https://kogiagroup.com";
 
 /**
- * Sitemap réel : les articles publiés sont lus dans la base, pas codés en
- * dur, donc publier un article le met automatiquement dans le sitemap.
- * L'ancien site statique générait l'équivalent via tools/construire.py.
+ * Le sitemap.
  *
- * Les pages de vitrine sont dérivées du catalogue et du journal, pour la
- * même raison : ajouter un projet dans `lib/travaux` doit suffire à le
- * rendre indexable. Une liste de routes tenue à la main ici serait une
- * deuxième source de vérité, et donc une source qui se périme.
+ * Il était auparavant dérivé du catalogue de projets, du journal et des
+ * articles publiés en base, pour qu'ajouter un contenu suffise à le rendre
+ * indexable. Le site n'a plus de contenu dynamique depuis la reconstruction du
+ * 13 septembre 2026 : c'est une vitrine de structure, dont les pages changent
+ * quand la société change. Une liste tenue à la main est ici la source la plus
+ * honnête, et la seule.
  */
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  /* Le journal a une date réelle : sa dernière entrée sert de date de
-     dernière modification, plutôt que la date du jour, qui dirait aux robots
-     que la page change quotidiennement alors qu'elle ne change pas. */
-  const dernierJournal = journalTrie()[0]?.date;
-
-  const pagesFixes: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, changeFrequency: "weekly", priority: 1 },
-    /* L'écosystème et ses cinq domaines. Ce sont des pages de structure : elles
-       changent quand la société change, pas quand un contenu est publié. */
-    { url: `${SITE}/ecosysteme`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE}/education`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE}/skills`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE}/business`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE}/play`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/research`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE}/realisations`, changeFrequency: "monthly", priority: 0.9 },
-    /* `/news` et `/journal` partagent la même source, donc la même date de
-       dernière modification : celle de la dernière entrée, pas celle du jour.
-       Priorité plus haute pour les actualités, c'est la porte d'entrée d'un
-       visiteur extérieur, alors que le journal est le registre complet. */
-    {
-      url: `${SITE}/news`,
-      lastModified: dernierJournal ? new Date(dernierJournal) : undefined,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE}/journal`,
-      lastModified: dernierJournal ? new Date(dernierJournal) : undefined,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    { url: `${SITE}/savoir-faire`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE}/explore`, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${SITE}/about`, changeFrequency: "monthly", priority: 0.6 },
+export default function sitemap(): MetadataRoute.Sitemap {
+  const pages: [string, number][] = [
+    ["/", 1],
+    ["/ecosysteme", 0.9],
+    ["/education", 0.8],
+    ["/skills", 0.7],
+    ["/business", 0.7],
+    ["/research", 0.7],
+    ["/play", 0.6],
+    ["/about", 0.6],
+    ["/contact", 0.5],
+    ["/terms", 0.3],
+    ["/privacy", 0.3],
   ];
 
-  const projets: MetadataRoute.Sitemap = TRAVAUX.map((t) => ({
-    url: `${SITE}/realisations/${t.slug}`,
+  return pages.map(([chemin, priority]) => ({
+    url: `${SITE}${chemin}`,
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority,
   }));
-
-  try {
-    const supabase = await createClient();
-    const { data } = await supabase
-      .from("articles")
-      .select("slug, updated_at")
-      .eq("status", "published")
-      .eq("visibility", "public");
-
-    const articles: MetadataRoute.Sitemap = (data ?? []).map((a) => ({
-      url: `${SITE}/articles/${a.slug}`,
-      lastModified: a.updated_at ? new Date(a.updated_at) : undefined,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    }));
-
-    return [...pagesFixes, ...projets, ...articles];
-  } catch {
-    // Base injoignable : mieux vaut un sitemap partiel qu'une page en erreur.
-    return [...pagesFixes, ...projets];
-  }
 }

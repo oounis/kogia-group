@@ -1,88 +1,17 @@
-/* L'en-tête et le pied de page de cette page viennent de
-   `components/Chrome.tsx`. Les règles qui les décrivaient ici ont été
-   retirées le 2026-09-02 : elles ne s'appliquaient plus à rien, mais un
-   module CSS embarque ses classes mortes dans le paquet servi, et surtout
-   la prochaine personne à vouloir corriger l'en-tête les aurait modifiées
-   sans effet. */
+/* À propos. Une page de texte : une seule colonne, mesure courte, rien qui
+   bouge. */
 
-/* La page etait UNE colonne etroite de paragraphes, du haut en bas. C'est
-   pour ca qu'elle paraissait pauvre: du texte correct, aucune mise en page.
-   Elle passe a la pleine largeur, et c'est chaque BLOC qui garde sa mesure:
-   la prose reste a --texte, les grilles et la frise prennent la largeur. */
-.main { max-width: var(--page); margin: 0 auto; padding: 2.8rem var(--marge-page) 3.5rem; }
+.page { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
 
-/* Le chapeau devient deux colonnes: le discours a gauche, les chiffres a
-   droite. Empiles, ils faisaient descendre la page pour rien. */
-.tete {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: start;
-  margin-bottom: 2.4rem;
-}
-.tete > div > :is(.lede, .para) { max-width: var(--texte); }
-@media (max-width: 899px) { .tete { grid-template-columns: 1fr; } }
-.titre { font-weight: 800; font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1.1; letter-spacing: -.03em; margin-bottom: 1.1rem; }
-.lede { font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin-bottom: 1rem; }
-.para { max-width: var(--texte); color: var(--slate); line-height: 1.6; margin-bottom: 1rem; }
-.sousTitre { font-weight: 700; font-size: clamp(1.3rem, 1.1rem + .6vw, 1.7rem); line-height: 1.25; letter-spacing: -.015em; margin: 2.6rem 0 1rem; }
+.chapeau { padding-block: 3.5rem 2rem; }
+.titre { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.9rem); line-height: 1.1; margin: 0 0 1rem; }
+.intro { font-size: 1.08rem; line-height: 1.65; color: var(--encre, #222); margin: 0; }
 
-/* Dix produits en liste verticale faisaient dix rangees. En grille ils
-   tiennent sur trois. */
-.produits {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
-  gap: 0 2rem;
-  border-top: 1px solid var(--line);
-}
-.produit { border-bottom: 1px solid var(--line); }
-.produitLien {
-  display: flex; align-items: center; gap: .9rem; padding: 1rem .1rem;
-}
-a.produitLien:hover { background: #FAFAFA; }
-/* Porte désormais une icône du système, plus une initiale. Fond clair et
-   icône en encre : l'icône reste lisible, et le seul bleu de la page
-   demeure celui du bouton d'action. */
-.lettre {
-  display: flex; align-items: center; justify-content: center;
-  width: 2.2rem; height: 2.2rem; border-radius: 8px;
-  background: var(--surface-2); color: var(--ink);
-  --icone-accent: var(--indigo);
-  flex-shrink: 0;
-}
-.produitTexte { display: flex; flex-direction: column; gap: .1rem; }
-.produitNom { font-weight: 600; }
-.produitDetail { font-size: .85rem; color: var(--slate); }
+.section { padding-block: 2.25rem; border-top: 1px solid var(--trait, #eee); }
+.h2 { font-size: 1.25rem; margin: 0 0 1rem; }
+.texte { line-height: 1.68; margin: 0 0 1rem; }
+.texte:last-child { margin-bottom: 0; }
 
-.cta { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-
-/* Les chiffres de la maison, mêmes que sur l'accueil et les réalisations.
-   Chiffres tabulaires : sans cela, les quatre colonnes se décalent entre
-   « 647 » et « 82 500 ». */
-.chiffres {
-  /* En colonne dans le chapeau plutot qu'en bande horizontale: elle occupe
-     la seconde colonne au lieu d'ajouter une rangee. */
-  margin: 2rem 0 0; padding: 1.4rem 0;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
-}
-@media (max-width: var(--texte)) { .chiffres {
-  /* En colonne dans le chapeau plutot qu'en bande horizontale: elle occupe
-     la seconde colonne au lieu d'ajouter une rangee. */ grid-template-columns: 1fr 1fr; gap: 1.3rem 1rem; } }
-.chiffre { display: flex; flex-direction: column; gap: .18rem; }
-.chiffreValeur {
-  font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: -.03em;
-  font-variant-numeric: tabular-nums;
-}
-.chiffreLibelle { font-size: .8rem; color: var(--slate); line-height: 1.35; }
-.note { margin-top: .9rem; font-size: .82rem; line-height: 1.6; color: var(--slate); }
-.note a { text-decoration: underline; }
-
-.para a { color: var(--indigo); text-decoration: underline; }
-.ctaActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.2rem; }
-
-/* La page dépasse maintenant une hauteur d'écran : les cibles tactiles des
-   lignes de produit doivent tenir les 44 px exigés par WCAG 2.5.5, comme
-   celles de l'en-tête. */
-.produitLien { min-height: 44px; }
+.regle { margin-top: 1.5rem; padding: 1.1rem 1.25rem; border-left: 3px solid var(--accent, #1f3a5f); background: var(--fond-doux, #f7f7f7); border-radius: 0 8px 8px 0; }
+.regle p { margin: 0; line-height: 1.6; }
+.regle p + p { margin-top: .7rem; }

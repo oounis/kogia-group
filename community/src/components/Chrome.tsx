@@ -13,12 +13,11 @@ import styles from "./Chrome.module.css";
    relevé par l'audit du site en ligne. */
 const LIENS = [
   { href: "/ecosysteme", libelle: "L'écosystème" },
-  { href: "/realisations", libelle: "Réalisations" },
-  { href: "/news", libelle: "Actualités" },
-  { href: "/journal", libelle: "Journal" },
-  { href: "/savoir-faire", libelle: "Comment on travaille" },
-  { href: "/explore", libelle: "Idées" },
+  { href: "/education", libelle: "Education" },
+  { href: "/skills", libelle: "Skills" },
+  { href: "/business", libelle: "Business" },
   { href: "/about", libelle: "À propos" },
+  { href: "/contact", libelle: "Contact" },
 ] as const;
 
 type PageActive = (typeof LIENS)[number]["href"] | "/" | undefined;
@@ -78,8 +77,6 @@ export function EnTete({
 
         {!compact && (
           <div className={styles.topActions}>
-            <Link href="/login" className={styles.lienDiscret}>Se connecter</Link>
-            <Link href="/join" className="bouton accent">Rejoindre Kogia</Link>
           </div>
         )}
       </div>
@@ -109,22 +106,22 @@ export function Pied() {
         </div>
 
         <div className={styles.piedCol}>
-          <h2>La société</h2>
+          <h2>Les domaines</h2>
           <ul>
-            <li><Link href="/ecosysteme">L'écosystème</Link></li>
-            <li><Link href="/realisations">Réalisations</Link></li>
-            <li><Link href="/journal">Journal</Link></li>
-            <li><Link href="/savoir-faire">Comment on travaille</Link></li>
-            <li><Link href="/about">À propos</Link></li>
+            <li><Link href="/education">Kogia Education</Link></li>
+            <li><Link href="/skills">Kogia Skills</Link></li>
+            <li><Link href="/play">Kogia Play</Link></li>
+            <li><Link href="/business">Kogia Business</Link></li>
+            <li><Link href="/research">Kogia Research</Link></li>
           </ul>
         </div>
 
         <div className={styles.piedCol}>
-          <h2>Les idées</h2>
+          <h2>La société</h2>
           <ul>
-            <li><Link href="/explore">Explorer</Link></li>
-            <li><Link href="/join">Rejoindre Kogia</Link></li>
-            <li><Link href="/login">Se connecter</Link></li>
+            <li><Link href="/ecosysteme">L'écosystème</Link></li>
+            <li><Link href="/about">À propos</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
         </div>
 

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <EnTete actif="/explore" />
+      <EnTete actif={undefined} />
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Conditions d&apos;utilisation</h1>

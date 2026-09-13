@@ -189,9 +189,8 @@ export default function Page() {
             au lieu d'une promesse.
           </p>
           <p className={styles.texte}>
-            <Link href="/savoir-faire">Comment on travaille</Link> ·{" "}
-            <Link href="/realisations">Ce qu'on a fait</Link> ·{" "}
-            <Link href="/journal">Le journal</Link>
+            <Link href="/about">À propos de Kogia</Link> ·{" "}
+            <Link href="/contact">Nous écrire</Link>
           </p>
         </section>
       </main>

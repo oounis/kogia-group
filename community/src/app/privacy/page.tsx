@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <EnTete actif="/explore" />
+      <EnTete actif={undefined} />
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Politique de confidentialité</h1>
