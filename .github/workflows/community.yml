@@ -83,8 +83,17 @@ jobs:
   # Le site réel, après coup : un 200 ne prouve pas qu'une page s'affiche.
   # C'est exactement le piège qui a laissé /suite/ complètement blanc pendant
   # une journée en répondant 200 (voir kogia-domain-cutover mémoire).
+  #
+  # DEPUIS LE 2026-10-11 : à la demande seulement. Lancé après chaque push,
+  # ce travail testait un site que le push n'avait pas déployé (voir
+  # l'en-tête : plus de déploiement automatique depuis le 2026-08-30), et il
+  # a donc échoué sur chacun des huit derniers commits de main, non pas parce
+  # que main était cassé mais parce que la production avait un mois de
+  # retard. Une porte rouge en permanence ne garde plus rien. On la lance à
+  # la main (Actions → ce workflow → Run workflow) APRÈS deploy.sh : c'est le
+  # seul moment où elle a quelque chose de vrai à dire.
   fumee-production:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch'
     needs: qualite
     runs-on: ubuntu-latest
     steps:
@@ -96,9 +105,6 @@ jobs:
 
       - name: Installer Playwright
         run: npm i -D @playwright/test && npx playwright install --with-deps chromium
-
-      - name: Laisser Render finir son déploiement
-        run: sleep 90
 
       - name: Le site rend-il vraiment quelque chose ?
         run: npx playwright test --config=playwright.smoke.config.ts
