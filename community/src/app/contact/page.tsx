@@ -17,7 +17,7 @@ const CAS = [
   },
   {
     qui: "Un parent, un enseignant",
-    quoi: "Des fiches imprimables pour le primaire. Kogia Kids est gratuit, sans compte, sans limite.",
+    quoi: "Des activités en arabe à imprimer pour les enfants de 3 à 5 ans, avec un guide pour les adultes. Kogia Kids est gratuit, sans compte, sans limite.",
   },
   {
     qui: "Un cabinet professionnel",

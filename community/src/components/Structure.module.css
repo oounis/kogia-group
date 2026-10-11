@@ -82,3 +82,5 @@
   .bloc { overflow-x: auto; padding-bottom: .5rem; }
   .svg { min-width: 660px; }
 }
+
+.bloc:focus-visible { outline: 2px solid var(--k-p-600, #2547E8); outline-offset: 4px; }

@@ -82,7 +82,7 @@
   grid-row: span 2;
   font-family: var(--display, inherit);
   font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem); font-weight: 700;
-  color: var(--k-p-200, #BFD2FE); line-height: 1;
+  color: var(--k-p-600, #2547E8); line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .h2 {

@@ -14,7 +14,7 @@
   padding-top: 2.5rem; font-size: .78rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--text-doux, #8b95a1); font-weight: 600;
 }
-.fil a { color: var(--k-p-600, #2547E8); text-decoration: none; }
+.fil a { color: var(--k-p-600, #2547E8); text-decoration: underline; text-underline-offset: .18em; }
 .fil a:hover { text-decoration: underline; }
 
 .chapeau { padding-block: 1.4rem 2.75rem; max-width: 52rem; }
@@ -58,7 +58,7 @@
 .num {
   grid-row: span 2; font-family: var(--display, inherit);
   font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem); font-weight: 700;
-  color: var(--k-p-200, #BFD2FE); line-height: 1; font-variant-numeric: tabular-nums;
+  color: var(--k-p-600, #2547E8); line-height: 1; font-variant-numeric: tabular-nums;
 }
 .sectionTitre {
   font-family: var(--display, inherit);

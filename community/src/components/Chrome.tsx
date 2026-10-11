@@ -119,7 +119,7 @@ export function Pied() {
         <div className={styles.piedCol}>
           <h2>La société</h2>
           <ul>
-            <li><Link href="/ecosysteme">L'écosystème</Link></li>
+            <li><Link href="/ecosysteme">L&apos;écosystème</Link></li>
             <li><Link href="/about">À propos</Link></li>
             <li><Link href="/contact">Contact</Link></li>
           </ul>
@@ -139,8 +139,8 @@ export function Pied() {
       <div className={styles.piedBas}>
         <p>
           © 2026 KogiaGroup · <a href="https://kogiagroup.com">kogiagroup.com</a> ·
-          Les commentaires publiés sur ce site sont publics. Retrait ou
-          question : <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
+          Une question sur nos produits ou la société ? Écrivez à{" "}
+          <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>
         </p>
       </div>
     </footer>

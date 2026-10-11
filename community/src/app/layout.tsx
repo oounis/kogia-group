@@ -29,7 +29,11 @@ export const metadata: Metadata = {
      `http://localhost:10000/...` en production : chaque partage Facebook,
      Reddit, LinkedIn ou WhatsApp affichait un aperçu cassé. */
   metadataBase: new URL(SITE_URL),
-  alternates: { canonical: "/" },
+  /* Pas de `alternates.canonical` ici : Next ne fusionne pas ce bloc, et une
+     valeur « / » posée sur le gabarit devenait la canonique de TOUTE page
+     qui oubliait la sienne. /privacy en ligne pointait ainsi sur l'accueil,
+     relevé par l'audit du 14 septembre 2026. Chaque page déclare la sienne,
+     et la fumée de production vérifie qu'elle pointe sur sa propre URL. */
   openGraph: {
     type: "website",
     siteName: "Kogia",
@@ -49,11 +53,11 @@ export const metadata: Metadata = {
     /* « Kogia » seul faisait 5 caractères : dans un résultat Google ou un
        onglet, rien n'indiquait de quoi il s'agit. Le gabarit reste court
        pour les pages internes, seule la page d'accueil se décrit. */
-    default: "Kogia, des idées explorées sérieusement",
+    default: "Kogia Group, Technology for Human Progress",
     template: "%s · Kogia",
   },
   description:
-    "Kogia est une communauté pour découvrir, publier et développer des idées sérieuses. Articles pratiques, gens curieux, projets qui deviennent réels.",
+    "KogiaGroup construit des outils pour les écoles et les familles. Découvrez nos produits éducatifs et contactez notre équipe.",
 };
 
 /* Cloudflare Web Analytics, RESTAURÉ le 2026-08-17. L'ancien site statique

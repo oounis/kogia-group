@@ -16,5 +16,6 @@ export default defineConfig({
   use: {
     baseURL: process.env.SMOKE_BASE_URL ?? "https://kogiagroup.com",
     ignoreHTTPSErrors: false,
+    launchOptions: process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {},
   },
 });

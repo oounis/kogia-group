@@ -6,12 +6,15 @@ import { DATE_DOCUMENTS_HUMAINE } from "@/lib/legal";
 export const metadata: Metadata = {
   title: "Conditions d'utilisation",
   description:
-    "Les règles d'usage de Kogia : ce que vous pouvez publier, ce qui appartient à qui, et ce que le service garantit ou non.",
+    "Informations sur le site de présentation KogiaGroup et conditions historiques du service communautaire.",
+  alternates: { canonical: "/terms" },
 };
 
 /**
- * Page publique, accessible sans compte : le formulaire d'inscription demande
- * de l'accepter, elle doit donc être lisible AVANT de créer un compte.
+ * Page publique, accessible sans compte. Le site n'a plus d'inscription
+ * depuis le 13 septembre 2026 : la première partie décrit le site actuel,
+ * la seconde conserve, datées, les conditions de l'ancien service
+ * communautaire, parce que des comptes ont existé sous ces règles.
  *
  * Écrite en langage clair et sur ce que le service fait réellement. Pas de
  * clause recopiée qui promettrait des garanties inexistantes ou décrirait des
@@ -24,7 +27,20 @@ export default function TermsPage() {
 
       <main className={styles.main}>
         <h1 className={styles.titre}>Conditions d&apos;utilisation</h1>
-        <p className={styles.maj}>Dernière mise à jour : {DATE_DOCUMENTS_HUMAINE}</p>
+        <p className={styles.maj}>Informations sur le site actuel : 15 septembre 2026</p>
+        <p className={styles.lede}>
+          Le site actuel présente KogiaGroup et ses produits. Sa consultation ne
+          demande pas de compte et aucun paiement n&apos;y est proposé. Les produits
+          liés depuis ce site disposent de leurs propres conditions.
+        </p>
+        <h2>Ancien service communautaire</h2>
+        <p>
+          Les conditions ci-dessous, datées du {DATE_DOCUMENTS_HUMAINE}, concernent
+          la version communautaire antérieure. Elles sont conservées pour référence :
+          les fonctions de compte et de publication décrites ne sont plus proposées
+          sur le site actuel. Pour toute demande concernant un ancien compte,
+          écrivez à <a href="mailto:contact@kogiagroup.com">contact@kogiagroup.com</a>.
+        </p>
 
         <p className={styles.lede}>
           Kogia est un service édité par KogiaGroup. En créant un compte, vous

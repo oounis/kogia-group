@@ -53,7 +53,7 @@ const PRODUITS = [
   {
     nom: "Kogia Kids",
     tag: "Education",
-    quoi: "Des fiches imprimables pour l'école primaire. Gratuites, sans compte, sans limite. On télécharge, on imprime, c'est tout.",
+    quoi: "Des activités en arabe à imprimer pour les enfants de 3 à 5 ans, avec un guide pour les adultes. Gratuites, sans compte, sans limite. On télécharge, on imprime, c'est tout.",
     lien: "https://kogiakids.com",
     libelle: "kogiakids.com",
   },
@@ -139,7 +139,7 @@ export default function Page() {
               <span className={styles.num}>01</span>
               <h2 className={styles.h2}>La charpente</h2>
               <p className={styles.sousTitre}>
-                Trois domaines sur cinq ne contiennent rien, et le disent.
+                Quatre domaines sur cinq ne contiennent rien, et le disent.
               </p>
             </header>
 

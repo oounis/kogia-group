@@ -25,7 +25,7 @@
 .num {
   grid-row: span 2; font-family: var(--display, inherit);
   font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem); font-weight: 700;
-  color: var(--k-p-200, #BFD2FE); line-height: 1; font-variant-numeric: tabular-nums;
+  color: var(--k-p-600, #2547E8); line-height: 1; font-variant-numeric: tabular-nums;
 }
 .h2 {
   font-family: var(--display, inherit);
@@ -54,7 +54,7 @@
 }
 .jalonAn {
   font-family: var(--display, inherit); font-size: 2rem; font-weight: 700;
-  color: var(--k-p-200, #BFD2FE); line-height: 1; display: block; margin-bottom: .5rem;
+  color: var(--k-p-600, #2547E8); line-height: 1; display: block; margin-bottom: .5rem;
   font-variant-numeric: tabular-nums;
 }
 .jalonQuoi { font-size: .98rem; line-height: 1.55; color: var(--ink, #0E2135); font-weight: 500; }

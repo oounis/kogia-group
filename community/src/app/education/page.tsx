@@ -27,7 +27,7 @@ export default function Page() {
       produits={[
         {
           nom: "Kogia Kids",
-          quoi: "Des fiches imprimables gratuites pour l'école primaire. Pas de compte, pas de limite, pas de paiement. C'est aussi l'entrée de tout le domaine : les fiches gratuites amènent les parents et les enseignants dont les produits payants ont besoin.",
+          quoi: "Des activités gratuites en arabe à imprimer pour les enfants de 3 à 5 ans, avec un guide pour les adultes. Pas de compte, pas de limite, pas de paiement. C'est aussi l'entrée de tout le domaine : les fiches gratuites amènent les parents et les enseignants dont les produits payants ont besoin.",
           lien: "https://kogiakids.com",
           libelle: "kogiakids.com",
         },

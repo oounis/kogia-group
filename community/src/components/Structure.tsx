@@ -37,7 +37,7 @@ export default function Structure({ sombre = false }: { sombre?: boolean }) {
   const centre = LARGEUR / 2;
 
   return (
-    <figure className={`${styles.bloc} ${sombre ? styles.sombre : ""}`}>
+    <figure className={`${styles.bloc} ${sombre ? styles.sombre : ""}`} tabIndex={0} aria-label="Structure de Kogia Group, défilement horizontal">
       <svg
         className={styles.svg}
         viewBox={`0 0 ${LARGEUR} 292`}
