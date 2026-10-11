@@ -6,31 +6,49 @@ const nextConfig: NextConfig = {
      et c'est la différence entre une image de ~200 Mo et une de ~1,5 Go. */
   output: "standalone",
 
-  /* Le fichier public/ ne sert un dossier que si le chemin exact est demandé
-     (/suite/index.html), pas /suite/ tout court comme le fait un serveur
-     statique classique. La démo Soldéo/Relio vit dans public/suite/
-     (copiée depuis site/suite/ lors du transfert du domaine) : ces deux
-     réécritures reproduisent le comportement attendu. */
-  async rewrites() {
-    return [
-      { source: "/suite", destination: "/suite/index.html" },
-      { source: "/suite/", destination: "/suite/index.html" },
-    ];
-  },
+  /* Anciennes URL, en deux couches.
 
-  /* Anciennes URL du site statique (avant le transfert de domaine du
-     2026-08-16). Elles ont été partagées sur Facebook et Reddit : sans
-     redirection permanente, ces liens tombent en 404 et le référencement
-     acquis est perdu. */
+     1. Le site statique d'avant le transfert de domaine (2026-08-16) :
+        /idees/<slug>.html, partagées sur Facebook et Reddit.
+     2. La plateforme communautaire retirée le 2026-09-13 : /articles,
+        /explore, /journal, /realisations, /savoir-faire, /join, /login, et
+        la démo Vite servie sous /suite/.
+
+     Jusqu'au 2026-10-11, la première couche redirigeait vers la seconde
+     (/idees/x.html → /articles/x, /idees → /explore), qui n'existait plus :
+     un lien ancien faisait une redirection PUIS un 404. Chaque destination
+     ci-dessous est une route réelle de src/app, et la fumée de production
+     (smoke/production.spec.ts) suit chacune de ces redirections jusqu'à un
+     200. Les contenus d'origine ne reviennent pas : on envoie la personne
+     sur la page qui dit aujourd'hui ce que Kogia est, pas sur une page vide.
+
+     `/suite/:path*` passe avant les fichiers de public/ (Next évalue les
+     redirections avant le système de fichiers), ce qui rend public/suite/
+     inatteignable : la démo Soldéo/Relio relevait du domaine Business. */
   async redirects() {
+    const vers = (source: string, destination: string) => ({
+      source,
+      destination,
+      permanent: true,
+    });
     return [
-      {
-        source: "/idees/:slug.html",
-        destination: "/articles/:slug",
-        permanent: true,
-      },
-      { source: "/idees", destination: "/explore", permanent: true },
-      { source: "/idees/", destination: "/explore", permanent: true },
+      // Les idées et articles : la page qui décrit ce que Kogia contient.
+      vers("/idees", "/ecosysteme"),
+      vers("/idees/:slug.html", "/ecosysteme"),
+      vers("/articles/:slug", "/ecosysteme"),
+      vers("/explore", "/ecosysteme"),
+      // Le journal racontait la société ; /about porte aujourd'hui ses jalons.
+      vers("/journal", "/about"),
+      // Les réalisations et le savoir-faire : les domaines qui les portent.
+      vers("/realisations", "/ecosysteme"),
+      vers("/realisations/:slug", "/ecosysteme"),
+      vers("/savoir-faire", "/skills"),
+      // La démo Suite (Soldéo/Relio) : un outil de cabinet, donc Business.
+      vers("/suite", "/business"),
+      vers("/suite/:path*", "/business"),
+      // Plus de comptes : la seule façon de nous joindre est le contact.
+      vers("/join", "/contact"),
+      vers("/login", "/contact"),
     ];
   },
 
@@ -38,14 +56,9 @@ const nextConfig: NextConfig = {
      qu'à celui qui cherche une faille connue. */
   poweredByHeader: false,
 
-  /* En-têtes de sécurité. La CSP est volontairement conçue autour de ce que
-     le site utilise RÉELLEMENT, vérifié avant écriture :
-       - Supabase (auth + base) en connexions XHR/WebSocket
-       - Cloudflare Web Analytics (script + beacon)
-       - la démo Suite dans /suite/, un bundle Vite compilé
-     `'unsafe-inline'` sur les styles reste nécessaire (Next injecte des
-     styles en ligne) ; il est en revanche ABSENT de script-src, ce qui est
-     la partie qui compte contre le XSS. */
+  /* En-têtes de sécurité. Cloudflare Web Analytics est le seul script tiers
+     autorisé. Next utilise encore des scripts et styles inline ; une
+     politique à nonce nécessite une migration dédiée. */
   async headers() {
     const csp = [
       "default-src 'self'",

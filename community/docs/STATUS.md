@@ -1,6 +1,36 @@
 # État du projet
 
-Dernière mise à jour : 2 septembre 2026.
+Dernière mise à jour : 11 octobre 2026.
+
+## 11 octobre 2026 : correctifs de l'audit du 14 septembre, COMMITTÉS, PAS ENCORE DÉPLOYÉS
+
+Dans `main`, pas encore en ligne : le site en production est toujours le
+commit déployé en dernier par `deploy.sh`. Ce qui change au prochain
+déploiement :
+
+- **/privacy et /terms décrivent le site actuel** (plus de comptes, de
+  commentaires, de Supabase ni de Render), et le pied de page ne prétend
+  plus que « les commentaires publiés sont publics ».
+- **Chaque page porte sa propre canonique.** Le gabarit posait `/` pour tout
+  le site, donc /privacy en ligne se déclarait canoniquement l'accueil.
+- **Les anciennes URL arrivent sur une page qui existe.** `/idees/x.html`
+  redirigeait vers `/articles/x`, et `/idees` vers `/explore`, deux routes
+  retirées le 13 septembre : redirection puis 404. Désormais /idees,
+  /articles, /explore, /realisations → /ecosysteme ; /journal → /about ;
+  /savoir-faire → /skills ; /suite → /business ; /join, /login → /contact.
+  `public/suite/` (la démo Vite) devient inatteignable et peut être supprimé.
+- **Contraste et clavier** : numéros de section en `--k-p-600` au lieu de
+  `--k-p-200`, fil d'Ariane souligné, le schéma de structure prend le focus.
+- **Fumée de production réécrite** pour les 11 routes de la vitrine
+  (`smoke/production.spec.ts`, 18 tests) : elle lit les redirections dans
+  `next.config.ts` et suit chacune jusqu'à un 200, vérifie la canonique de
+  chaque page, les en-têtes de sécurité, robots/sitemap, le menu mobile au
+  clavier. Verte contre un serveur local construit depuis ce commit ; rouge
+  contre la production du jour, précisément sur les trois points ci-dessus.
+
+Le reste de ce fichier date du 2 septembre et décrit la plateforme
+communautaire retirée depuis : il reste comme historique.
+
 
 > **Ce dossier EST kogiagroup.com** depuis le 16 août 2026. Il ne s'agit ni
 > d'un produit séparé, ni d'une préversion : le domaine public pointe ici.
