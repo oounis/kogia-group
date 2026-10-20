@@ -2,6 +2,17 @@
   "_lisezmoi": "La bibliothèque d'idées Kogia. Une entrée = un article dans site/idees/. \"brouillon\": true masque l'idée sans la supprimer.",
   "idees": [
     {
+      "slug": "orbit-jeu-social-conversation",
+      "titre": "ORBIT : et si un réseau social se cachait à l'intérieur d'un jeu ?",
+      "resume": "Un concept Kogia Group : remplacer le j'aime et le commentaire par une conversation de dix minutes que les deux personnes doivent accepter, en secret, de prolonger. La progression appartient à la relation, pas au profil.",
+      "categorie": "Technologie",
+      "pays": "Tunisie",
+      "date": "2026-09-03",
+      "lecture": 16,
+      "couleur": "indigo",
+      "signal": "Verdict Kogia : la vraie mesure n'est pas le temps passé, c'est le nombre de relations créées. Le risque principal reste le démarrage à froid, pas la technique"
+    },
+    {
       "slug": "kharbga-from-sand-to-screen",
       "titre": "Du sable à l'écran : le Kharbga peut-il devenir le grand jeu de stratégie numérique d'Afrique du Nord ?",
       "resume": "Un concept de projet Kogia Group : préserver un jeu vivant, respecter ses variantes régionales, et le reconstruire pour le mobile, le web et la compétition.",
