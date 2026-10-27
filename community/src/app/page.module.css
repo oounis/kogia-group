@@ -25,8 +25,8 @@
 }
 .titre {
   font-family: var(--display, inherit);
-  font-size: clamp(2.6rem, 1.1rem + 5.4vw, 5.2rem);
-  line-height: .94; letter-spacing: -.042em; font-weight: 700;
+  font-size: clamp(2.5rem, 1rem + 4.8vw, 4.6rem);
+  line-height: .96; letter-spacing: -.04em; font-weight: 700;
   margin: 0 0 1.6rem; color: var(--ink, #0E2135);
 }
 .accent { font-style: normal; color: var(--k-p-600, #2547E8); }
@@ -36,7 +36,7 @@
   font-size: clamp(1rem, .95rem + .3vw, 1.15rem); line-height: 1.6;
   color: var(--text-doux, #485868); max-width: 36ch; margin: 0 0 2rem;
 }
-.heroLiens { margin: 0; }
+.heroLiens { margin: 0; display: flex; flex-wrap: wrap; gap: .7rem .9rem; align-items: center; }
 .cta {
   display: inline-flex; align-items: center; gap: .55rem;
   padding: .78rem 1.5rem; border-radius: 999px;
@@ -50,6 +50,28 @@
   box-shadow: 0 .6rem 1.5rem rgba(37, 71, 232, .28);
 }
 .cta:hover::after { transform: translateX(3px); }
+.ctaSecond {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .72rem 1.35rem; border-radius: 999px;
+  border: 1.5px solid var(--ink, #0E2135); color: var(--ink, #0E2135);
+  font-weight: 620; font-size: .95rem; text-decoration: none;
+  transition: background .16s, color .16s;
+}
+.ctaSecond:hover, .ctaSecond:focus-visible { background: var(--ink, #0E2135); color: #fff; }
+
+/* Trois preuves sous les boutons : des chiffres vérifiables, pas des promesses. */
+.preuves {
+  list-style: none; padding: 1.4rem 0 0; margin: 1.8rem 0 0;
+  border-top: 1px solid var(--line, #e4e7eb);
+  display: flex; flex-wrap: wrap; gap: .9rem 2rem;
+}
+.preuve { display: flex; flex-direction: column; gap: .15rem; min-width: 9rem; max-width: 13rem; }
+.preuveNum {
+  font-family: var(--display, inherit);
+  font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em; line-height: 1;
+  color: var(--k-p-600, #2547E8);
+}
+.preuveQuoi { font-size: .82rem; line-height: 1.4; color: var(--text-doux, #5b6673); }
 
 /* ── 2. La bande des verbes ──────────────────────────────────────────── */
 

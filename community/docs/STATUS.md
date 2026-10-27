@@ -1,12 +1,27 @@
 # État du projet
 
-Dernière mise à jour : 11 octobre 2026.
+Dernière mise à jour : 27 octobre 2026.
 
-## 11 octobre 2026 : correctifs de l'audit du 14 septembre, COMMITTÉS, PAS ENCORE DÉPLOYÉS
+## 27 octobre 2026 : l'accueil mène par le résultat, pas par la devise
 
-Dans `main`, pas encore en ligne : le site en production est toujours le
-commit déployé en dernier par `deploy.sh`. Ce qui change au prochain
-déploiement :
+Dans `main`, à déployer par `deploy.sh` :
+
+- **Le premier écran dit ce que le visiteur obtient** : « L'arabe à la
+  maison. L'école sans papier. », deux boutons (télécharger une fiche
+  gratuite sur kogiakids.com, demander une démo pour son école via /contact)
+  et trois preuves chiffrées (237 fiches, 0 compte, 1 école en usage
+  quotidien). C'est le point G02 de l'audit du 14 septembre (acheteur et
+  offre peu clairs). La devise et le schéma de structure restent.
+- **« Ce qui existe vraiment » passe en section 01**, avant la charpente des
+  cinq domaines ; la carte EduPlus mène à une demande de démo.
+- Vérifié : lint, types, build, fumée de production contre un serveur local,
+  captures à 390 et 1366 px sans débordement ni erreur de console.
+
+## 11 octobre 2026 : correctifs de l'audit du 14 septembre, EN LIGNE
+
+Déployés le 11 octobre (commit `02e442c`, deux répliques, vérifié le
+27 octobre en production : canonique de /privacy, /idees → /ecosysteme,
+en-têtes de sécurité). Ce qui a changé :
 
 - **/privacy et /terms décrivent le site actuel** (plus de comptes, de
   commentaires, de Supabase ni de Render), et le pied de page ne prétend
@@ -25,8 +40,12 @@ déploiement :
   (`smoke/production.spec.ts`, 18 tests) : elle lit les redirections dans
   `next.config.ts` et suit chacune jusqu'à un 200, vérifie la canonique de
   chaque page, les en-têtes de sécurité, robots/sitemap, le menu mobile au
-  clavier. Verte contre un serveur local construit depuis ce commit ; rouge
-  contre la production du jour, précisément sur les trois points ci-dessus.
+  clavier.
+
+Reste ouvert de l'audit : O02 (mesurer le parcours adulte dans Cloudflare
+Web Analytics, le beacon est posé), O04 (runbook de restauration et alerte
+externe ; la sauvegarde nocturne couvre depuis le 27 octobre les volumes et
+les .env en plus des bases) et B01 (entretiens d'écoles, pilotes payants).
 
 Le reste de ce fichier date du 2 septembre et décrit la plateforme
 communautaire retirée depuis : il reste comme historique.

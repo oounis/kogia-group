@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Kogia Group, Technology for Human Progress",
   description:
-    "Les produits passent, les besoins restent. Kogia est bâtie sur cinq domaines humains : apprendre, savoir faire, jouer, travailler, chercher.",
+    "Des fiches d'arabe gratuites pour les enfants de 3 à 5 ans, et des logiciels de classe en usage quotidien dans une école. Kogia construit pour l'éducation d'abord, sur cinq domaines humains.",
   alternates: { canonical: "/" },
 };
 
@@ -53,7 +53,7 @@ const PRODUITS = [
   {
     nom: "Kogia Kids",
     tag: "Education",
-    quoi: "Des activités en arabe à imprimer pour les enfants de 3 à 5 ans, avec un guide pour les adultes. Gratuites, sans compte, sans limite. On télécharge, on imprime, c'est tout.",
+    quoi: "237 activités en arabe à imprimer pour les enfants de 3 à 5 ans, chacune avec un guide pour l'adulte. Gratuites, sans compte, sans limite. On télécharge, on imprime, c'est tout.",
     lien: "https://kogiakids.com",
     libelle: "kogiakids.com",
   },
@@ -67,10 +67,16 @@ const PRODUITS = [
   {
     nom: "EduPlus Connect",
     tag: "Education",
-    quoi: "Présences, observations, rapports, droits par module. Arabe par défaut, de droite à gauche partout.",
-    lien: null,
-    libelle: "en usage quotidien dans une école",
+    quoi: "Présences, observations, rapports, droits par module. Arabe par défaut, de droite à gauche partout. En usage quotidien dans une école depuis la rentrée 2026.",
+    lien: "/contact",
+    libelle: "demander une démo",
   },
+] as const;
+
+const PREUVES = [
+  ["237", "fiches gratuites, avec un guide pour l'adulte"],
+  ["0", "compte à créer, 0 limite de téléchargement"],
+  ["1", "école qui fait l'appel dessus chaque matin"],
 ] as const;
 
 const PORTES = [
@@ -94,19 +100,32 @@ export default function Page() {
             <div className={styles.heroTexte}>
               <p className={styles.devise}>Technology for Human Progress</p>
               <h1 className={styles.titre}>
-                Les produits passent.
+                L&apos;arabe à la maison.
                 <br />
-                <em className={styles.accent}>Les besoins restent.</em>
+                <em className={styles.accent}>L&apos;école sans papier.</em>
               </h1>
               <p className={styles.chapeau}>
-                Kogia est bâtie sur cinq domaines humains. Un produit peut
-                disparaître sans que la société vacille.
+                Kogia construit des outils pour l&apos;éducation : des fiches
+                à imprimer pour les enfants de 3 à 5 ans, et des logiciels de
+                classe qu&apos;une école utilise chaque jour. Les produits
+                passent, les besoins restent.
               </p>
               <p className={styles.heroLiens}>
-                <Link href="/ecosysteme" className={styles.cta}>
-                  Voir l&apos;écosystème
+                <a href="https://kogiakids.com" className={styles.cta}>
+                  Télécharger une fiche gratuite
+                </a>
+                <Link href="/contact" className={styles.ctaSecond}>
+                  Demander une démo pour votre école
                 </Link>
               </p>
+              <ul className={styles.preuves}>
+                {PREUVES.map(([n, quoi]) => (
+                  <li key={quoi} className={styles.preuve}>
+                    <span className={styles.preuveNum}>{n}</span>
+                    <span className={styles.preuveQuoi}>{quoi}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className={styles.heroSchema}>
@@ -133,10 +152,36 @@ export default function Page() {
           </div>
         </section>
 
-        <section className={styles.bande}>
+        <section className={`${styles.bande} ${styles.bandeDouce}`}>
           <div className={styles.bandeIn}>
             <header className={styles.enTete}>
               <span className={styles.num}>01</span>
+              <h2 className={styles.h2}>Ce qui existe vraiment</h2>
+              <p className={styles.sousTitre}>
+                Trois produits en ligne, tous en éducation. Le reste du site
+                dit ce qui n&apos;existe pas encore.
+              </p>
+            </header>
+
+            <ul className={styles.produits}>
+              {PRODUITS.map((p) => (
+                <li key={p.nom} className={styles.produit}>
+                  <span className={styles.produitTag}>{p.tag}</span>
+                  <span className={styles.produitNom}>{p.nom}</span>
+                  <p className={styles.produitQuoi}>{p.quoi}</p>
+                  <span className={styles.produitLien}>
+                    <a href={p.lien}>{p.libelle}</a>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className={styles.bande}>
+          <div className={styles.bandeIn}>
+            <header className={styles.enTete}>
+              <span className={styles.num}>02</span>
               <h2 className={styles.h2}>La charpente</h2>
               <p className={styles.sousTitre}>
                 Quatre domaines sur cinq ne contiennent rien, et le disent.
@@ -161,31 +206,6 @@ export default function Page() {
                       {d.produits ? `${d.produits} produits` : "aucun produit"}
                     </span>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section className={`${styles.bande} ${styles.bandeDouce}`}>
-          <div className={styles.bandeIn}>
-            <header className={styles.enTete}>
-              <span className={styles.num}>02</span>
-              <h2 className={styles.h2}>Ce qui existe vraiment</h2>
-              <p className={styles.sousTitre}>
-                Trois produits en ligne. Tous dans le même domaine.
-              </p>
-            </header>
-
-            <ul className={styles.produits}>
-              {PRODUITS.map((p) => (
-                <li key={p.nom} className={styles.produit}>
-                  <span className={styles.produitTag}>{p.tag}</span>
-                  <span className={styles.produitNom}>{p.nom}</span>
-                  <p className={styles.produitQuoi}>{p.quoi}</p>
-                  <span className={styles.produitLien}>
-                    {p.lien ? <a href={p.lien}>{p.libelle}</a> : p.libelle}
-                  </span>
                 </li>
               ))}
             </ul>
