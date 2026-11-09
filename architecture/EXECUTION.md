@@ -1,6 +1,12 @@
 # Execution checklist (living)
 
-Last updated: 2026-11-09, end of session 1.
+Last updated: 2026-11-09, end of session 2.
+
+> **Change 2026-11-09 (founder):** Kogia Health is a separate product in its own private repo
+> `oounis/kogia-health`, served at `healthcare.kogiagroup.com`, and must not be mixed with Kogia
+> Systems. It supersedes decision 3 for healthcare. Its own specification and roadmap live in
+> `kogia-health/docs/` (39 modules, 198 workflows, 126 roles). Release 1 inside Kogia Systems
+> moves there in wave W2, then is removed from Systems.
 
 Approved roadmap of 2026-11-09 ([11-THREE-LEVELS.md](11-THREE-LEVELS.md)).
 Updated at the end of every work session. Legend: ✅ done and verified ·
@@ -40,6 +46,20 @@ Updated at the end of every work session. Legend: ✅ done and verified ·
   real account (no client organisation exists there yet).
 - ✅ Demo clinic live: https://systems.kogiagroup.com/suite/demo-clinic/health (owner login,
   fictional sample data, no new account created). Not linked to an /ops client record.
+
+## Kogia Health platform (repo kogia-health)
+- ✅ Research, architecture (modular monolith), module/workflow/role specs, data model, roadmap
+- ✅ W0 core: tenancy with row-level security (runtime role owns nothing), org units and
+  positions, roles with unit scopes, workflow engine (chains, SoD, delegation, return,
+  escalation), tasks inbox, notifications, outbox, audit
+- ✅ W1 people: self-service, leave, monthly timesheet (employee → head of dept → HR →
+  payroll), HR, team, payroll queue, admin views. 7 engine tests + 309 browser checks green,
+  locally and on production (commit cc5ecd2+)
+- ✅ Deployed on kogia-prod-01 (web1/web2 healthy, db kogiahealth_db, demo tenant Clinic X;
+  demo logins in the founder's private file)
+- ⛔ DNS: `healthcare` A 13.140.153.6 (DNS only) in Cloudflare. The stored token is dead.
+- ⏳ Worker process (SLA timers, outbox dispatch) in deploy; editors for org/roles/chains
+- ⏳ W2: patient access + billing + stores + procurement + biomedical (migrate release 1)
 
 ## Phase 3 · Corporate website
 - ✅ Rebuilt and live (see Phase 0)
