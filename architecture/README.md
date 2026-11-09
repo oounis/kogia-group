@@ -1,5 +1,9 @@
 # Kogia Group — Architecture
 
+> **2026-11-09: the company structure changed.** Read [11 · Three levels](11-THREE-LEVELS.md)
+> first. It replaces the five human domains below wherever they disagree.
+> Live execution status: [EXECUTION.md](EXECUTION.md).
+
 **Technology for Human Progress.**
 
 This folder is the constitution of Kogia Group. It describes the company as a
