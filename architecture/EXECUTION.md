@@ -38,8 +38,8 @@ Updated at the end of every work session. Legend: ✅ done and verified ·
 - ✅ Deployed to systems.kogiagroup.com (`1a66fe5`): migrations applied, web1/web2 healthy,
   Health routes redirect anonymous visitors to login. Not yet exercised in production with a
   real account (no client organisation exists there yet).
-- ⛔ Demo clinic organisation for the Libya partner: creates a live account and password,
-  waiting for the founder's go (see "Blocked on the founder")
+- ✅ Demo clinic live: https://systems.kogiagroup.com/suite/demo-clinic/health (owner login,
+  fictional sample data, no new account created). Not linked to an /ops client record.
 
 ## Phase 3 · Corporate website
 - ✅ Rebuilt and live (see Phase 0)
@@ -53,8 +53,6 @@ Updated at the end of every work session. Legend: ✅ done and verified ·
 - 💤 Insurance claims, rosters · second server · per-country hosting · ISO 27001
 
 ## Blocked on the founder
-- ⛔ Go for a demo clinic organisation in production (sample data, one admin account whose
-  password goes to the private credentials file, never chat)
 - ⛔ SMS/WhatsApp provider choice (cost)
 - ⛔ Libyan partner name, once the agreement is signed
 - ⛔ Libyan legal advice on the agent / local entity question
