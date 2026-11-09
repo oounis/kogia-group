@@ -31,24 +31,28 @@ const nextConfig: NextConfig = {
       destination,
       permanent: true,
     });
+    /* 2026-11-09 : le site passe à trois niveaux (société, secteurs,
+       produits) et à trois langues. Les anciennes adresses en français
+       renvoient vers leur équivalent sous /fr. */
     return [
-      // Les idées et articles : la page qui décrit ce que Kogia contient.
-      vers("/idees", "/ecosysteme"),
-      vers("/idees/:slug.html", "/ecosysteme"),
-      vers("/articles/:slug", "/ecosysteme"),
-      vers("/explore", "/ecosysteme"),
-      // Le journal racontait la société ; /about porte aujourd'hui ses jalons.
-      vers("/journal", "/about"),
-      // Les réalisations et le savoir-faire : les domaines qui les portent.
-      vers("/realisations", "/ecosysteme"),
-      vers("/realisations/:slug", "/ecosysteme"),
-      vers("/savoir-faire", "/skills"),
-      // La démo Suite (Soldéo/Relio) : un outil de cabinet, donc Business.
-      vers("/suite", "/business"),
-      vers("/suite/:path*", "/business"),
-      // Plus de comptes : la seule façon de nous joindre est le contact.
-      vers("/join", "/contact"),
-      vers("/login", "/contact"),
+      vers("/idees", "/fr/products"),
+      vers("/idees/:slug.html", "/fr/products"),
+      vers("/articles/:slug", "/fr/products"),
+      vers("/explore", "/fr/products"),
+      vers("/journal", "/fr/about"),
+      vers("/realisations", "/fr/products"),
+      vers("/realisations/:slug", "/fr/products"),
+      vers("/savoir-faire", "/fr/capabilities"),
+      vers("/suite", "/fr/industries/enterprise"),
+      vers("/suite/:path*", "/fr/industries/enterprise"),
+      vers("/join", "/fr/contact"),
+      vers("/login", "/fr/contact"),
+      vers("/ecosysteme", "/fr/industries"),
+      vers("/education", "/fr/industries/education"),
+      vers("/business", "/fr/industries/enterprise"),
+      vers("/skills", "/fr/industries"),
+      vers("/play", "/fr/industries"),
+      vers("/research", "/fr/about"),
     ];
   },
 

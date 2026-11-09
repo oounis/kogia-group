@@ -1,35 +1,30 @@
 import type { MetadataRoute } from "next";
+import { INDUSTRIES, PRODUCTS } from "@/lib/catalog";
+import { LANGS } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/site";
 
-const SITE = "https://kogiagroup.com";
-
-/**
- * Le sitemap.
- *
- * Il était auparavant dérivé du catalogue de projets, du journal et des
- * articles publiés en base, pour qu'ajouter un contenu suffise à le rendre
- * indexable. Le site n'a plus de contenu dynamique depuis la reconstruction du
- * 13 septembre 2026 : c'est une vitrine de structure, dont les pages changent
- * quand la société change. Une liste tenue à la main est ici la source la plus
- * honnête, et la seule.
- */
+/* Generated from the catalogue: a new product or industry appears here by
+   being added to lib/catalog.ts. Every page exists in the three languages. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages: [string, number][] = [
-    ["/", 1],
-    ["/ecosysteme", 0.9],
-    ["/education", 0.8],
-    ["/skills", 0.7],
-    ["/business", 0.7],
-    ["/research", 0.7],
-    ["/play", 0.6],
+  const paths: [string, number][] = [
+    ["", 1],
+    ["/industries", 0.9],
+    ["/products", 0.9],
+    ...INDUSTRIES.map((i) => [`/industries/${i.slug}`, 0.8] as [string, number]),
+    ...PRODUCTS.map((p) => [`/products/${p.slug}`, 0.8] as [string, number]),
+    ["/capabilities", 0.7],
+    ["/how-we-work", 0.7],
+    ["/presence", 0.6],
     ["/about", 0.6],
     ["/contact", 0.5],
-    ["/terms", 0.3],
-    ["/privacy", 0.3],
+    ["/privacy", 0.2],
+    ["/terms", 0.2],
   ];
-
-  return pages.map(([chemin, priority]) => ({
-    url: `${SITE}${chemin}`,
-    changeFrequency: "monthly" as const,
-    priority,
-  }));
+  return paths.flatMap(([p, priority]) =>
+    LANGS.map((l) => ({
+      url: `${SITE_URL}/${l}${p}`,
+      priority,
+      alternates: { languages: Object.fromEntries(LANGS.map((x) => [x, `${SITE_URL}/${x}${p}`])) },
+    })),
+  );
 }

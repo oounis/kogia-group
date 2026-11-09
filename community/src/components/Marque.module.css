@@ -14,6 +14,8 @@
      system-ui et le logo est faux tout en paraissant correct : c'est le piège
      d'un lockup qui contient du texte plutôt qu'un tracé vectorisé. */
   font-family: var(--font-sora), system-ui, sans-serif;
+  /* Le lockup est latin : il garde son sens en page arabe (dir=rtl). */
+  direction: ltr;
 }
 
 /* Le mot se repeint sur fond sombre, le bleu de la marque jamais. */
