@@ -171,5 +171,40 @@ A product line the founder has announced and not yet started. Two sides:
 - **Municipality and citizen**: requests for documents and services online, tracking, payment,
   documents delivered with a verifiable electronic seal, fewer queues and visits.
 
-Research: architecture/research/2026-11-11-municipalities-and-public-bodies.md. It must be read
-before any public claim, in particular on which authority issues which document in Libya.
+Research: architecture/research/2026-11-11-municipalities-and-public-bodies.md (read it before any
+public claim). What it established on 2026-11-11:
+
+- **Who issues what in Libya.** Birth, death, family status, family booklet and national number
+  come from the **Civil Registry Authority** through its local offices, not from the municipality.
+  Marriage is concluded by a ma'dhun under court supervision and then recorded at the civil
+  registry. The **mukhtar al-mahalla** issues the residence attestation and five other
+  attestations (Decision 43/2020). The **municipality itself** issues activity licences
+  (Decision 224/2018) and building permits (Decision 225/2018) through its licences office.
+  So the municipal portal never claims to issue civil status documents: it offers a service guide
+  that routes those requests to the authority that issues them. A civil registry product would be
+  a separate line sold to that authority.
+- **Most valuable citizen services**: activity licence (new and renewal), building permit through
+  engineering offices, mukhtar attestations, reports with photo and location, complaints with
+  tracking, online payment of fees and fines, dues clearance certificate, advertising and
+  public-space permits, appointments and queue tickets, public document verification page.
+- **Most valuable internal modules**: correspondence and archive, licences office workflow and
+  register, local revenue and receipts, complaints desk, council sessions and decisions follow-up,
+  building permit and inspection, contractors with procurement and project follow-up, HR with
+  attendance and assets.
+- **Other public bodies, best ratio of need to entry difficulty**: chambers of commerce,
+  professional orders (engineers, accountants), the Ministry of Local Government through donor
+  programmes, state-owned enterprises, universities, water, sewage and cleaning companies, the
+  Municipal Guard, education directorates, NGOs and international organisations' offices, then
+  social security and banks for internal administration only (never core banking).
+- **Procurement**: Regulation 563/2007 was repealed by Cabinet Decision 600/2024 (direct agreement
+  capped at 1M LYD, 5M with Prime Minister authorisation, per the research; verify before a bid).
+- **Not verified** (see the report's list): fee amounts, the state of electronic signature and
+  seal certification under Law 6/2022, any national-number API, which payment services a
+  municipality can contract, the official count of municipalities. The catalogues of services and
+  modules in the report are design proposals built on the verified structure, not statements of law.
+
+On the public site (2026-11-11): the Government page shows three planned lines (municipal
+administration, services for residents and businesses, administrative core for public bodies) and
+the Enterprise page two (law firms, accounting and audit firms), all labelled "Planned". The
+"How we work" page states the three delivery models, data and code ownership, licence plus
+implementation plus maintenance, configuration over rewriting, and data hand-over at contract end.

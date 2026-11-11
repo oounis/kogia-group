@@ -39,6 +39,21 @@ export default async function IndustryPage({ params }: P) {
           <ul className="k-checks">{i.capabilities.map((n) => <li key={n.en}><Ico n="check" size={18} />{tr(n, lang)}</li>)}</ul>
         </div>
       </section>
+      {i.lines && (
+        <section>
+          <div className="k-sec-head"><div><h2 className="k-h2">{tr(C.linesH, lang)}</h2><p className="k-sub">{tr(C.linesNote, lang)}</p></div></div>
+          <div className="k-grid">
+            {i.lines.map((l) => (
+              <div key={l.slug} id={l.slug} className="k-card k-feature" style={{ alignContent: "start" }}>
+                <span className="k-pill k-pill-development" style={{ justifySelf: "start", alignSelf: "start" }}>{tr(C.planned, lang)}</span>
+                <h3><Ico n={l.icon} size={20} />{tr(l.name, lang)}</h3>
+                <p>{tr(l.text, lang)}</p>
+                <ul className="k-checks">{l.points.map((n) => <li key={n.en}><Ico n="check" size={18} />{tr(n, lang)}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       <section>
         <div className="k-sec-head"><h2 className="k-h2">{tr(C.ourProducts, lang)}</h2></div>
         <ul className="k-plist">{products.map((p) => <ProductRow key={p.slug} p={p} lang={lang} />)}</ul>

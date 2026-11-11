@@ -1,6 +1,23 @@
 # État du projet
 
-Dernière mise à jour : 27 octobre 2026.
+Dernière mise à jour : 11 novembre 2026.
+
+## 11 novembre 2026 : direction entreprise, lignes prévues et modèle de livraison
+
+Dans `main`, à déployer par `deploy.sh` :
+
+- **Secteur public** : trois lignes de solutions marquées « Prévu » (administration municipale,
+  services aux habitants et aux entreprises, socle administratif pour les organismes publics).
+  Le portail municipal n'annonce pas la délivrance d'actes d'état civil : en Libye ils relèvent
+  de l'Autorité de l'état civil (voir `architecture/research/2026-11-11-municipalities-and-public-bodies.md`).
+- **Entreprises** : deux lignes prévues (cabinets d'avocats, cabinets comptables et d'audit).
+- **Notre méthode** : trois modes de livraison (sur site, privé, géré), propriété des données et
+  du code, licence + mise en oeuvre + maintenance, paramétrage plutôt que réécriture, remise des
+  données en fin de contrat.
+- Les lignes vivent dans `catalog.ts` (`lines` d'un secteur). Quand une ligne devient un produit,
+  on la retire de `lines` et on ajoute une entrée dans `PRODUCTS`.
+- Vérifié : types, lint, build, captures à 390 et 1366 px (ar, fr, en) sans débordement. La fumée
+  locale échoue seulement sur la canonique (localhost), comme prévu hors production.
 
 ## 27 octobre 2026 : l'accueil mène par le résultat, pas par la devise
 

@@ -23,7 +23,11 @@ export type Industry = {
   intro: T;
   needs: T[];
   capabilities: T[];
+  /** Solution lines announced for this industry and not yet built. Shown with the "Planned" label. */
+  lines?: Line[];
 };
+
+export type Line = { slug: string; icon: string; name: T; text: T; points: T[] };
 
 export type Product = {
   slug: string;
@@ -143,10 +147,72 @@ export const INDUSTRIES: Industry[] = [
       { en: "Digital public services in Arabic, French and English", fr: "Services publics numériques en arabe, français et anglais", ar: "خدمات عامة رقمية بالعربية والفرنسية والإنجليزية" },
       { en: "Integration with existing institutional systems", fr: "Intégration aux systèmes institutionnels existants", ar: "التكامل مع الأنظمة المؤسسية القائمة" },
       { en: "Audit trails and role-based access", fr: "Journaux d'audit et accès par rôle", ar: "سجلات التدقيق والصلاحيات حسب الدور" },
+      { en: "Correspondence, decisions and archives that can be traced", fr: "Courrier, décisions et archives traçables", ar: "مراسلات وقرارات وأرشيف يمكن تتبعها" },
+      { en: "Fewer queues: requests filed, tracked and delivered online", fr: "Moins de files d'attente : demandes déposées, suivies et délivrées en ligne", ar: "طوابير أقل: طلبات تُقدَّم وتُتابَع وتُسلَّم عبر الإنترنت" },
     ],
     capabilities: [
       { en: "Dedicated deployment on infrastructure chosen by the client", fr: "Déploiement dédié sur l'infrastructure choisie par le client", ar: "نشر مخصص على البنية التي يختارها العميل" },
       { en: "Documentation and long-term maintenance agreements", fr: "Documentation et contrats de maintenance à long terme", ar: "التوثيق واتفاقيات الصيانة طويلة الأمد" },
+    ],
+    lines: [
+      {
+        slug: "municipal-administration",
+        icon: "building-2",
+        name: { en: "Municipal administration", fr: "Administration municipale", ar: "الإدارة البلدية" },
+        text: {
+          en: "The work inside a municipality, from the incoming letter to the council decision, on one system with roles, approvals and an audit trail.",
+          fr: "Le travail interne d'une municipalité, du courrier entrant à la décision du conseil, dans un seul système avec rôles, validations et journal d'audit.",
+          ar: "العمل داخل البلدية، من البريد الوارد إلى قرار المجلس، على نظام واحد بأدوار وموافقات وسجل تدقيق.",
+        },
+        points: [
+          { en: "Incoming and outgoing correspondence with a searchable archive", fr: "Courrier entrant et sortant avec archive consultable", ar: "الوارد والصادر مع أرشيف قابل للبحث" },
+          { en: "Council sessions, decisions and their follow-up", fr: "Séances du conseil, décisions et suivi d'exécution", ar: "جلسات المجلس وقراراته ومتابعة تنفيذها" },
+          { en: "Licences office: files, inspections, renewals and register", fr: "Bureau des licences : dossiers, inspections, renouvellements et registre", ar: "مكتب التراخيص: الملفات والتفتيش والتجديد والسجل" },
+          { en: "Building permits and site inspection", fr: "Permis de construire et contrôle de chantier", ar: "رخص البناء ومعاينة المواقع" },
+          { en: "Local revenue, receipts and outstanding dues", fr: "Recettes locales, quittances et impayés", ar: "الإيرادات المحلية والإيصالات والمستحقات" },
+          { en: "Complaints desk with deadlines and escalation", fr: "Bureau des réclamations avec délais et escalade", ar: "مكتب الشكاوى بمواعيد محددة وتصعيد" },
+          { en: "Contractors, procurement and project follow-up", fr: "Entrepreneurs, achats et suivi des projets", ar: "المقاولون والمشتريات ومتابعة المشاريع" },
+          { en: "Staff, attendance and municipal assets", fr: "Personnel, présences et biens municipaux", ar: "الموظفون والحضور وأصول البلدية" },
+        ],
+      },
+      {
+        slug: "citizen-services",
+        icon: "globe",
+        name: { en: "Services for residents and businesses", fr: "Services aux habitants et aux entreprises", ar: "خدمات المواطنين والأنشطة التجارية" },
+        text: {
+          en: "A service window on the web. A request is filed, paid, tracked and delivered without a second visit wherever the rules allow it.",
+          fr: "Un guichet de services en ligne. Une demande est déposée, payée, suivie et délivrée sans seconde visite partout où les règles le permettent.",
+          ar: "نافذة خدمات على الإنترنت. يُقدَّم الطلب ويُدفع رسمه ويُتابَع ويُسلَّم دون زيارة ثانية حيثما تسمح اللوائح.",
+        },
+        points: [
+          { en: "Activity licences, new and renewal", fr: "Licences d'activité, nouvelles et renouvelées", ar: "تراخيص مزاولة النشاط، الجديدة والمجدَّدة" },
+          { en: "Building permit requests through engineering offices", fr: "Demandes de permis de construire via les bureaux d'études", ar: "طلبات رخص البناء عبر المكاتب الهندسية" },
+          { en: "Neighbourhood attestations prepared with the local headman's desk", fr: "Attestations de quartier préparées avec le bureau du chef de quartier", ar: "إفادات المحلة عبر مكتب مختار المحلة" },
+          { en: "Reports with photo and location, complaints with tracking", fr: "Signalements avec photo et position, réclamations avec suivi", ar: "بلاغات بالصورة والموقع وشكاوى مع المتابعة" },
+          { en: "Payment of fees and fines through the payment services the municipality contracts", fr: "Paiement des droits et amendes via les services de paiement retenus par la municipalité", ar: "دفع الرسوم والغرامات عبر خدمات الدفع التي تتعاقد معها البلدية" },
+          { en: "Appointments and queue tickets", fr: "Rendez-vous et tickets de file d'attente", ar: "المواعيد وتذاكر الانتظار" },
+          { en: "Every issued document carries a code that anyone can check on a public verification page", fr: "Chaque document délivré porte un code vérifiable par tous sur une page publique", ar: "كل وثيقة صادرة تحمل رمزاً يمكن لأي جهة التحقق منه في صفحة عامة" },
+          { en: "A service guide that directs civil status requests to the authority that issues them", fr: "Un guide des services qui oriente les demandes d'état civil vers l'autorité qui les délivre", ar: "دليل خدمات يوجّه طلبات الأحوال المدنية إلى الجهة المختصة بإصدارها" },
+        ],
+      },
+      {
+        slug: "administrative-core",
+        icon: "layers",
+        name: { en: "Administrative core for public bodies", fr: "Socle administratif pour les organismes publics", ar: "النواة الإدارية للجهات العامة" },
+        text: {
+          en: "Most public bodies share the same daily work. One foundation serves a ministry department, a public company, a chamber of commerce or a professional order.",
+          fr: "La plupart des organismes publics partagent le même travail quotidien. Un même socle sert une direction de ministère, une entreprise publique, une chambre de commerce ou un ordre professionnel.",
+          ar: "تتشابه الأعمال اليومية في أغلب الجهات العامة. أساس واحد يخدم إدارة في وزارة أو شركة عامة أو غرفة تجارة أو نقابة مهنية.",
+        },
+        points: [
+          { en: "Correspondence and archive", fr: "Courrier et archives", ar: "المراسلات والأرشيف" },
+          { en: "Approvals with delegation and deadlines", fr: "Validations avec délégation et délais", ar: "الموافقات مع التفويض والمواعيد" },
+          { en: "Meetings, decisions and follow-up", fr: "Réunions, décisions et suivi", ar: "الاجتماعات والقرارات والمتابعة" },
+          { en: "Staff, attendance and leave", fr: "Personnel, présences et congés", ar: "الموظفون والحضور والإجازات" },
+          { en: "Procurement and contracts", fr: "Achats et contrats", ar: "المشتريات والعقود" },
+          { en: "Reports for management", fr: "Rapports pour la direction", ar: "تقارير للإدارة" },
+        ],
+      },
     ],
   },
   {
@@ -171,6 +237,40 @@ export const INDUSTRIES: Industry[] = [
     capabilities: [
       { en: "Live tender feed with alerts in three languages", fr: "Flux d'appels d'offres en direct avec alertes en trois langues", ar: "تدفق مباشر للمناقصات مع تنبيهات بثلاث لغات" },
       { en: "APIs and integration with existing systems", fr: "API et intégration aux systèmes existants", ar: "واجهات برمجية وتكامل مع الأنظمة القائمة" },
+    ],
+    lines: [
+      {
+        slug: "law-firms",
+        icon: "lock",
+        name: { en: "Law firms", fr: "Cabinets d'avocats", ar: "مكاتب المحاماة" },
+        text: {
+          en: "Case files, clients, hearings and deadlines, documents and fees in one confidential workspace.",
+          fr: "Dossiers, clients, audiences et échéances, documents et honoraires dans un espace de travail confidentiel.",
+          ar: "ملفات القضايا والموكلون والجلسات والمواعيد والمستندات والأتعاب في مساحة عمل واحدة سرّية.",
+        },
+        points: [
+          { en: "Case and client files with access per lawyer", fr: "Dossiers et clients avec accès par avocat", ar: "ملفات القضايا والموكلين بصلاحيات لكل محامٍ" },
+          { en: "Hearings calendar and deadline reminders", fr: "Calendrier des audiences et rappels d'échéances", ar: "تقويم الجلسات وتذكير بالمواعيد" },
+          { en: "Documents with versions and an access log", fr: "Documents avec versions et journal des accès", ar: "مستندات بإصدارات وسجل اطلاع" },
+          { en: "Fees, invoices and payments", fr: "Honoraires, factures et paiements", ar: "الأتعاب والفواتير والمدفوعات" },
+        ],
+      },
+      {
+        slug: "accounting-firms",
+        icon: "building-2",
+        name: { en: "Accounting and audit firms", fr: "Cabinets comptables et d'audit", ar: "مكاتب المحاسبة والمراجعة" },
+        text: {
+          en: "Client files, engagements, statutory deadlines and working papers, with review steps before anything leaves the firm.",
+          fr: "Dossiers clients, missions, échéances légales et papiers de travail, avec des étapes de revue avant toute sortie du cabinet.",
+          ar: "ملفات العملاء والمهام والمواعيد القانونية وأوراق العمل، مع مراحل مراجعة قبل خروج أي مستند من المكتب.",
+        },
+        points: [
+          { en: "Client files and engagements", fr: "Dossiers clients et missions", ar: "ملفات العملاء والمهام" },
+          { en: "Deadlines calendar per client", fr: "Calendrier des échéances par client", ar: "تقويم المواعيد لكل عميل" },
+          { en: "Review and sign-off steps", fr: "Étapes de revue et de validation", ar: "مراحل المراجعة والاعتماد" },
+          { en: "Time, invoices and collections", fr: "Temps passé, factures et recouvrement", ar: "الوقت والفواتير والتحصيل" },
+        ],
+      },
     ],
   },
 ];

@@ -2,6 +2,8 @@
 
 > **2026-11-09: the company structure changed.** Read [11 · Three levels](11-THREE-LEVELS.md)
 > first. It replaces the five human domains below wherever they disagree.
+> Then [12 · Enterprise direction](12-ENTERPRISE-DIRECTION.md) (2026-11-11): who we sell to, licence and
+> delivery models, protection requirements, order of work. Research inputs are in [research/](research/).
 > Live execution status: [EXECUTION.md](EXECUTION.md).
 
 **Technology for Human Progress.**

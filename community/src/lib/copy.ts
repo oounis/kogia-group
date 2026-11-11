@@ -36,6 +36,13 @@ export const C = {
   notFoundTitle: { en: "This page does not exist", fr: "Cette page n'existe pas", ar: "هذه الصفحة غير موجودة" },
   notFoundBody: { en: "The address may have changed when the site was reorganised.", fr: "L'adresse a peut-être changé lors de la réorganisation du site.", ar: "ربما تغيّر العنوان عند إعادة تنظيم الموقع." },
   home: { en: "Home", fr: "Accueil", ar: "الرئيسية" },
+  planned: { en: "Planned", fr: "Prévu", ar: "مخطط" },
+  linesH: { en: "Solution lines in preparation", fr: "Lignes de solutions en préparation", ar: "خطوط حلول قيد الإعداد" },
+  linesNote: {
+    en: "These lines are designed and not yet built. The roles, approval engine and audit trail they rest on already run in our products. We are open to a first partner institution for each.",
+    fr: "Ces lignes sont conçues et pas encore construites. Les rôles, le moteur de validation et le journal d'audit sur lesquels elles reposent fonctionnent déjà dans nos produits. Nous sommes ouverts à une première institution partenaire pour chacune.",
+    ar: "هذه الخطوط مصمَّمة ولم تُبنَ بعد. الأدوار ومحرك الموافقات وسجل التدقيق التي تقوم عليها تعمل فعلاً في منتجاتنا. نرحب بمؤسسة شريكة أولى لكل خط منها.",
+  },
 };
 
 export const META = {
@@ -169,8 +176,44 @@ export const HOW = {
       p: { en: "Every product uses role-based access, encrypted connections and an audit trail. Each organisation only sees its own data, and each product has its own isolated database.", fr: "Chaque produit applique l'accès par rôle, des connexions chiffrées et un journal d'audit. Chaque organisation ne voit que ses propres données, et chaque produit dispose de sa propre base isolée.", ar: "يستخدم كل منتج الصلاحيات حسب الدور والاتصالات المشفرة وسجل التدقيق. لا ترى كل مؤسسة إلا بياناتها، ولكل منتج قاعدة بيانات معزولة خاصة به." },
     },
     {
-      h: { en: "Your data, your choice of hosting", fr: "Vos données, votre choix d'hébergement", ar: "بياناتك واختيارك لمكان الاستضافة" },
-      p: { en: "Products run on our managed servers by default. When a client must keep data in a given country or on its own infrastructure, we deploy a dedicated instance there.", fr: "Par défaut, les produits fonctionnent sur nos serveurs gérés. Quand un client doit garder ses données dans un pays donné ou sur sa propre infrastructure, nous y déployons une instance dédiée.", ar: "تعمل المنتجات افتراضياً على خوادمنا المُدارة. وعندما يحتاج العميل إلى إبقاء بياناته في بلد معين أو على بنيته الخاصة، ننشر له نسخة مخصصة هناك." },
+      h: { en: "Three ways to deliver", fr: "Trois modes de livraison", ar: "ثلاث طرق للتسليم" },
+      p: {
+        en: "The same software can be installed on servers inside your institution, deployed in a private environment reserved for you, or run by us as a managed service. The choice is yours. Hosting abroad is never a condition of use.",
+        fr: "Le même logiciel peut être installé sur des serveurs dans votre institution, déployé dans un environnement privé qui vous est réservé, ou exploité par nous en service géré. Le choix vous appartient. Un hébergement à l'étranger n'est jamais une condition d'utilisation.",
+        ar: "يمكن تثبيت البرنامج نفسه على خوادم داخل مؤسستكم، أو نشره في بيئة خاصة مخصصة لكم، أو تشغيله من طرفنا كخدمة مُدارة. الاختيار لكم. والاستضافة خارج البلد ليست شرطاً للاستخدام أبداً.",
+      },
+    },
+    {
+      h: { en: "What is yours, what is ours", fr: "Ce qui est à vous, ce qui est à nous", ar: "ما هو لكم وما هو لنا" },
+      p: {
+        en: "Your data belongs to you. The software, its source code and its design remain ours, and you receive a licence to use them. For large institutions the source code can be placed in escrow with a third party and released under conditions written in the contract.",
+        fr: "Vos données vous appartiennent. Le logiciel, son code source et sa conception restent les nôtres, et vous recevez une licence d'utilisation. Pour les grandes institutions, le code source peut être déposé chez un tiers et remis dans les cas prévus au contrat.",
+        ar: "بياناتكم ملك لكم. أما البرنامج وشيفرته المصدرية وتصميمه فتبقى ملكاً لنا، وتحصلون على ترخيص باستخدامها. وللمؤسسات الكبيرة يمكن إيداع الشيفرة المصدرية لدى طرف ثالث تُسلَّم منه في الحالات المنصوص عليها في العقد.",
+      },
+    },
+    {
+      h: { en: "Licence, implementation, maintenance", fr: "Licence, mise en oeuvre, maintenance", ar: "ترخيص وتنفيذ وصيانة" },
+      p: {
+        en: "We do not sell subscriptions only. An institution can buy a licence, pay once for analysis, configuration, data migration and training, and then keep an annual maintenance agreement that covers security updates, monitoring and support.",
+        fr: "Nous ne vendons pas seulement des abonnements. Une institution peut acquérir une licence, payer une fois l'analyse, le paramétrage, la reprise des données et la formation, puis conserver un contrat annuel de maintenance qui couvre les mises à jour de sécurité, la supervision et le support.",
+        ar: "لا نبيع اشتراكات فقط. يمكن للمؤسسة شراء ترخيص، ودفع تكلفة التحليل والتهيئة ونقل البيانات والتدريب مرة واحدة، ثم الاحتفاظ بعقد صيانة سنوي يشمل التحديثات الأمنية والمراقبة والدعم.",
+      },
+    },
+    {
+      h: { en: "Configured for you, not rewritten", fr: "Paramétré pour vous, pas réécrit", ar: "مُهيّأ لكم دون إعادة كتابة" },
+      p: {
+        en: "Each institution has its own structure, roles, approval paths, numbering and reports. These are settings, not new code, so you keep receiving updates without losing what was set up for you. A need the product does not cover becomes a module, built once and tested before it reaches you.",
+        fr: "Chaque institution a sa structure, ses rôles, ses circuits de validation, sa numérotation et ses rapports. Ce sont des paramètres, pas du nouveau code : vous continuez de recevoir les mises à jour sans perdre ce qui a été réglé pour vous. Un besoin non couvert devient un module, construit une fois et testé avant de vous parvenir.",
+        ar: "لكل مؤسسة هيكلها وأدوارها ومسارات موافقاتها وترقيمها وتقاريرها. هذه إعدادات وليست شيفرة جديدة، فتستمرون في تلقي التحديثات دون فقدان ما أُعدّ لكم. وما لا يغطيه المنتج يصبح وحدة تُبنى مرة واحدة وتُختبر قبل أن تصلكم.",
+      },
+    },
+    {
+      h: { en: "When a contract ends", fr: "Quand un contrat prend fin", ar: "عند انتهاء العقد" },
+      p: {
+        en: "We hand over your data in clear, documented formats, and we delete our copies after the period agreed in the contract. You are never held by your own records.",
+        fr: "Nous vous remettons vos données dans des formats clairs et documentés, et nous supprimons nos copies après le délai convenu au contrat. Vos propres archives ne vous retiennent jamais.",
+        ar: "نسلّمكم بياناتكم بصيغ واضحة وموثّقة، ونحذف نسخنا بعد المدة المتفق عليها في العقد. سجلاتكم لا تكون قيداً عليكم أبداً.",
+      },
     },
     {
       h: { en: "Backups and continuity", fr: "Sauvegardes et continuité", ar: "النسخ الاحتياطي واستمرارية العمل" },
