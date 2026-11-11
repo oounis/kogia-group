@@ -2,6 +2,16 @@
 
 Dernière mise à jour : 11 novembre 2026.
 
+## 11 novembre 2026 (soir) : l'accueil devient un magazine
+
+À la demande du fondateur : l'accueil ne montre plus le statut des produits. Il convainc par des
+scènes. Une couverture, puis une histoire illustrée par domaine (secteur public, santé, éducation,
+sécurité, entreprises et cabinets) : le problème vécu, le parcours « avec le système » en quatre
+étapes, le gain pour l'institution. Ensuite les engagements, le déroulé d'un projet, l'invitation.
+- Textes : `MAG` dans `copy.ts`. Scènes dessinées en SVG sans texte : `components/site/Scenes.tsx`.
+- Les statuts restent exacts sur les pages produit et secteur. Les histoires décrivent le
+  fonctionnement visé, sans client ni chiffre inventé.
+
 ## 11 novembre 2026 : direction entreprise, lignes prévues et modèle de livraison
 
 Dans `main`, à déployer par `deploy.sh` :

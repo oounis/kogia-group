@@ -332,3 +332,158 @@ export const LEGAL = {
     ],
   },
 };
+
+/* ── Home page as a magazine (2026-11-11) ──────────────────────────────
+   A cover, then one story per field: the problem an institution lives with,
+   and how the same request travels once the system carries it. No product
+   status here: statuses stay on the product and industry pages. */
+export const MAG = {
+  kicker: { en: "Enterprise software and systems integration", fr: "Logiciels d'entreprise et intégration de systèmes", ar: "برمجيات مؤسسية وتكامل أنظمة" },
+  h1: { en: "The institution, working as one.", fr: "L'institution, d'un seul tenant.", ar: "المؤسسة تعمل كجسد واحد." },
+  sub: {
+    en: "A hospital, a school, a municipality or a firm runs on procedures that cross many desks. We build the systems that carry each procedure from the first request to the final signature, in Arabic, French and English.",
+    fr: "Un hôpital, une école, une municipalité ou un cabinet vivent de procédures qui traversent de nombreux bureaux. Nous construisons les systèmes qui portent chaque procédure, de la première demande à la dernière signature, en arabe, en français et en anglais.",
+    ar: "المستشفى والمدرسة والبلدية والمكتب المهني تقوم كلها على إجراءات تمرّ بمكاتب كثيرة. نبني الأنظمة التي تحمل كل إجراء من أول طلب إلى آخر توقيع، بالعربية والفرنسية والإنجليزية.",
+  },
+  ctaStories: { en: "See it in your field", fr: "Voir dans votre domaine", ar: "شاهد ذلك في مجالك" },
+  coverAlt: { en: "Five institutions standing on one shared platform", fr: "Cinq institutions posées sur une même plateforme", ar: "خمس مؤسسات تقوم على منصة واحدة مشتركة" },
+  inThisIssue: { en: "In these pages", fr: "Dans ces pages", ar: "في هذه الصفحات" },
+  storyLabel: { en: "The scene", fr: "La scène", ar: "المشهد" },
+  withSystem: { en: "With the system", fr: "Avec le système", ar: "مع النظام" },
+  readField: { en: "Open this field", fr: "Ouvrir ce domaine", ar: "افتح هذا المجال" },
+  stories: [
+    {
+      slug: "government",
+      field: { en: "Government and municipalities", fr: "Secteur public et municipalités", ar: "القطاع الحكومي والبلديات" },
+      title: { en: "A licence without the queue.", fr: "Une licence sans file d'attente.", ar: "رخصة بلا طابور." },
+      scene: {
+        en: "A shop owner needs an activity licence. Today that can mean several visits, a paper file that travels by hand, and no way to know where it stands.",
+        fr: "Un commerçant a besoin d'une licence d'activité. Aujourd'hui, cela peut signifier plusieurs déplacements, un dossier papier qui circule de main en main, et aucun moyen de savoir où il en est.",
+        ar: "صاحب محل يحتاج إلى رخصة مزاولة نشاط. اليوم قد يعني ذلك عدة زيارات، وملفاً ورقياً ينتقل باليد، ولا وسيلة لمعرفة أين وصل.",
+      },
+      steps: [
+        { en: "He files the request from his phone and uploads each document once.", fr: "Il dépose sa demande depuis son téléphone et envoie chaque pièce une seule fois.", ar: "يقدّم الطلب من هاتفه ويرفع كل مستند مرة واحدة." },
+        { en: "The licences office receives a complete file. The inspector finds the visit on his list.", fr: "Le bureau des licences reçoit un dossier complet. L'inspecteur trouve la visite dans sa liste.", ar: "يستلم مكتب التراخيص ملفاً كاملاً. ويجد المفتش الزيارة في قائمته." },
+        { en: "The fee is paid, the head of office approves, and every step is recorded.", fr: "Le droit est payé, le chef de bureau valide, et chaque étape est enregistrée.", ar: "يُدفع الرسم ويعتمد رئيس المكتب، وتُسجَّل كل خطوة." },
+        { en: "The licence arrives with a code that anyone can verify. Nobody stood in line.", fr: "La licence arrive avec un code que chacun peut vérifier. Personne n'a fait la queue.", ar: "تصل الرخصة برمز يمكن لأي جهة التحقق منه. ولم يقف أحد في طابور." },
+      ],
+      gain: {
+        en: "For the municipality: fewer people at the counter, no lost files, and figures on every service.",
+        fr: "Pour la municipalité : moins de monde au guichet, aucun dossier perdu, et des chiffres sur chaque service.",
+        ar: "للبلدية: ازدحام أقل عند الشباك، ولا ملفات ضائعة، وأرقام عن كل خدمة.",
+      },
+    },
+    {
+      slug: "healthcare",
+      field: { en: "Healthcare", fr: "Santé", ar: "الرعاية الصحية" },
+      title: { en: "One patient, one file, every department.", fr: "Un patient, un dossier, tous les services.", ar: "مريض واحد، ملف واحد، كل الأقسام." },
+      scene: {
+        en: "A patient goes from reception to the doctor, the laboratory, the pharmacy and the cashier. On paper, every desk starts again from nothing.",
+        fr: "Un patient passe de l'accueil au médecin, au laboratoire, à la pharmacie et à la caisse. Sur papier, chaque bureau repart de zéro.",
+        ar: "ينتقل المريض من الاستقبال إلى الطبيب فالمختبر فالصيدلية فالخزينة. وعلى الورق يبدأ كل مكتب من الصفر.",
+      },
+      steps: [
+        { en: "Reception registers the patient once and hands over a queue ticket.", fr: "L'accueil enregistre le patient une fois et lui remet un ticket.", ar: "يسجّل الاستقبال المريض مرة واحدة ويسلّمه تذكرة انتظار." },
+        { en: "The doctor orders a test. The laboratory sees it at once.", fr: "Le médecin prescrit une analyse. Le laboratoire la voit aussitôt.", ar: "يطلب الطبيب تحليلاً فيراه المختبر في الحال." },
+        { en: "The result returns to the file. The pharmacy dispenses what was prescribed and the stock goes down by itself.", fr: "Le résultat revient au dossier. La pharmacie délivre ce qui a été prescrit et le stock diminue de lui-même.", ar: "تعود النتيجة إلى الملف. تصرف الصيدلية ما وُصف وينقص المخزون تلقائياً." },
+        { en: "The invoice already holds every service that was given.", fr: "La facture contient déjà chaque acte réalisé.", ar: "الفاتورة تتضمن مسبقاً كل خدمة قُدّمت." },
+      ],
+      gain: {
+        en: "For the management: what was done, by whom, and what it brought in, the same evening.",
+        fr: "Pour la direction : ce qui a été fait, par qui, et ce que cela a rapporté, le soir même.",
+        ar: "للإدارة: ما أُنجز، ومن أنجزه، وما حققه من إيراد، في مساء اليوم نفسه.",
+      },
+    },
+    {
+      slug: "education",
+      field: { en: "Education", fr: "Éducation", ar: "التعليم" },
+      title: { en: "The parent knows before the child is home.", fr: "Le parent sait avant le retour de l'enfant.", ar: "وليّ الأمر يعلم قبل أن يعود ابنه." },
+      scene: {
+        en: "A school day produces attendance, marks, remarks and messages. Most of it sleeps in registers that nobody opens again.",
+        fr: "Une journée d'école produit des présences, des notes, des remarques et des messages. L'essentiel dort dans des registres que personne ne rouvre.",
+        ar: "ينتج اليوم الدراسي حضوراً ودرجات وملاحظات ورسائل. وأغلبها ينام في سجلات لا يفتحها أحد ثانية.",
+      },
+      steps: [
+        { en: "The teacher takes attendance in a minute, on any device.", fr: "L'enseignant fait l'appel en une minute, sur n'importe quel appareil.", ar: "يسجّل المعلم الحضور في دقيقة، من أي جهاز." },
+        { en: "An absence reaches the parent the same morning.", fr: "Une absence parvient au parent le matin même.", ar: "يصل خبر الغياب إلى وليّ الأمر في الصباح نفسه." },
+        { en: "Daily evaluation builds the term report by itself.", fr: "L'évaluation quotidienne construit le bulletin du trimestre toute seule.", ar: "التقييم اليومي يبني تقرير الفصل تلقائياً." },
+        { en: "The head sees every class without asking for a single sheet.", fr: "Le directeur voit chaque classe sans demander une seule feuille.", ar: "يرى المدير كل فصل دون أن يطلب ورقة واحدة." },
+      ],
+      gain: {
+        en: "For the school: less paper, fewer calls, and parents who trust what they see.",
+        fr: "Pour l'école : moins de papier, moins d'appels, et des parents qui ont confiance dans ce qu'ils voient.",
+        ar: "للمدرسة: ورق أقل واتصالات أقل وأولياء أمور يثقون بما يرونه.",
+      },
+    },
+    {
+      slug: "security",
+      field: { en: "Security and buildings", fr: "Sécurité et bâtiments", ar: "الأمن والمباني" },
+      title: { en: "Every door, camera and visitor answers to one screen.", fr: "Chaque porte, caméra et visiteur répond à un seul écran.", ar: "كل باب وكاميرا وزائر على شاشة واحدة." },
+      scene: {
+        en: "A building has access control from one supplier, cameras from another and a visitor book at the gate. When something happens, nobody holds the whole picture.",
+        fr: "Un bâtiment a un contrôle d'accès d'un fournisseur, des caméras d'un autre et un registre des visiteurs au portail. Quand quelque chose arrive, personne n'a la vue d'ensemble.",
+        ar: "في المبنى نظام دخول من مورّد وكاميرات من مورّد آخر وسجل زوار ورقي عند البوابة. وعند وقوع حادث لا يملك أحد الصورة كاملة.",
+      },
+      steps: [
+        { en: "A visitor is announced before he arrives and receives a pass.", fr: "Un visiteur est annoncé avant son arrivée et reçoit un laissez-passer.", ar: "يُسجَّل الزائر قبل وصوله ويحصل على تصريح." },
+        { en: "The door opens for him only where he is expected, and only today.", fr: "La porte ne s'ouvre pour lui que là où il est attendu, et seulement aujourd'hui.", ar: "يُفتح له الباب حيث يُنتظَر فقط، ولهذا اليوم فقط." },
+        { en: "An alarm goes to the person on duty, who must acknowledge it.", fr: "Une alarme parvient à la personne de garde, qui doit en accuser réception.", ar: "يصل الإنذار إلى المناوب، وعليه أن يؤكد استلامه." },
+        { en: "The record shows who entered, when, and who responded.", fr: "L'historique montre qui est entré, quand, et qui a répondu.", ar: "يُظهر السجل من دخل ومتى ومن استجاب." },
+      ],
+      gain: {
+        en: "For the owner: one login, one history, and equipment maintained on schedule.",
+        fr: "Pour le propriétaire : un seul identifiant, un seul historique, et des équipements entretenus à date.",
+        ar: "للمالك: حساب دخول واحد وسجل واحد ومعدات تُصان في موعدها.",
+      },
+    },
+    {
+      slug: "enterprise",
+      field: { en: "Companies and professional firms", fr: "Entreprises et cabinets", ar: "الشركات والمكاتب المهنية" },
+      title: { en: "No deadline lost, no file out of place.", fr: "Aucune échéance perdue, aucun dossier égaré.", ar: "لا موعد يفوت ولا ملف يضيع." },
+      scene: {
+        en: "A law firm, an accounting firm or a company lives on files, deadlines and approvals. They sit in folders, inboxes and memory.",
+        fr: "Un cabinet d'avocats, un cabinet comptable ou une entreprise vivent de dossiers, d'échéances et de validations. Tout cela repose dans des classeurs, des messageries et des mémoires.",
+        ar: "مكتب المحاماة ومكتب المحاسبة والشركة تعيش على الملفات والمواعيد والموافقات. وكلها موزعة بين الأدراج وصناديق البريد والذاكرة.",
+      },
+      steps: [
+        { en: "Each file has its people, its documents and its dates.", fr: "Chaque dossier a ses personnes, ses pièces et ses dates.", ar: "لكل ملف أشخاصه ومستنداته ومواعيده." },
+        { en: "A deadline warns before it arrives, not after.", fr: "Une échéance prévient avant d'arriver, pas après.", ar: "الموعد ينبّه قبل حلوله لا بعده." },
+        { en: "A document leaves only after the review the firm requires.", fr: "Un document ne sort qu'après la revue exigée par le cabinet.", ar: "لا يخرج مستند إلا بعد المراجعة التي يشترطها المكتب." },
+        { en: "Time and fees are recorded as the work is done.", fr: "Le temps et les honoraires s'enregistrent au fil du travail.", ar: "يُسجَّل الوقت والأتعاب مع سير العمل." },
+      ],
+      gain: {
+        en: "For the partners: the state of every file at a glance, and nothing that depends on one person's memory.",
+        fr: "Pour les associés : l'état de chaque dossier d'un coup d'oeil, et rien qui dépende de la mémoire d'une seule personne.",
+        ar: "للشركاء: حالة كل ملف بنظرة واحدة، ولا شيء يتوقف على ذاكرة شخص واحد.",
+      },
+    },
+  ],
+  trustH: { en: "What an institution can hold us to", fr: "Ce sur quoi une institution peut nous engager", ar: "ما يمكن للمؤسسة أن تحاسبنا عليه" },
+  trustP: {
+    en: "A system that carries official work is judged on what happens to the records, not on how the screens look.",
+    fr: "Un système qui porte un travail officiel se juge à ce qu'il advient des archives, pas à l'allure des écrans.",
+    ar: "النظام الذي يحمل عملاً رسمياً يُحكم عليه بمصير السجلات لا بشكل الشاشات.",
+  },
+  trust: [
+    { icon: "server", h: { en: "Your data stays yours", fr: "Vos données restent les vôtres", ar: "بياناتكم تبقى لكم" }, p: { en: "On your own servers, in a private environment, or managed by us. You choose where it lives.", fr: "Sur vos serveurs, dans un environnement privé, ou géré par nous. Vous choisissez où elles résident.", ar: "على خوادمكم أو في بيئة خاصة أو بإدارتنا. أنتم من يختار مكانها." } },
+    { icon: "check", h: { en: "Every action has a name", fr: "Chaque action a un nom", ar: "لكل إجراء اسم صاحبه" }, p: { en: "Who saw, who changed, who approved. Recorded at the moment it happens and kept.", fr: "Qui a vu, qui a modifié, qui a validé. Enregistré à l'instant et conservé.", ar: "من اطّلع ومن عدّل ومن اعتمد. يُسجَّل لحظة وقوعه ويُحفظ." } },
+    { icon: "layers", h: { en: "Shaped to your structure", fr: "À la forme de votre structure", ar: "على مقاس هيكلكم" }, p: { en: "Your departments, roles and approval paths are settings. Nothing is rewritten, so updates keep arriving.", fr: "Vos services, vos rôles et vos circuits de validation sont des paramètres. Rien n'est réécrit, les mises à jour continuent d'arriver.", ar: "إداراتكم وأدواركم ومسارات موافقاتكم إعدادات. لا تُعاد كتابة شيء فتستمر التحديثات في الوصول." } },
+    { icon: "languages", h: { en: "Arabic first, three languages", fr: "L'arabe d'abord, trois langues", ar: "العربية أولاً وثلاث لغات" }, p: { en: "Real right-to-left Arabic on every screen and every document, with French and English.", fr: "Un arabe réellement de droite à gauche sur chaque écran et chaque document, avec le français et l'anglais.", ar: "عربية حقيقية من اليمين إلى اليسار في كل شاشة وكل وثيقة، مع الفرنسية والإنجليزية." } },
+    { icon: "life-buoy", h: { en: "We stay after delivery", fr: "Nous restons après la livraison", ar: "نبقى بعد التسليم" }, p: { en: "Training, maintenance, updates and backups that are restored to prove they work, under a written agreement.", fr: "Formation, maintenance, mises à jour et sauvegardes restaurées pour preuve, dans un contrat écrit.", ar: "تدريب وصيانة وتحديثات ونسخ احتياطية تُستعاد فعلاً لإثبات صلاحيتها، بعقد مكتوب." } },
+    { icon: "external", h: { en: "You can leave with everything", fr: "Vous pouvez partir avec tout", ar: "تغادرون ومعكم كل شيء" }, p: { en: "When a contract ends, your records are handed over in clear, documented formats.", fr: "À la fin d'un contrat, vos archives vous sont remises dans des formats clairs et documentés.", ar: "عند انتهاء العقد تُسلَّم سجلاتكم بصيغ واضحة وموثّقة." } },
+  ],
+  pathH: { en: "From the first meeting to daily use", fr: "De la première réunion à l'usage quotidien", ar: "من الاجتماع الأول إلى الاستخدام اليومي" },
+  path: [
+    { h: { en: "We listen", fr: "Nous écoutons", ar: "نستمع" }, p: { en: "Each procedure is mapped: who starts it, who approves, what happens on refusal.", fr: "Chaque procédure est décrite : qui la lance, qui valide, que se passe-t-il en cas de refus.", ar: "نرسم كل إجراء: من يبدؤه ومن يعتمده وماذا يحدث عند الرفض." } },
+    { h: { en: "We configure", fr: "Nous paramétrons", ar: "نهيّئ" }, p: { en: "The system takes the shape of your structure, roles and forms.", fr: "Le système prend la forme de votre structure, de vos rôles et de vos formulaires.", ar: "يأخذ النظام شكل هيكلكم وأدواركم ونماذجكم." } },
+    { h: { en: "We move and train", fr: "Nous migrons et formons", ar: "ننقل وندرّب" }, p: { en: "Existing records are brought in and every team is trained on its own work.", fr: "Les données existantes sont reprises et chaque équipe est formée sur son propre travail.", ar: "تُنقل السجلات القائمة ويُدرَّب كل فريق على عمله." } },
+    { h: { en: "We go live together", fr: "Nous démarrons ensemble", ar: "ننطلق معاً" }, p: { en: "The first weeks are followed closely, with our people beside yours.", fr: "Les premières semaines sont suivies de près, nos équipes aux côtés des vôtres.", ar: "نتابع الأسابيع الأولى عن قرب، وفريقنا إلى جانب فريقكم." } },
+    { h: { en: "We maintain", fr: "Nous maintenons", ar: "نصون" }, p: { en: "Security, updates and support continue year after year.", fr: "Sécurité, mises à jour et support se poursuivent année après année.", ar: "يستمر الأمان والتحديث والدعم عاماً بعد عام." } },
+  ],
+  closeH: { en: "Which procedure costs your institution the most time?", fr: "Quelle procédure coûte le plus de temps à votre institution ?", ar: "أيّ إجراء يكلّف مؤسستكم أكثر وقت؟" },
+  closeP: {
+    en: "Describe it to us. We will show you how it would run, step by step, before anything is signed.",
+    fr: "Décrivez-la nous. Nous vous montrerons comment elle se déroulerait, étape par étape, avant toute signature.",
+    ar: "صِفوه لنا. نريكم كيف سيسير خطوة بخطوة قبل أي توقيع.",
+  },
+};

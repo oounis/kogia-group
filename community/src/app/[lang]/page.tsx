@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { Page } from "@/components/site/Chrome";
-import { IndustryCard, ProductRow } from "@/components/site/Blocks";
 import { Ico } from "@/components/site/Ico";
-import { INDUSTRIES, PRODUCTS, productsIn } from "@/lib/catalog";
-import { C, CAPABILITIES, HOME, META, PLATFORM, PRESENCE } from "@/lib/copy";
+import { SceneCover, SceneEducation, SceneEnterprise, SceneGovernment, SceneHealth, SceneSecurity } from "@/components/site/Scenes";
+import { C, MAG, META } from "@/lib/copy";
 import { alternates, tr, type Lang } from "@/lib/i18n";
 
 type P = { params: Promise<{ lang: Lang }> };
@@ -14,83 +14,76 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   return { title: { absolute: tr(META.title, lang) }, alternates: alternates(lang, "/") };
 }
 
-const LEVELS = [
-  { b: { en: "Level 1", fr: "Niveau 1", ar: "المستوى 1" }, s: { en: "KogiaGroup", fr: "KogiaGroup", ar: "KogiaGroup" }, m: { en: "The company and its shared platform", fr: "La société et sa plateforme commune", ar: "الشركة ومنصتها المشتركة" } },
-  { b: { en: "Level 2", fr: "Niveau 2", ar: "المستوى 2" }, s: { en: "Five industries", fr: "Cinq secteurs", ar: "خمسة قطاعات" }, m: { en: "Healthcare, education, security, government, enterprise", fr: "Santé, éducation, sécurité, secteur public, entreprises", ar: "الصحة، التعليم، الأمن، الحكومة، الشركات" } },
-  { b: { en: "Level 3", fr: "Niveau 3", ar: "المستوى 3" }, s: { en: `${PRODUCTS.length} products`, fr: `${PRODUCTS.length} produits`, ar: `${PRODUCTS.length} منتجات` }, m: { en: "Each made of modules a client switches on", fr: "Chacun fait de modules activés par le client", ar: "كل منها وحدات يفعّلها العميل" } },
-];
+const SCENES: Record<string, (label: string) => ReactNode> = {
+  government: (l) => <SceneGovernment label={l} />,
+  healthcare: (l) => <SceneHealth label={l} />,
+  education: (l) => <SceneEducation label={l} />,
+  security: (l) => <SceneSecurity label={l} />,
+  enterprise: (l) => <SceneEnterprise label={l} />,
+};
+const num = (i: number) => String(i + 1).padStart(2, "0");
 
+/* The home page reads as a magazine: a cover, one illustrated story per field,
+   the commitments an institution can hold us to, the path of a project, and an
+   invitation. Product statuses live on the product and industry pages. */
 export default async function Home({ params }: P) {
   const { lang } = await params;
   return (
     <Page lang={lang} path="/">
-      <section className="k-hero">
-        <p className="k-eyebrow">{tr(HOME.eyebrow, lang)}</p>
-        <h1>{tr(HOME.h1, lang)}</h1>
-        <p className="k-lede">{tr(HOME.sub, lang)}</p>
-        <div className="k-cta">
-          <Link href={`/${lang}/products`} className="k-btn k-btn-primary">{tr(HOME.ctaProducts, lang)} <Ico n="arrow" size={18} /></Link>
-          <Link href={`/${lang}/contact`} className="k-btn k-btn-ghost">{tr(C.contact, lang)}</Link>
+      <section className="m-cover">
+        <div>
+          <p className="m-kicker">{tr(MAG.kicker, lang)}</p>
+          <h1>{tr(MAG.h1, lang)}</h1>
+          <p className="m-sub">{tr(MAG.sub, lang)}</p>
+          <div className="k-cta">
+            <a href="#stories" className="k-btn k-btn-primary">{tr(MAG.ctaStories, lang)}</a>
+            <Link href={`/${lang}/contact`} className="k-btn k-btn-ghost">{tr(C.contact, lang)}</Link>
+          </div>
+          <nav className="m-contents" aria-label={tr(MAG.inThisIssue, lang)}>
+            <b>{tr(MAG.inThisIssue, lang)}</b>
+            {MAG.stories.map((s, i) => <a key={s.slug} href={`#${s.slug}`}><span dir="ltr">{num(i)}</span>{tr(s.title, lang)}</a>)}
+          </nav>
         </div>
-        <div className="k-levels">
-          {LEVELS.map((l) => (
-            <div key={l.b.en}><b>{tr(l.b, lang)}</b><span>{tr(l.s, lang)}</span><small>{tr(l.m, lang)}</small></div>
-          ))}
-        </div>
+        <div className="m-cover-art"><SceneCover label={tr(MAG.coverAlt, lang)} /></div>
       </section>
 
-      <section>
-        <div className="k-sec-head">
-          <div><h2 className="k-h2">{tr(HOME.industriesH, lang)}</h2><p className="k-sub">{tr(HOME.industriesP, lang)}</p></div>
-          <Link href={`/${lang}/industries`} className="k-btn k-btn-ghost">{tr(C.allIndustries, lang)}</Link>
-        </div>
-        <div className="k-grid k-grid5">
-          {INDUSTRIES.map((i) => <IndustryCard key={i.slug} i={i} lang={lang} count={productsIn(i.slug).length} />)}
-        </div>
-      </section>
+      <div id="stories" />
+      {MAG.stories.map((s, i) => (
+        <section key={s.slug} id={s.slug} className="m-story">
+          <div>
+            <div className="m-story-head"><span className="m-num" dir="ltr" aria-hidden="true">{num(i)}</span><span className="m-field">{tr(s.field, lang)}</span></div>
+            <h2>{tr(s.title, lang)}</h2>
+            <p className="m-scene-text">{tr(s.scene, lang)}</p>
+            <p className="m-label">{tr(MAG.withSystem, lang)}</p>
+            <ol className="m-steps">{s.steps.map((st) => <li key={st.en}><span>{tr(st, lang)}</span></li>)}</ol>
+            <p className="m-gain">{tr(s.gain, lang)}</p>
+            <Link href={`/${lang}/industries/${s.slug}`} className="m-more">{tr(MAG.readField, lang)} <Ico n="arrow" size={18} /></Link>
+          </div>
+          <div className="m-story-art">{SCENES[s.slug](tr(s.title, lang))}</div>
+        </section>
+      ))}
 
-      <section>
-        <div className="k-sec-head">
-          <div><h2 className="k-h2">{tr(HOME.productsH, lang)}</h2><p className="k-sub">{tr(HOME.productsP, lang)}</p></div>
-          <Link href={`/${lang}/products`} className="k-btn k-btn-ghost">{tr(C.allProducts, lang)}</Link>
-        </div>
-        <ul className="k-plist">{PRODUCTS.map((p) => <ProductRow key={p.slug} p={p} lang={lang} />)}</ul>
-      </section>
-
-      <section>
-        <div className="k-sec-head"><h2 className="k-h2">{tr(HOME.deliverH, lang)}</h2>
-          <Link href={`/${lang}/capabilities`} className="k-btn k-btn-ghost">{tr(C.learnMore, lang)}</Link></div>
-        <div className="k-grid">
-          {CAPABILITIES.map((c) => (
-            <div key={c.icon} className="k-feature"><h3><Ico n={c.icon} />{tr(c.title, lang)}</h3><p>{tr(c.text, lang)}</p></div>
-          ))}
-        </div>
-      </section>
-
-      <div className="k-band">
-        <div className="k-band-in k-split">
-          <div><h2 className="k-h2">{tr(HOME.platformH, lang)}</h2><p className="k-sub">{tr(HOME.platformP, lang)}</p></div>
-          <div className="k-grid">
-            {PLATFORM.map((x) => (
-              <div key={x.icon} className="k-feature"><h3><Ico n={x.icon} />{tr(x.title, lang)}</h3><p>{tr(x.text, lang)}</p></div>
-            ))}
+      <div className="m-trust">
+        <div className="m-trust-in">
+          <h2>{tr(MAG.trustH, lang)}</h2>
+          <p className="m-trust-p">{tr(MAG.trustP, lang)}</p>
+          <div className="m-trust-grid">
+            {MAG.trust.map((t) => <div key={t.h.en}><h3><Ico n={t.icon} />{tr(t.h, lang)}</h3><p>{tr(t.p, lang)}</p></div>)}
           </div>
         </div>
       </div>
 
       <section>
-        <div className="k-sec-head">
-          <div><h2 className="k-h2">{tr(HOME.presenceH, lang)}</h2><p className="k-sub">{tr(HOME.presenceP, lang)}</p></div>
-          <Link href={`/${lang}/presence`} className="k-btn k-btn-ghost">{tr(C.learnMore, lang)}</Link>
-        </div>
-        <div className="k-places">
-          {PRESENCE.places.map((pl) => (
-            <div key={pl.name.en} className="k-card k-place">
-              <h2><Ico n="pin" />{tr(pl.name, lang)}</h2>
-              <p className="role">{tr(pl.role, lang)}</p>
-              <p>{tr(pl.text, lang)}</p>
-            </div>
-          ))}
+        <h2 className="k-h2">{tr(MAG.pathH, lang)}</h2>
+        <ol className="m-path-list">{MAG.path.map((p) => <li key={p.h.en}><h3>{tr(p.h, lang)}</h3><p>{tr(p.p, lang)}</p></li>)}</ol>
+      </section>
+
+      <section className="m-close">
+        <h2>{tr(MAG.closeH, lang)}</h2>
+        <p>{tr(MAG.closeP, lang)}</p>
+        <div className="k-cta">
+          <Link href={`/${lang}/contact`} className="k-btn k-btn-primary">{tr(C.contact, lang)} <Ico n="arrow" size={18} /></Link>
+          <Link href={`/${lang}/how-we-work`} className="k-btn k-btn-ghost">{tr(C.learnMore, lang)}</Link>
         </div>
       </section>
     </Page>
