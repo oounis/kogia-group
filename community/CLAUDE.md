@@ -12,6 +12,10 @@ Traefik, 2 répliques, `deploy/deploy.sh`).
 - `src/lib/insights.ts` : les articles « Tendances » (/insights). Ajouter un
   article = une entrée. Chaque chiffre a sa source listée sous l'article, et
   un service annoncé est dit « annoncé », jamais livré.
+- `film/licence.html` : le film « une licence sans file d'attente » (54 s, CSS
+  pur, en/fr/ar). `node tools/rendre-film.mjs` le rend en MP4 dans
+  `public/video/` (large et vertical, ffmpeg requis). Illustration d'une ligne
+  prévue : ne jamais le présenter comme un système en service.
 - `src/lib/copy.ts` : tous les textes visibles, en en/fr/ar.
 - `src/lib/i18n.ts` : langues, direction, alternates hreflang.
 - `src/proxy.ts` : une adresse sans langue renvoie vers /en, /fr ou /ar.

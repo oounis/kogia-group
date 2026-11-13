@@ -1,0 +1,188 @@
+<!doctype html>
+<!-- The licence film: 54 seconds, pure CSS animation, rendered to MP4 by
+     tools/rendre-film.mjs (which seeks every animation frame by frame).
+     ?lang=en|fr|ar  ?format=wide|tall.  An illustration of a planned solution
+     line: it must never look like a recording of a client's system. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --em:#0F6B53; --em3:#7CC1AA; --em50:#EEF7F3; --pine:#0B2A22; --deep:#071D18; --brass:#C9A24B; --brassL:#DCC487; --brass50:#FAF6EC; --brassI:#8F6B1F; --ink:#0F1F1A; --slate:#4A5953; --line:#DDE5E0; --canvas:#F4F7F5; --soft:#B4C6BE;
+  --display:"Sora",sans-serif; --text:"Inter",sans-serif; }
+html[lang=ar] { --display:"Cairo",sans-serif; --text:"Cairo",sans-serif; }
+* { box-sizing:border-box; margin:0; }
+html { font-size:1vw; } html.tall { font-size:1.72vw; }
+body { width:100vw; height:100vh; overflow:hidden; background:var(--pine); color:#fff; font-family:var(--text);
+  background-image:radial-gradient(60rem 30rem at 85% -10%, rgb(31 132 104 / .4), transparent 70%), linear-gradient(rgb(255 255 255 / .03) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .03) 1px, transparent 1px); background-size:auto, 3.4rem 3.4rem, 3.4rem 3.4rem; }
+svg { display:block; }
+.logo { position:absolute; top:2.4rem; inset-inline-start:3.2rem; width:11.5rem; direction:ltr; }
+.bar { position:absolute; inset-inline:0; bottom:0; height:.42rem; background:rgb(255 255 255 / .1); }
+.bar i { display:block; height:100%; width:100%; background:var(--brass); transform-origin:0 50%; animation:grow 54s linear both; }
+[dir=rtl] .bar i { transform-origin:100% 50%; }
+@keyframes grow { from { transform:scaleX(0) } to { transform:scaleX(1) } }
+@keyframes vis { 0% { opacity:0 } 6% { opacity:1 } 94% { opacity:1 } 100% { opacity:0 } }
+@keyframes in { from { opacity:0; transform:translateY(1.4rem) } to { opacity:1; transform:none } }
+@keyframes pop { from { opacity:0; transform:scale(.6) } to { opacity:1; transform:none } }
+@keyframes tick { from { background:#fff; box-shadow:inset 0 0 0 .12rem var(--line); color:transparent } to { background:var(--em); box-shadow:none; color:#fff } }
+.sc { position:absolute; inset:0; padding:7rem 6rem 5rem; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4rem; align-items:center; opacity:0; animation:vis var(--d) linear var(--t0) both; }
+.tall .sc { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1.15fr) minmax(0,1fr); padding:8rem 3.4rem 5rem; gap:2rem; }
+.tall .sc .vis { order:-1; }
+.sc.full { grid-template-columns:minmax(0,1fr); grid-template-rows:none; justify-items:center; text-align:center; align-content:center; }
+.i { opacity:0; animation:in .7s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--t0) + var(--a, 0s)); }
+.cap { position:relative; }
+.cap > div { position:absolute; inset-inline:0; top:50%; transform:translateY(-50%); opacity:0; animation:vis var(--cd) linear both; animation-delay:calc(var(--t0) + var(--ca)); }
+.cap.one > div { position:static; transform:none; opacity:1; animation:none; }
+.k { font:700 1.05rem var(--text); letter-spacing:.14em; text-transform:uppercase; color:var(--brassL); display:flex; align-items:center; gap:.9rem; margin-bottom:1.3rem; }
+html[lang=ar] .k { letter-spacing:0; font-size:1.3rem; }
+.k::before { content:""; width:2.6rem; height:.16rem; background:var(--brass); }
+.full .k { justify-content:center; }
+h1 { font:800 5.6rem/1.05 var(--display); letter-spacing:-.03em; }
+h2 { font:700 2.9rem/1.2 var(--display); letter-spacing:-.02em; }
+html[lang=ar] h1, html[lang=ar] h2 { letter-spacing:0; line-height:1.4; }
+.lines p { font:600 2.2rem/1.35 var(--display); margin-top:1rem; color:#fff; }
+.lines p:nth-child(n) { color:#fff; }
+.vis { position:relative; display:grid; place-items:center; min-height:0; height:100%; }
+/* scene 2 */
+.desks { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.2rem; width:100%; position:relative; padding-top:9rem; }
+.desk { background:rgb(255 255 255 / .06); border:.08rem solid rgb(255 255 255 / .2); border-radius:1rem; padding:1.4rem 1rem; text-align:center; font:600 1.15rem var(--text); color:var(--soft); display:grid; gap:.8rem; justify-items:center; }
+.desk svg { width:3rem; height:3rem; color:var(--brassL); }
+.paper { position:absolute; top:.6rem; left:0; width:calc((100% - 2.4rem) / 3); display:grid; justify-items:center; animation:walk 6s cubic-bezier(.5,0,.5,1) both; animation-delay:calc(var(--t0) + .8s); }
+.paper b { width:5rem; height:6.4rem; background:#fff; border-radius:.5rem; display:grid; align-content:center; gap:.45rem; padding:.8rem; box-shadow:0 1.4rem 2.4rem -1rem rgb(0 0 0 / .7); }
+.paper b i { height:.35rem; border-radius:.2rem; background:var(--line); } .paper b i:first-child { background:var(--ink); width:60%; }
+.paper em { position:absolute; top:-1rem; left:calc(50% + 1.6rem); width:2.6rem; height:2.6rem; border-radius:50%; background:var(--brass); color:var(--deep); font:800 1.6rem/2.6rem var(--display); text-align:center; font-style:normal; }
+@keyframes walk { 0% { transform:translateX(0) } 22% { transform:translateX(calc(100% + 1.2rem)) } 44% { transform:translateX(calc(200% + 2.4rem)) } 66% { transform:translateX(calc(100% + 1.2rem)) } 88%,100% { transform:translateX(0) } }
+/* phone */
+.phone { width:19rem; padding:.7rem; border-radius:2.6rem; background:var(--deep); border:.08rem solid rgb(255 255 255 / .3); box-shadow:0 3rem 5rem -2rem rgb(0 0 0 / .8); }
+.phone > div { background:#fff; color:var(--ink); border-radius:2rem; padding:1.8rem 1.3rem 1.5rem; display:grid; gap:.8rem; }
+.phone small { font:600 .9rem var(--text); color:var(--slate); }
+.phone h3 { font:700 1.5rem/1.3 var(--display); }
+.doc { display:flex; align-items:center; gap:.8rem; padding:.8rem .9rem; border:.08rem solid var(--line); border-radius:.8rem; font:600 1rem var(--text); }
+.dot { flex:none; width:1.6rem; height:1.6rem; border-radius:50%; display:grid; place-items:center; background:#fff; box-shadow:inset 0 0 0 .12rem var(--line); color:transparent; animation:tick .4s ease both; animation-delay:calc(var(--t0) + var(--a)); }
+.dot svg { width:1rem; height:1rem; }
+.btn { position:relative; margin-top:.4rem; border-radius:.9rem; height:3.2rem; font:700 1.05rem var(--text); color:#fff; }
+.btn span { position:absolute; inset:0; display:grid; place-items:center; border-radius:.9rem; }
+.btn .b1 { background:var(--ink); } .btn .b2 { background:var(--em); opacity:0; animation:in .4s ease both; animation-delay:calc(var(--t0) + 5.2s); }
+/* window */
+.win { width:100%; max-width:34rem; background:#fff; color:var(--ink); border-radius:1.2rem; overflow:hidden; box-shadow:0 3rem 6rem -2.4rem rgb(0 0 0 / .75), 0 0 0 .4rem rgb(255 255 255 / .05); }
+.win-bar { display:flex; align-items:center; gap:.45rem; padding:.9rem 1.2rem; background:var(--canvas); border-bottom:.08rem solid var(--line); font:600 .95rem var(--text); color:var(--slate); }
+.win-bar i { width:.6rem; height:.6rem; border-radius:50%; background:var(--line); } .win-bar span { margin-inline-start:.5rem; }
+.win-body { padding:1.4rem 1.5rem 1.5rem; display:grid; gap:.9rem; }
+.req { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.req small { display:block; font:500 .85rem var(--text); color:var(--slate); } .req b { font:700 1.5rem/1.3 var(--display); }
+.pill { font:700 .85rem var(--text); color:#8a5310; background:#FBF1E3; border-radius:99rem; padding:.3rem .8rem; white-space:nowrap; }
+.steps { list-style:none; padding:0; display:grid; }
+.steps li { display:grid; grid-template-columns:1.6rem minmax(0,1fr) auto; gap:.9rem; align-items:center; padding:.8rem 0; border-top:.08rem solid var(--line); opacity:0; animation:in .5s ease both; animation-delay:calc(var(--t0) + var(--a) - .5s); }
+.steps b { display:block; font:600 1.1rem/1.35 var(--text); } .steps small { display:block; font:500 .9rem/1.4 var(--text); color:var(--slate); }
+.steps time { font:600 .9rem var(--text); color:var(--slate); direction:ltr; }
+.audit { display:flex; align-items:center; gap:.6rem; font:600 .95rem var(--text); color:#0B5743; background:var(--em50); border-radius:.7rem; padding:.75rem .9rem; }
+.audit svg { width:1.15rem; height:1.15rem; flex:none; }
+/* licence */
+.lic { width:21rem; background:#fff; color:var(--ink); border-radius:1rem; padding:2rem 1.8rem; display:grid; gap:.8rem; box-shadow:0 3rem 6rem -2.4rem rgb(0 0 0 / .75); border-top:.5rem solid var(--brass); position:relative; }
+.lic small { font:700 .85rem var(--text); letter-spacing:.1em; text-transform:uppercase; color:var(--brassI); } html[lang=ar] .lic small { letter-spacing:0; font-size:1rem; }
+.lic h3 { font:800 1.9rem/1.25 var(--display); }
+.lic p i { display:block; height:.5rem; border-radius:.3rem; background:var(--line); margin-top:.6rem; } .lic p i:nth-child(2) { width:80%; } .lic p i:nth-child(3) { width:55%; }
+.qr { margin-top:.8rem; width:6.4rem; height:6.4rem; display:grid; grid-template-columns:repeat(7,1fr); gap:.14rem; direction:ltr; }
+.qr i { background:var(--ink); border-radius:.08rem; } .qr i.o { background:transparent; }
+.seal { position:absolute; inset-inline-end:1.6rem; bottom:1.8rem; display:grid; justify-items:center; gap:.5rem; font:700 1rem var(--text); color:var(--em); opacity:0; animation:pop .5s cubic-bezier(.2,1.4,.4,1) both; animation-delay:calc(var(--t0) + 2.6s); }
+.seal span { width:4.6rem; height:4.6rem; border-radius:50%; background:var(--em); color:#fff; display:grid; place-items:center; } .seal svg { width:2.6rem; height:2.6rem; }
+.note { position:absolute; top:-1.6rem; inset-inline-start:-4rem; background:var(--deep); border:.08rem solid rgb(255 255 255 / .3); color:#fff; border-radius:1rem; padding:.9rem 1.2rem; font:600 1.05rem var(--text); display:flex; align-items:center; gap:.7rem; box-shadow:0 1.6rem 3rem -1rem rgb(0 0 0 / .8); }
+.tall .note { inset-inline-start:-1.5rem; }
+.note svg { width:1.4rem; height:1.4rem; color:var(--brassL); }
+/* Size of the pictures: the film is watched on phones as much as on desks. */
+.phone, .lic { zoom:1.45; } .win { zoom:1.4; } .desks { zoom:1.15; }
+.tall .phone, .tall .lic { zoom:1.5; } .tall .win { zoom:1.3; } .tall .desks { zoom:1; }
+/* gains */
+.gains { display:grid; gap:1.2rem; margin-top:2.4rem; width:100%; max-width:46rem; text-align:start; }
+.gain { display:flex; align-items:center; gap:1.4rem; background:rgb(255 255 255 / .06); border:.08rem solid rgb(255 255 255 / .18); border-inline-start:.3rem solid var(--brass); border-radius:1rem; padding:1.3rem 1.6rem; font:700 2rem/1.3 var(--display); }
+.gain span { flex:none; width:2.8rem; height:2.8rem; border-radius:50%; background:var(--em); display:grid; place-items:center; } .gain svg { width:1.7rem; height:1.7rem; }
+.url { font:600 1.5rem var(--text); color:var(--brassL); margin-top:2rem; direction:ltr; }
+.fine { font:500 1.05rem var(--text); color:var(--soft); margin-top:1.4rem; }
+.biglogo { width:16rem; margin-bottom:2.4rem; direction:ltr; }
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), L = q.get("lang") || "en";
+document.documentElement.lang = L; document.documentElement.dir = L === "ar" ? "rtl" : "ltr";
+if (q.get("format") === "tall") document.documentElement.classList.add("tall");
+const T = {
+  kicker: { en: "How a Kogia system works", fr: "Comment fonctionne un système Kogia", ar: "كيف يعمل نظام من Kogia" },
+  title: { en: "A licence without the queue.", fr: "Une licence sans file d'attente.", ar: "رخصة بلا طابور." },
+  today: { en: "Today", fr: "Aujourd'hui", ar: "اليوم" },
+  withS: { en: "With the system", fr: "Avec le système", ar: "مع النظام" },
+  p1: { en: "Several visits.", fr: "Plusieurs déplacements.", ar: "عدة زيارات." },
+  p2: { en: "A paper file that travels by hand.", fr: "Un dossier papier qui circule de main en main.", ar: "ملف ورقي ينتقل باليد." },
+  p3: { en: "No way to know where it stands.", fr: "Aucun moyen de savoir où il en est.", ar: "ولا وسيلة لمعرفة أين وصل." },
+  d1: { en: "Counter", fr: "Guichet", ar: "الشبّاك" }, d2: { en: "Licences office", fr: "Bureau des licences", ar: "مكتب التراخيص" }, d3: { en: "Cashier", fr: "Caisse", ar: "الصندوق" },
+  c1: { en: "He files the request from his phone and uploads each document once.", fr: "Il dépose sa demande depuis son téléphone et envoie chaque pièce une seule fois.", ar: "يقدّم الطلب من هاتفه ويرفع كل مستند مرة واحدة." },
+  c2: { en: "The licences office receives a complete file.", fr: "Le bureau des licences reçoit un dossier complet.", ar: "يستلم مكتب التراخيص ملفاً كاملاً." },
+  c3: { en: "The fee is paid, the head of office approves, and every step is recorded.", fr: "Le droit est payé, le chef de bureau valide, et chaque étape est enregistrée.", ar: "يُدفع الرسم ويعتمد رئيس المكتب الطلب، وتُسجَّل كل خطوة." },
+  c4: { en: "The licence arrives with a code that anyone can verify. Nobody stood in line.", fr: "La licence arrive avec un code que chacun peut vérifier. Personne n'a fait la queue.", ar: "تصل الرخصة برمز يمكن لأي جهة التحقق منه. ولم يقف أحد في طابور." },
+  name: { en: "Activity licence", fr: "Licence d'activité", ar: "رخصة نشاط" },
+  newReq: { en: "New request", fr: "Nouvelle demande", ar: "طلب جديد" },
+  doc1: { en: "ID card", fr: "Pièce d'identité", ar: "بطاقة الهوية" }, doc2: { en: "Lease contract", fr: "Contrat de bail", ar: "عقد الإيجار" }, doc3: { en: "Application form", fr: "Formulaire de demande", ar: "نموذج الطلب" },
+  submit: { en: "Submit request", fr: "Déposer la demande", ar: "تقديم الطلب" }, submitted: { en: "Request submitted", fr: "Demande déposée", ar: "قُدِّم الطلب" },
+  track: { en: "Request tracking", fr: "Suivi des demandes", ar: "متابعة الطلبات" },
+  ref: { en: "Request 2026-0148", fr: "Demande 2026-0148", ar: "طلب 2026-0148" },
+  prog: { en: "In progress", fr: "En cours", ar: "قيد الإنجاز" },
+  s1: { en: "Request submitted", fr: "Demande déposée", ar: "قُدِّم الطلب" }, w1: { en: "From the citizen's phone", fr: "Depuis le téléphone du citoyen", ar: "من هاتف المواطن" },
+  s2: { en: "File checked", fr: "Dossier vérifié", ar: "رُوجع الملف" }, w2: { en: "Licences office", fr: "Bureau des licences", ar: "مكتب التراخيص" },
+  s3: { en: "Fee paid", fr: "Droits payés", ar: "سُدِّد الرسم" }, w3: { en: "Cashier", fr: "Caisse", ar: "الصندوق" },
+  s4: { en: "Signed", fr: "Signée", ar: "وُقِّع" }, w4: { en: "Head of office", fr: "Chef de bureau", ar: "رئيس المكتب" },
+  audit: { en: "Every step recorded with a name and a time", fr: "Chaque étape enregistrée avec un nom et une heure", ar: "كل خطوة مسجَّلة باسم ووقت" },
+  lic: { en: "Licence", fr: "Licence", ar: "رخصة" }, verified: { en: "Verified", fr: "Vérifiée", ar: "تم التحقق" },
+  ready: { en: "Your licence is ready", fr: "Votre licence est prête", ar: "رخصتك جاهزة" },
+  muni: { en: "For the municipality", fr: "Pour la municipalité", ar: "للبلدية" },
+  g1: { en: "Fewer people at the counter", fr: "Moins de monde au guichet", ar: "ازدحام أقل عند الشبّاك" }, g2: { en: "No lost files", fr: "Aucun dossier perdu", ar: "لا ملفات ضائعة" }, g3: { en: "Figures on every service", fr: "Des chiffres sur chaque service", ar: "أرقام عن كل خدمة" },
+  close: { en: "The institution, working as one.", fr: "L'institution, d'un seul tenant.", ar: "المؤسسة تعمل كالجسد الواحد." },
+  fine: { en: "Illustration of a solution line in preparation.", fr: "Illustration d'une ligne de solutions en préparation.", ar: "رسم توضيحي لخط حلول قيد الإعداد." },
+};
+const t = (k) => T[k][L];
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+const BELL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+const DESK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18M6 18v-7M10 18v-7M14 18v-7M18 18v-7"/><path d="M12 2 20 7H4z"/></svg>';
+const WHALE = "M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z";
+const logo = (c) => `<svg class="${c}" viewBox="0 0 300 72" font-family="Sora, sans-serif"><g transform="translate(4,14) scale(.52)"><path fill="#7CC1AA" fill-rule="evenodd" d="${WHALE}"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="#7CC1AA" stroke-width="4" stroke-linecap="round" opacity=".85"/></g><text x="76" y="40" font-size="30" font-weight="800" fill="#fff" letter-spacing="-0.6">kogia</text><text x="78" y="58" font-size="10" font-weight="700" fill="#DCC487" letter-spacing="4">GROUP</text></svg>`;
+const QR = "1110111,1010101,1110111,0001000,1011101,0110010,1101011".split(",").join("").split("").map((b) => `<i class="${b === "1" ? "" : "o"}"></i>`).join("");
+const step = (n, a, time) => `<li style="--a:${a}s"><span class="dot" style="--a:${a}s">${CHECK}</span><span><b>${t("s" + n)}</b><small>${t("w" + n)}</small></span><time>${time}</time></li>`;
+document.body.innerHTML = `
+${logo("logo")}
+<section class="sc full" style="--t0:0s;--d:5s">
+  <div><p class="k i" style="--a:.4s">${t("kicker")}</p><h1 class="i" style="--a:.9s">${t("title")}</h1></div>
+</section>
+<section class="sc" style="--t0:5s;--d:8s">
+  <div class="cap one"><div><p class="k i" style="--a:.3s">${t("today")}</p><div class="lines"><p class="i" style="--a:.9s">${t("p1")}</p><p class="i" style="--a:2.6s">${t("p2")}</p><p class="i" style="--a:4.4s">${t("p3")}</p></div></div></div>
+  <div class="vis"><div class="desks" dir="ltr"><div class="paper"><b><i></i><i></i><i></i><i></i></b><em class="i" style="--a:4.4s">?</em></div>
+    <div class="desk">${DESK}<span>${t("d1")}</span></div><div class="desk">${DESK}<span>${t("d2")}</span></div><div class="desk">${DESK}<span>${t("d3")}</span></div></div></div>
+</section>
+<section class="sc" style="--t0:13s;--d:8s">
+  <div class="cap one"><div><p class="k i" style="--a:.3s">${t("withS")}</p><h2 class="i" style="--a:.8s">${t("c1")}</h2></div></div>
+  <div class="vis"><div class="phone i" style="--a:.5s"><div><small>${t("newReq")}</small><h3>${t("name")}</h3>
+    <div class="doc"><span class="dot" style="--a:2s">${CHECK}</span>${t("doc1")}</div><div class="doc"><span class="dot" style="--a:3s">${CHECK}</span>${t("doc2")}</div><div class="doc"><span class="dot" style="--a:4s">${CHECK}</span>${t("doc3")}</div>
+    <div class="btn"><span class="b1">${t("submit")}</span><span class="b2">${t("submitted")}</span></div></div></div></div>
+</section>
+<section class="sc" style="--t0:21s;--d:14s">
+  <div class="cap"><div style="--ca:.4s;--cd:6.4s"><p class="k">${t("withS")}</p><h2>${t("c2")}</h2></div><div style="--ca:7s;--cd:6.8s"><p class="k">${t("withS")}</p><h2>${t("c3")}</h2></div></div>
+  <div class="vis"><div class="win i" style="--a:.4s"><div class="win-bar"><i></i><i></i><i></i><span>${t("track")}</span></div><div class="win-body">
+    <div class="req"><div><small>${t("ref")}</small><b>${t("name")}</b></div><span class="pill">${t("prog")}</span></div>
+    <ol class="steps">${step(1, 1.6, "09:12")}${step(2, 3.8, "09:40")}${step(3, 8, "10:05")}${step(4, 10.2, "10:20")}</ol>
+    <div class="audit i" style="--a:11.6s">${LOCK}${t("audit")}</div></div></div></div>
+</section>
+<section class="sc" style="--t0:35s;--d:7s">
+  <div class="cap one"><div><p class="k i" style="--a:.3s">${t("withS")}</p><h2 class="i" style="--a:.8s">${t("c4")}</h2></div></div>
+  <div class="vis"><div class="lic i" style="--a:.5s"><div class="note i" style="--a:3.6s">${BELL}${t("ready")}</div><small>${t("lic")}</small><h3>${t("name")}</h3><p><i></i><i></i><i></i></p><div class="qr">${QR}</div>
+    <div class="seal"><span>${CHECK}</span>${t("verified")}</div></div></div>
+</section>
+<section class="sc full" style="--t0:42s;--d:6.5s">
+  <div style="display:grid;justify-items:center;width:100%"><p class="k i" style="--a:.3s">${t("muni")}</p>
+  <div class="gains"><div class="gain i" style="--a:.9s"><span>${CHECK}</span>${t("g1")}</div><div class="gain i" style="--a:2s"><span>${CHECK}</span>${t("g2")}</div><div class="gain i" style="--a:3.1s"><span>${CHECK}</span>${t("g3")}</div></div></div>
+</section>
+<section class="sc full" style="--t0:48.5s;--d:5.5s">
+  <div style="display:grid;justify-items:center">${logo("biglogo i")}<h1 class="i" style="--a:.6s">${t("close")}</h1><p class="url i" style="--a:1.4s">kogiagroup.com</p><p class="fine i" style="--a:1.9s">${t("fine")}</p></div>
+</section>
+<div class="bar"><i></i></div>`;
+</script>
+</body>
+</html>

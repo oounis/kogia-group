@@ -384,6 +384,17 @@ export const MAG = {
     ticket: { en: "Ticket", fr: "Ticket", ar: "تذكرة" },
     confirmed: { en: "Confirmed", fr: "Confirmé", ar: "مؤكَّد" },
   },
+  film: {
+    kicker: { en: "One minute", fr: "Une minute", ar: "دقيقة واحدة" },
+    h: { en: "Watch a licence travel without a queue.", fr: "Regardez une licence voyager sans file d'attente.", ar: "شاهد رخصة تُنجَز بلا طابور." },
+    p: {
+      en: "A short film, without sound, showing how one of our systems carries a request from the citizen's phone to the final signature. It illustrates a solution line in preparation.",
+      fr: "Un court film, sans son, qui montre comment l'un de nos systèmes porte une demande du téléphone du citoyen à la signature finale. Il illustre une ligne de solutions en préparation.",
+      ar: "فيلم قصير بلا صوت يُظهر كيف يحمل أحد أنظمتنا الطلب من هاتف المواطن إلى التوقيع الأخير. وهو رسم توضيحي لخط حلول قيد الإعداد.",
+    },
+    label: { en: "Film: a licence without the queue", fr: "Film : une licence sans file d'attente", ar: "فيلم: رخصة بلا طابور" },
+    vertical: { en: "Vertical version for phones", fr: "Version verticale pour téléphone", ar: "نسخة عمودية للهاتف" },
+  },
   sectorsKicker: { en: "Where we work", fr: "Nos domaines", ar: "مجالات عملنا" },
   ctaStories: { en: "See it in your field", fr: "Voir dans votre domaine", ar: "شاهد ذلك في مجالك" },
   coverAlt: { en: "Five institutions standing on one shared platform", fr: "Cinq institutions posées sur une même plateforme", ar: "خمس مؤسسات تقوم على منصة واحدة مشتركة" },
