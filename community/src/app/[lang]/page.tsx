@@ -5,6 +5,7 @@ import { Page } from "@/components/site/Chrome";
 import { Ico } from "@/components/site/Ico";
 import { SceneCover, SceneEducation, SceneEnterprise, SceneGovernment, SceneHealth, SceneSecurity } from "@/components/site/Scenes";
 import { InsightCard } from "@/components/site/Insights";
+import { INDUSTRIES, PRODUCTS } from "@/lib/catalog";
 import { C, MAG, META } from "@/lib/copy";
 import { INSIGHTS, INSIGHTS_PAGE } from "@/lib/insights";
 import { alternates, tr, type Lang } from "@/lib/i18n";
@@ -32,6 +33,7 @@ export default async function Home({ params }: P) {
   const { lang } = await params;
   return (
     <Page lang={lang} path="/">
+      <div className="m-hero">
       <section className="m-cover">
         <div>
           <p className="m-kicker">{tr(MAG.kicker, lang)}</p>
@@ -48,6 +50,15 @@ export default async function Home({ params }: P) {
         </div>
         <div className="m-cover-art"><SceneCover label={tr(MAG.coverAlt, lang)} /></div>
       </section>
+      <div className="m-hero-facts">
+        <dl>
+          <div><dt>{tr(MAG.facts.industries, lang)}</dt><dd dir="ltr">{INDUSTRIES.length}</dd></div>
+          <div><dt>{tr(MAG.facts.products, lang)}</dt><dd dir="ltr">{PRODUCTS.length}</dd></div>
+          <div><dt>{tr(MAG.facts.languages, lang)}</dt><dd dir="ltr">3</dd></div>
+          <div><dt>{tr(MAG.facts.delivery, lang)}</dt><dd dir="ltr">3</dd></div>
+        </dl>
+      </div>
+      </div>
 
       <div id="stories" />
       {MAG.stories.map((s, i) => (

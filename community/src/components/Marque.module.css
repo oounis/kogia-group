@@ -18,9 +18,11 @@
   direction: ltr;
 }
 
-/* Le mot se repeint sur fond sombre, le bleu de la marque jamais. */
-.mot { fill: var(--marque-encre, #0E2135); }
-.motSecondaire { /* le bleu est écrit dans le composant, il ne varie pas */ }
+/* Les trois couleurs du lockup. Un fond sombre les repeint par variable. */
+.mot { fill: var(--marque-encre, #0F1F1A); }
+.teinte { fill: var(--marque-teinte, #0F6B53); }
+.trait { stroke: var(--marque-teinte, #0F6B53); }
+.motSecondaire { fill: var(--marque-second, #8F6B1F); }
 
 /* Sur les très petits téléphones, la ligne GROUP devient illisible avant le
    mot lui-même. On réduit le lockup entier plutôt que de masquer une moitié

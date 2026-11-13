@@ -4,11 +4,11 @@
    travels, what comes back. Decorative: the story text carries the meaning. */
 import type { ReactNode } from "react";
 
-const INK = "var(--k-ink)";
-const OCEAN = "var(--k-ocean-600)";
-const SOFT = "var(--k-ocean-100)";
-const PALE = "var(--k-ocean-50)";
-const LINE = "var(--k-line)";
+const INK = "var(--k-pine-900)";
+const OCEAN = "var(--k-emerald-600)";
+const SOFT = "var(--k-emerald-100)";
+const PALE = "var(--k-emerald-50)";
+const LINE = "var(--k-g-line)";
 const WARM = "#F0B429";
 const WHITE = "#fff";
 

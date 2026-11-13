@@ -356,6 +356,12 @@ export const MAG = {
     fr: "Un hôpital, une école, une municipalité ou un cabinet vivent de procédures qui traversent de nombreux bureaux. Nous construisons les systèmes qui portent chaque procédure, de la première demande à la dernière signature, en arabe, en français et en anglais.",
     ar: "المستشفى والمدرسة والبلدية والمكتب المهني تقوم كلها على إجراءات تمرّ بمكاتب كثيرة. نبني الأنظمة التي تحمل كل إجراء من أول طلب إلى آخر توقيع، بالعربية والفرنسية والإنجليزية.",
   },
+  facts: {
+    industries: { en: "industries served", fr: "secteurs servis", ar: "قطاعات نخدمها" },
+    products: { en: "products built in-house", fr: "produits développés en interne", ar: "منتجات مطوّرة داخلياً" },
+    languages: { en: "languages on every screen: Arabic, French, English", fr: "langues sur chaque écran : arabe, français, anglais", ar: "لغات في كل شاشة: العربية والفرنسية والإنجليزية" },
+    delivery: { en: "ways to deliver: on your servers, private, or managed", fr: "modes de livraison : sur vos serveurs, privé ou géré", ar: "طرق للتسليم: على خوادمكم، أو بيئة خاصة، أو خدمة مُدارة" },
+  },
   ctaStories: { en: "See it in your field", fr: "Voir dans votre domaine", ar: "شاهد ذلك في مجالك" },
   coverAlt: { en: "Five institutions standing on one shared platform", fr: "Cinq institutions posées sur une même plateforme", ar: "خمس مؤسسات تقوم على منصة واحدة مشتركة" },
   inThisIssue: { en: "In these pages", fr: "Dans ces pages", ar: "في هذه الصفحات" },

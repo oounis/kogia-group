@@ -582,3 +582,15 @@ Before anything ships, on every product:
 
 **Kogia Food and Kogia Games are not part of this system** and must not appear on any
 public Kogia Group surface until they are real.
+
+## 2026-11-13 : l'identité KogiaGroup quitte le bleu
+
+Décision du fondateur : le site de la société doit paraître plus sérieux, plus
+institutionnel, et le bleu ne lui plaît pas, logo compris. La famille du
+groupe devient **émeraude** (`--k-emerald-*`, action `#0F6B53`), avec le
+**laiton** (`--k-brass-*`) comme seconde voix (filets, chiffres, ligne GROUP)
+et le **pin** (`--k-pine-*`) comme fond sombre (couverture, bandeaux, pied de
+page). Le lockup du groupe suit : cachalot émeraude, mot en encre `#0F1F1A`,
+GROUP en laiton `#8F6B1F`. Les familles océan, violet et terra restent dans
+les jetons pour les produits qui les portent. Le cachalot, Sora, les rayons et
+la grille ne changent pas.
