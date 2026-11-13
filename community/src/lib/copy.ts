@@ -10,6 +10,7 @@ export const NAV: { href: string; label: T }[] = [
   { href: "/capabilities", label: { en: "Capabilities", fr: "Savoir-faire", ar: "قدراتنا" } },
   { href: "/how-we-work", label: { en: "How we work", fr: "Notre méthode", ar: "طريقة عملنا" } },
   { href: "/presence", label: { en: "Presence", fr: "Présence", ar: "حضورنا" } },
+  { href: "/insights", label: { en: "Insights", fr: "Tendances", ar: "اتجاهات" } },
   { href: "/about", label: { en: "About", fr: "À propos", ar: "من نحن" } },
 ];
 
@@ -110,6 +111,16 @@ export const CAPABILITIES: { icon: string; title: T; text: T; points: T[] }[] = 
       { en: "Web platforms and administrative dashboards", fr: "Plateformes web et tableaux de bord d'administration", ar: "منصات ويب ولوحات إدارة" },
       { en: "Multi-tenant SaaS with roles and audit", fr: "SaaS multi-clients avec rôles et audit", ar: "برمجيات خدمية متعددة العملاء مع أدوار وتدقيق" },
       { en: "Arabic, French and English from the first screen", fr: "Arabe, français et anglais dès le premier écran", ar: "العربية والفرنسية والإنجليزية من أول شاشة" },
+    ],
+  },
+  {
+    icon: "smartphone",
+    title: { en: "Mobile apps", fr: "Applications mobiles", ar: "تطبيقات الهاتف" },
+    text: { en: "Every system we design carries a mobile side: an app for the public and an app for staff, on the same data and roles as the web system. The first apps are in preparation.", fr: "Chaque système que nous concevons porte un côté mobile : une application pour le public et une pour le personnel, sur les mêmes données et les mêmes rôles que le système web. Les premières applications sont en préparation.", ar: "كل نظام نصممه يحمل جانباً خاصاً بالهاتف: تطبيق للجمهور وتطبيق للموظفين، على البيانات والأدوار نفسها التي في نظام الويب. التطبيقات الأولى قيد الإعداد." },
+    points: [
+      { en: "Android and iPhone from one codebase", fr: "Android et iPhone à partir d'une seule base de code", ar: "أندرويد وآيفون من قاعدة برمجية واحدة" },
+      { en: "Appointments, notifications and documents in the user's pocket", fr: "Rendez-vous, notifications et documents dans la poche de l'utilisateur", ar: "المواعيد والإشعارات والمستندات في جيب المستخدم" },
+      { en: "Light enough for modest phones and weak networks", fr: "Assez légères pour les téléphones modestes et les réseaux faibles", ar: "خفيفة بما يكفي للهواتف المتواضعة والشبكات الضعيفة" },
     ],
   },
   {

@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import nextConfig from "../next.config";
 import { INDUSTRIES, PRODUCTS } from "../src/lib/catalog";
+import { INSIGHTS } from "../src/lib/insights";
 import { LANGS } from "../src/lib/i18n";
 
 /**
@@ -14,6 +15,8 @@ const PAGES = [
   "", "/industries", "/products", "/capabilities", "/how-we-work", "/presence", "/about", "/contact", "/privacy", "/terms",
   ...INDUSTRIES.map((i) => `/industries/${i.slug}`),
   ...PRODUCTS.map((p) => `/products/${p.slug}`),
+  "/insights",
+  ...INSIGHTS.map((a) => `/insights/${a.slug}`),
 ];
 const ORIGINE_PUBLIQUE = "https://kogiagroup.com";
 

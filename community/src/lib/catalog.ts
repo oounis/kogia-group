@@ -77,6 +77,40 @@ export const INDUSTRIES: Industry[] = [
       { en: "Arabic, French and English, with real right-to-left Arabic", fr: "Arabe, français et anglais, avec un arabe réellement de droite à gauche", ar: "العربية والفرنسية والإنجليزية، مع اتجاه عربي حقيقي من اليمين إلى اليسار" },
       { en: "Shared or dedicated deployment for each client", fr: "Déploiement partagé ou dédié pour chaque client", ar: "نشر مشترك أو مخصص لكل عميل" },
     ],
+    lines: [
+      {
+        slug: "appointment-app",
+        icon: "calendar",
+        name: { en: "Appointment app for clinics and practices", fr: "Application de rendez-vous pour cliniques et cabinets", ar: "تطبيق المواعيد للعيادات والعيادات الخاصة" },
+        text: {
+          en: "Patients book from their phone and arrive at their hour instead of waiting through the morning. The same engine serves government offices.",
+          fr: "Les patients réservent depuis leur téléphone et arrivent à leur heure au lieu d'attendre toute la matinée. Le même moteur sert les administrations.",
+          ar: "يحجز المرضى من هواتفهم ويحضرون في ساعتهم بدلاً من الانتظار طوال الصباح. والمحرك نفسه يخدم الدوائر الحكومية.",
+        },
+        points: [
+          { en: "Booking by speciality, doctor and time", fr: "Réservation par spécialité, médecin et heure", ar: "الحجز بحسب التخصص والطبيب والوقت" },
+          { en: "Reminders, with cancel and reschedule in one tap", fr: "Rappels, avec annulation et report en un geste", ar: "تذكيرات، مع الإلغاء وإعادة الجدولة بلمسة واحدة" },
+          { en: "Bookings and walk-in tickets in one queue", fr: "Réservations et tickets sans rendez-vous dans une seule file", ar: "الحجوزات وتذاكر القادمين دون موعد في طابور واحد" },
+          { en: "Demand, waiting time and missed appointments for management", fr: "Demande, temps d'attente et rendez-vous manqués pour la direction", ar: "الطلب ووقت الانتظار والمواعيد الفائتة أمام الإدارة" },
+        ],
+      },
+      {
+        slug: "patient-app",
+        icon: "file-text",
+        name: { en: "Reports and results in the patient's app", fr: "Comptes rendus et résultats dans l'application du patient", ar: "التقارير والنتائج في تطبيق المريض" },
+        text: {
+          en: "The clinic publishes results, reports and prescriptions to the patient's phone, under its own validation rule. The app shows documents and does not diagnose.",
+          fr: "La clinique publie résultats, comptes rendus et ordonnances sur le téléphone du patient, selon sa propre règle de validation. L'application montre des documents et ne pose pas de diagnostic.",
+          ar: "تنشر العيادة النتائج والتقارير والوصفات على هاتف المريض وفق قاعدة الاعتماد الخاصة بها. التطبيق يعرض المستندات ولا يشخّص.",
+        },
+        points: [
+          { en: "Laboratory results, imaging reports and visit summaries", fr: "Résultats de laboratoire, comptes rendus d'imagerie et résumés de consultation", ar: "نتائج المختبر وتقارير الأشعة وملخصات الزيارات" },
+          { en: "A notification when a document is ready", fr: "Une notification lorsqu'un document est prêt", ar: "إشعار عند جاهزية المستند" },
+          { en: "Family accounts for children and dependants", fr: "Comptes famille pour les enfants et les personnes à charge", ar: "حسابات عائلية للأطفال ومن هم في الرعاية" },
+          { en: "An access log the patient can read", fr: "Un journal des accès que le patient peut lire", ar: "سجل اطّلاع يستطيع المريض قراءته" },
+        ],
+      },
+    ],
   },
   {
     slug: "education",

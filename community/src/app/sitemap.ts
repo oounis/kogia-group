@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { INDUSTRIES, PRODUCTS } from "@/lib/catalog";
+import { INSIGHTS } from "@/lib/insights";
 import { LANGS } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/site";
 
@@ -12,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/products", 0.9],
     ...INDUSTRIES.map((i) => [`/industries/${i.slug}`, 0.8] as [string, number]),
     ...PRODUCTS.map((p) => [`/products/${p.slug}`, 0.8] as [string, number]),
+    ["/insights", 0.8],
+    ...INSIGHTS.map((a) => [`/insights/${a.slug}`, 0.7] as [string, number]),
     ["/capabilities", 0.7],
     ["/how-we-work", 0.7],
     ["/presence", 0.6],

@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { Page } from "@/components/site/Chrome";
 import { Ico } from "@/components/site/Ico";
 import { SceneCover, SceneEducation, SceneEnterprise, SceneGovernment, SceneHealth, SceneSecurity } from "@/components/site/Scenes";
+import { InsightCard } from "@/components/site/Insights";
 import { C, MAG, META } from "@/lib/copy";
+import { INSIGHTS, INSIGHTS_PAGE } from "@/lib/insights";
 import { alternates, tr, type Lang } from "@/lib/i18n";
 
 type P = { params: Promise<{ lang: Lang }> };
@@ -62,6 +64,16 @@ export default async function Home({ params }: P) {
           <div className="m-story-art">{SCENES[s.slug](tr(s.title, lang))}</div>
         </section>
       ))}
+
+      <section id="insights">
+        <div className="n-home-head">
+          <p className="m-field">{tr(INSIGHTS_PAGE.homeKicker, lang)}</p>
+          <h2>{tr(INSIGHTS_PAGE.homeH, lang)}</h2>
+          <p>{tr(INSIGHTS_PAGE.homeP, lang)}</p>
+        </div>
+        <div className="n-grid">{INSIGHTS.map((a) => <InsightCard key={a.slug} a={a} lang={lang} level={3} />)}</div>
+        <div className="k-cta n-home-foot"><Link href={`/${lang}/insights`} className="k-btn k-btn-ghost">{tr(INSIGHTS_PAGE.all, lang)} <Ico n="arrow" size={18} /></Link></div>
+      </section>
 
       <div className="m-trust">
         <div className="m-trust-in">

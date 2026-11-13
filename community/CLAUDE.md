@@ -9,6 +9,9 @@ Traefik, 2 répliques, `deploy/deploy.sh`).
 - `src/lib/catalog.ts` : LA source des secteurs et produits. Ajouter un produit
   = une entrée ici. Accueil, pages secteur, annuaire, pages produit, pied de
   page et sitemap en dérivent.
+- `src/lib/insights.ts` : les articles « Tendances » (/insights). Ajouter un
+  article = une entrée. Chaque chiffre a sa source listée sous l'article, et
+  un service annoncé est dit « annoncé », jamais livré.
 - `src/lib/copy.ts` : tous les textes visibles, en en/fr/ar.
 - `src/lib/i18n.ts` : langues, direction, alternates hreflang.
 - `src/proxy.ts` : une adresse sans langue renvoie vers /en, /fr ou /ar.

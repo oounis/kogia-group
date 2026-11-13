@@ -259,3 +259,58 @@ html[lang="ar"] .m-trust h2 { letter-spacing: 0; line-height: 1.4; }
 html[lang="ar"] .m-close h2 { letter-spacing: 0; line-height: 1.4; }
 .m-close p { margin: 18px auto 0; font-size: 19px; color: var(--slate); max-width: 52ch; }
 .m-close .k-cta { justify-content: center; margin-top: 30px; }
+
+/* ── Insights (trend articles) ──────────────────────────────────────── */
+.n-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.n-card { display: grid; gap: 14px; grid-template-rows: auto auto 1fr auto auto; padding: 26px; }
+.n-card-top { display: flex; align-items: center; gap: 12px; }
+.n-card-ico { inline-size: 44px; block-size: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.n-field { font: 700 13px/1.4 var(--text); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+html[lang="ar"] .n-field { letter-spacing: 0; font-size: 15px; }
+.n-card-title { font: 700 22px/1.25 var(--display); color: var(--ink); letter-spacing: -.01em; }
+html[lang="ar"] .n-card-title { letter-spacing: 0; line-height: 1.5; }
+.n-card-lede { align-self: start; color: var(--slate); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.n-card-fig { display: grid; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--canvas); }
+.n-card-fig b { font: 800 26px/1.2 var(--font-sora), var(--k-display); color: var(--accent-ink); text-align: start; }
+.n-card-fig span { font-size: 13px; color: var(--slate); }
+.n-card-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: var(--slate); }
+.n-card-more { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: 14px; }
+
+.n-head h1 { max-width: 20ch; }
+.n-head .k-lede { max-width: 66ch; }
+.n-figs { display: grid; gap: 1px; grid-template-columns: repeat(3, minmax(0, 1fr)); background: rgb(255 255 255 / .16); border-radius: 20px; overflow: hidden; }
+.n-figs > div { background: var(--ink); color: #fff; padding: 28px 26px; display: grid; gap: 8px; align-content: start; }
+.n-figs b { font: 800 clamp(32px, 4.4vw, 50px)/1.05 var(--font-sora), var(--k-display); color: #fff; letter-spacing: -.02em; text-align: start; }
+.n-figs p { color: #E3EAF2; font-size: 15px; }
+.n-figs small { color: #A9BACB; font-size: 12px; text-align: start; }
+@media (max-width: 860px) { .n-figs { grid-template-columns: minmax(0, 1fr); } }
+.n-prose p { font-size: 17px; }
+html[lang="ar"] .n-prose p { font-size: 18px; }
+.n-build { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; background: var(--accent-soft); border: 1px solid var(--k-ocean-100); border-radius: 24px; padding: clamp(24px, 4vw, 44px); }
+.n-build > div { display: grid; gap: 14px; justify-items: start; }
+.n-build p { color: var(--ink); max-width: 56ch; }
+.n-build .k-checks { margin: 0; gap: 12px; }
+.n-build .k-checks li { font-size: 16px; }
+@media (max-width: 860px) { .n-build { grid-template-columns: minmax(0, 1fr); } }
+.n-sources { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--k-r-card); background: #fff; }
+.n-sources li { display: grid; gap: 4px; padding: 14px 18px; text-align: start; }
+.n-sources li + li { border-top: 1px solid var(--line); }
+.n-sources b { font-size: 13px; color: var(--slate); font-weight: 600; }
+.n-sources a { font-size: 15px; overflow-wrap: anywhere; }
+.n-sources .k-ico { vertical-align: -2px; }
+
+.n-home-head { display: grid; gap: 10px; margin-bottom: 32px; }
+.n-home-head h2 { font-size: clamp(28px, 4vw, 46px); line-height: 1.12; font-weight: 800; letter-spacing: -.02em; max-width: 20ch; }
+html[lang="ar"] .n-home-head h2 { letter-spacing: 0; line-height: 1.4; }
+.n-home-head p { color: var(--slate); font-size: 18px; max-width: 58ch; }
+.n-home-foot { margin-top: 26px; }
+
+/* Seven links in the header need more room than six. */
+@media (max-width: 1180px) {
+  .k-nav { display: none; }
+  .k-drawer { display: block; }
+  .k-top-actions { margin-inline-start: auto; }
+}
+.k-nav { gap: 2px; }
+.k-nav a { white-space: nowrap; padding-inline: 10px; }
+.k-top-in { gap: 16px; }
