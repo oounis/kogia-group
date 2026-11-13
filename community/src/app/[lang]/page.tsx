@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Page } from "@/components/site/Chrome";
+import { IndustryCard } from "@/components/site/Blocks";
+import { HeroConsole } from "@/components/site/Hero";
 import { Ico } from "@/components/site/Ico";
-import { SceneCover, SceneEducation, SceneEnterprise, SceneGovernment, SceneHealth, SceneSecurity } from "@/components/site/Scenes";
+import { SceneEducation, SceneEnterprise, SceneGovernment, SceneHealth, SceneSecurity } from "@/components/site/Scenes";
 import { InsightCard } from "@/components/site/Insights";
-import { INDUSTRIES, PRODUCTS } from "@/lib/catalog";
-import { C, MAG, META } from "@/lib/copy";
+import { INDUSTRIES, PRODUCTS, productsIn } from "@/lib/catalog";
+import { C, HOME, MAG, META } from "@/lib/copy";
 import { INSIGHTS, INSIGHTS_PAGE } from "@/lib/insights";
 import { alternates, tr, type Lang } from "@/lib/i18n";
 
@@ -43,12 +45,8 @@ export default async function Home({ params }: P) {
             <a href="#stories" className="k-btn k-btn-primary">{tr(MAG.ctaStories, lang)}</a>
             <Link href={`/${lang}/contact`} className="k-btn k-btn-ghost">{tr(C.contact, lang)}</Link>
           </div>
-          <nav className="m-contents" aria-label={tr(MAG.inThisIssue, lang)}>
-            <b>{tr(MAG.inThisIssue, lang)}</b>
-            {MAG.stories.map((s, i) => <a key={s.slug} href={`#${s.slug}`}><span dir="ltr">{num(i)}</span>{tr(s.title, lang)}</a>)}
-          </nav>
         </div>
-        <div className="m-cover-art"><SceneCover label={tr(MAG.coverAlt, lang)} /></div>
+        <div className="m-cover-art"><HeroConsole lang={lang} /></div>
       </section>
       <div className="m-hero-facts">
         <dl>
@@ -59,6 +57,17 @@ export default async function Home({ params }: P) {
         </dl>
       </div>
       </div>
+
+      <section className="m-sectors">
+        <div className="n-home-head">
+          <p className="m-field">{tr(MAG.sectorsKicker, lang)}</p>
+          <h2>{tr(HOME.industriesH, lang)}</h2>
+          <p>{tr(HOME.industriesP, lang)}</p>
+        </div>
+        <div className="k-grid k-grid5">
+          {INDUSTRIES.map((i) => <IndustryCard key={i.slug} i={i} lang={lang} count={productsIn(i.slug).length} />)}
+        </div>
+      </section>
 
       <div id="stories" />
       {MAG.stories.map((s, i) => (
