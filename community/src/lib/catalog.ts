@@ -73,7 +73,7 @@ export const INDUSTRIES: Industry[] = [
       { en: "Nurse call, asset tracking and medical fridges", fr: "Appel infirmier, localisation des équipements et réfrigérateurs médicaux", ar: "نداء التمريض وتتبع الأصول وثلاجات الأدوية" },
     ],
     capabilities: [
-      { en: "Integration with hospital systems through HL7 and FHIR (planned)", fr: "Intégration aux systèmes hospitaliers via HL7 et FHIR (prévu)", ar: "التكامل مع أنظمة المستشفيات عبر HL7 وFHIR (مخطط)" },
+      { en: "Integration with hospital systems through HL7 and FHIR (planned)", fr: "Intégration aux systèmes hospitaliers via HL7 et FHIR (prévu)", ar: "التكامل مع أنظمة المستشفيات عبر HL7 و FHIR (مخطَّط له)" },
       { en: "Arabic, French and English, with real right-to-left Arabic", fr: "Arabe, français et anglais, avec un arabe réellement de droite à gauche", ar: "العربية والفرنسية والإنجليزية، مع اتجاه عربي حقيقي من اليمين إلى اليسار" },
       { en: "Shared or dedicated deployment for each client", fr: "Déploiement partagé ou dédié pour chaque client", ar: "نشر مشترك أو مخصص لكل عميل" },
     ],
@@ -81,17 +81,17 @@ export const INDUSTRIES: Industry[] = [
       {
         slug: "appointment-app",
         icon: "calendar",
-        name: { en: "Appointment app for clinics and practices", fr: "Application de rendez-vous pour cliniques et cabinets", ar: "تطبيق المواعيد للعيادات والعيادات الخاصة" },
+        name: { en: "Appointment app for clinics and practices", fr: "Application de rendez-vous pour cliniques et cabinets", ar: "تطبيق المواعيد للمجمعات الطبية وعيادات الأطباء" },
         text: {
           en: "Patients book from their phone and arrive at their hour instead of waiting through the morning. The same engine serves government offices.",
           fr: "Les patients réservent depuis leur téléphone et arrivent à leur heure au lieu d'attendre toute la matinée. Le même moteur sert les administrations.",
-          ar: "يحجز المرضى من هواتفهم ويحضرون في ساعتهم بدلاً من الانتظار طوال الصباح. والمحرك نفسه يخدم الدوائر الحكومية.",
+          ar: "يحجز المرضى من هواتفهم ويحضرون في موعدهم بدلاً من الانتظار طوال الصباح. والمحرك نفسه يخدم الدوائر الحكومية.",
         },
         points: [
           { en: "Booking by speciality, doctor and time", fr: "Réservation par spécialité, médecin et heure", ar: "الحجز بحسب التخصص والطبيب والوقت" },
           { en: "Reminders, with cancel and reschedule in one tap", fr: "Rappels, avec annulation et report en un geste", ar: "تذكيرات، مع الإلغاء وإعادة الجدولة بلمسة واحدة" },
           { en: "Bookings and walk-in tickets in one queue", fr: "Réservations et tickets sans rendez-vous dans une seule file", ar: "الحجوزات وتذاكر القادمين دون موعد في طابور واحد" },
-          { en: "Demand, waiting time and missed appointments for management", fr: "Demande, temps d'attente et rendez-vous manqués pour la direction", ar: "الطلب ووقت الانتظار والمواعيد الفائتة أمام الإدارة" },
+          { en: "Demand, waiting time and missed appointments for management", fr: "Demande, temps d'attente et rendez-vous manqués pour la direction", ar: "مؤشرات للإدارة: حجم الطلب ووقت الانتظار والمواعيد الفائتة" },
         ],
       },
       {
@@ -106,7 +106,7 @@ export const INDUSTRIES: Industry[] = [
         points: [
           { en: "Laboratory results, imaging reports and visit summaries", fr: "Résultats de laboratoire, comptes rendus d'imagerie et résumés de consultation", ar: "نتائج المختبر وتقارير الأشعة وملخصات الزيارات" },
           { en: "A notification when a document is ready", fr: "Une notification lorsqu'un document est prêt", ar: "إشعار عند جاهزية المستند" },
-          { en: "Family accounts for children and dependants", fr: "Comptes famille pour les enfants et les personnes à charge", ar: "حسابات عائلية للأطفال ومن هم في الرعاية" },
+          { en: "Family accounts for children and dependants", fr: "Comptes famille pour les enfants et les personnes à charge", ar: "حسابات عائلية للأطفال ومن تعولهم الأسرة" },
           { en: "An access log the patient can read", fr: "Un journal des accès que le patient peut lire", ar: "سجل اطّلاع يستطيع المريض قراءته" },
         ],
       },
@@ -124,7 +124,7 @@ export const INDUSTRIES: Industry[] = [
     intro: {
       en: "Our first industry and the one with the most products in use. We build for schools, teachers and families: attendance, evaluation, parent communication and printable learning material in Arabic.",
       fr: "Notre premier secteur, et celui qui compte le plus de produits en usage. Nous construisons pour les écoles, les enseignants et les familles : présences, évaluation, communication avec les parents et supports à imprimer en arabe.",
-      ar: "أول قطاعاتنا وأكثرها منتجات قيد الاستخدام. نبني للمدارس والمعلمين والأسر: الحضور والتقييم والتواصل مع أولياء الأمور ومواد تعليمية عربية قابلة للطباعة.",
+      ar: "أول قطاعاتنا، وفيه أكبر عدد من منتجاتنا المستخدمة فعلاً. نبني للمدارس والمعلمين والأسر: الحضور والتقييم والتواصل مع أولياء الأمور ومواد تعليمية عربية قابلة للطباعة.",
     },
     needs: [
       { en: "Daily attendance and absence follow-up", fr: "Présences quotidiennes et suivi des absences", ar: "الحضور اليومي ومتابعة الغياب" },
@@ -149,7 +149,7 @@ export const INDUSTRIES: Industry[] = [
     intro: {
       en: "Kogia Systems designs, installs and supports security and smart building systems. Every service a client buys comes with its own management app, all under one login.",
       fr: "Kogia Systems conçoit, installe et maintient des systèmes de sécurité et de bâtiment intelligent. Chaque service acheté par un client est livré avec son application de gestion, le tout sous un seul identifiant.",
-      ar: "تصمم Kogia Systems أنظمة الأمن والمباني الذكية وتركّبها وتدعمها. كل خدمة يشتريها العميل تأتي مع تطبيق إدارة خاص بها، وكلها بحساب دخول واحد.",
+      ar: "تصمم Kogia Systems أنظمة الأمن والمباني الذكية وتركّبها وتدعمها. كل خدمة يشتريها العميل يرافقها تطبيق إدارة خاص بها، وكلها بحساب دخول واحد.",
     },
     needs: [
       { en: "Access control, visitors and ID cards", fr: "Contrôle d'accès, visiteurs et badges", ar: "التحكم في الدخول والزوار وبطاقات الهوية" },
@@ -158,7 +158,7 @@ export const INDUSTRIES: Industry[] = [
       { en: "Building systems and maintenance", fr: "Systèmes du bâtiment et maintenance", ar: "أنظمة المبنى والصيانة" },
     ],
     capabilities: [
-      { en: "54 service apps on one platform", fr: "54 applications de service sur une seule plateforme", ar: "54 تطبيق خدمة على منصة واحدة" },
+      { en: "54 service apps on one platform", fr: "54 applications de service sur une seule plateforme", ar: "54 تطبيقاً خدمياً على منصة واحدة" },
       { en: "Alarm handling with acknowledgement, escalation and response times", fr: "Gestion des alarmes avec acquittement, escalade et temps de réponse", ar: "إدارة الإنذارات مع الإقرار والتصعيد وقياس زمن الاستجابة" },
       { en: "Device connection through a secure on-site connector", fr: "Raccordement des équipements via un connecteur local sécurisé", ar: "ربط الأجهزة عبر موصّل محلي آمن" },
     ],
@@ -170,7 +170,7 @@ export const INDUSTRIES: Industry[] = [
     short: {
       en: "Digital services, integration and tender-ready delivery for public institutions.",
       fr: "Services numériques, intégration et réponses aux appels d'offres pour les institutions publiques.",
-      ar: "خدمات رقمية وتكامل أنظمة وجاهزية للمناقصات للمؤسسات العامة.",
+      ar: "خدمات رقمية وتكامل أنظمة وتسليم وفق متطلبات المناقصات، للمؤسسات العامة.",
     },
     intro: {
       en: "Public institutions need systems they can audit, host where they choose and keep for many years. We build with that in mind from the first line: roles, audit trails, three languages, and deployment on dedicated infrastructure when required.",
@@ -186,7 +186,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     capabilities: [
       { en: "Dedicated deployment on infrastructure chosen by the client", fr: "Déploiement dédié sur l'infrastructure choisie par le client", ar: "نشر مخصص على البنية التي يختارها العميل" },
-      { en: "Documentation and long-term maintenance agreements", fr: "Documentation et contrats de maintenance à long terme", ar: "التوثيق واتفاقيات الصيانة طويلة الأمد" },
+      { en: "Documentation and long-term maintenance agreements", fr: "Documentation et contrats de maintenance à long terme", ar: "التوثيق واتفاقيات الصيانة الطويلة الأمد" },
     ],
     lines: [
       {
@@ -204,7 +204,7 @@ export const INDUSTRIES: Industry[] = [
           { en: "Licences office: files, inspections, renewals and register", fr: "Bureau des licences : dossiers, inspections, renouvellements et registre", ar: "مكتب التراخيص: الملفات والتفتيش والتجديد والسجل" },
           { en: "Building permits and site inspection", fr: "Permis de construire et contrôle de chantier", ar: "رخص البناء ومعاينة المواقع" },
           { en: "Local revenue, receipts and outstanding dues", fr: "Recettes locales, quittances et impayés", ar: "الإيرادات المحلية والإيصالات والمستحقات" },
-          { en: "Complaints desk with deadlines and escalation", fr: "Bureau des réclamations avec délais et escalade", ar: "مكتب الشكاوى بمواعيد محددة وتصعيد" },
+          { en: "Complaints desk with deadlines and escalation", fr: "Bureau des réclamations avec délais et escalade", ar: "مكتب الشكاوى بآجال محددة وتصعيد" },
           { en: "Contractors, procurement and project follow-up", fr: "Entrepreneurs, achats et suivi des projets", ar: "المقاولون والمشتريات ومتابعة المشاريع" },
           { en: "Staff, attendance and municipal assets", fr: "Personnel, présences et biens municipaux", ar: "الموظفون والحضور وأصول البلدية" },
         ],
@@ -240,7 +240,7 @@ export const INDUSTRIES: Industry[] = [
         },
         points: [
           { en: "Correspondence and archive", fr: "Courrier et archives", ar: "المراسلات والأرشيف" },
-          { en: "Approvals with delegation and deadlines", fr: "Validations avec délégation et délais", ar: "الموافقات مع التفويض والمواعيد" },
+          { en: "Approvals with delegation and deadlines", fr: "Validations avec délégation et délais", ar: "الموافقات مع التفويض والآجال" },
           { en: "Meetings, decisions and follow-up", fr: "Réunions, décisions et suivi", ar: "الاجتماعات والقرارات والمتابعة" },
           { en: "Staff, attendance and leave", fr: "Personnel, présences et congés", ar: "الموظفون والحضور والإجازات" },
           { en: "Procurement and contracts", fr: "Achats et contrats", ar: "المشتريات والعقود" },
@@ -261,10 +261,10 @@ export const INDUSTRIES: Industry[] = [
     intro: {
       en: "Companies come to us to find new business and to connect the systems they already run. Kogia Tenders gathers open public tenders from several international sources, and our integration work links business software, devices and data.",
       fr: "Les entreprises viennent nous voir pour trouver de nouveaux marchés et relier les systèmes qu'elles utilisent déjà. Kogia Tenders rassemble des appels d'offres publics ouverts issus de plusieurs sources internationales, et notre travail d'intégration relie logiciels métier, équipements et données.",
-      ar: "تأتي الشركات إلينا لإيجاد فرص عمل جديدة ولربط الأنظمة التي تعمل بها. تجمع Kogia Tenders المناقصات العامة المفتوحة من عدة مصادر دولية، ويربط عملنا في التكامل برمجيات الأعمال والأجهزة والبيانات.",
+      ar: "تقصدنا الشركات بحثاً عن فرص أعمال جديدة ولربط الأنظمة التي تعمل بها. تجمع Kogia Tenders المناقصات العامة المفتوحة من عدة مصادر دولية، ويربط عملنا في التكامل برمجيات الأعمال والأجهزة والبيانات.",
     },
     needs: [
-      { en: "Finding public tenders in target countries", fr: "Trouver des appels d'offres dans les pays visés", ar: "إيجاد المناقصات العامة في الدول المستهدفة" },
+      { en: "Finding public tenders in target countries", fr: "Trouver des appels d'offres dans les pays visés", ar: "رصد المناقصات العامة في الدول المستهدفة" },
       { en: "Connecting business software and devices", fr: "Relier logiciels métier et équipements", ar: "ربط برمجيات الأعمال بالأجهزة" },
       { en: "Custom software for a specific workflow", fr: "Logiciel sur mesure pour un processus précis", ar: "برمجيات مخصصة لسير عمل محدد" },
     ],
@@ -285,7 +285,7 @@ export const INDUSTRIES: Industry[] = [
         points: [
           { en: "Case and client files with access per lawyer", fr: "Dossiers et clients avec accès par avocat", ar: "ملفات القضايا والموكلين بصلاحيات لكل محامٍ" },
           { en: "Hearings calendar and deadline reminders", fr: "Calendrier des audiences et rappels d'échéances", ar: "تقويم الجلسات وتذكير بالمواعيد" },
-          { en: "Documents with versions and an access log", fr: "Documents avec versions et journal des accès", ar: "مستندات بإصدارات وسجل اطلاع" },
+          { en: "Documents with versions and an access log", fr: "Documents avec versions et journal des accès", ar: "مستندات بإصدارات متتابعة وسجل اطّلاع" },
           { en: "Fees, invoices and payments", fr: "Honoraires, factures et paiements", ar: "الأتعاب والفواتير والمدفوعات" },
         ],
       },
@@ -296,11 +296,11 @@ export const INDUSTRIES: Industry[] = [
         text: {
           en: "Client files, engagements, statutory deadlines and working papers, with review steps before anything leaves the firm.",
           fr: "Dossiers clients, missions, échéances légales et papiers de travail, avec des étapes de revue avant toute sortie du cabinet.",
-          ar: "ملفات العملاء والمهام والمواعيد القانونية وأوراق العمل، مع مراحل مراجعة قبل خروج أي مستند من المكتب.",
+          ar: "ملفات العملاء والمهام والآجال القانونية وأوراق العمل، مع مراحل مراجعة قبل خروج أي مستند من المكتب.",
         },
         points: [
           { en: "Client files and engagements", fr: "Dossiers clients et missions", ar: "ملفات العملاء والمهام" },
-          { en: "Deadlines calendar per client", fr: "Calendrier des échéances par client", ar: "تقويم المواعيد لكل عميل" },
+          { en: "Deadlines calendar per client", fr: "Calendrier des échéances par client", ar: "تقويم الآجال لكل عميل" },
           { en: "Review and sign-off steps", fr: "Étapes de revue et de validation", ar: "مراحل المراجعة والاعتماد" },
           { en: "Time, invoices and collections", fr: "Temps passé, factures et recouvrement", ar: "الوقت والفواتير والتحصيل" },
         ],
@@ -326,7 +326,7 @@ export const PRODUCTS: Product[] = [
       ar: "منتج واحد بوحدات تفعّلها العيادة أو المستشفى حسب الحاجة. يغطي الإصدار الأول الاستقبال والفوترة والأجهزة الطبية والمخازن الطبية ولوحة متابعة للإدارة. لا يحل محل النظام السريري المركزي للمستشفى ولا يتخذ قرارات سريرية.",
     },
     modules: [
-      { en: "Front office: patients, appointments, reception and queue", fr: "Accueil : patients, rendez-vous, réception et file d'attente", ar: "الاستقبال: المرضى والمواعيد والاستقبال والطابور" },
+      { en: "Front office: patients, appointments, reception and queue", fr: "Accueil : patients, rendez-vous, réception et file d'attente", ar: "المكتب الأمامي: المرضى والمواعيد والاستقبال والطابور" },
       { en: "Billing: price list, invoices, payments and daily closing", fr: "Facturation : tarifs, factures, paiements et clôture journalière", ar: "الفوترة: قائمة الأسعار والفواتير والمدفوعات والإقفال اليومي" },
       { en: "Medical equipment: register, maintenance and calibration", fr: "Équipements médicaux : inventaire, maintenance et étalonnage", ar: "الأجهزة الطبية: السجل والصيانة والمعايرة" },
       { en: "Medical stores: stock, batches, expiry and purchasing", fr: "Magasins médicaux : stock, lots, péremption et achats", ar: "المخازن الطبية: المخزون والدفعات وتواريخ الانتهاء والمشتريات" },
@@ -359,7 +359,7 @@ export const PRODUCTS: Product[] = [
       { en: "Building, hospitality, mobility and infrastructure apps", fr: "Applications bâtiment, hôtellerie, mobilité et infrastructure", ar: "تطبيقات المباني والضيافة والتنقل والبنية التحتية" },
     ],
     facts: [
-      { en: "54 service apps", fr: "54 applications de service", ar: "54 تطبيق خدمة" },
+      { en: "54 service apps", fr: "54 applications de service", ar: "54 تطبيقاً خدمياً" },
     ],
     languages: "AR · FR · EN",
   },
@@ -450,7 +450,7 @@ export const PRODUCTS: Product[] = [
     summary: {
       en: "Kogia Kids publishes printable Arabic activity sheets with a guide for adults. Many sheets are free without an account. Kogia Plus is an optional paid membership.",
       fr: "Kogia Kids publie des fiches d'activités en arabe à imprimer, avec un guide pour l'adulte. De nombreuses fiches sont gratuites et sans compte. Kogia Plus est une adhésion payante facultative.",
-      ar: "تنشر Kogia Kids أوراق أنشطة عربية قابلة للطباعة مع دليل للكبار. كثير من الأوراق مجاني ودون حساب، وKogia Plus عضوية مدفوعة اختيارية.",
+      ar: "تنشر Kogia Kids أوراق أنشطة عربية قابلة للطباعة مع دليل للكبار. كثير من الأوراق مجاني ودون حساب، أما Kogia Plus فعضوية مدفوعة اختيارية.",
     },
     modules: [
       { en: "Printable activity sheets", fr: "Fiches d'activités à imprimer", ar: "أوراق أنشطة للطباعة" },

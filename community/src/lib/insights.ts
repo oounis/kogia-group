@@ -52,7 +52,7 @@ export const INSIGHTS_PAGE = {
     fr: "Chaque chiffre de cet article a été lu à la source ci-dessous. Les sources sont dans leur langue d'origine.",
     ar: "كل رقم في هذا المقال قُرئ من مصدره أدناه. المصادر بلغتها الأصلية.",
   },
-  talkH: { en: "Does this match what you see in your institution?", fr: "Cela ressemble-t-il à ce que vous vivez dans votre institution ?", ar: "هل يشبه هذا ما تراه في مؤسستك؟" },
+  talkH: { en: "Does this match what you see in your institution?", fr: "Cela ressemble-t-il à ce que vous vivez dans votre institution ?", ar: "هل يشبه هذا ما ترونه في مؤسستكم؟" },
   talkP: {
     en: "We are looking for a first partner institution for each of these services. Tell us how you work today.",
     fr: "Nous cherchons une première institution partenaire pour chacun de ces services. Dites-nous comment vous travaillez aujourd'hui.",
@@ -75,7 +75,7 @@ export const INSIGHTS: Insight[] = [
     lede: {
       en: "In a government office, a clinic or a private practice, the queue costs everyone a morning and tells nobody when their turn will come. Countries that moved booking to the phone now count their appointments in tens of millions. We are preparing one appointment app for all three settings.",
       fr: "Dans une administration, une clinique ou un cabinet privé, la file d'attente coûte une matinée à chacun et ne dit à personne quand viendra son tour. Les pays qui ont mis la prise de rendez-vous sur le téléphone comptent désormais leurs rendez-vous en dizaines de millions. Nous préparons une application de rendez-vous pour ces trois cadres.",
-      ar: "في الدائرة الحكومية أو العيادة أو عيادة الطبيب الخاصة، يكلّف الطابور كل شخص صباحاً كاملاً ولا يخبر أحداً متى يحين دوره. الدول التي نقلت الحجز إلى الهاتف تعدّ اليوم مواعيدها بعشرات الملايين. ونحن نُعدّ تطبيقاً واحداً للمواعيد يخدم هذه الجهات الثلاث.",
+      ar: "في الدائرة الحكومية أو المجمع الطبي أو عيادة الطبيب الخاصة، يكلّف الطابور كل شخص صباحاً كاملاً ولا يخبر أحداً متى يحين دوره. الدول التي نقلت الحجز إلى الهاتف تعدّ اليوم مواعيدها بعشرات الملايين. ونحن نُعدّ تطبيقاً واحداً للمواعيد يخدم هذه الجهات الثلاث.",
     },
     figures: [
       {
@@ -148,12 +148,12 @@ export const INSIGHTS: Insight[] = [
           {
             en: "A 2025 study in Frontiers in Digital Health followed 16,894 appointments in a German medical practice. Appointments booked online were missed 1.8% of the time, against 5.9% for those booked the usual way.",
             fr: "Une étude publiée en 2025 dans Frontiers in Digital Health a suivi 16 894 rendez-vous dans un cabinet médical allemand. Les rendez-vous pris en ligne ont été manqués dans 1,8 % des cas, contre 5,9 % pour ceux pris de façon classique.",
-            ar: "تابعت دراسة نُشرت عام 2025 في مجلة Frontiers in Digital Health 16,894 موعداً في عيادة طبية ألمانية. المواعيد المحجوزة عبر الإنترنت فاتت بنسبة 1.8%، مقابل 5.9% للمواعيد المحجوزة بالطريقة المعتادة.",
+            ar: "تابعت دراسة نُشرت عام 2025 في مجلة Frontiers in Digital Health 16,894 موعداً في عيادة طبية ألمانية. تخلّف المرضى عن 1.8% من المواعيد المحجوزة عبر الإنترنت، مقابل 5.9% من المواعيد المحجوزة بالطريقة المعتادة.",
           },
           {
             en: "The same study found the opposite in a university hospital, where online bookings were missed more often, 14.3% against 11.2%. Booking alone is not a cure.",
             fr: "La même étude a constaté l'inverse dans un hôpital universitaire, où les réservations en ligne étaient plus souvent manquées, 14,3 % contre 11,2 %. La réservation seule ne guérit rien.",
-            ar: "ووجدت الدراسة نفسها عكس ذلك في مستشفى جامعي، حيث فاتت الحجوزات الإلكترونية بنسبة أعلى، 14.3% مقابل 11.2%. الحجز وحده ليس علاجاً.",
+            ar: "ووجدت الدراسة نفسها عكس ذلك في مستشفى جامعي، حيث كان التخلّف عن الحجوزات الإلكترونية أعلى، 14.3% مقابل 11.2%. الحجز وحده ليس علاجاً.",
           },
           {
             en: "Reminders are the other half. In a trial with about 20,000 patients at Barts NHS Trust in London, changing only the wording of the SMS reminder brought missed appointments down from 11.1% to 8.4%, a relative reduction of 23%.",
@@ -218,7 +218,7 @@ export const INSIGHTS: Insight[] = [
         { en: "Dashboard: demand, waiting time, missed appointments", fr: "Tableau de bord : demande, temps d'attente, rendez-vous manqués", ar: "لوحة متابعة: الطلب ووقت الانتظار والمواعيد الفائتة" },
       ],
       href: "/industries/healthcare",
-      label: { en: "See our healthcare line", fr: "Voir notre ligne santé", ar: "اطّلع على خط الرعاية الصحية" },
+      label: { en: "See our healthcare line", fr: "Voir notre ligne santé", ar: "اطّلع على حلولنا للرعاية الصحية" },
     },
     sources: [
       { org: "Ministry of Health, Saudi Arabia", title: "Saudi Arabia expands healthcare coverage to reach 97% (5 November 2026)", url: "https://www.moh.gov.sa/en/Ministry/MediaCenter/News/Pages/news-2026-11-05-001.aspx" },
@@ -257,7 +257,7 @@ export const INSIGHTS: Insight[] = [
         l: {
           en: "people registered for the NHS App in England by the end of 2025",
           fr: "personnes inscrites à l'application NHS App en Angleterre fin 2025",
-          ar: "شخصاً مسجلاً في تطبيق NHS App في إنجلترا بنهاية 2025",
+          ar: "شخص مسجّل في تطبيق NHS App في إنجلترا بنهاية 2025",
         },
         src: "NHS England, 2025",
       },
@@ -348,7 +348,7 @@ export const INSIGHTS: Insight[] = [
           {
             en: "Health data is the most sensitive data a person has. The patient's identity is verified before the first document appears. A parent can hold a child's file, with the clinic's approval. Every access is recorded, and the data stays in the clinic's system and belongs to the clinic and its patients.",
             fr: "Les données de santé sont les plus sensibles qu'une personne possède. L'identité du patient est vérifiée avant l'apparition du premier document. Un parent peut tenir le dossier d'un enfant, avec l'accord de la clinique. Chaque accès est enregistré, et les données restent dans le système de la clinique et appartiennent à la clinique et à ses patients.",
-            ar: "البيانات الصحية أكثر ما يملكه الإنسان حساسية. تُتحقق هوية المريض قبل ظهور أول مستند. ويمكن لوليّ الأمر أن يحمل ملف طفله بموافقة العيادة. كل اطّلاع يُسجَّل، والبيانات تبقى في نظام العيادة وتعود ملكيتها للعيادة ومرضاها.",
+            ar: "البيانات الصحية أكثر ما يملكه الإنسان حساسية. يُتحقَّق من هوية المريض قبل ظهور أول مستند. ويمكن لوليّ الأمر أن يحمل ملف طفله بموافقة العيادة. كل اطّلاع يُسجَّل، والبيانات تبقى في نظام العيادة وتعود ملكيتها للعيادة ومرضاها.",
           },
         ],
       },
@@ -362,7 +362,7 @@ export const INSIGHTS: Insight[] = [
       points: [
         { en: "Results and reports published by the clinic", fr: "Résultats et comptes rendus publiés par la clinique", ar: "نتائج وتقارير تنشرها العيادة" },
         { en: "Prescriptions and visit summaries", fr: "Ordonnances et résumés de consultation", ar: "الوصفات الطبية وملخصات الزيارات" },
-        { en: "Family accounts for children and dependants", fr: "Comptes famille pour les enfants et les personnes à charge", ar: "حسابات عائلية للأطفال ومن هم في الرعاية" },
+        { en: "Family accounts for children and dependants", fr: "Comptes famille pour les enfants et les personnes à charge", ar: "حسابات عائلية للأطفال ومن تعولهم الأسرة" },
         { en: "A notification when a document is ready", fr: "Une notification lorsqu'un document est prêt", ar: "إشعار عند جاهزية المستند" },
         { en: "An access log the patient can read", fr: "Un journal des accès que le patient peut lire", ar: "سجل اطّلاع يستطيع المريض قراءته" },
         { en: "Download and share with another doctor", fr: "Téléchargement et partage avec un autre médecin", ar: "التنزيل والمشاركة مع طبيب آخر" },
@@ -417,7 +417,7 @@ export const INSIGHTS: Insight[] = [
         l: {
           en: "mobile Internet users expected in the Middle East and North Africa by 2030, up from 308 million in 2024",
           fr: "utilisateurs de l'Internet mobile attendus au Moyen-Orient et en Afrique du Nord en 2030, contre 308 millions en 2024",
-          ar: "مستخدماً للإنترنت عبر الهاتف متوقعاً في الشرق الأوسط وشمال أفريقيا بحلول 2030، مقابل 308 ملايين في 2024",
+          ar: "مستخدم متوقَّع للإنترنت عبر الهاتف في الشرق الأوسط وشمال أفريقيا بحلول 2030، مقابل 308 ملايين في 2024",
         },
         src: "GSMA, Mobile Economy MENA 2025",
       },
@@ -459,7 +459,7 @@ export const INSIGHTS: Insight[] = [
           {
             en: "For the public, it replaces a trip and a wait with a notification: your file is ready, your appointment is tomorrow at ten, your child was absent this morning, your result is available.",
             fr: "Pour le public, il remplace un déplacement et une attente par une notification : votre dossier est prêt, votre rendez-vous est demain à dix heures, votre enfant était absent ce matin, votre résultat est disponible.",
-            ar: "للجمهور، يستبدل بالمشوار والانتظار إشعاراً: ملفك جاهز، موعدك غداً في العاشرة، طفلك غاب هذا الصباح، نتيجتك متاحة.",
+            ar: "للجمهور، يُغني إشعار واحد عن التنقل والانتظار: ملفك جاهز، موعدك غداً في العاشرة، طفلك غاب هذا الصباح، نتيجتك متاحة.",
           },
           {
             en: "For staff, it puts the work where the work happens. A technician closes an intervention on site. A teacher takes attendance in the classroom. A manager approves a request between two meetings. Nothing is typed again later at a desk.",
@@ -479,7 +479,7 @@ export const INSIGHTS: Insight[] = [
           {
             en: "One codebase produces the Android app and the iPhone app, so an institution does not pay twice or wait twice. Arabic is laid out right to left for real, with French and English beside it. The app carries the institution's name and colours, and the data stays in the institution's system.",
             fr: "Une seule base de code produit l'application Android et l'application iPhone : l'institution ne paie pas deux fois et n'attend pas deux fois. L'arabe est réellement mis en page de droite à gauche, avec le français et l'anglais à ses côtés. L'application porte le nom et les couleurs de l'institution, et les données restent dans son système.",
-            ar: "قاعدة برمجية واحدة تُنتج تطبيق أندرويد وتطبيق آيفون، فلا تدفع المؤسسة مرتين ولا تنتظر مرتين. العربية مصفوفة من اليمين إلى اليسار فعلاً، وإلى جانبها الفرنسية والإنجليزية. يحمل التطبيق اسم المؤسسة وألوانها، وتبقى البيانات في نظامها.",
+            ar: "قاعدة برمجية واحدة تُنتج تطبيق أندرويد وتطبيق آيفون، فلا تدفع المؤسسة مرتين ولا تنتظر مرتين. العربية معروضة من اليمين إلى اليسار فعلاً، وإلى جانبها الفرنسية والإنجليزية. يحمل التطبيق اسم المؤسسة وألوانها، وتبقى البيانات في نظامها.",
           },
           {
             en: "We start with the few actions people repeat most, and we add the rest once the first ones are in use.",

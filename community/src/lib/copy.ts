@@ -33,12 +33,12 @@ export const C = {
   whatWeBring: { en: "What we bring", fr: "Ce que nous apportons", ar: "ما نقدمه" },
   ourProducts: { en: "Our products in this industry", fr: "Nos produits dans ce secteur", ar: "منتجاتنا في هذا القطاع" },
   privateAccess: { en: "Private access. Contact us for a presentation.", fr: "Accès privé. Contactez-nous pour une présentation.", ar: "دخول خاص. تواصل معنا لطلب عرض تقديمي." },
-  comingSoon: { en: "In development. Contact us to join the first clinics.", fr: "En développement. Contactez-nous pour faire partie des premières cliniques.", ar: "قيد التطوير. تواصل معنا لتكون من أوائل العيادات." },
+  comingSoon: { en: "In development. Contact us to join the first clinics.", fr: "En développement. Contactez-nous pour faire partie des premières cliniques.", ar: "قيد التطوير. تواصل معنا لتكون عيادتك من أوائل العيادات." },
   notFoundTitle: { en: "This page does not exist", fr: "Cette page n'existe pas", ar: "هذه الصفحة غير موجودة" },
   notFoundBody: { en: "The address may have changed when the site was reorganised.", fr: "L'adresse a peut-être changé lors de la réorganisation du site.", ar: "ربما تغيّر العنوان عند إعادة تنظيم الموقع." },
   home: { en: "Home", fr: "Accueil", ar: "الرئيسية" },
-  planned: { en: "Planned", fr: "Prévu", ar: "مخطط" },
-  linesH: { en: "Solution lines in preparation", fr: "Lignes de solutions en préparation", ar: "خطوط حلول قيد الإعداد" },
+  planned: { en: "Planned", fr: "Prévu", ar: "مخطَّط له" },
+  linesH: { en: "Solution lines in preparation", fr: "Lignes de solutions en préparation", ar: "خطوط الحلول قيد الإعداد" },
   linesNote: {
     en: "These lines are designed and not yet built. The roles, approval engine and audit trail they rest on already run in our products. We are open to a first partner institution for each.",
     fr: "Ces lignes sont conçues et pas encore construites. Les rôles, le moteur de validation et le journal d'audit sur lesquels elles reposent fonctionnent déjà dans nos produits. Nous sommes ouverts à une première institution partenaire pour chacune.",
@@ -91,7 +91,7 @@ export const HOME = {
   presenceP: {
     en: "Based in Bahrain, with business development in Libya through a local partner.",
     fr: "Basés à Bahreïn, avec un développement commercial en Libye via un partenaire local.",
-    ar: "مقرنا في البحرين، ولدينا تطوير أعمال في ليبيا عبر شريك محلي.",
+    ar: "مقرنا في البحرين، ونطوّر أعمالنا في ليبيا عبر شريك محلي.",
   },
 };
 
@@ -109,7 +109,7 @@ export const CAPABILITIES: { icon: string; title: T; text: T; points: T[] }[] = 
     text: { en: "We build our own software products end to end: research, design, engineering, testing and release.", fr: "Nous développons nos propres produits de bout en bout : recherche, conception, ingénierie, tests et mise en service.", ar: "نبني منتجاتنا البرمجية من البداية إلى النهاية: البحث والتصميم والهندسة والاختبار والإطلاق." },
     points: [
       { en: "Web platforms and administrative dashboards", fr: "Plateformes web et tableaux de bord d'administration", ar: "منصات ويب ولوحات إدارة" },
-      { en: "Multi-tenant SaaS with roles and audit", fr: "SaaS multi-clients avec rôles et audit", ar: "برمجيات خدمية متعددة العملاء مع أدوار وتدقيق" },
+      { en: "Multi-tenant SaaS with roles and audit", fr: "SaaS multi-clients avec rôles et audit", ar: "برمجيات سحابية متعددة العملاء، بأدوار وسجل تدقيق" },
       { en: "Arabic, French and English from the first screen", fr: "Arabe, français et anglais dès le premier écran", ar: "العربية والفرنسية والإنجليزية من أول شاشة" },
     ],
   },
@@ -130,7 +130,7 @@ export const CAPABILITIES: { icon: string; title: T; text: T; points: T[] }[] = 
     points: [
       { en: "APIs and data exchange", fr: "API et échange de données", ar: "واجهات برمجية وتبادل البيانات" },
       { en: "Device connectors for access control, attendance and building systems", fr: "Connecteurs pour contrôle d'accès, pointage et systèmes du bâtiment", ar: "موصلات لأجهزة التحكم في الدخول والحضور وأنظمة المباني" },
-      { en: "Healthcare standards HL7 and FHIR on the Kogia Health roadmap", fr: "Normes santé HL7 et FHIR prévues dans Kogia Health", ar: "معايير الصحة HL7 وFHIR ضمن خطة Kogia Health" },
+      { en: "Healthcare standards HL7 and FHIR on the Kogia Health roadmap", fr: "Normes santé HL7 et FHIR prévues dans Kogia Health", ar: "معيارا الصحة HL7 و FHIR ضمن خطة Kogia Health" },
     ],
   },
   {
@@ -175,7 +175,7 @@ export const HOW = {
   lede: {
     en: "What a client can expect from our software and from us, stated plainly. Where something is still in progress, we say so.",
     fr: "Ce qu'un client peut attendre de nos logiciels et de nous, dit simplement. Quand quelque chose est encore en cours, nous le disons.",
-    ar: "ما يمكن للعميل أن يتوقعه من برمجياتنا ومنا، بوضوح. وما زال قيد الإنجاز نقول إنه كذلك.",
+    ar: "ما يمكن للعميل أن يتوقعه من برمجياتنا ومنا، بوضوح. وما لم يكتمل بعد نصرّح بأنه كذلك.",
   },
   sections: [
     {
@@ -183,7 +183,7 @@ export const HOW = {
       p: { en: "We write our own software. We do not resell other companies' platforms under our name, so we can fix, adapt and support everything we deliver.", fr: "Nous écrivons nos propres logiciels. Nous ne revendons pas les plateformes d'autres sociétés sous notre nom, ce qui nous permet de corriger, adapter et maintenir tout ce que nous livrons.", ar: "نكتب برمجياتنا بأنفسنا. لا نعيد بيع منصات شركات أخرى باسمنا، لذلك نستطيع إصلاح كل ما ننجزه وتكييفه ودعمه." },
     },
     {
-      h: { en: "Security by default", fr: "La sécurité par défaut", ar: "الأمان افتراضياً" },
+      h: { en: "Security by default", fr: "La sécurité par défaut", ar: "الأمان من الأساس" },
       p: { en: "Every product uses role-based access, encrypted connections and an audit trail. Each organisation only sees its own data, and each product has its own isolated database.", fr: "Chaque produit applique l'accès par rôle, des connexions chiffrées et un journal d'audit. Chaque organisation ne voit que ses propres données, et chaque produit dispose de sa propre base isolée.", ar: "يستخدم كل منتج الصلاحيات حسب الدور والاتصالات المشفرة وسجل التدقيق. لا ترى كل مؤسسة إلا بياناتها، ولكل منتج قاعدة بيانات معزولة خاصة به." },
     },
     {
@@ -191,7 +191,7 @@ export const HOW = {
       p: {
         en: "The same software can be installed on servers inside your institution, deployed in a private environment reserved for you, or run by us as a managed service. The choice is yours. Hosting abroad is never a condition of use.",
         fr: "Le même logiciel peut être installé sur des serveurs dans votre institution, déployé dans un environnement privé qui vous est réservé, ou exploité par nous en service géré. Le choix vous appartient. Un hébergement à l'étranger n'est jamais une condition d'utilisation.",
-        ar: "يمكن تثبيت البرنامج نفسه على خوادم داخل مؤسستكم، أو نشره في بيئة خاصة مخصصة لكم، أو تشغيله من طرفنا كخدمة مُدارة. الاختيار لكم. والاستضافة خارج البلد ليست شرطاً للاستخدام أبداً.",
+        ar: "يمكن تثبيت البرنامج نفسه على خوادم داخل مؤسستكم، أو نشره في بيئة خاصة مخصصة لكم، أو نتولى نحن تشغيله خدمةً مُدارة. الاختيار لكم. والاستضافة خارج البلد ليست شرطاً للاستخدام أبداً.",
       },
     },
     {
@@ -228,7 +228,7 @@ export const HOW = {
     },
     {
       h: { en: "Backups and continuity", fr: "Sauvegardes et continuité", ar: "النسخ الاحتياطي واستمرارية العمل" },
-      p: { en: "Databases are backed up every night and restores are tested. Updates roll out one server at a time so the service stays available.", fr: "Les bases sont sauvegardées chaque nuit et les restaurations sont testées. Les mises à jour se font serveur par serveur pour que le service reste disponible.", ar: "تُنسخ قواعد البيانات احتياطياً كل ليلة وتُختبر الاستعادة. تُطبَّق التحديثات على خادم تلو الآخر لتبقى الخدمة متاحة." },
+      p: { en: "Databases are backed up every night and restores are tested. Updates roll out one server at a time so the service stays available.", fr: "Les bases sont sauvegardées chaque nuit et les restaurations sont testées. Les mises à jour se font serveur par serveur pour que le service reste disponible.", ar: "تُنسخ قواعد البيانات احتياطياً كل ليلة وتُختبر الاستعادة. وتُطبَّق التحديثات خادماً تلو الآخر لتبقى الخدمة متاحة." },
     },
     {
       h: { en: "Healthcare boundaries", fr: "Limites en santé", ar: "حدودنا في الرعاية الصحية" },
@@ -257,14 +257,14 @@ export const PRESENCE = {
     {
       name: { en: "Libya", fr: "Libye", ar: "ليبيا" },
       role: { en: "Business development through a local partner", fr: "Développement commercial via un partenaire local", ar: "تطوير الأعمال عبر شريك محلي" },
-      text: { en: "Our local partner handles commercial relationships and client opportunities. Healthcare and education are the first focus.", fr: "Notre partenaire local gère les relations commerciales et les opportunités clients. La santé et l'éducation sont les premières priorités.", ar: "يتولى شريكنا المحلي العلاقات التجارية وفرص العملاء. الصحة والتعليم هما الأولوية الأولى." },
+      text: { en: "Our local partner handles commercial relationships and client opportunities. Healthcare and education are the first focus.", fr: "Notre partenaire local gère les relations commerciales et les opportunités clients. La santé et l'éducation sont les premières priorités.", ar: "يتولى شريكنا المحلي العلاقات التجارية وفرص العملاء. وللصحة والتعليم الأولوية." },
     },
   ],
-  collabH: { en: "Collaborations", fr: "Collaborations", ar: "التعاونات" },
+  collabH: { en: "Collaborations", fr: "Collaborations", ar: "الشراكات" },
   collab: {
     en: "EduPlus Connect was built with a partner school and is used there every day. It is the reference for how we work with an institution: together, from the real workflow.",
     fr: "EduPlus Connect a été construit avec une école partenaire, qui l'utilise chaque jour. C'est notre référence pour travailler avec une institution : ensemble, à partir du travail réel.",
-    ar: "بُني EduPlus Connect مع مدرسة شريكة تستخدمه يومياً. وهو مرجعنا في العمل مع المؤسسات: معاً، انطلاقاً من سير العمل الحقيقي.",
+    ar: "بُني EduPlus Connect مع مدرسة شريكة تستخدمه يومياً. وهو نموذجنا في العمل مع المؤسسات: نعمل معها، انطلاقاً من سير عملها الفعلي.",
   },
 };
 
@@ -278,15 +278,15 @@ export const ABOUT = {
   sections: [
     {
       h: { en: "How the company is organised", fr: "Comment la société est organisée", ar: "كيف تنتظم الشركة" },
-      p: { en: "Three levels. KogiaGroup is the company. Under it are five industries: healthcare, education, security and buildings, government, and enterprise. Under each industry are the products, and each product is made of modules a client switches on as needed.", fr: "Trois niveaux. KogiaGroup est la société. En dessous, cinq secteurs : santé, éducation, sécurité et bâtiments, secteur public et entreprises. Sous chaque secteur se trouvent les produits, et chaque produit est fait de modules qu'un client active selon ses besoins.", ar: "ثلاثة مستويات. KogiaGroup هي الشركة. تحتها خمسة قطاعات: الصحة والتعليم والأمن والمباني والقطاع الحكومي والشركات. وتحت كل قطاع المنتجات، وكل منتج يتكون من وحدات يفعّلها العميل حسب حاجته." },
+      p: { en: "Three levels. KogiaGroup is the company. Under it are five industries: healthcare, education, security and buildings, government, and enterprise. Under each industry are the products, and each product is made of modules a client switches on as needed.", fr: "Trois niveaux. KogiaGroup est la société. En dessous, cinq secteurs : santé, éducation, sécurité et bâtiments, secteur public et entreprises. Sous chaque secteur se trouvent les produits, et chaque produit est fait de modules qu'un client active selon ses besoins.", ar: "ثلاثة مستويات. KogiaGroup هي الشركة. تحتها خمسة قطاعات: الصحة، والتعليم، والأمن والمباني، والقطاع الحكومي، والشركات. وتحت كل قطاع المنتجات، وكل منتج يتكون من وحدات يفعّلها العميل حسب حاجته." },
     },
     {
       h: { en: "One platform", fr: "Une seule plateforme", ar: "منصة واحدة" },
-      p: { en: "Products share one foundation for sign-in, roles, audit, languages and design. This keeps quality even across products and lets us add a new one without starting over.", fr: "Les produits partagent un même socle pour la connexion, les rôles, l'audit, les langues et le design. La qualité reste égale d'un produit à l'autre, et un nouveau produit ne repart pas de zéro.", ar: "تشترك المنتجات في أساس واحد لتسجيل الدخول والأدوار والتدقيق واللغات والتصميم. هذا يحافظ على جودة متساوية بين المنتجات ويتيح إضافة منتج جديد دون البدء من الصفر." },
+      p: { en: "Products share one foundation for sign-in, roles, audit, languages and design. This keeps quality even across products and lets us add a new one without starting over.", fr: "Les produits partagent un même socle pour la connexion, les rôles, l'audit, les langues et le design. La qualité reste égale d'un produit à l'autre, et un nouveau produit ne repart pas de zéro.", ar: "تشترك المنتجات في أساس واحد لتسجيل الدخول والأدوار والتدقيق واللغات والتصميم. وهذا يضمن جودة واحدة في كل المنتجات ويتيح إضافة منتج جديد دون البدء من الصفر." },
     },
     {
       h: { en: "What we will not do", fr: "Ce que nous ne faisons pas", ar: "ما لا نفعله" },
-      p: { en: "We do not claim clients, certifications or results we cannot show. Every status on this site is current, and products still in development are marked as such.", fr: "Nous ne revendiquons ni clients, ni certifications, ni résultats que nous ne pouvons pas montrer. Chaque statut affiché ici est à jour, et les produits en développement sont indiqués comme tels.", ar: "لا ندّعي عملاء أو شهادات أو نتائج لا نستطيع إثباتها. كل حالة على هذا الموقع محدّثة، والمنتجات قيد التطوير موسومة بذلك." },
+      p: { en: "We do not claim clients, certifications or results we cannot show. Every status on this site is current, and products still in development are marked as such.", fr: "Nous ne revendiquons ni clients, ni certifications, ni résultats que nous ne pouvons pas montrer. Chaque statut affiché ici est à jour, et les produits en développement sont indiqués comme tels.", ar: "لا ندّعي عملاء أو شهادات أو نتائج لا نستطيع إثباتها. كل حالة على هذا الموقع محدّثة، والمنتجات التي ما زالت قيد التطوير مُشار إليها بذلك." },
     },
   ],
 };
@@ -314,7 +314,7 @@ export const FOOTER = {
     ar: "شركة تقنية تبني البرمجيات لقطاعات الصحة والتعليم والأمن والقطاع الحكومي والشركات.",
   },
   company: { en: "Company", fr: "Société", ar: "الشركة" },
-  legal: { en: "Legal", fr: "Mentions", ar: "قانوني" },
+  legal: { en: "Legal", fr: "Mentions", ar: "الشؤون القانونية" },
   privacy: { en: "Privacy", fr: "Confidentialité", ar: "الخصوصية" },
   terms: { en: "Terms", fr: "Conditions", ar: "الشروط" },
 };
@@ -326,8 +326,8 @@ export const LEGAL = {
     lede: { en: "This page covers the kogiagroup.com website. Each product linked from this site publishes its own privacy information.", fr: "Cette page concerne le site kogiagroup.com. Chaque produit lié depuis ce site publie ses propres informations de confidentialité.", ar: "تخص هذه الصفحة موقع kogiagroup.com. وينشر كل منتج مرتبط بهذا الموقع معلومات الخصوصية الخاصة به." },
     sections: [
       { h: { en: "Visiting the site", fr: "Visiter le site", ar: "زيارة الموقع" }, p: { en: "The site has no accounts, no sign-up and no payments. The servers that deliver pages receive technical connection data, such as your IP address and browser request, and keep technical logs to diagnose errors and protect the service.", fr: "Le site ne propose ni compte, ni inscription, ni paiement. Les serveurs qui transmettent les pages reçoivent des données techniques de connexion, comme l'adresse IP et la requête du navigateur, et conservent des journaux techniques pour diagnostiquer les erreurs et protéger le service.", ar: "لا يتضمن الموقع حسابات أو تسجيلاً أو مدفوعات. تتلقى الخوادم التي تعرض الصفحات بيانات الاتصال التقنية مثل عنوان IP وطلب المتصفح، وتحتفظ بسجلات تقنية لتشخيص الأخطاء وحماية الخدمة." } },
-      { h: { en: "Audience measurement", fr: "Mesure d'audience", ar: "قياس الزيارات" }, p: { en: "We use Cloudflare Web Analytics to measure visits and page performance. It sets no cookie and collects no personal profile.", fr: "Nous utilisons Cloudflare Web Analytics pour mesurer la fréquentation et les performances des pages. Ce service ne dépose aucun cookie et ne constitue aucun profil personnel.", ar: "نستخدم Cloudflare Web Analytics لقياس الزيارات وأداء الصفحات. لا يضع أي ملفات تعريف ارتباط ولا يكوّن ملفاً شخصياً." } },
-      { h: { en: "Contacting us", fr: "Nous contacter", ar: "التواصل معنا" }, p: { en: "If you email us, we receive your address and what you choose to write, and use it only to answer you.", fr: "Si vous nous écrivez, nous recevons votre adresse et ce que vous choisissez de nous dire, et nous ne l'utilisons que pour vous répondre.", ar: "إذا راسلتنا نتلقى عنوانك وما تختار كتابته، ولا نستخدمه إلا للرد عليك." } },
+      { h: { en: "Audience measurement", fr: "Mesure d'audience", ar: "قياس الزيارات" }, p: { en: "We use Cloudflare Web Analytics to measure visits and page performance. It sets no cookie and collects no personal profile.", fr: "Nous utilisons Cloudflare Web Analytics pour mesurer la fréquentation et les performances des pages. Ce service ne dépose aucun cookie et ne constitue aucun profil personnel.", ar: "نستخدم Cloudflare Web Analytics لقياس الزيارات وأداء الصفحات. وهي خدمة لا تضع أي ملفات تعريف ارتباط ولا تُنشئ ملفاً شخصياً عنك." } },
+      { h: { en: "Contacting us", fr: "Nous contacter", ar: "التواصل معنا" }, p: { en: "If you email us, we receive your address and what you choose to write, and use it only to answer you.", fr: "Si vous nous écrivez, nous recevons votre adresse et ce que vous choisissez de nous dire, et nous ne l'utilisons que pour vous répondre.", ar: "إذا راسلتنا وصلنا عنوانك وما تختار كتابته، ولا نستخدمهما إلا للرد عليك." } },
       { h: { en: "Earlier versions of the site", fr: "Anciennes versions du site", ar: "الإصدارات السابقة من الموقع" }, p: { en: "An earlier version of the site offered accounts and discussions. These features are no longer available. For any request about a former account or its content, write to us.", fr: "Une version précédente du site proposait des comptes et des discussions. Ces fonctions ne sont plus disponibles. Pour toute demande concernant un ancien compte ou son contenu, écrivez-nous.", ar: "كان إصدار سابق من الموقع يتيح الحسابات والنقاشات، وهذه الميزات لم تعد متاحة. لأي طلب يخص حساباً سابقاً أو محتواه، راسلنا." } },
       { h: { en: "Your requests", fr: "Vos demandes", ar: "طلباتك" }, p: { en: "To ask which data we hold about you, or to request correction, export or deletion, write to the address below.", fr: "Pour savoir quelles données nous détenons à votre sujet, ou demander leur correction, leur export ou leur suppression, écrivez à l'adresse ci-dessous.", ar: "لمعرفة البيانات التي نحتفظ بها عنك أو طلب تصحيحها أو تصديرها أو حذفها، راسل العنوان أدناه." } },
     ],
@@ -350,7 +350,7 @@ export const LEGAL = {
    status here: statuses stay on the product and industry pages. */
 export const MAG = {
   kicker: { en: "Enterprise software and systems integration", fr: "Logiciels d'entreprise et intégration de systèmes", ar: "برمجيات مؤسسية وتكامل أنظمة" },
-  h1: { en: "The institution, working as one.", fr: "L'institution, d'un seul tenant.", ar: "المؤسسة تعمل كجسد واحد." },
+  h1: { en: "The institution, working as one.", fr: "L'institution, d'un seul tenant.", ar: "المؤسسة تعمل كالجسد الواحد." },
   sub: {
     en: "A hospital, a school, a municipality or a firm runs on procedures that cross many desks. We build the systems that carry each procedure from the first request to the final signature, in Arabic, French and English.",
     fr: "Un hôpital, une école, une municipalité ou un cabinet vivent de procédures qui traversent de nombreux bureaux. Nous construisons les systèmes qui portent chaque procédure, de la première demande à la dernière signature, en arabe, en français et en anglais.",
@@ -360,7 +360,7 @@ export const MAG = {
     industries: { en: "industries served", fr: "secteurs servis", ar: "قطاعات نخدمها" },
     products: { en: "products built in-house", fr: "produits développés en interne", ar: "منتجات مطوّرة داخلياً" },
     languages: { en: "languages on every screen: Arabic, French, English", fr: "langues sur chaque écran : arabe, français, anglais", ar: "لغات في كل شاشة: العربية والفرنسية والإنجليزية" },
-    delivery: { en: "ways to deliver: on your servers, private, or managed", fr: "modes de livraison : sur vos serveurs, privé ou géré", ar: "طرق للتسليم: على خوادمكم، أو بيئة خاصة، أو خدمة مُدارة" },
+    delivery: { en: "ways to deliver: on your servers, private, or managed", fr: "modes de livraison : sur vos serveurs, privé ou géré", ar: "طرق للتسليم: على خوادمكم، أو في بيئة خاصة، أو خدمةً مُدارة" },
   },
   console: {
     alt: {
@@ -404,7 +404,7 @@ export const MAG = {
       steps: [
         { en: "He files the request from his phone and uploads each document once.", fr: "Il dépose sa demande depuis son téléphone et envoie chaque pièce une seule fois.", ar: "يقدّم الطلب من هاتفه ويرفع كل مستند مرة واحدة." },
         { en: "The licences office receives a complete file. The inspector finds the visit on his list.", fr: "Le bureau des licences reçoit un dossier complet. L'inspecteur trouve la visite dans sa liste.", ar: "يستلم مكتب التراخيص ملفاً كاملاً. ويجد المفتش الزيارة في قائمته." },
-        { en: "The fee is paid, the head of office approves, and every step is recorded.", fr: "Le droit est payé, le chef de bureau valide, et chaque étape est enregistrée.", ar: "يُدفع الرسم ويعتمد رئيس المكتب، وتُسجَّل كل خطوة." },
+        { en: "The fee is paid, the head of office approves, and every step is recorded.", fr: "Le droit est payé, le chef de bureau valide, et chaque étape est enregistrée.", ar: "يُدفع الرسم ويعتمد رئيس المكتب الطلب، وتُسجَّل كل خطوة." },
         { en: "The licence arrives with a code that anyone can verify. Nobody stood in line.", fr: "La licence arrive avec un code que chacun peut vérifier. Personne n'a fait la queue.", ar: "تصل الرخصة برمز يمكن لأي جهة التحقق منه. ولم يقف أحد في طابور." },
       ],
       gain: {
@@ -426,7 +426,7 @@ export const MAG = {
         { en: "Reception registers the patient once and hands over a queue ticket.", fr: "L'accueil enregistre le patient une fois et lui remet un ticket.", ar: "يسجّل الاستقبال المريض مرة واحدة ويسلّمه تذكرة انتظار." },
         { en: "The doctor orders a test. The laboratory sees it at once.", fr: "Le médecin prescrit une analyse. Le laboratoire la voit aussitôt.", ar: "يطلب الطبيب تحليلاً فيراه المختبر في الحال." },
         { en: "The result returns to the file. The pharmacy dispenses what was prescribed and the stock goes down by itself.", fr: "Le résultat revient au dossier. La pharmacie délivre ce qui a été prescrit et le stock diminue de lui-même.", ar: "تعود النتيجة إلى الملف. تصرف الصيدلية ما وُصف وينقص المخزون تلقائياً." },
-        { en: "The invoice already holds every service that was given.", fr: "La facture contient déjà chaque acte réalisé.", ar: "الفاتورة تتضمن مسبقاً كل خدمة قُدّمت." },
+        { en: "The invoice already holds every service that was given.", fr: "La facture contient déjà chaque acte réalisé.", ar: "وتتضمن الفاتورة تلقائياً كل خدمة قُدّمت." },
       ],
       gain: {
         en: "For the management: what was done, by whom, and what it brought in, the same evening.",
@@ -466,7 +466,7 @@ export const MAG = {
       },
       steps: [
         { en: "A visitor is announced before he arrives and receives a pass.", fr: "Un visiteur est annoncé avant son arrivée et reçoit un laissez-passer.", ar: "يُسجَّل الزائر قبل وصوله ويحصل على تصريح." },
-        { en: "The door opens for him only where he is expected, and only today.", fr: "La porte ne s'ouvre pour lui que là où il est attendu, et seulement aujourd'hui.", ar: "يُفتح له الباب حيث يُنتظَر فقط، ولهذا اليوم فقط." },
+        { en: "The door opens for him only where he is expected, and only today.", fr: "La porte ne s'ouvre pour lui que là où il est attendu, et seulement aujourd'hui.", ar: "يُفتح له الباب حيث يُنتظَر فقط، وفي ذلك اليوم فقط." },
         { en: "An alarm goes to the person on duty, who must acknowledge it.", fr: "Une alarme parvient à la personne de garde, qui doit en accuser réception.", ar: "يصل الإنذار إلى المناوب، وعليه أن يؤكد استلامه." },
         { en: "The record shows who entered, when, and who responded.", fr: "L'historique montre qui est entré, quand, et qui a répondu.", ar: "يُظهر السجل من دخل ومتى ومن استجاب." },
       ],
@@ -483,11 +483,11 @@ export const MAG = {
       scene: {
         en: "A law firm, an accounting firm or a company lives on files, deadlines and approvals. They sit in folders, inboxes and memory.",
         fr: "Un cabinet d'avocats, un cabinet comptable ou une entreprise vivent de dossiers, d'échéances et de validations. Tout cela repose dans des classeurs, des messageries et des mémoires.",
-        ar: "مكتب المحاماة ومكتب المحاسبة والشركة تعيش على الملفات والمواعيد والموافقات. وكلها موزعة بين الأدراج وصناديق البريد والذاكرة.",
+        ar: "مكتب المحاماة ومكتب المحاسبة والشركة تقوم كلها على الملفات والمواعيد والموافقات. وكلها موزعة بين الأدراج وصناديق البريد والذاكرة.",
       },
       steps: [
         { en: "Each file has its people, its documents and its dates.", fr: "Chaque dossier a ses personnes, ses pièces et ses dates.", ar: "لكل ملف أشخاصه ومستنداته ومواعيده." },
-        { en: "A deadline warns before it arrives, not after.", fr: "Une échéance prévient avant d'arriver, pas après.", ar: "الموعد ينبّه قبل حلوله لا بعده." },
+        { en: "A deadline warns before it arrives, not after.", fr: "Une échéance prévient avant d'arriver, pas après.", ar: "يأتي التنبيه قبل حلول الموعد لا بعده." },
         { en: "A document leaves only after the review the firm requires.", fr: "Un document ne sort qu'après la revue exigée par le cabinet.", ar: "لا يخرج مستند إلا بعد المراجعة التي يشترطها المكتب." },
         { en: "Time and fees are recorded as the work is done.", fr: "Le temps et les honoraires s'enregistrent au fil du travail.", ar: "يُسجَّل الوقت والأتعاب مع سير العمل." },
       ],
@@ -520,10 +520,10 @@ export const MAG = {
     { h: { en: "We go live together", fr: "Nous démarrons ensemble", ar: "ننطلق معاً" }, p: { en: "The first weeks are followed closely, with our people beside yours.", fr: "Les premières semaines sont suivies de près, nos équipes aux côtés des vôtres.", ar: "نتابع الأسابيع الأولى عن قرب، وفريقنا إلى جانب فريقكم." } },
     { h: { en: "We maintain", fr: "Nous maintenons", ar: "نصون" }, p: { en: "Security, updates and support continue year after year.", fr: "Sécurité, mises à jour et support se poursuivent année après année.", ar: "يستمر الأمان والتحديث والدعم عاماً بعد عام." } },
   ],
-  closeH: { en: "Which procedure costs your institution the most time?", fr: "Quelle procédure coûte le plus de temps à votre institution ?", ar: "أيّ إجراء يكلّف مؤسستكم أكثر وقت؟" },
+  closeH: { en: "Which procedure costs your institution the most time?", fr: "Quelle procédure coûte le plus de temps à votre institution ?", ar: "أيّ إجراء يستهلك أكبر قدر من وقت مؤسستكم؟" },
   closeP: {
     en: "Describe it to us. We will show you how it would run, step by step, before anything is signed.",
     fr: "Décrivez-la nous. Nous vous montrerons comment elle se déroulerait, étape par étape, avant toute signature.",
-    ar: "صِفوه لنا. نريكم كيف سيسير خطوة بخطوة قبل أي توقيع.",
+    ar: "صِفوه لنا، فنُريكم كيف سيسير خطوةً بخطوة قبل أي توقيع.",
   },
 };
