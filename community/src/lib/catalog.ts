@@ -133,7 +133,7 @@ export const INDUSTRIES: Industry[] = [
       { en: "Arabic learning material for young children", fr: "Supports en arabe pour les jeunes enfants", ar: "مواد تعليمية عربية للأطفال الصغار" },
     ],
     capabilities: [
-      { en: "Country packs for Bahrain, Qatar, Tunisia and Libya", fr: "Paramètres par pays : Bahreïn, Qatar, Tunisie et Libye", ar: "إعدادات خاصة بالبحرين وقطر وتونس وليبيا" },
+      { en: "Country packs for Libya, Tunisia and Qatar", fr: "Paramètres par pays : Libye, Tunisie et Qatar", ar: "إعدادات خاصة بليبيا وتونس وقطر" },
       { en: "Roles and access rights per staff member", fr: "Rôles et droits d'accès par membre du personnel", ar: "أدوار وصلاحيات لكل موظف" },
     ],
   },

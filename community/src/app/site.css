@@ -436,3 +436,42 @@ html[lang="ar"] .n-home-head h2 { letter-spacing: 0; line-height: 1.4; }
 .m-film .m-more { margin-top: 6px; font-size: 15px; }
 .m-film-video { display: block; inline-size: 100%; aspect-ratio: 16 / 9; border-radius: 20px; background: var(--dark); border: 1px solid var(--line); box-shadow: var(--k-sh-3); }
 @media (max-width: 900px) { .m-film { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── Phones and tablets, second pass (2026-11-14) ───────────────────── */
+@media (max-width: 560px) {
+  .k-main > section { padding-block: 40px; }
+  .k-head { padding-block: 28px 4px; }
+  .k-lede { font-size: 17px; }
+  .k-cta { margin-top: 24px; }
+  .k-cta .k-btn { flex: 1 1 auto; justify-content: center; }
+  /* Five industries as compact rows instead of five tall cards. */
+  .m-sectors .k-grid5 { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .m-sectors .k-ind { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: 14px; row-gap: 2px; padding: 14px 16px; align-items: center; }
+  .m-sectors .k-ind-ico { grid-row: 1 / 3; }
+  .m-sectors .k-ind-name { font-size: 17px; }
+  .m-sectors .k-ind-short { grid-column: 2; font-size: 14px; }
+  .m-sectors .k-ind-foot { grid-column: 3; grid-row: 1 / 3; padding: 0; }
+  .m-sectors .k-ind-foot > span { display: none; }
+  .m-story { padding-block: 40px !important; }
+  .m-scene-text, .m-steps li { font-size: 16px; }
+  .m-trust-in { padding-block: 44px; }
+  .n-card { padding: 20px; }
+  .n-figs > div { padding: 22px 20px; }
+  .k-foot-in { gap: 24px; padding-block: 36px 24px; }
+}
+@media (max-width: 420px) {
+  .k-facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .k-prow-head { flex-wrap: wrap; }
+  .m-hero-facts dd { font-size: 28px; }
+}
+@media (max-width: 359px) {
+  .k-top-in { gap: 8px; }
+  .k-lang summary, .k-drawer summary { padding-inline: 8px; }
+}
+/* A phone held sideways: the header must not eat the screen. */
+@media (max-height: 460px) and (orientation: landscape) {
+  .k-top { position: static; }
+  .k-top-in { min-height: 56px; }
+  .m-hero .m-cover { padding-block: 28px 24px !important; }
+}
+.k-lang summary, .k-drawer summary { min-inline-size: 44px; justify-content: center; }

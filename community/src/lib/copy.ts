@@ -89,9 +89,9 @@ export const HOME = {
   },
   presenceH: { en: "Where we work", fr: "Où nous travaillons", ar: "أين نعمل" },
   presenceP: {
-    en: "Based in Bahrain, with business development in Libya through a local partner.",
-    fr: "Basés à Bahreïn, avec un développement commercial en Libye via un partenaire local.",
-    ar: "مقرنا في البحرين، ونطوّر أعمالنا في ليبيا عبر شريك محلي.",
+    en: "Business development in Libya through a local partner.",
+    fr: "Développement commercial en Libye via un partenaire local.",
+    ar: "نطوّر أعمالنا في ليبيا عبر شريك محلي.",
   },
 };
 
@@ -244,16 +244,11 @@ export const HOW = {
 export const PRESENCE = {
   h1: { en: "Presence", fr: "Présence", ar: "حضورنا" },
   lede: {
-    en: "Where we are based, where we develop business, and who we work with.",
-    fr: "Où nous sommes basés, où nous développons notre activité, et avec qui nous travaillons.",
-    ar: "أين مقرنا، وأين نطوّر أعمالنا، ومع من نعمل.",
+    en: "Where we develop business, and who we work with.",
+    fr: "Où nous développons notre activité, et avec qui nous travaillons.",
+    ar: "أين نطوّر أعمالنا، ومع من نعمل.",
   },
   places: [
-    {
-      name: { en: "Bahrain", fr: "Bahreïn", ar: "البحرين" },
-      role: { en: "Company base", fr: "Siège de la société", ar: "مقر الشركة" },
-      text: { en: "Product development, engineering and operations are run from Bahrain.", fr: "Le développement des produits, l'ingénierie et l'exploitation sont menés depuis Bahreïn.", ar: "تُدار من البحرين أعمال تطوير المنتجات والهندسة والتشغيل." },
-    },
     {
       name: { en: "Libya", fr: "Libye", ar: "ليبيا" },
       role: { en: "Business development through a local partner", fr: "Développement commercial via un partenaire local", ar: "تطوير الأعمال عبر شريك محلي" },
