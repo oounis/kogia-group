@@ -475,3 +475,5 @@ html[lang="ar"] .n-home-head h2 { letter-spacing: 0; line-height: 1.4; }
   .m-hero .m-cover { padding-block: 28px 24px !important; }
 }
 .k-lang summary, .k-drawer summary { min-inline-size: 44px; justify-content: center; }
+.m-film .m-more + .m-more { margin-top: 0; }
+.m-film .n-home-head .m-more { justify-self: start; }

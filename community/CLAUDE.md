@@ -12,6 +12,8 @@ Traefik, 2 répliques, `deploy/deploy.sh`).
 - `src/lib/insights.ts` : les articles « Tendances » (/insights). Ajouter un
   article = une entrée. Chaque chiffre a sa source listée sous l'article, et
   un service annoncé est dit « annoncé », jamais livré.
+- `film/queue.html` : le film des files d'attente (75 s, `FILM=queue`), texte de
+  voix off dans `film/queue-narration.md`.
 - `film/licence.html` : le film « une licence sans file d'attente » (54 s, CSS
   pur, en/fr/ar). `node tools/rendre-film.mjs` le rend en MP4 dans
   `public/video/` (large et vertical, ffmpeg requis). Illustration d'une ligne

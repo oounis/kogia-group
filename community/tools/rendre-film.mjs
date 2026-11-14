@@ -12,9 +12,11 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 
 const ici = dirname(fileURLToPath(import.meta.url));
-const FILM = pathToFileURL(resolve(ici, "../film/licence.html")).href;
+// FILM=queue node tools/rendre-film.mjs  → le film des files d'attente (75 s).
+const NOM = process.env.FILM || "licence";
+const FILM = pathToFileURL(resolve(ici, `../film/${NOM}.html`)).href;
 const SORTIE = resolve(ici, "../public/video");
-const DUREE = 54, FPS = 25;
+const DUREE = { licence: 54, queue: 75 }[NOM], FPS = 25;
 const TAILLES = { wide: { width: 1920, height: 1080 }, tall: { width: 1080, height: 1920 } };
 const [langArg, formatArg, instant] = process.argv.slice(2);
 const langues = langArg ? [langArg] : ["en", "fr", "ar"];
@@ -28,11 +30,11 @@ for (const lang of langues) for (const format of formats) {
   const aller = (ms) => page.evaluate((t) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = t; } }, ms);
   if (instant) {
     await aller(Number(instant) * 1000);
-    await page.screenshot({ path: resolve(SORTIE, `apercu-${lang}-${format}-${instant}.png`) });
+    await page.screenshot({ path: resolve(SORTIE, `apercu-${NOM}-${lang}-${format}-${instant}.png`) });
     await page.close();
     continue;
   }
-  const cible = resolve(SORTIE, `licence-${lang}${format === "tall" ? "-vertical" : ""}.mp4`);
+  const cible = resolve(SORTIE, `${NOM}-${lang}${format === "tall" ? "-vertical" : ""}.mp4`);
   const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
     "-c:v", "libx264", "-preset", "slow", "-crf", "24", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-an", cible], { stdio: ["pipe", "inherit", "inherit"] });
   const fini = new Promise((ok, ko) => ff.on("close", (c) => (c === 0 ? ok() : ko(new Error(`ffmpeg ${c}`)))));
@@ -43,8 +45,8 @@ for (const lang of langues) for (const format of formats) {
   }
   ff.stdin.end();
   await fini;
-  await aller(2600);
-  if (format === "wide") await page.screenshot({ type: "jpeg", quality: 88, path: resolve(SORTIE, `licence-${lang}.jpg`) });
+  await aller(NOM === "queue" ? 63000 : 2600);
+  if (format === "wide") await page.screenshot({ type: "jpeg", quality: 88, path: resolve(SORTIE, `${NOM}-${lang}.jpg`) });
   console.log("rendu", cible);
   await page.close();
 }

@@ -1,0 +1,247 @@
+<!doctype html>
+<!-- The queue film: 75 seconds, pure CSS animation, rendered to MP4 by
+     FILM=queue node tools/rendre-film.mjs.  ?lang=en|fr|ar  ?format=wide|tall.
+     Story: an office without a system, a ticket taken from home, a ticket taken
+     by QR code at the door, the staff screen, the public display, the same
+     office in order. It illustrates a platform in development and says so. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --em:#0F6B53; --em3:#7CC1AA; --em50:#EEF7F3; --pine:#0B2A22; --deep:#071D18; --brass:#C9A24B; --brassL:#DCC487; --brass50:#FAF6EC; --brassI:#8F6B1F; --ink:#0F1F1A; --slate:#4A5953; --line:#DDE5E0; --canvas:#F4F7F5; --soft:#B4C6BE; --red:#DC4B54;
+  --display:"Sora",sans-serif; --text:"Inter",sans-serif; }
+html[lang=ar] { --display:"Cairo",sans-serif; --text:"Cairo",sans-serif; }
+* { box-sizing:border-box; margin:0; }
+html { font-size:1vw; } html.tall { font-size:1.72vw; }
+body { width:100vw; height:100vh; overflow:hidden; background:var(--pine); color:#fff; font-family:var(--text);
+  background-image:radial-gradient(60rem 30rem at 85% -10%, rgb(31 132 104 / .4), transparent 70%), linear-gradient(rgb(255 255 255 / .03) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .03) 1px, transparent 1px); background-size:auto, 3.4rem 3.4rem, 3.4rem 3.4rem; }
+svg { display:block; }
+.logo { position:absolute; top:2.4rem; inset-inline-start:3.2rem; width:11.5rem; direction:ltr; }
+.bar { position:absolute; inset-inline:0; bottom:0; height:.42rem; background:rgb(255 255 255 / .1); }
+.bar i { display:block; height:100%; background:var(--brass); transform-origin:0 50%; animation:grow 75s linear both; }
+[dir=rtl] .bar i { transform-origin:100% 50%; }
+@keyframes grow { from { transform:scaleX(0) } to { transform:scaleX(1) } }
+@keyframes vis { 0% { opacity:0 } 6% { opacity:1 } 94% { opacity:1 } 100% { opacity:0 } }
+@keyframes in { from { opacity:0; transform:translateY(1.4rem) } to { opacity:1; transform:none } }
+@keyframes pop { from { opacity:0; transform:scale(.5) } to { opacity:1; transform:none } }
+@keyframes tick { from { background:#fff; box-shadow:inset 0 0 0 .12rem var(--line); color:transparent } to { background:var(--em); box-shadow:none; color:#fff } }
+@keyframes sway { 0%,100% { transform:translateX(0) rotate(0) } 25% { transform:translateX(.5rem) rotate(2deg) } 75% { transform:translateX(-.5rem) rotate(-2deg) } }
+@keyframes spin { to { transform:rotate(1440deg) } }
+@keyframes beam { 0%,100% { top:6% } 50% { top:88% } }
+@keyframes ring { 0% { box-shadow:0 0 0 0 rgb(201 162 75 / .9) } 100% { box-shadow:0 0 0 1.6rem rgb(201 162 75 / 0) } }
+@keyframes flash { 0%,100% { background:var(--brass) } 50% { background:#fff } }
+.sc { position:absolute; inset:0; padding:7rem 6rem 5rem; display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:4rem; align-items:center; opacity:0; animation:vis var(--d) linear var(--t0) both; }
+.tall .sc { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1.2fr) minmax(0,.8fr); padding:8rem 3.4rem 5rem; gap:2rem; }
+.tall .sc .vis { order:-1; }
+.sc.full { grid-template-columns:minmax(0,1fr); grid-template-rows:none; justify-items:center; text-align:center; align-content:center; }
+.sc.hall { grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); align-items:start; gap:2rem; }
+.sc.hall .cap { min-height:8.5rem; }
+.tall .sc.hall { grid-template-rows:minmax(0,1.1fr) auto; } .tall .sc.hall .cap { order:2; }
+.i { opacity:0; animation:in .7s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--t0) + var(--a, 0s)); }
+.w { opacity:0; animation:vis var(--cd) linear both; animation-delay:calc(var(--t0) + var(--ca)); }
+.k { font:700 1.05rem var(--text); letter-spacing:.14em; text-transform:uppercase; color:var(--brassL); display:flex; align-items:center; gap:.9rem; margin-bottom:1.2rem; }
+html[lang=ar] .k { letter-spacing:0; font-size:1.35rem; }
+.k::before { content:""; width:2.6rem; height:.16rem; background:var(--brass); }
+.full .k { justify-content:center; }
+h1 { font:800 5.2rem/1.08 var(--display); letter-spacing:-.03em; }
+h2 { font:700 2.7rem/1.22 var(--display); letter-spacing:-.02em; }
+html[lang=ar] h1, html[lang=ar] h2 { letter-spacing:0; line-height:1.45; }
+.lines { display:flex; flex-wrap:wrap; gap:.8rem 2.2rem; } .lines p { font:700 2.1rem/1.3 var(--display); }
+.tall .lines { display:grid; }
+.vis { position:relative; display:grid; place-items:center; min-height:0; height:100%; }
+/* the hall */
+.hallbox { position:relative; width:50rem; height:28rem; direction:ltr; zoom:1.22; margin-top:3rem; }
+.tall .hallbox { zoom:1; }
+.floor { position:absolute; inset-inline:0; bottom:0; height:.3rem; border-radius:.2rem; background:rgb(255 255 255 / .22); }
+.counter { position:absolute; top:0; width:11rem; height:8.2rem; }
+.counter b { position:absolute; inset-inline:0; bottom:0; height:3.6rem; border-radius:.6rem .6rem 0 0; background:rgb(255 255 255 / .1); border:.08rem solid rgb(255 255 255 / .25); display:grid; place-items:center; font:700 1.1rem var(--text); color:var(--brassL); }
+.counter svg { position:absolute; left:50%; top:.4rem; width:3rem; margin-left:-1.5rem; }
+.person { position:absolute; width:3.2rem; }
+.chaos .person { animation:sway var(--s) ease-in-out infinite; animation-delay:var(--dl); }
+.bub { position:absolute; width:2.5rem; height:2.5rem; border-radius:50% 50% 50% .3rem; background:#fff; color:var(--red); font:800 1.5rem/2.5rem var(--display); text-align:center; opacity:0; animation:pop .4s cubic-bezier(.2,1.5,.4,1) both; animation-delay:calc(var(--t0) + var(--a)); }
+.clock { position:absolute; right:-6.5rem; top:.2rem; width:5.4rem; height:5.4rem; border-radius:50%; background:#fff; border:.3rem solid var(--brass); }
+.clock i { position:absolute; left:50%; bottom:50%; width:.24rem; height:1.9rem; margin-left:-.12rem; background:var(--ink); border-radius:.2rem; transform-origin:50% 100%; animation:spin 11s linear both; animation-delay:calc(var(--t0) + 1s); }
+.clock i + i { height:1.3rem; animation-duration:132s; }
+.register { position:absolute; left:-7rem; top:4rem; width:5rem; height:3.6rem; background:#fff; border-radius:.3rem; padding:.5rem; display:grid; gap:.3rem; align-content:center; transform:rotate(-6deg); }
+.register i { height:.26rem; background:var(--line); border-radius:.2rem; } .register i:nth-child(odd) { background:var(--slate); width:70%; }
+.wall { position:absolute; left:50%; top:-4.6rem; margin-left:-9rem; width:18rem; background:var(--deep); border:.14rem solid var(--brass); border-radius:.7rem; padding:.7rem 1rem; display:flex; justify-content:space-between; align-items:center; font:800 1.7rem var(--display); color:#fff; }
+.wall span { font:600 .9rem var(--text); color:var(--soft); } .wall em { font-style:normal; color:var(--brassL); }
+.tag { position:absolute; z-index:2; font:700 .78rem var(--text); background:var(--brass50); color:var(--brassI); border-radius:.3rem; padding:.1rem .35rem; }
+/* phone */
+.phone { width:19rem; padding:.7rem; border-radius:2.6rem; background:var(--deep); border:.08rem solid rgb(255 255 255 / .3); box-shadow:0 3rem 5rem -2rem rgb(0 0 0 / .8); zoom:1.38; position:relative; }
+.tall .phone { zoom:1.42; }
+.phone > div { background:#fff; color:var(--ink); border-radius:2rem; height:25rem; position:relative; overflow:hidden; }
+.lay { position:absolute; inset:0; padding:1.7rem 1.2rem 1.3rem; display:grid; gap:.7rem; align-content:start; }
+.phone small { font:600 .88rem var(--text); color:var(--slate); }
+.phone h3 { font:700 1.35rem/1.3 var(--display); }
+.row { display:flex; align-items:center; gap:.7rem; padding:.7rem .8rem; border:.08rem solid var(--line); border-radius:.8rem; font:600 .98rem var(--text); opacity:0; animation:in .5s ease both; animation-delay:calc(var(--t0) + var(--a) - .5s); }
+.row small { display:block; font-size:.76rem; }
+.dot { flex:none; width:1.5rem; height:1.5rem; border-radius:50%; display:grid; place-items:center; background:#fff; box-shadow:inset 0 0 0 .12rem var(--line); color:transparent; animation:tick .4s ease both; animation-delay:calc(var(--t0) + var(--a)); }
+.dot svg { width:.95rem; height:.95rem; }
+.slot { justify-self:start; background:var(--em50); color:#0B5743; font:700 1rem var(--text); border-radius:99rem; padding:.45rem 1rem; }
+.ticket { margin-top:.4rem; border:.12rem dashed var(--brass); background:var(--brass50); border-radius:1rem; padding:1rem; text-align:center; }
+.ticket b { display:block; font:800 3.2rem/1.1 var(--display); color:var(--ink); direction:ltr; }
+.ahead { position:relative; height:4.4rem; background:var(--pine); color:#fff; border-radius:1rem; }
+.ahead span { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:.7rem; font:600 1.05rem var(--text); }
+.ahead b { font:800 2.3rem var(--display); color:var(--brassL); }
+.toast { position:absolute; inset-inline:1rem; top:1rem; background:var(--em); color:#fff; border-radius:.9rem; padding:.8rem 1rem; font:700 1rem var(--text); display:flex; align-items:center; gap:.6rem; box-shadow:0 1rem 2rem -.8rem rgb(0 0 0 / .5); }
+.toast svg { width:1.3rem; height:1.3rem; flex:none; }
+/* QR scene */
+.door { display:flex; align-items:center; gap:3rem; direction:ltr; }
+.poster { width:17rem; background:#fff; color:var(--ink); border-radius:1.2rem; padding:1.6rem; text-align:center; font:700 1.2rem/1.35 var(--display); border-top:.6rem solid var(--brass); box-shadow:0 3rem 5rem -2rem rgb(0 0 0 / .8); }
+.qrw { position:relative; margin:1.1rem auto 0; width:11rem; height:11rem; }
+.qr { width:100%; height:100%; display:grid; grid-template-columns:repeat(9,1fr); gap:.16rem; }
+.qr i { background:var(--ink); border-radius:.1rem; } .qr i.o { background:transparent; }
+.beam { position:absolute; inset-inline:-.6rem; height:.34rem; border-radius:.2rem; background:var(--red); box-shadow:0 0 1.2rem .3rem rgb(220 75 84 / .6); animation:beam 1.6s ease-in-out 2 both; animation-delay:calc(var(--t0) + 1.2s); top:6%; }
+.door .phone { zoom:1.05; } .tall .door { flex-direction:column; gap:1.6rem; } .tall .door .phone { zoom:.92; } .tall .poster { zoom:.82; }
+/* staff window */
+.win { width:100%; max-width:38rem; background:#fff; color:var(--ink); border-radius:1.2rem; overflow:hidden; box-shadow:0 3rem 6rem -2.4rem rgb(0 0 0 / .75), 0 0 0 .4rem rgb(255 255 255 / .05); zoom:1.22; }
+.tall .win { zoom:1.12; }
+.win-bar { display:flex; align-items:center; gap:.45rem; padding:.85rem 1.2rem; background:var(--canvas); border-bottom:.08rem solid var(--line); font:600 .95rem var(--text); color:var(--slate); }
+.win-bar i { width:.6rem; height:.6rem; border-radius:50%; background:var(--line); } .win-bar span { margin-inline-start:.5rem; }
+.dash { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); }
+.qs { padding:1.1rem; display:grid; gap:.6rem; border-inline-end:.08rem solid var(--line); }
+.q { display:grid; grid-template-columns:2.2rem minmax(0,1fr) auto; gap:.7rem; align-items:center; padding:.7rem .8rem; border:.08rem solid var(--line); border-radius:.8rem; font:600 .98rem var(--text); }
+.q.on { border-color:var(--em); background:var(--em50); }
+.q > b { width:2.2rem; height:2.2rem; border-radius:.6rem; background:var(--pine); color:var(--brassL); display:grid; place-items:center; font:800 1.1rem var(--display); }
+.q em { font-style:normal; font:800 1.25rem var(--display); position:relative; min-width:1.4rem; height:1.6rem; text-align:center; } .q em span { position:absolute; inset:0; }
+.q small { display:block; font:500 .78rem var(--text); color:var(--slate); }
+.now { padding:1.1rem; display:grid; gap:.7rem; align-content:start; text-align:center; }
+.now small { font:700 .82rem var(--text); letter-spacing:.08em; text-transform:uppercase; color:var(--slate); } html[lang=ar] .now small { letter-spacing:0; font-size:.95rem; }
+.big { position:relative; height:4.6rem; } .big b { position:absolute; inset:0; font:800 3.6rem/4.6rem var(--display); direction:ltr; }
+.call { position:relative; height:3rem; border-radius:.8rem; background:var(--em); color:#fff; font:700 1rem/3rem var(--text); }
+.call::after { content:""; position:absolute; inset:0; border-radius:.8rem; animation:ring .8s ease-out 2 both; animation-delay:calc(var(--t0) + 5.2s); }
+.done { justify-self:center; font:700 .9rem var(--text); color:#0B5743; background:var(--em50); border-radius:99rem; padding:.3rem .9rem; display:flex; gap:.4rem; align-items:center; } .done svg { width:1rem; height:1rem; }
+/* public display */
+.tv { width:100%; max-width:40rem; background:#04120E; border:.5rem solid #1c2a26; border-radius:1.4rem; padding:1.4rem; box-shadow:0 3rem 6rem -2rem rgb(0 0 0 / .85); zoom:1.15; direction:ltr; }
+.tall .tv { zoom:1.05; }
+.tv-h { display:flex; justify-content:space-between; font:700 .95rem var(--text); color:var(--brassL); padding-bottom:.8rem; border-bottom:.1rem solid rgb(255 255 255 / .15); }
+.tv-h span { font-family:"Inter","Cairo",sans-serif; }
+.tv-now { position:relative; height:8.4rem; margin-top:1rem; }
+.tv-now > div { position:absolute; inset:0; border-radius:1rem; background:var(--brass); color:var(--deep); display:flex; align-items:center; justify-content:space-between; padding:0 1.8rem; font:800 4.6rem var(--display); }
+.tv-now .fl { animation:vis var(--cd) linear both, flash .5s ease 3; animation-delay:calc(var(--t0) + var(--ca)), calc(var(--t0) + var(--ca) + .3s); opacity:0; }
+.tv-now em { font-style:normal; font:800 3.2rem var(--display); display:flex; align-items:center; gap:.8rem; } .tv-now em small { font:700 1rem var(--text); }
+.tv-list { margin-top:1rem; display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; }
+.tv-list div { border-radius:.8rem; background:rgb(255 255 255 / .08); color:#fff; padding:.8rem; text-align:center; font:800 1.7rem var(--display); } .tv-list small { display:block; font:600 .8rem var(--text); color:var(--soft); }
+/* gains, close */
+.gains { display:flex; flex-wrap:wrap; gap:.8rem 1rem; } .tall .gains { display:grid; }
+.gain { display:flex; align-items:center; gap:.9rem; background:rgb(255 255 255 / .07); border:.08rem solid rgb(255 255 255 / .18); border-inline-start:.3rem solid var(--brass); border-radius:.9rem; padding:.8rem 1.2rem; font:700 1.45rem/1.3 var(--display); }
+.gain span { flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--em); display:grid; place-items:center; } .gain svg { width:1.2rem; height:1.2rem; }
+.url { font:600 1.5rem var(--text); color:var(--brassL); margin-top:2rem; direction:ltr; }
+.fine { font:500 1.05rem var(--text); color:var(--soft); margin-top:1.4rem; }
+.biglogo { width:16rem; margin-bottom:2.4rem; direction:ltr; }
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), L = q.get("lang") || "en";
+document.documentElement.lang = L; document.documentElement.dir = L === "ar" ? "rtl" : "ltr";
+if (q.get("format") === "tall") document.documentElement.classList.add("tall");
+const T = {
+  kicker: { en: "Appointments and queues", fr: "Rendez-vous et files d'attente", ar: "المواعيد والطوابير" },
+  title: { en: "From the crowd to the queue number.", fr: "De la foule au numéro de passage.", ar: "من الزحام إلى رقم الدور." },
+  k1: { en: "Without a system", fr: "Sans système", ar: "بلا نظام" },
+  l1: { en: "Nobody knows where to go.", fr: "Personne ne sait où aller.", ar: "لا أحد يعرف إلى أين يتجه." },
+  l2: { en: "Who arrived first?", fr: "Qui est arrivé le premier ?", ar: "من وصل أولاً؟" },
+  l3: { en: "Hours lost waiting.", fr: "Des heures perdues à attendre.", ar: "ساعات تضيع في الانتظار." },
+  counter: { en: "Counter", fr: "Guichet", ar: "الشبّاك" },
+  k2: { en: "From home", fr: "Depuis chez soi", ar: "من البيت" },
+  c2: { en: "Choose the office and the service. Take your ticket before you leave home.", fr: "Choisissez le bureau et le service. Prenez votre ticket avant de partir.", ar: "اختر الجهة والخدمة، وخذ تذكرتك قبل أن تغادر البيت." },
+  c2b: { en: "Follow your place in the queue. A message arrives when your turn is near.", fr: "Suivez votre place dans la file. Un message arrive quand votre tour approche.", ar: "تابع دورك في الطابور. وتصلك رسالة حين يقترب دورك." },
+  newT: { en: "New ticket", fr: "Nouveau ticket", ar: "تذكرة جديدة" },
+  org: { en: "Municipality", fr: "Municipalité", ar: "البلدية" }, orgS: { en: "Organisation", fr: "Organisme", ar: "الجهة" },
+  dep: { en: "Licences department", fr: "Service des licences", ar: "قسم التراخيص" }, depS: { en: "Department", fr: "Département", ar: "القسم" },
+  svc: { en: "Activity licence", fr: "Licence d'activité", ar: "رخصة نشاط" }, svcS: { en: "Service", fr: "Service", ar: "الخدمة" },
+  slot: { en: "Today, 10:30", fr: "Aujourd'hui, 10:30", ar: "اليوم، 10:30" },
+  your: { en: "Your ticket", fr: "Votre ticket", ar: "تذكرتك" },
+  ahead: { en: "ahead of you", fr: "avant vous", ar: "أمامك" },
+  near: { en: "Your turn is near", fr: "Votre tour approche", ar: "اقترب دورك" },
+  k3: { en: "At the door", fr: "À l'entrée", ar: "عند الباب" },
+  c3: { en: "No booking? Scan the code at the entrance and the ticket is on your phone.", fr: "Pas de rendez-vous ? Scannez le code à l'entrée et le ticket est sur votre téléphone.", ar: "بلا حجز؟ امسح الرمز عند المدخل فتصلك التذكرة على هاتفك." },
+  scan: { en: "Scan to take a ticket", fr: "Scannez pour prendre un ticket", ar: "امسح لتأخذ تذكرة" },
+  svc2: { en: "Building permit", fr: "Permis de construire", ar: "رخصة بناء" },
+  k4: { en: "For staff", fr: "Pour le personnel", ar: "للموظفين" },
+  c4: { en: "Each service has its own queue. One click calls the next ticket.", fr: "Chaque service a sa propre file. Un clic appelle le ticket suivant.", ar: "لكل خدمة طابورها. وبنقرة واحدة يُنادى على التذكرة التالية." },
+  desk: { en: "Counter 2 · Licences", fr: "Guichet 2 · Licences", ar: "الشبّاك 2 · التراخيص" },
+  qA: { en: "Activity licences", fr: "Licences d'activité", ar: "رخص النشاط" }, qB: { en: "Building permits", fr: "Permis de construire", ar: "رخص البناء" }, qC: { en: "Attestations", fr: "Attestations", ar: "الإفادات" },
+  waiting: { en: "waiting", fr: "en attente", ar: "في الانتظار" },
+  serving: { en: "Now serving", fr: "En cours", ar: "الآن" },
+  call: { en: "Call next", fr: "Appeler le suivant", ar: "نادِ التالي" }, done: { en: "Done", fr: "Terminé", ar: "تم" },
+  k5: { en: "On the screen", fr: "Sur l'écran", ar: "على الشاشة" },
+  c5: { en: "Everyone sees which ticket is called, and at which counter.", fr: "Chacun voit quel ticket est appelé, et à quel guichet.", ar: "يرى الجميع أي تذكرة نودي عليها، وعند أي شبّاك." },
+  next: { en: "Next", fr: "Suivant", ar: "التالي" },
+  k6: { en: "With the system", fr: "Avec le système", ar: "مع النظام" },
+  g1: { en: "Everyone knows their place in line", fr: "Chacun connaît sa place dans la file", ar: "كل شخص يعرف دوره" },
+  g2: { en: "No disputes over who is next", fr: "Plus de disputes sur l'ordre de passage", ar: "لا خلاف على من التالي" },
+  g3: { en: "Management sees every queue", fr: "La direction voit chaque file", ar: "الإدارة ترى كل طابور" },
+  close: { en: "Appointments and queues, in order.", fr: "Rendez-vous et files d'attente, en ordre.", ar: "مواعيد وطوابير منظَّمة." },
+  fine: { en: "Illustration of a platform in development.", fr: "Illustration d'une plateforme en cours de développement.", ar: "رسم توضيحي لمنصة قيد التطوير." },
+};
+const t = (k) => T[k][L];
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const BELL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+const WHALE = "M12 54 C12 34 28 22 52 22 C74 22 88 32 91 46 C94 38 99 30 107 25 C105 32 104 38 105 43 C110 41 117 41 124 44 C117 48 111 50 106 50 C102 62 92 70 76 73 C58 76 34 74 22 68 C14 64 12 60 12 54 Z M38.4 45 a4.4 4.4 0 1 1 -8.8 0 a4.4 4.4 0 1 1 8.8 0 Z";
+const logo = (c) => `<svg class="${c}" viewBox="0 0 300 72" font-family="Sora, sans-serif"><g transform="translate(4,14) scale(.52)"><path fill="#7CC1AA" fill-rule="evenodd" d="${WHALE}"/><path d="M42 12 q-1 -7 5 -9 M50 12 q4 -6 11 -6" fill="none" stroke="#7CC1AA" stroke-width="4" stroke-linecap="round" opacity=".85"/></g><text x="76" y="40" font-size="30" font-weight="800" fill="#fff" letter-spacing="-0.6">kogia</text><text x="78" y="58" font-size="10" font-weight="700" fill="#DCC487" letter-spacing="4">GROUP</text></svg>`;
+const man = (c, phone) => `<svg viewBox="0 0 40 84"><circle cx="20" cy="13" r="11" fill="${c}"/><path d="M3 82c0-34 6-52 17-52s17 18 17 52z" fill="${c}"/>${phone ? '<rect x="24" y="40" width="9" height="15" rx="2" fill="#fff"/><rect x="25.5" y="42" width="6" height="8" rx="1" fill="#0F6B53"/>' : ""}</svg>`;
+const COL = ["#DCC487", "#7CC1AA", "#E6EEEA", "#C9A24B", "#93A9A0", "#45A186", "#EBDDB8", "#B4C6BE"];
+const person = (x, y, i, extra = "", phone = false) => `<div class="person" style="left:${x}rem;top:${y}rem;--s:${2.2 + (i % 4) * .5}s;--dl:${-(i % 5) * .4}s;${extra}">${man(COL[i % COL.length], phone)}</div>`;
+const counters = [2, 19.5, 37].map((x, i) => `<div class="counter" style="left:${x}rem"><svg viewBox="0 0 40 84">${man("#45A186").replace(/<\/?svg[^>]*>/g, "")}</svg><b dir="${L === "ar" ? "rtl" : "ltr"}">${t("counter")} ${i + 1}</b></div>`).join("");
+const CROWD = [[7, 11.4], [10.5, 12.6], [13.6, 11], [16, 13.6], [19.4, 11.8], [22.5, 13.2], [25, 11.2], [28.4, 12.8], [31.6, 11.6], [14.5, 16.8], [20.6, 17.2], [26.5, 17], [9, 17.4], [33.5, 16.6], [37, 13], [4, 14.6], [23.5, 20.4], [17, 20.8], [30.5, 20.2]];
+const SEATS = []; for (let r = 0; r < 2; r++) for (let c = 0; c < 7; c++) SEATS.push([4 + c * 6.2, 12.6 + r * 7.7]);
+const QR = "111011101,101010111,111001001,000110110,110101011,011010100,111001101,101011010,111010111".split(",").join("").split("").map((b) => `<i class="${b === "1" ? "" : "o"}"></i>`).join("");
+const row = (a, k, s) => `<div class="row" style="--a:${a}s"><span class="dot" style="--a:${a}s">${CHECK}</span><span><small>${t(s)}</small>${t(k)}</span></div>`;
+const aheadN = (n, ca, cd) => `<span class="w" style="--ca:${ca}s;--cd:${cd}s">${L === "ar" ? `${t("ahead")} <b>${n}</b>` : `<b>${n}</b> ${t("ahead")}`}</span>`;
+const num = (v, ca, cd) => `<span class="w" style="--ca:${ca}s;--cd:${cd}s">${v}</span>`;
+document.body.innerHTML = `
+${logo("logo")}
+<section class="sc hall" style="--t0:0s;--d:13s">
+  <div class="cap"><p class="k i" style="--a:.3s">${t("k1")}</p><div class="lines"><p class="i" style="--a:1s">${t("l1")}</p><p class="i" style="--a:4.4s">${t("l2")}</p><p class="i" style="--a:8s">${t("l3")}</p></div></div>
+  <div class="vis"><div class="hallbox chaos">${counters}<div class="register"><i></i><i></i><i></i><i></i><i></i></div><div class="clock"><i></i><i></i></div>
+    ${CROWD.map((p, i) => person(p[0], p[1], i)).join("")}
+    <div class="bub" style="left:11rem;top:9rem;--a:1.6s">?</div><div class="bub" style="left:26rem;top:8.6rem;--a:2.6s">?</div><div class="bub" style="left:18rem;top:8.4rem;--a:4.8s">!</div><div class="bub" style="left:32.5rem;top:9rem;--a:5.6s">!</div><div class="bub" style="left:7.5rem;top:13.6rem;--a:6.6s">?</div><div class="bub" style="left:22.5rem;top:10.4rem;--a:8.4s">!</div>
+    <div class="floor"></div></div></div>
+</section>
+<section class="sc" style="--t0:13s;--d:15s">
+  <div class="cap" style="position:relative;height:16rem"><div class="w" style="--ca:.3s;--cd:7.4s;position:absolute;inset:0"><p class="k">${t("k2")}</p><h2>${t("c2")}</h2></div><div class="w" style="--ca:7.9s;--cd:6.9s;position:absolute;inset:0"><p class="k">${t("k2")}</p><h2>${t("c2b")}</h2></div></div>
+  <div class="vis"><div class="phone i" style="--a:.4s"><div>
+    <div class="lay w" style="--ca:.4s;--cd:7.3s"><small>${t("newT")}</small>${row(1.5, "org", "orgS")}${row(2.9, "dep", "depS")}${row(4.3, "svc", "svcS")}<span class="slot i" style="--a:5.6s">${t("slot")}</span></div>
+    <div class="lay w" style="--ca:7.8s;--cd:7.1s"><small>${t("svc")}</small><div class="ticket"><small>${t("your")}</small><b>A-042</b></div><div class="ahead">${aheadN(5, 7.8, 2.4)}${aheadN(3, 10.2, 2)}${aheadN(1, 12.2, 2.7)}</div>
+      <div class="toast i" style="--a:12.6s">${BELL}${t("near")}</div></div>
+  </div></div></div>
+</section>
+<section class="sc" style="--t0:28s;--d:10s">
+  <div class="cap"><p class="k i" style="--a:.3s">${t("k3")}</p><h2 class="i" style="--a:.8s">${t("c3")}</h2></div>
+  <div class="vis"><div class="door"><div class="poster i" style="--a:.4s">${t("scan")}<div class="qrw"><div class="qr">${QR}</div><div class="beam"></div></div></div>
+    <div class="phone i" style="--a:.9s"><div>
+      <div class="lay w" style="--ca:4.4s;--cd:1.9s"><small>${t("newT")}</small>${row(4.9, "org", "orgS")}${row(5.5, "svc2", "svcS")}</div>
+      <div class="lay w" style="--ca:6.3s;--cd:3.6s"><small>${t("svc2")}</small><div class="ticket"><small>${t("your")}</small><b>B-017</b></div><div class="ahead">${aheadN(3, 6.3, 3.6)}</div></div>
+    </div></div></div></div>
+</section>
+<section class="sc" style="--t0:38s;--d:12s">
+  <div class="cap"><p class="k i" style="--a:.3s">${t("k4")}</p><h2 class="i" style="--a:.8s">${t("c4")}</h2></div>
+  <div class="vis"><div class="win i" style="--a:.4s"><div class="win-bar"><i></i><i></i><i></i><span>${t("desk")}</span></div><div class="dash">
+    <div class="qs"><div class="q on"><b>A</b><span>${t("qA")}<small>${t("waiting")}</small></span><em>${num(6, .4, 5.2)}${num(5, 5.6, 6.4)}</em></div><div class="q"><b>B</b><span>${t("qB")}<small>${t("waiting")}</small></span><em>3</em></div><div class="q"><b>C</b><span>${t("qC")}<small>${t("waiting")}</small></span><em>4</em></div></div>
+    <div class="now"><small>${t("serving")}</small><div class="big"><b class="w" style="--ca:.4s;--cd:5.2s">A-041</b><b class="w" style="--ca:5.6s;--cd:6.4s">A-042</b></div><span class="done i" style="--a:3.6s">${CHECK}${t("done")} · A-041</span><div class="call">${t("call")}</div></div>
+  </div></div></div>
+</section>
+<section class="sc" style="--t0:50s;--d:9s">
+  <div class="cap"><p class="k i" style="--a:.3s">${t("k5")}</p><h2 class="i" style="--a:.8s">${t("c5")}</h2></div>
+  <div class="vis"><div class="tv i" style="--a:.4s"><div class="tv-h"><span>Ticket · التذكرة</span><span>Counter · Guichet · الشبّاك</span></div>
+    <div class="tv-now"><div class="fl" style="--ca:.6s;--cd:4.2s"><span>A-042</span><em><small>→</small>2</em></div><div class="fl" style="--ca:4.8s;--cd:4.2s"><span>B-017</span><em><small>→</small>3</em></div></div>
+    <div class="tv-list"><div><small>${t("next")}</small>A-043</div><div><small>${t("next")}</small>C-009</div><div><small>${t("next")}</small>B-018</div></div></div></div>
+</section>
+<section class="sc hall" style="--t0:59s;--d:10s">
+  <div class="cap"><p class="k i" style="--a:.3s">${t("k6")}</p><div class="gains"><div class="gain i" style="--a:1s"><span>${CHECK}</span>${t("g1")}</div><div class="gain i" style="--a:3.2s"><span>${CHECK}</span>${t("g2")}</div><div class="gain i" style="--a:5.4s"><span>${CHECK}</span>${t("g3")}</div></div></div>
+  <div class="vis"><div class="hallbox">${counters}<div class="wall"><span>Ticket</span>A-043<em>→ 2</em></div>
+    ${SEATS.map((p, i) => person(p[0], p[1], i, "", i % 2 === 0) + (i % 3 === 0 ? `<span class="tag" style="left:${p[0] + .2}rem;top:${p[1] - 1.5}rem">${"ABC"[i % 3]}-0${44 + i}</span>` : "")).join("")}
+    ${person(13.6, 1.5, 3, "", true)}${person(31.1, 1.5, 6, "", true)}
+    <div class="floor"></div></div></div>
+</section>
+<section class="sc full" style="--t0:69s;--d:6s">
+  <div style="display:grid;justify-items:center">${logo("biglogo i")}<p class="k i" style="--a:.4s">${t("kicker")}</p><h1 class="i" style="--a:.8s">${t("close")}</h1><p class="url i" style="--a:1.6s">kogiagroup.com</p><p class="fine i" style="--a:2.1s">${t("fine")}</p></div>
+</section>
+<div class="bar"><i></i></div>`;
+</script>
+</body>
+</html>

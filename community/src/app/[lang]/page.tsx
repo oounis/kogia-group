@@ -63,10 +63,11 @@ export default async function Home({ params }: P) {
           <p className="m-field">{tr(MAG.film.kicker, lang)}</p>
           <h2>{tr(MAG.film.h, lang)}</h2>
           <p>{tr(MAG.film.p, lang)}</p>
-          <a className="m-more" href={`/video/licence-${lang}-vertical.mp4`}>{tr(MAG.film.vertical, lang)} <Ico n="arrow" size={18} /></a>
+          <a className="m-more" href={`/video/queue-${lang}-vertical.mp4`}>{tr(MAG.film.vertical, lang)} <Ico n="arrow" size={18} /></a>
+          <a className="m-more" href={`/video/licence-${lang}.mp4`}>{tr(MAG.film.second, lang)} <Ico n="arrow" size={18} /></a>
         </div>
-        <video className="m-film-video" controls playsInline preload="none" poster={`/video/licence-${lang}.jpg`} aria-label={tr(MAG.film.label, lang)}>
-          <source src={`/video/licence-${lang}.mp4`} type="video/mp4" />
+        <video className="m-film-video" controls playsInline preload="none" poster={`/video/queue-${lang}.jpg`} aria-label={tr(MAG.film.label, lang)}>
+          <source src={`/video/queue-${lang}.mp4`} type="video/mp4" />
         </video>
       </section>
 
